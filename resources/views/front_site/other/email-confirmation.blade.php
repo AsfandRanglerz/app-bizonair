@@ -1,7 +1,7 @@
 @extends('front_site.master_layout')
 @section('content')
     <body class="email-confirmation">
-    <main id="maincontent" class="page-main" style="background: #d9eefe8c">
+    <main id="maincontent" class="page-main">
         <div class="row m-0">
             <div class="col-lg-9 col-md-8 switch-tabs-section">
                 <div class="switch-tabs" id="formSections">
@@ -18,21 +18,7 @@
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div id="section1" class="container tab-pane active"><br>
-                            {{-- <div id="message"  class="alert "></div> --}}
-                            {{-- @if (session()->has('success'))
-                                <p class="alert alert-success">{{session()->get('success')}}</p>
-                            @endif
-
-                            @if (session()->has('error'))
-                                <p class="alert alert-danger">{{session()->get('error')}}</p>
-                            @endif
-
-                            @if ($errors->any())
-                                @foreach ($errors->all() as $error)
-                                    <p class="alert alert-danger">{{$error}}</p>
-                                @endforeach
-                            @endif --}}
+                        <div id="section1" class="container tab-pane active">
                             <div class="alert alert-success m-0 mb-2" id='alert-success'
                                  @if(!isset($_GET['from']))
                                  style="display:none;"
@@ -57,7 +43,7 @@
                                       action="{{route('get-email-verification-code')}}">
                                     @csrf
                                     <h6 class="text-center">Create Account</h6>
-                                    <p class="text-center">Register using social media icons</p>
+                                    <p class="text-center mb-md-3 mb-2">Register using social media icons</p>
                                     <div class="form-row">
                                         <div class="w-100 form-group social-links" align="center">
                                             <a href="{{route('facebook-sign-up')}}" class="facebook-icon" onclick="return false;"><span
@@ -72,7 +58,7 @@
                                                 <span>OR</span>
                                             </div>
                                         </div>
-                                        <div class="form-group col-md-12">
+                                        <div class="form-group col-md-12 mb-md-3 mb-0">
                                             <label>Email</label>
                                             <div class="form-row">
                                                 <div class="form-group col-xl-9 col-lg-8">
@@ -86,7 +72,7 @@
                                                            id="email" class="form-control h-100"
                                                            placeholder="example@email.com" required>
                                                 </div>
-                                                <div class="form-group col-xl-3 col-lg-4" align="center">
+                                                <div class="form-group col-xl-3 col-lg-4 mb-md-3 mb-0" align="center">
                                                     <button class="verify-btn " id="code" type="submit" disabled>Verify Email
                                                     </button>
                                                     <button type="button" disabled class="btn-pro d-none verify-btn">
@@ -122,7 +108,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 join-us-sidebar">
+            <div class="col-lg-3 col-md-4 px-md-3 px-2 join-us-sidebar">
                 @include("front_site.common.join-us-sidebar")
             </div>
             <div>

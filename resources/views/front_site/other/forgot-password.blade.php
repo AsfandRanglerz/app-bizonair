@@ -2,10 +2,10 @@
 @section('content')
 
 <body class="forgot-password-page">
-  <main id="maincontent" class="page-main" style="background: #d9eefe8c">
-    <div class="container">
+  <main id="maincontent" class="page-main">
+    <div class="container px-md-3 px-2">
       <div class="forgot-password">
-        <h4>Reset Your Password</h4>
+        <h4 class="my-2">Reset Your Password</h4>
           <div class="alert alert-success mb-2 text-center" id='alert-success-sendemail' style="display: none"
                role="alert">
           </div>
@@ -15,13 +15,13 @@
         <form id="sendEmail" action="{{route('password')}}" method="post">
             @csrf
     			<div class="form-group">
-    				<label>Email Address</label>
-    				<input type="email" name="email" id="email" class="form-control" placeholder="example@email.com" required>
+    				<input type="email" name="email" id="email" class="form-control" placeholder="Email-example@email.com" required>
     			</div>
 
           <p>Enter the email address associated with your account, and we'll email you a link to reset your password.</p>
-            <button class="btn submit-btn" id="emailSend" type="submit" disabled>Send Password Reset Link</button>
-
+            <div align="center">
+                <button class="btn submit-btn" id="emailSend" type="submit" disabled>Send Password Reset Link</button>
+            </div>
         </form>
 
       </div>

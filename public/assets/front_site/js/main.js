@@ -52,6 +52,28 @@ $(document).ready(function () {
     $('p:empty').remove();
     /*empty-p-tags removed*/
 
+    /*premium suppliers and categories sliders*/
+    $('.categories-slider').slick({
+        autoplay: true,
+        dots: false,
+        arrows: false,
+        autoplaySpeed: 3000,
+        centerMode: false,
+        slidesToShow: 4,
+        slidesToScroll: 4
+    });
+
+    $('.premium-suppliers').slick({
+        autoplay: true,
+        dots: false,
+        arrows: false,
+        autoplaySpeed: 3000,
+        centerMode: false,
+        slidesToShow: 4,
+        slidesToScroll: 4
+    });
+    /*premium suppliers and categories sliders*/
+
     $(".pro-categories-tab-links .red-btn").on('click', function () {
         $(this).children('img').addClass("img-hover");
     });

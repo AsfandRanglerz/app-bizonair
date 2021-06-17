@@ -39,6 +39,27 @@ body {
 }
 /*css to make footer fixed at bottom*/
 
+.sub-cat-arrow-block {
+    width: 15px;
+    height: 15px;
+    border-radius: 50px!important;
+    font-size: 10px!important;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 4px;
+    background: #12253d;
+    color: #FFF!important;
+}
+
+/*premium suppliers slider*/
+.premium-suppliers .company-name {
+    color: #A52C3E;
+    font-size: 24px;
+}
+/*premium suppliers slider*/
+
 .w-85 {
     width: 85%!important;
 }
@@ -3754,7 +3775,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .overflow-text-dots-one-line {
     overflow: hidden;
-    display: -webkit-box;
+    display: -webkit-box!important;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
 }
@@ -4895,16 +4916,34 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 }
 
 .product-listing #maincontent .main-container .mini-content-container .premium-suppliers {
-    border-top: 1px solid #E3E3E3;
-    border-left: 1px solid #E3E3E3;
     margin: 0;
 }
 
 .product-listing #maincontent .main-container .mini-content-container .premium-suppliers .content-column {
-    border-right: 1px solid #E3E3E3;
-    border-bottom: 1px solid #E3E3E3;
-    padding: 15px 25px;
+    padding: 25px;
     cursor: pointer;
+}
+
+.premium-suppliers .slick-prev:before, .logo-slider .slider .slick-prev:before {
+    content: "\f104";
+}
+
+.premium-suppliers .slick-arrow:before, .logo-slider .slider .slick-arrow:before {
+    font-family: "FontAwesome";
+    color: #A52C3E;
+    font-weight: 500;
+    font-size: 36px;
+}
+
+.premium-suppliers .slick-next:before, .logo-slider .slider .slick-next:before {
+    content: "\f105";
+}
+
+.premium-suppliers .slick-arrow:before, .logo-slider .slider .slick-arrow:before {
+    font-family: "FontAwesome";
+    color: #A52C3E;
+    font-weight: 500;
+    font-size: 36px;
 }
 
 .deals,
@@ -5082,16 +5121,8 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 /*reset-password-page*/
 
 /*forgot-password-page*/
-.forgot-password-page #maincontent {
-    background: #D9EEFE;
-}
-
 .forgot-password-page .footer {
     margin-top: 0;
-}
-
-.forgot-password-page #maincontent .forgot-password {
-    padding: 45px 0;
 }
 
 .forgot-password-page #maincontent .forgot-password > h4 {
@@ -5103,24 +5134,9 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 .forgot-password-page #maincontent .forgot-password form {
     width: 40%;
     margin: 0 auto;
-    padding: 25px;
+    padding: 16px;
     border-radius: 15px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.forgot-password-page #maincontent .forgot-password form .form-control {
-    outline: none;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    font-size: 16px;
-    background: transparent;
-    color: #12253d;
-    border: 1px solid #344356;
-}
-
-.forgot-password-page #maincontent .forgot-password form .form-control:focus {
-    color: #12253d;
-    border: 1px solid #A52C3E;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 0%), 0 6px 20px 0 rgb(0 0 0 / 18%);
 }
 
 .forgot-password-page #maincontent .forgot-password form label {
@@ -5131,7 +5147,6 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 
 .forgot-password-page #maincontent .forgot-password form p {
     font-size: 16px;
-    font-weight: bold;
     color: rgba(0, 0, 0, .7);
     margin: 15px 0;
     text-align: center;
@@ -5145,9 +5160,8 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     box-shadow: none;
     border-radius: 5px;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 500;
     padding: 5px 15px;
-    width: 100%;
 }
 
 .forgot-password-page #maincontent .forgot-password form .submit-btn:hover {
@@ -5326,16 +5340,12 @@ input.form-control:focus {
 /*registration-form*/
 
 /*email-confirmation*/
-.email-confirmation #maincontent {
-    background: #D9EEFE;
-}
-
 .email-confirmation .footer {
     margin-top: 0;
 }
 
 .email-confirmation .switch-tabs-section {
-    margin: 4px 0;
+    margin: 4px 0 0 0;
     padding: 0;
 }
 
@@ -5405,7 +5415,7 @@ a.nav-link.btnsEmial.disabled {
     border: none;
     outline: none;
     margin: 0;
-    padding: 5px 9px;
+    padding: 4px 8px;
     font-weight: bold;
 }
 
@@ -5436,7 +5446,6 @@ a.nav-link.btnsEmial.disabled {
 .email-confirmation #maincontent .opt-br > div {
     font-size: 12px;
     color: #12253d;
-    padding: 4px 0px;
     overflow: hidden;
     text-align: center;
 }
@@ -5479,7 +5488,6 @@ a.nav-link.btnsEmial.disabled {
     -webkit-position: sticky;
     position: sticky;
     top: 0;
-    padding: 8px;
 }
 
 .join-us-sidebar .join-us h6 {
@@ -7853,7 +7861,11 @@ header .navbar .navbar-toggler {
     }
 
     .product-listing #maincontent .main-container .mini-content-container .premium-suppliers .content-column {
-        padding: 8px 16px;
+        padding: 4px;
+    }
+
+    .premium-suppliers .company-name {
+        font-size: 10px;
     }
 
     .product-listing .top-companies .top-companies-card > img {
@@ -8410,17 +8422,18 @@ header .navbar .navbar-toggler {
     /*forgot-password-page*/
     .forgot-password-page #maincontent .forgot-password form {
         width: 100%;
+        padding: 8px;
     }
 
-    .forgot-password-page #maincontent .forgot-password > h4,
-    .forgot-password-page #maincontent .forgot-password form label,
-    .forgot-password-page #maincontent .forgot-password form .form-control,
-    .forgot-password-page #maincontent .forgot-password form input.form-control::placeholder,
-    .forgot-password-page #maincontent .forgot-password form p,
     .forgot-password-page #maincontent .forgot-password form .submit-btn {
-        font-size: 14px;
+        font-size: 12px;
+        padding: 4px 8px;
     }
 
+    .forgot-password-page #maincontent .forgot-password form p {
+        font-size: 12px;
+        margin: 8px 0;
+    }
     /*forgot-password-page*/
     /*email-confirmation*/
     .email-confirmation .nav-tabs a.nav-link.btnsEmial,
@@ -8494,13 +8507,21 @@ header .navbar .navbar-toggler {
 
     .join-us-sidebar .join-us > p {
         font-size: 12px;
+        margin: 4px 0;
+        align-items: baseline;
+    }
+
+    .join-us-sidebar .join-us span {
+        font-size: 10px;
     }
 
     .join-us-sidebar {
-        border-top: 1px solid #302c3636;
         border-left: none;
     }
 
+    .opt-br {
+        padding: 0 5px;
+    }
     /*create acount sidebar*/
     /*login form*/
     #login-form .modal-content {

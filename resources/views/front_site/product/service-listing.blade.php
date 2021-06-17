@@ -62,23 +62,34 @@
                                     <a href="{{route('regular-service',$urlslug)}}" class="red-link view-all">VIEW ALL</a>
                                 </div>
                             </div>
-                            <div class="row deals-inner-half" id="sellingDeals">
-                                <div class="col-xl-3 col-lg-3 categories-section-upper">
-                                    <div class="d-flex flex-column justify-content-between categories-section content-column scroll-bar">
-                                        <ul>
-                                            <li class="cats-heading">CATEGORIES</li>
-                                            @foreach($subcategories as  $subcategory)
-                                                <li>
-                                                    <a href="{{route('subcategory-regular-services',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-
-                                        <ul class="all-categories-link">
-                                            <li><a href="#" class="all-categories">All Services</a></li>
-                                        </ul>
+                            <div class="my-1 position-relative">
+                                <h3 class="main-heading">CATEGORIES</h3>
+                            </div>
+                            <div class="categories-slider-outer">
+                                <div class="categories-slider">
+                                    <div class="px-1 content-column text-center">
+                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase" href="#">Human Resources</a>
+                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
+                                    </div>
+                                    <div class="px-1 content-column text-center">
+                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase" href="#">Human Resources</a>
+                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
+                                    </div>
+                                    <div class="px-1 content-column text-center">
+                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase" href="#">Human Resources</a>
+                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
+                                    </div>
+                                    <div class="px-1 content-column text-center">
+                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase" href="#">Human Resources</a>
+                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
+                                    </div>
+                                    <div class="px-1 content-column text-center">
+                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase" href="#">Human Resources</a>
+                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row deals-inner-half" id="sellingDeals">
                                 <div class="p-0 col-xl-9 col-lg-9 content-column">
                                     <div class="row m-0 product-section-outer">
                                         @if(count($topbizleadservice) > 0)
@@ -271,9 +282,9 @@
                         <a href="{{route('view-all-companies')}}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
                     <div class="premium-suppliers-outer">
-                        <div class="row premium-suppliers">
+                        <div class="premium-suppliers">
                             @foreach($companies as $comp)
-                                <div class="col-sm-3 col-4 content-column text-center">
+                                <div class="content-column text-center">
                                     <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$comp->id)}}">
                                         <p class="mb-0 font-500 company-name overflow-text-dots-one-line text-uppercase">{{$comp->company_name}}</p>
                                     </a>
