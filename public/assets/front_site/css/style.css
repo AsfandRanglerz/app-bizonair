@@ -53,6 +53,47 @@ body {
     color: #FFF!important;
 }
 
+.sub-cat-box {
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #344356;
+    z-index: 99999;
+    position: fixed;
+    display: none;
+    overflow: auto;
+}
+
+.sub-cat-arrow-left {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.sub-cat-box .heading {
+    position: sticky;
+    top: 0;
+    background: #a52c3e;
+    width: 100%;
+    padding: 12px;
+    color: #FFF;
+    top: 0;
+    display: flex;
+    align-items: center;
+    text-shadow: 0px 3px 6px #00000055;
+}
+
+.sub-cat-listing-box {
+    list-style: none;
+}
+
+.sub-cat-listing-box .link {
+    color: #FFF;
+    font-size: 12px;
+}
+
 /*premium suppliers slider*/
 .premium-suppliers .company-name {
     color: #A52C3E;

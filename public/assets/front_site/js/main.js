@@ -48,6 +48,18 @@ $(".job-description-below").scroll(function () {
 });
 
 $(document).ready(function () {
+    /*sub categories block open on clicking category down arrow*/
+    $(document).on('click', '.sub-cat-arrow-block', function() {
+        $('.sub-cat-box').slideDown(500);
+        $('body').css('overflow', 'hidden');
+    });
+
+    $(document).on('click', '.sub-cat-arrow-left', function() {
+        $('.sub-cat-box').slideUp(500);
+        $('body').css('overflow', 'auto');
+    });
+    /*sub categories block open on clicking category down arrow*/
+
     /*empty-p-tags removed*/
     $('p:empty').remove();
     /*empty-p-tags removed*/

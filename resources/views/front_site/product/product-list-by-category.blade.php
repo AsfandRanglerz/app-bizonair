@@ -84,40 +84,37 @@
                                         <a class="fa fa-angle-down sub-cat-arrow-block"></a>
                                     </div>
                                 </div>
+                                <div class="sub-cat-box">
+                                    <h6 class="heading"><a class="fa fa-angle-left sub-cat-arrow-left"></a>Sub Categories</h6>
+                                    <ul class="pl-3 sub-cat-listing-box">
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="row deals-inner-half" id="sellingDeals">
-{{--                                <div class="col-xl-3 col-lg-3 pr-0 categories-section-upper categories-links-tabs">--}}
-{{--                                    <div class="position-relative nav flex-column nav-pills categories-section content-column scroll-bar" id="v-pills-cats" role="tablist" aria-orientation="vertical">--}}
-{{--                                        <span class="cats-heading">CATEGORIES</span>--}}
-{{--                                        @php--}}
-{{--                                            $sub_id_arr = [];--}}
-{{--                                        @endphp--}}
-{{--                                        @foreach(\App\Subcategory::where('category_id', $category->id)->get() as $i =>  $subcategory)--}}
-{{--                                            @php--}}
-{{--                                                array_push($sub_id_arr, $subcategory->id);--}}
-{{--                                            @endphp--}}
-{{--                                            <a class="nav-link" id="v-pills-cats-tab" data-toggle="pill" href="#v-pills-cats{{$subcategory->id}}" role="tab" aria-controls="v-pills-cats" aria-selected="true" onclick="location.href='{{route('suppliers-subcategory-products',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}'"><span class="fa fa-angle-double-right mr-2"></span>{{$subcategory->name}}</a>--}}
-{{--                                        @endforeach--}}
-{{--                                        <ul class="position-absolute w-100 all-categories-link">--}}
-{{--                                            <li><a href="#" class="all-categories">All Products</a></li>--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                                 <div class="p-0 col-xl-9 col-lg-9 content-column">
-{{--                                    <div class="tab-content right-side-sub-cat-view animated-dropdown slideIn categories-links-tabs">--}}
-{{--                                        @foreach( $sub_id_arr as $key =>  $value)--}}
-{{--                                            <div class="tab-pane fade  @if($key == 0) active show @endif" id="v-pills-cats{{$value}}" role="tabpanel" aria-labelledby="v-pills-cats-tab">--}}
-{{--                                                <div class="row">--}}
-{{--                                                    @foreach(\App\Childsubcategory::where('subcategory_id',$value)->orderby('subcategory_id','asc')->get() as $key =>  $childsubcat)--}}
-{{--                                                        <div class="col-sm-4 p-1 d-flex align-items-baseline">--}}
-{{--                                                            <span class="fa fa-angle-right mr-2 sub-cat-angle-icon"></span>--}}
-{{--                                                            <a href="{{route('suppliers-products',['category'=>$subcategory->category->slug,'subcategory'=>$childsubcat->subcategory->slug,'childsubcategory'=>$childsubcat->slug])}}" class="link">{{$childsubcat->name}}</a>--}}
-{{--                                                        </div>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        @endforeach--}}
-{{--                                    </div>--}}
                                     <div class="row m-0 product-section-outer">
                                         @if(count($topsellproduct) > 0)
                                             @foreach($topsellproduct as $i => $prod)

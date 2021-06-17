@@ -88,6 +88,34 @@
                                         <a class="fa fa-angle-down sub-cat-arrow-block"></a>
                                     </div>
                                 </div>
+                                <div class="sub-cat-box">
+                                    <h6 class="heading"><a class="fa fa-angle-left sub-cat-arrow-left"></a>Sub Categories</h6>
+                                    <ul class="pl-3 sub-cat-listing-box">
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="row deals-inner-half" id="sellingDeals">
                                 <div class="p-0 col-xl-9 col-lg-9 content-column">
