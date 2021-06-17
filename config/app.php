@@ -169,7 +169,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -233,7 +233,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'ProductHelper' => App\Helpers\ProductHelper::class,
         'MeetingHelper' => App\Helpers\MeetingHelper::class,
-
+        'Share' => Jorenvh\Share\ShareFacade::class,
 
     ],
 

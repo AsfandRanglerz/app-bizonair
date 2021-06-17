@@ -67,6 +67,13 @@ body {
     outline: none;
 }
 
+/*cvs directory*/
+.dir-download-img {
+    right: 15px;
+    top: 15px;
+}
+/*cvs directory*/
+
 /*articles details*/
 .article-details-outer {
     border-radius: 8px;

@@ -37,10 +37,10 @@
                         href="{{Request::url()}}">CVs Directory</a></li>
             </ol>
         </nav>
-        <button type="button" class="filters-btn">Filters<span class="fa fa-bars"></span></button>
+        <button  class="filters-btn">Filters<span class="fa fa-bars"></span></button>
         <div class="container-fluid job-portal-inner">
             <div class="form-row">
-                <div class="col-md-3 col-sm-4 pt-3 pb-sm-3 filter-container">
+                <div class="col-md-3 col-sm-4 pt-3 pb-sm-3 pr-3 filter-container">
                     <form class="filter-form" action="{{ route('cv-search') }}">
                         <div class="filter-inner">
                             <h6>Filter Your Search</h6>
@@ -79,7 +79,7 @@
                                 <input class="form-control" type="text" id="customControl1" name="edu_level">
                             </div>
 
-                            <div align="right">
+                            <div align="right" class="mt-3">
                                 <button type="submit" class="red-btn">Search</button>
                             </div>
                         </div>
@@ -88,67 +88,67 @@
                 <div class="col-md-9 col-sm-8">
                     <div class="form-row">
                         @foreach($cvs as $cv)
-                        <div class="col-md-6 pt-3 pb-sm-3">
-                            <div class="description-container">
-                                <div class="short-job-description">
-                                    <a href="{{ route('cvc-detail',$cv->id) }}" class="position-relative d-block text-reset text-decoration-none">
-                                    <h6 class="title">{{ $cv->fname }} {{ $cv->lname }}</h6>
-                                    <span class="d-block tag-line">{{ $cv->textile_sector }},{{ $cv->functional_area }}</span>
-                                    <p class="short-description">{{ $cv->city }}, {{ $cv->country }}</p>
-                                    <p class="short-description>{{ $cv->email }}</p>
-                                    <p class="short-description">{{ $cv->phone_no }}</p>
-                                            <?php $pathinfo = pathinfo($cv->image);
-                                            $supported_ext = array('docx', 'xlsx', 'pdf');
-                                            $src_file_name = $cv->image;
-                                            $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
+                            <div class="col-md-6 pt-3 pb-sm-3">
+                                <div class="description-container">
+                                    <div class="short-job-description position-relative">
+                                        <a href="{{ route('cvc-detail',$cv->id) }}" class="position-relative d-block text-reset text-decoration-none">
+                                            <h6 class="title w-85 overflow-text-dots-one-line">{{ $cv->fname }} {{ $cv->lname }}</h6>
+                                            <span class="d-block tag-line">{{ $cv->textile_sector }},{{ $cv->functional_area }}</span>
+                                            <p class="short-description">{{ $cv->city }}, {{ $cv->country }}</p>
+                                            <p class="short-description">{{ $cv->email }}</p>
+                                        </a>
+                                        <?php $pathinfo = pathinfo($cv->image);
+                                        $supported_ext = array('docx', 'xlsx', 'pdf');
+                                        $src_file_name = $cv->image;
+                                        $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
 
-                                            @if($ext=="docx")
-                                                <a class="text-decoration-none text-reset" href="{{url('public/'.$cv->image)}}">
-                                                    <div>
+                                        @if($ext=="docx")
+                                            <a class="text-decoration-none text-reset" href="{{url('public/'.$cv->image)}}">
+                                                <div class="position-absolute dir-download-img">
+                                                    <div class="position-relative d-flex justify-content-center align-items-center">
                                                         <img class="img-responsive product-img"
                                                              src="{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png"
                                                              style="filter: brightness(0.5);width: 50px;height: 50px;">
-
                                                         <button class="position-absolute border-0 rounded-circle fa fa-download get-file"></button>
-
                                                     </div>
-                                                </a>
-                                            @elseif($ext=="xlsx")
-                                                <a class="text-decoration-none text-reset" href="{{url('public/'.$cv->image)}}">
-                                                    <div>
+                                                </div>
+                                            </a>
+                                        @elseif($ext=="xlsx")
+                                            <a class="text-decoration-none text-reset" href="{{url('public/'.$cv->image)}}">
+                                                <div class="position-absolute dir-download-img">
+                                                    <div class="position-relative d-flex justify-content-center align-items-center">
                                                         <img class="img-responsive product-img"
                                                              src="{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png"
                                                              style="filter: brightness(0.5);width: 50px;height: 50px;">
-                                                        <button
-                                                            class="position-absolute border-0 rounded-circle fa fa-download get-file"></button>
+                                                        <button class="position-absolute border-0 rounded-circle fa fa-download get-file"></button>
                                                     </div>
-                                                </a>
-                                            @elseif($ext=="pdf")
-                                                <a class="text-decoration-none text-reset" href="{{url('public/'.$cv->image)}}">
-                                                    <div>
+                                                </div>
+                                            </a>
+                                        @elseif($ext=="pdf")
+                                            <a class="text-decoration-none text-reset" href="{{url('public/'.$cv->image)}}">
+                                                <div class="position-absolute dir-download-img">
+                                                    <div class="position-relative d-flex justify-content-center align-items-center">
                                                         <img class="img-responsive product-img"
                                                              src="{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png"
                                                              style="filter: brightness(0.5);width: 50px;height: 50px;">
                                                         <button class="position-absolute border-0 rounded-circle fa fa-download get-file"></button>
                                                     </div>
-                                                </a>
-                                    </div>
-                                    <div class="mt-4" style="height: 335px">
+                                                </div>
+                                            </a>
                                         @else
-                                            <img src="{{$ASSETS}}/{{ $cv->image }}" style="width: 50px;height: 50px;" class="position-absolute right-0 top-0">
-                                            @endif
+                                            <img src="{{$ASSETS}}/{{ $cv->image }}" style="width: 50px;height: 50px;" class="position-absolute dir-download-img">
+                                        @endif
                                         <div class="d-flex justify-content-between date-salery">
                                             <span><span class="fa fa-calendar pr-2" aria-hidden="true"></span>{{ date("d-F-Y", strtotime($cv->created_at)) }}</span>
                                             <span><span class="fa fa-file pr-2" aria-hidden="true"></span>{{ $cv->total_experience }} Year Experience</span>
                                             <span><span class="fa fa-money pr-2" aria-hidden="true"></span>{{ number_format($cv->exp_salary) }} {{$cv->sal_unit}} Expected</span>
                                         </div>
-                                    </a>
-                                </div>
-                                <div class="mt-4 mb-4">
-                                    <hr class="horizontal-line">
+                                    </div>
+                                    <div class="mt-4 mb-4">
+                                        <hr class="horizontal-line">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                     <div class="mb-4" align="center">
