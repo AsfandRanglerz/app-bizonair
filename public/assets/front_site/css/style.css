@@ -1876,7 +1876,7 @@ ul li input[type=checkbox] {
 }
 
 .job-details-container .share-btn {
-    margin: 5px;
+    margin: 4px;
 }
 
 .job-details-container .banner-outer {
@@ -7080,6 +7080,10 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 991px) {
+    .job-detail-img {
+        width: 125px;
+    }
+
     /*articles details banner*/
     .article-details .banner-text {
         font-size: 18px;
@@ -7703,6 +7707,10 @@ header .navbar .navbar-toggler {
 }
 
 @media (max-width: 767px) {
+    .job-detail-img {
+        width: 105px;
+    }
+
     .categories-section-upper {
         margin-bottom: 16px;
     }
@@ -7753,6 +7761,10 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 575px) {
+    .job-details-container .side-details {
+        padding: 8px;
+    }
+
     .job-explore-post {
         display: grid;
         grid-template-columns: 49.5% 49.5%;
@@ -8015,9 +8027,22 @@ header .navbar .navbar-toggler {
         padding: 25px 0;
     }
 
+    .job-details-container .details-content .heading,
+    .job-details-container .details-content .listing {
+        font-size: 10px!important;
+    }
+
     .job-details-container .heading,
     .job-details-container .heading-main .heading {
-        font-size: 14px;
+        font-size: 10px!important;
+    }
+
+    .job-details-container .fa-facebook,
+    .job-details-container .fa-linkedin,
+    .job-details-container .fa-whatsapp {
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
     }
 
     /*job details*/

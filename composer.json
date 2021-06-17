@@ -17,6 +17,7 @@
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
+        "league/flysystem-aws-s3-v3": "~1.0",
         "pragmarx/countries-laravel": "^0.7.0",
         "pusher/pusher-php-server": "^4.1",
         "pvtl/voyager-pages": "^0.2.13",
