@@ -39,6 +39,10 @@ body {
 }
 /*css to make footer fixed at bottom*/
 
+.w-85 {
+    width: 85%!important;
+}
+
 .alert-danger,
 .alert-success {
     font-size: 12px;
@@ -2054,7 +2058,6 @@ ul li input[type=checkbox] {
 
 .fa-search,
 .fa-map-marker {
-    top: 9px;
     right: 10px;
 }
 
@@ -2114,7 +2117,6 @@ ul li input[type=checkbox] {
 
 .job-directory-container .fa-search,
 .job-directory-container .fa-map-marker {
-    top: 9px;
     right: 10px;
 }
 
@@ -2152,7 +2154,7 @@ ul li input[type=checkbox] {
 }
 
 .job-directory-container .has-search {
-    background: linear-gradient(#dc354585, #12253d), url(https://www.textilewatch.com/wp-content/uploads/2020/11/Jobs.jpg);
+    background: linear-gradient(#12253dc4, #12253d), url(https://www.textilewatch.com/wp-content/uploads/2020/11/Jobs.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -7768,6 +7770,21 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 575px) {
+    ul li input[type=checkbox] {
+        font-size: 12px;
+    }
+
+    .noUi-horizontal .noUi-handle {
+        width: 12px;
+        height: 12px;
+        left: -8px;
+        top: -4px;
+    }
+
+    .job-directory-container .short-job-description {
+        padding: 8px;
+    }
+
     .job-details-container .side-details {
         padding: 8px;
     }
@@ -8068,7 +8085,12 @@ header .navbar .navbar-toggler {
     .filter-inner {
         box-shadow: 0 4px 8px 0 rgb(0 0 0 / 0%), 0 6px 20px 0 rgb(0 0 0 / 18%);
         transition: .1s ease;
-        padding: 15px;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .slider-labels {
+        font-size: 12px;
     }
 
     .filter-container {
@@ -8082,11 +8104,11 @@ header .navbar .navbar-toggler {
         display: flex !important;
         justify-content: space-between;
         align-items: center;
-        padding: 8px 30px;
+        padding: 4px 12px;
         border: none;
         letter-spacing: -0.62px;
         font-weight: bold;
-        font-size: 18px;
+        font-size: 12px;
         display: block;
     }
 

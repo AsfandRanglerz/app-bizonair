@@ -9,7 +9,7 @@ $(document).ready(function() {
   var moneyFormat = wNumb({
     decimals: 0,
     thousand: ',',
-    prefix: '$'
+    prefix: ''
   });
   noUiSlider.create(rangeSlider, {
     start: [500000, 700000],
@@ -21,7 +21,7 @@ $(document).ready(function() {
     format: moneyFormat,
     connect: true
   });
-  
+
   // Set visual min and max values and also update value hidden form inputs
   rangeSlider.noUiSlider.on('update', function(values, handle) {
     document.getElementById('slider-range-value1').innerHTML = values[0];

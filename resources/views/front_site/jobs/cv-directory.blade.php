@@ -9,16 +9,16 @@
                     <div class="form-group col-md-5 col-sm-6">
                         <label class="d-block mb-0 text-white font-500">What?</label>
                         <label class="d-block text-white">Job title, keywords, or company</label>
-                        <div class="position-relative">
-                            <input class="form-control bg-white border-white mr-sm-2" type="search" aria-label="Search" placeholder="Job title, keywords, or company" name="cv-title" required>
+                        <div class="position-relative d-flex align-items-center">
+                            <input class="pr-4 form-control bg-white border-white mr-sm-2" type="search" aria-label="Search" placeholder="Job title, keywords, or company" name="cv-title" required>
                             <span class="fa fa-search position-absolute" aria-hidden="true"></span>
                         </div>
                     </div>
                     <div class="form-group col-md-5 col-sm-6">
                         <label class="d-block mb-0 text-white font-500">Where?</label>
                         <label class="d-block text-white">City or province</label>
-                        <div class="position-relative">
-                            <input class="form-control bg-white border-white mr-sm-2" type="search" aria-label="Search" placeholder="City or province" name="cv-location" required>
+                        <div class="position-relative d-flex align-items-center">
+                            <input class="pr-4 form-control bg-white border-white mr-sm-2" type="search" aria-label="Search" placeholder="City or province" name="cv-location" required>
                             <span class="fa fa-map-marker position-absolute" aria-hidden="true"></span>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                 </div>
             </form>
         </div>
-        <nav aria-label="breadcrumb" class="px-3">
+        <nav aria-label="breadcrumb" class="px-2">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a
@@ -38,16 +38,16 @@
             </ol>
         </nav>
         <button  class="filters-btn">Filters<span class="fa fa-bars"></span></button>
-        <div class="container-fluid job-portal-inner">
-            <div class="form-row">
-                <div class="col-md-3 col-sm-4 pt-3 pb-sm-3 pr-3 filter-container">
+        <div class="container-fluid job-portal-inner px-md-3 px-2">
+            <div class="form-row mx-0">
+                <div class="col-md-3 col-sm-4 pt-md-3 pt-2 pb-sm-3 pr-md-3 px-0 filter-container">
                     <form class="filter-form" action="{{ route('cv-search') }}">
                         <div class="filter-inner">
                             <h6>Filter Your Search</h6>
                             <div class="salary-range">
                                 <h6 class="heading">Min. Salary</h6>
-                                <div id="slider-range" class="mt-3 mb-3"></div>
-                                <div class="form-row mb-3 slider-labels">
+                                <div id="slider-range" class="mt-md-2 mt-2"></div>
+                                <div class="form-row my-md-3 my-2 slider-labels">
                                     <div class="col-xs-6 caption">
                                         <strong>Min:</strong> <span id="slider-range-value1"></span>
                                     </div>
@@ -58,42 +58,36 @@
                                 <input type="hidden" name="min-value" id="min-salary">
                                 <input type="hidden" name="max-value" id="max-salary">
                             </div>
-                            <div>
-                                <h6 class="heading">Functional Area</h6>
-                                <input class="form-control" type="text" id="customControl1" name="functional_area">
+                            <div class="my-1">
+                                <input class="form-control" type="text" id="customControl1" name="functional_area" placeholder="Functional Area">
                             </div>
-                            <div>
-                                <h6 class="heading">Job Sector</h6>
-                                <input class="form-control" type="text" id="customControl1" name="job_sector">
+                            <div class="my-1">
+                                <input class="form-control" type="text" id="customControl1" name="job_sector" placeholder="Job Sector">
                             </div>
-                            <div>
-                                <h6 class="heading">Experience</h6>
-                                <input class="form-control" type="text" id="customControl1" name="experience">
+                            <div class="my-1">
+                                <input class="form-control" type="text" id="customControl1" name="experience" placeholder="Experience">
                             </div>
-                            <div>
-                                <h6 class="heading">Skills</h6>
-                                <input class="form-control" type="text" id="customControl1" name="skills">
+                            <div class="my-1">
+                                <input class="form-control" type="text" id="customControl1" name="skills" placeholder="Skills">
                             </div>
-                            <div>
-                                <h6 class="heading">Education Level</h6>
-                                <input class="form-control" type="text" id="customControl1" name="edu_level">
+                            <div class="my-1">
+                                <input class="form-control" type="text" id="customControl1" name="edu_level" placeholder="Education Level">
                             </div>
-
-                            <div align="right" class="mt-3">
+                            <div align="right" class="mt-md-3 mt-1">
                                 <button type="submit" class="red-btn">Search</button>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="col-md-9 col-sm-8">
-                    <div class="form-row">
+                <div class="col-md-9 col-sm-8 px-0 mt-md-3 mt-2">
+                    <div class="form-row mx-0">
                         @foreach($cvs as $cv)
-                            <div class="col-md-6 pt-3 pb-sm-3">
+                            <div class="col-md-6 px-md-2 px-0 product-box">
                                 <div class="description-container">
                                     <div class="short-job-description position-relative">
                                         <a href="{{ route('cvc-detail',$cv->id) }}" class="position-relative d-block text-reset text-decoration-none">
-                                            <h6 class="title w-85 overflow-text-dots-one-line">{{ $cv->fname }} {{ $cv->lname }}</h6>
-                                            <span class="d-block tag-line">{{ $cv->textile_sector }},{{ $cv->functional_area }}</span>
+                                            <h6 class="title w-75 overflow-text-dots-one-line">{{ $cv->fname }} {{ $cv->lname }}</h6>
+                                            <p class="tag-line mb-0 w-75 overflow-text-dots-one-line">{{ $cv->textile_sector }},{{ $cv->functional_area }}</p>
                                             <p class="short-description">{{ $cv->city }}, {{ $cv->country }}</p>
                                             <p class="short-description">{{ $cv->email }}</p>
                                         </a>
@@ -144,15 +138,15 @@
                                             <span><span class="fa fa-money pr-2" aria-hidden="true"></span>{{ number_format($cv->exp_salary) }} {{$cv->sal_unit}} Expected</span>
                                         </div>
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-2">
                                         <hr class="horizontal-line">
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                    <div class="mb-4" align="center">
-                        <a href="#" class="red-btn">View All CVs</a>
+                    <div align="center" class="my-2">
+                        <a href="#" class="load-more red-btn">Load More<span class="ml-2 fa fa-spinner" aria-hidden="true"></span></a>
                     </div>
                 </div>
             </div>

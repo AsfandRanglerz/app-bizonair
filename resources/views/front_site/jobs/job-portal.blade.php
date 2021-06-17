@@ -553,7 +553,7 @@
 
             </div>
         </div>
-        <div class="container-fluid all-jobs pl-md-4 pr-md-4">
+        <div class="container-fluid all-jobs pl-md-4 pr-md-4 px-2">
 
             <div class="text-center position-relative">
                 <h3 class="heading">All Jobs</h3>
