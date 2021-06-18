@@ -51,9 +51,9 @@
                 <div class="mini-content-container">
                     <div class="row deals">
                         <div class="col-xl-10 col-lg-9 col-md-8 half-side-content">
-                            <div class="mb-1 d-flex justify-content-between align-items-center">
+                            <div class="mb-1 d-flex justify-content-between column-gap-4">
                                 <h3 class="mb-0 main-heading">REGULAR SUPPLIERS FROM MYBIZ OFFICE</h3>
-                                <div>
+                                <div class="d-flex flex-column flex-end align-items-end">
                                     <a href="{{ route('products.create') }}" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your Regular Lead</a>
                                     <a href="{{route('regular-suppliers',$slug)}}" class="red-link view-all">VIEW ALL</a>
                                 </div>
@@ -64,23 +64,23 @@
                             <div class="categories-slider-outer">
                                 <div class="categories-slider">
                                     <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase" href="#">Human Resources</a>
+                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
                                         <a class="fa fa-angle-down sub-cat-arrow-block"></a>
                                     </div>
                                     <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase" href="#">Human Resources</a>
+                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
                                         <a class="fa fa-angle-down sub-cat-arrow-block"></a>
                                     </div>
                                     <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase" href="#">Human Resources</a>
+                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
                                         <a class="fa fa-angle-down sub-cat-arrow-block"></a>
                                     </div>
                                     <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase" href="#">Human Resources</a>
+                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
                                         <a class="fa fa-angle-down sub-cat-arrow-block"></a>
                                     </div>
                                     <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase" href="#">Human Resources</a>
+                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
                                         <a class="fa fa-angle-down sub-cat-arrow-block"></a>
                                     </div>
                                 </div>
@@ -212,9 +212,9 @@
                         </div>
                     </div>
                     <div class="row my-1 deals product-section-outer" id="buyingDeals">
-                        <div class="col-12 my-1 px-1 d-flex align-items-center justify-content-between">
+                        <div class="col-12 my-1 px-1 d-flex justify-content-between">
                             <h3 class="mb-0 main-heading">REGULAR BUYERS FROM MYBIZ OFFICE</h3>
-                            <div>
+                            <div class="d-flex flex-column align-items-end">
                                 <a href="{{ route('products.create') }}" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your Regular Lead</a>
                                 <a href="{{route('regular-buyers',$slug)}}" class="red-link view-all">VIEW ALL</a>
                             </div>
@@ -301,9 +301,9 @@
                         @endforeach
                     </div>
                     <div class="row my-1 deals certified-suppliers product-section-outer">
-                        <div class="col-12 my-1 px-1 d-flex align-items-center justify-content-between">
+                        <div class="col-12 my-1 px-1 d-flex justify-content-between">
                             <h3 class="mb-0 main-heading">ONE-TIME SELLING DEALS</h3>
-                            <div>
+                            <div class="d-flex flex-column align-items-end">
                                 <a href="{{ route('buy-sell.create') }}" class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your One-Time Deal</a>
                                 <a href="{{route('one-time-selling-deals',$slug)}}" class="red-link view-all">VIEW ALL</a>
                             </div>
@@ -382,9 +382,9 @@
                         @endif
                     </div>
                     <div class="row deals certified-suppliers product-section-outer">
-                        <div class="col-12 my-1 px-1 d-flex align-items-center justify-content-between">
+                        <div class="col-12 my-1 px-1 d-flex justify-content-between">
                             <h3 class="mb-0 main-heading">ONE-TIME BUYING DEALS</h3>
-                            <div>
+                            <div class="d-flex flex-column align-items-end">
                                 <a href="{{ route('buy-sell.create') }}" class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your One-Time Deal</a>
                                 <a href="{{route('one-time-buying-deals',$slug)}}" class="red-link view-all">VIEW ALL</a>
                             </div>

@@ -8,8 +8,8 @@
 
         @include('front_site.common.categories-dropdown-list')
 
-        <div class="container-fluid">
-            <div class="mt-3 ads-slider">
+        <div class="px-2 container-fluid">
+            <div class="my-2 ads-slider">
                 @foreach($bnr_row1 as $row)
                 <div class="ad-slide px-1">
                     <img src="{{ url('storage/app/public/'.$row->image) }}" class="w-100 banner-below-adds">
@@ -18,9 +18,9 @@
 
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid px-2 overflow-hidden">
             <div class="row biz-deals-container">
-                <div class="px-0 pt-2 container-fluid products-slider biz-deals-slider">
+                <div class="px-0 pt-1 container-fluid products-slider biz-deals-slider">
                     <div class="mx-3 text-center position-relative">
                         <h3 class="main-heading">MyBiz Leads</h3>
                         <a href="{{ url('business-products/fibers-and-materials') }}" class="position-absolute red-link view-all">VIEW ALL</a>
@@ -61,7 +61,7 @@
             </div>
             @endforeach
             <div class="row biz-services-container">
-                <div class="px-0 pt-2 container-fluid products-slider biz-services-slider">
+                <div class="px-0 pt-1 container-fluid products-slider biz-services-slider">
                     <div class="mx-3 text-center position-relative">
                         <h3 class="main-heading">MyBiz Services</h3>
                         <a href="{{ url('services/hr-and-admin') }}" class="position-absolute red-link view-all">VIEW ALL</a>
@@ -96,8 +96,8 @@
             </div>
 
 
-            <div class="pt-2 pb-3 ad-slider-content">
-                <div class="pb-2 text-right">
+            <div class="pb-2 ad-slider-content">
+                <div class="pb-1 text-right">
                     <a href="#" class="red-link view-all">ADVERTISE WITH US</a>
                 </div>
                 <div class="ad-slider-content2">
@@ -155,7 +155,7 @@
                 </div>
             </div>
 
-            <div class="mt-2 mb-3 textile-news">
+            <div class="mt-1 textile-news">
                 <div class="text-center position-relative">
                     <h3 class="main-heading">Textile News</h3>
                     <a href="{{route('news')}}" class="position-absolute red-link view-all">VIEW ALL</a>
@@ -177,7 +177,7 @@
 
             <h3 class="text-center home-heading">Textile Partners</h3>
             <div class="px-0 container-fluid logo-slider">
-                <div class="slider slider-nav w-100">
+                <div class="mb-0 slider slider-nav w-100">
                     @foreach($textile_partners as $text_partners)
                     <a href="#" class="logo-container"><img
                             src="{{ url('storage/app/public/'.$text_partners->image) }}"

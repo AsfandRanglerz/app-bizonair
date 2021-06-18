@@ -19,7 +19,7 @@
                     <div class="px-0 col-xl-9 col-md-8 overflow-auto article-details-outer scroll-bar">
                         <div class="row mx-0">
                             <div class="offset-sm-2 col-sm-8 px-0">
-                                <img src="{{ url('storage/app/public/'.$article->image) }}" class="w-100">
+                                <img src="{{ url('storage/app/public/'.$article->image) }}" class="w-100 object-contain journal-banner-img">
                                 <h4 class="my-2 px-2 heading">{{$article->title}}</h4>
                             </div>
                         </div>

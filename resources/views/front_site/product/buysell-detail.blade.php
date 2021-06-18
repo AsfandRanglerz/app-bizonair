@@ -23,7 +23,7 @@
            </nav>
 
            <div class="mini-content-container">
-               <div class="row m-0 mb-5 box-shadow top-banner-content">
+               <div class="row mx-0 mb-md-3 mb-2 box-shadow top-banner-content">
                    <div class="col-xl-9 col-lg-12">
                        <div class="row">
                            <div class="col-lg-6 col-md-6 suppliers-buyers">
@@ -70,15 +70,13 @@
                                    </div>
                                </div>
                            </div>
-                           <div class="col-lg-6 col-md-6 mt-sm-0 mt-3 contact-product-info">
-                               <div class="mb-3 d-flex justify-content-between">
-                                   <span class="heading">{{$product->product_service_name}}</span>
-                               </div>
+                           <div class="px-1 d-flex flex-column justify-content-sm-between col-lg-6 col-md-6 mt-md-0 mt-1 contact-product-info">
+                               <span class="heading">{{$product->product_service_name}}</span>
                                <p><span class="font-500" style="color: #000">Reference No: </span>{{$product->reference_no}}</p>
-                               <p style="margin-bottom: 15px"><span class="font-500" style="color: #000">One-Time Deals: </span> @if($product->product_service_types =='Sell') Selling Offer @elseif($product->product_service_types =='Buy') Buying Offer @endif</p>
+                               <p style="margin-bottom: 8px"><span class="font-500" style="color: #000">One-Time Deals: </span> @if($product->product_service_types =='Sell') Selling Offer @elseif($product->product_service_types =='Buy') Buying Offer @endif</p>
                                {{--                            <p><span class="font-500" style="color: #000">Product Detail: </span>{{$product->details}}</p>--}}
                                <div class="btns-block">
-                                   <a href="#" class="mb-md-0 mb-1 p-0 btns red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                   <a href="#" class="p-0 btns red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
                                    <!-- Modal -->
                                    <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                        <div class="modal-dialog contact-form" role="document">
@@ -201,13 +199,12 @@
 
                                    <a href="#productInfoSection" type="button" class="p-0 btns product-info-btn"><span class="d-inline-block py-1 px-2">PRODUCT INFO</span></a>
                                </div>
-                               <br>
-                               <p><span class="font-500" style="color: #000">Note :</span> By clicking favourite, a notification will be sent to the Supplier/Buyer</p>
+                               <p class="my-1"><span class="font-500" style="color: #000">Note :</span> By clicking favourite, a notification will be sent to the Supplier/Buyer</p>
                            </div>
                        </div>
                    </div>
-                   <div class="col-xl-3 col-lg-12 mt-xl-0 mt-3 p-0">
-                       <div class="text-right mb-4">
+                   <div class="col-xl-3 col-lg-12 p-0">
+                       <div class="text-center mb-1">
                            <a href="{{ route('buy-sell.create') }}" class="red-btn py-1 px-2 text-uppercase">Post Your One-Time Deal</a>
                        </div>
                        @if(auth()->user())
@@ -275,37 +272,37 @@
                            <!-- Tab panes -->
                            <div class="tab-content">
                                <div id="productInfo" class="tab-pane product-tab active">
-                                   <div class="row text mb-2">
-                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                   <div class="row text mx-0">
+                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                            <span><b>Main Category : </b></span>
                                        </div>
-                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
+                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                            <p class="mb-0">{{ $product->category->name }}</p>
                                        </div>
                                    </div>
-                                   <div class="row text">
-                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                   <div class="row text mx-0">
+                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                            <span><b>Sub-Category : </b></span>
                                        </div>
-                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                           <p class="mb-sm-0">{{ $product->subcategory->name }}</p>
+                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                           <p class="mb-0">{{ $product->subcategory->name }}</p>
                                        </div>
                                    </div>
                                    @if($product->add_sub_sub_category!=null)
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Product Type : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">{{ $product->add_sub_sub_category }}</p>
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">{{ $product->add_sub_sub_category }}</p>
                                            </div>
                                        </div>
                                    @else
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Product Type : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                                @if (strpos($product->childsubcategory->name, 'Other'))
                                                    <p class="mb-0">{{ substr($product->childsubcategory->name,6) }}</p>
                                                @else
@@ -315,70 +312,70 @@
                                        </div>
                                    @endif
 
-                                   <div class="row text">
-                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6 col-6">
+                                   <div class="row text mx-0">
+                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                            <span><b>Subject : </b></span>
                                        </div>
-                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                           <p class="mb-sm-0">{{ $product->subject }}</p>
+                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                           <p class="mb-0">{{ $product->subject }}</p>
                                        </div>
                                    </div>
 
-                                   <div class="row text">
-                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                   <div class="row text mx-0">
+                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                            <span><b>Ad Expiry Days : </b></span>
                                        </div>
-                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                           <p class="mb-sm-0">{{ $product->expiry_data }} Days</p>
+                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                           <p class="mb-0">{{ $product->expiry_data }} Days</p>
                                        </div>
                                    </div>
                                    @if($product->keywords != "")
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Additional Keyword :</b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">{{rtrim($product->keywords,',') }}</p>
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">{{rtrim($product->keywords,',') }}</p>
                                            </div>
                                        </div>
                                    @endif
-                                   <div class="row text">
-                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                   <div class="row text mx-0">
+                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                            <span><b>Available Quantity : </b></span>
                                        </div>
-                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                           <p class="mb-sm-0">{{$product->product_availability}}</p>
+                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                           <p class="mb-0">{{$product->product_availability}}</p>
                                        </div>
                                    </div>
-                                   <div class="row text">
-                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                   <div class="row text mx-0">
+                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                            <span><b>Unit : </b></span>
                                        </div>
-                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                           <p class="mb-sm-0">{{$product->available_unit}}</p>
+                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                           <p class="mb-0">{{$product->available_unit}}</p>
                                        </div>
                                    </div>
-                                   <div class="row text">
-                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                   <div class="row text mx-0">
+                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                            <span><b>Manufacturer Name : </b></span>
                                        </div>
-                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                           <p class="mb-sm-0">{{get_buysell_user_name($product->user_id)}}</p>
+                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                           <p class="mb-0">{{get_buysell_user_name($product->user_id)}}</p>
                                        </div>
                                    </div>
-                                   <div class="row text">
-                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                   <div class="row text mx-0">
+                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                            <span><b>Product Origin : </b></span>
                                        </div>
-                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                           <p class="mb-sm-0">{{ $product->origin }}</p>
+                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                           <p class="mb-0">{{ $product->origin }}</p>
                                        </div>
                                    </div>
-                                   <div class="row text">
-                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                   <div class="row text mx-0">
+                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                            <span><b>Additional Info : </b></span>
                                        </div>
-                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
+                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                            @if ($product->details)
                                                <p class="mb-0">{{ $product->details }}</p>
                                            @else
@@ -389,72 +386,72 @@
 
                                    @if(!empty($product->machinery_buysell_info->product_type))
                                        <span class="heading">ADDITIONAL PRODUCT INFO</span>
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Machinery Type : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">{{$product->machinery_buysell_info->product_type ?: '-'}}</p>
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">{{$product->machinery_buysell_info->product_type ?: '-'}}</p>
                                            </div>
                                        </div>
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Condition  : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">{{$product->machinery_buysell_info->machinery_condition ?: '-'}}</p>
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">{{$product->machinery_buysell_info->machinery_condition ?: '-'}}</p>
                                            </div>
                                        </div>
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>After Sales Service : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">@if($product->machinery_buysell_info->after_sales_service=='Yes') {{$product->machinery_buysell_info->service_type ?: '-'}} @else{{$product->machinery_buysell_info->after_sales_service ?: '-'}}@endif</p>
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">@if($product->machinery_buysell_info->after_sales_service=='Yes') {{$product->machinery_buysell_info->service_type ?: '-'}} @else{{$product->machinery_buysell_info->after_sales_service ?: '-'}}@endif</p>
                                            </div>
                                        </div>
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Warranty  : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">@if($product->machinery_buysell_info->warranty=='Yes') {{$product->machinery_buysell_info->warranty_period ?: '-'}} @else{{$product->machinery_buysell_info->warranty ?: '-'}}@endif</p>
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">@if($product->machinery_buysell_info->warranty=='Yes') {{$product->machinery_buysell_info->warranty_period ?: '-'}} @else{{$product->machinery_buysell_info->warranty ?: '-'}}@endif</p>
                                            </div>
                                        </div>
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Product Certification : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">@if($product->machinery_buysell_info->certification =='Yes'){{$product->machinery_buysell_info->certification_details ?: '-'}} @else {{$product->machinery_buysell_info->certification ?: '-'}}@endif</p>
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">@if($product->machinery_buysell_info->certification =='Yes'){{$product->machinery_buysell_info->certification_details ?: '-'}} @else {{$product->machinery_buysell_info->certification ?: '-'}}@endif</p>
                                            </div>
                                        </div>
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Additional Trade Notes: </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">{{$product->machinery_buysell_info->additional_trade_notes ?: '-'}}</p>
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">{{$product->machinery_buysell_info->additional_trade_notes ?: '-'}}</p>
                                            </div>
                                        </div>
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Company Certification  : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">{{$product->machinery_buysell_info->product_related_certifications ?: '-'}}</p>
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">{{$product->machinery_buysell_info->product_related_certifications ?: '-'}}</p>
                                            </div>
                                        </div>
                                    @endif
 
                                    <span class="heading">PAYMENT & DELIVERY INFO</span>
                                    @if($product->product_service_types == "Buy")
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Target Price : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">
                                                    @if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }}
                                                    @else {{$product->suitable_currencies }} @endif
                                                    {{ moneyFormat($product->target_price_from) }}  Per {{ ($product->target_price_unit != 'Other') ? $product->target_price_unit : $product->other_target_price_unit }}
@@ -464,12 +461,12 @@
                                    @endif
 
                                    @if($product->product_service_types == "Sell")
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Unit Price : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">
                                                    @if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }}
                                                    @else {{$product->suitable_currencies }} @endif
                                                    {{ $product->unit_price_from }} Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}
@@ -479,35 +476,35 @@
                                    @endif
 
                                    @if($product->product_service_types == "Service")
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Service Charges : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">
                                                    @if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }}
                                                    @else {{$product->suitable_currencies }} @endif
                                                    {{ $product->unit_price_from }} Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}
                                                </p>
                                            </div>
                                        </div>
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Service Duration : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">
                                                    {{ str_replace(',', ', ', $product->service_durations) }}
                                                </p>
                                            </div>
                                        </div>
                                        @if(in_array("Other", explode(",", $product->service_durations)))
-                                           <div class="row text">
-                                               <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                           <div class="row text mx-0">
+                                               <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                    <span><b>Other Service Duration : </b></span>
                                                </div>
-                                               <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                                   <p class="mb-sm-0">
+                                               <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                   <p class="mb-0">
                                                        {{ $product->other_service_duration }}
                                                    </p>
                                                </div>
@@ -515,24 +512,24 @@
                                        @endif
                                    @else
                                        @if($product->delivery)
-                                           <div class="row text">
-                                               <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                           <div class="row text mx-0">
+                                               <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                    <span><b>Delivery : </b></span>
                                                </div>
-                                               <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                                   <p class="mb-sm-0">
+                                               <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                   <p class="mb-0">
                                                        {{ $product->delivery }}
                                                    </p>
                                                </div>
                                            </div>
                                        @endif
                                        @if($product->delivery_time)
-                                           <div class="row text">
-                                               <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                           <div class="row text mx-0">
+                                               <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                    <span><b>Lead Time : </b></span>
                                                </div>
-                                               <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                                   <p class="mb-sm-0">
+                                               <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                   <p class="mb-0">
                                                        {{ $product->delivery_time }}
                                                    </p>
                                                </div>
@@ -541,23 +538,23 @@
                                    @endif
 
                                    @if(in_array("Other", explode(",", $product->suitable_currencies)))
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Suitable Currency : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">
                                                    {{ $product->other_suitable_currency }}
                                                </p>
                                            </div>
                                        </div>
                                    @else
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Suitable Currency : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">
                                                    {{$product->suitable_currencies }}
                                                </p>
                                            </div>
@@ -565,23 +562,23 @@
                                    @endif
 
                                    @if(in_array("Other", explode(",", $product->payment_terms)))
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Payment Terms : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">
                                                    {{ $product->other_payment_term }}
                                                </p>
                                            </div>
                                        </div>
                                    @else
-                                       <div class="row text">
-                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                       <div class="row text mx-0">
+                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Payment Terms : </b></span>
                                            </div>
-                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6">
-                                               <p class="mb-sm-0">
+                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                               <p class="mb-0">
                                                    {{ str_replace(',', ', ', $product->payment_terms) }}
                                                </p>
                                            </div>

@@ -18,7 +18,7 @@
 
 .header-profile-info .biz-user,
 .header-profile-info .biz-country {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 500;
     text-shadow: 0px 3px 6px #00000029;
 }
@@ -39,6 +39,10 @@ body {
 }
 /*css to make footer fixed at bottom*/
 
+.red-btn.post-btn {
+    width: max-content;
+}
+
 .sub-cat-arrow-block {
     width: 15px;
     height: 15px;
@@ -51,6 +55,7 @@ body {
     margin-top: 4px;
     background: #12253d;
     color: #FFF!important;
+    cursor: pointer;
 }
 
 .sub-cat-box {
@@ -65,11 +70,14 @@ body {
     overflow: auto;
 }
 
+.cat-link {
+    padding: 2px 4px!important;
+}
+
 .sub-cat-arrow-left {
     font-size: 16px;
     font-weight: bold;
     margin-right: 8px;
-    cursor: pointer;
 }
 
 .sub-cat-box .heading {
@@ -83,6 +91,7 @@ body {
     display: flex;
     align-items: center;
     text-shadow: 0px 3px 6px #00000055;
+    cursor: pointer;
 }
 
 .sub-cat-listing-box {
@@ -91,7 +100,7 @@ body {
 
 .sub-cat-listing-box .link {
     color: #FFF;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 /*premium suppliers slider*/
@@ -107,7 +116,7 @@ body {
 
 .alert-danger,
 .alert-success {
-    font-size: 12px;
+    font-size: 10px;
     padding: 4px;
 }
 
@@ -153,7 +162,7 @@ body {
 }
 .article-details .articles-date {
     font-weight: 500;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .article-details .articles-block .title {
@@ -226,11 +235,11 @@ body {
 }
 
 .biz-nav .biz-user {
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .biz-nav .biz-country {
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .biz-nav .side-nav {
@@ -273,7 +282,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .biz-nav .side-nav .categories > li > a:hover {
@@ -286,6 +295,11 @@ body {
     height: 20px;
     color: #FFF;
     top: 10px;
+}
+
+.biz-nav .side-nav .categories .side-nav-dropdown > li > a > span {
+    width: 20px;
+    height: 20px;
 }
 
 .biz-nav .side-nav .categories > li.dropdown:after {
@@ -321,7 +335,7 @@ body {
     text-decoration: none;
     padding: 4px 0 4px 16px;
     display: block;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .tab-mob-header {
@@ -408,7 +422,7 @@ body {
 }
 
 .biz-nav .close-nav {
-    font-size: 12px;
+    font-size: 10px;
     color: #a52c3e;
     background: #FFF;
     width: 25px;
@@ -480,7 +494,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+    font-size: 10px;
     cursor: pointer;
 }
 
@@ -510,7 +524,7 @@ body {
     color: #12253d!important;
     box-shadow: none;
     width: 100%;
-    min-height: 55px;
+    min-height: 50px;
     font-size: 9px!important;
     font-weight: 400;
     display: flex;
@@ -583,7 +597,7 @@ body {
     right: 8px;
     top: 0;
     color: #A52C3E;
-    font-size: 12px;
+    font-size: 10px;
     cursor: pointer;
     transition: .3s ease;
 }
@@ -779,7 +793,7 @@ body {
     position: absolute;
     right: 3px;
     top: 3px;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .product-images-gallery .product-gallery .product-img {
@@ -1044,7 +1058,7 @@ body {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px!important;
+    font-size: 10px!important;
     position: absolute;
     right: 30px;
 }
@@ -1052,7 +1066,7 @@ body {
 .new-badge {
     background: #12253d;
     color: #FFF;
-    font-size: 12px!important;
+    font-size: 10px!important;
     width: unset!important;
     position: absolute;
     right: 13px;
@@ -1312,8 +1326,7 @@ body {
 
 .journal-sidebar .journal-sidebar-img {
     width: 100%;
-    height: 185px;
-    object-fit: cover;
+    object-fit: contain;
     object-position: top;
 }
 
@@ -1327,7 +1340,7 @@ body {
 
 /*blogs page*/
 .journal-content-inner {
-    height: 290px;
+    height: 228px;
     overflow: hidden;
 }
 
@@ -1346,7 +1359,7 @@ body {
 
 .blogs-page .articles-date {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .blogs-page .journal-content {
@@ -1354,11 +1367,12 @@ body {
 }
 
 .blogs-page .journal-content {
-    box-shadow: 0 1px 1px rgba(0,0,0,0.11), 0 2px 2px rgba(0,0,0,0.11), 0 4px 4px rgba(0,0,0,0.11), 0 6px 8px rgba(0,0,0,0.11), 0 8px 16px rgba(0,0,0,0.11);
+    box-shadow: 0px 2px 10px #00000033;
+    border-radius: 8px;
 }
 
 .blogs-page .articles-block {
-    padding: 15px;
+    padding: 8px;
     transition: background .5s ease;
 }
 
@@ -1368,13 +1382,13 @@ body {
 }
 
 .blogs-page .view-all-link {
-    font-size: 16px;
+    font-size: 10px;
     font-weight: bold;
     transition: .5s ease;
 }
 
 .blogs-page .pg-red-link {
-    font-size: 21px;
+    font-size: 10px;
     font-weight: bold;
     transition: .5s ease;
 }
@@ -1602,7 +1616,7 @@ ul li input[type=checkbox] {
 }
 
 .suppliers-buyers .red-btn {
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .suppliers-buyers .search-container .search-btn {
@@ -1634,7 +1648,7 @@ ul li input[type=checkbox] {
 }
 
 .suppliers-buyers .product-details .title {
-    font-size: 12px;
+    font-size: 10px;
     margin: 4px 0;
 }
 
@@ -2124,7 +2138,7 @@ ul li input[type=checkbox] {
 }
 
 .tag-line {
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .overflow-text-dots.short-description {
@@ -2133,7 +2147,7 @@ ul li input[type=checkbox] {
 }
 
 .short-description {
-    font-size: 12px;
+    font-size: 10px;
     cursor: pointer;
 }
 
@@ -2187,7 +2201,7 @@ ul li input[type=checkbox] {
 }
 
 .job-directory-container .short-description {
-    font-size: 12px;
+    font-size: 10px;
     cursor: pointer;
 }
 
@@ -2239,7 +2253,8 @@ ul li input[type=checkbox] {
 }
 
 .select2-results__option[aria-selected] {
-    font-size: 15px;
+    font-size: 10px;
+    padding: 4px;
 }
 
 span.select2-selection.select2-selection--single {
@@ -2254,10 +2269,11 @@ span.select2-selection.select2-selection--single {
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     height: 100%;
+    font-size: 16px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .select2-container .select2-selection--single .select2-selection__rendered {
@@ -2283,8 +2299,8 @@ span.select2-selection.select2-selection--single {
     content: "";
     display: inline-block;
     position: relative;
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
     border: 2px solid #e9e9e9;
     border-radius: 4px;
     background-color: #fff;
@@ -2302,7 +2318,7 @@ span.select2-selection.select2-selection--single {
     color: #fff;
     background-color: #A52C3E;
     border: 0;
-    font-size: 11px;
+    font-size: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2355,6 +2371,7 @@ span.select2-selection.select2-selection--single {
 /*select box*/
 .select2-container--default .select2-selection--multiple .select2-selection__rendered {
     padding: 0 .75rem!important;
+    display: flex;
 }
 
 .select2-container--default .select2-search--inline .select2-search__field {
@@ -2362,7 +2379,7 @@ span.select2-selection.select2-selection--single {
 }
 
 .select2-container--default .select2-search--inline .select2-search__field::placeholder {
-    font-size: 14px;
+    font-size: 10px;
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field:focus {
@@ -2788,7 +2805,7 @@ form .other-div {
 }
 
 span.time {
-    font-size: 12px;
+    font-size: 10px;
     color: #464141bf;
 }
 
@@ -2894,14 +2911,14 @@ span.time {
 }
 
 .message-sender {
-    font-size: 12px;
+    font-size: 10px;
     margin: 0 0 15px;
     color: #30649c;
     align-self: flex-start;
 }
 
 .message-reciever {
-    font-size: 12px;
+    font-size: 10px;
     margin: 0 0 15px;
     color: #30649c;
 }
@@ -2923,7 +2940,7 @@ span.time {
     background: rgba(100, 170, 0, .1);
     border: 2px solid rgba(100, 170, 0, .1);
     color: #6c6c6c;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .message-box:after {
@@ -3014,7 +3031,7 @@ span.time {
 }
 
 .status-span {
-    font-size: 12px;
+    font-size: 10px;
     color: #ababab;
 }
 
@@ -3045,7 +3062,7 @@ span.time {
 .settings-popup {
     background: white;
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .2);
-    font-size: 12px;
+    font-size: 10px;
     padding: 10px 0;
     position: absolute;
     right: 30px;
@@ -3463,7 +3480,7 @@ span.time {
 
 #dashboardWrapper #page-content-wrapper {
     min-width: 100vw;
-    margin-top: 50px;
+    margin-top: 45px;
 }
 
 .dashboard .avatar-wrapper {
@@ -3528,7 +3545,7 @@ span.time {
 }
 
 .company-info > p {
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .company-info > span {
@@ -3562,10 +3579,9 @@ span.time {
 .dashboard .cards {
     display: flex;
     background: #d9eefe8c;
-    min-height: 105px;
     box-shadow: 0 0 10px #a52c3e6b;
-    margin-bottom: 15px;
-    padding: 10px 8px;
+    margin-bottom: 4px;
+    padding: 4px;
     border-radius: 8px;
 }
 
@@ -3626,7 +3642,7 @@ span.time {
 }
 
 .my-account .mini-txt {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: bold;
     font-style: italic;
 }
@@ -3678,7 +3694,7 @@ span.time {
 /*loader gif*/
 
 .help-txt {
-    font-size: 12px!important;
+    font-size: 10px!important;
 }
 
 /*Global color scheme*/
@@ -3695,7 +3711,7 @@ span.time {
 }
 
 .box-shadow {
-    box-shadow: 0px 4px 10px #00000033;
+    box-shadow: 0px 2px 10px #00000033;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -3738,7 +3754,7 @@ h1, h2, h3, h4, h5, h6 {
     right: 5px;
     cursor: pointer;
     color: rgb(153, 153, 153);
-    font-size: 12px;
+    font-size: 10px;
 }
 /*preview password*/
 
@@ -3832,7 +3848,7 @@ select.custom-select {
 
 .red-link {
     color: #A52C3E;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .red-link:hover {
@@ -3931,7 +3947,7 @@ hr.horizontal-line {
     border: none;
     box-shadow: 0 0 10px rgb(0 0 0 / 15%);
     transition: background 0.5s ease;
-    font-size: 12px;
+    font-size: 10px;
     padding: 4px 8px;
     text-align: center;
     text-transform: uppercase;
@@ -4067,7 +4083,7 @@ select.form-control {
     background: #FFF;
     color: #12253d;
     border: 1px solid #344356;
-    font-size: 14px;
+    font-size: 10px;
     font-family: "Raleway";
 }
 
@@ -4189,7 +4205,7 @@ ol.breadcrumb {
 .breadcrumb .breadcrumb-item.active {
     color: #a52c3e;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 nav .breadcrumb-item + .breadcrumb-item::before {
@@ -4425,7 +4441,6 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 }
 
 .product-details .mini-content-container .supplier-info {
-    box-shadow: 0px 4px 10px #00000033;
     border-radius: 8px;
     padding: 25px 15px;
 }
@@ -4442,7 +4457,6 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     font-size: 24px;
     color: #A52C3E;
     border: 3px solid;
-    padding: 0px 10px;
     border-radius: 50%;
     margin-right: 5px;
     height: 35px;
@@ -4488,7 +4502,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     font-weight: 500;
     text-decoration: none;
     background: #a52c3e;
-    font-size: 12px;
+    font-size: 10px;
     padding: 8px 13px;
     text-align: center;
     text-transform: uppercase;
@@ -4508,10 +4522,6 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     background: #12253d;
     color: #fff;
     text-decoration: none;
-}
-
-.product-details .mini-content-container .contact-product-info .btns-block .btns:last-child {
-    margin-left: 10px;
 }
 
 .product-details .mini-content-container .contact-product-info > p {
@@ -4537,8 +4547,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 
 .product-details .mini-content-container .switch-tabs .tab-content .product-tab {
     overflow-y: auto;
-    max-height: 415px;
-    min-height: 415px;
+    height: 165px;
     padding: 15px;
 }
 
@@ -4644,7 +4653,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 }
 
 .product-details #productInfoSection {
-    box-shadow: 0px 4px 10px #00000033;
+    box-shadow: 0px 2px 10px #00000033;
     border-radius: 8px;
     height: 100%;
 }
@@ -4767,10 +4776,6 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 
 .product-listing #maincontent .main-container .mini-content-container .half-side-content {
     padding: 0 2px;
-}
-
-.product-main #maincontent .main-container {
-    padding: 8px 0;
 }
 
 .product-main #maincontent .main-container .navbar {
@@ -4909,8 +4914,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 }
 
 .product-listing .product-info {
-    padding: 8px;
-    font-size: 15px;
+    padding: 4px;
 }
 
 .product-listing #maincontent .main-container .mini-content-container #buyingDeals {
@@ -5485,7 +5489,7 @@ a.nav-link.btnsEmial.disabled {
 
 /*option-bar*/
 .email-confirmation #maincontent .opt-br > div {
-    font-size: 12px;
+    font-size: 10px;
     color: #12253d;
     overflow: hidden;
     text-align: center;
@@ -5549,8 +5553,13 @@ a.nav-link.btnsEmial.disabled {
 
 /*create acount sidebar*/
 
+.cards-container {
+    margin: 0 -4px;
+}
+
 .cards .value-txt {
-    font-size: 18px;
+    font-size: 12px;
+    line-height: 1;
 }
 
 /*login form*/
@@ -5753,7 +5762,7 @@ header .navbar .navbar-toggler {
     display: flex;
     align-items: center;
     border: none;
-    font-size: 12px;
+    font-size: 10px;
     padding: 8px 5px;
     outline: none;
     font-weight: bold;
@@ -6047,7 +6056,7 @@ header .navbar .navbar-toggler {
 
 .footer .footer-second-sec ul li {
     list-style: none;
-    font-size: 12px;
+    font-size: 10px;
     color: #FFF;
     line-height: 20px;
 }
@@ -6370,7 +6379,7 @@ header .navbar .navbar-toggler {
     transition: background-color 0.5s ease;
     box-shadow: 0px 2px 4px #00000029;
     color: #FFF;
-    font-size: 12px;
+    font-size: 10px;
     /*width: 120px;*/
 }
 
@@ -6449,7 +6458,7 @@ header .navbar .navbar-toggler {
 }
 
 .featured-join > div .label {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 100;
     margin: 0;
     color: #FFF;
@@ -6662,7 +6671,7 @@ header .navbar .navbar-toggler {
 .biz-deals-slider .slider-content > p {
     position: absolute;
     color: #FFF;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 100;
     width: 80%;
     text-align: center;
@@ -6703,7 +6712,7 @@ header .navbar .navbar-toggler {
 
 .biz-services-slider .slider-content > div > div span,
 .biz-deals-slider .slider-content > div > div span {
-    font-size: 12px;
+    font-size: 10px;
     color: #12253d;
     font-weight: bold;
 }
@@ -6734,7 +6743,7 @@ header .navbar .navbar-toggler {
 }
 
 .featured-slider .slider-content > div span {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: bold;
     color: #12253d;
 }
@@ -6989,7 +6998,7 @@ header .navbar .navbar-toggler {
     }
 
     .product-main #maincontent .main-container .navbar #garmentsNav .navbar-nav .nav-item .nav-link {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .product-listing #maincontent .main-container .mini-content-container .certified-suppliers .column-semi-half {
@@ -7042,7 +7051,7 @@ header .navbar .navbar-toggler {
     .header .navbar #bizonairNav .navbar-nav .deals-btn button,
     .header .navbar #bizonairNav .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-container > div:first-child ul li a,
     .header .navbar #bizonairNav .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-container > div:first-child ul li > ul a li {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     /*header navbar css*/
@@ -7138,6 +7147,11 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 991px) {
+    .product-details .top-banner-content {
+        padding: 4px;
+        border-radius: 8px;
+    }
+
     .job-detail-img {
         width: 125px;
     }
@@ -7159,7 +7173,7 @@ header .navbar .navbar-toggler {
 
     .custom-control-label::after, .custom-control-label::before {
         /*top: 0.30rem;*/
-        top: 3px;
+        top: 1px;
         width: .83rem;
         height: .83rem;
     }
@@ -7194,7 +7208,7 @@ header .navbar .navbar-toggler {
     /*global*/
 
     .product-listing #maincontent .main-container .mini-content-container .deals .content-column ul li a {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     /*.products-slider .slick-dots {*/
@@ -7219,7 +7233,7 @@ header .navbar .navbar-toggler {
 
     .main-dashboard .cards .fa-icons {
         color: #a52c3e;
-        font-size: 36px;
+        font-size: 18px;
         text-align: center;
     }
 
@@ -7230,7 +7244,7 @@ header .navbar .navbar-toggler {
 
     .product-details .mini-content-container .switch-tabs .tab-content .product-tab .text span,
     .product-details .mini-content-container .switch-tabs .tab-content .product-tab .text p {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .certified-logo {
@@ -7309,7 +7323,7 @@ header .navbar .navbar-toggler {
 
     .suppliers-buyers .list {
         width: 50%;
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .company-name-nav {
@@ -7388,7 +7402,7 @@ header .navbar .navbar-toggler {
     .job-post-sec .link {
         width: 170px;
         padding: 10px;
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .job-explore-sec .paragraph,
@@ -7496,7 +7510,7 @@ header .navbar .navbar-toggler {
     .product-main #maincontent .main-container .mini-content-container > .heading {
         font-size: 18px;
         font-weight: bold;
-        margin: 8px 0;
+        margin: 4px 0;
     }
 
     .product-main #maincontent {
@@ -7517,7 +7531,7 @@ header .navbar .navbar-toggler {
 
     .product-main #maincontent .main-container .navbar .navbar-brand {
         display: inline-block;
-        font-size: 12px;
+        font-size: 10px;
         font-weight: bold;
         color: #a52c3e;
         padding: 0;
@@ -7660,11 +7674,15 @@ header .navbar .navbar-toggler {
     }
 
     .homepage #maincontent .services .services-container p {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .textile-news-inner > div .textile-caption span {
         font-size: 10px;
+    }
+
+    .textile-news-inner {
+        margin: 0 -4px;
     }
 
     .homepage #maincontent .container-fluid .divider-content > div > div > div span {
@@ -7710,12 +7728,13 @@ header .navbar .navbar-toggler {
     /*company profile dashboard*/
     #dashboardWrapper #myCompanyLinks .nav-link,
     #dashboardWrapper #aboutLinks .nav-link {
-        font-size: 12px;
+        font-size: 10px;
+        padding: 4px 8px;
     }
 
     .edit-company-profile label,
     label {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     #dashboardWrapper #myCompanyLinks .nav-link.active,
@@ -7819,8 +7838,17 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 575px) {
+    .article-details-outer {
+        height: 275px!important;
+    }
+
+    .journal-banner-img {
+        height: 135px;
+        margin-top: 8px;
+    }
+
     ul li input[type=checkbox] {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .noUi-horizontal .noUi-handle {
@@ -7860,12 +7888,12 @@ header .navbar .navbar-toggler {
     }
 
     h1, h2, h3, h4, h5, h6 {
-        font-size: 12px!important;
+        font-size: 10px!important;
         margin-bottom: 4px!important;
     }
 
     .area-loc-section .link {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     /*articles details banner*/
@@ -7884,8 +7912,12 @@ header .navbar .navbar-toggler {
     }
     /*articles details banner*/
 
-    p {
+    p, span {
         font-size: 10px;
+    }
+
+    .product-details .products-deals-slider .content-column .content-column-inner .product-info {
+        padding: 4px;
     }
 
     .breadcrumb .breadcrumb-item a, .breadcrumb .breadcrumb-item.active,
@@ -7895,9 +7927,6 @@ header .navbar .navbar-toggler {
 
     .red-btn.post-btn {
         padding: 4px;
-    }
-
-    .red-btn.post-btn {
         font-size: 9px!important;
     }
 
@@ -7915,7 +7944,7 @@ header .navbar .navbar-toggler {
     }
 
     .main-dashboard .cards .fa-icons {
-        font-size: 30px;
+        font-size: 12px;
     }
 
     .product-details .mini-content-container .contact-product-info .btns-block {
@@ -7923,7 +7952,7 @@ header .navbar .navbar-toggler {
     }
 
     .heading {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .place-day .place {
@@ -7935,7 +7964,7 @@ header .navbar .navbar-toggler {
 
     .tab-mob-header .biz-search,
     .tab-mob-header .biz-search::placeholder {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .biz-nav .side-nav .categories > li,
@@ -7944,8 +7973,19 @@ header .navbar .navbar-toggler {
     }
 
     .custom-control {
-        font-size: 12px!important;
+        font-size: 10px!important;
     }
+
+    .line-height-1 {
+        line-height: 1;
+    }
+
+    /*.custom-control {*/
+    /*    font-size: 10px!important;*/
+    /*    min-height: 1rem;*/
+    /*    display: flex;*/
+    /*    align-items: baseline;*/
+    /*}*/
 
     .dashboard .cards {
         flex-direction: column;
@@ -7967,7 +8007,7 @@ header .navbar .navbar-toggler {
     }
 
     .product-listing .top-companies .top-companies-card .companies-card-content .company-nm {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .post-requirement-btn {
@@ -7977,7 +8017,7 @@ header .navbar .navbar-toggler {
     }
 
     .product-listing #maincontent .main-container .mini-content-container .deals .content-column .product-info .heading {
-        font-size: 12px;
+        font-size: 10px;
         margin-bottom: 4px;
     }
 
@@ -7990,7 +8030,7 @@ header .navbar .navbar-toggler {
     }
 
     .product-details .mini-content-container .switch-tabs .tab-content .product-tab {
-        padding: 8px;
+        padding: 4px 8px;
     }
 
     .dashboard-sidebar-img {
@@ -8143,7 +8183,7 @@ header .navbar .navbar-toggler {
     }
 
     .slider-labels {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .filter-container {
@@ -8161,7 +8201,7 @@ header .navbar .navbar-toggler {
         border: none;
         letter-spacing: -0.62px;
         font-weight: bold;
-        font-size: 12px;
+        font-size: 10px;
         display: block;
     }
 
@@ -8226,7 +8266,7 @@ header .navbar .navbar-toggler {
     }
 
     .home-heading {
-        font-size: 12px;
+        font-size: 10px;
         margin: 4px 0;
     }
 
@@ -8246,18 +8286,18 @@ header .navbar .navbar-toggler {
     /*dashboard table*/
     .table-mt th,
     .table-mt td {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .table-mt .actionMenu {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     /*dashboard table*/
     /*multi image selector company profile page*/
     .multi-image-selector .dz-size,
     .multi-image-selector .dz-filename {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     /*multi image selector company profile page*/
@@ -8284,7 +8324,7 @@ header .navbar .navbar-toggler {
     }
 
     .login-form .heading {
-        font-size: 12px!important;
+        font-size: 10px!important;
     }
 
     .biz-logo {
@@ -8292,21 +8332,21 @@ header .navbar .navbar-toggler {
     }
 
     .login-form .login-btn {
-        font-size: 12px!important;
+        font-size: 10px!important;
         padding: 4px 8px;
     }
 
     .login-form .paragraph {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     input.form-control,
     select.form-control {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     input.form-control::placeholder {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .popup-center {
@@ -8316,7 +8356,7 @@ header .navbar .navbar-toggler {
     /*global css*/
     /*company-profile*/
     .multiselect.dropdown-toggle.btn-lg {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .company-profile .basic-info {
@@ -8349,7 +8389,7 @@ header .navbar .navbar-toggler {
     /*dashboard line chart*/
     /*dashboard page content*/
     .dashboard .main-heading {
-        font-size: 16px;
+        font-size: 10px;
     }
 
     /*dashboard page content*/
@@ -8359,16 +8399,16 @@ header .navbar .navbar-toggler {
     }
 
     .product-banner-container .banner-search .category-search > form > input[placeholder] {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .select-cat {
-        font-size: 12px!important;
+        font-size: 10px!important;
     }
 
     .product-banner-container .banner-search .category-search > form .submit-btn {
         justify-content: center;
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .product-banner-container .banner-search .category-search > form .btn-below-txt {
@@ -8378,7 +8418,7 @@ header .navbar .navbar-toggler {
     /*product banner container*/
     /*product details*/
     .product-details .products-deals-slider {
-        margin: 0;
+        margin: 0 -4px;
     }
 
     .product-details .products-deals-slider .content-column {
@@ -8395,18 +8435,43 @@ header .navbar .navbar-toggler {
 
     .product-listing #maincontent .main-container .mini-content-container .half-side-content > .heading,
     .product-main #maincontent .main-container .mini-content-container > .heading,
-    .product-details .mini-content-container .contact-product-info > .heading,
-    .product-details .mini-content-container .switch-tabs .tab-content .product-tab > .heading {
-        font-size: 14px;
+    .product-details .mini-content-container .contact-product-info > .heading {
+        font-size: 10px;
     }
 
     .product-details .mini-content-container .contact-product-info .btns-block .btns {
-        font-size: 12px;
-        padding: 6px;
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+
+    .product-details .mini-content-container .supplier-info {
+        padding: 0 4px;
+    }
+
+    .product-details .mini-content-container .contact-product-info > .heading {
+        margin-bottom: 4px;
+        font-size: 10px !important;
+    }
+
+    .product-details .mini-content-container .login-info .login-info-inner > p,
+    .product-details .mini-content-container .supplier-info > p {
+        font-size: 10px;
+    }
+
+    .product-details .mini-content-container .contact-product-info .btns-block {
+        column-gap: 4px;
+        margin-top: 0;
+    }
+
+    .product-details .mini-content-container .login-info .fa.fa-exclamation {
+        font-size: 10px;
+        border: 2px solid;
+        height: 20px;
+        width: 20px;
     }
 
     .product-details .mini-content-container .contact-product-info > p {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .product-details .nav-tabs .nav-item:first-child {
@@ -8418,10 +8483,23 @@ header .navbar .navbar-toggler {
     }
 
     .product-details .nav-tabs .nav-item .nav-link {
-        font-size: 12px;
-        padding: 8px 0;
+        font-size: 10px;
+        padding: 4px 0;
     }
 
+    .product-details .mini-content-container .switch-tabs .tab-content .product-tab .text span,
+    .product-details .mini-content-container .switch-tabs .tab-content .product-tab .text p {
+        font-size: 10px;
+    }
+
+    .switch-tabs .text span {
+        display: block;
+    }
+
+    .product-details .mini-content-container .switch-tabs .tab-content .product-tab > .heading {
+        font-size: 10px;
+        margin: 4px 0;
+    }
     /*product details*/
     /*product listing page*/
     .product-listing #maincontent .main-container .mini-content-container .half-side-content {
@@ -8467,12 +8545,12 @@ header .navbar .navbar-toggler {
     }
 
     .forgot-password-page #maincontent .forgot-password form .submit-btn {
-        font-size: 12px;
+        font-size: 10px;
         padding: 4px 8px;
     }
 
     .forgot-password-page #maincontent .forgot-password form p {
-        font-size: 12px;
+        font-size: 10px;
         margin: 8px 0;
     }
     /*forgot-password-page*/
@@ -8483,15 +8561,15 @@ header .navbar .navbar-toggler {
     .email-confirmation .tab-content label,
     .email-confirmation input.form-control,
     .email-confirmation input.form-control::placeholder {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .email-confirmation .social-links a {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .email-confirmation #maincontent .opt-br > div span {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .email-confirmation #maincontent .opt-br > div:before,
@@ -8502,7 +8580,7 @@ header .navbar .navbar-toggler {
     .email-confirmation .next-btn,
     .email-confirmation .verify-btn {
         width: 85px;
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .email-confirmation .switch-tabs .tab-content > .tab-pane {
@@ -8519,7 +8597,7 @@ header .navbar .navbar-toggler {
     .registration-form #maincontent .check-stats li.btn,
     .registration-form .choose-country,
     .registration-form .choose-services {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .registration-form .create-btn {
@@ -8542,12 +8620,12 @@ header .navbar .navbar-toggler {
     /*registration-form*/
     /*create acount sidebar*/
     .join-us-sidebar .join-us h6 {
-        font-size: 12px;
+        font-size: 10px;
         margin-bottom: 8px;
     }
 
     .join-us-sidebar .join-us > p {
-        font-size: 12px;
+        font-size: 10px;
         margin: 4px 0;
         align-items: baseline;
     }
@@ -8689,7 +8767,7 @@ header .navbar .navbar-toggler {
     .homepage #maincontent .container-fluid .biz-deals-container .biz-deals-slider .main-heading,
     .homepage #maincontent .container-fluid .textile-news .main-heading,
     .homepage #maincontent .container-fluid .featured-slider .main-heading {
-        font-size: 12px;
+        font-size: 10px;
         margin-bottom: 4px;
     }
 
@@ -8731,7 +8809,7 @@ header .navbar .navbar-toggler {
     }
 
     .homepage #maincontent .container-fluid .textile-mt > div p {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .homepage #maincontent .container-fluid .textile-mt > div button {
@@ -8762,7 +8840,7 @@ header .navbar .navbar-toggler {
     .homepage .view-all-btns {
         margin-top: 0;
         padding: 8px 25px;
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .homepage #maincontent .container-fluid .number-content > div {
@@ -8788,17 +8866,17 @@ header .navbar .navbar-toggler {
     }
 
     .homepage #maincontent .banner-container > div p {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .product-banner-container .category-search form select,
     .product-banner-container .category-search form input,
     .product-banner-container .category-search form button {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .homepage #maincontent .services .switch-tabs .services-btn-container .services-btn .nav-link {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .homepage #maincontent .services .switch-tabs .services-btn-container .services-btn .nav-link img {
@@ -8857,7 +8935,7 @@ header .navbar .navbar-toggler {
     }
 
     .nav-search-btn {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     /*home page*/
@@ -8962,6 +9040,13 @@ form label {
 
 .select2-container--default .select2-selection {
     margin-bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice,
+.select2-container .select2-search--inline .select2-search__field {
+    margin-top: 0;
 }
 
 .select2-container--default .select2-selection.is-valid {
@@ -8995,7 +9080,7 @@ form label {
 }
 
 .main-dashboard .cards-content .text {
-    font-size: 14px;
+    font-size: 10px;
 }
 
 .form-group {
@@ -9008,7 +9093,7 @@ form label {
     }
 
     .floating-wpp .floating-wpp-popup.active {
-        font-size: 12px;
+        font-size: 10px;
         width: 235px!important;
     }
 
@@ -9110,6 +9195,7 @@ form label {
     border: 2px dashed #673ab75e !important;
     min-height: fit-content!important;
     background: #f5f5f5 !important;
+    padding: 0!important;
 }
 
 .dropzone .dz-preview .dz-image img {

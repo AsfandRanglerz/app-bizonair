@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <div class="position-relative d-flex align-items-center">
-                    <input type="password" name="login_password" id="userPassword" class="form-control" placeholder="Password">
+                    <input type="password" name="login_password" id="userPassword" class="form-control pr-4" placeholder="Password">
                     <span toggle="#userPassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 </div>
                 <small class="text-white" id="login_password_error"></small>

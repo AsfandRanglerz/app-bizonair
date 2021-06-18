@@ -34,9 +34,9 @@
                         <div class="row mx-0">
                             <div class="offset-sm-2 col-sm-8 px-0">
                                 @if(\File::exists('public/assets/front_site/blogs/'.$article->image))
-                                    <img src="{{$ASSET}}/front_site/blogs/{{$article->image}}" class="w-100">
+                                    <img src="{{$ASSET}}/front_site/blogs/{{$article->image}}" class="w-100 object-contain journal-banner-img">
                                 @else
-                                    <img src="{{ url('storage/app/public/'.$article->image) }}" class="w-100">
+                                    <img src="{{ url('storage/app/public/'.$article->image) }}" class="w-100 object-contain journal-banner-img">
                                 @endif
                                 <h4 class="my-2 px-2 heading">{{$article->title}}</h4>
                             </div>

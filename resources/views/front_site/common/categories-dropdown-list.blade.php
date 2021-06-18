@@ -42,10 +42,10 @@
                     <a href="{{ route('jobs-portal') }}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Post A Job</a>
                 </div>
                 <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="#" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Post Your CV</a>
+                    <a href="{{ route('jobs-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Post Your CV</a>
                 </div>
                 <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="#" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Explore All Jobs</a>
+                    <a href="{{ route('cv-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Explore All Jobs</a>
                 </div>
             </div>
         </div>

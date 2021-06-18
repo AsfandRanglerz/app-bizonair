@@ -13,15 +13,15 @@
 
             <div id="page-content-wrapper">
                 <div class="px-2">
-                    <span class="main-heading my-2">DASHBOARD</span>
-                    <div class="m-0 row cards-container">
+                    <span class="main-heading my-1">DASHBOARD</span>
+                    <div class="row cards-container">
                         <?php $userComp = \App\UserCompany::where('user_id',auth()->id())->where('company_id',session()->get('company_id'))->first(); ?>
                         @if($userComp)
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('products.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-heart-o fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">MyBiz Leads</span>
@@ -30,11 +30,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{route('view-lead-favourites')}}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-heart-o fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Favourite Leads</span>
@@ -43,11 +43,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('product-inquiries') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-heart-o fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Lead Inquiries</span>
@@ -56,11 +56,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('products.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-heart-o fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Lead Views</span>
@@ -69,11 +69,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('get-members') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-users fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-users fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Members</span>
@@ -82,11 +82,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('company-get-meetings') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-handshake-o fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-handshake-o fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Meetings</span>
@@ -95,11 +95,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buy-sell.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-heart-o fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">One-Time Deals</span>
@@ -108,11 +108,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buy-sell.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-heart fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-heart fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Favourite Deals</span>
@@ -122,11 +122,11 @@
                                     </a>
                                 </div>
 
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buysell-inquiries') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-shopping-bag w-100 fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-shopping-bag w-100 fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Deal Inquiries</span>
@@ -136,11 +136,11 @@
                                     </a>
                                 </div>
 
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buy-sell.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-eye fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-eye fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Deal Views</span>
@@ -149,11 +149,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('view-job-management') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-heart-o fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Careers</span>
@@ -164,11 +164,11 @@
                                 </div>
 
                         @else
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buy-sell.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-heart-o fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">One-Time Deals</span>
@@ -177,11 +177,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{route('view-deal-favourites')}}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-heart fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-heart fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Favourite Deals</span>
@@ -190,11 +190,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buysell-inquiries') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-shopping-bag fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-shopping-bag fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Inquiries</span>
@@ -203,11 +203,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buy-sell.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-eye fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-eye fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Deal Views</span>
@@ -216,11 +216,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-6">
+                                <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('view-job-management') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
                                             <div class="cards-img">
-                                                <span class="w-100 mb-sm-0 mb-2 fa fa-heart-o fa-2x fa-icons"></span>
+                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
                                             </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Careers</span>
@@ -232,7 +232,7 @@
 
                             @endif
                     </div>
-                    <select class="w-auto form-control" id="filterselector">
+                    <select class="mx-auto mt-1 w-auto form-control" id="filterselector">
                         <option value="asc">Newest To Oldest </option>
                         <option value="desc">Oldest To Newest </option>
                     </select>
@@ -306,6 +306,9 @@
                         xAxes: [{
                             barPercentage: 0.4,
                             stacked: true,
+                            ticks: {
+                                fontSize: 10
+                            },
                             gridLines: {
                                 display: false,
                             }
@@ -314,6 +317,7 @@
                             stacked: true,
                             ticks: {
                                 beginAtZero: true,
+                                fontSize: 10
                             },
                             type: 'linear',
                         }]
@@ -322,7 +326,7 @@
                     title: {
                         display: true,
                         text: 'MyBiz Leads',
-                        fontSize: 24
+                        fontSize: 10
                     },
                     tooltips: {
                         mode: 'index',
@@ -363,6 +367,9 @@
                         xAxes: [{
                             barPercentage: 0.4,
                             stacked: true,
+                            ticks: {
+                                fontSize: 10
+                            },
                             gridLines: {
                                 display: false,
                             }
@@ -371,6 +378,7 @@
                             stacked: true,
                             ticks: {
                                 beginAtZero: true,
+                                fontSize: 10
                             },
                             type: 'linear',
                         }]
@@ -379,7 +387,7 @@
                     title: {
                         display: true,
                         text: 'MyBiz Leads',
-                        fontSize: 24
+                        fontSize: 10
                     },
                     tooltips: {
                         mode: 'index',
@@ -420,6 +428,9 @@
                         xAxes: [{
                             barPercentage: 0.4,
                             stacked: true,
+                            ticks: {
+                                fontSize: 10
+                            },
                             gridLines: {
                                 display: false,
                             }
@@ -428,6 +439,7 @@
                             stacked: true,
                             ticks: {
                                 beginAtZero: true,
+                                fontSize: 10
                             },
                             type: 'linear',
                         }]
@@ -436,7 +448,7 @@
                     title: {
                         display: true,
                         text: 'One-Time Deals',
-                        fontSize: 24
+                        fontSize: 10
                     },
                     tooltips: {
                         mode: 'index',
@@ -477,6 +489,9 @@
                         xAxes: [{
                             barPercentage: 0.4,
                             stacked: true,
+                            ticks: {
+                                fontSize: 10
+                            },
                             gridLines: {
                                 display: false,
                             }
@@ -485,6 +500,7 @@
                             stacked: true,
                             ticks: {
                                 beginAtZero: true,
+                                fontSize: 10
                             },
                             type: 'linear',
                         }]
@@ -493,7 +509,7 @@
                     title: {
                         display: true,
                         text: 'One-Time Deals',
-                        fontSize: 24
+                        fontSize: 10
                     },
                     tooltips: {
                         mode: 'index',

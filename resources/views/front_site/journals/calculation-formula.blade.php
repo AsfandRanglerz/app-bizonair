@@ -75,7 +75,7 @@
                                     <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Other</a>
                                 </div>
                             </div>
-                            <div class="p-0 col-sm-9 overflow-auto calc-content" style="height: 40vh">
+                            <div class="p-0 col-sm-9 overflow-auto calc-content" style="height: 45vh">
                                 <div class="tab-content" id="v-pills-tabContent">
                                     <div class="overflow-auto tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                         <img src="{{$ASSET}}/front_site/images/calculation-formulas.jpeg" style="width: 100%" />

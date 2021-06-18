@@ -54,7 +54,7 @@ $(document).ready(function () {
         $('body').css('overflow', 'hidden');
     });
 
-    $(document).on('click', '.sub-cat-arrow-left', function() {
+    $(document).on('click', '.sub-cat-box .heading', function() {
         $('.sub-cat-box').slideUp(500);
         $('body').css('overflow', 'auto');
     });
@@ -1964,6 +1964,9 @@ $(function () {
                     xAxes: [{
                         barPercentage: 0.4,
                         stacked: true,
+                        ticks: {
+                            fontSize: 10
+                        },
                         gridLines: {
                             display: false,
                         }
@@ -1972,6 +1975,7 @@ $(function () {
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
+                            fontSize: 10
                         },
                         type: 'linear',
                     }]
@@ -1979,7 +1983,8 @@ $(function () {
                 responsive: true,
                 title: {
                     display: true,
-                    text: 'Bar Graph'
+                    text: 'Bar Graph',
+                    fontSize: 10
                 },
                 tooltips: {
                     mode: 'index',

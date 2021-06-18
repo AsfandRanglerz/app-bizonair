@@ -8,7 +8,7 @@
                     <div class="form-group col-md-5 col-sm-6">
                         <label class="d-block mb-0 text-white font-500">What?</label>
                         <label class="d-block text-white">Job title, keywords, or company</label>
-                        <div class="position-relative">
+                        <div class="position-relative d-flex align-items-center">
                             <input class="form-control bg-white border-white mr-sm-2" type="search" aria-label="Search" placeholder="Job title, keywords, or company" name="job-title" style="padding-right: 1.8rem" required>
                             <span class="fa fa-search position-absolute" aria-hidden="true"></span>
                         </div>
@@ -16,7 +16,7 @@
                     <div class="form-group col-md-5 col-sm-6">
                         <label class="d-block mb-0 text-white font-500">Where?</label>
                         <label class="d-block text-white">City or province</label>
-                        <div class="position-relative">
+                        <div class="position-relative d-flex align-items-center">
                             <input class="form-control bg-white border-white mr-sm-2" type="search" aria-label="Search" placeholder="City or province" name="job-location" style="padding-right: 1.8rem" required>
                             <span class="fa fa-map-marker position-absolute" aria-hidden="true"></span>
                         </div>
