@@ -9143,8 +9143,15 @@ form label {
 }
 
 .dropzone .dz-preview .dz-image {
-    height: 50px !important;
-    width: 50px !important;
+    height: 30px !important;
+    width: 30px !important;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropzone .dz-preview .dz-remove {
+    font-size: 10px!important;
 }
 
 .dropzone .dz-preview {
@@ -9170,10 +9177,14 @@ form label {
 }
 
 .dropzone .dz-preview .dz-progress {
-    margin-top: -8px !important;
-    width: 40px !important;
-    margin-left: -22px !important;
-    height: 8px !important;
+    margin-top: -10px !important;
+    width: 20px !important;
+    margin-left: -10px !important;
+    height: 4px !important;
+}
+
+.dropzone .dz-message {
+    margin: 1rem 0!important;
 }
 
 .dropzone .dz-preview .dz-success-mark, .dropzone .dz-preview .dz-error-mark {
@@ -9199,8 +9210,8 @@ form label {
 }
 
 .dropzone .dz-preview .dz-image img {
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 20px;
 }
 
 .service_charges_range_label, .unit_price_range, .target_price_range, .product_delivery {
