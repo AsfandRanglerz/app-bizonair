@@ -59,57 +59,34 @@
                                 </div>
                             </div>
                             <div class="my-1 position-relative">
-                                <h3 class="main-heading">CATEGORIES</h3>
+                                <h3 class="main-heading">SUB-CATEGORIES</h3>
                             </div>
                             <div class="categories-slider-outer">
                                 <div class="categories-slider">
-                                    <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
-                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
-                                    </div>
-                                    <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
-                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
-                                    </div>
-                                    <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
-                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
-                                    </div>
-                                    <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
-                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
-                                    </div>
-                                    <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
-                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
-                                    </div>
+                                    @php
+                                        $sub_id_arr = [];
+                                    @endphp
+                                    @foreach(\App\Subcategory::where('category_id', $category->id)->get() as $i =>  $subcategory)
+                                        @php
+                                            array_push($sub_id_arr, $subcategory->id);
+                                        @endphp
+                                        <div class="px-1 content-column text-center">
+                                            <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="{{route('suppliers-subcategory-products',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
+                                            <a class="fa fa-angle-down sub-cat-arrow-block"></a>
+                                        </div>
+{{--                                        <a class="nav-link" id="v-pills-cats-tab" data-toggle="pill" href="#v-pills-cats{{$subcategory->id}}" role="tab" aria-controls="v-pills-cats" aria-selected="true" onclick="location.href='{{route('suppliers-subcategory-products',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}'"><span class="fa fa-angle-double-right mr-2"></span>{{$subcategory->name}}</a>--}}
+                                    @endforeach
+
+
                                 </div>
                                 <div class="sub-cat-box">
-                                    <h6 class="heading"><a class="fa fa-angle-left sub-cat-arrow-left"></a>Sub Categories</h6>
+                                    <h6 class="heading"><a class="fa fa-angle-left sub-cat-arrow-left"></a>Child Sub Categories</h6>
                                     <ul class="pl-3 sub-cat-listing-box">
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
+                                        @foreach( $sub_id_arr as $key =>  $value)
+                                            @foreach(\App\Childsubcategory::where('subcategory_id',$value)->orderby('subcategory_id','asc')->get() as $key =>  $childsubcat)
+                                        <li><a href="{{route('suppliers-products',['category'=>$subcategory->category->slug,'subcategory'=>$childsubcat->subcategory->slug,'childsubcategory'=>$childsubcat->slug])}}" class="link">{{$childsubcat->name}}</a></li>
+                                            @endforeach
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>

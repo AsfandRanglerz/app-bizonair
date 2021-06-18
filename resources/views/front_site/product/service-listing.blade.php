@@ -63,58 +63,15 @@
                                 </div>
                             </div>
                             <div class="my-1 position-relative">
-                                <h3 class="main-heading">CATEGORIES</h3>
+                                <h3 class="main-heading">SUB-CATEGORIES</h3>
                             </div>
                             <div class="categories-slider-outer">
                                 <div class="categories-slider">
+                                    @foreach($subcategories as  $subcategory)
                                     <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
-                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
+                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="{{route('subcategory-regular-services',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
                                     </div>
-                                    <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
-                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
-                                    </div>
-                                    <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
-                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
-                                    </div>
-                                    <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
-                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
-                                    </div>
-                                    <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="#">Human Resources</a>
-                                        <a class="fa fa-angle-down sub-cat-arrow-block"></a>
-                                    </div>
-                                </div>
-                                <div class="sub-cat-box">
-                                    <h6 class="heading"><a class="fa fa-angle-left sub-cat-arrow-left"></a>Sub Categories</h6>
-                                    <ul class="pl-3 sub-cat-listing-box">
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                        <li><a href="#" class="link">Abaca Fibre</a></li>
-                                    </ul>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="row deals-inner-half" id="sellingDeals">

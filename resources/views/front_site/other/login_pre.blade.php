@@ -34,9 +34,9 @@
                 </div>
 
                 <input type="submit" class="rounded px-4 my-1 red-btn login-btn" value="Login"><br>
-                <a href="{{route('forgot-password')}}" class="font-500 red-link">Forgot your password?</a>
+                <a href="{{route('forgot-password')}}" class="font-500 red-link" disabled>Forgot your password?</a>
             </div>
-            <p class="mb-0 text-center paragraph">Don't have an account? <a href="{{route('email-confirmation')}}"  class="font-500 red-link">Sign up</a></p>
+            <p class="mb-0 text-center paragraph">Don't have an account? <a href="{{route('email-confirmation')}}"  class="font-500 red-link" disabled>Sign up</a></p>
         </form>
     </div>
 </main>

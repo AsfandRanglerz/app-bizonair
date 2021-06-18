@@ -268,7 +268,7 @@
                                     <div class="form-group col-md-12">
                                         <label class="font-500">Job Description  <small class="font-500"> (Optional)</small></label>
                                         <span class="pull-right font-500"><span class="counter-total-digits">0</span>/1200</span>
-                                        <textarea name="job_description" id="job_description" class="form-control" maxlength = "1200" rows="6" placeholder="Input Job Description">{{ $info->job_description }}</textarea>
+                                        <textarea class="form-control" name="job_description">"{!! $info->job_description !!}"</textarea>
 
                                     </div>
                                 </div>
@@ -534,6 +534,8 @@
     <script src="{{$ASSET}}/front_site/js/timepicker.min.js"></script>
 
     <script>
+        CKEDITOR.replace( 'job_description' );
+        CKEDITOR.config.width = '100%';
         $(document).ready(function () {
             // // console.log('ready')
             $('.closingdatepicker').datepicker({

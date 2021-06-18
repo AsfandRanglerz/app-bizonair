@@ -251,25 +251,25 @@
 
                 <ul class="mb-0 categories">
                     <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Dashboard"><img class="mr-2" src="https://cdn2.iconfinder.com/data/icons/thin-charts-analytics/24/thin-1086_kpi_dashboard_monitor-512.png" height="20"><a href="{{route('user-dashboard')}}" class="sidebar-links">Dashboard</a>
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Account"><img class="mr-2" src="https://image.flaticon.com/icons/png/128/2321/2321232.png" height="20"><a href="{{ route('my-account-detail') }}" class="sidebar-links">My
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Account"><img class="mr-2" src="https://image.flaticon.com/icons/png/128/2321/2321232.png" height="20"><a href="#" class="sidebar-links">My
                             Account</a></li>
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Business Profile"><img class="mr-2" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/work-desk-1-982669.png" height="20"><a href="{{route('company-profile')}}" class="sidebar-links">Create New Biz Office</a><span class="badge new-badge">New</span></li>
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Business Profile"><img class="mr-2" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/work-desk-1-982669.png" height="20"><a href="#" class="sidebar-links">Create New Biz Office</a><span class="badge new-badge">New</span></li>
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
                         title="One-Time Deals"><img class="mr-2" src="https://static.thenounproject.com/png/1353582-200.png" height="20"><a href="javascript:;">One-Time Deals</a><span class="biz-badge blue-badge">{{ \App\BuySell::where('user_id', \Auth::user()->id)->count() }}</span>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom" title="Add New One-Time Deal">
-                                <a href="{{route('buy-sell.create')}}" class="sidebar-links">Add A New Deal
+                                <a href="#" class="sidebar-links">Add A New Deal
                                 </a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="All One-Time Deals">
-                                <a href="{{route('buy-sell.index')}}" class="sidebar-links">View All Deals
+                                <a href="#" class="sidebar-links">View All Deals
                                 </a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Archived Deals Listing">
-                                <a href="{{url('/buy-sells?case=archive')}}" class="sidebar-links">Archived Deals
+                                <a href="#" class="sidebar-links">Archived Deals
                                 </a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Your Favourite Deals">
-                                <a href="{{route('view-deal-favourites')}}" class="sidebar-links">Your Favourite Deals <span class="biz-badge blue-badge">{{ getBuysellFavCount() }}</span></a></li>
+                                <a href="#" class="sidebar-links">Your Favourite Deals <span class="biz-badge blue-badge">{{ getBuysellFavCount() }}</span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="{{route('buysell-inquiries')}}" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
+                                <a href="#" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
 
                         </ul>
                     </li>
@@ -277,19 +277,19 @@
                         title="Careers"><img class="mr-2" src="https://www.pngrepo.com/png/128160/512/worker-career.png" height="20"><a href="javascript:;">Careers</a>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom"
-                                title="Add New Job"><a href="{{route('view-form-job-management')}}"
+                                title="Add New Job"><a href="#"
                                                        class="sidebar-links">Add New Job</a>
                             </li>
                             <li data-toggle="tooltip" data-placement="bottom"
-                                title="View All Jobs"><a href="{{route('view-job-management')}}"
+                                title="View All Jobs"><a href="#"
                                                          class="sidebar-links">All Jobs</a>
                             </li>
                             <li data-toggle="tooltip" data-placement="bottom"
-                                title="Post Your CV"><a href="{{route('post-ur-cv')}}"
+                                title="Post Your CV"><a href="#"
                                                         class="sidebar-links">Post Your CV</a>
                             </li>
                             <li data-toggle="tooltip" data-placement="bottom"
-                                title="View All CVs"><a href="{{route('view-all-cvs')}}"
+                                title="View All CVs"><a href="#"
                                                         class="sidebar-links">All CVs</a>
                             </li>
                         </ul>
@@ -298,9 +298,9 @@
                         title="Journal"><img class="mr-2" src="https://www.biotechconnection-sg.org/wp-content/uploads/2018/06/seo-and-web-glyph-3-04-512.png" height="20"><a href="javascript:;">Journal</a>
                         <ul class="side-nav-dropdown">
                             <li  data-toggle="tooltip" data-placement="bottom" title="Add Journal">
-                                <a href="{{  route('view-form-blog') }}" class="sidebar-links">Add Journal</a></li>
+                                <a href="#" class="sidebar-links">Add Journal</a></li>
                             <li  data-toggle="tooltip" data-placement="bottom" title="View All Journal">
-                                <a href="{{route('view-blogs')}}" class="sidebar-links">View All Journal</a></li>
+                                <a href="#" class="sidebar-links">View All Journal</a></li>
 
                         </ul>
                     </li>
@@ -315,7 +315,7 @@
             <aside class="side-nav w-100 biz-nav-content">
                 <ul class="mb-0 categories">
                     <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Dashboard"><img class="mr-2" src="https://cdn2.iconfinder.com/data/icons/thin-charts-analytics/24/thin-1086_kpi_dashboard_monitor-512.png" height="20"><a href="{{route('user-dashboard')}}" class="sidebar-links">Dashboard</a>
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Account"><img class="mr-2" src="https://image.flaticon.com/icons/png/128/2321/2321232.png" height="20"><a href="{{ route('my-account-detail') }}" class="sidebar-links">My
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Account"><img class="mr-2" src="https://image.flaticon.com/icons/png/128/2321/2321232.png" height="20"><a href="#" class="sidebar-links">My
                             Account</a></li>
 
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
@@ -324,9 +324,9 @@
 
                             <li  data-toggle="tooltip" data-placement="bottom" title="View Your Business Profile">
 
-                                <a href="{{ route('my-company-profile',[session()->get('company_id')]) }}" class="sidebar-links">View Your Business Profile</a></li>
+                                <a href="#" class="sidebar-links">View Your Business Profile</a></li>
                             <li  data-toggle="tooltip" data-placement="bottom" title="Create & Manage your company page">
-                                <a href="{{route('suppliers-about-us')}}" class="sidebar-links">View Your Company Page</a></li>
+                                <a href="#" class="sidebar-links">View Your Company Page</a></li>
 
                         </ul>
                     </li>
@@ -337,22 +337,22 @@
                             Office</a><span class="biz-badge blue-badge">{{ \App\UserCompany::where('user_id', \Auth::user()->id)->count() }}</span>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom" title="Biz Offices"><a
-                                    href="{{route('my-bizoffices')}}" class="sidebar-links">Biz Offices</a></li>
+                                    href="#" class="sidebar-links">Biz Offices</a></li>
                             <li  data-toggle="tooltip" data-placement="bottom"
                                  title="Create & Manage your Virtual Office">
-                                <a href="{{route('company-profile')}}">Add New Biz Office </a></li>
+                                <a href="#">Add New Biz Office </a></li>
                             <?php $usercompany = \App\UserCompany::where('user_id',\Auth::id())->where('company_id',session()->get('company_id'))->where('is_admin',1)->first();?>
                             @if($usercompany)
                                 <li data-toggle="tooltip" data-placement="bottom"
-                                    title="Add New Member To This Bizoffice"><a href="{{route('create-member')}}"
+                                    title="Add New Member To This Bizoffice"><a href="#"
                                                                                 class="sidebar-links">Add New Member</a>
                                 </li>
                             @endif
                             <li data-toggle="tooltip" data-placement="bottom" title="View All Members"><a
-                                    href="{{route('get-members')}}" class="sidebar-links">All Members <span class="biz-badge blue-badge">{{getCompanyMembersCount(session()->get('company_id')) }}</span></a></li>
+                                    href="#" class="sidebar-links">All Members <span class="biz-badge blue-badge">{{getCompanyMembersCount(session()->get('company_id')) }}</span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="View All Meetings"><a
-                                    href="{{route('company-get-meetings')}}" class="sidebar-links">All Meetings <span class="biz-badge" id="meeti"></span></a></li>
-                            <li data-toggle="tooltip" data-placement="bottom" title="Communicate With The Members"><a href="{{route('company-group-chat')}}" class="sidebar-links">Chat <span class="biz-badge" id="chati"></span></a></li>
+                                    href="#" class="sidebar-links">All Meetings <span class="biz-badge" id="meeti"></span></a></li>
+                            <li data-toggle="tooltip" data-placement="bottom" title="Communicate With The Members"><a href="#" class="sidebar-links">Chat <span class="biz-badge" id="chati"></span></a></li>
                         </ul>
                     </li>
 
@@ -363,16 +363,16 @@
                             <li data-toggle="tooltip" data-placement="bottom" title="Add new product">
                                 <a href="{{ route('products.create') }}" class="sidebar-links">Add A New Lead</a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Product Listing">
-                                <a href="{{ route('products.index') }}" class="sidebar-links">All Active Leads</a></li>
+                                <a href="#" class="sidebar-links">All Active Leads</a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Archived Leads Listing">
-                                <a href="{{url('/products?case=archive')}}" class="sidebar-links">Archived Leads</a></li>
+                                <a href="#" class="sidebar-links">Archived Leads</a></li>
 
                             <li data-toggle="tooltip" data-placement="bottom" title="Your Favourite Leads">
-                                <a href="{{route('view-lead-favourites')}}" class="sidebar-links">Your Favourite Leads <span class="biz-badge blue-badge">{{ getProductFavCount(session()->get('company_id')) }}</a></li>
+                                <a href="#" class="sidebar-links">Your Favourite Leads <span class="biz-badge blue-badge">{{ getProductFavCount(session()->get('company_id')) }}</a></li>
                             <?php $company = \App\UserCompany::where('user_id',\Auth::id())->where('company_id',session()->get('company_id'))->first();?>
                             @if($company)
                                 <li data-toggle="tooltip" data-placement="bottom" title="Lead Inquiries">
-                                    <a href="{{route('product-inquiries')}}" class="sidebar-links">Lead Inquiries <span class="biz-badge" id="leadinq"></span></a></li>
+                                    <a href="#" class="sidebar-links">Lead Inquiries <span class="biz-badge" id="leadinq"></span></a></li>
                             @endif
                         </ul>
                     </li>
@@ -381,18 +381,18 @@
                         title="One-Time Deals"><img class="mr-2" src="https://static.thenounproject.com/png/1353582-200.png" height="20"><a href="javascript:;">One-Time Deals</a><span class="biz-badge blue-badge">{{ \App\BuySell::where('user_id', \Auth::user()->id)->count() }}</span>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom" title="Add New One-Time Deal">
-                                <a href="{{route('buy-sell.create')}}" class="sidebar-links">Add A New Deal
+                                <a href="#" class="sidebar-links">Add A New Deal
                                 </a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="All One-Time Deals">
-                                <a href="{{route('buy-sell.index')}}" class="sidebar-links">View All Deals
+                                <a href="#" class="sidebar-links">View All Deals
                                 </a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Archived Deals Listing">
-                                <a href="{{url('/buy-sells?case=archive')}}" class="sidebar-links">Archived Deals
+                                <a href="#" class="sidebar-links">Archived Deals
                                 </a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Your Favourite Deals">
-                                <a href="{{route('view-deal-favourites')}}" class="sidebar-links">Your Favourite Deals <span class="biz-badge blue-badge">{{ getBuysellFavCount() }}</span></a></li>
+                                <a href="#" class="sidebar-links">Your Favourite Deals <span class="biz-badge blue-badge">{{ getBuysellFavCount() }}</span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="{{route('buysell-inquiries')}}" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
+                                <a href="#" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
                         </ul>
                     </li>
 
@@ -400,19 +400,19 @@
                         title="Careers"><img class="mr-2" src="https://www.pngrepo.com/png/128160/512/worker-career.png" height="20"><a href="javascript:;">Careers</a><span class="biz-badge blue-badge">{{ \App\JobManagement::where('user_id', \Auth::user()->id)->count() }}</span>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom"
-                                title="Add New Job"><a href="{{route('view-form-job-management')}}"
+                                title="Add New Job"><a href="#"
                                                        class="sidebar-links">Add New Job</a>
                             </li>
                             <li data-toggle="tooltip" data-placement="bottom"
-                                title="View All Jobs"><a href="{{route('view-job-management')}}"
+                                title="View All Jobs"><a href="#"
                                                          class="sidebar-links">All Jobs</a>
                             </li>
                             <li data-toggle="tooltip" data-placement="bottom"
-                                title="Post Your CV"><a href="{{route('post-ur-cv')}}"
+                                title="Post Your CV"><a href="#"
                                                         class="sidebar-links">Post Your CV</a>
                             </li>
                             <li data-toggle="tooltip" data-placement="bottom"
-                                title="View All CVs"><a href="{{route('view-all-cvs')}}"
+                                title="View All CVs"><a href="#"
                                                         class="sidebar-links">All CVs</a>
                             </li>
                         </ul>
@@ -422,13 +422,13 @@
                         title="Journal"><img class="mr-2" src="https://www.biotechconnection-sg.org/wp-content/uploads/2018/06/seo-and-web-glyph-3-04-512.png" height="20"><a href="javascript:;">Journal</a><span class="biz-badge blue-badge">{{ \App\Journal::where('user_name', \Auth::user()->name)->count() }}</span>
                         <ul class="side-nav-dropdown">
                             <li  data-toggle="tooltip" data-placement="bottom" title="Add Journal">
-                                <a href="{{  route('view-form-blog') }}" class="sidebar-links">Add Journal</a></li>
+                                <a href="#" class="sidebar-links">Add Journal</a></li>
                             <li  data-toggle="tooltip" data-placement="bottom" title="View All Journal">
-                                <a href="{{route('view-blogs')}}" class="sidebar-links">View All Journal</a></li>
+                                <a href="#" class="sidebar-links">View All Journal</a></li>
 
                         </ul>
                     </li>
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2" src="https://cdn1.iconfinder.com/data/icons/communication-set-1-1/100/Untitled-1-18-512.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2" src="https://cdn1.iconfinder.com/data/icons/communication-set-1-1/100/Untitled-1-18-512.png" height="20"><a href="#" class="sidebar-links"> Contact us</a>
                     </li>
                     <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/basics-vol-2/354/out_exit_comeout_goout_getout_dropout_moveout-512.png"><a href="{{url('logout')}}" class="sidebar-links"> Sign Out</a>
                     </li>

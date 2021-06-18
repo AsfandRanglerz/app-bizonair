@@ -307,6 +307,8 @@
 
     <script>
         $(document).ready(function () {
+            CKEDITOR.replace( 'job_description' );
+            CKEDITOR.config.width = '100%';
             // // console.log('ready')
             $('.closingdatepicker').datepicker({
                 startDate: "0d",

@@ -99,10 +99,11 @@
     <script src="{{$ASSET}}/front_site/plugins/password-preview/js/jquery.prevue.js"></script>
     <script src="{{$ASSET}}/front_site/plugins/multi-image-selector/jquery.imageuploader.js"></script>
     <script src="{{$ASSET}}/front_site/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script src="{{$ASSET}}/front_site/plugins/ckeditor/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
     <script src="{{$ASSET}}/front_site/js/dropzone.js"></script>
 {{--    <script src="{{$ASSET}}/front_site/js/gtag.js"></script>--}}
     {{-- <script src='{{$ASSET}}/plugin/calendar/moment.min.js'></script>` --}}
+    <script src="{{$ASSET}}/front_site/js/share.js"></script>
     <script src="{{$ASSET}}/front_site/js/sweetalert.min.js"></script>
     <script src="{{$ASSET}}/front_site/js/range-selector.js"></script>
     <script src="{{$ASSET}}/front_site/js/jquery.validate.min.js"></script>

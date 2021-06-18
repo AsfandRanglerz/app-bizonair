@@ -57,9 +57,9 @@
                         </div>
                         <p class="font-weight-bold mb-0 heading">Share This Job</p>
                         <div class="d-flex justify-content-center align-items-center">
-                            <a href="#" class="text-decoration-none share-btn"><span class="fa fa-facebook"></span></a>
-                            <a href="#" class="text-decoration-none share-btn"><span class="fa fa-linkedin"></span></a>
-                            <a href="#" class="text-decoration-none share-btn"><span class="fa fa-whatsapp"></span></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" class="social-button text-decoration-none share-btn" id=""><span class="fa fa-facebook"></span></a>
+                            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{url()->current()}}&amp;title=my share text&amp;summary=dit is de linkedin summary" class="social-button text-decoration-none share-btn" id=""><span class="fa fa-linkedin"></span></a>
+                            <a href="https://wa.me/?text={{url()->current()}}" class="social-button text-decoration-none share-btn" id=""><span class="fa fa-whatsapp"></span></a>
                         </div>
                     </div>
                 </div>
