@@ -22,7 +22,7 @@
             <div class="row m-0 py-1">
                 @foreach(getCategories('Business') as  $cat)
                     <div class="col-4 px-1 pro-categories-tab-links">
-                        <a href="{{ route('business-products',$cat->slug) }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/fiber-material.png" class="mb-1 banner-below-adds" width="15" height="15">{{ $cat->name }}</a>
+                        <a href="{{ route('business-products',$cat->slug) }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$STORAGEASSET}}/{{ $cat->image }}" class="mb-1 banner-below-adds" width="15" height="15">{{ $cat->name }}</a>
                     </div>
                 @endforeach
             </div>
@@ -31,7 +31,7 @@
             <div class="row m-0 py-1">
                 @foreach(getCategories('Services') as  $cat)
                     <div class="col-4 px-1 pro-categories-tab-links">
-                        <a href="{{ route('service-products',$cat->slug) }}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/machinery-parts.png" class="mb-1 banner-below-adds" width="15" height="15">{{ $cat->name }}</a>
+                        <a href="{{ route('service-products',$cat->slug) }}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$STORAGEASSET}}/{{ $cat->image }}" class="mb-1 banner-below-adds" width="15" height="15">{{ $cat->name }}</a>
                     </div>
                 @endforeach
             </div>
