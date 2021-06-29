@@ -11,6 +11,13 @@
     --thumbBG: #90A4AE;
 }
 
+#filterselector {
+    right: 0!important;
+    padding: 0;
+    height: 20px;
+    top: 4px;
+}
+
 .header-profile-info .header-user-profile-pic {
     width: 35px;
     height: 35px;

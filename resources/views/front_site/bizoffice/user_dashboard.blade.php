@@ -20,12 +20,17 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('products.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
-                                            </div>
+{{--                                            <div class="cards-img">--}}
+{{--                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>--}}
+{{--                                            </div>--}}
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">MyBiz Leads</span>
-                                                <span class="value-txt">{{ \App\Product::where('company_id', session()->get('company_id'))->count() }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{ \App\Product::where('company_id', session()->get('company_id'))->count() }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -33,12 +38,14 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{route('view-lead-favourites')}}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Favourite Leads</span>
-                                                <span class="value-txt">{{ getProductFavCount(session()->get('company_id')) }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{ getProductFavCount(session()->get('company_id')) }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -46,12 +53,14 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('product-inquiries') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Lead Inquiries</span>
-                                                <span class="value-txt">{{ countInquiries(auth()->id(),session()->get('company_id')) }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{ countInquiries(auth()->id(),session()->get('company_id')) }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -59,12 +68,14 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('products.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Lead Views</span>
-                                                <span class="value-txt">{{getProductViewsdashboardCount()}}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{getProductViewsdashboardCount()}}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -72,12 +83,14 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('get-members') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-users fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Members</span>
-                                                <span class="value-txt">{{getCompanyMembersCount(session()->get('company_id')) }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-users fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{getCompanyMembersCount(session()->get('company_id')) }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -85,12 +98,14 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('company-get-meetings') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-handshake-o fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Meetings</span>
-                                                <span class="value-txt">{{ \App\Meeting::where('company_id',session()->get('company_id'))->count() }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-handshake-o fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{ \App\Meeting::where('company_id',session()->get('company_id'))->count() }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -98,12 +113,14 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buy-sell.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">One-Time Deals</span>
-                                                <span class="value-txt">{{ \App\BuySell::where('user_id', \Auth::user()->id)->count() }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{ \App\BuySell::where('user_id', \Auth::user()->id)->count() }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -111,12 +128,14 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buy-sell.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-heart fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Favourite Deals</span>
-                                                <span class="value-txt">{{ getBuysellFavCount() }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-heart fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{ getBuysellFavCount() }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -125,12 +144,14 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buysell-inquiries') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-shopping-bag w-100 fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Deal Inquiries</span>
-                                                <span class="value-txt">{{ countInquiriesBuysell(auth()->id()) }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-shopping-bag w-100 fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{ countInquiriesBuysell(auth()->id()) }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -139,12 +160,14 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buy-sell.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-eye fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Deal Views</span>
-                                                <span class="value-txt">{{getBuySellViewsdashboardCount()}}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-eye fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{getBuySellViewsdashboardCount()}}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -152,12 +175,14 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('view-job-management') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Careers</span>
-                                                <span class="value-txt">{{ \App\JobManagement::where('user_id', \Auth::user()->id)->count() }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{ \App\JobManagement::where('user_id', \Auth::user()->id)->count() }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -232,12 +257,12 @@
 
                             @endif
                     </div>
-                    <select class="mx-auto mt-1 w-auto form-control" id="filterselector">
-                        <option value="asc">Newest To Oldest </option>
-                        <option value="desc">Oldest To Newest </option>
-                    </select>
                     @if($userComp)
-                    <div class="chart-container">
+                    <div class="position-relative chart-container">
+                        <select class="position-absolute mx-auto w-auto form-control" id="filterselector">
+                            <option value="asc">Newest To Oldest </option>
+                            <option value="desc">Oldest To Newest </option>
+                        </select>
                         <canvas id="myChart" width="400" height="200"></canvas>
                         <canvas id="myChartt" width="400" height="200"></canvas>
                     </div>

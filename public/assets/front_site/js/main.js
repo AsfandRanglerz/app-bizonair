@@ -1983,7 +1983,7 @@ $(function () {
                 responsive: true,
                 title: {
                     display: true,
-                    text: 'Bar Graph',
+                    text: 'MyBiz Leads',
                     fontSize: 10
                 },
                 tooltips: {
