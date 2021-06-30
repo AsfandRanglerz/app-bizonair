@@ -3,7 +3,7 @@
 <head>
 <!-- <title>{{isset($title)? ($title? $title.' - Bizonair' : 'Bizonair') : 'Bizonair'}}</title> -->
     <?php if(\Auth::user()){ ?><title>{{setting('site.title')}} | Pakistan's #1 Textile Portal</title> <?php } else { ?>
-    <title>{{setting('site.title')}} | Pakistan’s Largest Textile Portal</title> <?php }?>
+    <title>{{setting('site.title')}} | Pakistan's #1 Textile Portal</title> <?php }?>
     <meta charset="utf-8">
     <meta name="token" content="123456789">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

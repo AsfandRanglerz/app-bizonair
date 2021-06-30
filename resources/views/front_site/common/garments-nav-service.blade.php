@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-          <a class="navbar-brand" href="#">CATEGORIES</a>
+          <a class="navbar-brand" href="#" id="catNameSec">CATEGORIES</a>
           <button class="navbar-toggler"  data-toggle="collapse" data-target="#garmentsNav" aria-controls="garmentsNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="fa fa-angle-down"></span>
           </button>
-    <div class="py-2 collapse navbar-collapse show" id="garmentsNav">
+    <div class="py-2 collapse navbar-collapse" id="garmentsNav">
       <ul class="navbar-nav">
        @foreach(getCategories('Services') as $category)
           <li class="nav-item position-relative">

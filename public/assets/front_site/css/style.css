@@ -34,7 +34,8 @@
 body {
     position: relative;
     min-height: 100vh;
-    padding-bottom: 2.5rem;
+    /*padding-bottom: 2.5rem;*/
+    padding-bottom: 1.5rem;
     word-wrap: break-word;
 }
 
@@ -134,9 +135,7 @@ body {
     display: none;
 }
 .down-arrow-show {
-    position: absolute;
-    right: 4px;
-    bottom: 0;
+    line-height: 1;
     border: none;
     background: none;
     font-size: 16px;
@@ -4166,7 +4165,7 @@ img.profile-pic {
     height: 100%;
     width: 100%;
     transition: all .3s ease;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .upload-button {
@@ -5030,6 +5029,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 .logo-slider .slider .slick-list .logo-container img {
     width: 45px!important;
     height: 45px!important;
+    object-fit: contain;
     margin: auto;
 }
 
@@ -6118,9 +6118,9 @@ header .navbar .navbar-toggler {
     z-index: 5;
 }
 
-.homepage #maincontent {
-    margin-bottom: 15px;
-}
+/*.homepage #maincontent {*/
+/*    margin-bottom: 15px;*/
+/*}*/
 
 .homepage #maincontent .banner-container img {
     width: 100%;
@@ -7244,6 +7244,11 @@ header .navbar .navbar-toggler {
         text-align: center;
     }
 
+    .main-dashboard .cards .dashboard-board-icons {
+        width: 18px;
+        height: 16px;
+    }
+
     .dashboard-toggle-top-bar {
         z-index: 55555;
         background: #344356!important;
@@ -7952,6 +7957,11 @@ header .navbar .navbar-toggler {
 
     .main-dashboard .cards .fa-icons {
         font-size: 12px;
+    }
+
+    .main-dashboard .cards .dashboard-board-icons {
+        width: 12px;
+        height: 10px;
     }
 
     .product-details .mini-content-container .contact-product-info .btns-block {

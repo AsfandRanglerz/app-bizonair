@@ -37,7 +37,7 @@
     <main id="maincontent" class="page-main">
         @include('front_site.common.product-banner')
         <div class="main-container">
-            <div class="container-fluid px-2">
+            <div class="container-fluid px-2 py-2">
                 @include('front_site.common.garments-nav')
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">

@@ -27,7 +27,7 @@
                                                 <span class="overflow-text-dots-one-line text font-500">MyBiz Leads</span>
                                                 <div class="d-flex column-gap-4">
                                                     <div class="cards-img">
-                                                        <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
+                                                        <img src="https://bizonair.com/public/assets/front_site/images/mybiz-leads.png" class="dashboard-board-icons">
                                                     </div>
                                                     <span class="value-txt">{{ \App\Product::where('company_id', session()->get('company_id'))->count() }}</span>
                                                 </div>
@@ -57,7 +57,7 @@
                                                 <span class="overflow-text-dots-one-line text font-500">Lead Inquiries</span>
                                                 <div class="d-flex column-gap-4">
                                                     <div class="cards-img">
-                                                        <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
+                                                        <img src="https://bizonair.com/public/assets/front_site/images/transparent-bag.png" class="dashboard-board-icons">
                                                     </div>
                                                     <span class="value-txt">{{ countInquiries(auth()->id(),session()->get('company_id')) }}</span>
                                                 </div>
@@ -72,7 +72,7 @@
                                                 <span class="overflow-text-dots-one-line text font-500">Lead Views</span>
                                                 <div class="d-flex column-gap-4">
                                                     <div class="cards-img">
-                                                        <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
+                                                        <img src="https://bizonair.com/public/assets/front_site/images/transparent-eye.png" class="dashboard-board-icons">
                                                     </div>
                                                     <span class="value-txt">{{getProductViewsdashboardCount()}}</span>
                                                 </div>
@@ -117,7 +117,7 @@
                                                 <span class="overflow-text-dots-one-line text font-500">One-Time Deals</span>
                                                 <div class="d-flex column-gap-4">
                                                     <div class="cards-img">
-                                                        <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
+                                                        <img src="https://bizonair.com/public/assets/front_site/images/one-time-deals.png" class="dashboard-board-icons">
                                                     </div>
                                                     <span class="value-txt">{{ \App\BuySell::where('user_id', \Auth::user()->id)->count() }}</span>
                                                 </div>
@@ -179,7 +179,7 @@
                                                 <span class="overflow-text-dots-one-line text font-500">Careers</span>
                                                 <div class="d-flex column-gap-4">
                                                     <div class="cards-img">
-                                                        <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
+                                                        <img src="https://bizonair.com/public/assets/front_site/images/worker-career.png" class="dashboard-board-icons">
                                                     </div>
                                                     <span class="value-txt">{{ \App\JobManagement::where('user_id', \Auth::user()->id)->count() }}</span>
                                                 </div>

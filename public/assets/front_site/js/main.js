@@ -48,6 +48,13 @@ $(".job-description-below").scroll(function () {
 });
 
 $(document).ready(function () {
+    setTimeout(() => {
+        /*category name changed on basis of selected category*/
+        let catName = $('#garmentsNav .nav-underline-pg span').text();
+        $('#catNameSec').text(catName);
+        /*category name changed on basis of selected category*/
+    }, 10);
+
     /*sub categories block open on clicking category down arrow*/
     $(document).on('click', '.sub-cat-arrow-block', function() {
         $('.sub-cat-box').slideDown(500);
