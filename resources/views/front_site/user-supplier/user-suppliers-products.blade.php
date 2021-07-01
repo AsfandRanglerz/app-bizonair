@@ -9,7 +9,7 @@
             }
         }
         .suppliers-products .products-slider {
-            height: 245px!important;
+            height: 135px!important;
         }
 
         .suppliers-products .products-slider .listing {
@@ -59,13 +59,13 @@
     </style>
     <main id="maincontent" class="product-details suppliers-products">
         @include('front_site.common.user-suppliers-banner')
-        <div class="mt-4 mb-4 container-lg product-info-container">
+        <div class="my-1 p-1 container-lg product-info-container">
 
             @if(count($products) > 0)
                 @foreach($products as $i => $prod)
                     <div class="product-info">
-                        <div class="ml-0 mr-0 pt-3 pb-3 row">
-                            <div class="col-md-6">
+                        <div class="ml-0 mr-0 py-2 row">
+                            <div class="col-md-6 px-2">
                                 <ul class="products-slider">
                                     @foreach($prod->product_image as $j => $image)
 
@@ -78,8 +78,8 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <div class="col-md-6">
-                                <div class="p-3 d-flex justify-content-center rounded-8px border-grey">
+                            <div class="col-md-6 px-2">
+                                <div class="p-2 rounded-8px border-grey">
                                      <div>
                                         <a class="text-reset" href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                         <h5 class="mb-4 font-weight-bold heading one-line-character-text">{{strtoupper($prod->product_service_name)}}</h5>

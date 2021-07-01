@@ -1,43 +1,10 @@
 @extends('front_site.master_layout')
 @section('content')
     <body class="product-main product-listing">
-    <style>
-        .overflow-text-dots-subject {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-        }
-
-        @media (min-width: 1200px) {
-            .certified-suppliers .col-xl-2,
-            #buyingDeals .col-xl-2,
-            .categories-section.col-xl-2,
-            .half-side-content.col-xl-2,
-            .categories-section-upper.col-xl-2 {
-                -ms-flex: 0 0 20%!important;
-                flex: 0 0 20%!important;
-                max-width: 20%!important;
-            }
-
-            .content-column.col-xl-2 {
-                -ms-flex: 0 0 33.3%;
-                flex: 0 0 33.3%;
-                max-width: 33.3%;
-            }
-
-            .content-column.col-xl-10,
-            .half-side-content.col-xl-10 {
-                -ms-flex: 0 0 80%;
-                flex: 0 0 80%;
-                max-width: 80%;
-            }
-        }
-    </style>
     <main id="maincontent" class="page-main">
         @include('front_site.common.product-banner')
         <div class="main-container">
-            <div class="container-fluid px-2">
+            <div class="container-fluid px-2 py-2">
                 @include('front_site.common.garments-nav')
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -60,22 +27,31 @@
                                 <h3 class="main-heading">ALL ONE TIME SELLING DEALS</h3>
                             </div>
                             <div class="row deals-inner-half" id="sellingDeals">
-                                <div class="col-xl-3 col-lg-3 categories-section-upper">
-                                    <div class="d-flex flex-column justify-content-between categories-section content-column scroll-bar">
-                                        <ul>
-                                            <li class="heading">CATEGORIES</li>
-                                            @foreach($subcategories as  $subcategory)
-                                                <li>
-                                                    <a href="{{route('suppliers-subcategory-products',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
 
-                                        <ul class="all-categories-link">
-                                            <li><a href="#" class="all-categories">All Products</a></li>
-                                        </ul>
+                                <nav class="w-100 my-1 navbar navbar-expand-lg navbar-light">
+                                    <a class="navbar-brand" href="#">SUB-CATEGORIES</a>
+                                    <button class="navbar-toggler"  data-toggle="collapse" data-target="#subCatPanel" aria-controls="subCatPanel" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="fa fa-angle-down"></span>
+                                    </button>
+                                    <div class="py-1 collapse navbar-collapse" id="subCatPanel">
+                                        <div class="row mx-0 categories-side-section">
+                                            <div class="col-6 p-0 categories-side-section-inner scroll-cat">
+                                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                        <a class="d-flex justify-content-between align-items-center column-gap-10 nav-link active" id="v-pills-cats-tab" data-toggle="pill" href="#v-pills-cats" role="tab" aria-controls="v-pills-cats" aria-selected="true"><span class="overflow-text-dots-one-line" onclick="location.href='#'">asad</span><span class="fa fa-angle-double-right"></span></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 p-0 categories-side-section-inner scroll-cat">
+                                                <span class="sub-sub-cat-heading">SUB SUB-Categories</span>
+                                                <div class="tab-content" id="v-pills-tabContent">
+                                                    <div class="tab-pane fade active show" id="v-pills-cats" role="tabpanel" aria-labelledby="v-pills-cats-tab">
+                                                        <a href="#" class="nav-link red-link overflow-text-dots-one-line">asad</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                </nav>
+
                                 <div class="px-0 col-xl-9 col-lg-9 content-column">
                                     <div class="row m-0 product-section-outer">
                                         @if(count($buyselltopten_selling) > 0)
@@ -113,7 +89,7 @@
                                                 </div>
                                             @endforeach
                                         @else
-                                            <p class="px-3">No Product Found Related To This Category...</p>
+                                            <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                                         @endif
                                     </div>
                                 </div>
@@ -121,30 +97,25 @@
                         </div>
                         <div class="mt-md-0 mt-2 h-auto col-xl-2 col-lg-3 col-md-4 half-side-content">
                             <h3 class="text-center main-heading">TOP COMPANIES</h3>
-                            <div class="position-relative top-companies" style="height: calc(100% - 24px);">
-                                <div class="top-companies-card">
-                                    <img class="w-100" alt="100x100" src="http://localhost/app-bizonair/public/assets/front_site/images/ad-1.png" data-holder-rendered="true">
-                                    <div class="companies-card-content">
-                                        <img src="http://localhost/app-bizonair/public/assets/front_site/images/groupsl-224.png">
-                                        <span class="company-nm">Company Name</span>
-                                        <p class="company-content">Description sample text sample text sample</p>
-                                        <p class="company-content">Description sample text sample text sample</p>
+                            <div class="position-relative top-companies">
+                                @foreach($topcompanies as $comp)
+                                    <div class="top-companies-card">
+                                        <img alt="100x100" src="{{$ASSET.'/front_site/images/company-images/'.$comp->logo }}"
+                                             data-holder-rendered="true" height="145" class="w-100 object-contain border-grey">
+                                        <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$comp->id)}}">
+                                            <div class="companies-card-content">
+                                                <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
+                                                <span class="company-nm">{{$comp->company_name}}</span>
+                                                <p class="company-content">{{substr_replace($comp->company_introduction, "...", 100) }}</p>
+                                            </div>
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="top-companies-card">
-                                    <img class="w-100" alt="100x100" src="http://localhost/app-bizonair/public/assets/front_site/images/ad-1.png" data-holder-rendered="true">
-                                    <div class="companies-card-content">
-                                        <img src="http://localhost/app-bizonair/public/assets/front_site/images/groupsl-224.png">
-                                        <span class="company-nm">Company Name</span>
-                                        <p class="company-content">Description sample text sample text sample</p>
-                                        <p class="company-content">Description sample text sample text sample</p>
-                                    </div>
-                                </div>
-                                <a href="#" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
+                                @endforeach
+                                <a href="{{route('view-all-companies')}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
                             </div>
                         </div>
                     </div>
-                    <div class="row my-3 deals product-section-outer" id="buyingDeals">
+                    <div class="row my-1 deals product-section-outer" id="buyingDeals">
                         @if(count($buysell_selling) > 0)
                             @foreach($buysell_selling as $i => $prod)
                                 <div class="product-box content-column col-xl-2 col-lg-3 col-md-4 col-6 my-1">
@@ -180,13 +151,13 @@
                                 </div>
                             @endforeach
                         @else
-                            <p class="px-3">No Product Found Related To This Category...</p>
+                            <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                         @endif
                     </div>
                     <div align="center" class="my-2">
                         <a href="#" class="load-more red-btn">Load More<span class="ml-2 fa fa-spinner" aria-hidden="true"></span></a>
                     </div>
-                    <div class="my-3 position-relative">
+                    <div class="my-1 position-relative">
                         <h3 class="main-heading">PREMIUM SUPPLIERS</h3>
                         <a href="#" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
@@ -216,7 +187,7 @@
                             <img src="{{$ASSET}}/front_site/images/bizonair-logo.png" class="w-100 h-100 object-contain">
                         </div>
                     </div>
-                    <div class="my-3 position-relative">
+                    <div class="my-1 position-relative">
                         <h3 class="main-heading text-center">TEXTILE PARTNERS</h3>
                     </div>
                     <div class="container-fluid logo-slider">

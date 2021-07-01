@@ -1,6 +1,6 @@
 <div class="position-relative">
     <div id="SupplierSlider" class="carousel slide carousel-fade suppliers-slider" data-ride="carousel">
-        <ol class="carousel-indicators">
+        <ol class="carousel-indicators mb-2">
             <li data-target="#SupplierSlider" data-slide-to="0" class="indicators active"></li>
             <li data-target="#SupplierSlider" data-slide-to="1" class="indicators"></li>
             <li data-target="#SupplierSlider" data-slide-to="2" class="indicators"></li>

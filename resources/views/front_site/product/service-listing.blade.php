@@ -1,39 +1,6 @@
 @extends('front_site.master_layout')
 @section('content')
     <body class="product-main product-listing">
-    <style>
-        .overflow-text-dots-subject {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-        }
-
-        @media (min-width: 1200px) {
-            .certified-suppliers .col-xl-2,
-            #buyingDeals .col-xl-2,
-            .categories-section.col-xl-2,
-            .half-side-content.col-xl-2,
-            .categories-section-upper.col-xl-2 {
-                -ms-flex: 0 0 20%!important;
-                flex: 0 0 20%!important;
-                max-width: 20%!important;
-            }
-
-            .content-column.col-xl-2 {
-                -ms-flex: 0 0 33.3%;
-                flex: 0 0 33.3%;
-                max-width: 33.3%;
-            }
-
-            .content-column.col-xl-10,
-            .half-side-content.col-xl-10 {
-                -ms-flex: 0 0 80%;
-                flex: 0 0 80%;
-                max-width: 80%;
-            }
-        }
-    </style>
     <main id="maincontent" class="page-main">
         @include('front_site.common.product-banner')
         <div class="main-container">
@@ -57,23 +24,38 @@
                         <div class="col-xl-10 col-lg-9 col-md-8 half-side-content">
                             <div class="col-12 my-1 px-1 d-flex justify-content-between">
                                 <h3 class="mb-0 main-heading">REGULAR SERVICE PROVIDERS FROM MYBIZ OFFICE</h3>
-                                <div class="d-flex flex-column align-items-end">
+                                <div class="d-flex flex-column-reverse align-items-end">
                                     <a href="{{ route('products.create') }}" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your Service Lead</a>
                                     <a href="{{route('regular-service',$urlslug)}}" class="red-link view-all">VIEW ALL</a>
                                 </div>
                             </div>
-                            <div class="my-1 position-relative">
-                                <h3 class="main-heading">SUB-CATEGORIES</h3>
-                            </div>
-                            <div class="categories-slider-outer">
-                                <div class="categories-slider">
-                                    @foreach($subcategories as  $subcategory)
-                                    <div class="px-1 content-column text-center">
-                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="{{route('subcategory-regular-services',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
+{{--                            <div class="my-1 position-relative">--}}
+{{--                                <h3 class="main-heading">SUB-CATEGORIES</h3>--}}
+{{--                            </div>--}}
+{{--                            <div class="categories-slider-outer">--}}
+{{--                                <div class="categories-slider">--}}
+{{--                                    @foreach($subcategories as  $subcategory)--}}
+{{--                                    <div class="px-1 content-column text-center">--}}
+{{--                                        <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="{{route('subcategory-regular-services',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>--}}
+{{--                                    </div>--}}
+{{--                                    @endforeach--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+                            <nav class="my-1 navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="#">SUB-CATEGORIES</a>
+                                <button class="navbar-toggler"  data-toggle="collapse" data-target="#subCatPanel" aria-controls="subCatPanel" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="fa fa-angle-down"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="subCatPanel">
+                                    <div class="row mx-0 overflow-auto scroll-cat" style="height: 60px">
+                                        @foreach($subcategories as  $subcategory)
+                                        <div class="col-6 p-0">
+                                            <a class="text-decoration-none red-link overflow-text-dots-one-line text-uppercase cat-link" href="{{route('subcategory-regular-services',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
+                                        </div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
                                 </div>
-                            </div>
+                            </nav>
                             <div class="row deals-inner-half" id="sellingDeals">
                                 <div class="p-0 col-xl-9 col-lg-9 content-column">
                                     <div class="row m-0 product-section-outer">
@@ -146,7 +128,7 @@
                                                 </div>
                                             @endforeach
                                         @else
-                                            <p class="pt-3 px-3">No Product Found Related To This Category...</p>
+                                            <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                                         @endif
                                     </div>
                                 </div>
@@ -175,7 +157,7 @@
                     <div class="row my-1 deals product-section-outer" id="buyingDeals">
                         <div class="col-12 my-1 px-1 d-flex justify-content-between">
                             <h3 class="mb-0 main-heading text-uppercase">One-Time Service Seekers</h3>
-                            <div class="d-flex flex-column align-items-end">
+                            <div class="d-flex flex-column-reverse align-items-end">
                                 <a href="{{ route('buy-sell.create') }}" class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your Service Deal</a>
                                 <a href="{{route('service-deals',$urlslug)}}" class="red-link view-all">VIEW ALL</a>
                             </div>
@@ -250,7 +232,7 @@
                                 </div>
                             @endforeach
                         @else
-                            <p class="px-3">No Product Found Related To This Category...</p>
+                            <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                         @endif
                     </div>
 

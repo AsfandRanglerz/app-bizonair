@@ -4,7 +4,7 @@
     <body>
     <style>
         .suppliers-products .products-slider {
-            height: 245px!important;
+            height: 135px!important;
         }
 
         .suppliers-products .products-slider .listing {

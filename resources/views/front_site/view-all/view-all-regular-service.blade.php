@@ -1,53 +1,10 @@
 @extends('front_site.master_layout')
 @section('content')
     <body class="product-main product-listing">
-    <style>
-        .overflow-text-dots-subject {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-        }
-
-        .deals,
-        .deals-inner-half {
-            margin: 0 -5px;
-        }
-
-        .product-section-upper,
-        .categories-section-upper {
-            padding: 0 8px;
-        }
-
-        @media (min-width: 1200px) {
-            .certified-suppliers .col-xl-2,
-            #buyingDeals .col-xl-2,
-            .categories-section.col-xl-2,
-            .half-side-content.col-xl-2,
-            .categories-section-upper.col-xl-2 {
-                -ms-flex: 0 0 20%!important;
-                flex: 0 0 20%!important;
-                max-width: 20%!important;
-            }
-
-            .content-column.col-xl-2 {
-                -ms-flex: 0 0 33.3%;
-                flex: 0 0 33.3%;
-                max-width: 33.3%;
-            }
-
-            .content-column.col-xl-10,
-            .half-side-content.col-xl-10 {
-                -ms-flex: 0 0 80%;
-                flex: 0 0 80%;
-                max-width: 80%;
-            }
-        }
-    </style>
     <main id="maincontent" class="page-main">
         @include('front_site.common.product-banner')
         <div class="main-container">
-            <div class="container-fluid">
+            <div class="container-fluid px-2 py-2">
                 @include('front_site.common.garments-nav-service')
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -69,22 +26,21 @@
                                 <h3 class="main-heading">REGULAR SERVICE</h3>
                             </div>
                             <div class="row deals-inner-half" id="sellingDeals">
-                                <div class="col-xl-3 col-lg-3 categories-section-upper">
-                                    <div class="d-flex flex-column justify-content-between categories-section content-column scroll-bar">
-                                        <ul>
-                                            <li class="heading">CATEGORIES</li>
+                                <nav class="w-100 my-1 navbar navbar-expand-lg navbar-light">
+                                    <a class="navbar-brand" href="#">SUB-CATEGORIES</a>
+                                    <button class="navbar-toggler"  data-toggle="collapse" data-target="#subCatPanel" aria-controls="subCatPanel" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="fa fa-angle-down"></span>
+                                    </button>
+                                    <div class="collapse navbar-collapse" id="subCatPanel">
+                                        <div class="row mx-0 overflow-auto scroll-cat" style="height: 60px">
                                             @foreach($subcategories as  $subcategory)
-                                                <li>
-                                                    <a href="{{route('subcategory-regular-services',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
-                                                </li>
+                                                <div class="col-6 p-0">
+                                                    <a class="text-decoration-none red-link overflow-text-dots-one-line text-uppercase cat-link" href="{{route('subcategory-regular-services',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
+                                                </div>
                                             @endforeach
-                                        </ul>
-
-                                        <ul class="all-categories-link">
-                                            <li><a href="#" class="all-categories">All Services</a></li>
-                                        </ul>
+                                        </div>
                                     </div>
-                                </div>
+                                </nav>
                                 <div class="p-0 col-xl-9 col-lg-9 content-column">
                                     <div class="row m-0 product-section-outer">
                                         @if(count($toptensellproduct) > 0)
@@ -146,24 +102,27 @@
                                                             <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                                             <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
                                                             <p class="price font-500 overflow-text-dots-subject"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif {{ moneyFormat($prod->unit_price_from) }} - {{ moneyFormat($prod->unit_price_to) }} Per {{ $prod->other_unit_price_unit }}</p>
-                                                            <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                                            <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
+                                                                <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
+                                                                <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                                            </div>
                                                         </div>
                                                         </a>
                                                     </div>
                                                 </div>
                                             @endforeach
                                         @else
-                                            <p class="pt-3 px-3">No Product Found Related To This Category...</p>
+                                            <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="h-auto col-xl-2 col-lg-3 col-md-4 half-side-content">
-                            <h3 class="mb-0 text-center main-heading" style="height: 5.7%">TOP COMPANIES</h3>
-                            <div class="top-companies" style="height: 94.3%">
+                        <div class="mt-md-0 mt-2 h-auto col-xl-2 col-lg-3 col-md-4 half-side-content">
+                            <h3 class="text-center main-heading">TOP COMPANIES</h3>
+                            <div class="position-relative top-companies">
                                 @foreach($topcompanies as $comp)
-                                    <div class="my-3 top-companies-card">
+                                    <div class="top-companies-card">
                                         <img alt="100x100" src="{{$ASSET.'/front_site/images/company-images/'.$comp->logo }}"
                                              data-holder-rendered="true" height="145" class="w-100 object-contain border-grey">
                                         <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$comp->id)}}">
@@ -175,13 +134,11 @@
                                         </a>
                                     </div>
                                 @endforeach
-                                <div class="text-right">
-                                    <a href="{{route('view-all-companies')}}" class="red-link view-all">VIEW ALL</a>
-                                </div>
+                                    <a href="{{route('view-all-companies')}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
                             </div>
                         </div>
                     </div>
-                    <div class="row pt-3 my-4 deals product-section-outer" id="buyingDeals">
+                    <div class="row pt-3 my-1 deals product-section-outer" id="buyingDeals">
                         @if(count($topsellproduct) > 0)
                             @foreach($topsellproduct as $i => $prod)
                                 <div class="product-box content-column col-xl-2 col-lg-3 col-md-4 col-6 mb-3">
@@ -241,7 +198,10 @@
                                             <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                             <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
                                             <p class="price font-500 overflow-text-dots-subject"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif {{ moneyFormat($prod->unit_price_from) }} - {{ moneyFormat($prod->unit_price_to) }} Per {{ $prod->other_unit_price_unit }}</p>
-                                            <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                            <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
+                                                <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
+                                                <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                            </div>
                                         </div>
                                         </a>
                                     </div>
@@ -255,7 +215,7 @@
                     <div align="center" class="my-2">
                         <a href="#" class="load-more red-btn">Load More<span class="ml-2 fa fa-spinner" aria-hidden="true"></span></a>
                     </div>
-                    <div class="my-4 position-relative">
+                    <div class="my-1 position-relative">
                         <h3 class="main-heading">PREMIUM SUPPLIERS</h3>
                         <a href="{{route('view-all-companies')}}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
@@ -270,7 +230,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="my-4 position-relative">
+                    <div class="my-1 position-relative">
                         <h3 class="main-heading text-center">TEXTILE PARTNERS</h3>
                     </div>
                     <div class="container-fluid logo-slider">

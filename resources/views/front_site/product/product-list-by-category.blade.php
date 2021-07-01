@@ -1,39 +1,6 @@
 @extends('front_site.master_layout')
 @section('content')
     <body class="product-main product-listing">
-    <style>
-        .overflow-text-dots-subject {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-        }
-
-        @media (min-width: 1200px) {
-            .certified-suppliers .col-xl-2,
-            #buyingDeals .col-xl-2,
-            .categories-section.col-xl-2,
-            .half-side-content.col-xl-2,
-            .categories-section-upper.col-xl-2 {
-                -ms-flex: 0 0 20%!important;
-                flex: 0 0 20%!important;
-                max-width: 20%!important;
-            }
-
-            .content-column.col-xl-2 {
-                -ms-flex: 0 0 33.3%;
-                flex: 0 0 33.3%;
-                max-width: 33.3%;
-            }
-
-            .content-column.col-xl-10,
-            .half-side-content.col-xl-10 {
-                -ms-flex: 0 0 80%;
-                flex: 0 0 80%;
-                max-width: 80%;
-            }
-        }
-    </style>
     <main id="maincontent" class="page-main">
         @include('front_site.common.product-banner')
         <div class="main-container">
@@ -53,43 +20,78 @@
                         <div class="col-xl-10 col-lg-9 col-md-8 half-side-content">
                             <div class="mb-1 d-flex justify-content-between column-gap-4">
                                 <h3 class="mb-0 main-heading">REGULAR SUPPLIERS FROM MYBIZ OFFICE</h3>
-                                <div class="d-flex flex-column flex-end align-items-end">
+                                <div class="d-flex flex-column-reverse flex-end align-items-end">
                                     <a href="{{ route('products.create') }}" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your Regular Lead</a>
                                     <a href="{{route('regular-suppliers',$slug)}}" class="red-link view-all">VIEW ALL</a>
                                 </div>
                             </div>
-                            <div class="my-1 position-relative">
-                                <h3 class="main-heading">SUB-CATEGORIES</h3>
-                            </div>
-                            <div class="categories-slider-outer">
-                                <div class="categories-slider">
-                                    @php
-                                        $sub_id_arr = [];
-                                    @endphp
-                                    @foreach(\App\Subcategory::where('category_id', $category->id)->get() as $i =>  $subcategory)
-                                        @php
-                                            array_push($sub_id_arr, $subcategory->id);
-                                        @endphp
-                                        <div class="px-1 content-column text-center">
-                                            <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="{{route('suppliers-subcategory-products',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
-                                            <a class="fa fa-angle-down sub-cat-arrow-block"></a>
-                                        </div>
-{{--                                        <a class="nav-link" id="v-pills-cats-tab" data-toggle="pill" href="#v-pills-cats{{$subcategory->id}}" role="tab" aria-controls="v-pills-cats" aria-selected="true" onclick="location.href='{{route('suppliers-subcategory-products',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}'"><span class="fa fa-angle-double-right mr-2"></span>{{$subcategory->name}}</a>--}}
-                                    @endforeach
-
-
-                                </div>
-                                <div class="sub-cat-box">
-                                    <h6 class="heading"><a class="fa fa-angle-left sub-cat-arrow-left"></a>Child Sub Categories</h6>
-                                    <ul class="pl-3 sub-cat-listing-box">
-                                        @foreach( $sub_id_arr as $key =>  $value)
-                                            @foreach(\App\Childsubcategory::where('subcategory_id',$value)->orderby('subcategory_id','asc')->get() as $key =>  $childsubcat)
-                                        <li><a href="{{route('suppliers-products',['category'=>$subcategory->category->slug,'subcategory'=>$childsubcat->subcategory->slug,'childsubcategory'=>$childsubcat->slug])}}" class="link">{{$childsubcat->name}}</a></li>
+{{--                            <div class="my-1 position-relative">--}}
+{{--                                <h3 class="main-heading">SUB-CATEGORIES</h3>--}}
+{{--                            </div>--}}
+                            <nav class="my-1 navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="#">SUB-CATEGORIES</a>
+                                <button class="navbar-toggler"  data-toggle="collapse" data-target="#subCatPanel" aria-controls="subCatPanel" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="fa fa-angle-down"></span>
+                                </button>
+                                <div class="py-1 collapse navbar-collapse" id="subCatPanel">
+                                <div class="row mx-0 categories-side-section">
+                                    <div class="col-6 p-0 categories-side-section-inner scroll-cat">
+                                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                @php
+                                                    $sub_id_arr = [];
+                                                @endphp
+                                                @foreach(\App\Subcategory::where('category_id', $category->id)->get() as $i =>  $subcategory)
+                                                    @php
+                                                        array_push($sub_id_arr, $subcategory->id);
+                                                    @endphp
+                                                    <a class="d-flex justify-content-between align-items-center column-gap-10 nav-link @if($i == 0) active @endif" id="v-pills-cats-tab" data-toggle="pill" href="#v-pills-cats{{$subcategory->id}}" role="tab" aria-controls="v-pills-cats" aria-selected="true"><span class="overflow-text-dots-one-line" onclick="location.href='{{route('suppliers-subcategory-products',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}'">{{$subcategory->name}}</span><span class="fa fa-angle-double-right"></span></a>
+                                                @endforeach
+                                            </div>
+                                    </div>
+                                    <div class="col-6 p-0 categories-side-section-inner scroll-cat">
+                                        <span class="sub-sub-cat-heading">SUB SUB-Categories</span>
+                                        <div class="tab-content" id="v-pills-tabContent">
+                                            @foreach( $sub_id_arr as $key =>  $value)
+                                                <div class="tab-pane fade  @if($key == 0) active show @endif" id="v-pills-cats{{$value}}" role="tabpanel" aria-labelledby="v-pills-cats-tab">
+                                                    @foreach(\App\Childsubcategory::where('subcategory_id',$value)->orderby('subcategory_id','asc')->get() as $key =>  $childsubcat)
+                                                        <a href="{{route('suppliers-products',['category'=>$subcategory->category->slug,'subcategory'=>$childsubcat->subcategory->slug,'childsubcategory'=>$childsubcat->slug])}}" class="nav-link red-link overflow-text-dots-one-line">{{$childsubcat->name}}</a>
+                                                    @endforeach
+                                                </div>
                                             @endforeach
-                                        @endforeach
-                                    </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                </div>
+                            </nav>
+{{--                            <div class="categories-slider-outer">--}}
+{{--                                <div class="categories-slider">--}}
+{{--                                    @php--}}
+{{--                                        $sub_id_arr = [];--}}
+{{--                                    @endphp--}}
+{{--                                    @foreach(\App\Subcategory::where('category_id', $category->id)->get() as $i =>  $subcategory)--}}
+{{--                                        @php--}}
+{{--                                            array_push($sub_id_arr, $subcategory->id);--}}
+{{--                                        @endphp--}}
+{{--                                        <div class="px-1 content-column text-center">--}}
+{{--                                            <a class="text-decoration-none red-btn overflow-text-dots-one-line text-uppercase cat-link" href="{{route('suppliers-subcategory-products',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>--}}
+{{--                                            <a class="fa fa-angle-down sub-cat-arrow-block"></a>--}}
+{{--                                        </div>--}}
+{{--                                        <a class="nav-link" id="v-pills-cats-tab" data-toggle="pill" href="#v-pills-cats{{$subcategory->id}}" role="tab" aria-controls="v-pills-cats" aria-selected="true" onclick="location.href='{{route('suppliers-subcategory-products',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}'"><span class="fa fa-angle-double-right mr-2"></span>{{$subcategory->name}}</a>--}}
+{{--                                    @endforeach--}}
+
+
+{{--                                </div>--}}
+{{--                                <div class="sub-cat-box">--}}
+{{--                                    <h6 class="heading"><a class="fa fa-angle-left sub-cat-arrow-left"></a>Child Sub Categories</h6>--}}
+{{--                                    <ul class="pl-3 sub-cat-listing-box">--}}
+{{--                                        @foreach( $sub_id_arr as $key =>  $value)--}}
+{{--                                            @foreach(\App\Childsubcategory::where('subcategory_id',$value)->orderby('subcategory_id','asc')->get() as $key =>  $childsubcat)--}}
+{{--                                        <li><a href="{{route('suppliers-products',['category'=>$subcategory->category->slug,'subcategory'=>$childsubcat->subcategory->slug,'childsubcategory'=>$childsubcat->slug])}}" class="link">{{$childsubcat->name}}</a></li>--}}
+{{--                                            @endforeach--}}
+{{--                                        @endforeach--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="row deals-inner-half" id="sellingDeals">
                                 <div class="p-0 col-xl-9 col-lg-9 content-column">
                                     <div class="row m-0 product-section-outer">
@@ -162,7 +164,7 @@
                                                 </div>
                                             @endforeach
                                         @else
-                                            <p class="pt-3 px-3">No Product Found Related To This Category...</p>
+                                            <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                                         @endif
                                     </div>
                                 </div>
@@ -191,7 +193,7 @@
                     <div class="row my-1 deals product-section-outer" id="buyingDeals">
                         <div class="col-12 my-1 px-1 d-flex justify-content-between">
                             <h3 class="mb-0 main-heading">REGULAR BUYERS FROM MYBIZ OFFICE</h3>
-                            <div class="d-flex flex-column align-items-end">
+                            <div class="d-flex flex-column-reverse align-items-end">
                                 <a href="{{ route('products.create') }}" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your Regular Lead</a>
                                 <a href="{{route('regular-buyers',$slug)}}" class="red-link view-all">VIEW ALL</a>
                             </div>
@@ -265,7 +267,7 @@
                                 </div>
                             @endforeach
                         @else
-                            <p class="px-3">No Product Found Related To This Category...</p>
+                            <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                         @endif
                     </div>
 
@@ -280,7 +282,7 @@
                     <div class="row my-1 deals certified-suppliers product-section-outer">
                         <div class="col-12 my-1 px-1 d-flex justify-content-between">
                             <h3 class="mb-0 main-heading">ONE-TIME SELLING DEALS</h3>
-                            <div class="d-flex flex-column align-items-end">
+                            <div class="d-flex flex-column-reverse align-items-end">
                                 <a href="{{ route('buy-sell.create') }}" class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your One-Time Deal</a>
                                 <a href="{{route('one-time-selling-deals',$slug)}}" class="red-link view-all">VIEW ALL</a>
                             </div>
@@ -355,13 +357,13 @@
                                 </div>
                             @endforeach
                         @else
-                            <p class="px-3">No Product Found Related To This Category...</p>
+                            <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                         @endif
                     </div>
                     <div class="row deals certified-suppliers product-section-outer">
                         <div class="col-12 my-1 px-1 d-flex justify-content-between">
                             <h3 class="mb-0 main-heading">ONE-TIME BUYING DEALS</h3>
-                            <div class="d-flex flex-column align-items-end">
+                            <div class="d-flex flex-column-reverse align-items-end">
                                 <a href="{{ route('buy-sell.create') }}" class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your One-Time Deal</a>
                                 <a href="{{route('one-time-buying-deals',$slug)}}" class="red-link view-all">VIEW ALL</a>
                             </div>
@@ -436,7 +438,7 @@
                                 </div>
                             @endforeach
                         @else
-                            <p class="px-3">No Product Found Related To This Category...</p>
+                            <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                         @endif
                     </div>
                     <div class="my-1 position-relative">
