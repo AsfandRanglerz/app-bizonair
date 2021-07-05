@@ -26,15 +26,6 @@
         }
         /*calculation formula*/
 
-        @media (max-width: 991px) {
-            /*calculation formula*/
-            .calc-content-container .nav-pills .nav-link {
-                font-size: 12px;
-                padding: 4px 8px;
-            }
-            /*calculation formula*/
-        }
-
         @media (min-width: 1200px) {
             /*calculation formula*/
             .calc-content-container .calc-sidebar {
@@ -53,7 +44,7 @@
     <main id="maincontent" class="blogs-page">
         @include('front_site.common.product-banner')
         <div class="main-container">
-            <nav aria-label="breadcrumb" class="px-3">
+            <nav aria-label="breadcrumb" class="px-2">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a
@@ -66,8 +57,8 @@
                 <div class="row m-0">
                     <div class="col-lg-12 p-0 calc-content-container">
                         <div class="row m-0">
-                            <div class="col-sm-3 h-auto d-flex flex-column justify-content-between calc-sidebar">
-                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <div class="col-sm-3 h-auto calc-sidebar">
+                                <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                     <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Spinning</a>
                                     <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Weaving</a>
                                     <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Processing</a>
@@ -75,7 +66,7 @@
                                     <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Other</a>
                                 </div>
                             </div>
-                            <div class="p-0 col-sm-9 overflow-auto calc-content" style="height: 45vh">
+                            <div class="p-0 col-sm-9 overflow-auto calc-content" style="height: 80vh">
                                 <div class="tab-content" id="v-pills-tabContent">
                                     <div class="overflow-auto tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                         <img src="{{$ASSET}}/front_site/images/calculation-formulas.jpeg" style="width: 100%" />
