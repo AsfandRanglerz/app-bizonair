@@ -161,7 +161,7 @@
                                     <label for="image" class="d-block text-left mb-2 font-500">Attachment <span class="required">*</span></label>
                                     <div class="custom-file">
                                         <input type="file" name="image" id="image" class="custom-file-input" id="customFile" required>
-                                        <label class="custom-file-label" for="customFile"><span class="fa fa-download"></span></label>
+                                        <label class="custom-file-label" for="customFile"><span class="fa fa-upload"></span></label>
                                         <small class="text-danger" id="image_error"></small>
                                     </div>
                                 </div>

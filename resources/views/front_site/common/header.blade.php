@@ -353,7 +353,7 @@
                                     href="{{route('get-members')}}" class="sidebar-links">All Members <span class="biz-badge blue-badge">{{getCompanyMembersCount(session()->get('company_id')) }}</span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="View All Meetings"><a
                                     href="{{route('company-get-meetings')}}" class="sidebar-links">All Meetings <span class="biz-badge" id="meeti"></span></a></li>
-                            <li data-toggle="tooltip" data-placement="bottom" title="Communicate With The Members"><a href="{{route('company-group-chat')}}" class="sidebar-links">Chat <span class="biz-badge" id="chati"></span></a></li>
+                            <li data-toggle="tooltip" data-placement="bottom" title="Communicate With The Members"><a href="#" class="sidebar-links">Chat <span class="biz-badge" id="chati"></span></a></li>
                         </ul>
                     </li>
 
@@ -373,10 +373,10 @@
                             <?php $company = \App\UserCompany::where('user_id',\Auth::id())->where('company_id',session()->get('company_id'))->first();?>
                             @if($company)
                                 <li data-toggle="tooltip" data-placement="bottom" title="Lead Inquiries">
-                                    <a href="{{route('product-inquiries')}}" class="sidebar-links">Lead Inquiries <span class="biz-badge" id="leadinq"></span></a></li>
+                                    <a href="#" class="sidebar-links">Lead Inquiries <span class="biz-badge" id="leadinq"></span></a></li>
                             @endif
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="{{route('get-lead-fav')}}" class="sidebar-links">Lead Favorites <span class="biz-badge" id="fleadinq"></span></a></li>
+                                <a href="#" class="sidebar-links">Lead Favorites <span class="biz-badge" id="fleadinq"></span></a></li>
                         </ul>
                     </li>
 
@@ -395,9 +395,9 @@
                             <li data-toggle="tooltip" data-placement="bottom" title="Your Favourite Deals">
                                 <a href="{{route('view-deal-favourites')}}" class="sidebar-links">Your Favourite Deals <span class="biz-badge blue-badge">{{ getBuysellFavCount() }}</span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="{{route('buysell-inquiries')}}" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
+                                <a href="#" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="{{route('get-one-time-fav')}}" class="sidebar-links">Deal Favorites <span class="biz-badge" id="fdealinq"></span></a></li>
+                                <a href="#" class="sidebar-links">Deal Favorites <span class="biz-badge" id="fdealinq"></span></a></li>
                         </ul>
                     </li>
 

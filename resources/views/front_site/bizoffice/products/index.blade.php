@@ -18,7 +18,7 @@
                         <span
                             class="heading biz-product-heading">MyBiz Active Leads {{ ($request->case && $request->case == 'archive') ? ' - Archived' : '' }}</span>
                         @if($request->case && $request->case == 'archive')
-                            <div class="my-3">
+                            <div>
                                 <a href="{{ route('products.index') }}" class="red-btn">Active Products</a>
                             </div>
                         @else

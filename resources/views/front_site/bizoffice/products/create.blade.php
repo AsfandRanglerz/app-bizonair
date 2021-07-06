@@ -373,7 +373,7 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-lg-6 mb-1">
+                                            <div class="form-group col-lg-6 mb-0">
                                                 <label class="d-block font-500" for="count_type">Count Type <span
                                                         class="required"> *</span></label>
                                                     <div class="custom-control custom-radio custom-control-inline">
@@ -422,7 +422,7 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-lg-6 mb-1">
+                                            <div class="form-group col-lg-6 mb-0">
                                                 <label class="d-block font-500">Yarn Speciality <span
                                                         class="required"> *</span></label>
                                                 <div class="custom-control custom-radio custom-control-inline">
@@ -466,13 +466,13 @@
                                                 <small class="text-danger" id="yarn_specialty_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Yarn Speciality <span class="required"> *</span></label>
-                                                <input type="text" name="other_yarn_speciality" class="form-control"
+                                                <label class="font-500 d-none">Other Yarn Speciality <span class="required"> *</span></label>
+                                                <input type="text" name="other_yarn_speciality" class="form-control" placeholder="Other Yarn Speciality"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-lg-6 mb-1">
+                                            <div class="form-group col-lg-6 mb-0">
                                                 <label class="d-block font-500">End Use/Application <span
                                                         class="required"> *</span></label>
                                                 <div class="custom-control custom-radio custom-control-inline">
@@ -548,8 +548,8 @@
                                                 <small class="text-danger" id="usage_type_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other End Use/Application <span class="required"> *</span></label>
-                                                <input type="text" name="other_usage_type" class="form-control"
+                                                <label class="font-500 d-none">Other End Use/Application <span class="required"> *</span></label>
+                                                <input type="text" name="other_usage_type" class="form-control" placeholder="Other End Use/Application"
                                                        required>
                                             </div>
                                         </div>
@@ -575,8 +575,8 @@
                                                 <small class="text-danger" id="knitted_fabric_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Fabric Type <span class="required"> *</span></label>
-                                                <input type="text" name="other_knitted_fabric_type" class="form-control">
+                                                <label class="font-500 d-none">Other Fabric Type <span class="required"> *</span></label>
+                                                <input type="text" name="other_knitted_fabric_type" class="form-control" placeholder="Other Fabric Type">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -596,8 +596,8 @@
                                                 <small class="text-danger" id="weave_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Knitting Type <span class="required"> *</span></label>
-                                                <input type="text" name="other_knitted_knitting_type" class="form-control"
+                                                <label class="font-500 d-none">Other Knitting Type <span class="required"> *</span></label>
+                                                <input type="text" name="other_knitted_knitting_type" class="form-control" placeholder="Other Knitting Type"
                                                        required>
                                             </div>
                                         </div>
@@ -701,8 +701,8 @@
                                                 <small class="text-danger" id="knitted_manufact_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Manufacturing Technique <span class="required"> *</span></label>
-                                                <input type="text" id="other_knitted_manufact" name="other_knitted_manufact"
+                                                <label class="font-500 d-none">Other Manufacturing Technique <span class="required"> *</span></label>
+                                                <input type="text" id="other_knitted_manufact" name="other_knitted_manufact" placeholder="Other Manufacturing Technique"
                                                        class="form-control">
                                             </div>
                                         </div>
@@ -740,8 +740,8 @@
                                                 <small class="text-danger" id="knitted_yarn_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Yarn Type <span class="required"> *</span></label>
-                                                <input type="text" id="other_knitted_yarn_type" name="other_knitted_yarn_type"
+                                                <label class="font-500 d-none">Other Yarn Type <span class="required"> *</span></label>
+                                                <input type="text" id="other_knitted_yarn_type" name="other_knitted_yarn_type" placeholder="Other Yarn Type"
                                                        class="form-control">
                                             </div>
                                         </div>
@@ -809,9 +809,9 @@
                                                 <small class="text-danger" id="knitted_features_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 add-knitted-features-field other-div">
-                                                <label class="font-500">Other Features <span
+                                                <label class="font-500 d-none">Other Features <span
                                                         class="required">*</span></label>
-                                                <input name="other_knitted_features" id="knittedFeaturesOther" type="text"
+                                                <input name="other_knitted_features" id="knittedFeaturesOther" type="text" placeholder="Other Features"
                                                        class="form-control" required>
                                                 <small class="text-danger" id="knittedFeaturesOther_error"></small>
                                             </div>
@@ -876,9 +876,9 @@
                                                 <small class="text-danger" id="knitted_use_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 add-knitted-Use-field">
-                                                <label class="font-500">Other End Use Application <span
+                                                <label class="font-500 d-none">Other End Use Application <span
                                                         class="required">*</span></label>
-                                                <input name="other_knitted_use" id="otherKnittedUse" type="text" class="form-control"
+                                                <input name="other_knitted_use" id="otherKnittedUse" type="text" class="form-control" placeholder="Other End Use Application"
                                                        required>
                                                 <small class="text-danger" id="otherKnittedUse_error"></small>
                                             </div>
@@ -1258,8 +1258,8 @@
                                                 <small class="text-danger" id="non_woven_fabric_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div add-fabric-type">
-                                                <label class="font-500">Other Fabric Type <span class="required"> *</span></label>
-                                                <input type="text" name="other_non_woven_fabric_type" class="form-control">
+                                                <label class="font-500 d-none">Other Fabric Type <span class="required"> *</span></label>
+                                                <input type="text" name="other_non_woven_fabric_type" class="form-control" placeholder="Other Fabric Type">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -1281,8 +1281,8 @@
                                                 <small class="text-danger" id="non_woven_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div add-fabric-type">
-                                                <label class="font-500">Other Type <span class="required"> *</span></label>
-                                                <input type="text" name="other_non_woven_type" class="form-control">
+                                                <label class="font-500 d-none">Other Type <span class="required"> *</span></label>
+                                                <input type="text" name="other_non_woven_type" class="form-control" placeholder="Other Type">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -1390,8 +1390,8 @@
                                                 <small class="text-danger" id="non_woven_manufact_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div" id="addNonWovenOtherWeaving">
-                                                <label class="font-500">Other Manufacturing Technique <span class="required"> *</span></label>
-                                                <input type="text" id="other_non_woven_manufact" name="other_non_woven_manufact"
+                                                <label class="font-500 d-none">Other Manufacturing Technique <span class="required"> *</span></label>
+                                                <input type="text" id="other_non_woven_manufact" name="other_non_woven_manufact" placeholder="Other Manufacturing Technique"
                                                        class="form-control">
                                             </div>
                                         </div>
@@ -1429,8 +1429,8 @@
                                                 <small class="text-danger" id="non_woven_yarn_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div" id="addOtherNonWovenWeaving">
-                                                <label class="font-500">Other Yarn Type <span class="required"> *</span></label>
-                                                <input type="text" id="other_non_woven_yarn" name="other_non_woven_yarn"
+                                                <label class="font-500 d-none">Other Yarn Type <span class="required"> *</span></label>
+                                                <input type="text" id="other_non_woven_yarn" name="other_non_woven_yarn" placeholder="Other Yarn Type"
                                                        class="form-control">
                                             </div>
                                         </div>
@@ -1513,10 +1513,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6 add-nonwoven-features-field">
-                                                <label class="font-500">Other Features <span
+                                                <label class="font-500 d-none">Other Features <span
                                                         class="required">*</span></label>
                                                 <input id="other_non_woven_features" name="other_non_woven_features" type="text"
-                                                       class="form-control" required>
+                                                       class="form-control" placeholder="Other Features" required>
                                                 <small class="text-danger" id="other_non_woven_features_error"></small>
                                             </div>
                                         </div>
@@ -1593,9 +1593,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6 add-End-field">
-                                                <label class="font-500">Other End Use/Application <span
+                                                <label class="font-500 d-none">Other End Use/Application <span
                                                         class="required">*</span></label>
-                                                <input id="other_non_woven_use" name="other_non_woven_use" type="text" class="form-control"
+                                                <input id="other_non_woven_use" name="other_non_woven_use" type="text" class="form-control" placeholder="Other End Use/Application"
                                                        required>
                                                 <small class="text-danger" id="other_non_woven_use_error"></small>
                                             </div>
@@ -1969,7 +1969,7 @@
                                     </div>
                                 </div>
 
-                                <div class="pt-2 tab-pane fade trade-info-tab" id="tabCom" role="tabpanel"
+                                <div class="tab-pane fade trade-info-tab" id="tabCom" role="tabpanel"
                                      aria-labelledby="tabCom">
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 trade-info-container mb-1">
@@ -2094,27 +2094,28 @@
                                         <hr class="horizontal-line">
                                     </div>
                                 </div>
-                                <div class="pt-2 tab-pane fade payment-info-tab" id="tabInfo" role="tabpanel"
+                                <div class="tab-pane fade payment-info-tab" id="tabInfo" role="tabpanel"
                                      aria-labelledby="tabInfo">
                                     <div class="form-row">
-                                        <div class="form-group col-lg-6 unit_price_range">
+                                        <div class="form-group col-lg-6 mb-0 unit_price_range">
 
                                             <div class="form-row">
-                                                <div class="col-md-4">
-                                                    <label for="unit_price_from" class="font-500 unit_price_range_label">Price Range <span class="required">*</span>
-                                                    </label>
-                                                    <label for="unit_price_from" class="font-500 service_charges_range_label">Service Charges <span class="required">*</span>
-                                                    </label>
-                                                    <input type="number" id="unit_price_from" class="form-control" name="unit_price_from" placeholder="e.g. 1000" required>
+                                                <div class="col-md-4 mb-1">
+{{--                                                    <label for="unit_price_from" class="font-500 unit_price_range_label">Price Range <span class="required">*</span>--}}
+{{--                                                    </label>--}}
+{{--                                                    <label for="unit_price_from" class="font-500 service_charges_range_label">Service Charges <span class="required">*</span>--}}
+{{--                                                    </label>--}}
+                                                    <input type="number" class="form-control unit_price_range_label" name="unit_price_from" placeholder="Price Range - e.g. 1000" required>
+                                                    <input type="number" class="form-control service_charges_range_label" name="unit_price_from" placeholder="Service Charges - e.g. 1000" required>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-4 mb-1">
                                                     <label for="unit_price_to" class="font-500 unit_price_range_label"></label>
-                                                    <label for="unit_price_to" class="font-500 service_charges_range_label">Charges Range <span class="required">*</span>
+                                                    <label for="unit_price_to" class="font-500 service_charges_range_label d-none">Charges Range <span class="required">*</span>
                                                     </label>
-                                                    <input type="number" id="unit_price_to" class="form-control"
-                                                           name="unit_price_to" placeholder="e.g. 2000" required>
+                                                    <input type="number" id="unit_price_to" class="form-control service_charges_range_label"
+                                                           name="unit_price_to" placeholder="Charges Range - e.g. 2000" required>
                                                 </div>
-                                                <div class="col-md-4 hide-for-service" style="display: none;">
+                                                <div class="col-md-4 mb-1 hide-for-service" style="display: none;">
                                                     <select class="form-control other-option-included" id="unit_price_unit" name="unit_price_unit" required>
                                                         <option value="" selected disabled>-- Select Suitable Per Unit --</option>
                                                         <option value="20' Container">20' Container</option>
@@ -2150,27 +2151,27 @@
                                                         <option value="Other" class="other-check">Other</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-md-4 service-unit">
-                                                    <label class="font-500 service_charges_range_unit_label">Per Unit <span
+                                                <div class="col-md-4 mb-1 service-unit">
+                                                    <label class="font-500 service_charges_range_unit_label d-none"><span
                                                             class="required">*</span></label>
-                                                    <input type="text" name="other_unit_price_unitt" class="form-control" required>
+                                                    <input type="text" name="other_unit_price_unitt" class="form-control service_charges_range_unit_label" placeholder="Per Unit" required>
                                                     <small class="text-danger" id="other_unit_price_unitt_error"></small>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-unit_price_unit">
-                                            <label class="font-500">Other Price Unit <span class="required">*</span></label>
-                                            <input type="text" name="other_unit_price_unit" class="form-control" required>
+                                            <label class="font-500 d-none">Other Price Unit <span class="required">*</span></label>
+                                            <input type="text" name="other_unit_price_unit" class="form-control" placeholder="Other Price Unit" required>
                                         </div>
                                         <div class="form-group col-lg-6 mb-0 target_price_range">
                                             <div class="form-row">
                                                 <div class="col-md-4 mb-1">
                                                     <input type="number" id="target_price_from" class="form-control"
-                                                           name="target_price_from" placeholder="Target Price Range - e.g. 1000" required>
+                                                           name="target_price_from" placeholder="Target Price Range From - e.g. 1000" required>
                                                 </div>
                                                 <div class="col-md-4 mb-1">
                                                     <input type="number" id="target_price_to" class="form-control"
-                                                           name="target_price_to" placeholder="Target Price - e.g. 200" required>
+                                                           name="target_price_to" placeholder="Target Price Range To - e.g. 200" required>
                                                 </div>
                                                 <div class="col-md-4 mb-1">
                                                     <select class="form-control other-option-included" id="target_price_unit" name="target_price_unit" required>
@@ -2263,8 +2264,8 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-lg-6 services-container">
-                                            <label class="label d-block">Service Duration <span
+                                        <div class="form-group col-lg-6 mb-1 services-container">
+                                            <label class="label d-none">Service Duration <span
                                                     class="required">*</span></label>
                                             <select id="service_durations" name="service_durations[]"
                                                     class="select2-multiple form-control" multiple="multiple">

@@ -292,7 +292,7 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-6 mb-1">
+                                            <div class="form-group col-md-6 mb-0">
                                                 <label class="font-500">After Sales Service <span
                                                         class="required">*</span></label>
                                                 <div class="">
@@ -317,7 +317,7 @@
                                                 <small class="text-danger" id="after_sales_service_error"></small>
                                             </div>
                                             <div class="form-group col-md-6 mb-1 type-of-service">
-                                                <label for="service_type" class="font-500">Type of Service <span
+                                                <label for="service_type" class="font-500 d-none">Type of Service <span
                                                         class="required">*</span></label>
                                                 <input type="text" id="service_type" class="form-control"
                                                        name="service_type" placeholder="Type of Service" required>
@@ -325,7 +325,7 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-6 mb-1">
+                                            <div class="form-group col-md-6 mb-0">
                                                 <label class="font-500">Warranty <span class="required"> *</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline w-unset">
@@ -350,7 +350,7 @@
                                                 <small class="text-danger" id="warranty_error"></small>
                                             </div>
                                             <div class="form-group col-md-6 mb-1 warranty-services">
-                                                <label for="warranty_period" class="font-500">Warranty Period <span
+                                                <label for="warranty_period" class="font-500 d-none">Warranty Period <span
                                                         class="required">*</span></label>
                                                 <input type="text" id="warranty_period" class="form-control"
                                                        name="warranty_period" placeholder="Warranty Period" required>
@@ -358,7 +358,7 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-6 mb-1">
+                                            <div class="form-group col-md-6 mb-0">
                                                 <label class="font-500">Product Certification <span
                                                         class="required">*</span></label>
                                                 <div class="">
@@ -383,7 +383,7 @@
                                                 <small class="text-danger" id="certification_error"></small>
                                             </div>
                                             <div class="form-group col-md-6 certify-services">
-                                                <label for="certification_details" class="font-500">Certification
+                                                <label for="certification_details" class="font-500 d-none">Certification
                                                     Details <span class="required"> *</span></label>
                                                 <input type="text" id="certification_details" class="form-control"
                                                        name="certification_details" placeholder="Certification Details"

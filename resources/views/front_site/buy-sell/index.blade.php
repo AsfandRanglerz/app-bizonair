@@ -16,7 +16,7 @@
                         <span
                             class="heading biz-product-heading">One-Time Deals {{ ($request->case && $request->case == 'archive') ? ' - Archived' : '' }}</span>
                         @if($request->case && $request->case == 'archive')
-                            <div class="my-3">
+                            <div>
                                 <a href="{{ route('buy-sell.index') }}" class="red-btn">Active Deals</a>
                             </div>
                         @else
