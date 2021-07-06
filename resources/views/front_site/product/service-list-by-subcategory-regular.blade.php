@@ -88,7 +88,7 @@
                                                     {{--                                            <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                     {{--                                        </div>--}}
                                                     <div class="d-sm-inline-block my-1">
-                                                        <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="pt-1 pb-1 pl-2 pr-2 red-btn"  @if(!Auth::check())  class="pre-login" @endif><span aria-hidden="true" class="fa fa-comments mr-2"></span>CONTACT US</a>
+                                                        <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="pt-1 pb-1 pl-2 pr-2 red-btn"  @if(!Auth::check())  class="pre-login" @endif><span aria-hidden="true" class="fa fa-comments mr-2"></span>CONTACT</a>
                                                         <a href="#" class="pt-1 pb-1 pl-2 pr-2 red-btn"  @if(!Auth::check()) class="pre-login" @endif data-toggle="modal" data-target="#contactFormPDP">LEAVE A MESSAGE</a>
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
@@ -209,7 +209,7 @@
                                     @endforeach
                                 @else
                                     <div class="ml-1 mr-1 row product-content-container">
-                                        <p>No Product Found Related To This Category...</p>
+                                        <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                                     </div>
                                 @endif
                             </div>

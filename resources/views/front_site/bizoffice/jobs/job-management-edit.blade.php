@@ -13,7 +13,7 @@
 
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" style="background: #d9eefe8c">
+            <div id="page-content-wrapper" >
                 <div class="px-2 py-1">
 
                     <div id="jobTab1">
@@ -24,13 +24,13 @@
                             </li>
                         </ul>
                         <div class="tab-content" id="myCompanyTab">
-                            <div class="p-3 tab-pane fade show active" id="tabProfile" role="tabpanel"
+                            <div class="p-2 tab-pane fade show active" id="tabProfile" role="tabpanel"
                                  aria-labelledby="linkProfile">
                                 <div class="row">
                                     <div class="col-sm-6 order-sm-1 order-2">
                                         <div class="edit-company-section">
                                             <h6 class="heading">Job Detail   <span class="fa fa-edit edit-btn job-edit-btn" style="cursor: pointer"></span></h6>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Job Title</span>
                                                 </div>
@@ -38,7 +38,7 @@
                                                     <span>{{ $info->title }}</span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Designation </span>
                                                 </div>
@@ -47,7 +47,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Email </span>
                                                 </div>
@@ -55,7 +55,7 @@
                                                     <span>{{ $info->email }}</span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Salary Per Month</span>
                                                 </div>
@@ -63,7 +63,7 @@
                                                     <span>{{ $info->salary }}</span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Currency </span>
                                                 </div>
@@ -71,7 +71,7 @@
                                                      <span>{{$info->salary_unit}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Job Sector </span>
                                                 </div>
@@ -79,7 +79,7 @@
                                                     <span>{{$info->textile_sector}}  </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Functional Area </span>
                                                 </div>
@@ -87,7 +87,7 @@
                                                     <span>{{$info->functional_area}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Job Type </span>
                                                 </div>
@@ -95,7 +95,7 @@
                                                     <span>{{ $info->job_type }} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Career Level </span>
                                                 </div>
@@ -103,7 +103,7 @@
                                                     <span>{{ $info->job_level }} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Work Experience </span>
                                                 </div>
@@ -111,7 +111,7 @@
                                                     <span>{{ $info->work_experience }} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Country  </span>
                                                 </div>
@@ -119,7 +119,7 @@
                                                     <span>{{$info->country}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">City  </span>
                                                 </div>
@@ -127,7 +127,7 @@
                                                     <span>{{$info->city}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Address  </span>
                                                 </div>
@@ -135,7 +135,7 @@
                                                     <span>{{$info->address}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Gender  </span>
                                                 </div>
@@ -143,7 +143,7 @@
                                                     <span>{{$info->gender}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Work Hours </span>
                                                 </div>
@@ -151,7 +151,7 @@
                                                     <span>{{$info->work_hour}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Qualification </span>
                                                 </div>
@@ -159,7 +159,7 @@
                                                     <span>{{$info->qualification}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Key Skills </span>
                                                 </div>
@@ -167,7 +167,7 @@
                                                     <span>{{ $info->skills }} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Number Of Vacancies </span>
                                                 </div>
@@ -175,7 +175,7 @@
                                                     <span>{{$info->vacancies}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Last Date to Apply </span>
                                                 </div>
@@ -183,7 +183,7 @@
                                                     <span>{{date("d-F-Y", strtotime($info->closing_date))}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Company  </span>
                                                 </div>
@@ -193,29 +193,26 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 order-sm-2 order-1 my-sm-0 mt-2 mb-4">
-                                        <div class="row text mb-2">
+                                    <div class="col-sm-6 order-sm-2 order-1 mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-3">
-                                                <span class="font-500">image  </span>
+                                                <h3>Image</h3>
                                             </div>
                                         </div>
-                                        <div class="mb-2">
-                                            <br>
-                                        </div>
-                                            <img class="object-cover header-profile-pic" src="{{$ASSETS}}/{{ $info->image }}" width="135" height="135">
+                                        <img class="object-contain header-profile-pic" src="{{$ASSETS}}/{{ $info->image }}" width="135" height="135">
                                     </div>
                                 </div>
-                                <div class="row text mb-2">
+                                <div class="row text">
                                     <div class="col-sm-12">
                                         <span class="font-500">Job Description</span>
                                     </div>
                                 </div>
-                                <div class="row text mb-2">
+                                <div class="row text">
                                     <div class="col-sm-12">
                                         <span>{{ $info->job_description }}</span>
                                     </div>
                                 </div>
-                                <div class="mt-4 mb-4">
+                                <div class="my-1">
                                     <hr>
                                 </div>
                             </div>
@@ -228,7 +225,7 @@
                             <div class="alert alert-danger g m-0 mb-2 text-center" id='alert-error' style="display:none;"
                                  role="alert">
                             </div>
-                            <ul class="nav nav-tabs" id="aboutLinks" role="tablist">
+                            <ul class="mb-2 nav nav-tabs" id="aboutLinks" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="linkReg" data-toggle="tab" href="#tabReg" role="tab"
                                        aria-controls="tabReg" aria-selected="true">JOBS DETAILS</a>
@@ -244,22 +241,19 @@
                                 <input type="hidden" name="id" value="{{ $info->id }}">
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Job Title <span class="required">*</span></label>
                                         <input type="text"
-                                               name="title" id="title" value="{{ $info->title }}" class="form-control" required>
+                                               name="title" id="title" value="{{ $info->title }}" class="form-control" placeholder="Job Title" required>
                                         <small class="text-danger" id="title_error"></small>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Designation <span class="required">*</span></label>
                                         <input type="text"
-                                               name="designation" id="designation" value="{{ $info->designation }}" class="form-control"
+                                               name="designation" id="designation" value="{{ $info->designation }}" placeholder="Designation" class="form-control"
                                                required>
                                         <small class="text-danger" id="designation_error"></small>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Email Address<span class="required">*</span></label>
                                         <input type="email"
-                                               name="email" id="email" value="{{ $info->email }}" class="form-control"
+                                               name="email" id="email" value="{{ $info->email }}" placeholder="Email Address - example@gmail.com" class="form-control"
                                                required>
                                         <small class="text-danger" id="email_error"></small>
                                     </div>
@@ -267,21 +261,17 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label class="font-500">Job Description  <small class="font-500"> (Optional)</small></label>
-                                        <span class="pull-right font-500"><span class="counter-total-digits">0</span>/1200</span>
                                         <textarea class="form-control" name="job_description">"{!! $info->job_description !!}"</textarea>
-
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-2">
-                                        <label class="font-500">Salary Per Month <span class="required">*</span></label>
                                         <input type="number"
-                                               name="salary" id="salary" value="{{ $info->salary }}" class="form-control"
+                                               name="salary" id="salary" value="{{ $info->salary }}" placeholder="Salary Per Month" class="form-control"
                                                required>
                                         <small class="text-danger" id="salary_error"></small>
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <label class="font-500">Currency <span class="required">*</span></label>
                                         <select class="form-control single-select-dropdown"
                                                 id="unit" name="unit" required>
                                             <option value="PKR" @if($info->salary_unit == "PKR") selected @endif>
@@ -306,7 +296,6 @@
                                         <small class="text-danger" id="unit_error"></small>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Job Sector <span class="required">*</span></label>
                                         <select class="form-control single-select-dropdown"
                                                 id="textile_sector" name="textile_sector" required>
                                             <option value="Ginning" @if($info->textile_sector == "Ginning") selected @endif>Ginning </option>
@@ -331,7 +320,6 @@
                                         <small class="text-danger" id="textile_sector_error"></small>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Functional Area <span class="required">*</span></label>
                                         <select class="form-control single-select-dropdown"
                                                 id="functional_area" name="functional_area" required>
                                             <option value="Electrical" @if($info->functional_area == "Electrical") selected @endif>Electrical </option>
@@ -372,7 +360,6 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Job Type <span class="required">*</span></label>
                                         <select name="job_type" id="job_type" class="form-control single-select-dropdown" required>
                                             <option value="{{ $info->job_type }}" selected>{{ $info->job_type }}</option>
                                             <option value="Freelance">Freelance</option>
@@ -384,7 +371,6 @@
                                         <small class="text-danger" id="job_type_error"></small>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Career Level <span class="required">*</span></label>
                                         <select name="job_level" id="job_level" class="form-control single-select-dropdown" required>
                                             <option value="{{ $info->job_level }}" selected>{{ $info->job_level }}</option>
                                             <option value="Intern Level">Intern Level</option>
@@ -396,16 +382,14 @@
                                         <small class="text-danger" id="job_level_error"></small>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Work Experience <span class="required">*</span></label>
                                         <input type="number"
                                                name="work_experience" id="work_experience" value="{{ $info->work_experience }}" class="form-control"
-                                               required>
+                                               placeholder="Work Experience - Enter Job Work Experience in Years" required>
                                         <small class="text-danger" id="work_experience_error"></small>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label for="countryId" class="font-500">Country <span class="required">*</span></label>
                                         <select name="country" id="countryId" class="form-control single-select-dropdown" required>
                                             <option value="" selected disabled>--- Select Country ---</option>
                                             @foreach ($countries as $item)
@@ -415,22 +399,19 @@
                                         <small class="text-danger" id="country_error"></small>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="cityId" class="font-500">City <span class="required">*</span></label>
                                         <select name="city" id="cityId" class="form-control single-select-dropdown" required>
                                             <option value="{{$info->city}}" selected>{{$info->city}}</option>
                                         </select>
                                         <small class="text-danger" id="city_error"></small>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Office Address <span class="required">*</span></label>
                                         <input type="text"
-                                               name="address" id="address"  value="{{ $info->address }}" class="form-control" required>
+                                               name="address" id="address"  value="{{ $info->address }}" placeholder="Office Address - Input Complete Address" class="form-control" required>
                                         <small class="text-danger" id="address_error"></small>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Gender <span class="required">*</span></label>
                                         <select name="gender" id="gender" class="form-control single-select-dropdown">
                                             <option value="{{$info->gender}}" selected>{{ucfirst($info->gender)}}</option>
                                             <option value="Male">Male</option>
@@ -440,37 +421,32 @@
                                         <small class="text-danger" id="gender_error"></small>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Work Hour <small class="font-500"> (Optional)</small></label>
                                         <input type="number"
-                                               name="work_hour" id="work_hour" value="{{ $info->work_hour }}" class="form-control"
+                                               name="work_hour" id="work_hour" value="{{ $info->work_hour }}" placeholder="Work Hours (Optional) - Input Job work Hours" class="form-control"
                                         >
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Qualification <span class="required">*</span></label>
                                         <input type="text"
-                                               name="qualification" id="qualification" value="{{ $info->qualification }}" class="form-control" required>
+                                               name="qualification" id="qualification" value="{{ $info->qualification }}" placeholder="Qualification - Input Required Qualification" class="form-control" required>
                                         <small class="text-danger" id="qualification_error"></small>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Key Skills <span class="required">*</span></label>
                                         <input type="text"
-                                               name="skills" id="skills" value="{{ $info->skills }}" class="form-control">
+                                               name="skills" id="skills" value="{{ $info->skills }}" placeholder="Key Skills - Input Required Job Skills" class="form-control">
                                         <small class="text-danger" id="skills_error"></small>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Number Of Vacancies <span class="required">*</span></label>
                                         <input type="number"
-                                               name="vacancies" id="vacancies" value="{{ $info->vacancies }}" class="form-control"
+                                               name="vacancies" id="vacancies" value="{{ $info->vacancies }}" placeholder="Number Of Vacancies - Input Number of Job Vacancies" class="form-control"
                                                required>
                                         <small class="text-danger" id="vacancies_error"></small>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Last Date to Apply <span class="required">*</span></label>
                                         <input type="text" autocomplete="off"
                                                name="datePicker" value="{{ $info->closing_date }}"
-                                               class="form-control closingdatepicker"
+                                               class="form-control closingdatepicker" placeholder="Last Date to Apply - Set Closing Date"
                                                required>
                                         <small class="text-danger" id="datePicker_error"></small>
                                     </div>
@@ -478,7 +454,6 @@
                                 <div class="form-row">
                                     @if(getCompanies(auth()->id())->isNotEmpty())
                                         <div class="form-group col-md-4">
-                                            <label class="font-500">Company <span class="required">*</span></label>
                                             <select name="company" id="company" class="form-control single-select-dropdown" required>
                                                 <option value="{{$info->company}}"  selected>{{ucwords($info->company)}}</option>
                                                 @foreach(getCompanies(auth()->id()) as $company)
@@ -489,13 +464,11 @@
                                             <small class="text-danger" id="company_error"></small>
                                         </div>
                                         <div class="form-group col-md-4 other-div" {{ ($info->company &&  $info->company=="Other") ? 'style=display:block;' : '' }}>
-                                            <label class="font-500">Other Company Name <small class="font-500">(Optional)</small></label>
-                                            <input type="text" name="company" id="company" class="form-control" placeholder="Input Company Name" >
+                                            <input type="text" name="company" id="company" class="form-control" placeholder="Other Company Name (Optional) - Input Company Name" >
                                         </div>
                                     @else
                                         <div class="form-group col-md-4">
-                                            <label class="font-500">Company <small class="font-500">(Optional)</small></label>
-                                            <input type="text" name="company" id="company" class="form-control" placeholder="Input Company Name"  value="{{$info->company}}">
+                                            <input type="text" name="company" id="company" class="form-control" placeholder="Company (Optional) - Input Company Name"  value="{{$info->company}}">
                                         </div>
                                     @endif
                                 </div>

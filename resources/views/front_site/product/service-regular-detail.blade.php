@@ -7,7 +7,7 @@
   <main id="maincontent" class="page-main">
 
     <div class="main-container">
-      <div class="container-fluid px-2">
+      <div class="container-fluid px-2 py-2">
 
           @include('front_site.common.garments-nav-service')
 
@@ -74,9 +74,9 @@
                               <p style="margin-bottom: 4px"><span class="font-500" style="color: #000">Regular Business Lead: </span> @if($product->product_service_types =='Service') Service Provider @endif</p>
 
                               <div class="btns-block">
-                                  <a href="#" class="p-0 btns" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                  <a href="#" class="p-0 btns" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
                                   <a href="#productInfoSection" type="button" class="p-0 btns product-info-btn"><span class="d-inline-block py-1 px-2">PRODUCT INFO</span</a>
-                                  <a href="{{route('contact-us-suppliers',$product->company_id)}}" class="p-0 btns" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
+                                  <a href="{{route('contact-us-suppliers',$product->company_id)}}" class="p-0 btns" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
                                   <!-- Modal -->
                                   <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                       <div class="modal-dialog contact-form" role="document">
@@ -209,7 +209,7 @@
                       @if(auth()->user())
                           <div class="supplier-info">
                               <div class="position-relative">
-                                  <div class="mb-2 d-flex membersince">Member <span class="number">since</span><span class="years">{{get_product_created_at($product->company_id)}}</span></div>
+                                  <div class="d-flex membersince">Member <span class="number">since</span><span class="years">{{get_product_created_at($product->company_id)}}</span></div>
                                   <div class="position-absolute top-0 right-0 membericon">
                                       <a href="http://localhost/bizonair-database/404">
                                           <img alt="Premium Member" src="{{$ASSETS}}/assets/front_site/images/leads-membership.png"   title="We are working on this feature and will enable this soon" data-toggle="tooltip" data-placement="bottom" data-toggle="tooltip" data-placement="bottom" style="width: 30px;height: 30px;">
@@ -218,7 +218,7 @@
                               </div>
                               <small class="overflow-text-dots-one-line"><span class="font-500">Supplier Name:</span><span><a href="{{route('about-us-suppliers',$product->company_id)}}" class="text-reset"> {{get_product_company($product->company_id)}}</a></span></small>
                               <small class="d-block grey-text font-500">{{get_product_city($product->company_id)}}, {{get_product_country($product->company_id)}}</small>
-                              <small class="d-flex mb-2 grey-text number-content">
+                              <small class="d-flex mb-1 grey-text number-content">
                                   <span class="font-500">Contact:</span>
                                   <span class="d-inline-block mx-1 show">***********</span>
                                   <span class="d-none mx-1 hidden">{{ $product->phone??'' }}</span>
@@ -244,8 +244,8 @@
                               <div class="login-info">
                                   <span class="fa fa-exclamation"></span>
                                   <div class="login-info-inner">
-                                      <p><a href="" data-toggle="modal" data-target="#login-form" class="font-500 register-text">Log in</a> To View More Information.</p>
-                                      <p><span class="font-500" style="color: #000">Not a member? </span><a href="{{route('email-confirmation')}}" target="_blank" class="font-500 register-text">Register Now!</a></p>
+                                      <p><a href="" data-toggle="modal" data-target="#login-form" class="font-500 register-text">Log in</a> To View More Information.
+                                      <span class="font-500" style="color: #000">Not a member? </span><a href="{{route('email-confirmation')}}" target="_blank" class="font-500 register-text">Register Now!</a></p>
                                   </div>
                               </div>
                           </div>

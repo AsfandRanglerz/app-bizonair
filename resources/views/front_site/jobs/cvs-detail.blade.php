@@ -149,7 +149,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="mt-4 mb-4">
+                        <div class="my-1">
                             <hr class="horizontal-line">
                         </div>
                     </div>

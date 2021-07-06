@@ -13,10 +13,10 @@
         <!-- /#sidebar-wrapper -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" style="background: #d9eefe8c">
+            <div id="page-content-wrapper">
 
-                <div class="d-container mx-3">
-                    <span class="main-heading mt-3 mb-3">Post Your CV</span>
+                <div class="d-container py-2">
+                    <span class="main-heading">Post Your CV</span>
                     <div class="alert alert-success m-0 mb-2 text-center" id='alert-success-cv' style="display:none;"
                          role="alert">
                     </div>
@@ -28,44 +28,37 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="fname" class="font-500">First Name <span class="required">*</span></label>
-                                    <input type="text" class="form-control" name="fname" id="fname" placeholder="Input First Name" required="required">
+                                    <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name - Input First Name" required="required">
                                     <small class="text-danger" id="fname_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="lname" class="font-500">Last Name <span class="required">*</span></label>
-                                    <input type="text" class="form-control" name="lname" id="lname"  placeholder="Input Last Name" required="required">
+                                    <input type="text" class="form-control" name="lname" id="lname"  placeholder="Last Name - Input Last Name" required="required">
                                     <small class="text-danger" id="lname_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="phone_no" class="font-500">Contact Number <span class="required">*</span></label>
-                                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Input Contact Number" required="required">
+                                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Contact Number - Input Contact Number" required="required">
                                     <small class="text-danger" id="phone_no_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="email" class="font-500">Email Address  <span class="required">*</span></label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Input Email Address" required="required">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email - example@gmail.com" required="required">
                                     <small class="text-danger" id="email_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="total_experience" class="font-500">Total Experience (Years)<span class="required">*</span></label>
-                                    <input type="number" class="form-control" name="total_experience" id="total_experience" placeholder="Input Total Experience (Years)" required="required">
+                                    <input type="number" class="form-control" name="total_experience" id="total_experience" placeholder="Total Experience (Years) - Input Total Experience (Years)" required="required">
                                     <small class="text-danger" id="total_experience_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="edu_level" class="font-500">Highest Education Level <span class="required">*</span></label>
-                                    <input type="text" class="form-control" name="edu_level" id="edu_level" placeholder="Input Highest Education Level" required>
+                                    <input type="text" class="form-control" name="edu_level" id="edu_level" placeholder="Highest Education Level - Input Highest Education Level" required>
                                     <small class="text-danger" id="edu_level_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="functional_area" class="font-500">Functional Area <span class="required">*</span></label>
                                     <select class="form-control"
                                             id="functional_area" name="functional_area" required>
-                                        <option value="" selected disabled>Functional Area</option>
+                                        <option value="" selected disabled>Select Functional Area</option>
                                         <option value="Electrical">Electrical </option>
                                         <option value="Mechanical">Mechanical</option>
                                         <option value="Human Resources">Human Resources</option>
@@ -100,10 +93,9 @@
                                     <small class="text-danger" id="functional_area_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="textile_sector" class="font-500">Job Sector <span class="required">*</span></label>
                                     <select class="form-control"
                                             id="textile_sector" name="textile_sector" required>
-                                        <option value="" selected disabled>Jobs Sector</option>
+                                        <option value="" selected disabled>Select Jobs Sector</option>
                                         <option value="Ginning">Ginning </option>
                                         <option value="Spinning">Spinning</option>
                                         <option value="Knitting">Knitting</option>
@@ -126,12 +118,10 @@
                                     <small class="text-danger" id="textile_sector_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label for="exp_salary" class="font-500">Expected Salary <span class="required">*</span></label>
                                     <input type="number" class="form-control" name="exp_salary" id="exp_salary" placeholder="Expected Salary" required="required">
                                     <small class="text-danger" id="exp_salary_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label for="unit" class="font-500">Currency <span class="required">*</span></label>
                                     <select class="form-control"
                                             id="unit" name="unit" required>
                                         <option value="" selected disabled>Select Currency</option>
@@ -147,9 +137,8 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="countryId" class="font-500">Country <span class="required">*</span></label>
                                     <select name="country" id="countryId" class="form-control" required>
-                                        <option value="" selected disabled>--- Select Country ---</option>
+                                        <option value="" selected disabled>Select Country</option>
                                         @foreach ($countries as $item)
                                             <option value="{{$item->name->common}}">{{$item->name->common}}</option>
                                         @endforeach
@@ -157,15 +146,13 @@
                                     <small class="text-danger" id="country_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="cityId" class="font-500">City <span class="required">*</span></label>
                                     <select name="city" id="cityId" class="form-control" required>
-                                        <option value="" selected disabled>--- Select City ---</option>
+                                        <option value="" selected disabled>Select City</option>
                                     </select>
                                     <small class="text-danger" id="city_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="key_skill" class="font-500">Key Skills <span class="required">*</span></label>
-                                    <input type="text" class="form-control" name="key_skills" id="key_skill" placeholder="Input Key Skills" required="required">
+                                    <input type="text" class="form-control" name="key_skills" id="key_skill" placeholder="Key Skills - Input Key Skills" required="required">
                                     <small class="text-danger" id="key_skills_error"></small>
                                 </div>
                             </div>
@@ -179,7 +166,7 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="form-group col-12 mt-2">
+                                <div class="px-0 form-group col-12">
                                     <button class="verify-btn red-btn" type="submit" id="post_cv_btn" disabled>POST CV
                                     </button>
                                     <button type="button" disabled class="btn-pro d-none red-btn"><span

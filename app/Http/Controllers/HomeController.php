@@ -31,7 +31,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexx()
     {
         $bnr_row1 = Banner::where('addsdimensions', 'width 419.66 * height 79.94')->where('status', 1)->limit(3)->get();
         $bnr_slider = Banner::where('addsdimensions', 'width 629.5 * height 437.45')->where('status', 1)->get();
@@ -52,7 +52,7 @@ class HomeController extends Controller
 
         $featuredmember = \App\CompanyProfile::oldest()->limit(8)->get();
         $textile_partners = \App\TextilePartner::all();
-//        $featuredlatestjoin = \App\User::select('users.*', 'users.created_at as creation_date')->where('id',$featuredmember->user_id)->first();
+
 
         return view('front_site.index', [
             'bnr_row1' => $bnr_row1, 'bnr_slider' => $bnr_slider, 'bnrlupr' => $bnrlupr, 'bnrlwr' => $bnrlwr, 'bnrupr' => $bnrupr, 'bnrwr' => $bnrwr, 'bnrthirdrow' => $bnrthirdrow,
@@ -61,76 +61,34 @@ class HomeController extends Controller
         ]);
     }
 
-    public function log_in_pre()
-    {
-        return view('front_site.other.login_pre');
-    }
+    public function index(){
 
-    public function do_login_pre()
-    {
-        $rules = ['email_login' => 'required', 'login_password' => 'required'];
-        $messages = [
-            'email_login.required' => 'Email is required', 'login_password.required' => 'Password is required'
-        ];
-        $validator = \Validator::make(request()->all(), $rules);
-        if ($validator->fails()) {
-            // return redirect()->back()->withErrors($validator);
-            $data['errors'] = $validator->errors()->getMessages();
-            $data['feedback'] = 'false';
-            return json_encode($data);
-        }
-        if (Auth::attempt([
-            'email' => request('email_login'), 'password' => request('login_password'), 'role_id' => 2
-        ])) {
-            if (\Auth::user()->is_blocked != 1) {
-                $data['user'] = \App\User::find(Auth::user()->id);
-                $data['user']->save();
-                $data['msg'] = 'Logged in successfully !';
-                $data['feedback'] = 'true';
-                DB::table('notifications')
-                    ->where('user_id', auth()->id())
-                    ->update(['is_display' => 1]);
-                $usercompany = \App\UserCompany::where('user_id',Auth::id())->first();
-                if($usercompany){
-                    \session()->put('company_id',$usercompany->company_id);
-                    $data['usercompany'] = \App\UserCompany::where('user_id',Auth::id())->where('company_id',session()->get('company_id'))->first();
-                    if ($data['usercompany']->is_owner == 0 && $data['usercompany']->is_admin == 0 && $data['usercompany']->is_member == 0) {
-                        if ($data['user']->step_1 == null) {
-                            $data['url'] = route('my-account', [$data['user']->id]);
-                        } elseif ($data['user']->step_2 == null) {
-                            $data['url'] = route('company-profile');
-                        } else {
-                            $data['url'] = url()->previous();
-                        }
-                    } else {
-                        $data['url'] = url()->previous();
-                    }
-                }else{
+        $bnr_row1 = Banner::where('addsdimensions', 'width 419.66 * height 79.94')->where('status', 1)->limit(3)->get();
+        $bnr_slider = Banner::where('addsdimensions', 'width 629.5 * height 437.45')->where('status', 1)->get();
+        $bnrlupr = Banner::where('addsdimensions', 'width 299.75 * height 109.36')->where('description','2nd row , Left Upper')->where('status', 1)->limit(1)->get();
+        $bnrlwr = Banner::where('addsdimensions', 'width 299.75 * height 306')->where('description','2nd row , Left Lower')->where('status', 1)->limit(1)->get();
+        $bnrupr = Banner::where('addsdimensions', 'width 299.75 * height 306')->where('description','2nd row , Right Upper')->where('status', 1)->limit(1)->get();
+        $bnrwr = Banner::where('addsdimensions', 'width 299.75 * height 109.36')->where('description','2nd row , Right Lower')->where('status', 1)->limit(1)->get();
 
-                    \session()->put('company_id','');
-                    if (auth()->user()) {
-                        if ($data['user']->step_1 == null) {
-                            $data['url'] = route('my-account', [$data['user']->id]);
-                        } elseif ($data['user']->step_2 == null) {
-                            $data['url'] = url()->previous();
-                        } else {
-                            $data['url'] = url()->previous();
-                        }
-                    } else {
-                        $data['url'] = url()->previous();
-                    }
-                }
+        $bnrthirdrow = Banner::where('addsdimensions', 'width 1349 * height 236')->where('description','3rd row')->where('status', 1)->limit(1)->get();
 
-            } else {
-                \Auth::logout();
-                $data['msg'] = "Sorry, you have been blocked";
-                $data['feedback'] = 'invalid';
-            }
-        } else {
-            $data['msg'] = "Invalid Credentials";
-            $data['feedback'] = 'invalid';
-        }
-        return json_encode($data);
+        $news =\DB::table('news_management')->orderBy('created_at', 'desc')->get()->take(3);
+
+        $topproduct = \App\Product::where('product_service_types','!=','Service')->with('product_image')->latest()->limit(10)->get();
+        $topservice = \App\Product::where('product_service_types','Service')->with('product_image')->latest()->limit(10)->get();
+        $topbuysell = \DB::table('buy_sells')->where('product_service_types','!=','Service')->latest()->limit(10)->get();
+
+        $latestjoin = \App\User::select('users.*', 'users.created_at as creation_date')->latest()->first();
+
+        $featuredmember = \App\CompanyProfile::oldest()->limit(8)->get();
+        $textile_partners = \App\TextilePartner::all();
+
+
+        return view('front_site.index', [
+            'bnr_row1' => $bnr_row1, 'bnr_slider' => $bnr_slider, 'bnrlupr' => $bnrlupr, 'bnrlwr' => $bnrlwr, 'bnrupr' => $bnrupr, 'bnrwr' => $bnrwr, 'bnrthirdrow' => $bnrthirdrow,
+            'news' => $news,'topproduct' => $topproduct,'topbuysell' => $topbuysell,
+            'topservice' => $topservice,'latestjoin' => $latestjoin,'featuredmember' => $featuredmember,'textile_partners' => $textile_partners
+        ]);
     }
 
     public function getEmail()
@@ -270,7 +228,12 @@ class HomeController extends Controller
 
     }
 
-    public function do_login()
+    public function log_in_pre()
+    {
+        return view('front_site.other.login_pre');
+    }
+
+    public function do_login_pre()
     {
         $rules = ['email_login' => 'required', 'login_password' => 'required'];
         $messages = [
@@ -571,6 +534,7 @@ class HomeController extends Controller
         $user = \App\User::find(\Auth::id());
         $user->email = $request->email;
         $user->designation = $request->designation;
+        $user->name = $request->first_name . ' ' . $request->last_name;
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->gender = $request->gender;
@@ -632,6 +596,64 @@ class HomeController extends Controller
         $data['user'] = \App\User::find(\Auth::id());
 
         return view('front_site.bizoffice.user_dashboard', $data);
+    }
+
+    public function livesearch(Request $request){
+        $term = $request->get('inpdata');
+        $results= [];
+        $productsell = DB::table('products')
+            ->where('product_service_types','sell')
+            ->where("product_service_name","LIKE","%$term%")->first();
+        if($productsell){
+                $results[] = ['value' => $productsell->product_service_name, 'link' => url('/search-product?category=Regular+Supplier&keywords='.$term),'category' => 'Regular Supplier'];
+        }
+        $productbuy = DB::table('products')
+            ->where('product_service_types','buy')
+            ->where("product_service_name","LIKE","%$term%")->first();
+        if($productbuy){
+                $results[] = ['value' => $productbuy->product_service_name, 'link' => url('/search-product?category=Regular+Buyer&keywords='.$term),'category' => 'Regular Buyer'];
+        }
+        $productserv = DB::table('products')
+            ->where('product_service_types','service')
+            ->where("product_service_name","LIKE","%$term%")->first();
+        if($productserv){
+                $results[] = ['value' => $productserv->product_service_name, 'link' => url('/search-product?category=Regular+Services&keywords='.$term),'category' => 'Service Providers'];
+        }
+        $buysell = DB::table('buy_sells')
+            ->where('product_service_types','sell')
+            ->where('date_expire','>', now())->whereNull('deleted_at')
+            ->where("product_service_name","LIKE","%$term%")->first();
+        if($buysell){
+                $results[] = ['value' => $buysell->product_service_name, 'link' => url('/search-product?category=One-Time+Supplier&keywords='.$term),'category' => 'One-Time Supplier'];
+        }
+        $buysellbuy = DB::table('buy_sells')
+            ->where('product_service_types','buy')
+            ->where('date_expire','>', now())->whereNull('deleted_at')
+            ->where("product_service_name","LIKE","%$term%")->first();
+        if($buysellbuy){
+                $results[] = ['value' => $buysellbuy->product_service_name, 'link' => url('/search-product?category=One-Time+Buyer&keywords='.$term),'category' => 'One-Time Buyer'];
+        }
+        $buysellserv = DB::table('buy_sells')
+            ->where('product_service_types','service')
+            ->where('date_expire','>', now())->whereNull('deleted_at')
+            ->where("product_service_name","LIKE","%$term%")->first();
+        if($buysellserv){
+                $results[] = ['value' => $buysellserv->product_service_name, 'link' => url('/search-product?category=One-Time+Services&keywords='.$term),'category' => 'Service Seekers'];
+        }
+        $articles = Journal::where('title','Like','%'.$term.'%')->where('journal_type_name','articles')->first();
+
+        if($articles){
+                $results[] = ['value' => $articles->title, 'link' => url('/search-product?category=articles&keywords='.$term),'category' => 'Articles'];
+        }
+        $news = NewsManagement::where('title','Like','%'.$term.'%')->first();
+        if($news){
+                $results[] = ['value' => $news->title, 'link' => url('/search-product?category=news&keywords='.$term),'category' => 'News'];
+        }
+        $events = Journal::where('title','Like','%'.$term.'%')->where('journal_type_name','Upcomming Events')->first();
+        if($events){
+                $results[] = ['value' => $events->title, 'link' => url('/search-product?category=events&keywords='.$term),'category' => 'Events'];
+        }
+        return json_encode($results);
     }
 
     public function searchProduct(Request $request)
@@ -775,15 +797,18 @@ class HomeController extends Controller
 
             $leadinq = \App\Notification::where('is_read', 0)->where('table_name', 'inquiries')->where('table_data', 'Lead')->where('user_id', \Auth::user()->id)->where('prod_comp_id', session()->get('company_id'))->count();
             $dealinq = \App\Notification::where('is_read', 0)->where('table_name', 'inquiries')->where('table_data', 'Deal')->where('user_id', \Auth::user()->id)->count();
+
+            $fleadinq = \App\Notification::where('is_read', 0)->where('table_name', 'favourites')->where('table_data', 'Lead')->where('user_id', \Auth::user()->id)->where('prod_comp_id', session()->get('company_id'))->count();
+            $fdealinq = \App\Notification::where('is_read', 0)->where('table_name', 'favourites')->where('table_data', 'Deal')->where('user_id', \Auth::user()->id)->count();
             $latest_notification = \App\Notification::where('is_read', 0)->where('user_id', \Auth::user()->id)->latest()->first();
             $output = '';
             foreach(\App\Notification::where('user_id',auth()->id())->where('is_read',0)->latest()->get() as $notifi) {
                 $output .= '<li class="links-container">';
                 $output .= '<input type="hidden" name="read" value="'.$notifi->id.'"/>';
                 if ($notifi->table_name == 'favourites' && $notifi->table_data == 'Lead') {
-                    $href = route('products.index');
+                    $href = route('get-lead-fav');
                 } elseif ($notifi->table_name == 'favourites' && $notifi->table_data == 'Deal')
-                    $href = route('buy-sell.index');
+                    $href = route('get-one-time-fav');
                 elseif ($notifi->table_name == 'inquiries' && $notifi->table_data == 'Lead')
                     $href = route('product-inquiries');
                 elseif ($notifi->table_name == 'inquiries' && $notifi->table_data == 'Deal')
@@ -796,7 +821,7 @@ class HomeController extends Controller
                 $output .= '<a href="'.$href. '"class="text-decoration-none is-read"> <p class="small text-uppercase mb-2">'.date("F d,Y", strtotime($notifi->created_at)).'</p> <p class="mb-0">'.$notifi->notification_text.'</p> </a> </li>';
             }
         }
-        return  response()->json(['output'=>$output,'notify'=>$notify,'notifiactions'=>$notifiactions,'meetnoti'=>$meetnoti,'chatnoti'=>$chatnoti,'leadinq'=>$leadinq,'dealinq'=>$dealinq]);
+        return  response()->json(['output'=>$output,'notify'=>$notify,'notifiactions'=>$notifiactions,'meetnoti'=>$meetnoti,'chatnoti'=>$chatnoti,'leadinq'=>$leadinq,'dealinq'=>$dealinq,'fleadinq'=>$fleadinq,'fdealinq'=>$fdealinq]);
     }
 
 }

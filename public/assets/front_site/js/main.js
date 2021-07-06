@@ -48,6 +48,31 @@ $(".job-description-below").scroll(function () {
 });
 
 $(document).ready(function () {
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+    // Add the following code if you want the name of the file appear on select
+
+    /*digits counter*/
+    $("textarea[name='details'], input[name='subject'], input[name='product_service_name']").on('keyup', function () {
+        $(this).siblings('span').find('.counter-total-digits').text($(this).val().length);
+    });
+
+    $("textarea[name='details'], input[name='subject'], input[name='product_service_name']").each(function() {
+        $(this).siblings('span').find('.counter-total-digits').text($(this).val().length);
+    });
+    /*digits counter*/
+
+    /*onclick hide-show number*/
+    $(".hide-show-number").click(function(){
+        $(this).text($(this).text() == 'Hide' ? 'Show' : 'Hide');
+        $(this).siblings('.hidden').toggleClass('d-inline-block d-none');
+        $(this).siblings('.show').toggleClass('d-none d-inline-block');
+    });
+    /*onclick hide-show number*/
+
     setTimeout(() => {
         /*category name changed on basis of selected category*/
         let catName = $('#garmentsNav .nav-underline-pg span').text();
@@ -652,15 +677,29 @@ $(document).ready(function () {
         }
     });
 
-    /*single-select-dropdown for other-div to show and hide*/
+    /*main js for single-select-dropdown functionality*/
     $('.single-select-dropdown').change(function () {
-        if ($(this).val() == 'Other') {
+        if ($(this).val()!='') {
+            $(this).siblings('.is-invalid.error').hide();
+            $(this).siblings('.select2').find('.select2-selection--single').addClass('is-valid');
+            $(this).siblings('.select2').find('.select2-selection--single').removeClass('is-invalid');
+        }
+        else if ($(this).val() == 'Other') {
             $(this).closest(".form-group").next(".form-group.other-div").first().show().find('input').prop('required', true);
-        } else {
+        }
+        else {
             $(this).closest(".form-group").next(".form-group.other-div").first().hide().find('input').prop('required', false);
         }
     });
-    /*single-select-dropdown for other-div to show and hide*/
+
+    $('.next-btn').click(function () {
+        setTimeout(() => {
+            /*add classes is-invalid and error for single select (select2)*/
+            $('.is-invalid.error').siblings('.select2-container--default').find('.select2-selection--single').addClass('is-invalid');
+            /*add classes is-invalid and error for single select (select2)*/
+        }, 10);
+    });
+    /*main js for single-select-dropdown functionality*/
 
     /*radio-btn for other-div to show and hide*/
     $('.radio-btn').click(function () {
@@ -1045,7 +1084,7 @@ $(document).ready(function () {
             $('.additional-product-info').hide();
             $('.add-unit_price_unit').hide();
             $('.add-target_price_unit').hide();
-            $('.other-option-included').val('PKR');
+            // $('.other-option-included').val('PKR');
             if (buyProduct === true || sellProduct === true || serviceProduct === true) {
                 $('.product-buy-sell').prop('required', false);
 
@@ -1104,9 +1143,7 @@ $(document).ready(function () {
                 $('#sub_sub_category').closest('.form-group').addClass('d-flex').removeClass('d-none');;
                 $('#sub_sub_category').prop('required', true);
                 $('.product-service-info').text('PRODUCT INFO');
-                $('.payment-delivery-info').text('PAYMENT & DELIVERY INFO');
-
-
+                $('.payment-delivery-info').text('PAYMENT & DELIVERY');
             }
 
             if (buyProduct === true) {
@@ -2219,7 +2256,7 @@ $(function () {
 
     $('#left-thumb-slider').lightSlider({
         gallery: true,
-        controls: false,
+        controls: true,
         item: 1,
         vertical: true,
         verticalHeight: 185,

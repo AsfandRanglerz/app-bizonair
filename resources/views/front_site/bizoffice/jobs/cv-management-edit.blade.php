@@ -13,7 +13,7 @@
 
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" style="background: #d9eefe8c">
+            <div id="page-content-wrapper" >
                 <div class="px-2 py-1">
                     <div id="cvTab1">
                         <ul class="nav nav-tabs" id="myCompanyLinks" role="tablist">
@@ -29,7 +29,7 @@
                                     <div class="col-sm-6 order-sm-1 order-2">
                                         <div class="edit-company-section">
                                             <h6 class="heading">CV Detail   <span class="fa fa-edit edit-btn cv-edit-btn" style="cursor: pointer"></span></h6>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Name </span>
                                                 </div>
@@ -37,7 +37,7 @@
                                                     <span>{{ $info->fname  }} {{ $info->lname  }}</span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Phone Number </span>
                                                 </div>
@@ -47,7 +47,7 @@
                                             </div>
 
 
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Email </span>
                                                 </div>
@@ -55,7 +55,7 @@
                                                     <span>{{ $info->email }}</span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Experience (Years)</span>
                                                 </div>
@@ -63,7 +63,7 @@
                                                     <span>{{ $info->total_experience }}</span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Education Level </span>
                                                 </div>
@@ -71,7 +71,7 @@
                                                      <span>{{$info->edu_level}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Functional Area </span>
                                                 </div>
@@ -79,7 +79,7 @@
                                                     <span>{{$info->functional_area}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Textile Sector </span>
                                                 </div>
@@ -87,7 +87,7 @@
                                                     <span>{{$info->textile_sector}}  </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Expected Salary </span>
                                                 </div>
@@ -95,7 +95,7 @@
                                                     <span>{{ $info->exp_salary }} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Salary Unit </span>
                                                 </div>
@@ -103,7 +103,7 @@
                                                     <span>{{ $info->sal_unit }} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">City </span>
                                                 </div>
@@ -111,7 +111,7 @@
                                                     <span>{{ $info->city }} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Country  </span>
                                                 </div>
@@ -119,7 +119,7 @@
                                                     <span>{{$info->country}} </span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Key Skills  </span>
                                                 </div>
@@ -131,7 +131,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-6 order-sm-2 order-1 my-sm-0 mt-2 mb-4">
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-3">
                                                 <span class="font-500">image  </span>
                                             </div>
@@ -142,7 +142,7 @@
                                             <img class="object-cover header-profile-pic" src="{{$ASSETS}}/{{ $info->image }}" width="135" height="135">
                                     </div>
                                 </div>
-                                <div class="mt-4 mb-4">
+                                <div class="my-1">
                                     <hr>
                                 </div>
                             </div>

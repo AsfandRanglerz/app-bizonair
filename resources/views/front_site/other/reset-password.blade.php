@@ -2,7 +2,7 @@
 @section('content')
 
 <body class="reset-password-page">
-  <main id="maincontent" class="page-main" style="background: #d9eefe8c">
+  <main id="maincontent" class="page-main" >
     <div class="container">
       <div class="reset-password">
         <h4>Enter a new password for account:</h4>

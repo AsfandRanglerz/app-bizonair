@@ -13,10 +13,10 @@
         <!-- /#sidebar-wrapper -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" style="background: #d9eefe8c">
+            <div id="page-content-wrapper" >
 
-                <div class="d-container mx-3">
-                    <span class="main-heading mt-3 mb-3">{{$title}}</span>
+                <div class="d-container py-2">
+                    <span class="main-heading">{{$title}}</span>
                     <div class="alert alert-success m-0 mb-2 text-center" id='alert-success' style="display:none;"
                          role="alert">
                     </div>
@@ -29,33 +29,28 @@
                             <input type="hidden" name="id" value="{{encrypt(session()->get('company_id'))}}">
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label>Title <span class="required">*</span></label>
                                     <input type="text"
                                            name="title" id="title" class="form-control"
-                                           placeholder="Enter meeting title" maxlength="100">
+                                           placeholder="Title - Enter meeting title" maxlength="100">
                                     <small class="text-danger" id="title_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label>Date <span class="required">*</span></label>
                                     <input type="text" autocomplete="off"
                                            name="meeting_date" id="meeting_date"
                                            class="form-control meetingdatepicker"
-                                           placeholder="Set Meeting Date">
+                                           placeholder="Date - Set Meeting Date">
                                     <small class="text-danger" id="meeting_date_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label>Time <small class="font-500">(24 hours Format)</small> <span
-                                            class="required">*</span></label>
                                     <input type="text"
                                            name="meeting_time" id="meeting_time"
                                            class="form-control bs-timepicker"
-                                           placeholder="Set Meeting Time">
+                                           placeholder="Time (24 hours Format) - Set Meeting Time">
                                     <small class="text-danger" id="meeting_time_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label>Reminder Email <span class="required">*</span></label>
                                     <select name="reminde_before" id="reminde_before" class="form-control">
-                                        <option value="" selected disabled>--- Reminders ---</option>
+                                        <option value="" selected disabled>Reminders</option>
                                         {{--                                                @if(\App\Helpers\MeetingHelper::CheckTodayMeeting())--}}
                                         <option value="0">Today</option>
                                         {{--                                                @endif--}}
@@ -69,9 +64,8 @@
                                     <small class="text-danger" id="reminde_before_error"></small>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label>Detail <span class="required">*</span></label>
                                     <textarea name="detail" id="detail" class="form-control" rows="6"
-                                              placeholder="Enter Meeting Details"></textarea>
+                                              placeholder="Detail - Enter Meeting Details"></textarea>
                                     <small class="text-danger" id="detail_error"></small>
                                 </div>
                                 <div class="form-group col-xl-12 col-lg-12">

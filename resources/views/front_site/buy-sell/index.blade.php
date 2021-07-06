@@ -12,17 +12,17 @@
                 <div class="px-2 py-2">
                     <div class="">
                         <span
-                            class="heading biz-product-heading mb-1 text-danger d-flex">{{ \Auth::user()->name }}</span>
+                            class="heading biz-product-heading text-danger d-flex">{{ \Auth::user()->name }}</span>
                         <span
                             class="heading biz-product-heading">One-Time Deals {{ ($request->case && $request->case == 'archive') ? ' - Archived' : '' }}</span>
                         @if($request->case && $request->case == 'archive')
                             <div class="my-3">
-                            <a href="{{ route('buy-sell.index') }}" class="blue-btn">Active Deals</a>
+                                <a href="{{ route('buy-sell.index') }}" class="red-btn">Active Deals</a>
                             </div>
                         @else
-                            <div class="my-3">
-                            <a href="{{ route('buy-sell.create') }}" class="red-btn">Add A New Deal</a>
-                            <a href="{{ route('buy-sell.index') }}?case=archive" class="blue-btn">Archived Deals</a>
+                            <div class="mt-0 mb-2 text-sm-left text-center">
+                                <a href="{{ route('buy-sell.create') }}" class="red-btn">Add A New Deal</a>
+                                <a href="{{ route('buy-sell.index') }}?case=archive" class="red-btn">Archived Deals</a>
                             </div>
                         @endif
                     </div>
@@ -148,7 +148,7 @@
 
                                         <td>{{$buysell->origin}}</td>
                                         @if(!($request->case && $request->case == 'archive'))
-                                        <td>@if(checkExpiryBuysell($buysell->id) == 'Expired')<span style="color: red">{{checkExpiryBuysell($buysell->id)}}</span> <button type="button" class="btn btn-success" id="expirebtn" prod_id="{{$buysell->id}}">Repost</button> @else {{checkExpiryBuysell($buysell->id)}} @endif</td>
+                                        <td>@if(checkExpiryBuysell($buysell->id) == 'Expired')<span style="color: red">{{checkExpiryBuysell($buysell->id)}}</span> <button type="button" class="btn red-btn" id="expirebtn" prod_id="{{$buysell->id}}">Repost</button> @else {{checkExpiryBuysell($buysell->id)}} @endif</td>
                                         @endif
                                             <td> {!! $buysell->created_at !!}</td>
                                         <td>{{ getUserNameById($buysell->updatedBy) }}</td>

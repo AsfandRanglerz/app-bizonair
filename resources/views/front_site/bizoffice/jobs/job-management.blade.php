@@ -12,7 +12,7 @@
             @include('front_site.common.dashboard-toggle')
             <div id="page-content-wrapper">
 
-                <div class="  d-container mt-2">
+                <div class="d-container">
                     <div class="">
                         <span
                             class="heading biz-product-heading mb-1 text-danger d-flex"></span>
@@ -20,7 +20,7 @@
                             class="heading biz-product-heading">{{ $title }}</span>
 
                     </div>
-                    <div class="table-responsive table-mt mt-3">
+                    <div class="table-responsive table-mt mt-2">
                         <div class="alert alert-success m-0 mb-2 text-center" id='alert-success' style="display:none;"
                              role="alert">
                         </div>

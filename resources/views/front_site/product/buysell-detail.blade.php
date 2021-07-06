@@ -9,7 +9,7 @@
     @include('front_site.common.product-banner')
 
     <div class="main-container">
-       <div class="container-fluid px-2">
+       <div class="container-fluid px-2 py-2">
 
             @include('front_site.common.garments-nav')
 
@@ -76,7 +76,7 @@
                                <p style="margin-bottom: 8px"><span class="font-500" style="color: #000">One-Time Deals: </span> @if($product->product_service_types =='Sell') Selling Offer @elseif($product->product_service_types =='Buy') Buying Offer @endif</p>
                                {{--                            <p><span class="font-500" style="color: #000">Product Detail: </span>{{$product->details}}</p>--}}
                                <div class="btns-block">
-                                   <a href="#" class="p-0 btns red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                   <a href="#" class="p-0 btns red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
                                    <!-- Modal -->
                                    <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                        <div class="modal-dialog contact-form" role="document">
@@ -210,7 +210,7 @@
                        @if(auth()->user())
                            <div class="supplier-info">
                                <div class="position-relative">
-                                   <div class="mb-2 d-flex membersince">Member <span class="number">since</span><span class="years">{{get_buysell_created_at($product->user_id)}}</span></div>
+                                   <div class="d-flex membersince">Member <span class="number">since</span><span class="years">{{get_buysell_created_at($product->user_id)}}</span></div>
                                    <div class="position-absolute top-0 right-0 membericon">
                                        <a href="http://localhost/bizonair-database/404">
                                            <img alt="Premium Member" src="{{$ASSETS}}/assets/front_site/images/deals-membership.png"   title="We are working on this feature and will enable this soon" data-toggle="tooltip" data-placement="bottom" data-toggle="tooltip" data-placement="bottom" style="width: 30px;height: 30px">
@@ -219,7 +219,7 @@
                                </div>
                                <small class="overflow-text-dots-one-line"><span class="font-500">Name: </span><span> {{get_buysell_user_name($product->user_id)}}</span></small>
                                <small class="d-block mb-0 grey-text font-500">{{ get_buysell_city($product->user_id) }}, {{get_buysell_country($product->user_id)}} </small>
-                               <small class="d-flex mb-2 grey-text number-content">
+                               <small class="d-flex mb-1 grey-text number-content">
                                    <span class="font-500">Contact:</span>
                                    <span class="d-inline-block mx-1 show">***********</span>
                                    <span class="d-none mx-1 hidden">{{ get_buysell_contact_no($product->user_id) }}</span>
@@ -245,8 +245,8 @@
                                <div class="login-info">
                                    <span class="fa fa-exclamation"></span>
                                    <div class="login-info-inner">
-                                       <p><a href="" data-toggle="modal" data-target="#login-form" class="font-500 register-text">Log in</a> To View More Information.</p>
-                                       <p><span class="font-500" style="color: #000">Not a member? </span><a href="{{route('email-confirmation')}}" target="_blank" class="font-500 register-text">Register Now!</a></p>
+                                       <p><a href="" data-toggle="modal" data-target="#login-form" class="font-500 register-text">Log in</a> To View More Information.
+                                       <span class="font-500" style="color: #000">Not a member? </span><a href="{{route('email-confirmation')}}" target="_blank" class="font-500 register-text">Register Now!</a></p>
                                    </div>
                                </div>
                            </div>

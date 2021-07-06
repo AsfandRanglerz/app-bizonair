@@ -13,10 +13,10 @@
         <!-- /#sidebar-wrapper -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" style="background: #d9eefe8c">
+            <div id="page-content-wrapper" >
 
-                <div class="d-container mx-3">
-                    <span class="main-heading mt-3 mb-3">News & Articles</span>
+                <div class="d-container py-2">
+                    <span class="main-heading">News & Articles</span>
                     <div class="alert alert-success m-0 mb-2 text-center" id='alert-success' style="display:none;"
                          role="alert">
                     </div>
@@ -29,8 +29,8 @@
                             <input type="hidden" name="id" value="{{ $info->id }}"><div class="form-row">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label class="font-500">Title <span class="required">*</span></label>
-                                    <input type="text"
+                                    <label class="font-500"> <span class="required">*</span></label>
+                                    <input type="text" placeholder="Title"
                                            name="title" id="title" value="{{ $info->title }}" class="form-control"
                                            >
                                     <small class="text-danger" id="title_error"></small>

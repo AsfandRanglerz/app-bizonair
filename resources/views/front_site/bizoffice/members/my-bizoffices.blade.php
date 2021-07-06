@@ -12,7 +12,7 @@
             @include('front_site.common.dashboard-toggle')
             <div id="page-content-wrapper">
 
-                <div class="  d-container mt-2">
+                <div class="d-container">
                     <div class="">
                         <span
                             class="heading biz-product-heading mb-1 text-danger d-flex"></span>
@@ -20,7 +20,7 @@
                             class="heading biz-product-heading">{{ $title }}</span>
 
                     </div>
-                    <div class="table-responsive table-mt mt-3">
+                    <div class="table-responsive table-mt mt-2">
                         <div class="alert alert-success m-0 mb-2 text-center" id='alert-success' style="display:none;"
                              role="alert">
                         </div>
@@ -44,7 +44,7 @@
                             <tbody>
                             @foreach ($company as $key => $list)
 
-                                <tr @if($list->company->id==session()->get('company_id')) style="background: #CFD8DC;" @else style="background: #fff;" @endif>
+                                <tr @if($list->company->id==session()->get('company_id')) @else style="background: #fff;" @endif>
                                     <th>{{ $i++ }}</th>
                                     <td @if(session()->get('company_id')== $list->company->id) class="font-weight-bold" @endif><a href="{{route('change-company',$list->company->id)}}"> {{$list->company->company_name }}</a></td>
                                     <td>@if($list->is_owner==1) Owner/Admin @elseif($list->is_member==1 && $list->is_admin==1) Admin,Member @else Member @endif</td>

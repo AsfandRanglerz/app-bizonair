@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\BuySell;
+use Illuminate\Support\Facades\Storage;
 use App\Category;
 use App\Subcategory;
 use Illuminate\Support\Facades\DB;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Intervention\Image\Facades\Image;
 use PragmaRX\Countries\Package\Countries;
 
 class BuySellController extends Controller
@@ -188,7 +190,7 @@ class BuySellController extends Controller
         $buysell->childsubcategory_id = $request->sub_sub_category;
         $buysell->add_sub_sub_category = $request->add_sub_sub_category;
 
-        $buysell->reference_no = mt_rand(100000,999999);
+        $buysell->reference_no = mt_rand(100000,9999999);
         $buysell->slug = Str::slug($request->product_service_name) . "-" . $buysell->reference_no;
 
         $buysell->subject = $request->subject;
@@ -217,19 +219,24 @@ class BuySellController extends Controller
         $buysell->is_featured = 0;
         $buysell->createdBy = Auth::user()->id;
         $buysell->updated_at = null;
+        $buysell->save();
 
-//        $buysell->updatedBy = Auth::user()->id;
-//        if($request->file){
-//            $image = $request->file('file');
-//            $image_name=rand(1000, 9999) . time().'.'.$image->getClientOriginalExtension();
-//            $file = 'public/assets/front_site/products/images/'.$image_name;
-//            $image->move($file);
-//            \App\ProductImage::create([
-//                'image'=>$file,
-//                'product_id'=>$request->productId,
-//            ]);
-//        }
-//        dd($product);
+        $images =  [$request->bavatar1_url,$request->bavatar2_url,$request->bavatar3_url,$request->bavatar4_url,$request->bavatar5_url,$request->bavatar6_url,$request->bavatar7_url,$request->bavatar8_url,$request->bavatar9_url,$request->bavatar10_url,$request->bavatar11_url,$request->bavatar12_url,$request->bavatar13_url,$request->bavatar14_url,$request->bavatar15_url];
+        foreach ($images as $image) {
+            if ($image) {
+                \App\BuysellImage::create(['buy_sell_id' => $buysell->id, 'image' => $image]);
+            }
+        }
+
+        $sheets =  [$request->bsheet16_url,$request->bsheet17_url,$request->bsheet18_url,$request->bsheet19_url,$request->bsheet20_url,$request->bsheet21_url,$request->bsheet22_url,$request->bsheet23_url,$request->bsheet24_url,$request->bsheet25_url,$request->bsheet26_url,$request->bsheet27_url,$request->bsheet28_url,$request->bsheet29_url,$request->bsheet30_url];
+        foreach ($sheets as $sheet){
+            if ($sheet) {
+                \App\BuySellSpecification::create([
+                    'buy_sell_id' => $buysell->id,
+                    'sheet' => $sheet
+                ]);
+            }
+        }
 
         if (in_array("Service", $request->product_service_types)) {
             $buysell->dealing_as = "Service Provider";
@@ -598,6 +605,22 @@ class BuySellController extends Controller
         $buysell->delivery_time = $request->delivery_time;
 //        dd($buysell);
         $buysell->variation = null;
+        $images =  [$request->bavatar1_url,$request->bavatar2_url,$request->bavatar3_url,$request->bavatar4_url,$request->bavatar5_url,$request->bavatar6_url,$request->bavatar7_url,$request->bavatar8_url,$request->bavatar9_url,$request->bavatar10_url,$request->bavatar11_url,$request->bavatar12_url,$request->bavatar13_url,$request->bavatar14_url,$request->bavatar15_url];
+        foreach ($images as $image) {
+            if ($image) {
+                \App\BuysellImage::create(['buy_sell_id' => $buysell->id, 'image' => $image]);
+            }
+        }
+
+        $sheets =  [$request->bsheet16_url,$request->bsheet17_url,$request->bsheet18_url,$request->bsheet19_url,$request->bsheet20_url,$request->bsheet21_url,$request->bsheet22_url,$request->bsheet23_url,$request->bsheet24_url,$request->bsheet25_url,$request->bsheet26_url,$request->bsheet27_url,$request->bsheet28_url,$request->bsheet29_url,$request->bsheet30_url];
+        foreach ($sheets as $sheet){
+            if ($sheet) {
+                \App\BuySellSpecification::create([
+                    'buy_sell_id' => $buysell->id,
+                    'sheet' => $sheet
+                ]);
+            }
+        }
         $buysell->save();
         if ($buysell->save()) {
             if ($new_category == "Machinery & Parts") {
@@ -671,27 +694,54 @@ class BuySellController extends Controller
 
     public function upload_sheet_buysell(Request $request)
     {
-        if ($request->file) {
-            $sheet = $request->file('file');
-            $sheet_name = rand(1000, 9999) . time() . '.' . $sheet->getClientOriginalExtension();
-            $file = 'assets/front_site/buysell/sheets/';
-            $sheet->move(public_path($file), $sheet_name);
-            $path = $file . $sheet_name;
-            \App\BuySellSpecification::create(['sheet' => $path, 'buy_sell_id' => $request->buysellId,]);
+        if($request->hasFile('sheet')){
+//            $sheet = $request->file('file');
+//            $sheet_name = rand(1000, 999999) . time() . '.' . $sheet->getClientOriginalExtension();
+//            $sheet->storeAs('deals/sheets/',$sheet_name,'s3');
+//            $path = 'deals/sheets'.'/'.$sheet_name;
+//            $url = Storage::disk('s3')->url($path);
+//            \App\BuySellSpecification::create(['sheet' => $url, 'buy_sell_id' => $request->buysellId,]);
+
+
+            $sheet = request()->file('sheet');
+            $sheet_name = rand(1000, 9999999) . time() . '.' . $sheet->getClientOriginalExtension();
+            $sheet->storeAs('deals/sheets/',$sheet_name,'s3');
+            $path = 'deals/sheets'.'/'.$sheet_name;
+            $url = Storage::disk('s3')->url($path);
+            return response()->json(['url'=>$url]);
         }
 
     }
 
     public function upload_image_buysell(Request $request)
     {
-        if ($request->file) {
-            $image = $request->file('file');
-            $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
-            $file = 'assets/front_site/buysell/images/';
-            $image->move(public_path($file), $image_name);
-            $path = $file . $image_name;
-            \App\BuysellImage::create(['image' => $path, 'buy_sell_id' => $request->buysellId,]);
+        if($request->hasFile('avatar')){
+            $image = request()->file('avatar');
+            $imageName = rand(1000, 999999) . time() . '.' . $image->getClientOriginalExtension();
+            $img = Image::make($image);
+            $img->resize(379, 295, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            //detach method is the key! Hours to find it... :/
+            $resource = $img->stream()->detach();
+            Storage::disk('s3')->put('deals/images/' . $imageName, $resource);
+            $url = Storage::disk('s3')->url('deals/images'.'/'.$imageName);
+            return response()->json(['url'=>$url]);
+
+
+//            $image = request()->file('file');
+//            $imageName = rand(1000, 999999) . time() . '.' . $image->getClientOriginalExtension();
+//            $img = Image::make($image);
+//            $img->resize(379, 295, function ($constraint) {
+//                $constraint->aspectRatio();
+//            });
+//            //detach method is the key! Hours to find it... :/
+//            $resource = $img->stream()->detach();
+//            Storage::disk('s3')->put('deals/images/' . $imageName, $resource);
+//            $url = Storage::disk('s3')->url('deals/images'.'/'.$imageName);
+//            \App\BuysellImage::create(['image' => $url, 'buy_sell_id' => $request->buysellId,]);
         }
+
     }
 
     public function remove_buysell_sheet()

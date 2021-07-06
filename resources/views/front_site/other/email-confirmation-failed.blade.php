@@ -1,7 +1,7 @@
 @extends('front_site.master_layout')
 @section('content')
     <body class="email-confirmation">
-    <main id="maincontent" class="page-main" style="background: #d9eefe8c">
+    <main id="maincontent" class="page-main" >
         <div class="row m-0">
             <div class="col-lg-9 col-md-8 switch-tabs-section">
                 <div class="switch-tabs" id="formSections">

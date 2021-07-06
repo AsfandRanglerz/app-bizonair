@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\JobManagement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Storage;
 use PragmaRX\Countries\Package\Countries;
 
 class JobManagementController extends Controller
@@ -114,21 +115,17 @@ class JobManagementController extends Controller
             $job->vacancies= request('vacancies');
             $job->closing_date= request('datePicker');
             $job->gender = request('gender');
-            if(request('company') == 'Other'){
-                $job->company = request('ocompany');
-            }else{
-                $job->company = request('company');
-            }
+            $job->company = request('company');
+            $job->other_company = request('ocompany');
 
             if($request->hasFile('image')){
                 $image = $request->file('image');
                 $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
-                $file = 'assets/front_site/jobs/';
-                $image->move(public_path($file), $image_name);
-                $path = $file . $image_name;
-                $job->image = $path;
+                $image->storeAs('jobs/',$image_name,'s3');
+                $path = 'jobs'.'/'.$image_name;
+                $url = Storage::disk('s3')->url($path);
+                $job->image = $url;
             }
-
             $job->save();
 
             if (1 == 1) {
@@ -159,7 +156,6 @@ class JobManagementController extends Controller
 
     public function update_job_management(Request $request)
     {
-
         $rules = [
             'title' => 'required',  'salary' => 'required',
             'city' => 'required','work_experience' => 'required','datePicker' => 'required',
@@ -178,7 +174,6 @@ class JobManagementController extends Controller
             $data['msg'] = '';
             return json_encode($data);
         } else {
-
             $job = JobManagement::find($request->id);
             $job->id= request('id');
             $job->title= request('title');
@@ -202,20 +197,16 @@ class JobManagementController extends Controller
             $job->vacancies= request('vacancies');
             $job->closing_date= request('datePicker');
             $job->gender = request('gender');
-
-            if(request('company') == 'Other'){
-                $job->company = request('ocompany');
-            }else{
-                $job->company = request('company');
-            }
+            $job->company = request('company');
+            $job->other_company = request('ocompany');
 
             if($request->hasFile('image')){
                 $image = $request->file('image');
                 $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
-                $file = 'assets/front_site/jobs/';
-                $image->move(public_path($file), $image_name);
-                $path = $file . $image_name;
-                $job->image = $path;
+                $image->storeAs('jobs/',$image_name,'s3');
+                $path = 'jobs'.'/'.$image_name;
+                $url = Storage::disk('s3')->url($path);
+                $job->image = $url;
             }else{
                 $job->image = JobManagement::where('id',$request->id)->first()->image;
             }
@@ -292,6 +283,7 @@ class JobManagementController extends Controller
         $rules = [
             'fname' => 'required',
             'lname'=>'required',
+            'phone_code'=>'required',
             'phone_no'=>'required',
             'email' => 'required',
             'total_experience'=>'required',
@@ -307,6 +299,7 @@ class JobManagementController extends Controller
         $messages = [
             'fname.required' => 'First name is required',
             'lname.required' => 'Last name is required',
+            'phone_code.required' => 'Phone Code is required',
             'phone_no.required' => 'Phone number is required',
             'email.required' => 'Email is required',
             'total_experience.required' => 'Total Experience is required',
@@ -330,6 +323,7 @@ class JobManagementController extends Controller
             $data['postcv']->user_id= auth()->id();
             $data['postcv']->fname= request('fname');
             $data['postcv']->lname = request('lname');
+            $data['postcv']->phone_code = request('phone_code');
             $data['postcv']->phone_no= request('phone_no');
             $data['postcv']->email= request('email');
             $data['postcv']->total_experience= request('total_experience');
@@ -344,10 +338,10 @@ class JobManagementController extends Controller
             if($request->hasFile('image')){
                 $image = $request->file('image');
                 $image_name = rand(10000, 99999) . time() . '.' . $image->getClientOriginalExtension();
-                $file = 'assets/front_site/cvs/';
-                $image->move(public_path($file), $image_name);
-                $path = $file . $image_name;
-                $data['postcv']->image = $path;
+                $image->storeAs('cvs/',$image_name,'s3');
+                $path = 'cvs'.'/'.$image_name;
+                $url = Storage::disk('s3')->url($path);
+                $data['postcv']->image = $url;
             }
 
             $data['postcv']->save();
@@ -379,6 +373,7 @@ class JobManagementController extends Controller
         $rules = [
             'fname' => 'required',
             'lname'=>'required',
+            'phone_code'=>'required',
             'phone_no'=>'required',
             'email' => 'required',
             'total_experience'=>'required',
@@ -394,6 +389,7 @@ class JobManagementController extends Controller
         $messages = [
             'fname.required' => 'First name is required',
             'lname.required' => 'Last name is required',
+            'phone_code.required' => 'Phone Code is required',
             'phone_no.required' => 'Phone number is required',
             'email.required' => 'Email is required',
             'total_experience.required' => 'Total Experience is required',
@@ -418,6 +414,7 @@ class JobManagementController extends Controller
             $id= request('id');
             $fname= request('fname');
             $lname = request('lname');
+            $phone_code = request('phone_code');
             $phone_no= request('phone_no');
             $email= request('email');
             $total_experience= request('total_experience');
@@ -433,14 +430,14 @@ class JobManagementController extends Controller
             if($request->hasFile('image')){
                 $image = $request->file('image');
                 $image_name = rand(10000, 99999) . time() . '.' . $image->getClientOriginalExtension();
-                $file = 'assets/front_site/cvs/';
-                $image->move(public_path($file), $image_name);
-                $path = $file . $image_name;
-                $image_path = $path;
+                $image->storeAs('cvs/',$image_name,'s3');
+                $path = 'cvs'.'/'.$image_name;
+                $url = Storage::disk('s3')->url($path);
+                $image_path = $url;
             }else{
                 $image_path = \App\UploadCv::where('id',$request->id)->first()->image;
             }
-            DB::update('update upload_cvs set fname="'.$fname.'",user_id="'.$user_id.'",lname="'.$lname.'",phone_no="'.$phone_no.'",email="'.$email.'",total_experience="'.$total_experience.'",edu_level="'.$edu_level.'",functional_area="'.$functional_area.'",textile_sector="'.$textile_sector.'",exp_salary="'.$exp_salary.'",sal_unit="'.$sal_unit.'",city="'.$city.'",country="'.$country.'",key_skills="'.$key_skills.'",image="'.$image_path.'" where id = ?', [$id]);
+            DB::update('update upload_cvs set fname="'.$fname.'",user_id="'.$user_id.'",lname="'.$lname.'",phone_code="'.$phone_code.'",phone_no="'.$phone_no.'",email="'.$email.'",total_experience="'.$total_experience.'",edu_level="'.$edu_level.'",functional_area="'.$functional_area.'",textile_sector="'.$textile_sector.'",exp_salary="'.$exp_salary.'",sal_unit="'.$sal_unit.'",city="'.$city.'",country="'.$country.'",key_skills="'.$key_skills.'",image="'.$image_path.'" where id = ?', [$id]);
 
 
             if (1 == 1) {

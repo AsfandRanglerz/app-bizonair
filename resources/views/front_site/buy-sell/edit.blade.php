@@ -9,7 +9,7 @@
         <!-- Sidebar -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" style="background: #d9eefe8c">
+            <div id="page-content-wrapper" >
 
                 <div class="px-2 py-2">
                     <div id="companyTab1">
@@ -26,7 +26,7 @@
                                                         Service Info
                                                     @endif
                                                     <span class="fa fa-edit edit-btn about-edit-btn"></span></h6>
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Deal Type</span>
                                                     </div>
@@ -40,7 +40,7 @@
                                                         </div>
                                                     @endif
                                                 </div>
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Main Category</span>
                                                     </div>
@@ -48,7 +48,7 @@
                                                         <span>{{ $buysell->category->name }}</span>
                                                     </div>
                                                 </div>
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Sub-Category</span>
                                                     </div>
@@ -57,7 +57,7 @@
                                                     </div>
                                                 </div>
                                                 @if($buysell->add_sub_sub_category!=null)
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Product Type</span>
                                                         </div>
@@ -68,7 +68,7 @@
                                                     </div>
                                                 @else
                                                     @if(in_array("Buy", explode(",", $buysell->product_service_types)) || in_array("Sell", explode(",", $buysell->product_service_types)))
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Product Type</span>
                                                         </div>
@@ -82,7 +82,7 @@
                                                     </div>
                                                     @endif
                                                 @endif
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Reference Number</span>
                                                     </div>
@@ -90,7 +90,7 @@
                                                         <span>{{ $buysell->reference_no }}</span>
                                                     </div>
                                                 </div>
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Subject</span>
                                                     </div>
@@ -99,7 +99,7 @@
                                                     </div>
                                                 </div>
                                                 @if($buysell->product_service_types == "Sell" || $buysell->product_service_types == "Buy")
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Product Name</span>
                                                         </div>
@@ -109,7 +109,7 @@
                                                     </div>
                                                 @endif
                                                 @if($buysell->product_service_types == "Service")
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Product & Service Name</span>
                                                         </div>
@@ -118,7 +118,7 @@
                                                         </div>
                                                     </div>
                                                 @endif
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Keyword For Search</span>
                                                     </div>
@@ -133,7 +133,7 @@
                                                     </div>
                                                 </div>
                                                 @if(!in_array("Service", explode(",", $buysell->product_service_types)))
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span>Available Quantity</span>
                                                         </div>
@@ -147,7 +147,7 @@
                                                         </span>
                                                         </div>
                                                     </div>
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Unit</span>
                                                         </div>
@@ -162,7 +162,7 @@
                                                         </div>
                                                     </div>
                                                     @if($buysell->available_unit=='Other')
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Other Unit</span>
                                                         </div>
@@ -177,7 +177,7 @@
                                                         </div>
                                                     </div>
                                                     @endif
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Ad Expiry Days</span>
                                                         </div>
@@ -191,7 +191,7 @@
                                                         </span>
                                                         </div>
                                                     </div>
-{{--                                                    <div class="row mb-2 text">--}}
+{{--                                                    <div class="row text">--}}
 {{--                                                        <div class="col-sm-6 col-6">--}}
 {{--                                                            <span class="font-500">Price</span>--}}
 {{--                                                        </div>--}}
@@ -205,7 +205,7 @@
 {{--                                                        </span>--}}
 {{--                                                        </div>--}}
 {{--                                                    </div>--}}
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Manufacturer Name</span>
                                                         </div>
@@ -215,7 +215,7 @@
                                                         </span>
                                                         </div>
                                                     </div>
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Product Origin</span>
                                                         </div>
@@ -230,7 +230,7 @@
                                                         </div>
                                                     </div>
                                                 @endif
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Additional Info</span>
                                                     </div>
@@ -354,7 +354,7 @@
                                                  role="alert"></div>
                                         </div>
                                     </div>
-                                <div class="mt-4 mb-4">
+                                <div class="my-1">
                                     <hr class="horizontal-line">
                                 </div>
                                 @if($buysell->variation != null)
@@ -362,7 +362,7 @@
                                         <h6 class="heading">Additional Product Info<span
                                                 class="fa fa-edit edit-btn com-edit-btn"></span></h6>
                                         @if($buysell->variation == "Machinery & Parts")
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Brand Name</span>
                                                 </div>
@@ -376,7 +376,7 @@
 												</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Model Number</span>
                                                 </div>
@@ -390,7 +390,7 @@
 												</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Manufacturing Year</span>
                                                 </div>
@@ -404,7 +404,7 @@
 												</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">After Sales Service</span>
                                                 </div>
@@ -419,7 +419,7 @@
                                                 </div>
                                             </div>
                                             @if($buysell->machineryBuySellInfo->after_sales_service=="Yes")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Type of Service</span>
                                                     </div>
@@ -435,7 +435,7 @@
                                                 </div>
                                             @endif
 
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Warranty</span>
                                                 </div>
@@ -450,7 +450,7 @@
                                                 </div>
                                             </div>
                                             @if($buysell->machineryBuySellInfo->warranty=="Yes")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Warranty Period</span>
                                                     </div>
@@ -465,7 +465,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Certification</span>
                                                 </div>
@@ -480,7 +480,7 @@
                                                 </div>
                                             </div>
                                             @if($buysell->machineryBuySellInfo->certification=="Yes")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Certification Details</span>
                                                     </div>
@@ -495,7 +495,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Additional Trade Notes</span>
                                                 </div>
@@ -509,7 +509,7 @@
 												</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Product Related Certifications</span>
                                                 </div>
@@ -525,7 +525,7 @@
                                             </div>
                                         @endif
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-1">
                                         <hr class="horizontal-line">
                                     </div>
                                 @endif
@@ -535,7 +535,7 @@
                                     <h6 class="heading">Payment & Delivery Info<span
                                             class="fa fa-edit edit-btn edit-payment"></span></h6>
                                     @if($buysell->product_service_types == "Buy")
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Target Price</span>
                                             </div>
@@ -560,7 +560,7 @@
                                         </div>
                                     @endif
                                     @if($buysell->product_service_types == "Sell")
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Unit Price</span>
                                             </div>
@@ -584,7 +584,7 @@
                                         </div>
                                     @endif
                                     @if($buysell->product_service_types == "Service")
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500"> Service Charges</span>
                                             </div>
@@ -606,7 +606,7 @@
                                                     </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Service Duration</span>
                                             </div>
@@ -617,7 +617,7 @@
                                             </div>
                                         </div>
                                         @if(in_array("Other", explode(",", $buysell->service_durations)))
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Other Service Duration</span>
                                                 </div>
@@ -629,7 +629,7 @@
                                             </div>
                                         @endif
                                     @else
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Delivery</span>
                                             </div>
@@ -643,7 +643,7 @@
 											</span>
                                             </div>
                                         </div>
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Lead Time</span>
                                             </div>
@@ -659,7 +659,7 @@
                                         </div>
                                     @endif
                                     @if(in_array("Other", explode(",", $buysell->suitable_currencies)))
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Suitable Currency</span>
                                             </div>
@@ -674,7 +674,7 @@
                                             </div>
                                         </div>
                                     @else
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Suitable Currency</span>
                                             </div>
@@ -689,7 +689,7 @@
                                             </div>
                                         </div>
                                     @endif
-                                    <div class="row mb-2 text">
+                                    <div class="row text">
                                         <div class="col-sm-6 col-6">
                                             <span class="font-500">Payment Terms</span>
                                         </div>
@@ -704,7 +704,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mt-4 mb-4">
+                                <div class="my-1">
                                     <hr class="horizontal-line">
                                 </div>
                             </div>
@@ -1450,7 +1450,7 @@
                                     <div class="mt-3" align="right">
                                         <button type="button" class="red-btn next-btn" id="nextBtn1">NEXT</button>
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-1">
                                         <hr class="horizontal-line">
                                     </div>
                                 </div>
@@ -1993,7 +1993,7 @@
                                     <div class="mt-3" align="right">
                                         <button type="submit" class="red-btn" disabled>UPDATE</button>
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-1">
                                         <hr class="horizontal-line">
                                     </div>
                                 </div>

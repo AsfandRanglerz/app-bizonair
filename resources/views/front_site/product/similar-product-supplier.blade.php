@@ -121,7 +121,7 @@
 {{--                                                    <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
 {{--                                                </div>--}}
                                                 <div class="d-sm-inline-block my-1">
-                                                    <a href=""  class="pt-1 pb-1 pl-2 pr-2 red-btn" @if(Auth::check()) data-toggle="modal" data-target="#contactFormPDP" @else class="pre-login" @endif >Contact Us</a>
+                                                    <a href=""  class="pt-1 pb-1 pl-2 pr-2 red-btn" @if(Auth::check()) data-toggle="modal" data-target="#contactFormPDP" @else class="pre-login" @endif >CONTACT</a>
                                                     <!-- Modal -->
                                                     <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                         <div class="modal-dialog contact-form" role="document">
@@ -239,7 +239,7 @@
                                     @endforeach
                                 @else
                                     <div class="ml-1 mr-1 row product-content-container">
-                                        <p>No Product Found Related To This Category...</p>
+                                        <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                                     </div>
                                 @endif
 

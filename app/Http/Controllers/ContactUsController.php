@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Storage;
 use Illuminate\Http\Request;
 use PragmaRX\Countries\Package\Countries;
 
@@ -53,10 +53,10 @@ class ContactUsController extends Controller
             if($request->hasFile('image')){
                 $image = $request->file('image');
                 $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
-                $file = 'assets/front_site/contact-bizonair/';
-                $image->move(public_path($file), $image_name);
-                $path = $file . $image_name;
-                $data['$contact']->image = $path;
+                $image->storeAs('contact-us/',$image_name,'s3');
+                $path = 'contact-us'.'/'.$image_name;
+                $url = Storage::disk('s3')->url($path);
+                $data['$contact']->image = $url;
             }
             $data['$contact']->save();
             \Mail::to('info@bizonair.com')->send(new \App\Mail\ContactUsMail($data));
@@ -64,7 +64,7 @@ class ContactUsController extends Controller
             if (1 == 1) {
 
                 $data['feedback'] = "true";
-                $data['msg'] = 'Contact saved  successfully !';
+                $data['msg'] = 'Contact Submitted Successfully !';
                 $data['url'] = route('contact-us');
 
 
@@ -148,10 +148,10 @@ class ContactUsController extends Controller
             if($request->hasFile('image')){
                 $image = $request->file('image');
                 $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
-                $file = 'assets/front_site/contact-supplier/';
-                $image->move(public_path($file), $image_name);
-                $path = $file . $image_name;
-                $data['$contact']->image = $path;
+                $image->storeAs('contact-us/',$image_name,'s3');
+                $path = 'contact-us'.'/'.$image_name;
+                $url = Storage::disk('s3')->url($path);
+                $data['$contact']->image = $url;
             }
             $data['$contact']->save();
 
@@ -161,7 +161,7 @@ class ContactUsController extends Controller
             if (1 == 1) {
 
                 $data['feedback'] = "true";
-                $data['msg'] = 'Contact saved  successfully !';
+                $data['msg'] = 'Contact Submitted Successfully !';
                 $data['url'] = url()->previous();
 
 

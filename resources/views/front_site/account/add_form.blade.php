@@ -64,13 +64,13 @@
                                     </div>
                                     <div class="form-row">
                                         <h6 class="w-100">Contact Person</h6>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6 mb-1">
                                             <label>First Name <span class="required">*</span></label>
                                             <input type="text" name="first_name" value="{{$user->first_name}}"
                                                    class="form-control is-valid" required placeholder="First Name">
                                             <small class="text-danger" id="last_name_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6 mb-1">
                                             <label>Last Name <span class="required">*</span></label>
                                             <input type="text" name="last_name" class="form-control is-valid"
                                                    value="{{$user->last_name}}" required placeholder="Last Name">
@@ -194,7 +194,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6 mb-1">
                                             <label>Country/Region <span class="required">*</span></label>
                                             <select name="country" id="country_id" required class="form-control choose-country">
                                                 <option disabled selected>Select Country/Region</option>
@@ -223,7 +223,7 @@
                                             </select>
                                             <small class="text-danger" id="city_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6 mb-1">
                                             <label>Street Address <small class="font-500">(Optional)</small></label>
                                             <input type="text" name="street_address" class="form-control"
                                                    placeholder="Input Business Address OR Home Address">
@@ -275,12 +275,12 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6 mb-1">
                                             <label>Postcode <small class="font-500">(Optional)</small></label>
                                             <input type="text" name="postcode" class="form-control" id="postCode" placeholder="Input Post Code">
                                             <small class="text-danger" id="postcode_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6 mb-1">
                                             <label>Website <small class="font-500">(Optional)</small></label>
                                             <input type="url" name="website" class="form-control" id="webSite"
                                                    name="website" placeholder="Example: https://www.bizonair.com">

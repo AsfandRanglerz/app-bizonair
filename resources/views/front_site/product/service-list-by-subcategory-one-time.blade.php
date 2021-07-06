@@ -201,7 +201,7 @@
                                 @endforeach
                                 @else
                                     <div class="ml-1 mr-1 row product-content-container">
-                                        <p>No Product Found Related To This Category...</p>
+                                        <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                                     </div>
                                  @endif
                             </div>

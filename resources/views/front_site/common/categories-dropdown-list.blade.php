@@ -38,14 +38,17 @@
         </div>
         <div class="tab-pane fade" id="careersTab" role="tabpanel">
             <div class="row m-0 py-1">
-                <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="{{ route('jobs-portal') }}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Post A Job</a>
+                <div class="col-3 px-1 pro-categories-tab-links pro-cat-careers">
+                    <a href="{{ route('view-form-job-management') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Post A Job</a>
                 </div>
-                <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="{{ route('jobs-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Post Your CV</a>
+                <div class="col-3 px-1 pro-categories-tab-links pro-cat-careers">
+                    <a href="#" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Post Your CV</a>
                 </div>
-                <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="{{ route('cv-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Explore All Jobs</a>
+                <div class="col-3 px-1 pro-categories-tab-links pro-cat-careers">
+                    <a href="{{ route('jobs-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Explore All Jobs</a>
+                </div>
+                <div class="col-3 px-1 pro-categories-tab-links pro-cat-careers">
+                    <a href="{{ route('cv-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Explore All CV's</a>
                 </div>
             </div>
         </div>

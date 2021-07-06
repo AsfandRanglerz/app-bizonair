@@ -11,7 +11,7 @@
 
 
         <div class="main-container">
-            <div class="container-fluid">
+            <div class="container-fluid px-2 py-2">
 
               @include('front_site.common.garments-nav')
 
@@ -48,14 +48,14 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="mt-4 compare-container">
+                            <div class="mt-2 compare-container">
                                 <div class="mb-2 compare-cancel-btns">
                                     <a href="{{route('products-compare',['category'=>$category])}}" class="pt-1 pb-1 pl-2 pr-2 red-btn" type="button">Compare</a>
                                     <a href="#" class="pt-1 pb-1 pl-2 pr-2 red-btn cancel-btn" type="button">Cancel</a>
                                 </div>
                             </div>
 
-                            <div class="mt-4 product-main-container">
+                            <div class="mt-2 product-main-container">
                                 <ul class="ml-1 mr-1 nav nav-tabs">
                                     <li class="list">
                                         <a href="{{route('suppliers-products',['category'=>$category->slug,'subcategory'=>$subcategory,'childsubcategory'=>$childsubcategory->slug])}}" class="text-uppercase link">REGULAR SUPPLIERS</a>
@@ -74,20 +74,17 @@
                                     </li>
 
                                 </ul>
-                                <div class="d-sm-block d-flex flex-column ml-1 mr-1 mt-3 mb-3">
+                                <div class="mx-1 my-1 d-flex prod-li-by-sub-cat-checkboxes">
                                     <div class="d-inline-block custom-control custom-checkbox">
-                                        <input type="checkbox" value="premium" class="custom-control-input"
-                                               id="Premium">
+                                        <input type="checkbox" value="premium" class="custom-control-input" id="Premium">
                                         <label class="custom-control-label" for="Premium">Premium</label>
                                     </div>
                                     <div class="d-inline-block ml-lg-2 custom-control custom-checkbox">
-                                        <input type="checkbox" value="corporate" class="custom-control-input"
-                                               id="Corporate">
+                                        <input type="checkbox" value="corporate" class="custom-control-input" id="Corporate">
                                         <label class="custom-control-label" for="Corporate">Corporate</label>
                                     </div>
                                     <div class="d-inline-block ml-lg-2 custom-control custom-checkbox">
-                                        <input type="checkbox" value="trustsign" class="custom-control-input"
-                                               id="trustSign">
+                                        <input type="checkbox" value="trustsign" class="custom-control-input" id="trustSign">
                                         <label class="custom-control-label" for="trustSign">Trust Sign</label>
                                     </div>
                                 </div>
@@ -132,7 +129,7 @@
                                                                                 @else
                                                                                     <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
                                                                                 @endif
-                                                                                <div class="form-group mt-4 mb-0">
+                                                                                <div class="form-group mt-2 mb-0">
                                                                                     <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="red-btn" data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif type="submit">Yes</button>
                                                                                     <button class="red-btn" data-dismiss="modal" aria-hidden="true">No</button>
 
@@ -173,8 +170,8 @@
                                                         {{--                                                    <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                         {{--                                                </div>--}}
                                                         <div class="d-sm-inline-block d-flex flex-column align-items-center">
-                                                            <a href="#" class="mb-md-0 mb-1 p-0 red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
-                                                            <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
+                                                            <a href="#" class="mb-md-0 mb-1 p-0 red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
+                                                            <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                                 <div class="modal-dialog contact-form" role="document">
@@ -307,37 +304,33 @@
                                     @endforeach
                                 @else
                                     <div class="ml-1 mr-1 row product-content-container">
-                                        <p>No Product Found Related To This Category...</p>
+                                        <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                                     </div>
                                 @endif
                             </div>
-                            <div align="center" class="my-4">
+                            <div align="center">
                         <a href="#" class="load-more red-btn">Load More<span class="ml-2 fa fa-spinner" aria-hidden="true"></span></a>
                     </div>
 {{--                            {{ $products->links() }}--}}
                         </div>
 
-                        <div class="col-md-3 p-lg-3 p-0 half-side-content">
-                            <h3 class="mb-4 text-center main-heading">TOP COMPANIES</h3>
-                            <div class="h-auto top-companies">
-                                <div>
-                                    @foreach($topcompanies as $comp)
-                                        <div class="top-companies-card">
-                                            <img alt="100x100" src="{{$ASSET.'/front_site/images/company-images/'.$comp->logo }}"
-                                                 data-holder-rendered="true" height="145" class="w-100 object-contain border-grey">
-                                            <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$comp->id)}}">
-                                                <div class="companies-card-content">
-                                                    <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
-                                                    <span class="company-nm">{{$comp->company_name}}</span>
-                                                    <p class="company-content">{{substr_replace($comp->company_introduction, "...", 100) }}</p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    @endforeach
-                                </div>
-                                <div class="text-right">
-                                    <a href="{{route('view-all-companies')}}" class="red-link view-all">VIEW ALL</a>
-                                </div>
+                        <div class="px-0 mt-md-0 mt-2 h-auto col-xl-2 col-lg-3 col-md-4 half-side-content">
+                            <h3 class="text-center main-heading">TOP COMPANIES</h3>
+                            <div class="position-relative top-companies">
+                                @foreach($topcompanies as $comp)
+                                    <div class="top-companies-card">
+                                        <img alt="100x100" src="{{$ASSET.'/front_site/images/company-images/'.$comp->logo }}"
+                                             data-holder-rendered="true" height="145" class="w-100 object-contain border-grey">
+                                        <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$comp->id)}}">
+                                            <div class="companies-card-content">
+                                                <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
+                                                <span class="company-nm">{{$comp->company_name}}</span>
+                                                <p class="company-content">{{substr_replace($comp->company_introduction, "...", 100) }}</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endforeach
+                                <a href="{{route('view-all-companies')}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
                             </div>
                         </div>
 

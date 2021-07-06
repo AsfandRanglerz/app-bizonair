@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CompanyProfile;
 use App\User;
+use Storage;
 use Illuminate\Http\Request;
 use PragmaRX\Countries\Package\Countries;
 
@@ -75,6 +76,14 @@ class AboutUsController extends Controller
             $data['$contact']->country= request('country');
             $data['$contact']->description= request('description');
             $data['$contact']->terms_service= request('terms');
+            if($request->hasFile('image')){
+                $image = $request->file('image');
+                $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('contact-us/',$image_name,'s3');
+                $path = 'contact-us'.'/'.$image_name;
+                $url = Storage::disk('s3')->url($path);
+                $data['$contact']->image = $url;
+            }
             $data['$contact']->save();
 
             $user = \App\User::where('id',$request->userId)->first();
@@ -83,7 +92,7 @@ class AboutUsController extends Controller
             if (1 == 1) {
 
                 $data['feedback'] = "true";
-                $data['msg'] = 'Contact saved  successfully !';
+                $data['msg'] = 'Contact Submitted Successfully !';
                 $data['url'] = url()->previous();
 
 

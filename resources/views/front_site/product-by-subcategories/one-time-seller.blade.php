@@ -11,7 +11,7 @@
 
 
         <div class="main-container">
-            <div class="container-fluid px-2">
+            <div class="container-fluid px-2 py-2">
 
               @include('front_site.common.garments-nav')
 
@@ -144,9 +144,9 @@
                                                     <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                                     <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
                                                     <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ moneyFormat($prod->unit_price_from) }} - {{ moneyFormat($prod->unit_price_to) }}   @else {{ moneyFormat($prod->target_price_from) }} - {{ moneyFormat($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                                    <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
+                                                    <div class="mt-2 mb-0 text-uppercase place-day">
                                                         <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
-                                                        <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                                        <p>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-6 p-1 border-grey">
@@ -163,7 +163,7 @@
                 {{--                                            <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                 {{--                                        </div>--}}
                                                         <div class="d-flex column-gap-4">
-                                                        <a href="#" class="p-0 red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                                        <a href="#" class="p-0 red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                             <div class="modal-dialog contact-form" role="document">
@@ -299,7 +299,7 @@
                                 @endforeach
                                 @else
                                     <div class="mx-0 row product-content-container">
-                                        <p>No Product Found Related To This Category...</p>
+                                        <p class="mb-0 py-2 px-2">No Product Found Related To This Category...</p>
                                     </div>
                                  @endif
                             </div>

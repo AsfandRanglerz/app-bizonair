@@ -7,6 +7,7 @@ use App\CompanyImage;
 use App\CompanyProfile;
 use App\Notification;
 use App\UserCompany;
+use Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -57,7 +58,14 @@ class CompanyController extends Controller
             $num = preg_replace('/^(?:\+?' . request('alternate_contact_country_code') . '|0)?/', request('alternate_contact_country_code'), request('alternate_contact'));
             $num = ($num == request('alternate_contact_country_code')) ? '' : $num;
             $export_market = "";
-            $logo_name = $companyHelper->uploadLogo($request);
+            $logo_name="";
+            if($request->hasFile('logo_image')){
+                $image = $request->file('logo_image');
+                $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('companies/',$image_name,'s3');
+                $path = 'companies'.'/'.$image_name;
+                $logo_name = Storage::disk('s3')->url($path);
+            }
             if ($request->export_market) {
                 $export_market = implode(',', $request->export_market);
             }
@@ -174,12 +182,11 @@ class CompanyController extends Controller
         }
 
         if ($request->file('logo_image')) {
-            if ($company->logo != 'no-image.png') {
-                \File::delete(public_path('assets/front_site/images/company-images/' . $company->logo));
-            }
             $logo_name = rand(1000, 9999) . time() . '.' . $request->file('logo_image')->getClientOriginalExtension();
-            $request->file('logo_image')->move('public/assets/front_site/images/company-images', $logo_name);
-            $company->logo = $logo_name;
+            $request->file('logo_image')->storeAs('companies/',$logo_name,'s3');
+            $path = 'companies'.'/'.$logo_name;
+            $url = Storage::disk('s3')->url($path);
+            $company->logo = $url;
         }
         $num = preg_replace('/^(?:\+?' . request('alternate_contact_country_code') . '|0)?/', request('alternate_contact_country_code'), request('alternate_contact'));
         $num = ($num == request('alternate_contact_country_code')) ? '' : $num;
@@ -220,9 +227,11 @@ class CompanyController extends Controller
         if ($request->file) {
             $image = $request->file('file');
             $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
-            $image->move('public/assets/front_site/images/company-images', $image_name);
+            $image->storeAs('companies/',$image_name,'s3');
+            $path = 'companies'.'/'.$image_name;
+            $url = Storage::disk('s3')->url($path);
             CompanyImage::create([
-                'image' => $image_name, 'title' => $image->getClientOriginalName(), 'company_id' => $request->companyId,
+                'image' => $url, 'title' => $image->getClientOriginalName(), 'company_id' => $request->companyId,
             ]);
         }
     }
@@ -384,7 +393,7 @@ class CompanyController extends Controller
         // }
 
         $user = User::where('email', $invite->email)->first();
-           $company = CompanyProfile::where('id',$invite->company_id)->first();
+        $company = CompanyProfile::where('id',$invite->company_id)->first();
 
         if ($user) {
 //            $usercompany = new \App\UserCompany();
@@ -654,18 +663,23 @@ class CompanyController extends Controller
         return json_encode($data);
     }
 
-    public function leave_office()
+    public function leave_office(Request $request)
     {
-        $user = \App\User::find(request('user_id'));
-        if ($user) {
-            $user->company_id = null;
-            $user->is_admin = 0;
-            $user->is_member = 0;
-            if ($user->save()) {
-                $data['feedback'] = 'true';
-                $data['msg'] = 'Office Leaved';
-                $data['url'] = route('user-dashboard');
-            }
+        $usercompany = \App\UserCompany::where('user_id',request('user_id'))->where('company_id',request('company_id'))->first();
+        \DB::delete('delete from user_companies where id = ?',[$usercompany->id]);
+        session()->forget('company_id');
+        $usercomp = \App\UserCompany::where('user_id',Auth::id())->first();
+        if($usercomp){
+            \session()->put('company_id',$usercomp->company_id);
+        }else{
+            \session()->put('company_id','');
+        }
+
+        if ($usercompany) {
+            $data['feedback'] = 'true';
+            $data['msg'] = 'Office Leaved';
+            $data['url'] = route('user-dashboard');
+
         } else {
             $data['feedback'] = 'false';
             $data['msg'] = 'Something went Wrong';
@@ -679,9 +693,13 @@ class CompanyController extends Controller
     public function uploadAvatar(Request $request)
     {
         $user = \App\User::find(\Auth::id());
-        if (request()->file('avatar')) {
-            $profile_pic = file_uploader(request()->file('avatar'), $user, 'users');
-            $user->avatar = $profile_pic;
+        if($request->hasFile('avatar')){
+            $image = $request->file('avatar');
+            $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('users/',$image_name,'s3');
+            $path = 'users'.'/'.$image_name;
+            $url = Storage::disk('s3')->url($path);
+            $user->avatar = $url;
             $user->save();
         }
         return 1;
@@ -724,7 +742,7 @@ class CompanyController extends Controller
                     'name' => $value->user->name,
                     'first_name' => $value->user->first_name,
                     'last_name' => $value->user->last_name,
-                    'avatar' => ($value->user->avatar != 'users/default.png') ? url('public/storage/' . $value->user->avatar) : url('public/storage/users/default.png'),
+                    'avatar' => ($value->user->avatar != 'users/default.png') ?  $value->user->avatar : url('public/storage/users/default.png'),
                 ]
             ]);
         }
@@ -863,19 +881,19 @@ class CompanyController extends Controller
             $meeting->company_id = session()->get('company_id');
             $meeting->created_by = \Auth::id();
 
-           if ($meeting->save()) {
-               //         if (1 == 1) {
-               $company = \App\UserCompany::where('user_id','!=',auth()->id())->where('company_id', session()->get('company_id'))->get();
-               foreach ($company as $comp){
+            if ($meeting->save()) {
+                //         if (1 == 1) {
+                $company = \App\UserCompany::where('user_id','!=',auth()->id())->where('company_id', session()->get('company_id'))->get();
+                foreach ($company as $comp){
 
-               $notification = new Notification();
-               $notification->user_id = $comp->user_id;
-               $notification->table_name = 'meetings';
-               $notification->table_data = 'schedule';
-               $notification->prod_comp_id = $comp->company_id;
-               $notification->notification_text = ' Meeting ' . $meeting->title . ' created by ' . auth()->user()->name;
-               $notification->save();
-           }
+                    $notification = new Notification();
+                    $notification->user_id = $comp->user_id;
+                    $notification->table_name = 'meetings';
+                    $notification->table_data = 'schedule';
+                    $notification->prod_comp_id = $comp->company_id;
+                    $notification->notification_text = ' Meeting ' . $meeting->title . ' created by ' . auth()->user()->name;
+                    $notification->save();
+                }
                 $companyId = session()->get('company_id');
                 $members = UserCompany::where('company_id',$companyId)->with('user')->get();
 

@@ -2,61 +2,6 @@
 
 @section('content')
     <body>
-    <style>
-        @media (min-width: 1200px) {
-            .product-info-container {
-                max-width: 775px;
-            }
-        }
-        .suppliers-products .products-slider {
-            height: 135px!important;
-        }
-
-        .suppliers-products .products-slider .listing {
-            height: 100%;
-        }
-
-        .suppliers-products .products-slider img {
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .suppliers-products .lSSlideOuter .lSPager.lSGallery img {
-            height: 75px;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        .suppliers-products .lSSlideOuter .lSPager.lSGallery li {
-            opacity: 0.5;
-            border: 1px solid #bababa75;
-            transition: .5s;
-        }
-
-        .suppliers-products .lSSlideOuter .lSPager.lSGallery li.active,
-        .suppliers-products .lSSlideOuter .lSPager.lSGallery li:hover {
-            border: 1px solid #bababa75;
-            border-radius: 0;
-            opacity: 1;
-        }
-
-        .suppliers-products .lSAction > a {
-            filter: brightness(0.5);
-        }
-
-        .product-info-container {
-            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-            padding: 15px;
-        }
-        .product-info {
-            box-shadow: 0 4px 8px 0 rgb(0 0 0 / 0%), 0 6px 20px 0 rgb(0 0 0 / 18%);
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        .product-info:last-child {
-            margin-bottom: 0;
-        }
-    </style>
     <main id="maincontent" class="product-details suppliers-products">
         @include('front_site.common.user-suppliers-banner')
         <div class="my-1 p-1 container-lg product-info-container">
@@ -82,13 +27,13 @@
                                 <div class="p-2 rounded-8px border-grey">
                                      <div>
                                         <a class="text-reset" href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
-                                        <h5 class="mb-4 font-weight-bold heading one-line-character-text">{{strtoupper($prod->product_service_name)}}</h5>
+                                        <h5 class="font-weight-bold heading one-line-character-text">{{strtoupper($prod->product_service_name)}}</h5>
                                         </a>
                                          <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                          <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
                                          <p class="price font-500 overflow-text-dots-subject one-line-character-text"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ moneyFormat($prod->unit_price_from) }} - {{ moneyFormat($prod->unit_price_to) }}   @else {{ moneyFormat($prod->target_price_from) }} - {{ moneyFormat($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                         <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
-                                         <button class="mt-2 mb-md-0 mb-1 p-0 red-btn" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="" data-toggle="tooltip" data-original-title="Send an Inquiry to company on Bizonair portal">SEND A MESSAGE</span></button>
+                                         <p class="mt-1 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                         <button class="mt-2 mb-md-0 mb-1 p-0 red-btn" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="" data-toggle="tooltip" data-original-title="Send an Inquiry to company on Bizonair portal">MESSAGE</span></button>
                                      </div>
                                 </div>
                                 <!-- Modal -->

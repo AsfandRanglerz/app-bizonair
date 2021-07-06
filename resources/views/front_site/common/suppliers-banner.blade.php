@@ -25,8 +25,8 @@
     </div>
 </div>
 <nav class="suppliers-nav">
-    <a href="{{route('suppliers-about-us')}}" class="d-inline-block text-decoration-none link">ABOUT</a>
-    <a href="{{route('suppliers-products')}}" class="d-inline-block text-decoration-none link">PRODS</a>
-    <a href="{{route('suppliers-services')}}" class="d-inline-block text-decoration-none link">SVCS</a>
-    <a href="{{route('suppliers-contact-us')}}" class="d-inline-block text-decoration-none link">CONTACT</a>
+    <a href="{{route('suppliers-about-us')}}" class="d-inline-block text-decoration-none link">ABOUT US</a>
+    <a href="{{route('supplier-products')}}" class="d-inline-block text-decoration-none link">PRODUCTS</a>
+    <a href="{{route('suppliers-services')}}" class="d-inline-block text-decoration-none link">SERVICES</a>
+    <a href="{{route('suppliers-contact-us')}}" class="d-inline-block text-decoration-none link">CONTACT US</a>
 </nav>

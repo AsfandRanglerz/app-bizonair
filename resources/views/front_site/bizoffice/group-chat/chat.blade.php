@@ -17,7 +17,7 @@
         <!-- Sidebar -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" style="background: #d9eefe8c">
+            <div id="page-content-wrapper" >
                 <div class="chatbox-holder" id="app">
                     <div class="chatbox group-chat">
                         <div class="chatbox-top">

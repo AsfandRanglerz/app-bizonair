@@ -27,7 +27,7 @@
 
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-                <div id="page-content-wrapper" style="background: #d9eefe8c">
+                <div id="page-content-wrapper" >
 
                     <div class="px-2 py-1">
                         <div id="companyTab1">
@@ -50,13 +50,13 @@
                                                 class="fa fa-edit edit-btn about-edit-btn" @endif></span></h6>
                                         <p class="text">{{ $company->company_introduction }}</p>
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-1">
                                         <hr>
                                     </div>
                                     <div class="edit-company-section">
                                         <h6 class="heading">Business Information<span @if($usercomp->is_admin==1)
                                                 class="fa fa-edit edit-btn com-edit-btn" @endif></span></h6>
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Name</span>
                                             </div>
@@ -64,7 +64,7 @@
                                                 <span>{{ $company->company_name }}</span>
                                             </div>
                                         </div>
-                                    <!-- <div class="row text mb-2">
+                                    <!-- <div class="row text">
 										<div class="col-sm-6 col-6">
 											<span class="font-500">Designation</span>
 										</div>
@@ -72,7 +72,7 @@
 											<span>@if($user->designation) {{ $user->designation}} @else - @endif</span>
 										</div>
 									</div> -->
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Business Type</span>
                                             </div>
@@ -80,7 +80,7 @@
                                                 <span>{{ $company->business_type}}</span>
                                             </div>
                                         </div>
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Nature of Business</span>
                                             </div>
@@ -89,7 +89,7 @@
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Export Market</span>
                                             </div>
@@ -98,7 +98,7 @@
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Year of Establishment</span>
                                             </div>
@@ -107,7 +107,7 @@
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">No of Employees</span>
                                             </div>
@@ -116,7 +116,7 @@
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Certification</span>
                                             </div>
@@ -125,7 +125,7 @@
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Annual Turnover(In USD Million)</span>
                                             </div>
@@ -134,7 +134,7 @@
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <!-- <div class="row text mb-2">
+                                        <!-- <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">IE Code</span>
                                             </div>
@@ -142,7 +142,7 @@
                                                 <span>-</span>
                                             </div>
                                         </div> -->
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Licence No/ Reg No</span>
                                             </div>
@@ -152,12 +152,12 @@
                                             </div>
                                         </div>
                                         <div class="edit-location-section">
-                                            <div class="mt-4 mb-4">
+                                            <div class="my-1">
                                                 <hr>
                                             </div>
                                             <h6 class="heading">Additional Information<span @if($usercomp->is_admin==1)
                                                     class="fa fa-edit edit-btn com-edit-btn" @endif></span></h6>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Business Owner</span>
                                                 </div>
@@ -166,7 +166,7 @@
                                                             - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Alternate Contact Number</span>
                                                 </div>
@@ -175,7 +175,7 @@
                                                             - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Alternate Email</span>
                                                 </div>
@@ -184,7 +184,7 @@
                                                             - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row text mb-2">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Alternate Office Address</span>
                                                 </div>
@@ -193,7 +193,7 @@
                                                             - @endif</span>
                                                 </div>
                                             </div>
-                                        <!-- <div class="row text mb-2">
+                                        <!-- <div class="row text">
 										<div class="col-sm-6 col-6">
 											<span class="font-500">State</span>
 										</div>
@@ -201,7 +201,7 @@
 											<span>{{ $user->state}}</span>
 										</div>
 									</div>
-									<div class="row text mb-2">
+									<div class="row text">
 										<div class="col-sm-6 col-6">
 											<span class="font-500">Country</span>
 										</div>
@@ -209,7 +209,7 @@
 											<span>{{ $user->country}}</span>
 										</div>
 									</div>
-									<div class="row text mb-2">
+									<div class="row text">
 										<div class="col-sm-6 col-6">
 											<span class="font-500">Mobile</span>
 										</div>
@@ -217,7 +217,7 @@
 											<span>{{ $user->phone_no}}</span>
 										</div>
 									</div>
-									<div class="row text mb-2">
+									<div class="row text">
 										<div class="col-sm-6 col-6">
 											<span class="font-500">Email</span>
 										</div>
@@ -227,7 +227,7 @@
 									</div> -->
                                         </div>
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-1">
                                         <hr>
                                     </div>
                                 </div>
@@ -236,7 +236,7 @@
                                     <div class="edit-location-section">
                                         <h6 class="heading">Additional Information<span
                                                 class="fa fa-edit edit-btn extra-edit-btn"></span></h6>
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Business Owner</span>
                                             </div>
@@ -245,7 +245,7 @@
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Alternate Contact Number</span>
                                             </div>
@@ -254,7 +254,7 @@
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Alternate Email</span>
                                             </div>
@@ -263,7 +263,7 @@
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text mb-2">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Alternate Office Address</span>
                                             </div>
@@ -272,7 +272,7 @@
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                    <!-- <div class="row text mb-2">
+                                    <!-- <div class="row text">
 										<div class="col-sm-6 col-6">
 											<span class="font-500">State</span>
 										</div>
@@ -280,7 +280,7 @@
 											<span>{{ $user->state}}</span>
 										</div>
 									</div>
-									<div class="row text mb-2">
+									<div class="row text">
 										<div class="col-sm-6 col-6">
 											<span class="font-500">Country</span>
 										</div>
@@ -288,7 +288,7 @@
 											<span>{{ $user->country}}</span>
 										</div>
 									</div>
-									<div class="row text mb-2">
+									<div class="row text">
 										<div class="col-sm-6 col-6">
 											<span class="font-500">Mobile</span>
 										</div>
@@ -296,7 +296,7 @@
 											<span>{{ $user->phone_no}}</span>
 										</div>
 									</div>
-									<div class="row text mb-2">
+									<div class="row text">
 										<div class="col-sm-6 col-6">
 											<span class="font-500">Email</span>
 										</div>
@@ -305,7 +305,7 @@
 										</div>
 									</div> -->
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-1">
                                         <hr>
                                     </div>
                                 </div>
@@ -340,9 +340,7 @@
                                         <div class="px-0 py-1 tab-pane fade show active" id="tabCom" role="tabpanel"
                                              aria-labelledby="tabCom">
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="company" class="font-500">Company Name <span
-                                                        class="required">*</span></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 <input type="text" id="company" class="form-control" name="company_name"
                                                        value="{{$company->company_name}}"
                                                        placeholder="Company Name">
@@ -358,9 +356,7 @@
                                             </select>
                                             <small class="text-danger" id="industry_error"></small>
                                         </div> -->
-                                            <div class="form-group col-md-6">
-                                                <label for="industry" class="label d-block">Business Category <span
-                                                        class="required">*</span></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 <select class="form-control select2-multiple1" id="industry"
                                                         name="industry[]"
                                                         multiple="multiple">
@@ -374,8 +370,6 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6 business-select">
-                                                <label class="label d-block">Business Type <span
-                                                        class="required">*</span></label>
                                                 <select class="form-control select2-multiple2" name="business_type[]"
                                                         multiple="multiple">
                                                     <?php $business_types = explode(",", $company->business_type); ?>
@@ -415,13 +409,11 @@
                                                        placeholder="Input Other Business Type"
                                                        class="form-control">
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="natBusiness" class="font-500">Nature of Business <small
-                                                        class="font-500">(Optional)</small></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 <select class="form-control" id="natBusiness" name="business_nature">
                                                     <option value=""
                                                             @if($company->business_nature == null) selected @endif >
-                                                        ---- Select Nature of Business ---
+                                                        Select Nature of Business (Optional)
                                                     </option>
                                                     <option value="Proprietorship"
                                                             @if($company->business_nature == "Proprietorship") selected @endif >
@@ -451,35 +443,29 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="busReg" class="font-500">Business License No. / Registration
-                                                    No. <small class="font-500">(Optional)</small></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 <input type="text" id="busReg" class="form-control"
                                                        name="license_reg_no"
                                                        value="{{ old('license_reg_no', $company->registeration_no) }}"
-                                                       placeholder="Input Registration Number (if any)">
+                                                       placeholder="Input Business License No./Registration No. (Optional) (if any)">
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="year_established" class="label">Year Established <small
-                                                        class="font-500">(Optional)</small></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 <input type="number" class="form-control" id="year_established"
                                                        name="year_established"
                                                        onKeyPress="if(this.value.length==4) return false;"
                                                        value="{{ old('year_established', $company->year_established) }}"
-                                                       placeholder="Input the Year Company was Established">
+                                                       placeholder="Year Company was Established (Optional)">
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="no_of_employees" class="label">Number of Employees <small
-                                                        class="font-500">(Optional)</small></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 {{--                                                <input type="number" class="form-control" id="no_of_employees"--}}
                                                 {{--                                                       name="no_of_employees"--}}
                                                 {{--                                                       value=""--}}
                                                 {{--                                                       placeholder="Number of employees">--}}
                                                 <select class="form-control" name="no_of_employees"
                                                         id="no_of_employees">
-                                                    <option value="">Input total number of Employees</option>
+                                                    <option value="" selected disabled>Input total number of Employees (Optional)</option>
                                                     <option
                                                         value="0-10" {{ (old('no_of_employees', $company->no_of_employees) == '0-10') ? 'selected' : '' }}>
                                                         0-10
@@ -498,20 +484,16 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="annual_turnover" class="label">Annual Turnover <small
-                                                        class="font-500">(Optional)</small></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 <input type="text" class="form-control" id="annual_turnover"
                                                        name="annual_turnover" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
                                                        data-type="currency"
                                                        value="{{ old('annual_turnover', $company->annual_turnover) }}"
-                                                       placeholder="Input total turnover in Dollars i.e. $1,000,000">
+                                                       placeholder="Annual Turnover (Optional) - Input total turnover in Dollars i.e. $1,000,000">
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="exMarket" class="font-500">Export Market <small
-                                                        class="font-500">(Optional)</small></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 <select class="form-control select2-multiple3" id="exMarket"
                                                         name="export_market[]" multiple>
                                                     <?php $export_markets = explode(",", $company->export_market); ?>
@@ -577,8 +559,7 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="label d-block">Certifications <small class="font-500">(Optional)</small></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 <select class="form-control select2-multiple4" name="certifications[]"
                                                         multiple="multiple">
                                                     <?php $certifications = explode(",", $company->certifications); ?>
@@ -681,8 +662,6 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-12 mb-2">
-                                                <label for="prDes" class="font-500">Company Introduction <small
-                                                        class="font-500">(Optional)</small></label>
                                                 {{--                                                <input type="text" id="prDes" class="form-control "--}}
                                                 {{--                                                       name="company_introduction"--}}
                                                 {{--                                                       value=""--}}
@@ -690,7 +669,7 @@
                                                 <small class="text-danger" id="company_introduction_error"></small>
                                                 <textarea class="form-control" name="company_introduction"
                                                           maxlength="1200"
-                                                          placeholder="Introduce your company in 1200 characters"
+                                                          placeholder="Company Introduction (Optional) - Introduce your company in 1200 characters"
                                                           id="company_introduction"
                                                           rows="5">{{ old('company_introduction', $company->company_introduction) }}</textarea>
                                                 <small class="text-danger" id="company_introduction_error"></small>
@@ -698,11 +677,11 @@
                                             </div>
                                         </div>
                                         <!-- <div class="form-row">
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-6 mb-1">
                                                 <label for="ieCode" class="font-500">IE Code</label>
                                                 <input type="text" id="ieCode" class="form-control" name="IE Code" placeholder="IE Code">
                                             </div>
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-6 mb-1">
                                                 <label for="busReg" class="font-500">Business License No. / Registration No.</label>
                                                 <input type="text" id="busReg" class="form-control" name="Business License No. / Registration No." placeholder="Business License No. / Registration No.">
                                             </div>
@@ -725,47 +704,39 @@
                                             <input type="text" id="prDes" class="form-control" name="Profile / Brief Description" placeholder="Profile / Brief Description">
                                         </div> -->
                                         <div class="form-row">
-                                            <div class="form-group mb-3 col-md-6">
-                                                <label for="business_owner" class="font-500">Business Owner <small
-                                                        class="font-500">(Optional)</small></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 <input type="text" class="form-control" id="business_owner"
                                                        name="business_owner"
                                                        value="{{ old('business_owner', $company->business_owner) }}"
-                                                       placeholder="Input Business Owner Name">
+                                                       placeholder="Business Owner (Optional) - Input Business Owner Name">
                                             </div>
-                                            <div class="form-group mb-3 col-md-6">
-                                                <label for="alternate_contact" class="font-500">Alternate Contact Number
-                                                    <small class="font-500">(Optional)</small></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 <input type="text" class="form-control mobileNum is-valid"
                                                        id="alternate_contact"
                                                        name="alternate_contact"
                                                        value="{{ old('alternate_contact', $company->alternate_contact) }}"
-                                                       placeholder="03xxxxxxxxx/3xxxxxxxxx">
+                                                       placeholder="Alternate Contact No. (Optional) - 03xxxxxxxxx/3xxxxxxxxx">
                                                 <input type="hidden" name="alternate_contact_country_code">
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group mb-3 col-md-6">
-                                                <label for="alternate_email" class="font-500">Alternate Email <small
-                                                        class="font-500">(Optional)</small></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 <input type="email" class="form-control" id="alternate_email"
                                                        name="alternate_email"
                                                        value="{{ old('alternate_email', $company->alternate_email) }}"
-                                                       placeholder="Input alternate Email Address">
+                                                       placeholder="Input alternate Email Address (Optional)">
                                             </div>
-                                            <div class="form-group mb-3 col-md-6">
-                                                <label for="alternate_address" class="font-500">Alternate Office Address
-                                                    <small class="font-500">(Optional)</small></label>
+                                            <div class="form-group col-md-6 mb-1">
                                                 <input type="text" class="form-control" id="alternate_address"
                                                        name="alternate_address"
                                                        value="{{ old('alternate_address', $company->alternate_address) }}"
-                                                       placeholder="Input Current Office Address">
+                                                       placeholder="Alternate Office Address (Optional) - Input Current Office Address">
                                             </div>
                                         </div>
-                                        <div class="d-flex justify-content-between mt-3">
+                                        <div class="d-flex justify-content-between mt-1">
                                             <button type="submit" class="red-btn">Update</button>
                                         </div>
-                                        <div class="mt-4 mb-4">
+                                        <div class="my-1">
                                             <hr>
                                         </div>
                                     </div>
@@ -773,7 +744,7 @@
                                     {{--                                         aria-labelledby="tabInfo">--}}
                                     {{--                                        --}}
                                     {{--                                        <button type="submit" class="red-btn">Save</button>--}}
-                                    {{--                                        <div class="mt-4 mb-4">--}}
+                                    {{--                                        <div class="my-1">--}}
                                     {{--                                            <hr>--}}
                                     {{--                                        </div>--}}
                                     {{--                                    </div>--}}
@@ -840,15 +811,15 @@
             });
             $('.select2-multiple2').select2({
                 closeOnSelect: false,
-                placeholder: "Choose Business Category",
+                placeholder: "Choose Business Type",
             });
             $('.select2-multiple3').select2({
                 closeOnSelect: false,
-                placeholder: "Choose the Export Market",
+                placeholder: "Choose the Export Market (Optional)",
             });
             $('.select2-multiple4').select2({
                 closeOnSelect: false,
-                placeholder: "Input Certifications (If any)",
+                placeholder: "Input Certifications (Optional) (If any)",
             });
 
             var validator = $("form[name='companyForm']").validate({

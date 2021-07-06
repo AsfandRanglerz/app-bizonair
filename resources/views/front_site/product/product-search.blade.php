@@ -98,8 +98,8 @@
                                                         {{--                                            <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                         {{--                                        </div>--}}
                                                         <div class="d-sm-inline-block d-flex flex-column align-items-center">
-                                                            <a href="#" class="mb-md-0 mb-1 p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
-                                                            <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
+                                                            <a href="#" class="mb-md-0 mb-1 p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
+                                                            <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                                 <div class="modal-dialog contact-form" role="document">
@@ -313,7 +313,7 @@
                                                     {{--                                            <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                     {{--                                        </div>--}}
                                                     <div class="d-sm-inline-block d-flex flex-column align-items-center">
-                                                        <a href="#" class="mb-md-0 mb-1 p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                                        <a href="#" class="mb-md-0 mb-1 p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                             <div class="modal-dialog contact-form" role="document">

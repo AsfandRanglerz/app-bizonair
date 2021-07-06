@@ -244,19 +244,19 @@ function get_user_image($user)
             if ($user->avatar == 'users/default.png') {
                 return url('public/storage/users/male-avature.png');
             } else {
-                return url('public/storage/' . $user->avatar);
+                return url($user->avatar);
             }
         } elseif($user->gender == 'Female') {
             if ($user->avatar == 'users/default.png') {
                 return url('public/storage/users/female-avature.png');
             } else {
-                return url('public/storage/' . $user->avatar);
+                return url($user->avatar);
             }
         } else{
             if ($user->avatar == 'users/default.png') {
                 return url('public/storage/users/male-avature.png');
             } else {
-                return url('public/storage/' . $user->avatar);
+                return url($user->avatar);
             }
         }
 
@@ -462,6 +462,11 @@ function get_buysell_created_at($produserid){
 function get_product_company($prodid){
     $comp = \App\CompanyProfile::where('id',$prodid)->first();
     return $comp['company_name'];
+}
+
+function get_product_manufacturer_company($prodid){
+    $comp = \App\ProductManufacturer::where('product_id',$prodid)->first();
+    return $comp['manufacturer_name'];
 }
 
 function get_category_slug($catid){
@@ -759,6 +764,9 @@ function check_deleted_by_me($convo, $from='deal'){
     elseif($from == 'fav'){
         $delete_convo = \App\BizDealFavConvoDelete::where('conversation_id', $convo->id)->where('created_by', \Auth::id())->first();
     }
+    elseif($from == 'fav_lead'){
+        $delete_convo = \App\BizLeadFavConvoDelete::where('conversation_id', $convo->id)->where('created_by', \Auth::id())->first();
+    }
     else{
         $delete_convo = \App\BizLeadInquiryConvoDelete::where('conversation_id', $convo->id)->where('created_by', \Auth::id())->first();
     }
@@ -776,6 +784,9 @@ function check_in_my_fav($convo, $from='deal'){
     elseif($from == 'fav'){
         $fav_convo = \App\BizDealFavConvoFav::where('conversation_id', $convo->id)->where('created_by', \Auth::id())->first();
     }
+    elseif($from == 'fav_lead'){
+        $fav_convo = \App\BizLeadFavConvoFav::where('conversation_id', $convo->id)->where('created_by', \Auth::id())->first();
+    }
     else{
         $fav_convo = \App\BizLeadInquiryConvoFav::where('conversation_id', $convo->id)->where('created_by', \Auth::id())->first();
     }
@@ -792,6 +803,9 @@ function check_in_my_pin($convo, $from='deal'){
     }
     elseif($from == 'fav'){
         $fav_convo = \App\BizDealFavConvoPin::where('conversation_id', $convo->id)->where('created_by', \Auth::id())->first();
+    }
+    elseif($from == 'fav_lead'){
+        $fav_convo = \App\BizLeadFavConvoPin::where('conversation_id', $convo->id)->where('created_by', \Auth::id())->first();
     }
     else{
         $fav_convo = \App\BizLeadInquiryConvoPin::where('conversation_id', $convo->id)->where('created_by', \Auth::id())->first();
@@ -825,6 +839,17 @@ function count_unread_conversations($from='deal'){
             $q->doesntHave('my_read_messages');
         })->count();
     }
+    elseif($from == 'fav_lead'){
+        $inquiries = \App\BizLeadFavConversation::with('product.company','messages','latestMessage','my_latest_message','latestMessageNotMine')->where(function($q1){
+            $q1->whereHas('product', function($query){
+                $query->whereHas('company', function($q){
+                    $q->where('company_profiles.id', \Session::get('company_id'));
+                });
+            })->orWhere('created_by',\Auth::id());
+        })->whereHas('latestMessageNotMine', function($q){
+            $q->doesntHave('my_read_messages');
+        })->count();
+    }
     else{
         $inquiries = \App\BizLeadInquiryConversation::with('product.company','messages','latestMessage','my_latest_message','latestMessageNotMine')->where(function($q1){
             $q1->whereHas('product', function($query){
@@ -841,6 +866,7 @@ function count_unread_conversations($from='deal'){
 
     return $inquiries;
 }
+
 
 function inquiry_file_uploader($file, $row, $folder)
 {
@@ -863,6 +889,9 @@ function check_in_my_read($convo, $msg_id, $from='deal'){
     }
     elseif($from == 'fav'){
         $fav_convo = \App\BizDealFavConvoRead::where('conversation_id', $convo->id)->where('message_id', $msg_id)->where('created_by', \Auth::id())->first();
+    }
+    elseif($from == 'fav_lead'){
+        $fav_convo = \App\BizLeadFavConvoRead::where('conversation_id', $convo->id)->where('message_id', $msg_id)->where('created_by', \Auth::id())->first();
     }
     else{
         $fav_convo = \App\BizLeadInquiryConvoRead::where('conversation_id', $convo->id)->where('message_id', $msg_id)->where('created_by', \Auth::id())->first();

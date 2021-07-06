@@ -26,7 +26,8 @@ class CareerController extends Controller
                     $q->where('title','Like','%'.$title.'%');
                     $q->orwhere('skills','Like','%'.$title.'%');
                     $q->orwhere('company','Like','%'.$title.'%');
-                })->orwhere(function ($q)use($location){
+                    $q->orwhere('other_company','Like','%'.$title.'%');
+                })->where(function ($q)use($location){
                     $q->where('address','Like','%'.$location.'%');
                     $q->orwhere('city','Like','%'.$location.'%');
                     $q->orwhere('country','Like','%'.$location.'%');
@@ -49,13 +50,14 @@ class CareerController extends Controller
                 $q->orwhere('key_skills','Like','%'.$title.'%');
                 $q->orwhere('functional_area','Like','%'.$title.'%');
                 $q->orwhere('textile_sector','Like','%'.$title.'%');
-            })->orwhere(function ($q)use($location){
+            })->where(function ($q)use($location){
                 $q->orwhere('city','Like','%'.$location.'%');
                 $q->orwhere('country','Like','%'.$location.'%');
             })->get();
         }else{
             $cvs = \App\UploadCv::all();
         }
+
         $data['cvs'] = $cvs;
         $data['page'] = 'jobs.cv-directory';
         return view('front_site.' . $data['page'])->with($data);
@@ -131,13 +133,17 @@ class CareerController extends Controller
         $data['cvs'] = \App\UploadCv::whereBetween('exp_salary',[intval($min),intval($max)])
             ->when($request->functional_area,function ($q)use($request){
                 $q->where('functional_area',$request->functional_area);
-            })->when($request->job_sector,function ($q)use($request){
-                $q->where('textile_sector',$request->job_sector);
-            })->when($request->experience,function ($q)use($request){
-                $q->where('total_experience',$request->experience);
-            })->when($request->experience,function ($q)use($request){
+            })
+            ->when($request->job_sector,function ($q)use($request){
+                $q->where('textile_sector','Like','%'.$request->job_sector.'%');
+            })
+            ->when($request->experience,function ($q)use($request){
+                $q->where('total_experience','Like','%'.$request->experience.'%');
+            })
+            ->when($request->experience,function ($q)use($request){
                 $q->where('key_skills','Like','%'.$request->skills.'%');
-            })->when($request->edu_level,function ($q)use($request){
+            })
+            ->when($request->edu_level,function ($q)use($request){
                 $q->where('edu_level','Like','%'.$request->edu_level.'%');
             })->get();
 

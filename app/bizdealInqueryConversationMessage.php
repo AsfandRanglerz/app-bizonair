@@ -11,7 +11,7 @@ class bizdealInqueryConversationMessage extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function created_by()
+    public function user()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }

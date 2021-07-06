@@ -78,20 +78,17 @@
                                     </li>
 
                                 </ul>
-                                <div class="d-sm-block d-flex flex-column ml-1 mr-1 mt-3 mb-3">
+                                <div class="mx-1 my-1 d-flex prod-li-by-sub-cat-checkboxes">
                                     <div class="d-inline-block custom-control custom-checkbox">
-                                        <input type="checkbox" value="premium" class="custom-control-input"
-                                               id="Premium">
+                                        <input type="checkbox" value="premium" class="custom-control-input" id="Premium">
                                         <label class="custom-control-label" for="Premium">Premium</label>
                                     </div>
                                     <div class="d-inline-block ml-lg-2 custom-control custom-checkbox">
-                                        <input type="checkbox" value="corporate" class="custom-control-input"
-                                               id="Corporate">
+                                        <input type="checkbox" value="corporate" class="custom-control-input" id="Corporate">
                                         <label class="custom-control-label" for="Corporate">Corporate</label>
                                     </div>
                                     <div class="d-inline-block ml-lg-2 custom-control custom-checkbox">
-                                        <input type="checkbox" value="trustsign" class="custom-control-input"
-                                               id="trustSign">
+                                        <input type="checkbox" value="trustsign" class="custom-control-input" id="trustSign">
                                         <label class="custom-control-label" for="trustSign">Trust Sign</label>
                                     </div>
                                 </div>
@@ -180,8 +177,8 @@
     {{--                                                    <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
     {{--                                                </div>--}}
                                                     <div class="d-sm-inline-block d-flex flex-column align-items-center">
-                                                        <a href="#" class="mb-md-0 mb-1 p-0 red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
-                                                        <a href="#" class="mb-md-0 mb-1 p-0 red-btn" type="button" data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
+                                                        <a href="#" class="mb-md-0 mb-1 p-0 red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
+                                                        <a href="#" class="mb-md-0 mb-1 p-0 red-btn" type="button" data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                             <div class="modal-dialog contact-form" role="document">

@@ -14,17 +14,17 @@
                 <div class="px-2 py-2">
                     <div class="">
                         <span
-                            class="heading biz-product-heading mb-1 text-danger d-flex">{{ company_name(session()->get('company_id')) }}</span>
+                            class="heading biz-product-heading text-danger d-flex">{{ company_name(session()->get('company_id')) }}</span>
                         <span
                             class="heading biz-product-heading">MyBiz Active Leads {{ ($request->case && $request->case == 'archive') ? ' - Archived' : '' }}</span>
                         @if($request->case && $request->case == 'archive')
                             <div class="my-3">
-                                <a href="{{ route('products.index') }}" class="blue-btn">Active Products</a>
+                                <a href="{{ route('products.index') }}" class="red-btn">Active Products</a>
                             </div>
                         @else
-                            <div class="my-3 text-sm-left text-center">
+                            <div class="mt-0 mb-2 text-sm-left text-center">
                                 <a href="{{ route('products.create') }}" class="red-btn">Add A New Lead</a>
-                                <a href="{{ route('products.index') }}?case=archive" class="blue-btn">Archived
+                                <a href="{{ route('products.index') }}?case=archive" class="red-btn">Archived
                                     Leads</a>
                             </div>
                         @endif

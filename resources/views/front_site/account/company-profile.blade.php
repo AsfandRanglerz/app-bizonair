@@ -6,27 +6,26 @@
     <main id="maincontent" class="page-main">
         <div class="d-flex" id="dashboardWrapper">
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" style="background: #d9eefe8c">
+            <div id="page-content-wrapper">
 
-                <div class="d-container">
+                <div class="d-container py-2">
                     <div class="company-profile">
-                        <div class="px-0 py-3">
-                            <div class="alert alert-success m-0 mb-2 text-center" id='alert-success' style="display:none;"
+                        <div>
+                            <div class="alert alert-success m-0 mb-0 text-center" id='alert-success' style="display:none;"
                                  role="alert">
                             </div>
                             <div class="alert alert-danger g m-0 mb-2 text-center" id='alert-error' style="display:none;"
                                  role="alert">
                             </div>
-                            <span class="d-block text-center heading main-heading font-24">Company Profile</span>
+                            <span class="d-block text-center mb-0 heading main-heading font-24">Company Profile</span>
                             <form id="companyForm" name="companyForm" autocomplete="off" action="{{route('company-profile-create')}}"
                                   method="post" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="office_code" value="{{ rand(2000, 1900000) }}">
-                                <span class="d-block heading font-18 basic-info">Basic Info</span>
+                                <span class="d-block mt-0 mb-2 heading basic-info">Basic Info</span>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="companyName" class="label">Company Name <span class="required">*</span></label>
-                                        <input type="text" class="form-control is-valid" id="companyName" name="company_name" placeholder="My Textile" required>
+                                        <input type="text" class="form-control is-valid" id="companyName" name="company_name" placeholder="Company Name - My Textile" required>
                                         <small class="text-danger" id="company_name_error"></small>
                                     </div>
                                 <!-- <div class="form-group col-md-6">
@@ -41,8 +40,6 @@
                                     <small class="text-danger" id="industry_error"></small>
                                 </div> -->
                                     <div class="form-group col-md-6">
-                                        <label for="industry" class="label d-block">Business Category <span
-                                                class="required">*</span></label>
                                         <select class="form-control select2-multiple1" required id="industry" name="industry[]"
                                                 multiple>
                                             @foreach (\App\Category::all() as $item)
@@ -54,7 +51,6 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 business-select">
-                                        <label class="label d-block">Business Type <span class="required">*</span></label>
                                         <select class="form-control select2-multiple2" required name="business_type[]"
                                                 multiple="multiple">
                                             <option value="Manufacturer">Manufacturer</option>
@@ -66,15 +62,12 @@
                                         <small class="text-danger" id="business_type_error"></small>
                                     </div>
                                     <div class="form-group col-md-6 other-div">
-                                        <h6 class="w-100 p-0">Add Business Type <span class="required">*</span></h6>
-                                        <input type="text" name="other_business_type" placeholder="Input Other Business Type"
+                                        <input type="text" name="other_business_type" placeholder="Add Business Type - Input Other Business Type"
                                                class="form-control">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="label d-block">Nature of Business <small
-                                                class="font-500">(Optional)</small></label>
                                         <select class="form-control" name="business_nature">
-                                            <option value="" selected disabled>Select Nature of Business</option>
+                                            <option value="" selected disabled>Select Nature of Business (Optional)</option>
                                             <option value="Proprietorship">Proprietorship</option>
                                             <option value="Limited">Limited</option>
                                             <option value="Company">Company</option>
@@ -87,32 +80,25 @@
                                         <small class="text-danger" id="business_nature_error"></small>
                                     </div>
                                     <div class="form-group col-md-6 other-nature-div" style="display: none;">
-                                        <h6 class="w-100 p-0">Add Nature of Business <span class="required">*</span></h6>
-                                        <input type="text" name="other_business_nature" placeholder="Input Other Nature of Business"
+                                        <input type="text" name="other_business_nature" placeholder="Add Nature of Business - Input Other Nature of Business"
                                                class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="registeration_no" class="label">Business License No/Registration No <br> <small
-                                                class="font-500">(Optional)</small></label>
                                         <input type="text" class="form-control" id="registeration_no" name="registeration_no"
-                                               placeholder="Input Registration Number (if any)">
+                                               placeholder="Business License No/Registration No (Optional) - Input Registration Number (if any)">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="year_established" class="label">Year Established <br> <small class="font-500">(Optional)</small></label>
                                         <input type="text" class="form-control" id="year_established" name="year_established"
-                                               placeholder="Input the Year Company was Established">
+                                               placeholder="Year Established (Optional) - Input the Year Company was Established">
                                         <small class="text-danger" id="year_established_error"></small>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="no_of_employees" class="label">Number of Employees <small class="font-500">(Optional)</small></label>
-                                        {{--                            <input type="number" class="form-control" name="no_of_employees" id="no_of_employees"--}}
-                                        {{--                                   placeholder="Input total number of Employees">--}}
                                         <select class="form-control" name="no_of_employees" id="no_of_employees">
-                                            <option value="" selected disabled>Input total number of Employees</option>
+                                            <option value="" selected disabled>Number of Employees (Optional) - Input total number of Employees</option>
                                             <option value="0-10">0-10</option>
                                             <option value="Fewer than 50">Fewer than 50</option>
                                             <option value="Fewer than 100">Fewer than 100</option>
@@ -121,19 +107,16 @@
                                         <small class="text-danger" id="no_of_employees_error"></small>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="label">Annual Turnover <small class="font-500">(Optional)</small></label>
                                         <input type="text" class="form-control"
                                                name="annual_turnover"
                                                id="annual_turnover"
                                                pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
-                                               data-type="currency" placeholder="Input total turnover in Dollars i.e. $1,000,000">
+                                               data-type="currency" placeholder="Annual Turnover (Optional) - Input total turnover in Dollars i.e. $1,000,000">
                                         <small class="text-danger" id="annual_turnover_error"></small>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label class="label d-block">Export Market <small
-                                                class="font-500">(Optional)</small></label>
                                         <select class="form-control select2-multiple3" name="export_market[]"
                                                 multiple="multiple">
                                             <option value="Africa">Africa</option>
@@ -154,8 +137,6 @@
                                         <small class="text-danger" id="export_market_error"></small>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="label d-block">Certifications <small
-                                                class="font-500">(Optional)</small></label>
                                         <select class="form-control select2-multiple4" name="certifications[]"
                                                 multiple="multiple">
                                             <option value="BCI">BCI</option>
@@ -178,7 +159,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <span class="d-block mb-3 heading">LOGO Image <small class="font-500">(Optional | JPG or PNG file only | Upto
+                                    <span class="d-block mb-2 heading">LOGO Image <small class="font-500">(Optional | JPG or PNG file only | Upto
                                                             10MB | Square image recommended)</small></span>
                                     <div class="avatar-wrapper">
                                         <img class="profile-pic" src="{{$ASSET}}/front_site/images/dashboard-logo.jpg"/>
@@ -189,7 +170,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <span class="d-block mb-3 heading">Company Images <small
+                                    <span class="d-block mb-2 heading">Company Images <small
                                             class="font-500">(Optional | JPG & PNG files only | Upto 10MB)</small></span>
                                     <div class="dropzone dz-clickable" id="myDrop">
                                         <div class="dz-default dz-message" data-dz-message="">
@@ -201,45 +182,36 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="label">Company Introduction <span class="required">*</span></label>
                                     <textarea class="form-control" name="company_introduction" maxlength="1200"
-                                              placeholder="Introduce your company in 1200 characters"
+                                              placeholder="Company Introduction - Introduce your company in 1200 characters"
                                               id="company_introduction"
                                               rows="5" required></textarea>
                                     <small class="text-danger" id="company_introduction_error"></small>
                                     <span class="text-danger"><span id="company_introduction_count">0</span>/1200</span>
                                 </div>
-                                <span class="d-block heading font-18 additional-info">Additional Business Info</span>
+                                <span class="d-block heading additional-info">Additional Business Info</span>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label class="label" for="business_owner">Business Owner <small
-                                                class="font-500">(Optional)</small></label>
-                                        <input type="text" class="form-control" placeholder="Input Business Owner Name"
+                                        <input type="text" class="form-control" placeholder="Business Owner (Optional) - Input Business Owner Name"
                                                name="business_owner" id="business_owner">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="alternate_contact" class="label">Alternate Contact Number <small
-                                                class="font-500">(Optional)</small></label>
                                         <input type="tel" class="form-control mobileNum inteltel"
                                                name="alternate_contact"
-                                               id="alternate_contact" placeholder="03xxxxxxxxx/3xxxxxxxxx">
+                                               id="alternate_contact" placeholder="Alternate Contact No (Optional) - 03xxxxxxxxx/3xxxxxxxxx">
                                         <input type="hidden" name="alternate_contact_country_code">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label class="label" for="alternate_email">Alternate Email <small
-                                                class="font-500">(Optional)</small></label>
                                         <input type="email" class="form-control" name="alternate_email"
                                                id="alternate_email"
-                                               placeholder="Input alternate Email Address">
+                                               placeholder="Alternate Email (Optional) - Input alternate Email Address">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="label" for="alternate_address">Alternate Office Address <small
-                                                class="font-500">(Optional)</small></label>
                                         <input type="text" class="form-control" name="alternate_address"
                                                id="alternate_address"
-                                               placeholder="Input Current Office Address">
+                                               placeholder="Alternate Office Address (Optional) - Input Current Office Address">
                                     </div>
                                 </div>
                                 <button type="submit" class="red-btn" disabled>Submit</button>
@@ -298,11 +270,11 @@
             });
             $('.select2-multiple3').select2({
                 closeOnSelect: false,
-                placeholder: "Choose the Export Market",
+                placeholder: "Choose the Export Market (Optional)",
             });
             $('.select2-multiple4').select2({
                 closeOnSelect: false,
-                placeholder: "Input Certifications (If any)",
+                placeholder: "Input Certifications (Optional) (If any)",
             });
             $('.select2-multiple1, .select2-multiple2, .select2-multiple3, .select2-multiple4').on('select2:select', function (e) {
                 $(this).siblings('.select2').find('.select2-selection__choice').siblings('.select2-search--inline').css({'width': 'min-content', 'float': 'right'});

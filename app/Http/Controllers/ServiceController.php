@@ -168,8 +168,8 @@ class ServiceController extends Controller
 
         $company_ids = Product::where('product_service_types', 'Service')->where('category_id', $cat->id)->distinct('company_id')->get()->pluck('company_id');
         $companies = \App\CompanyProfile::whereIn('id',$company_ids)->get();
-
-        return view('front_site.view-all.view-all-regular-service', compact('companies','topcompanies','cats',  'topsellproduct', 'toptensellproduct', 'subcategories', 'urlslug', 'categories'));
+        $textile_partners = \App\TextilePartner::all();
+        return view('front_site.view-all.view-all-regular-service', compact('textile_partners','companies','topcompanies','cats',  'topsellproduct', 'toptensellproduct', 'subcategories', 'urlslug', 'categories'));
     }
 
     public function view_all_service_deals($slug)
@@ -191,7 +191,8 @@ class ServiceController extends Controller
 
         $company_ids = Product::where('product_service_types', 'Service')->where('category_id', $cat->id)->distinct('company_id')->get()->pluck('company_id');
         $companies = \App\CompanyProfile::whereIn('id',$company_ids)->get();
-        return view('front_site.view-all.view-all-service-deals', compact('topcompanies','companies','cats','buyselltopten_selling', 'buysell_selling', 'subcategories', 'urlslug', 'categories'));
+        $textile_partners = \App\TextilePartner::all();
+        return view('front_site.view-all.view-all-service-deals', compact('textile_partners','topcompanies','companies','cats','buyselltopten_selling', 'buysell_selling', 'subcategories', 'urlslug', 'categories'));
     }
 
     public function view_all_companies()

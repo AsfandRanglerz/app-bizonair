@@ -13,12 +13,12 @@
             <div id="page-content-wrapper">
 
                 <div class="  d-container mt-2">
-                    <div class="">
+                    <div class="clearfix">
                         <span
                             class="heading biz-product-heading mb-1 text-danger d-flex">{{ company_name(session()->get('company_id'))??'' }}</span>
                         <span
                             class="heading biz-product-heading">{{ $title }}</span>
-                        <a href="{{ route('company-create-meeting') }}" class="red-btn">Schedule Meeting</a>
+                        <a href="{{ route('company-create-meeting') }}" class="red-btn pull-right">Schedule Meeting</a>
                     </div>
                     @foreach ($listing as $key => $list)
                         <div class="card mt-3 shadow-lg">
@@ -36,7 +36,7 @@
                         {!! $listing->appends(request()->except('page'))->links() !!}
                     </div>
                     @if($listing->isEmpty())
-                        <h3 class="text-center mt-5">No planned meetings yet</h3>
+                        <h3 class="text-center mt-2">No planned meetings yet</h3>
                     @endif
                 </div>
                 <!-- /#page-content-wrapper -->

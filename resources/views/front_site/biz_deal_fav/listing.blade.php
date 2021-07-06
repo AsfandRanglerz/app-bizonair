@@ -191,7 +191,7 @@
             @include('front_site.common.dashboard-sidebar')
             <!-- Sidebar -->
             <!-- Page Content -->
-            <div id="page-content-wrapper" style="background: #d9eefe8c">
+            <div id="page-content-wrapper" >
                 @include('front_site.common.dashboard-toggle')
                 <div class="my-2 mx-4" id="dynamic-body">
                     <ul class="mb-3 nav nav-tabs">

@@ -11,12 +11,108 @@
     --thumbBG: #90A4AE;
 }
 
+div.dataTables_wrapper div.dataTables_filter label {
+    text-align: right!important;
+}
+
 #filterselector {
     right: 0!important;
     padding: 0;
     height: 20px;
     top: 4px;
 }
+
+/*custom attachment images and files*/
+.attachment-img-file .fa-upload {
+    color: #a52c3e;
+    font-size: 10px;
+    padding: 4px;
+    border: 2px solid #a52c3e;
+    border-radius: 50px;
+}
+
+.attachment-img-file .fa-download {
+    color: #a52c3e;
+    font-size: 10px;
+    padding: 4px;
+    border: 2px solid #a52c3e;
+    border-radius: 50px;
+}
+
+.attachment-img-file .custom-file-input:lang(en)~.custom-file-label::after {
+    content: none;
+}
+
+.attachment-img-file .custom-file,
+.attachment-img-file .custom-file-label,
+.attachment-img-file .custom-file-input {
+    height: calc(0em + 2.75rem + 2px);
+}
+
+.attachment-img-file .custom-file-label {
+    background: transparent;
+    border: 2px dashed #a52c3e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.attachment-img-file .custom-file-input:focus~.custom-file-label {
+    border-color: none;
+    box-shadow: none;
+}
+/*custom attachment images and files*/
+
+
+/*suppliers*/
+.suppliers-products .products-slider {
+    height: 135px!important;
+}
+
+.suppliers-products .products-slider .listing {
+    height: 100%;
+}
+
+.suppliers-products .products-slider img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.suppliers-products .lSSlideOuter .lSPager.lSGallery img {
+    height: 55px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.suppliers-products .lSSlideOuter .lSPager.lSGallery li {
+    opacity: 0.5;
+    border: 1px solid #bababa75;
+    transition: .5s;
+}
+
+.suppliers-products .lSSlideOuter .lSPager.lSGallery li.active,
+.suppliers-products .lSSlideOuter .lSPager.lSGallery li:hover {
+    border: 1px solid #bababa75;
+    border-radius: 0;
+    opacity: 1;
+}
+
+.suppliers-products .product-info-container {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    padding: 8px;
+}
+
+.suppliers-products .product-info {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 0%), 0 6px 20px 0 rgb(0 0 0 / 18%);
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.suppliers-products .product-info:last-child {
+    margin-bottom: 0;
+}
+/*suppliers*/
+
 
 /*categories-side-section*/
 /*categories-side-section-scroll-bar css*/
@@ -614,6 +710,14 @@ body {
     right: 0;
 }
 /*pro-categories-tab-links seperator*/
+.pro-cat-careers:nth-child(4n+0) .red-btn:before {
+    content: none;
+}
+
+.pro-cat-careers:nth-child(3n+0) .red-btn:before,
+.pro-cat-careers:nth-child(3n+0) .nav-link:before {
+    content: ''!important;
+}
 
 .pro-categories-tab-links:nth-child(3n+0) .red-btn:before,
 .pro-cat-links-box:nth-child(3n+0) .nav-link:before {
@@ -713,8 +817,14 @@ body {
     font-size: 9px!important;
 }
 
+.membericon {
+    text-align: right;
+}
+
 .membericon img {
+    width: 30px;
     height: 30px;
+    object-fit: contain;
 }
 
 .membersince {
@@ -728,7 +838,8 @@ body {
     color: #FFF;
     padding: 0 4px;
     border-radius: 3px 0 0 3px;
-    margin-left: 5px;
+    margin-left: 8px;
+    font-size: 8px;
 }
 
 .membersince .years {
@@ -736,6 +847,7 @@ body {
     border-radius: 0 3px 3px 0;
     padding: 0 4px;
     color: #fff;
+    font-size: 8px;
 }
 /*member since content*/
 
@@ -1108,6 +1220,8 @@ body {
 .tooltip-inner {
     background-color: #12253d!important;
     max-width: 355px;
+    font-size: 10px;
+    padding: 4px 8px;
 }
 .tooltip.bs-tooltip-right .arrow:before {
     border-right-color: #12253d!important;
@@ -1204,10 +1318,6 @@ body {
     background: #FFF;
 }
 /*dashboard top bottom button scrolling*/
-.additional-product-info .custom-control {
-    width: 140px;
-}
-
 .header-profile-pic {
     object-fit: cover;
 }
@@ -1630,11 +1740,24 @@ body {
     margin-right: 6.5%;
 }
 
+ul[data-toggle='buttons'] {
+    display: flex;
+    align-items: center;
+}
+
+.iti__selected-dial-code {
+    font-size: 10px;
+}
+
+label {
+    display: block;
+}
+
 li.btn {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     color: #12253d;
-    font-size: 16px;
+    font-size: 10px;
     border: none;
     padding: 0 15px 0 0;
     text-align: left;
@@ -1740,15 +1863,15 @@ ul li input[type=checkbox] {
     width: 25%;
     text-align: center;
     margin-bottom: 5px;
-    border-left: 3px #12253D solid !important;
+    border-left: 2px #12253D solid !important;
 }
 
 .suppliers-buyers .list a:before {
     content: "";
     position: absolute;
     width: 100%;
-    height: 4px;
-    bottom: -5px;
+    height: 2px;
+    bottom: -2px;
     left: 0;
     background-color: #A52C3E;
     visibility: hidden;
@@ -1762,7 +1885,7 @@ ul li input[type=checkbox] {
 }
 
 .suppliers-buyers .list.active a {
-    border-bottom: 3px #12253D solid !important;
+    border-bottom: 2px #12253D solid !important;
 }
 
 .suppliers-buyers .compare-div {
@@ -2218,7 +2341,7 @@ ul li input[type=checkbox] {
 
 .overflow-text-dots.short-description {
     -webkit-line-clamp: 3;
-    height: 55px;
+    height: 45px;
 }
 
 .short-description {
@@ -2278,6 +2401,7 @@ ul li input[type=checkbox] {
 .job-directory-container .short-description {
     font-size: 10px;
     cursor: pointer;
+    margin-bottom: 4px;
 }
 
 .job-directory-container .date-salery {
@@ -2337,9 +2461,13 @@ span.select2-selection.select2-selection--single {
     color: #344356 !important;
     border: 1px solid #344356 !important;
     outline: none;
-    height: 35px;
+    height: 28px;
     display: flex;
     align-items: center;
+}
+
+.select2-container .select2-selection--multiple {
+    min-height: 28px!important;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
@@ -2364,6 +2492,8 @@ span.select2-selection.select2-selection--single {
     position: absolute;
     right: 0;
     padding: 5px;
+    display: flex;
+    align-items: center;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__rendered {
@@ -2444,14 +2574,18 @@ span.select2-selection.select2-selection--single {
 /*select2 dropdown*/
 
 /*select box*/
-.select2-container--default .select2-selection--multiple .select2-selection__rendered {
-    padding: 0 .75rem!important;
-    display: flex;
+.select2-selection__choice {
+    margin-top: 2px!important;
+    margin-bottom: 2px!important;
 }
 
-.select2-container--default .select2-search--inline .select2-search__field {
-    width: 100% !important;
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    padding: 0 .75rem!important;
 }
+
+/*.select2-container--default .select2-search--inline .select2-search__field {*/
+/*    width: 100% !important;*/
+/*}*/
 
 .select2-container--default .select2-search--inline .select2-search__field::placeholder {
     font-size: 10px;
@@ -2744,7 +2878,6 @@ form .other-div {
 }
 
 .additional-product-info .heading {
-    font-size: 24px;
     text-decoration: underline;
 }
 
@@ -2835,7 +2968,7 @@ form .other-div {
 }
 
 #dashboardWrapper .nav-tabs {
-    border-bottom: 2px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
 }
 
 #dashboardWrapper #myCompanyLinks .nav-link,
@@ -2859,7 +2992,8 @@ form .other-div {
 .edit-about-us-section .text,
 .edit-company-section .text,
 .edit-location-section .text {
-    font-size: 14px;
+    font-size: 10px;
+    line-height: 14px;
 }
 
 /*company profile dashboard*/
@@ -3797,7 +3931,7 @@ span.time {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-weight: bold!important;
+    font-weight: 500!important;
 }
 
 .price {
@@ -4078,7 +4212,7 @@ hr.horizontal-line {
 
 /*font-weight-500*/
 .font-500 {
-    font-weight: bold!important;
+    font-weight: 500!important;
 }
 
 /*font-weight-500*/
@@ -4086,7 +4220,7 @@ hr.horizontal-line {
 /*link*/
 .text-link {
     color: #A52C3E;
-    font-size: 16px;
+    font-size: 10px;
     text-decoration: underline;
     padding: 5px;
     font-weight: bold;
@@ -4186,15 +4320,14 @@ input.form-control::placeholder {
 
 /*form label*/
 .label {
-    font-weight: bold;
+    font-weight: 500;
     color: #12253d;
 }
-
 /*form label*/
 
 /*heading*/
 .heading {
-    font-weight: bold;
+    font-weight: 500;
     color: #12253d;
 }
 
@@ -4308,7 +4441,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 
 .company-profile .additional-info {
     border-top: 1px solid #344356;
-    padding-top: 15px;
+    padding-top: 4px;
     margin-bottom: 15px;
     margin-top: 35px;
 }
@@ -4629,7 +4762,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 
 .product-details .mini-content-container .switch-tabs .tab-content .product-tab {
     overflow-y: auto;
-    height: 165px;
+    height: 320px;
     padding: 15px;
 }
 
@@ -4839,6 +4972,11 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     margin: 0;
     line-height: 12px;
     height: 1.5rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: break-spaces;
 }
 
 .product-listing .top-companies .top-companies-card .companies-card-content .certified-icon {
@@ -7021,6 +7159,16 @@ header .navbar .navbar-toggler {
     width: 100% !important;
 }
 
+.select2-selection--multiple.is-valid li.select2-search.select2-search--inline {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 25px!important;
+}
+
 @media (min-width: 1200px) {
     .homepage #maincontent .services .container-md {
         max-width: 1255px;
@@ -7032,10 +7180,6 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 1199px) {
-    .suppliers-buyers .list {
-        width: 33.333%;
-    }
-
     .homepage .carousel-content .heading {
         font-size: 24px;
     }
@@ -7062,9 +7206,6 @@ header .navbar .navbar-toggler {
     }
     /*global css*/
     /*mybiz products and services*/
-    .additional-product-info .heading {
-        font-size: 18px;
-    }
 
     /*mybiz products and services*/
     /*product banner container*/
@@ -7231,6 +7372,13 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 991px) {
+    /*calculation formula*/
+    .calc-content-container .nav-pills .nav-link {
+        font-size: 9px;
+        padding: 4px 6px;
+    }
+    /*calculation formula*/
+
     .product-details .top-banner-content {
         padding: 4px;
         border-radius: 8px;
@@ -7291,7 +7439,7 @@ header .navbar .navbar-toggler {
     }
 
     .font-24 {
-        font-size: 18px;
+        font-size: 14px;
     }
     /*global*/
 
@@ -7415,8 +7563,7 @@ header .navbar .navbar-toggler {
     }
 
     .suppliers-buyers .list {
-        width: 50%;
-        font-size: 10px;
+        font-size: 9px;
     }
 
     .company-name-nav {
@@ -7832,7 +7979,7 @@ header .navbar .navbar-toggler {
 
     #dashboardWrapper #myCompanyLinks .nav-link.active,
     #dashboardWrapper #aboutLinks .nav-link.active {
-        border-bottom: 2px solid #2E90E5;
+        border-bottom: 1px solid #2E90E5;
     }
     /*company profile dashboard*/
 }
@@ -8371,7 +8518,6 @@ header .navbar .navbar-toggler {
     /*company profile dashboard*/
     #dashboardWrapper #myCompanyLinks .nav-link {
         width: 135px;
-        font-size: 14px;
     }
 
     #aboutLinks .nav-item .nav-link {
@@ -8405,7 +8551,7 @@ header .navbar .navbar-toggler {
     }
 
     .font-24 {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .font-21 {
@@ -8418,7 +8564,7 @@ header .navbar .navbar-toggler {
 
     .red-btn,
     .label {
-        font-size: 10px!important;
+        font-size: 9px!important;
     }
 
     .login-form .heading {
@@ -8440,7 +8586,7 @@ header .navbar .navbar-toggler {
 
     input.form-control,
     select.form-control {
-        font-size: 10px;
+        font-size: 9px;
     }
 
     input.form-control::placeholder {
@@ -8463,8 +8609,8 @@ header .navbar .navbar-toggler {
     }
 
     .company-profile .additional-info {
-        margin-top: 25px;
-        margin-bottom: 5px;
+        margin-top: 4px;
+        margin-bottom: 4px;
     }
 
     /*company-profile*/
@@ -8562,10 +8708,10 @@ header .navbar .navbar-toggler {
     }
 
     .product-details .mini-content-container .login-info .fa.fa-exclamation {
-        font-size: 10px;
+        font-size: 8px;
         border: 2px solid;
-        height: 20px;
-        width: 20px;
+        height: 15px;
+        width: 15px;
     }
 
     .product-details .mini-content-container .contact-product-info > p {
@@ -9132,8 +9278,17 @@ header .navbar .navbar-toggler {
     font-size: 36px;
 }
 
+.table th {
+    font-weight: 500;
+}
+
+td a {
+    color: #a52c3e;
+}
+
 form label {
     margin-bottom: 0;
+    font-weight: 500;
 }
 
 .select2-container--default .select2-selection {
@@ -9142,7 +9297,6 @@ form label {
     align-items: center;
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice,
 .select2-container .select2-search--inline .select2-search__field {
     margin-top: 0;
 }

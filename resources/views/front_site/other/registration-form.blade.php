@@ -23,7 +23,7 @@
                 margin-right: 0;
             }
         </style>
-        <main id="maincontent" class="page-main" style="background: #d9eefe8c">
+        <main id="maincontent" class="page-main" >
             <div class="row m-0">
                 <div class="col-lg-9 col-md-8 switch-tabs-section">
                     <div class="switch-tabs" id="formSections">
@@ -65,7 +65,7 @@
                                                        placeholder="example@email.com" disabled="disabled">
                                                 <small class="text-danger" id="email_error"></small>
                                             </div>
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-6 mb-1">
                                                 <label>Password <span class="required">*</span></label>
                                                 <span toggle="#reg_password" class="fa fa-fw fa-eye toggle-password-eye"></span>
                                                 <input type="password" id="reg_password" class="form-control"
@@ -73,7 +73,7 @@
                                                        name="password">
                                                 <small class="text-danger" id="password_error"></small>
                                             </div>
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-6 mb-1">
                                                 <label>Confirm Password <span class="required">*</span></label>
                                                 <span toggle="#confirm_password"
                                                       class="fa fa-fw fa-eye toggle-password-eye"></span>
@@ -132,13 +132,13 @@
                                         </div>
                                         <div class="form-row">
                                             <h6 class="w-100">Contact Person</h6>
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-6 mb-1">
                                                 <label>First Name <span class="required">*</span></label>
                                                 <input type="text" class="form-control required-control" placeholder="Input First Name"
                                                        name="first_name">
                                                 <small class="text-danger" id="first_name_error"></small>
                                             </div>
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-6 mb-1">
                                                 <label>Last Name <span class="required">*</span></label>
                                                 <input type="text" name="last_name" class="form-control required-control"
                                                        placeholder="Input Last Name">
@@ -146,7 +146,7 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-6 mb-1">
                                                 <label for="mobileNumber">Enter your phone number: <span
                                                         class="required">*</span></label>
                                                 <!-- <input type="tel" class="form-control" id="phone" name="registration_phone_no" > -->
@@ -156,7 +156,7 @@
                                                 {{--                                            <span id="error-msg" class="text-danger hide">Please enter valid mobile number</span>--}}
                                                 <small class="text-danger d-block" id="registration_phone_no_error"></small>
                                             </div>
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-6 mb-1">
                                                 <label for="birthday">Date of Birth <span class="required">*</span></label>
                                                 <input type="text" name="birthday" placeholder="Date of Birth"
                                                        class="form-control birthday" id="birthday" required>

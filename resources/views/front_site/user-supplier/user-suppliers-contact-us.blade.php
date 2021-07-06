@@ -10,12 +10,12 @@
         /*contact us*/
         .contact-us-form {
             box-shadow: 0 4px 8px 0 rgb(0 0 0 / 0%), 0 6px 20px 0 rgb(0 0 0 / 18%);
-            padding: 35px;
+            padding: 8px;
             max-width: 805px;
+            border-radius: 8px;
         }
 
         .contact-us-form .check-stats li.btn {
-            align-items: baseline;
             text-align: left;
             color: #344356;
             border: none;
@@ -29,7 +29,7 @@
             }
 
             .contact-us-form .check-stats li.btn {
-                font-size: 14px;
+                font-size: 10px;
             }
             /*contact us*/
         }
@@ -37,7 +37,6 @@
     <main id="maincontent" class="suppliers-contact-us">
         @include('front_site.common.user-suppliers-banner')
         <div class="mt-4 mb-4 container-lg">
-            <h3 class="mb-4 font-weight-bold heading text-center">Contact Us</h3>
             <div class="alert alert-success mb-2 text-center" id='alert-success-contact-supplier' style="display: none"
                  role="alert">
             </div>
@@ -50,46 +49,35 @@
                             <input type="hidden" class="form-control" name="type" value="supplier">
                             <input type="hidden" class="form-control" name="userId" value="{{$about_us['user_id']}}">
                             <div class="form-group">
-                                <label class="label" for="inquiryFor">Subject <span
-                                        class="required">*</span></label>
                                 <input type="text" class="form-control" id="inquiryFor" name="inquiryFor" placeholder="Subject" required>
                                 <small class="text-danger" id="inquiryFor_error"></small>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
-                                    <label class="label" for="userName">Name <span
-                                            class="required">*</span></label>
                                     <input type="text" class="form-control" id="userName" name="userName" placeholder="Name" value="@if(\Auth::user()){{\Auth::user()->name}}@endif" required>
                                     <small class="text-danger" id="userName_error"></small>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label class="label" for="emailAddress">Email <span
-                                            class="required">*</span></label>
-                                    <input type="email" class="form-control" id="emailAddress" name="emailAddress" placeholder="example@gmail.com" value="@if(\Auth::user()){{\Auth::user()->email}}@endif" required>
+                                    <input type="email" class="form-control" id="emailAddress" name="emailAddress" placeholder="Email - example@gmail.com" value="@if(\Auth::user()){{\Auth::user()->email}}@endif" required>
                                     <small class="text-danger" id="emailAddress_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
-                                    <label class="label" for="companyName">Company Name <small class="font-500"> (Optional)</small></label>
-                                    <input type="text" class="form-control" id="companyName" name="company_name" placeholder="My Textile" value="@if(session()->get('company_id')){{ company_name(session()->get('company_id')) }}@endif" required>
+                                    <input type="text" class="form-control" id="companyName" name="company_name" placeholder="Company Name (Optional) - My Textile" value="@if(session()->get('company_id')){{ company_name(session()->get('company_id')) }}@endif" required>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label class="label" for="phoneNumber">Phone <span
-                                            class="required">*</span></label>
-                                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="123-4567-8901" value="@if(\Auth::user()){{\Auth::user()->registration_phone_no}}@endif" required>
+                                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone - 123-4567-8901" value="@if(\Auth::user()){{\Auth::user()->registration_phone_no}}@endif" required>
                                     <small class="text-danger" id="phoneNumber_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
-                                    <label class="label" for="designationUser">Designation <small class="font-500"> (Optional)</small></label>
-                                    <input type="text" value="" class="form-control" id="designationUser" name="designation" placeholder="Designation" required="required">
+                                    <input type="text" value="" class="form-control" id="designationUser" name="designation" placeholder="Designation (Optional)" required="required">
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label class="label" for="countries">Choose Country <span
-                                            class="required">*</span></label>
                                     <select name="country" class="form-control" id="countries" required="required">
+                                        <option value="" selected disabled>Choose Country</option>
                                         @foreach($countries as $country)
                                             <option value="{{ $country->name->common }}" @if(\Auth::user()){{(\Auth::user()->country == $country->name->common)?'selected':''}}@endif>{{ $country->name->common }}</option>
                                         @endforeach
@@ -98,7 +86,7 @@
                                 </div>
                             </div>
                             <div class="form-group check-stats">
-                                <ul data-toggle="buttons">
+                                <ul data-toggle="buttons" class="mb-0">
                                     <li class="w-100 btn d-flex pl-0">
                                         <input class="input fa fa-square-o" type="checkbox" name="terms" id="terms">
                                         <div class="text-justify">
@@ -108,17 +96,15 @@
                                 </ul>
                             </div>
                             <div class="form-group">
-                                <label class="label" for="description">Message <span
-                                        class="required">*</span></label>
                                 <textarea class="form-control" name="description" id="description" placeholder="Message" style="height: 115px"></textarea>
                                 <small class="text-danger" id="description_error"></small>
                             </div>
                             <div class="form-group">
-                                <div class="mt-3 form-group col-md-12 career-img-drop-outer attachment-img-file" style="padding-left: 0px;">
+                                <div class="form-group col-md-12 px-0 career-img-drop-outer attachment-img-file">
                                     <label class="d-block text-left mb-2 font-500">Attachment <small class="font-500"> (Optional | </small><small class="font-500">Attach Reference or Image)</small></label>
                                     <div class="custom-file">
                                         <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" for="customFile" style="color: #A52C3E;"><span class="fa fa-download"></span></label>
+                                        <label class="custom-file-label" for="customFile" style="color: #A52C3E;"><span class="fa fa-upload"></span></label>
                                     </div>
                                 </div>
                             </div>

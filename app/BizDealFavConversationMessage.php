@@ -11,7 +11,7 @@ class BizDealFavConversationMessage extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function created_by()
+    public function user()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
@@ -23,6 +23,6 @@ class BizDealFavConversationMessage extends Model
      */
     public function convertsation()
     {
-        return $this->belongsTo(BizdealFavConversation::class, 'conversation_id', 'id');
+        return $this->belongsTo(BizDealFavConversation::class, 'conversation_id', 'id');
     }
 }

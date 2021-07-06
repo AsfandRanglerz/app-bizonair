@@ -12,7 +12,7 @@
         <!-- Sidebar -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" style="background: #d9eefe8c">
+            <div id="page-content-wrapper" >
                 <div class="px-2 py-1">
                     <div id="companyTab1">
                         <ul class="nav nav-tabs" id="myCompanyLinks" role="tablist">
@@ -33,7 +33,7 @@
                                         <div class="edit-company-section">
                                             <h6 class="heading">Personal Information<span
                                                     class="fa fa-edit edit-btn profile-edit-btn"></span></h6>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Name</span>
                                                 </div>
@@ -41,7 +41,7 @@
                                                     <span>{{ $user->first_name }} {{ $user->last_name }}</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Email</span>
                                                 </div>
@@ -50,7 +50,7 @@
                                                 </div>
                                             </div>
                                             @if($user->is_owner)
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Member Type</span>
                                                     </div>
@@ -67,7 +67,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Designation</span>
                                                 </div>
@@ -75,7 +75,7 @@
                                                     <span>@if($user->designation) {{ $user->designation }} @else - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Gender</span>
                                                 </div>
@@ -83,7 +83,7 @@
                                                     <span>@if($user->gender) {{ $user->gender }} @else - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Mobile</span>
                                                 </div>
@@ -91,7 +91,7 @@
                                                     <span>{{ $user->registration_phone_no }}</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Address</span>
                                                 </div>
@@ -102,17 +102,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 order-md-2 order-1 my-md-0 mt-2 mb-4 text-md-left text-center">
+                                    <div class="mb-3 col-md-4 order-md-2 order-1 my-md-0 text-md-left text-center">
                                         @if(\Auth::user()->gender == "Male" && get_user_image(Auth::user()) == Null)
                                             <img class="object-cover rounded-circle header-profile-pic" src="http://localhost/bizonair/public/assets/front_site/images/male-avature.png" width="135" height="135">
                                         @elseif(\Auth::user()->gender == "Female" && get_user_image(Auth::user()) == Null)
                                             <img class="object-cover rounded-circle header-profile-pic" src="http://localhost/bizonair/public/assets/front_site/images/female-avature.png" width="135" height="135">
                                         @else
-                                        <img class="object-cover rounded-circle header-profile-pic" src="{{ get_user_image(Auth::user()) }}" width="135" height="135">
+                                        <img class="object-cover rounded-circle header-profile-pic" src="{{ get_user_image(Auth::user()) }}" width="105" height="105">
                                     @endif
                                     </div>
                                 </div>
-                                <div class="mt-4 mb-4">
+                                <div class="my-1">
                                     <hr>
                                 </div>
                                 <div class="edit-location-section">
@@ -120,7 +120,7 @@
                                             class="fa fa-edit edit-btn profile-edit-btn"></span></h6>
                                     <div class="row">
                                         <div class="col-sm-8">
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Whatsapp Number</span>
                                                 </div>
@@ -129,7 +129,7 @@
                                                             - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Telephone</span>
                                                 </div>
@@ -138,7 +138,7 @@
                                                             - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Fax</span>
                                                 </div>
@@ -147,7 +147,7 @@
                                                             - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Post Code</span>
                                                 </div>
@@ -155,7 +155,7 @@
                                                     <span>@if($user->postcode) {{ $user->postcode }} @else - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Website</span>
                                                 </div>
@@ -172,12 +172,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mt-4 mb-4">
+                                <div class="my-1">
                                     <hr>
                                 </div>
                                 <div class="edit-location-section">
                                     <h6 class="heading">Parent Company Name</h6>
-                                    <div class="row mb-2 text">
+                                    <div class="row text">
                                         <div class="col-sm-6 col-6">
                                             <?php $comp = \App\CompanyProfile::where('user_id',auth()->id())->first();?>
                                             <span class="font-500">@if($comp) {{getUserFirstCompany()}} @else - @endif </span>
@@ -189,7 +189,7 @@
                             {{--                                 aria-labelledby="linkLocation">--}}
 
 
-                            {{--                                <div class="mt-4 mb-4">--}}
+                            {{--                                <div class="my-1">--}}
                             {{--                                    <hr>--}}
                             {{--                                </div>--}}
 
@@ -222,19 +222,15 @@
                                 <div class="px-0 py-1 tab-pane fade show active" id="tabReg" role="tabpanel"
                                      aria-labelledby="tabReg">
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="email" class="font-500">Email <span
-                                                    class="required">*</span></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <input type="email" id="email" class="form-control" name="email"
-                                                   value="{{ old('email', $user->email) }}" placeholder="Email">
+                                                   value="{{ old('email', $user->email) }}" placeholder="Email - example@gmail.com">
                                             <small class="text-danger" id="email_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="designation" class="font-500">Designation <small
-                                                    class="font-500">(Optional)</small></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <select id="designation" name='designation'
                                                     class="form-control choose-country">
-                                                <option value="" selected>--- Select designation ---</option>
+                                                <option value="" selected>--- Select Designation (Optional) ---</option>
                                                 <option value="Director"
                                                         @if($user->designation == "Director") selected @endif >Director
                                                 </option>
@@ -278,17 +274,13 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="first_name" class="font-500">First Name <span
-                                                    class="required">*</span></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <input type="text" class="form-control"
                                                    value="{{ old('first_name', $user->first_name) }}"
                                                    placeholder="First Name" name="first_name" id="first_name">
                                             <small class="text-danger" id="first_name_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="last_name" class="font-500">Last Name <span
-                                                    class="required">*</span></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <input type="text" name="last_name" class="form-control"
                                                    value="{{ old('last_name', $user->last_name) }}"
                                                    placeholder="Last Name" id="last_name">
@@ -298,7 +290,7 @@
                                     @if($user->is_owner)
                                         <div class="form-row user-type-section">
                                             {{--                                            <h6 class="w-100 pl-0">User Type <span class="required">*</span></h6>--}}
-                                            <div class="form-group user-type col-xl-9 col-lg-12">
+                                            <div class="form-group mb-1 user-type col-xl-9 col-lg-12">
                                                 <label for="last_name" class="font-500">User Type <span
                                                         class="required">*</span></label>
                                                 <ul data-toggle="buttons" class="mb-0">
@@ -324,36 +316,47 @@
                                             </div>
                                         </div>
                                     @endif
-                                    <div class="form-group">
-                                        <label for="last_name" class="font-500">Gender <span
-                                                class="required">*</span></label>
-                                        {{--                                        <h6>Gender <span class="required">*</span></h6>--}}
-                                        <div class="form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="male"
-                                                   value="Male" @if($user->gender == "Male") checked @endif >
-                                            <label class="form-check-label" for="male">Male</label>
+                                    <label class="font-500">Gender <span class="required">*</span></label>
+                                    <div class="mt-1 d-flex flex-row">
+                                        <div class="form-check form-check-inline custom-control custom-radio d-sm-inline">
+                                            <input type="radio" class="custom-control-input" name="gender" id="male"
+                                                   value="Male" @if($user->gender == "Male") checked @endif>
+                                            <label class="custom-control-label" for="male">Male</label>
                                         </div>
-                                        <div class="form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="female"
-                                                   value="Female" @if($user->gender == "Female") checked @endif >
-                                            <label class="form-check-label" for="female">Female</label>
+                                        <div class="form-check form-check-inline custom-control custom-radio d-sm-inline">
+                                            <input type="radio" class="custom-control-input" name="gender" id="female"
+                                                   value="Female" @if($user->gender == "Female") checked @endif>
+                                            <label class="custom-control-label" for="female">Female</label>
                                         </div>
                                         <small class="text-danger" id="gender_error"></small>
                                     </div>
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="last_name" class="font-500">Gender <span--}}
+{{--                                                class="required">*</span></label>--}}
+{{--                                        <div class="form-check-inline">--}}
+{{--                                            <input class="form-check-input" type="radio" name="gender" id="male"--}}
+{{--                                                   value="Male" @if($user->gender == "Male") checked @endif >--}}
+{{--                                            <label class="form-check-label" for="male">Male</label>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="form-check-inline">--}}
+{{--                                            <input class="form-check-input" type="radio" name="gender" id="female"--}}
+{{--                                                   value="Female" @if($user->gender == "Female") checked @endif >--}}
+{{--                                            <label class="form-check-label" for="female">Female</label>--}}
+{{--                                        </div>--}}
+{{--                                        <small class="text-danger" id="gender_error"></small>--}}
+{{--                                    </div>--}}
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="font-500">Country <span class="required">*</span></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <select name="country" id="country_id" class="form-control choose-country"
                                                     required="required">
+                                                <option value="" selected disabled>Select Country</option>
                                                 @foreach($countries as $country)
                                                         <option value="{{ $country->name->common }}" {{($user->country == $country->name->common)?'selected':''}}>{{ $country->name->common }}</option>
                                                 @endforeach
                                             </select>
                                             <small class="text-danger" id="country_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="state" class="font-500">State <span
-                                                    class="required">*</span></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <select name="state" id="state" required
                                                     class="form-control single-select-dropdown">
                                                 <option value="{{$user->state}}">{{$user->state}}</option>
@@ -362,94 +365,79 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-
-                                        <div class="form-group col-md-6">
-                                            <label for="city" class="font-500">City <span
-                                                    class="required">*</span></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <select name="city" id="city" required class="form-control single-select-dropdown">
                                                 <option value="{{$user->city}}">{{$user->city}}</option>
                                             </select>
                                             <small class="text-danger" id="city_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="Cty" class="font-500">Street Address <small class="font-500">(Optional)</small></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <input type="text" id="Cty" class="form-control" name="street_address"
                                                    value="{{ old('street_address', $user->street_address) }}"
-                                                   placeholder="Street Address">
+                                                   placeholder="Street Address (Optional)">
                                             <small class="text-danger" id="street_address_error"></small>
                                         </div>
 
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="mobileNumber" class="font-500 d-block">Mobile <span
-                                                    class="required">*</span></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <input type="tel" required name="mobileNumber"
                                                    class="form-control inteltel is-valid"
                                                    id="mobileNumber"
-                                                   value="{{ old('mobile', $user->registration_phone_no) }}">
+                                                   value="{{ old('mobile', $user->registration_phone_no) }}" placeholder="Mobile - 03xxxxxxxxx/3xxxxxxxxx">
                                             <span class="text-danger hide row pl-3 tel-error-msg">Please enter valid mobile number</span>
                                             <input type="hidden" name="mobile_country_code">
                                             <small class="text-danger d-block" id="mobileNumber_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="postcode" class="font-500">Post Code <small class="font-500">(Optional)</small></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <input type="text" id="postcode" class="form-control" name="postcode"
                                                    value="{{ old('postcode', $user->postcode) }}"
-                                                   placeholder="Post Code">
+                                                   placeholder="Post Code (Optional)">
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="url" class="font-500">Website <small
-                                                    class="font-500">(Optional)</small></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <input type="url" id="url" class="form-control" name="url"
                                                    value="{{ old('url', $user->website) }}"
-                                                   placeholder="Example: https://www.bizonair.com">
+                                                   placeholder="Website (Optional) - Example: https://www.bizonair.com">
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="whatsappNumber" class="font-500 d-block">Whatsapp Number <small
-                                                    class="font-500">(Optional)</small></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <input type="tel" id="whatsappNumber" class="form-control inteltel is-valid"
                                                    name="whatsapp"
                                                    value="{{ old('whatsapp', $user->whatsapp_number) }}"
-                                                   placeholder="03xxxxxxxxx/3xxxxxxxxx">
+                                                   placeholder="Whatsapp (Optional) - 03xxxxxxxxx/3xxxxxxxxx">
                                             <span class="text-danger hide row pl-3 tel-error-msg">Please enter valid mobile number</span>
                                             <input type="hidden" name="whatsapp_country_code">
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="mobileNumber3" class="font-500 d-block">Telephone <small
-                                                    class="font-500">(Optional)</small></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <input type="text" id="mobileNumber3"
                                                    class="form-control mobileNum inteltel is-valid"
                                                    name="telephone"
                                                    value="{{ old('telephone', $user->telephone) }}"
-                                                   placeholder="Telephone">
+                                                   placeholder="Telephone (Optional) - 03xxxxxxxxx/3xxxxxxxxx">
                                             <span class="text-danger hide row pl-3 tel-error-msg">Please enter valid mobile number</span>
                                             <input type="hidden" name="telephone_country_code">
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="mobileNumber4" class="font-500 d-block">Fax <small
-                                                    class="font-500">(Optional)</small></label>
+                                        <div class="form-group col-md-6 mb-1">
                                             <input type="tel" id="mobileNumber4" class="form-control" name="fax"
-                                                   value="{{ old('fax', $user->fax) }}" placeholder="Fax">
+                                                   value="{{ old('fax', $user->fax) }}" placeholder="Fax (Optional)">
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-between mt-3">
+                                    <div class="d-flex justify-content-between mt-1">
                                         <button type="submit" class="red-btn">Update</button>
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-1">
                                         <hr>
                                     </div>
                                 </div>
                                 {{--                                <div class="p-3 tab-pane fade" id="tabInfo" role="tabpanel" aria-labelledby="tabInfo">--}}
                                 {{--                                    --}}
-                                {{--                                    <div class="d-flex justify-content-between mt-3">--}}
+                                {{--                                    <div class="d-flex justify-content-between mt-1">--}}
                                 {{--                                        <button type="submit" class="red-btn">SAVE</button>--}}
                                 {{--                                    </div>--}}
-                                {{--                                    <div class="mt-4 mb-4">--}}
+                                {{--                                    <div class="my-1">--}}
                                 {{--                                        <hr>--}}
                                 {{--                                    </div>--}}
                                 {{--                                </div>--}}
@@ -599,6 +587,16 @@
 
     <script>
         $(document).ready(function() {
+            /*for single select*/
+            $('select[name="state"]').select2({
+                placeholder: "Select a State"
+            });
+
+            $('select[name="city"]').select2({
+                placeholder: "Select a City"
+            });
+            /*for single select*/
+
             $('#country_id').on('change', function() {
                 var country_id = this.value;
                 $("#state").html('');

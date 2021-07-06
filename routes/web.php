@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great! test
+| contains the "web" middleware group. Now create something great!
 |
 */
 
@@ -44,12 +45,10 @@ Route::post('/forget-password', 'HomeController@postEmail')->name('password');
 Route::get('/reset-password/{token}', 'HomeController@getPassword');
 Route::post('/reset-password', 'HomeController@updatePassword');
 
+Route::get('/login', 'HomeController@login');
 Route::get('logout', function () {
-    // $user=\Auth::user();
-    // $user->login_time = date('Y-m-d h:i:sa');
-    // $user->save();
-    session()->forget('company_id');
-    \Auth::logout();
+    Auth::logout();
+    session()->flush();
     return redirect('/');
 })->name('logout');
 
@@ -80,6 +79,8 @@ Route::get('accept-token/{token}/{email}', 'CompanyController@acceptToken')
 
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/home', 'HomeController@indexx')->name('homee');
 Route::get('email-confirmation', 'HomeController@email_confirmation')
     ->name('email-confirmation');
 Route::post('get-email-verification-code', 'HomeController@get_email_verification_code')
@@ -229,7 +230,7 @@ Route::get('imageRemove/{id}', 'CompanyController@imageRemove');
         Route::get('view-all-cvs', 'JobManagementController@get_view_all_cvs')->name('view-all-cvs');
         Route::get('edit-cv-management/{id}', 'JobManagementController@edit_cv_management')->name('edit-cv-management');
         Route::post('update-view-cv-management/update', 'JobManagementController@update_cv_management')->name('update-view-cv-management');
-        Route::get('post-ur-cv', 'JobManagementController@post_ur_cv')->name('post-ur-cv');
+        Route::get('post-your-cv', 'JobManagementController@post_ur_cv')->name('post-ur-cv');
         Route::post('upload-cv', 'JobManagementController@store_cv')->name('upload-cv');
         Route::post('/remove-cv', 'JobManagementController@remove_cv')->name('remove-cv');
 
@@ -323,7 +324,39 @@ Route::get('imageRemove/{id}', 'CompanyController@imageRemove');
         Route::post('/favourite-product-ajax', 'FavouriteController@add_to_favourite');
         Route::post('/repost-buysell', 'BuySellController@repost_buysell');
 
-        /// entered by taha for fav product management
+        /// entered by taha for fav lead product management
+        Route::get('/lead-favs', 'FavouriteController@get_lead_fav')->name('get-lead-fav');
+        Route::post('get-lead-fav-messages','FavouriteController@get_lead_fav_messages')->name('get-lead-fav-messages');
+        Route::post('reply-lead-fav-convo', 'FavouriteController@reply_lead_fav_convo')->name('reply-lead-fav-convo');
+        Route::post('delete-lead-fav-convo', 'FavouriteController@delete_lead_fav_convo')->name('delete-lead-fav-convo');
+
+        Route::post('un-favorite-lead-fav-convo-multiple', 'FavouriteController@un_favorite_lead_fav_convo_multiple')->name('un-favorite-lead-fav-convo-multiple');
+
+        Route::post('favorite-lead-fav-convo-multiple', 'FavouriteController@favorite_lead_fav_convo_multiple')->name('favorite-lead-fav-convo-multiple');
+
+        Route::post('favorite-lead-fav-convo', 'FavouriteController@favorite_lead_fav_convo')->name('favorite-lead-fav-convo');
+
+
+        Route::post('un-pin-lead-fav-convo-multiple', 'FavouriteController@un_pin_lead_fav_convo_multiple')->name('un-pin-lead-fav-convo-multiple');
+        Route::post('pin-lead-fav-convo-multiple', 'FavouriteController@pin_lead_fav_convo_multiple')->name('pin-lead-fav-convo-multiple');
+        Route::post('pin-lead-fav-convo', 'FavouriteController@pin_lead_fav_convo')->name('pin-lead-fav-convo');
+
+
+        Route::post('read-lead-fav-convo-multiple', 'FavouriteController@read_lead_fav_convo_multiple')->name('read-lead-fav-convo-multiple');
+        Route::post('unread-lead-fav-convo-multiple', 'FavouriteController@unread_lead_fav_convo_multiple')->name('unread-lead-fav-convo-multiple');
+
+        Route::post('delete-lead-fav-convo-multiple', 'FavouriteController@delete_lead_fav_convo_multiple')->name('delete-lead-fav-convo-multiple');
+
+        Route::post('get-inbox-refresh-fav-lead', 'FavouriteController@get_inbox_refresh_fav_lead')->name('get-inbox-refresh-fav-lead');
+        Route::post('get-sent-box-refresh-fav-lead', 'FavouriteController@get_sent_box_refresh_fav_lead')->name('get-sent-box-refresh-fav-lead');
+        Route::post('get-delete-refresh-fav-lead', 'FavouriteController@get_delete_refresh_fav_lead')->name('get-delete-refresh-fav-lead');
+
+        Route::post('get-filtered-inquires-fav-lead', 'FavouriteController@get_filtered_inqueries_fav_lead')->name('get-filter-inqueries-fav-lead');
+
+        Route::post('filter-lead-onetime-inquiry-fav', 'FavouriteController@filter_lead_onetime_inquiry_fav')
+            ->name('filter-lead-onetime-inquiry-fav');
+
+        /// entered by taha for fav deal product management
         Route::get('/one-time-favs', 'FavouriteController@get_one_time_fav')->name('get-one-time-fav');
         Route::post('get-bizdeal-fav-messages','FavouriteController@get_bizdeal_fav_messages')->name('get-bizdeal-fav-messages');
         Route::post('reply-bizdeal-fav-convo', 'FavouriteController@reply_bizdeal_fav_convo')->name('reply-bizdeal-fav-convo');
@@ -354,7 +387,6 @@ Route::get('imageRemove/{id}', 'CompanyController@imageRemove');
 
         Route::post('filter-bizdeal-onetime-inquiry-fav', 'FavouriteController@filter_bizdeal_onetime_inquiry_fav')
             ->name('filter-bizdeal-onetime-inquiry-fav');
-
     });
 
 //contact Routes Start
@@ -467,6 +499,7 @@ Route::post('/is-display-notification', 'FavouriteController@is_display_notifica
 Route::post('/notification', 'HomeController@notification')->name('notification');
 
 Route::get('search-product','HomeController@searchProduct')->name('search_product');
+Route::post('livesearch','HomeController@livesearch');
 
 Route::post('/get-state-list','HomeController@getStateList');
 Route::post('/get-city-list','HomeController@getCityList');

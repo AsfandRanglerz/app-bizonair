@@ -9,6 +9,8 @@ use App\Product;
 use App\Category;
 use App\Subcategory;
 use App\View;
+use Intervention\Image\Facades\Image;
+use Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -319,7 +321,7 @@ class ProductController extends Controller
     {
 
         $cat = \App\Category::where('slug', $slug)->where('type', 'Business')->first();
-
+        $data['category'] = $cat;
         $geturl = url()->current();
         $urlslug = ucwords(str_replace('-', ' ', basename($geturl)));
 
@@ -338,15 +340,15 @@ class ProductController extends Controller
 
         $company_ids = Product::where('category_id', $cat->id)->distinct('company_id')->get()->pluck('company_id');
         $companies = \App\CompanyProfile::whereIn('id',$company_ids)->get();
-
-        return view('front_site.view-all.view-all-regular-supplier', compact('companies','topcompanies','cats',  'topsellproduct', 'toptensellproduct', 'subcategories', 'urlslug', 'categories'));
+        $textile_partners = \App\TextilePartner::all();
+        return view('front_site.view-all.view-all-regular-supplier',$data, compact('textile_partners','companies','topcompanies','cats',  'topsellproduct', 'toptensellproduct', 'subcategories', 'urlslug', 'categories'));
     }
 
     public function view_all_regular_buyer_by_category($slug)
     {
 
         $cat = \App\Category::where('slug', $slug)->where('type', 'Business')->first();
-
+        $data['category'] = $cat;
         $geturl = url()->current();
         $urlslug = ucwords(str_replace('-', ' ', basename($geturl)));
 
@@ -367,15 +369,15 @@ class ProductController extends Controller
 
         $company_ids = Product::where('category_id', $cat->id)->distinct('company_id')->get()->pluck('company_id');
         $companies = \App\CompanyProfile::whereIn('id',$company_ids)->get();
-
-        return view('front_site.view-all.view-all-regular-buyer', compact('companies','topcompanies','cats',  'topbuyproduct', 'toptenbuyproduct', 'subcategories', 'urlslug', 'categories'));
+        $textile_partners = \App\TextilePartner::all();
+        return view('front_site.view-all.view-all-regular-buyer',$data, compact('textile_partners','companies','topcompanies','cats',  'topbuyproduct', 'toptenbuyproduct', 'subcategories', 'urlslug', 'categories'));
     }
 
     public function view_all_one_time_selling_deals($slug)
     {
 
         $cat = \App\Category::where('slug', $slug)->where('type', 'Business')->first();
-
+        $data['category'] = $cat;
         $geturl = url()->current();
         $urlslug = ucwords(str_replace('-', ' ', basename($geturl)));
         $subcategories = \App\Subcategory::where('category_id', $cat->id)->get();
@@ -392,15 +394,14 @@ class ProductController extends Controller
 
         $company_ids = Product::where('category_id', $cat->id)->distinct('company_id')->get()->pluck('company_id');
         $companies = \App\CompanyProfile::whereIn('id',$company_ids)->get();
-
-        return view('front_site.view-all.view-all-one-time-selling-deals', compact('companies','topcompanies','cats','buyselltopten_selling', 'buysell_selling', 'subcategories', 'urlslug', 'categories'));
+        $textile_partners = \App\TextilePartner::all();
+        return view('front_site.view-all.view-all-one-time-selling-deals',$data, compact('textile_partners','companies','topcompanies','cats','buyselltopten_selling', 'buysell_selling', 'subcategories', 'urlslug', 'categories'));
     }
 
     public function view_all_one_time_buying_deals($slug)
     {
-
         $cat = \App\Category::where('slug', $slug)->where('type', 'Business')->first();
-
+        $data['category'] = $cat;
         $geturl = url()->current();
         $urlslug = ucwords(str_replace('-', ' ', basename($geturl)));
         $subcategories = \App\Subcategory::where('category_id', $cat->id)->get();
@@ -417,8 +418,8 @@ class ProductController extends Controller
 
         $company_ids = Product::where('category_id', $cat->id)->distinct('company_id')->get()->pluck('company_id');
         $companies = \App\CompanyProfile::whereIn('id',$company_ids)->get();
-
-         return view('front_site.view-all.view-all-one-time-buying-deals', compact('companies','topcompanies','cats','buyselltopten_buying', 'buysell_buying', 'subcategories', 'urlslug', 'categories'));
+        $textile_partners = \App\TextilePartner::all();
+         return view('front_site.view-all.view-all-one-time-buying-deals',$data, compact('textile_partners','companies','topcompanies','cats','buyselltopten_buying', 'buysell_buying', 'subcategories', 'urlslug', 'categories'));
     }
 
     public function product_supplier_list_by_subcategory($category, $subcategory)
@@ -1390,7 +1391,7 @@ class ProductController extends Controller
         $product->childsubcategory_id = $request->sub_sub_category;
         $product->add_sub_sub_category = $request->add_sub_sub_category;
 
-        $product->reference_no = (\App\Product::all()->count() == 0) ? 1000000 : \App\Product::max('reference_no') + 1;
+        $product->reference_no = mt_rand(100000,9999999);
         $product->slug = Str::slug($request->product_service_name) . "-" . $product->reference_no;
 
         $product->subject = $request->subject;
@@ -1412,19 +1413,23 @@ class ProductController extends Controller
         $product->createdBy = Auth::user()->id;
         $product->updated_at = null;
         $product->save();
+        $images =  [$request->avatar1_url,$request->avatar2_url,$request->avatar3_url,$request->avatar4_url,$request->avatar5_url,$request->avatar6_url,$request->avatar7_url,$request->avatar8_url,$request->avatar9_url,$request->avatar10_url,$request->avatar11_url,$request->avatar12_url,$request->avatar13_url,$request->avatar14_url,$request->avatar15_url];
+        foreach ($images as $image) {
+            if ($image) {
+                \App\ProductImage::create(['product_id' => $product->id, 'image' => $image]);
+            }
+        }
 
-//        $product->updatedBy = Auth::user()->id;
-//        if($request->file){
-//            $image = $request->file('file');
-//            $image_name=rand(1000, 9999) . time().'.'.$image->getClientOriginalExtension();
-//            $file = 'public/assets/front_site/products/images/'.$image_name;
-//            $image->move($file);
-//            \App\ProductImage::create([
-//                'image'=>$file,
-//                'product_id'=>$request->productId,
-//            ]);
-//        }
-//        dd($product);
+        $sheets =  [$request->sheet16_url,$request->sheet17_url,$request->sheet18_url,$request->sheet19_url,$request->sheet20_url,$request->sheet21_url,$request->sheet22_url,$request->sheet23_url,$request->sheet24_url,$request->sheet25_url,$request->sheet26_url,$request->sheet27_url,$request->sheet28_url,$request->sheet29_url,$request->sheet30_url];
+        foreach ($sheets as $sheet){
+            if ($sheet) {
+                \App\ProductSpecification::create([
+                    'product_id' => $product->id,
+                    'sheet' => $sheet
+                ]);
+            }
+        }
+
 
         if (in_array("Service", $request->product_service_types)) {
             $product->dealing_as = "Service Provider";
@@ -2499,6 +2504,24 @@ class ProductController extends Controller
         $product->delivery_time = $request->delivery_time;
 //        dd($product);
         $product->variation = null;
+
+        $images =  [$request->avatar1_url,$request->avatar2_url,$request->avatar3_url,$request->avatar4_url,$request->avatar5_url,$request->avatar6_url,$request->avatar7_url,$request->avatar8_url,$request->avatar9_url,$request->avatar10_url,$request->avatar11_url,$request->avatar12_url,$request->avatar13_url,$request->avatar14_url,$request->avatar15_url];
+        foreach ($images as $image) {
+            if ($image) {
+                \App\ProductImage::create(['product_id' => $product->id, 'image' => $image]);
+            }
+        }
+
+        $sheets =  [$request->sheet16_url,$request->sheet17_url,$request->sheet18_url,$request->sheet19_url,$request->sheet20_url,$request->sheet21_url,$request->sheet22_url,$request->sheet23_url,$request->sheet24_url,$request->sheet25_url,$request->sheet26_url,$request->sheet27_url,$request->sheet28_url,$request->sheet29_url,$request->sheet30_url];
+        foreach ($sheets as $sheet){
+            if ($sheet) {
+                \App\ProductSpecification::create([
+                    'product_id' => $product->id,
+                    'sheet' => $sheet
+                ]);
+            }
+        }
+
         if ($product->save()) {
             if (in_array("Sell", $request->product_service_types) || in_array("Buy", $request->product_service_types)) {
                 if ($request->manufacturer_name != null) {
@@ -2827,32 +2850,55 @@ class ProductController extends Controller
 
     public function upload_sheet(Request $request)
     {
-        if ($request->file) {
-            $sheet = $request->file('file');
-            $sheet_name = rand(1000, 9999) . time() . '.' . $sheet->getClientOriginalExtension();
-            $file = 'assets/front_site/products/sheets/';
-            $sheet->move(public_path($file), $sheet_name);
-            $path = $file . $sheet_name;
-            \App\ProductSpecification::create(['sheet' => $path, 'product_id' => $request->productId,]);
+        if($request->hasFile('sheet')){
+
+            $sheet = $request->file('sheet');
+            $sheet_name = rand(1000, 9999999) . time() . '.' . $sheet->getClientOriginalExtension();
+            $sheet->storeAs('leads/sheets/',$sheet_name,'s3');
+            $path = 'leads/sheets'.'/'.$sheet_name;
+            $url = Storage::disk('s3')->url($path);
+            return response()->json(['url'=>$url]);
         }
+//        if($request->file){
+//            $sheet = $request->file('file');
+//            $sheet_name = rand(1000, 999999) . time() . '.' . $sheet->getClientOriginalExtension();
+//            $sheet->storeAs('leads/sheets/',$sheet_name,'s3');
+//            $path = 'leads/sheets'.'/'.$sheet_name;
+//            $url = Storage::disk('s3')->url($path);
+//            \App\ProductSpecification::create(['sheet' => $url, 'product_id' => $request->productId,]);
+//        }
     }
 
     public function upload_image(Request $request)
     {
-        if ($request->file) {
-            $image = $request->file('file');
-            $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
-            $file = 'assets/front_site/products/images/';
-            $image->move(public_path($file), $image_name);
-            $path = $file . $image_name;
-            \App\ProductImage::create(['image' => $path, 'product_id' => $request->productId,]);
+
+        if($request->hasFile('avatar')){
+
+//            $image = $request->file('avatar');
+//            $image_name = rand(1000, 9999999) . time() . '.' . $image->getClientOriginalExtension();
+//            $image->storeAs('leads/images/',$image_name,'s3');
+//            $path = 'leads/images'.'/'.$image_name;
+//            $url = Storage::disk('s3')->url($path);
+//            return response()->json(['url'=>$url]);
+
+            $image = request()->file('avatar');
+            $imageName = rand(1000, 999999) . time() . '.' . $image->getClientOriginalExtension();
+            $img = Image::make($image);
+            $img->resize(379, 295, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            //detach method is the key! Hours to find it... :/
+            $resource = $img->stream()->detach();
+            \Illuminate\Support\Facades\Storage::disk('s3')->put('leads/images/' . $imageName, $resource);
+            $url = Storage::disk('s3')->url('leads/images'.'/'.$imageName);
+            return response()->json(['url'=>$url]);
         }
     }
 
     public function sheetRemove($id)
     {
         $image = \App\ProductSpecification::find($id);;
-        if (\File::delete(public_path('assets/front_site/products/sheets/' . $image->image))) {
+        if (\File::delete(Storage::disk('s3')->url($image->image))) {
             $image->delete();
             return json_encode(['msg' => true]);
         }
@@ -2861,7 +2907,7 @@ class ProductController extends Controller
     public function imageRemove($id)
     {
         $image = \App\ProductImage::find($id);;
-        if (\File::delete(public_path('assets/front_site/products/images/' . $image->image))) {
+        if (\File::delete(Storage::disk('s3')->url($image->image))) {
             $image->delete();
             return json_encode(['msg' => true]);
         }

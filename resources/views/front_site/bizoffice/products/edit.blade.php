@@ -10,7 +10,7 @@
         <!-- Sidebar -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" style="background: #d9eefe8c">
+            <div id="page-content-wrapper" >
 
                 <div class="mx-2 my-2">
                     <div id="companyTab1">
@@ -28,7 +28,7 @@
                                                 @endif
                                                 <span
                                                     class="fa fa-edit edit-btn about-edit-btn"></span></h6>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Lead Type</span>
                                                 </div>
@@ -42,7 +42,7 @@
                                                     </div>
                                                 @endif
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Main Category</span>
                                                 </div>
@@ -50,7 +50,7 @@
                                                     <span>{{ $product->category->name }}</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Sub-Category</span>
                                                 </div>
@@ -59,7 +59,7 @@
                                                 </div>
                                             </div>
                                             @if($product->add_sub_sub_category!=null)
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Product Type</span>
                                                     </div>
@@ -70,7 +70,7 @@
                                                 </div>
                                             @else
                                                 @if(in_array("Buy", explode(",", $product->product_service_types)) || in_array("Sell", explode(",", $product->product_service_types)))
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Product Type</span>
                                                         </div>
@@ -84,7 +84,7 @@
                                                     </div>
                                                 @endif
                                             @endif
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Reference Number</span>
                                                 </div>
@@ -92,7 +92,7 @@
                                                     <span>{{ $product->reference_no }}</span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Subject</span>
                                                 </div>
@@ -101,7 +101,7 @@
                                                 </div>
                                             </div>
                                             @if($product->product_service_types == "Sell" || $product->product_service_types == "Buy")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Product Name</span>
                                                     </div>
@@ -111,7 +111,7 @@
                                                 </div>
                                             @endif
                                             @if($product->product_service_types == "Service")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Product & Service Name</span>
                                                     </div>
@@ -120,7 +120,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Keyword For Search</span>
                                                 </div>
@@ -135,7 +135,7 @@
                                                 </div>
                                             </div>
                                             @if(!in_array("Service", explode(",", $product->product_service_types)))
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Product Availability</span>
                                                     </div>
@@ -150,7 +150,7 @@
                                                     </div>
                                                 </div>
                                                 @if(in_array("Buy", explode(",", $product->product_service_types)))
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Preferred Manufacturer Name</span>
                                                     </div>
@@ -165,7 +165,7 @@
                                                     </div>
                                                 </div>
                                                 @else
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Manufacturer Name</span>
                                                         </div>
@@ -180,7 +180,7 @@
                                                         </div>
                                                     </div>
                                                     @endif
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Product Origin</span>
                                                     </div>
@@ -196,7 +196,7 @@
                                                 </div>
                                             @endif
                                             @if($product->details!=null)
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Additional Info</span>
                                                 </div>
@@ -322,7 +322,7 @@
                                              role="alert"></div>
                                     </div>
                                 </div>
-                                <div class="mt-4 mb-4">
+                                <div class="my-1">
                                     <hr class="horizontal-line">
                                 </div>
                                 @if($product->variation != null)
@@ -330,7 +330,7 @@
                                         <h6 class="heading">Additional Product Info<span
                                                 class="fa fa-edit edit-btn com-edit-btn"></span></h6>
                                         @if($product->variation == "Machinery & Parts")
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Product Type</span>
                                                 </div>
@@ -344,7 +344,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Condition</span>
                                                 </div>
@@ -358,7 +358,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">After Sales Service</span>
                                                 </div>
@@ -373,7 +373,7 @@
                                                 </div>
                                             </div>
                                             @if($product->machinery_product_info->after_sales_service=="Yes")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Type of Service</span>
                                                     </div>
@@ -389,7 +389,7 @@
                                                 </div>
                                             @endif
 
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Warranty</span>
                                                 </div>
@@ -404,7 +404,7 @@
                                                 </div>
                                             </div>
                                             @if($product->machinery_product_info->warranty=="Yes")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Warranty Period</span>
                                                     </div>
@@ -419,7 +419,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Certification</span>
                                                 </div>
@@ -434,7 +434,7 @@
                                                 </div>
                                             </div>
                                             @if($product->machinery_product_info->certification=="Yes")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Certification Details</span>
                                                     </div>
@@ -449,7 +449,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Additional Trade Notes</span>
                                                 </div>
@@ -463,7 +463,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Product Related Certifications</span>
                                                 </div>
@@ -478,7 +478,7 @@
                                                 </div>
                                             </div>
                                         @elseif($product->variation == "PPE & Institutional")
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Material Type</span>
                                                 </div>
@@ -492,7 +492,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Composition/Construction</span>
                                                 </div>
@@ -506,7 +506,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Size/Age Group</span>
                                                 </div>
@@ -520,7 +520,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Color</span>
                                                 </div>
@@ -534,7 +534,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Gender</span>
                                                 </div>
@@ -548,7 +548,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Thickness/GSM/Width</span>
                                                 </div>
@@ -562,7 +562,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Brand</span>
                                                 </div>
@@ -576,7 +576,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Design/Style </span>
                                                 </div>
@@ -590,7 +590,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Season </span>
                                                 </div>
@@ -604,7 +604,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">End Use/Application</span>
                                                 </div>
@@ -619,7 +619,7 @@
                                                 </div>
                                             </div>
                                         @elseif($product->variation == "Garments & Accessories")
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Material Type</span>
                                                 </div>
@@ -633,7 +633,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Composition/Construction</span>
                                                 </div>
@@ -647,7 +647,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Size/Age Group</span>
                                                 </div>
@@ -661,7 +661,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Color</span>
                                                 </div>
@@ -675,7 +675,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Gender</span>
                                                 </div>
@@ -689,7 +689,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Thickness/GSM/Width</span>
                                                 </div>
@@ -703,7 +703,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Brand</span>
                                                 </div>
@@ -717,7 +717,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Design/Style </span>
                                                 </div>
@@ -731,7 +731,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Season </span>
                                                 </div>
@@ -745,7 +745,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">End Use/Application</span>
                                                 </div>
@@ -762,7 +762,7 @@
                                         @elseif($product->variation == "Knitted Fabric" || $product->variation == "Woven Fabric" || $product->variation == "Nonwoven Fabric" )
 
                                             @if($product->fabric_product_info->fabric_types =="Other")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Fabric Type</span>
                                                     </div>
@@ -777,7 +777,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Fabric Type</span>
                                                     </div>
@@ -794,7 +794,7 @@
                                             @endif
 
                                             @if($product->fabric_product_info->knitting_type !=null)
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Knitting Type</span>
                                                     </div>
@@ -811,7 +811,7 @@
                                             @endif
 
                                             @if($product->fabric_product_info->weave_types !=null)
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Weave Type</span>
                                                     </div>
@@ -828,7 +828,7 @@
                                             @endif
 
                                             @if($product->fabric_product_info->non_woven_types !=null)
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Non Woven Type</span>
                                                     </div>
@@ -843,7 +843,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Fabric Construction</span>
                                                 </div>
@@ -857,7 +857,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">GSM/Thickness</span>
                                                 </div>
@@ -872,7 +872,7 @@
                                                 </div>
                                             </div>
                                                 @if($product->fabric_product_info->fabric_composition!=null)
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Fabric Composition</span>
                                                 </div>
@@ -887,7 +887,7 @@
                                                 </div>
                                             </div>
                                                 @endif
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Width</span>
                                                 </div>
@@ -909,7 +909,7 @@
                                             </div>
 
                                             @if($product->fabric_product_info->manufacturing_technique =="Other")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Manufacturing Technique</span>
                                                     </div>
@@ -924,7 +924,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Manufacturing Technique</span>
                                                         </div>
@@ -941,7 +941,7 @@
                                             @endif
 
                                             @if($product->fabric_product_info->yarn_type =="Other")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Yarn type</span>
                                                     </div>
@@ -956,7 +956,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Yarn Type</span>
                                                         </div>
@@ -973,7 +973,7 @@
                                             @endif
 
                                             @if(in_array("Other", explode(",", $product->fabric_product_info->features)))
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Feature</span>
                                                     </div>
@@ -988,7 +988,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">Features</span>
                                                         </div>
@@ -1005,7 +1005,7 @@
                                             @endif
 
                                             @if(in_array("Other", explode(",", $product->fabric_product_info->uses)))
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">End Use/Application</span>
                                                     </div>
@@ -1020,7 +1020,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                    <div class="row mb-2 text">
+                                                    <div class="row text">
                                                         <div class="col-sm-6 col-6">
                                                             <span class="font-500">End Use/Application</span>
                                                         </div>
@@ -1036,7 +1036,7 @@
                                                     </div>
                                             @endif
                                         @elseif($product->variation == "Natural Yarn" || $product->variation == "Synthetic Yarn" || $product->variation == "Blended Yarn" || $product->variation == "Speciality Yarn")
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Count</span>
                                                 </div>
@@ -1050,7 +1050,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Count Unit</span>
                                                 </div>
@@ -1065,7 +1065,7 @@
                                                 </div>
                                             </div>
                                             @if($product->yarn_product_info->count_unit =="Other")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Count Unit</span>
                                                     </div>
@@ -1080,7 +1080,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Count Unit</span>
                                                     </div>
@@ -1097,7 +1097,7 @@
                                             @endif
 
                                             @if($product->yarn_product_info->attribute =="Other")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Yarn Attribute</span>
                                                     </div>
@@ -1112,7 +1112,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Yarn Attribute</span>
                                                     </div>
@@ -1129,7 +1129,7 @@
                                             @endif
 
                                             @if($product->yarn_product_info->technology =="Other")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Technology</span>
                                                     </div>
@@ -1144,7 +1144,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Technology</span>
                                                     </div>
@@ -1159,7 +1159,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Yarn Grade</span>
                                                 </div>
@@ -1173,7 +1173,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">TPI </span>
                                                 </div>
@@ -1187,7 +1187,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Tenacity</span>
                                                 </div>
@@ -1203,7 +1203,7 @@
                                             </div>
 
                                             @if($product->yarn_product_info->count_type =="Other")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Count type</span>
                                                     </div>
@@ -1218,7 +1218,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Count Type</span>
                                                     </div>
@@ -1234,7 +1234,7 @@
                                                 </div>
                                             @endif
                                             @if($product->yarn_product_info->yarn_specialty =="Other")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Yarn Speciality</span>
                                                     </div>
@@ -1249,7 +1249,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Yarn Speciality</span>
                                                     </div>
@@ -1266,7 +1266,7 @@
                                             @endif
 
                                             @if($product->yarn_product_info->end_use =="Other")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">End Use/Application</span>
                                                     </div>
@@ -1281,7 +1281,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">End Use/Application</span>
                                                     </div>
@@ -1299,7 +1299,7 @@
                                         @elseif($product->variation == "Natural Fibre" || $product->variation == "Manmade Fibre")
 
                                             @if($product->fiber_product_info->fiber_type =="Other")
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Fibre Type</span>
                                                     </div>
@@ -1314,7 +1314,7 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Fibre Type</span>
                                                     </div>
@@ -1329,7 +1329,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Fibre Size/Length</span>
                                                 </div>
@@ -1343,7 +1343,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Tensile Strength</span>
                                                 </div>
@@ -1357,7 +1357,7 @@
                                                 </span>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">End Use Application</span>
                                                 </div>
@@ -1375,7 +1375,7 @@
                                         @else
                                             @foreach($product->chemicals_product_infos as $key => $chemical)
                                                 <h6 class="heading mt-1">Product Info {{ $key + 1 }}</h6>
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Manufacturer Company Name</span>
                                                     </div>
@@ -1389,7 +1389,7 @@
                                                     </span>
                                                     </div>
                                                 </div>
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Product Origin</span>
                                                     </div>
@@ -1403,7 +1403,7 @@
                                                     </span>
                                                     </div>
                                                 </div>
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Chemicals Listed</span>
                                                     </div>
@@ -1417,7 +1417,7 @@
                                                     </span>
                                                     </div>
                                                 </div>
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Supply Type</span>
                                                     </div>
@@ -1432,7 +1432,7 @@
                                                     </div>
                                                 </div>
                                                 @if($chemical->company_additional_info!=null)
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Additional Information</span>
                                                     </div>
@@ -1450,7 +1450,7 @@
                                             @endforeach
                                         @endif
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-1">
                                         <hr class="horizontal-line">
                                     </div>
                                 @endif
@@ -1458,7 +1458,7 @@
                                     <div class="edit-company-section">
                                         <h6 class="heading">Trade Info<span
                                                 class="fa fa-edit edit-btn extra-edit-btn"></span></h6>
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Dealing Product As</span>
                                             </div>
@@ -1472,7 +1472,7 @@
                                             </div>
                                             @endif
                                         </div>
-                                        {{--                                        <div class="row mb-2 text">--}}
+                                        {{--                                        <div class="row text">--}}
                                         {{--                                            <div class="col-sm-6 col-6">--}}
                                         {{--                                                <span>Also dealing product as</span>--}}
                                         {{--                                            </div>--}}
@@ -1481,7 +1481,7 @@
                                         {{--                                            </div>--}}
                                         {{--                                        </div>--}}
                                         @if($product->focused_selling_region !=null)
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Target Selling Region</span>
                                             </div>
@@ -1497,7 +1497,7 @@
                                         </div>
                                         @endif
                                         @if(in_array("Sell", explode(",", $product->product_service_types)))
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Target Selling Country</span>
                                                 </div>
@@ -1506,7 +1506,7 @@
                                                 </div>
                                             </div>
                                             @if($product->production_capacity !=null)
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Production Capacity</span>
                                                 </div>
@@ -1522,7 +1522,7 @@
                                             </div>
                                             @endif
                                             @if($product->min_order_quantity!=null)
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Min Order Quantity</span>
                                                 </div>
@@ -1537,7 +1537,7 @@
                                                 </div>
                                             </div>
                                             @endif
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Sampling</span>
                                                 </div>
@@ -1554,7 +1554,7 @@
                                                 </div>
                                             </div>
                                             @if($product->is_sampling)
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Sampling Cost</span>
                                                     </div>
@@ -1570,7 +1570,7 @@
                                                 </div>
                                             @endif
                                             @if($product->sampling_type == 'Paid')
-                                                <div class="row mb-2 text">
+                                                <div class="row text">
                                                     <div class="col-sm-6 col-6">
                                                         <span class="font-500">Sampling Price</span>
                                                     </div>
@@ -1587,15 +1587,15 @@
                                             @endif
                                         @endif
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-1">
                                         <hr class="horizontal-line">
                                     </div>
                                 @endif
                                 <div class="edit-company-section">
-                                    <h6 class="heading">Payment & Delivery Info<span
+                                    <h6 class="heading">Payment & Delivery<span
                                             class="fa fa-edit edit-btn edit-payment"></span></h6>
                                     @if($product->product_service_types == "Buy")
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Target Price Range</span>
                                             </div>
@@ -1620,7 +1620,7 @@
                                         </div>
                                     @endif
                                     @if($product->product_service_types == "Sell")
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Unit Price Range</span>
                                             </div>
@@ -1644,7 +1644,7 @@
                                         </div>
                                     @endif
                                     @if($product->product_service_types == "Service")
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500"> Service Charges Range</span>
                                             </div>
@@ -1666,7 +1666,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Service Duration</span>
                                             </div>
@@ -1677,7 +1677,7 @@
                                             </div>
                                         </div>
                                         @if(in_array("Other", explode(",", $product->service_durations)))
-                                            <div class="row mb-2 text">
+                                            <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Other Service Duration</span>
                                                 </div>
@@ -1689,7 +1689,7 @@
                                             </div>
                                         @endif
                                     @else
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Delivery</span>
                                             </div>
@@ -1704,7 +1704,7 @@
                                             </div>
                                         </div>
                                         @if($product->delivery_time!=null)
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Lead Time</span>
                                             </div>
@@ -1721,7 +1721,7 @@
                                             @endif
                                     @endif
                                     @if(in_array("Other", explode(",", $product->suitable_currencies)))
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Suitable Currency</span>
                                             </div>
@@ -1736,7 +1736,7 @@
                                             </div>
                                         </div>
                                     @else
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Suitable Currency</span>
                                             </div>
@@ -1753,7 +1753,7 @@
                                     @endif
 
                                     @if(in_array("Other", explode(",", $product->payment_terms)))
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Payment Term</span>
                                             </div>
@@ -1768,7 +1768,7 @@
                                             </div>
                                         </div>
                                     @else
-                                        <div class="row mb-2 text">
+                                        <div class="row text">
                                             <div class="col-sm-6 col-6">
                                                 <span class="font-500">Payment Terms</span>
                                             </div>
@@ -1784,7 +1784,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <div class="mt-4 mb-4">
+                                <div class="my-1">
                                     <hr class="horizontal-line">
                                 </div>
                             </div>
@@ -1817,9 +1817,9 @@
                                    href="#tabInfo" role="tab"
                                    aria-controls="tabInfo"
                                    aria-selected="false">@if(in_array("Buy", explode(",", $product->product_service_types)) || in_array("Sell", explode(",", $product->product_service_types)))
-                                        Payment & Delivery Info
+                                        Payment & Delivery
                                     @else
-                                        Payment Info
+                                        Payment
                                     @endif</a>
                             </li>
                             <li class="w-unset my-sm-0 my-2 d-sm-flex d-inline-block justify-content-end ml-auto nav-item">
@@ -4770,7 +4770,7 @@
                                                             <small class="text-danger"
                                                                    id="supply_type{{ $i }}_error"></small>
                                                         </div>
-                                                        <div class="mt-4 mb-4">
+                                                        <div class="my-1">
                                                             <hr class="horizontal-line">
                                                         </div>
                                                     </div>
@@ -4855,7 +4855,7 @@
                                                         </div>
                                                         <small class="text-danger" id="supply_type1_error"></small>
                                                     </div>
-                                                    <div class="mt-4 mb-4">
+                                                    <div class="my-1">
                                                         <hr class="horizontal-line">
                                                     </div>
                                                 </div>
@@ -4877,7 +4877,7 @@
                                     <div class="mt-3" align="right">
                                         <button  class="red-btn next-btn" id="nextBtn1">NEXT</button>
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-1">
                                         <hr class="horizontal-line">
                                     </div>
                                 </div>
@@ -5038,7 +5038,7 @@
                                     <div class="mt-3" align="right">
                                         <button  class="red-btn next-btn" id="nextBtn2">NEXT</button>
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-1">
                                         <hr class="horizontal-line">
                                     </div>
                                 </div>
@@ -5565,7 +5565,7 @@
                                     <div class="mt-3" align="right">
                                         <button type="submit" class="red-btn" disabled>UPDATE</button>
                                     </div>
-                                    <div class="mt-4 mb-4">
+                                    <div class="my-1">
                                         <hr class="horizontal-line">
                                     </div>
                                 </div>

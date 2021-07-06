@@ -24,12 +24,11 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6 offset-md-3">
-                                    <label>Email <span class="required">*</span></label>
                                     <div class="form-row">
                                         <div class="form-group col-xl-12 col-md-12">
                                             <input type="email" value="{{ old('email') }}"
                                                    name="email" id="email" class="form-control"
-                                                   placeholder="example@email.com">
+                                                   placeholder="Email - example@email.com">
                                             <small class="text-danger" id="email_error"></small>
                                         </div>
                                         <div class="form-group col-xl-12 col-lg-12" align="center">

@@ -7,12 +7,9 @@
         /*contact us*/
         .contact-us-form {
             box-shadow: 0 4px 8px 0 rgb(0 0 0 / 0%), 0 6px 20px 0 rgb(0 0 0 / 18%);
-            padding: 35px;
+            padding: 8px;
             max-width: 720px;
-        }
-
-        .contact-us-form .submit-btn {
-            font-size: 16px!important;
+            border-radius: 8px;
         }
 
         .contact-us-form .paragraph {
@@ -25,16 +22,12 @@
             .contact-us-form {
                 width: 95%;
             }
-
-            .contact-us-form .submit-btn {
-                font-size: 14px!important;
-            }
             /*contact us*/
         }
     </style>
     <main id="maincontent" class="pt-sm-5 pt-3 pb-sm-5 pb-3 page-main">
         <div class="container contact-us-form">
-            <span class="d-block text-center heading font-500 font-24">Contact Us</span>
+            <span class="d-block text-center mb-2 heading font-500 font-24">Contact Us</span>
             <div class="alert alert-success mb-2 text-center" id='alert-success-contact' style="display: none"
                  role="alert">
             </div>
@@ -45,10 +38,8 @@
                 @csrf
                 <input type="hidden" class="form-control" name="type" value="admin">
                 <div class="form-group">
-                    <label class="label" for="inquiryFor">Contact For <span
-                            class="required">*</span></label>
                     <select class="form-control" id="inquiryFor" name="inquiryFor" required>
-                        <option value="" selected="selected" disabled="disabled">Select</option>
+                        <option value="" selected="selected" disabled="disabled">Select Contact For</option>
                         <option value="Advertising/Marketing">Advertising/Marketing</option>
                         <option value="Customer Care">Customer Care</option>
                         <option value="Site/Technical Problem">Site/Technical Problem</option>
@@ -59,40 +50,30 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <label class="label" for="userName">Name <span
-                                class="required">*</span></label>
                         <input type="text" class="form-control" name="userName" id="userName"  placeholder="Name" @if(auth()->check()) value="{{\Auth::user()->name}}" @endif required>
                         <small class="text-danger" id="userName_error"></small>
                     </div>
                     <div class="form-group col-sm-6">
-                        <label class="label" for="emailAddress">Email <span
-                                class="required">*</span></label>
-                        <input type="email" class="form-control" name="emailAddress" id="emailAddress" placeholder="example@gmail.com" @if(auth()->check()) value="{{\Auth::user()->email}}" @endif required>
+                        <input type="email" class="form-control" name="emailAddress" id="emailAddress" placeholder="Email - example@gmail.com" @if(auth()->check()) value="{{\Auth::user()->email}}" @endif required>
                         <small class="text-danger" id="emailAddress_error"></small>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <label class="label" for="companyName">Company Name <small class="font-500"> (Optional)</small></label>
-                        <input type="text" class="form-control" id="companyName" name="company_name" placeholder="My Textile">
+                        <input type="text" class="form-control" id="companyName" name="company_name" placeholder="Company Name (Optional) - My Textile">
                     </div>
                     <div class="form-group col-sm-6">
-                        <label class="label" for="phoneNumber">Phone <span
-                                class="required">*</span></label>
-                        <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="123-4567-890" @if(auth()->check()) value="{{\Auth::user()->registration_phone_no}}" @endif required>
+                        <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Phone - 123-4567-890" @if(auth()->check()) value="{{\Auth::user()->registration_phone_no}}" @endif required>
                         <small class="text-danger" id="phoneNumber_error"></small>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <label class="label" for="designationUser">Designation <small class="font-500"> (Optional)</small></label>
-                        <input type="text" value="" class="form-control" id="designationUser" name="designation" placeholder="Designation">
+                        <input type="text" value="" class="form-control" id="designationUser" name="designation" placeholder="Designation (Optional)">
                     </div>
                     <div class="form-group col-sm-6">
-                        <label class="label" for="countries">Choose Country <span
-                                class="required">*</span></label>
                         <select name="country" class="form-control" id="countries" required="required">
-                            <option value="" selected="selected" disabled="disabled">Country</option>
+                            <option value="" selected="selected" disabled="disabled">Choose Country</option>
                             @foreach($countries as $country)
                                 <option value="{{ $country->name->common }}" @if(auth()->check()) {{(\Auth::user()->country == $country->name->common)?'selected':''}} @endif>{{ $country->name->common }}</option>
                             @endforeach
@@ -101,7 +82,7 @@
                     </div>
                 </div>
                 <div class="form-group check-stats">
-                    <ul data-toggle="buttons">
+                    <ul data-toggle="buttons" class="mb-0">
                         <li class="w-100 btn d-flex pl-0">
                             <input class="input fa fa-square-o" type="checkbox" name="terms" id="terms">
                             <div class="text-justify">
@@ -111,29 +92,28 @@
                     </ul>
                 </div>
                 <div class="form-group">
-                    <label class="label" for="description">Message <span
-                            class="required">*</span></label>
                     <textarea class="form-control" name="description" id="description" placeholder="Message" style="height: 115px" required></textarea>
                     <small class="text-danger" id="description_error"></small>
                 </div>
-                <div class="form-group">
-                    <div class="mt-3 form-group col-md-12 career-img-drop-outer attachment-img-file" style="padding-left: 0px;">
+                <div class="form-group mb-0">
+                    <div class="mt-1 mb-0 form-group col-md-12 px-0 career-img-drop-outer attachment-img-file">
                         <label class="label" for="image">Attachment <small class="font-500"> (Optional |</small> <small class="font-500">Attach Reference or Image)</small></label>
                         <div class="custom-file">
                             <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile" style="color: #A52C3E;"><span class="fa fa-download"></span></label>
+                            <label class="custom-file-label" for="customFile" style="color: #A52C3E;"><span class="fa fa-upload"></span></label>
                         </div>
                     </div>
                 </div>
-                <p class="my-4 font-24 font-500 paragraph">Contact Details</p>
-                <div class="form-row d-flex justify-content-between">
-                    <div class="form-group font-18">
+
+                <h3 class="mt-2 mb-0">Contact Details</h3>
+                <div class="mb-1 mx-0 form-row d-flex justify-content-between">
+                    <div class="form-group mb-0 font-18">
                         <label class="label" for="contactEmail">Contact Email</label>
-                        <a href="mailto:info@bizonair.com" class="d-block red-link font-18">info@bizonair.com</a>
+                        <a href="mailto:info@bizonair.com" class="d-block red-link">info@bizonair.com</a>
                     </div>
-                    <div class="form-group font-18">
+                    <div class="form-group mb-0 font-18">
                         <label class="label" for="contactPhone">Contact Number</label>
-                        <p class="paragraph">+92 3213222254</p>
+                        <p class="mb-0 paragraph">+92 3213222254</p>
                     </div>
                 </div>
                 <div>
