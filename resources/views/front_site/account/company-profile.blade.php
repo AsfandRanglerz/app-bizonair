@@ -214,7 +214,7 @@
                                                placeholder="Alternate Office Address (Optional) - Input Current Office Address">
                                     </div>
                                 </div>
-                                <button type="submit" class="red-btn" disabled>Submit</button>
+                                <button type="submit" class="red-btn">Submit</button>
                             </form>
                         </div>
                     </div>

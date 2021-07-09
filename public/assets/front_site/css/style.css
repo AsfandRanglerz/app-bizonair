@@ -1751,7 +1751,7 @@ ul[data-toggle='buttons'] {
     font-size: 10px;
 }
 
-label {
+label:not(.custom-control-label) {
     display: block;
 }
 

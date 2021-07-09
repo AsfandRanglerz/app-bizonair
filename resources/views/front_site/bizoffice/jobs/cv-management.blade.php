@@ -51,26 +51,26 @@
                                         <td>{{$list->city,$list->country }} Year</td>
 
                                         <td align="center">
-                                            <input type="hidden" name='job_id' value="{{encrypt($list->id)}}">
-                                            <button type="button" class="dropdown-toggle prWhiteBtn p-0"
-                                                    data-toggle="dropdown" disabled>
-                                                <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
-                                            </button>
+{{--                                            <input type="hidden" name='job_id' value="{{encrypt($list->id)}}">--}}
+{{--                                            <button type="button" class="dropdown-toggle prWhiteBtn p-0"--}}
+{{--                                                    data-toggle="dropdown" disabled>--}}
+{{--                                                <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">--}}
+{{--                                            </button>--}}
 
-                                            <ul class="dropdown-menu actionMenu p-10" role="menu">
-                                                <a href="{{ route('edit-cv-management',$list->id) }}" onclick="return false;">
-                                                    <li class="font-500">
-                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View
-                                                    </li>
-                                                </a>
+{{--                                            <ul class="dropdown-menu actionMenu p-10" role="menu">--}}
+{{--                                                <a href="{{ route('edit-cv-management',$list->id) }}" onclick="return false;">--}}
+{{--                                                    <li class="font-500">--}}
+{{--                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View--}}
+{{--                                                    </li>--}}
+{{--                                                </a>--}}
 
-                                                    <a href="javascript:;" class="delete-product" onclick="return false;">
-                                                        <li class="font-500" id="cross" cv_id="{{$list->id}}">
-                                                        <span class="fa fa-trash delete-btn mr-3"
-                                                              aria-hidden="true"></span>Delete
-                                                        </li>
-                                                    </a>
-                                            </ul>
+{{--                                                    <a href="javascript:;" class="delete-product" onclick="return false;">--}}
+{{--                                                        <li class="font-500" id="cross" cv_id="{{$list->id}}">--}}
+{{--                                                        <span class="fa fa-trash delete-btn mr-3"--}}
+{{--                                                              aria-hidden="true"></span>Delete--}}
+{{--                                                        </li>--}}
+{{--                                                    </a>--}}
+{{--                                            </ul>--}}
                                         </td>
                                     </tr>
                             @endforeach

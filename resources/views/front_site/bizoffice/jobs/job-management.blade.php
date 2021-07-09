@@ -53,31 +53,31 @@
                                         <td>{{date("d-F-Y", strtotime($list->created_at))}}</td>
 
                                         <td align="center">
-                                            <input type="hidden" name='job_id' value="{{encrypt($list->id)}}">
-                                            <button  class="dropdown-toggle prWhiteBtn p-0"
-                                                    data-toggle="dropdown">
-                                                <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
-                                            </button>
+{{--                                            <input type="hidden" name='job_id' value="{{encrypt($list->id)}}">--}}
+{{--                                            <button  class="dropdown-toggle prWhiteBtn p-0"--}}
+{{--                                                    data-toggle="dropdown">--}}
+{{--                                                <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">--}}
+{{--                                            </button>--}}
 
-                                            <ul class="dropdown-menu actionMenu p-10" role="menu">
-                                                <a href="{{ route('edit-job-management',$list->id) }}">
-                                                    <li class="font-500">
-                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View
-                                                    </li>
-                                                </a>
-                                                <a href="{{ route('edit-job-management',$list->id.'#jobTab2') }}">
-                                                    <li class="font-500">
-                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>Edit
-                                                    </li>
-                                                </a>
+{{--                                            <ul class="dropdown-menu actionMenu p-10" role="menu">--}}
+{{--                                                <a href="{{ route('edit-job-management',$list->id) }}">--}}
+{{--                                                    <li class="font-500">--}}
+{{--                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View--}}
+{{--                                                    </li>--}}
+{{--                                                </a>--}}
+{{--                                                <a href="{{ route('edit-job-management',$list->id.'#jobTab2') }}">--}}
+{{--                                                    <li class="font-500">--}}
+{{--                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>Edit--}}
+{{--                                                    </li>--}}
+{{--                                                </a>--}}
 
-                                                    <a href="javascript:;" class="delete-product">
-                                                        <li class="font-500" id="cross" job_id="{{$list->id}}">
-                                                        <span class="fa fa-trash delete-btn mr-3"
-                                                              aria-hidden="true"></span>Delete
-                                                        </li>
-                                                    </a>
-                                            </ul>
+{{--                                                    <a href="javascript:;" class="delete-product">--}}
+{{--                                                        <li class="font-500" id="cross" job_id="{{$list->id}}">--}}
+{{--                                                        <span class="fa fa-trash delete-btn mr-3"--}}
+{{--                                                              aria-hidden="true"></span>Delete--}}
+{{--                                                        </li>--}}
+{{--                                                    </a>--}}
+{{--                                            </ul>--}}
                                         </td>
                                     </tr>
                             @endforeach

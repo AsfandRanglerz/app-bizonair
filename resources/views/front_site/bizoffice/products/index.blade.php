@@ -93,41 +93,41 @@
 
                                         </td>
                                         <td align="center">
-                                            <input type="hidden" name='id' value="{{encrypt($product->id)}}">
-                                            <button  class="dropdown-toggle prWhiteBtn p-0"
-                                                    data-toggle="dropdown">
-                                                <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
-                                            </button>
-                                            <input type="hidden" name='url'
-                                                   value="{{ route('products.destroy', $product) }}">
-                                            <ul class="dropdown-menu actionMenu p-10" role="menu">
-                                                <a href="{{ route('products.edit', $product) }}">
-                                                    <li class="font-500">
-                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View
-                                                    </li>
-                                                </a>
-                                                @if($request->case && $request->case == 'archive')
-                                                    <a href="javascript:;" class="restore-product" onclick="return false;">
-                                                        <li class="font-500">
-                                                        <span class="fa fa-undo delete-btn mr-3"
-                                                              aria-hidden="true"></span>Restore
-                                                        </li>
-                                                    </a>
-                                                    <a href="javascript:;" class="delete-product" onclick="return false;">
-                                                        <li class="font-500">
-                                                        <span class="fa fa-trash delete-btn mr-3"
-                                                              aria-hidden="true"></span>Permanent Delete
-                                                        </li>
-                                                    </a>
-                                                @else
-                                                    <a href="javascript:;" class="delete-product" onclick="return false;">
-                                                        <li class="font-500">
-                                                        <span class="fa fa-trash delete-btn mr-3"
-                                                              aria-hidden="true"></span>Archive
-                                                        </li>
-                                                    </a>
-                                                @endif
-                                            </ul>
+{{--                                            <input type="hidden" name='id' value="{{encrypt($product->id)}}">--}}
+{{--                                            <button  class="dropdown-toggle prWhiteBtn p-0"--}}
+{{--                                                    data-toggle="dropdown">--}}
+{{--                                                <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">--}}
+{{--                                            </button>--}}
+{{--                                            <input type="hidden" name='url'--}}
+{{--                                                   value="{{ route('products.destroy', $product) }}">--}}
+{{--                                            <ul class="dropdown-menu actionMenu p-10" role="menu">--}}
+{{--                                                <a href="{{ route('products.edit', $product) }}" onclick="return false;">--}}
+{{--                                                    <li class="font-500">--}}
+{{--                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View--}}
+{{--                                                    </li>--}}
+{{--                                                </a>--}}
+{{--                                                @if($request->case && $request->case == 'archive')--}}
+{{--                                                    <a href="javascript:;" class="restore-product" onclick="return false;">--}}
+{{--                                                        <li class="font-500">--}}
+{{--                                                        <span class="fa fa-undo delete-btn mr-3"--}}
+{{--                                                              aria-hidden="true"></span>Restore--}}
+{{--                                                        </li>--}}
+{{--                                                    </a>--}}
+{{--                                                    <a href="javascript:;" class="delete-product" onclick="return false;">--}}
+{{--                                                        <li class="font-500">--}}
+{{--                                                        <span class="fa fa-trash delete-btn mr-3"--}}
+{{--                                                              aria-hidden="true"></span>Permanent Delete--}}
+{{--                                                        </li>--}}
+{{--                                                    </a>--}}
+{{--                                                @else--}}
+{{--                                                    <a href="javascript:;" class="delete-product" onclick="return false;">--}}
+{{--                                                        <li class="font-500">--}}
+{{--                                                        <span class="fa fa-trash delete-btn mr-3"--}}
+{{--                                                              aria-hidden="true"></span>Archive--}}
+{{--                                                        </li>--}}
+{{--                                                    </a>--}}
+{{--                                                @endif--}}
+{{--                                            </ul>--}}
                                         </td>
                                         <?php
                                         $products = \App\View::where('prod_id',$product->id)->count();

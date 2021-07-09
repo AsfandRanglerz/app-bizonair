@@ -269,9 +269,9 @@
                             <li data-toggle="tooltip" data-placement="bottom" title="Your Favourite Deals">
                                 <a href="{{route('view-deal-favourites')}}" class="sidebar-links">Your Favourite Deals <span class="biz-badge blue-badge">{{ getBuysellFavCount() }}</span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="{{route('buysell-inquiries')}}" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
+                                <a href="#" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="{{route('get-one-time-fav')}}" class="sidebar-links">Deal Favorites <span class="biz-badge" id="fdealinq"></span></a></li>
+                                <a href="#" class="sidebar-links">Deal Favorites <span class="biz-badge" id="fdealinq"></span></a></li>
                         </ul>
                     </li>
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"

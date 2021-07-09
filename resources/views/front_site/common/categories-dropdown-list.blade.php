@@ -39,38 +39,38 @@
         <div class="tab-pane fade" id="careersTab" role="tabpanel">
             <div class="row m-0 py-1">
                 <div class="col-3 px-1 pro-categories-tab-links pro-cat-careers">
-                    <a href="{{ route('view-form-job-management') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Post A Job</a>
+                    <a href="{{ route('view-form-job-management') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/Post a Job.png" class="mb-1 banner-below-adds" width="15" height="15">Post A Job</a>
                 </div>
                 <div class="col-3 px-1 pro-categories-tab-links pro-cat-careers">
                     <a href="#" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Post Your CV</a>
                 </div>
                 <div class="col-3 px-1 pro-categories-tab-links pro-cat-careers">
-                    <a href="{{ route('jobs-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Explore All Jobs</a>
+                    <a href="{{ route('jobs-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/Explore All Jobs.png" class="mb-1 banner-below-adds" width="15" height="15">Explore All Jobs</a>
                 </div>
                 <div class="col-3 px-1 pro-categories-tab-links pro-cat-careers">
-                    <a href="{{ route('cv-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Explore All CV's</a>
+                    <a href="{{ route('cv-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/Post Your CV.png" class="mb-1 banner-below-adds" width="15" height="15">Explore All CV's</a>
                 </div>
             </div>
         </div>
         <div class="tab-pane fade position-relative" id="journalTab" role="tabpanel">
             <div class="row m-0 py-1">
                 <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="{{route('news')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/ppe-institutional.png" class="mb-1 banner-below-adds" width="15" height="15">News</a>
+                    <a href="{{route('news')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/NEws.png" class="mb-1 banner-below-adds" width="15" height="15">News</a>
                 </div>
                 <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="{{route('blogs')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/ppe-institutional.png" class="mb-1 banner-below-adds" width="15" height="15">Blogs</a>
+                    <a href="{{route('blogs')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/Blogs.png" class="mb-1 banner-below-adds" width="15" height="15">Blogs</a>
                 </div>
                 <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="{{route('articles')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/ppe-institutional.png" class="mb-1 banner-below-adds" width="15" height="15">Research / Articles</a>
+                    <a href="{{route('articles')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/Research Articles.png" class="mb-1 banner-below-adds" width="15" height="15">Research / Articles</a>
                 </div>
                 <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="{{route('events')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/ppe-institutional.png" class="mb-1 banner-below-adds" width="15" height="15">Upcoming Events</a>
+                    <a href="{{route('events')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/Events.png" class="mb-1 banner-below-adds" width="15" height="15">Upcoming Events</a>
                 </div>
                 <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="{{route('projects')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/ppe-institutional.png" class="mb-1 banner-below-adds" width="15" height="15">Student Projects</a>
+                    <a href="{{route('projects')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/Student Projects.png" class="mb-1 banner-below-adds" width="15" height="15">Student Projects</a>
                 </div>
                 <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="{{route('calculation-formula')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/ppe-institutional.png" class="mb-1 banner-below-adds" width="15" height="15">Textile Calculations</a>
+                    <a href="{{route('calculation-formula')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/Calculations.png" class="mb-1 banner-below-adds" width="15" height="15">Textile Calculations</a>
                 </div>
                 <div class="col-4 px-1 pro-categories-tab-links">
                     <a href="{{ route('currency-rates') }}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/ppe-institutional.png" class="mb-1 banner-below-adds" width="15" height="15">Currency Rates</a>
