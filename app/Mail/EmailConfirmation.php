@@ -31,7 +31,7 @@ class EmailConfirmation extends Mailable
     public function build()
     {
         return $this->from('noreply@ranglerztech.website', 'Bizonair')->markdown('emails.confirmation.template')->with([
-            'url' => url('verify-email/' . $this->number),
+            'url' => url('verify-otp/' . $this->number),'verification_code' =>  $this->number,
         ]);
     }
 }

@@ -180,7 +180,7 @@ class HomeController extends Controller
 
         if (!$exst) {
             do {
-                $verification_code = Str::random(150) . time();
+                $verification_code = mt_rand(399999, 799999);
                 $user_code = \App\EmailVerification::where('verification_code', $verification_code)->first();
             } while (!empty($user_code));
             $email_verification = new \App\EmailVerification();
@@ -191,7 +191,7 @@ class HomeController extends Controller
             $time = strtotime('+5 minutes');
             Session::put("expire_time", $time);
             $data['feedback'] = 'true';
-            $data['msg'] = 'Email has been sent successfully. Please confirm authenticity of your email address.' . '<br>' . 'If you are unable to find email, please;' . '<ol style="margin-left: 2em;">' . '<li>Recheck provided email address</li>' . '<li>Check the Spam/Junk folder in your emails</li>' . '<li>Get intouch with us at info@bizonair.com</li>' . '</ol>';
+            $data['msg'] = 'OTP has been sent to your email address successfully. Please confirm authenticity of your email address.' . '<br>' . 'If you are unable to find email, please;' . '<ol style="margin-left: 2em;">' . '<li>Recheck provided email address</li>' . '<li>Check the Spam/Junk folder in your emails</li>' . '<li>Get intouch with us at info@bizonair.com</li>' . '</ol>';
         } else {
             $data['feedback'] = 'invalid';
             $data['msg'] = 'Email already exists';
@@ -199,31 +199,47 @@ class HomeController extends Controller
         return json_encode($data);
     }
 
-    public function check_verification_code($code)
+    public function verify_otp($code)
     {
-        if (Session::has('verified_email')) {
-            Session::forget('verified_email');
-        }
-        $user_code = \App\EmailVerification::where('verification_code', $code)->orderBy('created_at', 'desc')->first();
-        if ($user_code) {
-            $expire_time = strtotime($user_code->created_at);
-            $current_time = strtotime('-3 days', time());
-            if ($current_time > $expire_time) {
-                $data['feedback'] = 'invalid';
-                $data['msg'] = 'The verification link has been expired!';
-                return view('front_site.other.email-confirmation-failed', $data);
-            } else {
-                $data['feedback'] = 'true';
-                $data['msg'] = 'Email is verified successfully!';
-                Session::put('verified_email', $user_code->email);
-                $user_code->delete();
-                return redirect(route('registeration-step-1'));
+        $data['code'] = $code;
+        return view('front_site.other.verify-otp', $data);
+    }
+
+    public function check_verification_code(Request $request)
+    {
+        $userinpcode = $request->get('digit-1').$request->get('digit-2').$request->get('digit-3').$request->get('digit-4').$request->get('digit-5').$request->get('digit-6');
+        if($request->get('verifyOtp') == $userinpcode)
+        {
+            if (Session::has('verified_email')) {
+                Session::forget('verified_email');
             }
-        } else {
-            $data['feedback'] = 'invalid';
-            $data['msg'] = 'The verification link does not exist!';
-            return view('front_site.other.email-confirmation-failed', $data);
+
+            $user_code = \App\EmailVerification::where('verification_code', $userinpcode)->orderBy('created_at', 'desc')->first();
+            if ($user_code) {
+                $expire_time = strtotime($user_code->created_at);
+                $current_time = strtotime('-3 days', time());
+                if ($current_time > $expire_time) {
+                    $data['feedback'] = 'invalid';
+                    $data['msg'] = 'The verification link has been expired!';
+                    return view('front_site.other.email-confirmation-failed', $data);
+                } else {
+                    $data['feedback'] = 'true';
+                    $data['msg'] = 'Email is verified successfully!';
+                    $data['url'] =route('registeration-step-1');
+                    Session::put('verified_email', $user_code->email);
+//                    $user_code->delete();
+                    return json_encode($data);
+                }
+            } else {
+                $data['feedback'] = 'invalid';
+                $data['msg'] = 'The verification link does not exist!';
+                return view('front_site.other.email-confirmation-failed', $data);
+            }
+        }else {
+            $data['feedback'] = "other";
+            $data['custom_msg'] = 'Failed to authenticate . Otp code is invalid';
         }
+
         return json_encode($data);
 
     }
