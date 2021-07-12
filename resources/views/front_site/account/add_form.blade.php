@@ -57,21 +57,21 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{$user->id}}">
                                     <h5 class="w-100">My Account</h5>
-                                    <div class="form-group">
-                                        <label>Account Email <span class="required">*</span></label>
+                                    <div class="form-group mb-1">
+                                        <label class="d-none">Account Email<span class="required">*</span></label>
                                         <input type="email" value="{{$user->email}}" class="form-control is-valid"
-                                               placeholder="example@email.com" disabled="disabled">
+                                               placeholder="Account Email - example@email.com" disabled="disabled">
                                     </div>
                                     <div class="form-row">
                                         <h6 class="w-100">Contact Person</h6>
                                         <div class="form-group col-md-6 mb-1">
-                                            <label>First Name <span class="required">*</span></label>
+                                            <label class="d-none">First Name <span class="required">*</span></label>
                                             <input type="text" name="first_name" value="{{$user->first_name}}"
-                                                   class="form-control is-valid" required placeholder="First Name">
+                                                   class="form-control is-valid" required placeholder="First Name - First Name">
                                             <small class="text-danger" id="last_name_error"></small>
                                         </div>
                                         <div class="form-group col-md-6 mb-1">
-                                            <label>Last Name <span class="required">*</span></label>
+                                            <label class="d-none">Last Name <span class="required">*</span></label>
                                             <input type="text" name="last_name" class="form-control is-valid"
                                                    value="{{$user->last_name}}" required placeholder="Last Name">
                                             <small class="text-danger" id="last_name_error"></small>
@@ -108,28 +108,35 @@
                                         </div>
 
                                     </div> --}}
-                                    <div class="w-100 form-row user-type-section">
-                                        <h6 class="w-100 pl-0">Gender <span class="required">*</span></h6>
-                                        <div class="form-group user-type col-lg-6 pl-0">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gender"
-                                                       id="exampleRadios1" value="Male">
-                                                <label class="form-check-label" for="exampleRadios1">Male</label>
+                                    <div class="w-100 pl-2 form-row user-type-section">
+                                        <h6 class="w-100 pl-0 mb-0">Gender <span class="required">*</span></h6>
+{{--                                        <div class="form-group user-type col-lg-6 pl-0">--}}
+                                        <div class="mt-1 d-flex flex-row form-group user-type col-lg-6 pl-0">
+                                            <div
+                                                class="form-check form-check-inline custom-control custom-radio d-sm-inline">
+                                                <input type="radio" required
+                                                       class="custom-control-input"
+                                                       value="Male" id="exampleRadios1"
+                                                       name="gender">
+                                                <label class="custom-control-label" for="exampleRadios1">Male</label>
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="gender"
-                                                       id="exampleRadios2" required value="Female">
-                                                <label class="form-check-label" for="exampleRadios2">Female</label>
+                                            <div
+                                                class="form-check form-check-inline custom-control custom-radio d-sm-inline">
+                                                <input type="radio" required
+                                                       class="custom-control-input"
+                                                       value="Female" id="exampleRadios2"
+                                                       name="gender">
+                                                <label class="custom-control-label" for="exampleRadios2">Female</label>
                                             </div>
                                             <small class="text-danger" id="gender_error"></small>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <h6 class="w-100 p-0">Designation <small class="font-500">(Optional)</small>
+                                            <h6 class="w-100 p-0 d-none">Designation <small class="font-500">(Optional)</small>
                                             </h6>
                                             <select name='designation' class="form-control">
-                                                <option value="">Select Designation</option>
+                                                <option value="">Select Designation (Optional)</option>
                                                 <option value="Director">Director</option>
                                                 <option value="CEO">CEO</option>
                                                 <option value="General Manager">General Manager</option>
@@ -144,8 +151,8 @@
                                             <small class="text-danger" id="designation_error"></small>
                                         </div>
                                         <div class="form-group col-md-6 other-div">
-                                            <h6 class="w-100 p-0">Add Designation <span class="required">*</span></h6>
-                                            <input type="text" name="other_designation" class="form-control">
+                                            <h6 class="w-100 p-0 d-none">Add Designation <span class="required">*</span></h6>
+                                            <input type="text" name="other_designation" class="form-control" placeholder="Add Designation">
                                         </div>
                                     </div>
                                     {{-- <div class="form-row">
@@ -174,9 +181,10 @@
                                     <div class="form-row">
                                         <h6 class="w-100">I am interested in <small class="font-500">(Optional)</small></h6>
                                         <div class="form-group col-md-6 category_btn">
-                                            <label>Categories</label>
+                                            <label class="d-none">Categories</label>
                                             <select name="category[]" class="form-control select2-multiple" id="category"
                                                     multiple>
+                                                <option value="" disabled selected>Select Category</option>
                                                 @foreach (\App\Category::all() as $item)
 
                                                     <option value="{{$item->id}}">{{$item->name}}</option>
@@ -186,16 +194,18 @@
                                             <small class="text-danger" id="category_error"></small>
                                         </div>
                                         <div class="form-group col-md-6 sub_category_btn">
-                                            <label>Sub Categories</label>
+                                            <label class="d-none">Sub Categories</label>
                                             <select name="sub_category[]" id="sub_category1"
-                                                    class="form-control select2-multiple5" multiple></select>
+                                                    class="form-control select2-multiple5" multiple>
+                                                <option value="" disabled selected>Select Sub-Category</option>
+                                            </select>
                                             <small class="text-danger" id="sub_category_error"></small>
                                             <span class="d-block text-sm-right text-center mini-txt">Choose at most 5 sub categories</span>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
-                                            <label>Country/Region <span class="required">*</span></label>
+                                            <label class="d-none">Country/Region <span class="required">*</span></label>
                                             <select name="country" id="country_id" required class="form-control choose-country">
                                                 <option disabled selected>Select Country/Region</option>
                                                 @foreach ($countries as $item)
@@ -206,46 +216,46 @@
                                         </div>
 
                                         <div class="form-group col-md-6 d-flex flex-column">
-                                            <label>State/Province <span class="required">*</span></label>
+                                            <label class="d-none">State/Province <span class="required">*</span></label>
                                             <select name="state" id="state" required
                                                     class="form-control single-select-dropdown">
-                                                <option disabled selected>Select State/Province</option>
+                                                <option value="" disabled selected></option>
                                             </select>
                                             <small class="text-danger" id="state_error"></small>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6 d-flex flex-column">
-                                            <label>City <span class="required">*</span></label>
+                                            <label class="d-none">City <span class="required">*</span></label>
                                             <select name="city" id="city" required
                                                     class="form-control single-select-dropdown">
-                                                <option disabled selected>Select City</option>
+                                                <option value="" disabled selected></option>
                                             </select>
                                             <small class="text-danger" id="city_error"></small>
                                         </div>
                                         <div class="form-group col-md-6 mb-1">
-                                            <label>Street Address <small class="font-500">(Optional)</small></label>
+                                            <label class="d-none">Street Address <small class="font-500">(Optional)</small></label>
                                             <input type="text" name="street_address" class="form-control"
-                                                   placeholder="Input Business Address OR Home Address">
+                                                   placeholder="Street Address (Optional) - Input Business Address OR Home Address">
                                             <small class="text-danger" id="street_address_error"></small>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mobilverifynumber">
                                             <div>
-                                                <label class="d-block">Mobile <span class="required">*</span></label>
+                                                <label class="d-none">Mobile <span class="required">*</span></label>
                                                 <input type="tel" readonly="" name="phone_no"
                                                        value="{{$user->registration_phone_no}}"
-                                                       class="form-control d-inline" id="">
+                                                       class="form-control d-inline" id="" placeholder="Mobile - 03xxxxxxxxx/3xxxxxxxxx">
                                                 <button class="red-btn mt-sm-0 mt-2" type="button">Verify Mobile</button>
                                             </div>
                                             <small class="text-danger" id="phone_no_error"></small>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <div>
-                                                <label class="d-block">WhatsApp Number <small
+                                                <label class="d-none">WhatsApp Number <small
                                                         class="font-500">(Optional)</small></label>
-                                                <input type="tel" placeholder="03xxxxxxxxx/3xxxxxxxxx"
+                                                <input type="tel" placeholder="WhatsApp Number (Optional) - 03xxxxxxxxx/3xxxxxxxxx"
                                                        name="whatsapp_number"
                                                        class="form-control inteltel"
                                                        id="whatsappNumber">
@@ -257,9 +267,9 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <div>
-                                                <label class="d-block">Telephone <small
+                                                <label class="d-none">Telephone <small
                                                         class="font-500">(Optional)</small></label>
-                                                <input type="tel" name="telephone" placeholder="042xxxxxxxx"
+                                                <input type="tel" name="telephone" placeholder="Telephone (Optional) - 042xxxxxxxx"
                                                        class="form-control mobileNum inteltel">
                                                 <input type="hidden" name="telephone_country_code">
                                             </div>
@@ -267,23 +277,23 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <div>
-                                                <label class="d-block">Fax <small
+                                                <label class="d-none">Fax <small
                                                         class="font-500">(Optional)</small></label>
-                                                <input type="tel" name="fax" class="form-control" id="" placeholder="Input Fax Number">
+                                                <input type="tel" name="fax" class="form-control" id="" placeholder="Fax (Optional) - Input Fax Number">
                                             </div>
                                             <small class="text-danger" id="fax_error"></small>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
-                                            <label>Postcode <small class="font-500">(Optional)</small></label>
-                                            <input type="text" name="postcode" class="form-control" id="postCode" placeholder="Input Post Code">
+                                            <label class="d-none">Postcode <small class="font-500">(Optional)</small></label>
+                                            <input type="text" name="postcode" class="form-control" id="postCode" placeholder="Postcode (Optional) - Input Post Code">
                                             <small class="text-danger" id="postcode_error"></small>
                                         </div>
                                         <div class="form-group col-md-6 mb-1">
-                                            <label>Website <small class="font-500">(Optional)</small></label>
+                                            <label class="d-none">Website <small class="font-500">(Optional)</small></label>
                                             <input type="url" name="website" class="form-control" id="webSite"
-                                                   name="website" placeholder="Example: https://www.bizonair.com">
+                                                   name="website" placeholder="Website (Optional) - Example: https://www.bizonair.com">
                                             <small class="text-danger" id="website_error"></small>
                                         </div>
                                     </div>
@@ -321,15 +331,23 @@
             }
         });
         $(function () {
+            $('#state').select2({
+                placeholder: "Select State/Province",
+            });
+
+            $('#city').select2({
+                placeholder: "Select City",
+            });
+
             $('.select2-multiple').select2({
                 closeOnSelect: false,
-                placeholder: "Select interest categories",
+                placeholder: "Categories - Select interest categories",
             });
 
             $('.select2-multiple5').select2({
                 maximumSelectionLength: 5,
                 closeOnSelect: false,
-                placeholder: "Select interest sub categories",
+                placeholder: "Sub-Categories - Select interest sub categories",
             });
 
             var validator = $("form[name='updateAccount']").validate({
@@ -576,11 +594,11 @@
                     },
                     dataType : 'json',
                     success: function(result){
-                        $('#state').html('<option value="" selected disabled>Select State/Province</option>');
+                        $('#state').html('<option value="" selected disabled></option>');
                         $.each(result.states,function(key,value){
                             $("#state").append('<option value="'+value+'">'+value+'</option>');
                         });
-                        $('#city').html('<option value="" selected disabled>Select City</option>');
+                        $('#city').html('<option value="" selected disabled></option>');
                         $.each(result.cities,function(key,value){
                             $("#city").append('<option value="'+value+'">'+value+'</option>');
                         });

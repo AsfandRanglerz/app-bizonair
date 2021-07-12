@@ -46,7 +46,7 @@
                                             <div class="clearfix d-inline">
                                                 <a href="#" class="pull-right text-decoration-none red-link font-500 help-txt">Help<span class="ml-1 fa fa-question-circle" aria-hidden="true"></span></a>
                                             </div>
-                                            <div class="mt-1 d-flex flex-row">
+                                            <div class="d-flex flex-row">
                                                 <div
                                                     class="form-check form-check-inline custom-control custom-radio d-sm-inline">
                                                     <input type="radio" required
@@ -120,7 +120,7 @@
                                                    placeholder="Subject - It will appear as title" required>
                                             <small class="text-danger" id="subject_error"></small>
                                         </div>
-                                        <div class="form-group col-lg-6 mb-3 clearfix product-name">
+                                        <div class="form-group col-lg-6 mb-1 clearfix product-name">
                                             <input type="text" id="product_service_name" maxlength = "50" class="form-control"
                                                    name="product_service_name" placeholder="Product Name - Product Name" required>
                                             <small class="text-danger" id="product_service_name_error"></small>

@@ -43,7 +43,7 @@
                                                 <span class="required"> *</span>
                                             </label>
                                             <a href="#" class="pull-right text-decoration-none red-link font-500 help-txt">Help<span class="ml-1 fa fa-question-circle" aria-hidden="true"></span></a>
-                                            <div class="mt-2 d-flex flex-row">
+                                            <div class="mb-2 d-flex flex-row">
                                                 <div
                                                     class="form-check form-check-inline custom-control custom-radio d-sm-inline">
                                                     <input type="radio" required
@@ -97,7 +97,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 d-flex flex-column subCat-Sec">
+                                        <div class="form-group col-md-6 d-flex flex-column subCat-Sec mb-0">
                                             <select class="form-control single-select-dropdown" id="sub_sub_category" name="sub_sub_category"
                                                     required>
                                                 <option value="" selected disabled></option>
@@ -118,13 +118,13 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 clearfix">
+                                        <div class="form-group col-md-6 mb-0 clearfix">
                                             <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/80</span>
                                             <input type="text" id="subject" class="form-control" maxlength = "80"name="subject"
                                                    placeholder="Subject - It will appear as title" required>
                                             <small class="text-danger" id="subject_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6 clearfix product-name">
+                                        <div class="form-group col-md-6 mb-1 clearfix product-name">
                                             <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/50</span>
                                             <input type="text" id="product_service_name" class="form-control" maxlength = "50"
                                                    name="product_service_name" placeholder="Product Name" required>
@@ -132,7 +132,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-lg-3">
+                                        <div class="form-group col-lg-3 mb-1">
                                             <select name="expiry_date" id="expiry_date" class="form-control add-date" required>
                                                 <option value="" selected disabled>--- Ad Expiry Days ---</option>
                                                 <option value="10">10 Days</option>
@@ -140,20 +140,20 @@
                                                 <option value="30">30 Days</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-lg-3">
+                                        <div class="form-group col-lg-3 mb-1">
                                             <input type="text" name="date_expire" id="date_expire" placeholder="Ad Expiry Date" class="form-control append-inp" readonly/>
                                         </div>
                                         <div class="form-group col-md-6 mb-1">
                                             <div class="form-row">
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-4 mb-1">
                                                     <input type="text" id="keyword1" name="keyword1"
                                                            class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 1">
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-4 mb-1">
                                                     <input type="text" id="keyword2" name="keyword2"
                                                            class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 2">
                                                 </div>
-                                                <div class="form-group col-md-4">
+                                                <div class="form-group col-md-4 mb-1">
                                                     <input type="text" id="keyword3" name="keyword3"
                                                            class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 3">
                                                 </div>
@@ -190,7 +190,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 product-available">
+                                        <div class="form-group col-md-6 mb-1 product-available">
                                             <input type="number" min="0" id="product_availability" class="form-control"
                                                    name="product_availability" placeholder="Available Quantity - e.g 50,100" required>
                                             <small class="text-danger" id="product_availability_error"></small>
@@ -199,7 +199,7 @@
 {{--                                            <label class="font-500">Price <span class="required"> *</span></label>--}}
 {{--                                            <input type="text" class="form-control" id="price" name="price" placeholder="Price" required>--}}
 {{--                                        </div>--}}
-                                        <div class="form-group col-md-6 product-available">
+                                        <div class="form-group col-md-6 mb-1 product-available">
                                             <select class="form-control other-option-included" id="available_unit" name="available_unit" required>
                                                 <option value="" selected disabled>-- Select Suitable Unit --</option>
                                                 <option value="20' Container">20' Container</option>
@@ -252,7 +252,7 @@
                                                    class="form-control manufacturer-name optional-field"
                                                    placeholder="Manufacturer Name - Manufacture spelling must be correct to be visible in the search.">
                                         </div>
-                                        <div class="form-group col-md-6 mb-1">
+                                        <div class="form-group col-md-6 mb-0">
                                             <select class="form-control origin" id="origin" name="origin" required>
                                                 <option value="" selected disabled> ---- Select Product Origin ---</option>
                                                 <option value="Any">Any</option>

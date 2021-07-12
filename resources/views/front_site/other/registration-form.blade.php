@@ -43,7 +43,7 @@
                             <div id="section1" class="container tab-pane fade"><br>
                                 <p>samole text samole text samole text</p>
                             </div>
-                            <div id="section2" class="container tab-pane active"><br>
+                            <div id="section2" class="container tab-pane active">
                                 <div class="alert alert-success m-0 mb-2 text-center" id='alert-success-reg'
                                      style="display:none;"
                                      role="alert">
@@ -58,23 +58,23 @@
                                         @csrf
                                         <div class="form-row">
                                             <h6 class="w-100">Create Account</h6>
-                                            <div class="form-group col-md-12">
-                                                <label>Account Email <span class="required">*</span></label>
+                                            <div class="form-group col-md-12 mb-1">
+                                                <label class="d-none">Account Email <span class="required">*</span></label>
                                                 <input type="hidden" name="email" value="{{$email}}">
                                                 <input type="email" value="{{$email}}" class="form-control is-valid"
-                                                       placeholder="example@email.com" disabled="disabled">
+                                                       placeholder="Account Email - example@email.com" disabled="disabled">
                                                 <small class="text-danger" id="email_error"></small>
                                             </div>
                                             <div class="form-group col-md-6 mb-1">
-                                                <label>Password <span class="required">*</span></label>
+                                                <label class="d-none">Password <span class="required">*</span></label>
                                                 <span toggle="#reg_password" class="fa fa-fw fa-eye toggle-password-eye"></span>
                                                 <input type="password" id="reg_password" class="form-control"
-                                                       placeholder="Choose a password atleast 8 characters long"
+                                                       placeholder="Password - Choose a password atleast 8 characters long"
                                                        name="password">
                                                 <small class="text-danger" id="password_error"></small>
                                             </div>
                                             <div class="form-group col-md-6 mb-1">
-                                                <label>Confirm Password <span class="required">*</span></label>
+                                                <label class="d-none">Confirm Password <span class="required">*</span></label>
                                                 <span toggle="#confirm_password"
                                                       class="fa fa-fw fa-eye toggle-password-eye"></span>
                                                 <input type="password" id="confirm_password" class="form-control"
@@ -85,9 +85,9 @@
                                         <div class="form-row">
                                             <h6 class="w-100">Enter your business information</h6>
                                             <div class="form-group col-sm-12">
-                                                <label>Country Region <span class="required">*</span></label>
+                                                <label class="d-none">Country Region <span class="required">*</span></label>
                                                 <select name="country_id" required class="form-control choose-country">
-                                                    <option disabled selected>Select Country</option>
+                                                    <option disabled selected>Select Country Region</option>
                                                     @foreach ($countries as $country)
                                                         <option value="{{$country->id}}" countrycode="{{$country->country_code}}">{{$country->country_name}}</option>
                                                     @endforeach
@@ -95,9 +95,9 @@
                                                 <small class="text-danger" id="country_id_error"></small>
                                             </div>
                                         </div>
-                                        <div class="w-100 form-row user-type-section">
-                                            <h6 class="w-100 pl-0">User Type <span class="required">*</span></h6>
-                                            <div class="form-group user-type col-xl-9 col-lg-12 pl-0">
+                                        <div class="mx-0 w-100 form-row user-type-section">
+                                            <h6 class="w-100 px-0">User Type <span class="required">*</span></h6>
+                                            <div class="form-group user-type col-xl-9 col-lg-12 px-0">
                                                 <div>
                                                     <ul data-toggle="buttons">
                                                         @foreach (\App\UType::all() as $item)
@@ -105,7 +105,7 @@
                                                                 <input class="input fa fa-square-o required-control" type="checkbox"
                                                                        value="{{$item->id}}" data-id="{{$item->id}}"
                                                                        name="user_type[]">{{$item->title}}
-                                                                <span class="fa fa-question-circle" data-toggle="tooltip"
+                                                                <span class="ml-1 fa fa-question-circle" data-toggle="tooltip"
                                                                       data-placement="top" title="{{ $item->title }}"
                                                                       aria-hidden="true"></span>
                                                             </li>
@@ -123,9 +123,9 @@
                                             </select>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-12">
-                                                <label>Company/Institute Name <small class="font-500">(Optional)</small></label>
-                                                <input type="text" class="form-control" placeholder="Input Business Company Name OR Institute Name for Students"
+                                            <div class="form-group col-md-12 mb-1">
+                                                <label class="d-none">Company/Institute Name <small class="font-500">(Optional)</small></label>
+                                                <input type="text" class="form-control" placeholder="Company/Institute Name (Optional) - Input Business Company Name OR Institute Name for Students"
                                                        name="company_name">
                                                 <small class="text-danger" id="company_name_error"></small>
                                             </div>
@@ -133,25 +133,25 @@
                                         <div class="form-row">
                                             <h6 class="w-100">Contact Person</h6>
                                             <div class="form-group col-md-6 mb-1">
-                                                <label>First Name <span class="required">*</span></label>
-                                                <input type="text" class="form-control required-control" placeholder="Input First Name"
+                                                <label class="d-none">First Name <span class="required">*</span></label>
+                                                <input type="text" class="form-control required-control" placeholder="First Name - Input First Name"
                                                        name="first_name">
                                                 <small class="text-danger" id="first_name_error"></small>
                                             </div>
                                             <div class="form-group col-md-6 mb-1">
-                                                <label>Last Name <span class="required">*</span></label>
+                                                <label class="d-none">Last Name <span class="required">*</span></label>
                                                 <input type="text" name="last_name" class="form-control required-control"
-                                                       placeholder="Input Last Name">
+                                                       placeholder="Last Name - Input Last Name">
                                                 <small class="text-danger" id="last_name_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6 mb-1">
-                                                <label for="mobileNumber">Enter your phone number: <span
+                                                <label for="mobileNumber" class="d-none">Enter your phone number: <span
                                                         class="required">*</span></label>
                                                 <!-- <input type="tel" class="form-control" id="phone" name="registration_phone_no" > -->
                                                 <input type="tel" name="registration_phone_no" class="form-control"
-                                                       id="mobileNumber" placeholder="03xxxxxxxxx/3xxxxxxxxx">
+                                                       id="mobileNumber" placeholder="Phone number - 03xxxxxxxxx/3xxxxxxxxx">
                                                 <input type="hidden" name="registration_phone_no_country_code">
                                                 {{--                                            <span id="error-msg" class="text-danger hide">Please enter valid mobile number</span>--}}
                                                 <small class="text-danger d-block" id="registration_phone_no_error"></small>
@@ -165,7 +165,7 @@
                                         </div>
                                         <div class="form-row mt-3">
                                             <div class="form-group check-stats">
-                                                <ul data-toggle="buttons">
+                                                <ul class="pl-2">
                                                     <li class="w-100 btn d-flex" id="termsCheckbox">
                                                         <input class="input fa fa-square-o" type="checkbox"
                                                                id="termsCheckboxinput">
@@ -185,8 +185,8 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-sm-12" align="center">
-                                                <button type="submit" id="accoutn_btn" disabled class="create-btn">Create My
+                                            <div class="form-group col-sm-12 mb-1" align="center">
+                                                <button type="submit" id="accoutn_btn" class="create-btn">Create My
                                                     Account
                                                 </button>
                                                 <button type="button" disabled class="btn-pro d-none create-btn"><span
@@ -216,9 +216,10 @@
         /*scroll to error div*/
         $(document).on('click', '#accoutn_btn', function () {
             setTimeout(() => {
-                var navbarHeight = $('.navbar').innerHeight();
+                var navbarHeight = $('.tab-mob-header').innerHeight() + 2;
+                var navbarHeightFloatToInt = Math.ceil(navbarHeight);
                 $('html,body').animate({
-                        scrollTop: $('.text-danger:not(:empty), .error:not(:empty)').eq(0).closest('.form-group').offset().top - (navbarHeight)},
+                        scrollTop: $('.text-danger:not(:empty), .error:not(:empty)').eq(0).closest('.form-group').offset().top - (navbarHeightFloatToInt)},
                     'slow');
             }, 500);
         });

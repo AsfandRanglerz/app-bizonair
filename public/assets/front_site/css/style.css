@@ -11,6 +11,10 @@
     --thumbBG: #90A4AE;
 }
 
+.custom-control {
+    min-height: unset;
+}
+
 div.dataTables_wrapper div.dataTables_filter label {
     text-align: right!important;
 }
@@ -3826,16 +3830,12 @@ span.time {
 }
 
 /*my account*/
-.my-account #maincontent {
-    background: #d9eefe8c;
-}
-
 .my-account #section2 {
-    width: 50%;
-    margin: 0 auto;
-    padding: 25px;
+    margin: 4px auto;
+    padding: 8px;
     border-radius: 15px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    width: 95%;
 }
 
 .my-account .iti__selected-flag {
@@ -5459,18 +5459,10 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     color: #12253d;
 }
 
-.registration-form #maincontent {
-    background: #D9EEFE;
-}
-
 .registration-form #maincontent .check-stats li.btn {
     display: flex;
     align-items: baseline;
     text-align: left;
-}
-
-.registration-form #maincontent .user-type-section {
-    margin: 5px 0;
 }
 
 .registration-form #maincontent .user-type {
@@ -5490,7 +5482,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     color: #12253d;
     font-size: 16px;
     border: none;
-    padding: 0 15px 0 0;
+    padding: 0;
 }
 
 .user-type li.btn.focus,
@@ -5542,7 +5534,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 }
 
 .registration-form .switch-tabs-section {
-    margin: 35px 0;
+    margin: 4px 0;
     padding: 0;
 }
 
@@ -5551,7 +5543,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 }
 
 .registration-form .switch-tabs .tab-content > .tab-pane {
-    padding: 25px 15%;
+    padding: 8px;
 }
 
 .registration-form .nav-tabs a.nav-link.btnsEmial {
@@ -7374,6 +7366,11 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 991px) {
+    .user-type ul li input[type=checkbox],
+    .check-stats ul li input[type=checkbox] {
+        font-size: unset;
+    }
+
     /*calculation formula*/
     .calc-content-container .nav-pills .nav-link {
         font-size: 9px;
@@ -7709,10 +7706,6 @@ header .navbar .navbar-toggler {
     .my-account div.tree-multiselect > div.selections {
         width: 100%;
     }
-
-    .my-account #section2 {
-        width: 70%;
-    }
     /*my account*/
 
     /*breadcrumb*/
@@ -7835,15 +7828,8 @@ header .navbar .navbar-toggler {
     .forgot-password-page #maincontent .forgot-password > h4 {
         margin-bottom: 15px;
     }
-
     /*forgot-password-page*/
-    /*registration-form*/
-    .registration-form #maincontent .user-type ul {
-        flex-direction: column;
-        align-items: start;
-    }
 
-    /*registration-form*/
     /*header navbar css*/
     .header .navbar {
         padding: 15px 25px;
@@ -8617,12 +8603,8 @@ header .navbar .navbar-toggler {
 
     /*company-profile*/
     /*my account*/
-    .my-account #section2 {
-        width: 85%;
-    }
-
     .my-account.registration-form .switch-tabs-section {
-        margin: 35px 0;
+        margin: 4px 0;
     }
 
     /*my account*/
@@ -8847,8 +8829,9 @@ header .navbar .navbar-toggler {
     }
 
     .registration-form .create-btn {
-        width: 155px;
-        font-size: 14px;
+        width: unset;
+        font-size: 10px;
+        padding: 6px 8px;
     }
 
     .registration-form h6 {
@@ -8856,7 +8839,7 @@ header .navbar .navbar-toggler {
     }
 
     .registration-form .switch-tabs .tab-content > .tab-pane {
-        padding: 25px 5%;
+        padding: 8px;
     }
 
     .registration-form .switch-tabs-section {
@@ -9228,21 +9211,26 @@ header .navbar .navbar-toggler {
 }
 
 .toggle-password-eye {
-    float: right;
-    margin-left: -25px;
-    margin-top: 34px;
-    position: relative;
-    margin-right: 2px;
     z-index: 2;
     cursor: pointer;
+    font-size: 10px;
+    position: absolute;
+    right: 8px;
+    top: 10px;
 }
 
-#password.form-control.is-invalid, #confirm_password.form-control.is-invalid {
-    background-position: right calc(1.25em + .1875rem) center;
+#reg_password.form-control.is-invalid, #confirm_password.form-control.is-invalid {
+    background-position: right calc(1.75em + .1875rem) center;
+    padding-right: calc(2.5em + .75rem);
 }
 
 #reg_password.form-control.is-valid, #confirm_password.form-control.is-valid {
-    background-position: right calc(1.25em + .1875rem) center;
+    background-position: right calc(1.75em + .1875rem) center;
+    padding-right: calc(2.5em + .75rem);
+}
+
+#reg_password, #confirm_password {
+    padding-right: 2.2em;
 }
 
 .select2-search__field.is-valid {

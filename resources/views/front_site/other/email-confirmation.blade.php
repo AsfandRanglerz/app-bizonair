@@ -73,7 +73,7 @@
                                                            placeholder="example@email.com" required>
                                                 </div>
                                                 <div class="form-group col-xl-3 col-lg-4 mb-md-3 mb-0" align="center">
-                                                    <button class="verify-btn " id="code" type="submit" disabled>Verify Email
+                                                    <button class="verify-btn " id="code" type="submit">Verify Email
                                                     </button>
                                                     <button type="button" disabled class="btn-pro d-none verify-btn">
                                                         <span class="spinner-border spinner-border-sm mr-1"
