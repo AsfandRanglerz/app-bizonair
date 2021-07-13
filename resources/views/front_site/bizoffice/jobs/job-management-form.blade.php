@@ -28,36 +28,42 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-4">
+                                    <label for="title" class="font-500">Job Title <span class="required">*</span></label>
                                     <input type="text" name="title" id="title" class="form-control"
-                                           placeholder="Job Title - Input Job Title" required>
+                                           placeholder="Input Job Title" required>
                                     <small class="text-danger" id="title_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label class="font-500">Designation <span class="required">*</span></label>
                                     <input type="text" name="designation" id="designation" class="form-control"
-                                           placeholder="Designation - Input Job Designation" required>
+                                           placeholder="Input Job Designation" required>
                                     <small class="text-danger" id="designation_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label class="font-500">Email Address<span class="required">*</span></label>
                                     <input type="email" name="email" id="email" class="form-control"
-                                           placeholder="Email - Input Email Address To Apply" required>
+                                           placeholder="Input Email Address To Apply" required>
                                     <small class="text-danger" id="email_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div for="job_description" class="form-group col-md-12">
                                     <label class="font-500">Job Description  <small class="font-500"> (Optional)</small></label>
-                                    <textarea name="job_description" id="job_description" class="form-control" maxlength = "1200" rows="6" placeholder="Input Job Description" ></textarea>
+                                    <span class="pull-right font-500"><span class="counter-total-digits">0</span>/1200</span>
+                                    <textarea name="job_description" id="editor1" class="form-control" maxlength = "1200" rows="6" placeholder="Input Job Description" ></textarea>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-2">
+                                    <label for="salary" class="font-500">Salary Per Month<span class="required">*</span></label>
                                     <input type="number" name="salary" id="salary" class="form-control"
-                                           placeholder="Salary Per Month - Input Job Salary" required>
+                                           placeholder="Input Job Salary" required>
                                     <small class="text-danger" id="salary_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
+                                    <label for="unit" class="font-500">Currency <span class="required">*</span></label>
                                     <select class="form-control single-select-dropdown" id="unit" name="unit" required>
-                                        <option value="" selected disabled></option>
+                                        <option value="" selected disabled>Select Unit</option>
                                         <option value="PKR">PKR</option>
                                         <option value="USD">USD</option>
                                         <option value="Euro">Euro</option>
@@ -68,9 +74,10 @@
                                     <small class="text-danger" id="unit_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label class="font-500">Job Sector <span class="required">*</span></label>
                                     <select class="form-control single-select-dropdown"
                                             id="textile_sector" name="textile_sector" required>
-                                        <option value="" selected disabled></option>
+                                        <option value="" selected disabled>Select Job Sector</option>
                                         <option value="Ginning">Ginning </option>
                                         <option value="Spinning">Spinning</option>
                                         <option value="Knitting">Knitting</option>
@@ -93,9 +100,10 @@
                                     <small class="text-danger" id="textile_sector_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label class="font-500">Functional Area <span class="required">*</span></label>
                                     <select class="form-control single-select-dropdown"
                                             id="functional_area" name="functional_area" required>
-                                        <option value="" selected disabled></option>
+                                        <option value="" selected disabled>Select Functional Area</option>
                                         <option value="Electrical">Electrical </option>
                                         <option value="Mechanical">Mechanical</option>
                                         <option value="Human Resources">Human Resources</option>
@@ -134,8 +142,9 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
+                                    <label class="font-500">Job Type <span class="required">*</span></label>
                                     <select name="job_type" id="job_type" class="form-control single-select-dropdown" required>
-                                        <option value="" selected disabled></option>
+                                        <option value="" selected disabled>--- Select Job Type ---</option>
                                         <option value="Freelance">Freelance</option>
                                         <option value="Full Time">Full Time</option>
                                         <option value="Part Time">Part Time</option>
@@ -145,8 +154,9 @@
                                     <small class="text-danger" id="job_type_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label class="font-500">Career Level <span class="required">*</span></label>
                                     <select name="job_level" id="job_level" class="form-control single-select-dropdown" required>
-                                        <option value="" selected disabled></option>
+                                        <option value="" selected disabled>--- Select Career Level ---</option>
                                         <option value="Intern Level">Intern Level</option>
                                         <option value="Entry Level">Entry Level</option>
                                         <option value="Intermediate Level">Intermediate Level</option>
@@ -156,16 +166,26 @@
                                     <small class="text-danger" id="job_level_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="number"
-                                           name="work_experience" id="work_experience" class="form-control"
-                                           placeholder="Work Experience - Enter Job Work Experience in Years" required>
+                                    <label for="work_experience" class="font-500">Work Experience <span class="required">*</span></label>
+                                    <select class="form-control single-select-dropdown" id="work_experience" name="work_experience" required>
+                                        <option value="" selected disabled>Select Experience </option>
+                                        <option value="Fresh / No Experience">Fresh / No Experience</option>
+                                        <option value="01-03 Years">01-03 Years</option>
+                                        <option value="03-05 Years">03-05 Years</option>
+                                        <option value="05-07 Years">05-07 Years</option>
+                                        <option value="07-10 Years">07-10 Years</option>
+                                        <option value="10-15 Years">10-15 Years</option>
+                                        <option value="15-20 Years">15-20 Years</option>
+                                        <option value="20+ Years">20+ Years</option>
+                                    </select>
                                     <small class="text-danger" id="work_experience_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
+                                    <label for="countryId" class="font-500">Country <span class="required">*</span></label>
                                     <select name="country" id="countryId" class="form-control single-select-dropdown" required>
-                                        <option value="" selected disabled></option>
+                                        <option value="" selected disabled>--- Select Country ---</option>
                                         @foreach ($countries as $item)
                                             <option value="{{$item->name->common}}">{{$item->name->common}}</option>
                                         @endforeach
@@ -173,22 +193,25 @@
                                     <small class="text-danger" id="country_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label for="cityId" class="font-500">City <span class="required">*</span></label>
                                     <select name="city" id="cityId" class="form-control single-select-dropdown" required>
-                                        <option value="" selected disabled></option>
+                                        <option value="" selected disabled>--- Select City ---</option>
                                     </select>
                                     <small class="text-danger" id="city_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label for="address" class="font-500">Office Address <span class="required">*</span></label>
                                     <input type="text"
                                            name="address" id="address" class="form-control"
-                                           placeholder="Office Address - Input Complete Address" required>
+                                           placeholder="Input Complete Address" required>
                                     <small class="text-danger" id="address_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
+                                    <label class="font-500">Gender <span class="required">*</span></label>
                                     <select name="gender" id="gender" class="form-control single-select-dropdown" required>
-                                        <option value="" selected disabled></option>
+                                        <option value="" selected disabled>--- Select Gender ---</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                         <option value="Any">Any</option>
@@ -196,53 +219,60 @@
                                     <small class="text-danger" id="gender_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label class="font-500">Work Hours  <small class="font-500"> (Optional)</small></label>
                                     <input type="number"
                                            name="work_hour" id="work_hour" class="form-control"
-                                           placeholder="Work Hours (Optional) - Input Job work Hours">
+                                           placeholder="Input Job work Hours">
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label class="font-500">Qualification <span class="required">*</span></label>
                                     <input type="text"
                                            name="qualification" id="qualification" class="form-control"
-                                           placeholder="Qualification - Input Required Qualification" required>
+                                           placeholder="Input Required Qualification" required>
                                     <small class="text-danger" id="qualification_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
+                                    <label class="font-500">Key Skills <span class="required">*</span></label>
                                     <input type="text"
                                            name="skills" id="skills" class="form-control"
-                                           placeholder="Key Skills - Input Required Job Skills" required>
+                                           placeholder="Input Required Job Skills" required>
                                     <small class="text-danger" id="skills_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label class="font-500">Number Of Vacancies <span class="required">*</span></label>
                                     <input type="number"
                                            name="vacancies" id="vacancies" class="form-control"
-                                           placeholder="Number Of Vacancies - Input Number of Job Vacancies" required>
+                                           placeholder="Input Number of Job Vacancies" required>
                                     <small class="text-danger" id="vacancies_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label for="datePicker" class="font-500">Last Date to Apply <span class="required">*</span></label>
                                     <input type="text" autocomplete="off"
                                            name="datePicker" class="form-control closingdatepicker"
-                                           placeholder="Last Date to Apply - Set Closing Date" required>
+                                           placeholder="Set Closing Date" required>
                                     <small class="text-danger" id="datePicker_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
+
+
                                 @if(getCompanies(auth()->id())->isNotEmpty())
-                                <div class="form-group col-md-4">
-                                    <select name="company" id="company" class="form-control single-select-dropdown" required>
-                                        <option value="" selected disabled></option>
-                                       @foreach(getCompanies(auth()->id()) as $company)
-                                        <option value="{{$company->company_name}}">{{ucwords($company->company_name)}}</option>
-                                        @endforeach
-                                        <option value="Other" class="other-check">Other</option>
-                                    </select>
-                                    <small class="text-danger" id="company_error"></small>
-                                </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="font-500">Company <span class="required">*</span></label>
+                                        <select name="company" id="company" class="form-control single-select-dropdown" required>
+                                            <option value="" selected disabled>--- Select Company ---</option>
+                                            @foreach(getCompanies(auth()->id()) as $company)
+                                                <option value="{{$company->company_name}}">{{ucwords($company->company_name)}}</option>
+                                            @endforeach
+                                            <option value="Other" class="other-check">Other</option>
+                                        </select>
+                                        <small class="text-danger" id="company_error"></small>
+                                    </div>
                                     <div class="form-group col-md-4 other-div">
                                         <label class="font-500">Other Company Name <span class="required">*</span></label>
-                                        <input type="text" name="ocompany" id="ocompany" class="form-control" placeholder="Input Other Company Name" required>
-                                        <small class="text-danger" id="ocompany_error"></small>
+                                        <input type="text" name="ocompany" id="ocompany" class="form-control" placeholder="Input Other Company Name">
                                     </div>
                                 @else
                                     <div class="form-group col-md-4">
@@ -250,9 +280,6 @@
                                         <input type="text" name="company" id="company" class="form-control" placeholder="Input Company Name" >
                                     </div>
                                 @endif
-                            </div>
-
-                            <div class="form-row">
                                 <div class="form-group col-md-4 career-img-drop-outer attachment-img-file">
                                     <label class="d-block text-left mb-2 font-500">Attachment <small class="font-500">(Optional | Attach Reference or Image)</small></label>
                                     <div class="custom-file">
@@ -262,14 +289,16 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="form-group px-0 col-12">
-                                    <button class="verify-btn red-btn" type="submit" id="job_create_btn">POST JOB
-                                    </button>
-                                    <button  disabled class="btn-pro d-none red-btn"><span
-                                            class="spinner-border  spinner-border-sm mr-1" role="status"
-                                            aria-hidden="true"></span>Processing
-                                    </button>
-                                </div>
+
+
+                            <div class="form-group col-12 mt-2">
+                                <button class="verify-btn red-btn" type="submit" id="job_create_btn">POST JOB
+                                </button>
+                                <button  disabled class="btn-pro d-none red-btn"><span
+                                        class="spinner-border  spinner-border-sm mr-1" role="status"
+                                        aria-hidden="true"></span>Processing
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -285,46 +314,15 @@
     <script src="{{$ASSET}}/front_site/js/timepicker.min.js"></script>
 
     <script>
+
         $(document).ready(function () {
-            $('select[name="unit"]').select2({
-                placeholder: 'Select Currency Unit'
-            });
-
-            $('select[name="textile_sector"]').select2({
-                placeholder: 'Select Job Sector'
-            });
-
-            $('select[name="functional_area"]').select2({
-                placeholder: 'Select Functional Area'
-            });
-
-            $('select[name="job_type"]').select2({
-                placeholder: 'Select Job Type'
-            });
-
-            $('select[name="job_level"]').select2({
-                placeholder: 'Select Career Level'
-            });
-
-            $('select[name="country"]').select2({
-                placeholder: 'Select Country'
-            });
-
-            $('select[name="city"]').select2({
-                placeholder: 'Select City'
-            });
-
-            $('select[name="gender"]').select2({
-                placeholder: 'Select Gender'
-            });
-
-            $('select[name="company"]').select2({
-                placeholder: 'Select Company'
-            });
-
-
-            CKEDITOR.replace( 'job_description' );
-            CKEDITOR.config.width = '100%';
+            // CKEDITOR.replace( 'job_description' );
+            // CKEDITOR.config.width = '100%';
+            ClassicEditor
+                .create(document.querySelector('#editor1'))
+                .catch(error => {
+                    console.error(error);
+                });
             // // console.log('ready')
             $('.closingdatepicker').datepicker({
                 startDate: "0d",
@@ -339,7 +337,7 @@
             var validator = $("form[name='addJobPost']").validate({
                 onfocusout: function (element) {
                     var $element = $(element);
-                     console.log($element);
+                    console.log($element);
                     if ($element.prop('required')) {
                         this.element(element)
                     } else if ($element.val() != '') {

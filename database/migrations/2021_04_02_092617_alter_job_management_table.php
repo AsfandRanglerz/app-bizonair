@@ -16,6 +16,7 @@ class AlterJobManagementTable extends Migration
         Schema::table('job_management', function (Blueprint $table) {
             $table->string('gender')->nullable();
             $table->string('company')->nullable();
+            $table->string('other_company')->nullable();
             $table->string('image')->nullable();
         });
     }

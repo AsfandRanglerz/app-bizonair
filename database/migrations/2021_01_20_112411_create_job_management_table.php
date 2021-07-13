@@ -34,7 +34,7 @@ class CreateJobManagementTable extends Migration
             $table->integer('work_hour')->nullable();
             $table->string('qualification');
             $table->string('skills');
-            $table->integer('work_experience')->nullable();
+            $table->string('work_experience')->nullable();
             $table->integer('vacancies')->nullable();
             $table->date('closing_date')->nullable();
             $table->integer('status')->default(1);

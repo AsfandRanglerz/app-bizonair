@@ -78,7 +78,7 @@
     </div>
     <script src="{{$ASSET}}/front_site/js/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-{{-- <script src="{{asset('public/js/app.js')}}"></script> --}}
+    {{-- <script src="{{asset('public/js/app.js')}}"></script> --}}
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
     <script src="{{$ASSET}}/front_site/js/modernizr.js"></script>
 <!-- <script src="{{$ASSET}}/front_site/plugins/form/malsap.form.min.js"></script> -->
@@ -99,9 +99,11 @@
     <script src="{{$ASSET}}/front_site/plugins/password-preview/js/jquery.prevue.js"></script>
     <script src="{{$ASSET}}/front_site/plugins/multi-image-selector/jquery.imageuploader.js"></script>
     <script src="{{$ASSET}}/front_site/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
+    <script src="{{$ASSET}}/front_site/plugins/WOW-master/js/wow.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    {{--    <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>--}}
     <script src="{{$ASSET}}/front_site/js/dropzone.js"></script>
-{{--    <script src="{{$ASSET}}/front_site/js/gtag.js"></script>--}}
+    {{--    <script src="{{$ASSET}}/front_site/js/gtag.js"></script>--}}
     {{-- <script src='{{$ASSET}}/plugin/calendar/moment.min.js'></script>` --}}
     <script src="{{$ASSET}}/front_site/js/share.js"></script>
     <script src="{{$ASSET}}/front_site/js/sweetalert.min.js"></script>
@@ -109,7 +111,7 @@
     <script src="{{$ASSET}}/front_site/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
     <script src="{{$ASSET}}/front_site/js/toastr.min.js"></script>
-
+    <script src="https://johannburkard.de/resources/Johann/jquery.highlight-4.js"></script>
     @stack('chart')
     <script src="{{$ASSET}}/front_site/js/main.js"></script>
 
