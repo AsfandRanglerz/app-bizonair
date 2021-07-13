@@ -11,7 +11,7 @@
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
 
-            <div id="page-content-wrapper">
+            <div @if(\App\UserCompany::where('user_id',auth()->id())->first()) id="page-content-wrapper" @endif>
                 <div class="px-2">
                     <span class="main-heading my-1">DASHBOARD</span>
                     <div class="row cards-container">
@@ -192,38 +192,46 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buy-sell.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">One-Time Deals</span>
-                                                <span class="value-txt">{{ \App\BuySell::where('user_id', \Auth::user()->id)->count() }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <img src="https://bizonair.com/public/assets/front_site/images/one-time-deals.png" class="dashboard-board-icons">
+                                                    </div>
+                                                    <span class="value-txt">{{ \App\BuySell::where('user_id', \Auth::user()->id)->count() }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
+
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
-                                    <a href="{{route('view-deal-favourites')}}" class="text-decoration-none text-reset d-block">
+                                    <a href="{{ route('view-deal-favourites') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-heart fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Favourite Deals</span>
-                                                <span class="value-txt">{{ getBuysellFavCount() }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-heart fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{ getBuysellFavCount() }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
+
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buysell-inquiries') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-shopping-bag fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Inquiries</span>
-                                                <span class="value-txt">{{ countInquiriesBuysell(auth()->id()) }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-shopping-bag fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{ countInquiriesBuysell(auth()->id()) }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -231,12 +239,14 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('buy-sell.index') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-eye fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Deal Views</span>
-                                                <span class="value-txt">{{getBuySellViewsdashboardCount()}}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-eye fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{getBuySellViewsdashboardCount()}}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -244,12 +254,14 @@
                                 <div class="px-1 col-xl-3 col-lg-4 col-sm-4 col-3">
                                     <a href="{{ route('view-job-management') }}" class="text-decoration-none text-reset d-block">
                                         <div class="cards">
-                                            <div class="cards-img">
-                                                <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
-                                            </div>
                                             <div class="cards-content text-center">
                                                 <span class="overflow-text-dots-one-line text font-500">Careers</span>
-                                                <span class="value-txt">{{ \App\JobManagement::where('user_id', \Auth::user()->id)->count() }}</span>
+                                                <div class="d-flex column-gap-4">
+                                                    <div class="cards-img">
+                                                        <span class="w-100 fa fa-heart-o fa-2x fa-icons"></span>
+                                                    </div>
+                                                    <span class="value-txt">{{ \App\JobManagement::where('user_id', \Auth::user()->id)->count() }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>

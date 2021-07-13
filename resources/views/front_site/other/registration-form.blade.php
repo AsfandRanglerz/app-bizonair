@@ -263,124 +263,124 @@
             $(".select2-container--default").addClass('col-lg-12 mt-2 mb-2');
             $(".select2-search--inline").find('input').attr('placeholder', 'Select Service Type');
 
-            // var validator = $("form[name='registration']").validate({
-            //     ignore: [],
-            //     onfocusout: function (element) {
-            //         var $element = $(element);
-            //         if ($element.hasClass('select2-search__field')) {
-            //             var $element2 = $element.closest('.form-row').find('.select2-multiple-services');
-            //             if ($element2.prop('required')) {
-            //                 this.element($element2)
-            //             } else if ($element2.val() != '') {
-            //                 this.element($element2)
-            //             }
-            //         } else if ($element.hasClass('dob-picker') && $element.val() == '') {
-            //             this.element($('input[name=birthday]'))
-            //         } else {
-            //             this.element(element)
-            //         }
-            //     },
-            //     onkeyup: function (element) {
-            //         var $element = $(element);
-            //         $element.valid();
-            //     },
-            //     rules: {
-            //         first_name: "required",
-            //         last_name: "required",
-            //         email: {
-            //             required: true,
-            //             email: true
-            //         },
-            //         registration_phone_no: {
-            //             mobilenumber: true
-            //         },
-            //         country_id: {
-            //             required: true
-            //         },
-            //         company_name: {
-            //             required: false
-            //         },
-            //         reg_password: {
-            //             required: true,
-            //             minlength: 8
-            //         },
-            //         confirm_password: {
-            //             required: true,
-            //             same: 'reg_password'
-            //         },
-            //         birthday: {
-            //             required: true
-            //         }
-            //     },
-            //     messages: {
-            //         first_name: "Please enter your firstname",
-            //         last_name: "Please enter your lastname",
-            //         reg_password: {
-            //             required: "Please provide a password",
-            //             minlength: "Your password must be at least 8 characters long"
-            //         },
-            //         confirm_password: {
-            //             same: "Password does not match"
-            //         },
-            //         email: "Please enter a valid email address",
-            //         birthday: "Please enter complete birthday"
-            //     },
-            //     errorClass: 'is-invalid error',
-            //     validClass: 'is-valid',
-            //     highlight: function (element, errorClass, validClass) {
-            //         var elem = $(element);
-            //         if (elem.hasClass("select2-hidden-accessible")) {
-            //             elem.closest('.form-row').find('.select2-container input').addClass(errorClass);
-            //             elem.closest('.form-row').find('.select2-container input').removeClass(validClass);
-            //             elem.closest('.form-row').find('span.select2-selection').addClass(errorClass);
-            //             elem.closest('.form-row').find('span.select2-selection').removeClass(validClass);
-            //         } else if (elem.hasClass('birthday')) {
-            //             var newelem = elem.closest('.form-group');
-            //             if (newelem.find('select.day').val() == '') {
-            //                 newelem.find('select.day').addClass(errorClass)
-            //             }
-            //             if (newelem.find('select.month').val() == '') {
-            //                 newelem.find('select.month').addClass(errorClass)
-            //             }
-            //             if (newelem.find('select.year').val() == '') {
-            //                 newelem.find('select.year').addClass(errorClass)
-            //             }
-            //         } else {
-            //             elem.addClass(errorClass);
-            //         }
-            //     },
-            //     unhighlight: function (element, errorClass, validClass) {
-            //         var elem = $(element);
-            //         if (elem.hasClass("select2-hidden-accessible")) {
-            //             elem.closest('.form-row').find('.select2-container input').removeClass(errorClass);
-            //             elem.closest('.form-row').find('.select2-container input').addClass(validClass);
-            //             elem.closest('.form-row').find('span.select2-selection').removeClass(errorClass);
-            //             elem.closest('.form-row').find('span.select2-selection').addClass(validClass);
-            //         } else if (elem.hasClass('dob-picker')) {
-            //             elem.removeClass(errorClass);
-            //             elem.addClass(validClass);
-            //             var newelem = elem.closest('.form-group');
-            //             if (newelem.find('select.day').val() != '' && newelem.find('select.month').val() != '' && newelem.find('select.year').val() != '') {
-            //                 newelem.find('#birthday-error').remove();
-            //             }
-            //         } else {
-            //             elem.removeClass(errorClass);
-            //             elem.addClass(validClass);
-            //         }
-            //     },
-            //     errorPlacement: function (error, element) {
-            //         var elem = $(element);
-            //         if (elem.hasClass("select2-hidden-accessible")) {
-            //             element = elem.closest('.form-row').find('.select2-container--default');
-            //             error.insertAfter(element);
-            //         } else if (elem.hasClass('birthday')) {
-            //             element = elem.closest('.form-group').find('.date-dropdowns');
-            //             error.insertAfter(element);
-            //         } else {
-            //             error.insertAfter(element);
-            //         }
-            //     }
-            // });
+            var validator = $("form[name='registration']").validate({
+                ignore: [],
+                onfocusout: function (element) {
+                    var $element = $(element);
+                    if ($element.hasClass('select2-search__field')) {
+                        var $element2 = $element.closest('.form-row').find('.select2-multiple-services');
+                        if ($element2.prop('required')) {
+                            this.element($element2)
+                        } else if ($element2.val() != '') {
+                            this.element($element2)
+                        }
+                    } else if ($element.hasClass('dob-picker') && $element.val() == '') {
+                        this.element($('input[name=birthday]'))
+                    } else {
+                        this.element(element)
+                    }
+                },
+                onkeyup: function (element) {
+                    var $element = $(element);
+                    $element.valid();
+                },
+                rules: {
+                    first_name: "required",
+                    last_name: "required",
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    registration_phone_no: {
+                        mobilenumber: true
+                    },
+                    country_id: {
+                        required: true
+                    },
+                    company_name: {
+                        required: false
+                    },
+                    password: {
+                        required: true,
+                        minlength: 8
+                    },
+                    confirm_password: {
+                        required: true,
+                        equalTo: '#reg_password'
+                    },
+                    birthday: {
+                        required: true
+                    }
+                },
+                messages: {
+                    first_name: "Please enter your firstname",
+                    last_name: "Please enter your lastname",
+                    reg_password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 8 characters long"
+                    },
+                    confirm_password: {
+                        same: "Password does not match"
+                    },
+                    email: "Please enter a valid email address",
+                    birthday: "Please enter complete birthday"
+                },
+                errorClass: 'is-invalid error',
+                validClass: 'is-valid',
+                highlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    if (elem.hasClass("select2-hidden-accessible")) {
+                        elem.closest('.form-row').find('.select2-container input').addClass(errorClass);
+                        elem.closest('.form-row').find('.select2-container input').removeClass(validClass);
+                        elem.closest('.form-row').find('span.select2-selection').addClass(errorClass);
+                        elem.closest('.form-row').find('span.select2-selection').removeClass(validClass);
+                    } else if (elem.hasClass('birthday')) {
+                        var newelem = elem.closest('.form-group');
+                        if (newelem.find('select.day').val() == '') {
+                            newelem.find('select.day').addClass(errorClass)
+                        }
+                        if (newelem.find('select.month').val() == '') {
+                            newelem.find('select.month').addClass(errorClass)
+                        }
+                        if (newelem.find('select.year').val() == '') {
+                            newelem.find('select.year').addClass(errorClass)
+                        }
+                    } else {
+                        elem.addClass(errorClass);
+                    }
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    if (elem.hasClass("select2-hidden-accessible")) {
+                        elem.closest('.form-row').find('.select2-container input').removeClass(errorClass);
+                        elem.closest('.form-row').find('.select2-container input').addClass(validClass);
+                        elem.closest('.form-row').find('span.select2-selection').removeClass(errorClass);
+                        elem.closest('.form-row').find('span.select2-selection').addClass(validClass);
+                    } else if (elem.hasClass('dob-picker')) {
+                        elem.removeClass(errorClass);
+                        elem.addClass(validClass);
+                        var newelem = elem.closest('.form-group');
+                        if (newelem.find('select.day').val() != '' && newelem.find('select.month').val() != '' && newelem.find('select.year').val() != '') {
+                            newelem.find('#birthday-error').remove();
+                        }
+                    } else {
+                        elem.removeClass(errorClass);
+                        elem.addClass(validClass);
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var elem = $(element);
+                    if (elem.hasClass("select2-hidden-accessible")) {
+                        element = elem.closest('.form-row').find('.select2-container--default');
+                        error.insertAfter(element);
+                    } else if (elem.hasClass('birthday')) {
+                        element = elem.closest('.form-group').find('.date-dropdowns');
+                        error.insertAfter(element);
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            });
 
             $('.dob-picker').on("change", function (e) {
                 $("form[name='companyForm']").valid()

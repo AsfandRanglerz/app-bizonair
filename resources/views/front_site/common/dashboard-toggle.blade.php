@@ -1,5 +1,5 @@
-<nav class="position-fixed w-100 px-2 bg-white navbar navbar-expand-lg navbar-light border-bottom justify-content-between dashboard-toggle-top-bar">
-    @if(\App\UserCompany::where('user_id',auth()->id())->first())
+@if(\App\UserCompany::where('user_id',auth()->id())->first())
+    <nav class="position-fixed w-100 px-2 bg-white navbar navbar-expand-lg navbar-light border-bottom justify-content-between dashboard-toggle-top-bar">
         @if(session()->get('company_id'))
             <span class="company-name-nav">{{ company_name(session()->get('company_id'))??'' }}</span>
             <select class="w-auto form-control comp-name" id="compani_id" name="compani_id">
@@ -9,5 +9,5 @@
                 @endforeach
             </select>
         @endif
-    @endif
-</nav>
+    </nav>
+@endif
