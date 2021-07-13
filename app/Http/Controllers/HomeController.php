@@ -192,6 +192,7 @@ class HomeController extends Controller
             Session::put("expire_time", $time);
             $data['feedback'] = 'true';
             $data['msg'] = 'OTP has been sent to your email address successfully. Please confirm authenticity of your email address.' . '<br>' . 'If you are unable to find email, please;' . '<ol style="margin-left: 2em;">' . '<li>Recheck provided email address</li>' . '<li>Check the Spam/Junk folder in your emails</li>' . '<li>Get intouch with us at info@bizonair.com</li>' . '</ol>';
+            $data['url'] = url('verify-otp/'.$verification_code);
         } else {
             $data['feedback'] = 'invalid';
             $data['msg'] = 'Email already exists';

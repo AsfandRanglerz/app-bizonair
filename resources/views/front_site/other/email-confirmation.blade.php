@@ -219,6 +219,9 @@
                         $('#alert-success').show();
                         let email = $('#email').val();
                         $('#verifyemail').val(email);
+                        setTimeout(() => {
+                            window.location.href = response.url;
+                        }, 1000);
                     }
                 },
                 error: function (jqXHR, exception) {
