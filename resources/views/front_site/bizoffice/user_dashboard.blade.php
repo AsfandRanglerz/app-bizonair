@@ -11,7 +11,7 @@
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
 
-            <div @if(\App\UserCompany::where('user_id',auth()->id())->first()) id="page-content-wrapper" @endif>
+            <div id="page-content-wrapper">
                 <div class="px-2">
                     <span class="main-heading my-1">DASHBOARD</span>
                     <div class="row cards-container">
