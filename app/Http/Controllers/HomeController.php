@@ -225,7 +225,7 @@ class HomeController extends Controller
                     return view('front_site.other.email-confirmation-failed', $data);
                 } else {
                     $data['feedback'] = 'true';
-                    $data['msg'] = 'Email is verified successfully!';
+                    $data['msg'] = 'OTP Code is verified successfully!';
                     $data['url'] =route('registeration-step-1');
                     Session::put('verified_email', $user_code->email);
 //                    $user_code->delete();
@@ -478,14 +478,14 @@ class HomeController extends Controller
             $user->designation = request('designation');
             $user->other_designation = request('other_designation');
             $user->gender = request('gender');
-            if (request('sub_category')) {
-                foreach (request('sub_category') as $key => $value) {
-                    $new = new \App\UserInterest();
-                    $new->user_id = $user->id;
-                    $new->subcategory_id = $value;
-                    $new->save();
-                }
-            }
+//            if (request('sub_category')) {
+//                foreach (request('sub_category') as $key => $value) {
+//                    $new = new \App\UserInterest();
+//                    $new->user_id = $user->id;
+//                    $new->subcategory_id = $value;
+//                    $new->save();
+//                }
+//            }
             if ($user->save()) {
                 $user->step_1 = 1;
                 $user->save();

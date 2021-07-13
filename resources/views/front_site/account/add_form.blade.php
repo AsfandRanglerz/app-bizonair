@@ -136,7 +136,7 @@
                                             <h6 class="w-100 p-0 d-none">Designation <small class="font-500">(Optional)</small>
                                             </h6>
                                             <select name='designation' class="form-control">
-                                                <option value="">Select Designation (Optional)</option>
+                                                <option value="" disabled selected>Select Designation (Optional)</option>
                                                 <option value="Director">Director</option>
                                                 <option value="CEO">CEO</option>
                                                 <option value="General Manager">General Manager</option>
@@ -148,7 +148,6 @@
                                                 <option value="Executive">Executive</option>
                                                 <option value="Other" id="otherUser" class="other-check">Other</option>
                                             </select>
-                                            <small class="text-danger" id="designation_error"></small>
                                         </div>
                                         <div class="form-group col-md-6 other-div">
                                             <h6 class="w-100 p-0 d-none">Add Designation <span class="required">*</span></h6>
@@ -191,17 +190,15 @@
 
                                                 @endforeach
                                             </select>
-                                            <small class="text-danger" id="category_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6 sub_category_btn">
-                                            <label class="d-none">Sub Categories</label>
-                                            <select name="sub_category[]" id="sub_category1"
-                                                    class="form-control select2-multiple5" multiple>
-                                                <option value="" disabled selected>Select Sub-Category</option>
-                                            </select>
-                                            <small class="text-danger" id="sub_category_error"></small>
-                                            <span class="d-block text-sm-right text-center mini-txt">Choose at most 5 sub categories</span>
-                                        </div>
+{{--                                        <div class="form-group col-md-6 sub_category_btn">--}}
+{{--                                            <label class="d-none">Sub Categories</label>--}}
+{{--                                            <select name="sub_category[]" id="sub_category1"--}}
+{{--                                                    class="form-control select2-multiple5" multiple>--}}
+{{--                                                <option value="" disabled selected>Select Sub-Category</option>--}}
+{{--                                            </select>--}}
+{{--                                            <span class="d-block text-sm-right text-center mini-txt">Choose at most 5 sub categories</span>--}}
+{{--                                        </div>--}}
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
@@ -297,7 +294,7 @@
                                             <small class="text-danger" id="website_error"></small>
                                         </div>
                                     </div>
-                                    <button type="submit" id="accoutn_btn" class="red-btn" disabled>Submit</button>
+                                    <button type="submit" id="accoutn_btn" class="red-btn">Submit</button>
                                     <button type="button" disabled class="btn-pro d-none red-btn"><span
                                             class="spinner-border spinner-border-sm mr-1" role="status"
                                             aria-hidden="true"></span>Processing
