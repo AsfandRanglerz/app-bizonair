@@ -18,6 +18,7 @@ class CreateUploadCvsTable extends Migration
             $table->integer('user_id')->nullable();
             $table->string('fname')->nullable();
             $table->string('lname')->nullable();
+            $table->string('phone_code')->nullable();
             $table->string('phone_no')->nullable();
             $table->string('email')->nullable();
             $table->integer('total_experience')->nullable();

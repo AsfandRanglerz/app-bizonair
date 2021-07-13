@@ -35,7 +35,16 @@
                                     <input type="text" class="form-control" name="lname" id="lname"  placeholder="Last Name - Input Last Name" required="required">
                                     <small class="text-danger" id="lname_error"></small>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-2">
+                                    <select name="phone_code" id="phone_code" class="form-control single-select-dropdown" required>
+                                        <option value="" selected disabled>Select Phone Code</option>
+                                        @foreach (\DB::table('countries')->get() as $item)
+                                            <option value="+{{$item->phonecode}}">+{{$item->phonecode}}</option>
+                                        @endforeach
+                                    </select>
+                                    <small class="text-danger" id="phone_code_error"></small>
+                                </div>
+                                <div class="form-group col-md-2">
                                     <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Contact Number - Input Contact Number" required="required">
                                     <small class="text-danger" id="phone_no_error"></small>
                                 </div>
