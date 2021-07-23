@@ -6,7 +6,7 @@
     <title>{{setting('site.title')}} | Pakistan's #1 Textile Portal</title> <?php }?>
     <meta charset="utf-8">
     <meta name="token" content="123456789">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="icon" type="image/png" href="{{$ASSET}}/front_site/images/favicon.png">
     <link rel="stylesheet" href="{{$ASSET}}/front_site/css/slick.css">
     <link rel="stylesheet" href="{{$ASSET}}/front_site/css/slick-theme.css">

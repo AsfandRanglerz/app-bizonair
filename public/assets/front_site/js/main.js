@@ -48,6 +48,12 @@ $(".job-description-below").scroll(function () {
 });
 
 $(document).ready(function () {
+    /*mobile header view*/
+    var mobHeader = $('.tab-mob-header').innerHeight()
+    var mobHeaderCeil = Math.ceil(mobHeader);
+    $('body').css('padding-top', mobHeaderCeil);
+    /*mobile header view*/
+
     // Add the following code if you want the name of the file appear on select
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();

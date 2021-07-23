@@ -73,9 +73,9 @@
                     <p style="margin-bottom: 4px"><span class="font-500" style="color: #000">Regular Business Lead: </span> {{$product->product_service_types}}</p>
                     <p class="product-details">{{$product->details}}</p>
                   <div class="d-flex justify-content-sm-start justify-content-center btns-block">
-                      <a href="#" class="p-0 btns" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
-                      <a href="#productInfoSection" type="button" class="p-0 btns product-info-btn"><span class="d-inline-block py-1 px-2">PRODUCT INFO</span></a>
-                      <a href="{{route('contact-us-suppliers',$product->company_id)}}" class="p-0 btns" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
+                      <a href="#" class="p-0 btns" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="red-btn d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
+                      <a href="#productInfoSection" type="button" class="p-0 btns product-info-btn"><span class="red-btn d-inline-block py-1 px-2">PRODUCT INFO</span></a>
+                      <a href="{{route('contact-us-suppliers',$product->company_id)}}" class="p-0 btns" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="red-btn d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
                       <!-- Modal -->
                       <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                           <div class="modal-dialog contact-form" role="document">

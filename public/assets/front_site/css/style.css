@@ -11,10 +11,6 @@
     --thumbBG: #90A4AE;
 }
 
-.custom-control {
-    min-height: unset;
-}
-
 /*verification page*/
 .verification-code.popup-center {
     width: 95%;
@@ -520,6 +516,8 @@ body {
 .tab-mob-header {
     background: #A52C3E!important;
     z-index: 99999!important;
+    position: fixed!important;
+    width: 100%;
 }
 
 .tab-mob-header .biz-search {
@@ -4558,15 +4556,17 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 }
 
 .select-cat {
+    background-image: url(../images/cat-dropdown-arrow.svg)!important;
+    background-size: 9px!important;
+    padding-right: 1rem!important;
     width: 85px;
     border: none;
     border-radius: 4px 0 0 4px;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: bold;
     outline: none;
     color: #FFF;
     background: #A52C3E;
-    padding: 10px 0 10px 10px;
     transition: background-color 0.5s ease;
 }
 
@@ -7436,6 +7436,26 @@ header .navbar .navbar-toggler {
         border: 1px solid #BABABA;
     }
 
+    select::-ms-expand {
+        display: none;
+    }
+
+    select {
+        background-image: url(../images/dropdown-arrow.svg)!important;
+        background-size: 9px!important;
+        background-repeat: no-repeat!important;
+        background-position: right 5px top 50%!important;
+        padding-right: 20px!important;
+        padding-left: 4px!important;
+        -webkit-appearance: none!important;
+        -moz-appearance: none!important;
+        appearance: none!important;
+    }
+
+    .custom-control {
+        min-height: unset;
+    }
+
     select,
     input {
         text-overflow: ellipsis;
@@ -7583,7 +7603,10 @@ header .navbar .navbar-toggler {
         width: 105px!important;
         color: #FFF!important;
         border: none!important;
-        background: #a52c3e!important;
+        background-color: #a52c3e!important;
+        background-image: url(../images/cat-dropdown-arrow.svg)!important;
+        background-size: 9px!important;
+        padding-right: 1rem!important;
         box-shadow: 0 0 10px rgb(0 0 0 / 15%);
         transition: background 0.5s ease;
     }
