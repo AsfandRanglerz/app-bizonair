@@ -755,7 +755,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <span class="modal-title">Close Form</span>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                                         </div>
                                         <div class="modal-body pt-3">
                                             <p style="color: white">The changes will not be saved – Do you want to continue?</p>
@@ -1448,7 +1448,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
-                                        <button type="button" class="red-btn next-btn" id="nextBtn1">NEXT</button>
+                                        <button  class="red-btn next-btn" id="nextBtn1">NEXT</button>
                                     </div>
                                     <div class="my-1">
                                         <hr class="horizontal-line">

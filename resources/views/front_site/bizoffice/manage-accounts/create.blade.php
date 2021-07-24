@@ -34,7 +34,7 @@
                                         <div class="form-group col-xl-12 col-lg-12" align="center">
                                             <button class="verify-btn red-btn" type="submit" id="accoutn_btn" disabled>Invite A New Member
                                             </button>
-                                            <button type="button" disabled class="btn-pro d-none red-btn"><span
+                                            <button  disabled class="btn-pro d-none red-btn"><span
                                                     class="spinner-border  spinner-border-sm mr-1" role="status"
                                                     aria-hidden="true"></span>Processing
                                             </button>

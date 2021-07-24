@@ -52,7 +52,7 @@
 
                                     <td align="center">
 
-                                            <button type="button" class="dropdown-toggle prWhiteBtn p-0"
+                                            <button  class="dropdown-toggle prWhiteBtn p-0"
                                                     data-toggle="dropdown">
                                                 <img src="./images/3_dots.png" alt="">
                                             </button>

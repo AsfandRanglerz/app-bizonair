@@ -94,7 +94,7 @@
                                                                             @else
                                                                                 <span class="modal-title">ADD TO FAVOURITE</span>
                                                                             @endif
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                            <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                                                                         </div>
                                                                         <div class="modal-body pt-3">
                                                                             @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
@@ -198,7 +198,7 @@
                                                             @else
                                                                 <span class="modal-title">ADD TO FAVOURITE</span>
                                                             @endif
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                                                         </div>
                                                         <div class="modal-body pt-3">
                                                             @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())

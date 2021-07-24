@@ -350,7 +350,7 @@
                                     <div class="form-group col-12 mt-2">
                                         <button class="verify-btn red-btn" type="submit" id="cv_update_btn" disabled>Update CV
                                         </button>
-                                        <button type="button" disabled class="btn-pro d-none red-btn"><span
+                                        <button  disabled class="btn-pro d-none red-btn"><span
                                                 class="spinner-border  spinner-border-sm mr-1" role="status"
                                                 aria-hidden="true"></span>Processing
                                         </button>

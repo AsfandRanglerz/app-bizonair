@@ -86,7 +86,7 @@
 
                                     <td align="center">
                                         <input type="hidden" name='favourite_id' value="{{encrypt($fav->id)}}">
-                                        <button type="button" class="dropdown-toggle prWhiteBtn p-0"
+                                        <button  class="dropdown-toggle prWhiteBtn p-0"
                                                 data-toggle="dropdown" disabled>
                                             <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
                                         </button>

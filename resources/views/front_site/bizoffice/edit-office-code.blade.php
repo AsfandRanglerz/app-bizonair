@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="form-group col-xl-12 col-lg-12" align="center">
                                             <button class="verify-btn red-btn" id="accoutn_btn" disabled>Save</button>
-                                            <button type="button"  disabled class="btn-pro d-none red-btn" ><span class="spinner-border  spinner-border-sm mr-1" role="status" aria-hidden="true"></span>Processing</button>
+                                            <button   disabled class="btn-pro d-none red-btn" ><span class="spinner-border  spinner-border-sm mr-1" role="status" aria-hidden="true"></span>Processing</button>
                                         </div>
                                     </div>
                                 </div>

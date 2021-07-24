@@ -37,7 +37,7 @@
                         href="{{Request::url()}}">Careers Directory</a></li>
             </ol>
         </nav>
-        <button type="button" class="filters-btn">Filters<span class="fa fa-bars"></span></button>
+        <button  class="filters-btn">Filters<span class="fa fa-bars"></span></button>
         <div class="container-fluid job-portal-inner px-md-3 px-2">
             <div class="form-row mx-0">
                 <div class="col-md-3 col-sm-4 pt-md-3 pt-2 pb-sm-3 pr-md-3 px-0 filter-container">

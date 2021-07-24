@@ -59,7 +59,7 @@
 
                                             @if(!(\Auth::id() == $list->user_id && ($list->is_member==1 && $list->is_admin==1)))
 
-                                                <button type="button" class="dropdown-toggle prWhiteBtn p-0 abc"
+                                                <button  class="dropdown-toggle prWhiteBtn p-0 abc"
                                                         data-toggle="dropdown" disabled>
                                                     <img src="./images/3_dots.png" alt="">
                                                 </button>

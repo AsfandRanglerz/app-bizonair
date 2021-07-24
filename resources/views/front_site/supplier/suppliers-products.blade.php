@@ -43,7 +43,7 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <span class="modal-title">Send Inquiry</span>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="alert alert-success mb-2 text-center" id='alert-success-inquiry' style="display: none"

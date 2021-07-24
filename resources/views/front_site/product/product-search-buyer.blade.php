@@ -115,7 +115,7 @@
                                                                             @else
                                                                                 <span class="modal-title">ADD TO FAVOURITE</span>
                                                                             @endif
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                            <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                                                                         </div>
                                                                         <div class="modal-body pt-3">
                                                                             @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
@@ -167,15 +167,15 @@
                                                         {{--                                                    <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                         {{--                                                </div>--}}
                                                         <div class="d-flex column-gap-4">
-                                                            <a href="#" class="p-0 red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
-                                                            <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
+                                                            <a href="#" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
+                                                            <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                                 <div class="modal-dialog contact-form" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <span class="modal-title">Send Inquiry</span>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                            <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                                                                         </div>
                                                                         <div class="modal-body">
                                                                             <div class="alert alert-success mb-2 text-center" id='alert-success-inquiry' style="display: none"

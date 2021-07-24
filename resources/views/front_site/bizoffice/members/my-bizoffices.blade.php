@@ -58,7 +58,7 @@
                                         <?php $usercomp = \App\UserCompany::where('company_id',$list->company->id)->where('user_id',auth()->id())->first();?>
                                         @if($usercomp->is_member == 1 && $usercomp->is_admin == 1 || $usercomp->is_owner == 1)
                                                 <input type="hidden" name='companies_id' value="{{encrypt($list->company->id)}}">
-                                                <button type="button" class="dropdown-toggle prWhiteBtn p-0"
+                                                <button  class="dropdown-toggle prWhiteBtn p-0"
                                                         data-toggle="dropdown">
                                                     <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
                                                 </button>

@@ -30,7 +30,7 @@
                         <div class="col-md-9 p-lg-3 p-0">
                             <div class="d-md-flex text-center justify-content-between align-items-center mb-3">
                                 <p class="mb-md-0 mb-2 font-500">{{ strtoupper($childsubcategory->name) }} > REGULAR BUYERS <span style="color: #999">({{ $viewCount}} PRODUCTS)</span></p>
-                                <a href="{{ route('products.create') }}" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif class="red-btn" type="button">Post Your Regular Lead</a>
+                                <a href="{{ route('products.create') }}" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif class="red-btn" >Post Your Regular Lead</a>
                             </div>
                             <div class="row m-0 search-container">
                                 <div class="col-md-8 p-1 text-md-left text-center">
@@ -50,8 +50,8 @@
                             </div>
                             <div class="mt-2 compare-container">
                                 <div class="mb-2 compare-cancel-btns">
-                                    <a href="{{route('products-compare',['category'=>$category])}}" class="pt-1 pb-1 pl-2 pr-2 red-btn" type="button">Compare</a>
-                                    <a href="#" class="pt-1 pb-1 pl-2 pr-2 red-btn cancel-btn" type="button">Cancel</a>
+                                    <a href="{{route('products-compare',['category'=>$category])}}" class="pt-1 pb-1 pl-2 pr-2 red-btn" >Compare</a>
+                                    <a href="#" class="pt-1 pb-1 pl-2 pr-2 red-btn cancel-btn" >Cancel</a>
                                 </div>
                             </div>
 
@@ -121,7 +121,7 @@
                                                                                 @else
                                                                                 <span class="modal-title">ADD TO FAVOURITE</span>
                                                                                 @endif
-                                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                                <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                                                                             </div>
                                                                             <div class="modal-body pt-3">
                                                                                 @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
@@ -170,15 +170,15 @@
                                                         {{--                                                    <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                         {{--                                                </div>--}}
                                                         <div class="d-sm-inline-block d-flex flex-column align-items-center">
-                                                            <a href="#" class="mb-md-0 mb-1 p-0 red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
-                                                            <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn" type="button" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
+                                                            <a href="#" class="mb-md-0 mb-1 p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
+                                                            <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                                 <div class="modal-dialog contact-form" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <span class="modal-title">Send Inquiry</span>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                            <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                                                                         </div>
                                                                         <div class="modal-body">
                                                                             <div class="alert alert-success mb-2 text-center" id='alert-success-inquiry' style="display: none"

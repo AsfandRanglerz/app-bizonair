@@ -67,7 +67,7 @@
                         </form>
                     </div>
                 </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bizonairNav" aria-controls="bizonairNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler"  data-toggle="collapse" data-target="#bizonairNav" aria-controls="bizonairNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="fa fa-bars"></span>
                 </button>
             </div>
@@ -501,7 +501,7 @@
                 @csrf
                 <div class="modal-header">
                     <span class="modal-title">Login</span>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                 </div>
                 <div class="modal-body pt-3">
                     <div class="empty-div mb-2"></div>
@@ -556,7 +556,7 @@
                 @csrf
                 <div class="modal-header">
                     <span class="modal-title">CHANGE PASSWORD</span>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                 </div>
                 <div class="modal-body pt-3">
                     <div class="alert alert-success mb-2 text-center" id='alert-success-change-password' style="display: none"
@@ -812,11 +812,11 @@
                             '<div class="modal-header">'+
                             '<span class="modal-title">Notification</span>'+
                             '<input type="hidden" name="display" value="'+data.notifiactions.id+'"/>'+
-                            '<button type="button" class="close is-display" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+                            '<button  class="close is-display" data-dismiss="modal" aria-hidden="true">&times;</button>'+
                             '</div>'+
                             '<div class="modal-body pt-3">'+
                             '<p style="color: white;">'+data.notifiactions.notification_text+'</p>'+
-                            '<input type="button" id="view-page" class="red-btn" attr-val="'+data.notifiactions.id+'" value="View">'+
+                            '<input  id="view-page" class="red-btn" attr-val="'+data.notifiactions.id+'" value="View">'+
                             '</div>'+
                             "</div>";
                         $('#notific').modal('show');

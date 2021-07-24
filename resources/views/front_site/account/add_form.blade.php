@@ -244,7 +244,7 @@
                                                 <input type="tel" readonly="" name="phone_no"
                                                        value="{{$user->registration_phone_no}}"
                                                        class="form-control d-inline" id="" placeholder="Mobile - 03xxxxxxxxx/3xxxxxxxxx">
-                                                <button class="red-btn mt-sm-0 mt-2" type="button">Verify Mobile</button>
+                                                <a class="red-btn mt-sm-0 mt-2">Verify Mobile</a>
                                             </div>
                                             <small class="text-danger" id="phone_no_error"></small>
                                         </div>
@@ -295,10 +295,10 @@
                                         </div>
                                     </div>
                                     <button type="submit" id="accoutn_btn" class="red-btn">Submit</button>
-                                    <button type="button" disabled class="btn-pro d-none red-btn"><span
+                                    <a disabled class="btn-pro d-none red-btn"><span
                                             class="spinner-border spinner-border-sm mr-1" role="status"
                                             aria-hidden="true"></span>Processing
-                                    </button>
+                                    </a>
                                 </form>
                             </div>
                         </div>

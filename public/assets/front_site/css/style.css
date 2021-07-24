@@ -176,6 +176,7 @@ div.dataTables_wrapper div.dataTables_filter label {
     color: #FFF;
     text-shadow: 0px 3px 6px #00000080;
     padding: 1px;
+    font-size: 10px;
     text-align: center;
     display: block;
 }
@@ -697,17 +698,16 @@ body {
 }
 
 .pro-tab-content .tab-pane .red-btn {
-    background: transparent;
+    background: unset;
     color: #12253d!important;
     box-shadow: none;
     width: 100%;
     min-height: 50px;
-    font-size: 9px!important;
-    font-weight: 400;
+    font-size: 10px!important;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: .5s ease background;
     text-transform: capitalize;
 }
 
@@ -743,7 +743,7 @@ body {
 .pro-tab-content .tab-pane .red-btn:hover,
 .pro-tab-content .tab-pane .red-btn:focus {
     box-shadow: 0px 4px 10px #0000006b;
-    background: #a52c3e;
+    background-color: #a52c3e!important;
     border: 1px solid #a52c3e;
     color: #FFF!important;
 }
@@ -1786,7 +1786,7 @@ ul li input[type=checkbox] {
     font-size: 18px;
     color: #12253d;
     padding-right: 5px;
-    outline: none;
+    outline: none!important;
 }
 
 /*suppliers and buyers pages css*/
@@ -4172,12 +4172,10 @@ hr.horizontal-line {
     background: #a52c3e;
     border: none;
     box-shadow: 0 0 10px rgb(0 0 0 / 15%);
-    transition: background 0.5s ease;
     font-size: 10px;
     padding: 4px 8px;
     text-align: center;
     text-transform: uppercase;
-    transition: 0.5s;
     background-size: 200% auto;
     color: #FFF!important;
     border-radius: 5px;
@@ -5506,7 +5504,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     font-size: 15px;
     color: #12253d;
     padding-right: 5px;
-    outline: none;
+    outline: none!important;
 }
 
 .user-type ul li input[type=checkbox].fa-check-square-o,

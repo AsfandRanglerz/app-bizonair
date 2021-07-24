@@ -293,31 +293,25 @@
                                             <div class="form-group mb-1 user-type col-xl-9 col-lg-12">
                                                 <label for="last_name" class="font-500">User Type <span
                                                         class="required">*</span></label>
-                                                <ul data-toggle="buttons" class="mb-0">
-                                                    @foreach (\App\UType::limit(3)->get() as $type)
-                                                        @if($user->types->find($type->id))
-                                                            <li class="btn">
-                                                                <input type="checkbox" value="{{$type->id}}"
-                                                                       data-id="{{$type->id}}"
-                                                                       class="input fa fa-check-square-o"
-                                                                       name="user_type[]" checked>{{$type->title}}
-                                                            </li>
-                                                        @else
-                                                            <li class="btn">
-                                                                <input type="checkbox" value="{{$type->id}}"
-                                                                       data-id="{{$type->id}}"
-                                                                       class="input fa fa-square-o"
-                                                                       name="user_type[]">{{$type->title}}
-                                                            </li>
-                                                        @endif
-                                                    @endforeach
-                                                </ul>
+                                                @foreach (\App\UType::limit(3)->get() as $type)
+                                                    @if($user->types->find($type->id))
+                                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                                            <input type="checkbox" class="custom-control-input" id="{{$type->id}}" value="{{$type->id}}" data-id="{{$type->id}}" name="user_type[]" checked>
+                                                            <label class="custom-control-label" for="{{$type->id}}">{{$type->title}}</label>
+                                                        </div>
+                                                    @else
+                                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                                            <input type="checkbox" class="custom-control-input" id="{{$type->id}}" value="{{$type->id}}" data-id="{{$type->id}}" name="user_type[]">
+                                                            <label class="custom-control-label" for="{{$type->id}}">{{$type->title}}</label>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
                                                 <small class="text-danger" id="user_type_error"></small>
                                             </div>
                                         </div>
                                     @endif
                                     <label class="font-500">Gender <span class="required">*</span></label>
-                                    <div class="mt-1 d-flex flex-row">
+                                    <div class="my-1 d-flex flex-row">
                                         <div class="form-check form-check-inline custom-control custom-radio d-sm-inline">
                                             <input type="radio" class="custom-control-input" name="gender" id="male"
                                                    value="Male" @if($user->gender == "Male") checked @endif>

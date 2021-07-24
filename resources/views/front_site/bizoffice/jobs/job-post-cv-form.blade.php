@@ -178,7 +178,7 @@
                                 <div class="px-0 form-group col-12">
                                     <button class="verify-btn red-btn" type="submit" id="post_cv_btn">POST CV
                                     </button>
-                                    <button type="button" disabled class="btn-pro d-none red-btn"><span
+                                    <button  disabled class="btn-pro d-none red-btn"><span
                                             class="spinner-border  spinner-border-sm mr-1" role="status"
                                             aria-hidden="true"></span>Processing
                                     </button>

@@ -108,7 +108,7 @@
                                         </td>
                                         <td align="center">
 {{--                                            <input type="hidden" name='id' value="{{encrypt($buysell->id)}}">--}}
-{{--                                            <button type="button" class="dropdown-toggle prWhiteBtn p-0"--}}
+{{--                                            <button  class="dropdown-toggle prWhiteBtn p-0"--}}
 {{--                                                    data-toggle="dropdown">--}}
 {{--                                                <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">--}}
 {{--                                            </button>--}}
@@ -148,7 +148,7 @@
 
                                         <td>{{$buysell->origin}}</td>
                                         @if(!($request->case && $request->case == 'archive'))
-                                        <td>@if(checkExpiryBuysell($buysell->id) == 'Expired')<span style="color: red">{{checkExpiryBuysell($buysell->id)}}</span> <button type="button" class="btn red-btn" id="expirebtn" prod_id="{{$buysell->id}}">Repost</button> @else {{checkExpiryBuysell($buysell->id)}} @endif</td>
+                                        <td>@if(checkExpiryBuysell($buysell->id) == 'Expired')<span style="color: red">{{checkExpiryBuysell($buysell->id)}}</span> <button  class="btn red-btn" id="expirebtn" prod_id="{{$buysell->id}}">Repost</button> @else {{checkExpiryBuysell($buysell->id)}} @endif</td>
                                         @endif
                                             <td> {!! $buysell->created_at !!}</td>
                                         <td>{{ getUserNameById($buysell->updatedBy) }}</td>
@@ -173,7 +173,7 @@
 @push('js')
 
     <script type="text/javascript">
-        var alert_close_btn = '<button type="button" class="close"><span aria-hidden="true">&times;</span> </button>';
+        var alert_close_btn = '<button  class="close"><span aria-hidden="true">&times;</span> </button>';
         $(document).on('click', '.delete-buysell', function () {
             btn = $(this);
             buysell_id = btn.closest('td').find('input').val();

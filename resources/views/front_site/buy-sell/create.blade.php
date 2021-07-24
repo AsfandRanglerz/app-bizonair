@@ -418,7 +418,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
-                                        <button type="button" class="red-btn next-btn" id="nextBtn1">NEXT</button>
+                                        <button  class="red-btn next-btn" id="nextBtn1">NEXT</button>
                                     </div>
                                     <div class="my-1">
                                         <hr class="horizontal-line">
@@ -549,7 +549,7 @@
 {{--                                        </div>--}}
 {{--                                    </div>--}}
 {{--                                    <div class="mt-3" align="right">--}}
-{{--                                        <button type="button" class="red-btn next-btn" id="nextBtn2">NEXT</button>--}}
+{{--                                        <button  class="red-btn next-btn" id="nextBtn2">NEXT</button>--}}
 {{--                                    </div>--}}
 {{--                                    <div class="my-1">--}}
 {{--                                        <hr class="horizontal-line">--}}

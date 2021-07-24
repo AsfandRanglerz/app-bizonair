@@ -189,7 +189,7 @@
                                                 <button type="submit" id="accoutn_btn" class="create-btn">Create My
                                                     Account
                                                 </button>
-                                                <button type="button" disabled class="btn-pro d-none create-btn"><span
+                                                <button  disabled class="btn-pro d-none create-btn"><span
                                                         class="spinner-border spinner-border-sm mr-1" role="status"
                                                         aria-hidden="true"></span>Processing
                                                 </button>
