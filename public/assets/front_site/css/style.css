@@ -1890,7 +1890,7 @@ ul li input[type=checkbox] {
     background-color: #A52C3E;
     visibility: hidden;
     transform: scaleX(0);
-    transition: all 0.3s ease-in-out;
+    /*transition: all 0.3s ease-in-out;*/
 }
 
 .suppliers-buyers .list:not(.active) a:hover:before {
@@ -7420,6 +7420,10 @@ header .navbar .navbar-toggler {
     .custom-control.custom-checkbox {
         padding-left: 0;
         margin-right: 8px!important;
+    }
+
+    .custom-control.custom-radio {
+        padding-left: 0;
     }
 
     .custom-control-label {
