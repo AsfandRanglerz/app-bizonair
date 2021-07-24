@@ -7140,10 +7140,13 @@ header .navbar .navbar-toggler {
 
 /*home page css*/
 
-.iti label#mobileNumber-error {
-    position: absolute;
-}
+/*.iti label#mobileNumber-error {*/
+/*    position: absolute;*/
+/*}*/
 
+.iti__flag-container {
+    height: 1.8em;
+}
 
 .select2-container--default {
     padding: 0 !important;
@@ -7414,9 +7417,19 @@ header .navbar .navbar-toggler {
         font-size: 10px;
     }
 
+    .custom-control.custom-checkbox {
+        padding-left: 0;
+        margin-right: 8px!important;
+    }
+
+    .custom-control-label {
+        padding-left: 1.1rem;
+    }
+
     .custom-control-label::after, .custom-control-label::before {
         /*top: 0.30rem;*/
         top: 1px;
+        left: 0;
         width: .83rem;
         height: .83rem;
     }

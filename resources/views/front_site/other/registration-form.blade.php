@@ -98,21 +98,31 @@
                                         <div class="mx-0 w-100 form-row user-type-section">
                                             <h6 class="w-100 px-0">User Type <span class="required">*</span></h6>
                                             <div class="form-group user-type col-xl-9 col-lg-12 px-0">
-                                                <div>
-                                                    <ul data-toggle="buttons">
-                                                        @foreach (\App\UType::all() as $item)
-                                                            <li class="btn @if($item->id == 4) service-provider @endif">
-                                                                <input class="input fa fa-square-o required-control" type="checkbox"
-                                                                       value="{{$item->id}}" data-id="{{$item->id}}"
-                                                                       name="user_type[]">{{$item->title}}
-                                                                <span class="ml-1 fa fa-question-circle" data-toggle="tooltip"
-                                                                      data-placement="top" title="{{ $item->title }}"
-                                                                      aria-hidden="true"></span>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                    <small class="text-danger" id="user_type_error"></small>
+                                                @foreach (\App\UType::all() as $item)
+                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input @if($item->id == 4) service-provider @endif" id="{{$item->id}}" value="{{$item->id}}" data-id="{{$item->id}}" name="user_type[]">
+                                                    <label class="custom-control-label" for="{{$item->id}}">{{$item->title}}</label>
+                                                    <span class="ml-1 fa fa-question-circle d-flex align-items-center" data-toggle="tooltip"
+                                                          data-placement="top" title="{{ $item->title }}"
+                                                          aria-hidden="true"></span>
                                                 </div>
+                                                @endforeach
+                                                <small class="text-danger" id="user_type_error"></small>
+{{--                                                <div>--}}
+{{--                                                    <ul data-toggle="buttons">--}}
+{{--                                                        @foreach (\App\UType::all() as $item)--}}
+{{--                                                            <li class="btn @if($item->id == 4) service-provider @endif">--}}
+{{--                                                                <input class="input fa fa-square-o required-control" type="checkbox"--}}
+{{--                                                                       value="{{$item->id}}" data-id="{{$item->id}}"--}}
+{{--                                                                       name="user_type[]">{{$item->title}}--}}
+{{--                                                                <span class="ml-1 fa fa-question-circle" data-toggle="tooltip"--}}
+{{--                                                                      data-placement="top" title="{{ $item->title }}"--}}
+{{--                                                                      aria-hidden="true"></span>--}}
+{{--                                                            </li>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    </ul>--}}
+{{--                                                    <small class="text-danger" id="user_type_error"></small>--}}
+{{--                                                </div>--}}
                                             </div>
                                             <select
                                                 class="form-control choose-services col-xl-3 col-lg-12 select2-multiple-services "
@@ -163,32 +173,40 @@
                                                 <small class="text-danger" id="birthday_error"></small>
                                             </div>
                                         </div>
-                                        <div class="form-row mt-3">
-                                            <div class="form-group check-stats">
-                                                <ul class="pl-2">
-                                                    <li class="w-100 btn d-flex" id="termsCheckbox">
-                                                        <input class="input fa fa-square-o" type="checkbox"
-                                                               id="termsCheckboxinput">
-                                                        <div id="termsCheckboxdiv">
-                                                            I Agree to the <a href="{{route('terms-of-use')}}" class="text-link" target="_blank">Terms of
-                                                                Services</a> and <a href="{{route('privacy-policy')}}" class="text-link" target="_blank">Privacy
-                                                                Policy</a>
-                                                        </div>
-                                                    </li>
-                                                    <li class="w-100 btn active">
-                                                        <input class="input fa fa-square-o" type="checkbox"
-                                                               name="industry_information_check" id="infoCheckbox" value="1"
-                                                               checked="">I would like to recieve information related to my
-                                                        industry
-                                                    </li>
-                                                </ul>
+                                        <div class="form-row">
+{{--                                            <div class="form-group check-stats">--}}
+{{--                                                <ul class="pl-2">--}}
+{{--                                                    <li class="w-100 btn d-flex" id="termsCheckbox">--}}
+{{--                                                        <input class="input fa fa-square-o" type="checkbox"--}}
+{{--                                                               id="termsCheckboxinput">--}}
+{{--                                                        <div id="termsCheckboxdiv">--}}
+{{--                                                            I Agree to the <a href="{{route('terms-of-use')}}" class="text-link" target="_blank">Terms of--}}
+{{--                                                                Services</a> and <a href="{{route('privacy-policy')}}" class="text-link" target="_blank">Privacy--}}
+{{--                                                                Policy</a>--}}
+{{--                                                        </div>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="w-100 btn active">--}}
+{{--                                                        <input class="input fa fa-square-o" type="checkbox"--}}
+{{--                                                               name="industry_information_check" id="infoCheckbox" value="1"--}}
+{{--                                                               checked="">I would like to recieve information related to my--}}
+{{--                                                        industry--}}
+{{--                                                    </li>--}}
+{{--                                                </ul>--}}
+{{--                                            </div>--}}
+                                            <div class="form-group check-stats pl-2">
+                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" name="termsCheckboxinput" id="termsCheckboxinput">
+                                                    <label class="custom-control-label" for="termsCheckboxinput">I Agree to the <a href="{{url('terms-of-use')}}" class="text-link">Terms of Services</a> and <a href="{{url('privacy')}}" class="text-link">Privacy Policy</a></label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" name="infoCheckbox" id="infoCheckbox" value="1">
+                                                    <label class="custom-control-label" for="infoCheckbox">I would like to recieve information related to my industry</label>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-sm-12 mb-1" align="center">
-                                                <button type="submit" id="accoutn_btn" class="create-btn">Create My
-                                                    Account
-                                                </button>
+                                                <input type="submit" id="accoutn_btn" class="red-btn create-btn" value="Create My Account" disabled>
                                                 <button  disabled class="btn-pro d-none create-btn"><span
                                                         class="spinner-border spinner-border-sm mr-1" role="status"
                                                         aria-hidden="true"></span>Processing

@@ -76,14 +76,10 @@
                             </div>
                         </div>
                         <div class="form-group check-stats">
-                            <ul data-toggle="buttons" class="mb-0">
-                                <li class="w-100 btn d-flex pl-0">
-                                    <input class="input fa fa-square-o" type="checkbox" name="terms" id="terms">
-                                    <div class="text-justify">
-                                        I Agree to the <a href="#" class="text-link">Terms of Services</a> and <a href="#" class="text-link">Privacy Policy</a>
-                                    </div>
-                                </li>
-                            </ul>
+                            <div class="custom-control custom-checkbox d-flex flex-column-reverse">
+                                <input type="checkbox" class="custom-control-input" name="terms" id="terms" required>
+                                <label class="custom-control-label" for="terms">I Agree to the <a href="{{url('terms-of-use')}}" class="text-link">Terms of Services</a> and <a href="{{url('privacy')}}" class="text-link">Privacy Policy</a></label>
+                            </div>
                         </div>
                         <div class="form-group">
                             <textarea class="form-control" name="description" id="description" placeholder="Message" style="height: 115px"></textarea>
