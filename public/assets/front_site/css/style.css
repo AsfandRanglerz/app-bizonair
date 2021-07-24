@@ -4166,6 +4166,10 @@ hr.horizontal-line {
 /*horizontal line*/
 
 /*red btn*/
+.red-btn[disabled] {
+    background: var(--disabled-btn)!important;
+}
+
 .red-btn {
     font-weight: 500;
     text-decoration: none;

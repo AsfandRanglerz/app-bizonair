@@ -48,6 +48,18 @@ $(".job-description-below").scroll(function () {
 });
 
 $(document).ready(function () {
+    /*contact us form check: "I Agree to the Terms of Services and Privacy Policy"*/
+    $(document).on('click', '#terms', function(){
+        if($(this).is(":checked") == false){
+            $('input[type="submit"]').prop("disabled", true);
+            $('.submit-btn').prop("disabled", true);
+        }
+        else if($(this).is(":checked") == true){
+            $('.submit-btn').prop("disabled", false);
+        }
+    });
+    /*contact us form check: "I Agree to the Terms of Services and Privacy Policy"*/
+
     /*mobile header view*/
     var mobHeader = $('.tab-mob-header').innerHeight()
     var mobHeaderCeil = Math.ceil(mobHeader);
