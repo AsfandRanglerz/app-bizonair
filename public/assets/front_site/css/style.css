@@ -17,7 +17,12 @@
 }
 
 .verify-field {
-    height: 45px;
+    height: 35px;
+    width: 35px;
+    margin: auto;
+    text-align: center;
+    border-color: #a52c3e!important;
+    border-radius: 50%;
 }
 /*verification page*/
 
