@@ -8192,7 +8192,7 @@ header .navbar .navbar-toggler {
     }
     /*articles details banner*/
 
-    p, span {
+    p, span, li {
         font-size: 10px;
     }
 
@@ -8375,15 +8375,6 @@ header .navbar .navbar-toggler {
         font-size: 14px;
     }
     /*faqs*/
-
-    /*static content page css*/
-    .static-content .paragraph,
-    .static-content-page .main-heading,
-    .static-content .heading,
-    .static-content .list {
-        font-size: 14px;
-    }
-    /*static content page css*/
 
     .company-name-nav {
         font-size: 16px;
