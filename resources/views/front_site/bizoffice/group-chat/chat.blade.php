@@ -6,6 +6,7 @@
         <meta name="user-id" content="{{ \Auth::user()->id }}">
         <meta name="base-url" content="{{ env('APP_URL') }}">
         <meta name="app-url" content="{{ env('APP_URL') }}">
+        <meta name="company" content="{{ \Session::get('company_id') }}">
     @endauth
     <link rel="stylesheet" type="text/css" href="{{$ASSET}}/front_site/plugins/light-gallery/css/lightgallery.min.css">
 @endsection
@@ -16,8 +17,8 @@
             <!-- Sidebar -->
         <!-- Sidebar -->
             <!-- Page Content -->
-            @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" >
+            <div id="page-content-wrapper">
+                @include('front_site.common.dashboard-toggle')
                 <div class="chatbox-holder" id="app">
                     <div class="chatbox group-chat">
                         <div class="chatbox-top">
@@ -37,13 +38,17 @@
                             </div>
                         </div>
                         <chat-messages :messages="messages" :auth_id="{{ auth()->id() }}" :show_chat="show_chat"
-                                       :baseUrl="baseUrl" :company_id='{{session()->get("company_id")}}'></chat-messages>
-{{--                        <chat-form--}}
-{{--                            v-on:messagesent="addMessage" :user="{{ \Auth::user() }}" :show_chat="show_chat"--}}
-{{--                            :company_id='{{session()->get("company_id")}}'--}}
-{{--                        ></chat-form>--}}
-
-{{--                        //unhide this above line--}}
+                                       :baseUrl="baseUrl" :company_id='{{session()->get("company_id")}}'
+                                       v-on:fetch-quote-msg-id="fetchMessagesForUser"></chat-messages>
+                        <chat-form
+                            v-on:messagesent="addMessage" :user="{{ \Auth::user() }}" :show_chat="show_chat"
+                            :quote_msg_id="quote_msg_id"
+                            :quote_msg_txt="quote_msg_txt"
+                            :quote_file_path="quote_file_path"
+                            :quote_file_type="quote_file_type"
+                            :quote_extension="quote_extension"
+                            :company_id='{{session()->get("company_id")}}'
+                        ></chat-form>
                     </div>
                 </div>
             </div>

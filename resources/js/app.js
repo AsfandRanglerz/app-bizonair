@@ -53,6 +53,9 @@ const app = new Vue({
         active_user_id: 0,
         quote_msg_id: 0,
         quote_msg_txt: "",
+        quote_file_path: "",
+        quote_file_type: "",
+        quote_extension:"",
         received_from: 0,
         notifications: [],
         total_notifications: 0,
@@ -91,11 +94,14 @@ const app = new Vue({
                         name: e.user.name,
                         first_name: e.user.first_name,
                         last_name: e.user.last_name,
-                        avatar: e.user.avatar != 'users/default.png' ? this.$baseUrl + '/public/storage/' + e.user.avatar : this.$baseUrl + '/public/storage/users/default.png',
+                        avatar: e.user.avatar != 'users/default.png' ?  e.user.avatar : this.$baseUrl + '/public/storage/users/default.png',
                     },
                     quote: e.quoted_message? {
                         id: e.quoted_message.id,
                         message: e.quoted_message.message,
+                        file_path: this.$baseUrl + '/public/storage/' + e.quoted_message.file_path,
+                        file_type: e.quoted_message.file_type,
+                        extension: e.quoted_message.extention,
                      }: null,
 
                 });
@@ -121,8 +127,11 @@ const app = new Vue({
             console.log('hello from the app.js file',id);
             this.quote_msg_id = id.id;
             this.quote_msg_txt = id.message;
+            this.quote_file_path = id.file_path;
+            this.quote_file_type = id.file_type;
+            this.quote_extension = id.extension;
 
-
+            
             
         },
         emptyBox(source){
@@ -130,6 +139,9 @@ const app = new Vue({
             if(source.feedback == true){
                 this.quote_msg_id = 0;
                 this.quote_msg_txt = '';
+                this.quote_file_path = '';
+                this.quote_file_type = '';
+                this.quote_extension = '';
             }
             
         },
@@ -156,6 +168,9 @@ const app = new Vue({
             }
             this.quote_msg_id = 0;
             this.quote_msg_txt = '';
+            this.quote_file_path = '';
+            this.quote_file_type = '';
+            this.quote_extension = '';
         },
         
 

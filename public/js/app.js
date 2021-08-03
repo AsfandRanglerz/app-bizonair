@@ -1931,8 +1931,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['company_id', 'user', 'show_chat'],
+  props: ['company_id', 'user', 'show_chat', 'quote_msg_id', 'quote_msg_txt', 'quote_extension', 'quote_file_type', 'quote_file_path'],
   name: 'chatFormComponent',
   data: function data() {
     return {
@@ -1947,6 +1958,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sendMessage: function sendMessage() {
+      console.log('check quote msg again ', this.quote_msg_id + ' ' + this.quote_extension + ' ' + this.quote_file_type + ' ' + this.quote_file_path);
       this.$emit('messagesent', {
         company_id: this.company_id,
         sender_id: this.user.id,
@@ -1955,7 +1967,14 @@ __webpack_require__.r(__webpack_exports__);
           name: this.user.name,
           first_name: this.user.id,
           last_name: this.user.id,
-          avatar: this.user.avatar != 'users/default.png' ? this.$baseUrl + '/public/storage/' + this.user.avatar : this.$baseUrl + '/public/storage/users/default.png'
+          avatar: this.user.avatar != 'users/default.png' ? this.user.avatar : this.$baseUrl + '/public/storage/users/default.png'
+        },
+        quote: {
+          id: this.quote_msg_id,
+          message: this.quote_msg_txt,
+          file_path: this.quote_file_path,
+          file_type: this.quote_file_type,
+          extension: this.quote_extension
         },
         message: this.newMessage,
         attachment: this.file,
@@ -1991,6 +2010,12 @@ __webpack_require__.r(__webpack_exports__);
       this.extension = '';
       this.file_name = '';
       this.file = '';
+    },
+    crossBox: function crossBox() {
+      console.log("hello bhai kia masla hai");
+      this.$emit('cross-the-box', {
+        feedback: true
+      });
     }
   }
 });
@@ -2135,6 +2160,135 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['messages', 'auth_id', 'show_chat', 'baseUrl', 'company_id', 'file_ext', 'file_path', 'extension'],
   methods: {
@@ -2150,6 +2304,19 @@ __webpack_require__.r(__webpack_exports__);
     },
     time: function time(_time) {
       return moment(_time).format("D MMM YY, hh:mma"); // return time;
+    },
+    setQuoteMessageId: function setQuoteMessageId(id, text, file_path, file_type, extension) {
+      console.log('hello', id + " " + text); // this.active_user_id = user.id;
+      // user.message_status = false;
+
+      this.$emit('fetch-quote-msg-id', {
+        'id': id,
+        'message': text,
+        'file_path': file_path,
+        'file_type': file_type,
+        'extension': extension
+      }); // this.quote_msg_id= id;
+      // console.log("quote msg id", this.quote_msg_id);
     }
   }
 });
@@ -65429,6 +65596,19 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.show_chat
     ? _c("section", [
+        _c(
+          "div",
+          { staticClass: "d-none justify-content-between p-3 quote-box" },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("span", {
+              staticClass: "fa fa-times cross-icon",
+              on: { click: _vm.crossBox }
+            })
+          ]
+        ),
+        _vm._v(" "),
         _c("div", { staticClass: "chat-input-holder" }, [
           _c("div", { staticClass: "input-group mb-3" }, [
             _c("div", { staticClass: "input-group-prepend" }, [
@@ -65512,7 +65692,22 @@ var render = function() {
       ])
     : _vm._e()
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("p", {
+        staticClass: "mb-0 font-italic overflow-text-dots-one-line reply-txt"
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "reply-img-box" }, [
+        _c("img", { staticClass: "reply-img" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -65544,398 +65739,968 @@ var render = function() {
       _vm._l(_vm.messages, function(message) {
         return _vm.show_chat
           ? [
-              [
-                _vm.auth_id == message.sender_id
-                  ? _c("li", { staticClass: "message-box-holder" }, [
-                      _c("div", { staticClass: "message-reciever" }, [
-                        _c("span", { staticClass: "time" }, [
-                          _vm._v(_vm._s(_vm.time(message.created_at)))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          { staticClass: "font-500", attrs: { href: "#" } },
-                          [_vm._v(" " + _vm._s(message.user.name))]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "message-box" }, [
-                        message.file_ext == "image"
-                          ? _c(
-                              "div",
-                              {
-                                staticClass: "d-block message-box-link",
-                                attrs: { "data-src": message.file_path }
-                              },
-                              [
-                                message.file_ext == "image"
-                                  ? _c("img", {
-                                      staticClass: "mb-1 pb-1 border-bottom",
-                                      attrs: { src: message.file_path }
-                                    })
-                                  : _vm._e()
-                              ]
+              _vm.company_id == message.company_id
+                ? [
+                    _vm.auth_id == message.sender_id
+                      ? _c("li", { staticClass: "message-box-holder" }, [
+                          _c("div", { staticClass: "message-reciever" }, [
+                            _c("span", { staticClass: "time" }, [
+                              _vm._v(_vm._s(_vm.time(message.created_at)))
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              { staticClass: "font-500", attrs: { href: "#" } },
+                              [_vm._v(" " + _vm._s(message.user.name))]
                             )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        message.file_ext == "application"
-                          ? _c(
-                              "div",
-                              {
-                                staticClass: "d-block msg-attachment",
-                                attrs: { "data-msgid": message.id }
-                              },
-                              [
-                                _c(
-                                  "p",
-                                  { staticClass: "mb-1 pb-2 border-bottom" },
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "message-box" }, [
+                            message.quote != null && message.quote.id != 0
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "font-italic pb-2 mb-2 quoted-message-outer",
+                                    staticStyle: {
+                                      "border-bottom": "1px solid #000"
+                                    }
+                                  },
                                   [
-                                    message.extension == "pdf"
-                                      ? _c("img", {
-                                          staticClass: "mb-1 file-icon",
-                                          attrs: {
-                                            src:
-                                              "public/assets/front_site/images/file_icons/pdficon.png"
-                                          }
-                                        })
-                                      : message.extension ==
-                                        "vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                                      ? _c("img", {
-                                          staticClass: "mb-1 file-icon",
-                                          attrs: {
-                                            src:
-                                              "public/assets/front_site/images/file_icons/excelicon.png"
-                                          }
-                                        })
-                                      : message.extension ==
-                                        "vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                      ? _c("img", {
-                                          staticClass: "mb-1 file-icon",
-                                          attrs: {
-                                            src:
-                                              "public/assets/front_site/images/file_icons/wordicon.png"
-                                          }
-                                        })
-                                      : message.extension ==
-                                        "vnd.openxmlformats-officedocument.presentationml.presentation"
-                                      ? _c("img", {
-                                          staticClass: "mb-1 file-icon",
-                                          attrs: {
-                                            src:
-                                              "public/assets/front_site/images/file_icons/ppicon.png"
-                                          }
-                                        })
-                                      : message.extension == "x-zip-compressed"
-                                      ? _c("img", {
-                                          staticClass: "mb-1 file-icon",
-                                          attrs: {
-                                            src:
-                                              "public/assets/front_site/images/file_icons/zipicon.png"
-                                          }
-                                        })
-                                      : _c("img", {
-                                          staticClass: "mb-1 file-icon",
-                                          attrs: {
-                                            src:
-                                              "public/assets/front_site/images/file_icons/fileicon.ico"
-                                          }
-                                        }),
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(message.file_name) +
-                                        "\n                        "
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        message.file_ext == "text"
-                          ? _c(
-                              "div",
-                              {
-                                staticClass: "d-block msg-attachment",
-                                attrs: { "data-msgid": message.id }
-                              },
-                              [
-                                _c(
-                                  "p",
-                                  { staticClass: "mb-1 pb-2 border-bottom" },
-                                  [
-                                    message.file_ext == "text"
-                                      ? _c("img", {
-                                          staticClass: "mb-1 file-icon",
-                                          attrs: {
-                                            src:
-                                              "public/assets/front_site/images/file_icons/txticon.png"
-                                          }
-                                        })
+                                    message.quote.file_type == "image"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "d-block message-box-link",
+                                            attrs: {
+                                              "data-src":
+                                                message.quote.file_path
+                                            }
+                                          },
+                                          [
+                                            message.quote.file_type == "image"
+                                              ? _c("img", {
+                                                  staticClass:
+                                                    "mb-1 pb-1 border-bottom msg-img-box",
+                                                  attrs: {
+                                                    src: message.quote.file_path
+                                                  }
+                                                })
+                                              : _vm._e()
+                                          ]
+                                        )
                                       : _vm._e(),
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(message.file_name) +
-                                        "\n                        "
+                                    _vm._v(" "),
+                                    message.quote.file_type == "application"
+                                      ? _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "mb-1 pb-2 border-bottom"
+                                          },
+                                          [
+                                            message.quote.extension == "pdf"
+                                              ? _c("img", {
+                                                  staticClass: "mb-1 file-icon",
+                                                  attrs: {
+                                                    src:
+                                                      "public/assets/front_site/images/file_icons/pdficon.png"
+                                                  }
+                                                })
+                                              : message.quote.extension ==
+                                                "vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                              ? _c("img", {
+                                                  staticClass: "mb-1 file-icon",
+                                                  attrs: {
+                                                    src:
+                                                      "public/assets/front_site/images/file_icons/excelicon.png"
+                                                  }
+                                                })
+                                              : message.quote.extension ==
+                                                "vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                              ? _c("img", {
+                                                  staticClass: "mb-1 file-icon",
+                                                  attrs: {
+                                                    src:
+                                                      "public/assets/front_site/images/file_icons/wordicon.png"
+                                                  }
+                                                })
+                                              : message.quote.extension ==
+                                                "vnd.openxmlformats-officedocument.presentationml.presentation"
+                                              ? _c("img", {
+                                                  staticClass: "mb-1 file-icon",
+                                                  attrs: {
+                                                    src:
+                                                      "public/assets/front_site/images/file_icons/ppicon.png"
+                                                  }
+                                                })
+                                              : message.quote.extension ==
+                                                "x-zip-compressed"
+                                              ? _c("img", {
+                                                  staticClass: "mb-1 file-icon",
+                                                  attrs: {
+                                                    src:
+                                                      "public/assets/front_site/images/file_icons/zipicon.png"
+                                                  }
+                                                })
+                                              : _c("img", {
+                                                  staticClass: "mb-1 file-icon",
+                                                  attrs: {
+                                                    src:
+                                                      "public/assets/front_site/images/file_icons/fileicon.ico"
+                                                  }
+                                                }),
+                                            _vm._v(
+                                              "\n                            " +
+                                                _vm._s(
+                                                  message.quote.file_path
+                                                ) +
+                                                "\n                        "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    message.quote.file_type == "text"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "d-block msg-attachment"
+                                          },
+                                          [
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass:
+                                                  "mb-1 pb-2 border-bottom"
+                                              },
+                                              [
+                                                message.quote.file_type ==
+                                                "text"
+                                                  ? _c("img", {
+                                                      staticClass:
+                                                        "mb-1 file-icon",
+                                                      attrs: {
+                                                        src:
+                                                          "public/assets/front_site/images/file_icons/txticon.png"
+                                                      }
+                                                    })
+                                                  : _vm._e(),
+                                                _vm._v(
+                                                  "\n                                " +
+                                                    _vm._s(
+                                                      message.quote.file_path
+                                                    ) +
+                                                    "\n                            "
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    message.quote.file_type == "audio"
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "d-block audio-msg" },
+                                          [
+                                            message.quote.file_type == "audio"
+                                              ? _c(
+                                                  "audio",
+                                                  {
+                                                    staticClass:
+                                                      "mb-1 pb-1 border-bottom audio-msg-player",
+                                                    attrs: { controls: "" }
+                                                  },
+                                                  [
+                                                    _c("source", {
+                                                      attrs: {
+                                                        src:
+                                                          message.quote
+                                                            .file_path,
+                                                        type:
+                                                          "audio/" +
+                                                          message.quote
+                                                            .extension
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              : _vm._e()
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    message.quote.file_type == "video"
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "d-block video-msg" },
+                                          [
+                                            message.quote.file_type == "video"
+                                              ? _c(
+                                                  "video",
+                                                  {
+                                                    staticClass:
+                                                      "mb-1 pb-1 border-bottom video-msg-player",
+                                                    attrs: { controls: "" }
+                                                  },
+                                                  [
+                                                    _c("source", {
+                                                      attrs: {
+                                                        src:
+                                                          message.quote
+                                                            .file_path,
+                                                        type:
+                                                          "video/" +
+                                                          message.quote
+                                                            .extension
+                                                      }
+                                                    })
+                                                  ]
+                                                )
+                                              : _vm._e()
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    message.quote.message
+                                      ? _c(
+                                          "p",
+                                          {
+                                            staticClass: "mb-0 quoted-message"
+                                          },
+                                          [
+                                            _vm._v(
+                                              '" ' +
+                                                _vm._s(message.quote.message) +
+                                                ' "'
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "chat-dots-dropdown" }, [
+                              _c("ul", { staticClass: "m-0" }, [
+                                _c("li", [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "quote-message",
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.setQuoteMessageId(
+                                            message.id,
+                                            message.message,
+                                            message.file_path,
+                                            message.file_ext,
+                                            message.extension
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Quote this message")]
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("span", {
+                              staticClass: "fas fa-ellipsis-v chat-dots"
+                            }),
+                            _vm._v(" "),
+                            message.file_ext == "image"
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "d-block message-box-link",
+                                    attrs: { "data-src": message.file_path }
+                                  },
+                                  [
+                                    message.file_ext == "image"
+                                      ? _c("img", {
+                                          staticClass:
+                                            "mb-1 pb-1 border-bottom msg-img-box",
+                                          attrs: { src: message.file_path }
+                                        })
+                                      : _vm._e()
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            message.file_ext == "application"
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "d-block msg-attachment",
+                                    attrs: { "data-msgid": message.id }
+                                  },
+                                  [
+                                    _c(
+                                      "p",
+                                      {
+                                        staticClass: "mb-1 pb-2 border-bottom"
+                                      },
+                                      [
+                                        message.extension == "pdf"
+                                          ? _c("img", {
+                                              staticClass: "mb-1 file-icon",
+                                              attrs: {
+                                                src:
+                                                  "public/assets/front_site/images/file_icons/pdficon.png"
+                                              }
+                                            })
+                                          : message.extension ==
+                                            "vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                          ? _c("img", {
+                                              staticClass: "mb-1 file-icon",
+                                              attrs: {
+                                                src:
+                                                  "public/assets/front_site/images/file_icons/excelicon.png"
+                                              }
+                                            })
+                                          : message.extension ==
+                                            "vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                          ? _c("img", {
+                                              staticClass: "mb-1 file-icon",
+                                              attrs: {
+                                                src:
+                                                  "public/assets/front_site/images/file_icons/wordicon.png"
+                                              }
+                                            })
+                                          : message.extension ==
+                                            "vnd.openxmlformats-officedocument.presentationml.presentation"
+                                          ? _c("img", {
+                                              staticClass: "mb-1 file-icon",
+                                              attrs: {
+                                                src:
+                                                  "public/assets/front_site/images/file_icons/ppicon.png"
+                                              }
+                                            })
+                                          : message.extension ==
+                                            "x-zip-compressed"
+                                          ? _c("img", {
+                                              staticClass: "mb-1 file-icon",
+                                              attrs: {
+                                                src:
+                                                  "public/assets/front_site/images/file_icons/zipicon.png"
+                                              }
+                                            })
+                                          : _c("img", {
+                                              staticClass: "mb-1 file-icon",
+                                              attrs: {
+                                                src:
+                                                  "public/assets/front_site/images/file_icons/fileicon.ico"
+                                              }
+                                            }),
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(message.file_name) +
+                                            "\n                        "
+                                        )
+                                      ]
                                     )
                                   ]
                                 )
-                              ]
+                              : _vm._e(),
+                            _vm._v(" "),
+                            message.file_ext == "text"
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "d-block msg-attachment",
+                                    attrs: { "data-msgid": message.id }
+                                  },
+                                  [
+                                    _c(
+                                      "p",
+                                      {
+                                        staticClass: "mb-1 pb-2 border-bottom"
+                                      },
+                                      [
+                                        message.file_ext == "text"
+                                          ? _c("img", {
+                                              staticClass: "mb-1 file-icon",
+                                              attrs: {
+                                                src:
+                                                  "public/assets/front_site/images/file_icons/txticon.png"
+                                              }
+                                            })
+                                          : _vm._e(),
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(message.file_name) +
+                                            "\n                        "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            message.file_ext == "audio"
+                              ? _c(
+                                  "div",
+                                  { staticClass: "d-block audio-msg" },
+                                  [
+                                    message.file_ext == "audio"
+                                      ? _c(
+                                          "audio",
+                                          {
+                                            staticClass:
+                                              "mb-1 pb-1 border-bottom audio-msg-player",
+                                            attrs: { controls: "" }
+                                          },
+                                          [
+                                            _c("source", {
+                                              attrs: {
+                                                src: message.file_path,
+                                                type:
+                                                  "audio/" + message.extension
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            message.file_ext == "video"
+                              ? _c(
+                                  "div",
+                                  { staticClass: "d-block video-msg" },
+                                  [
+                                    message.file_ext == "video"
+                                      ? _c(
+                                          "video",
+                                          {
+                                            staticClass:
+                                              "mb-1 pb-1 border-bottom video-msg-player",
+                                            attrs: { controls: "" }
+                                          },
+                                          [
+                                            _c("source", {
+                                              attrs: {
+                                                src: message.file_path,
+                                                type:
+                                                  "video/" + message.extension
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              {
+                                staticClass: "my-2 message-box-text",
+                                attrs: { "data-msgid": message.id }
+                              },
+                              [_vm._v(_vm._s(message.message))]
                             )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        message.file_ext == "audio"
-                          ? _c("div", { staticClass: "d-block audio-msg" }, [
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "my-img-container" }, [
+                            _c("img", { attrs: { src: message.user.avatar } })
+                          ])
+                        ])
+                      : _c("li", { staticClass: "message-box-holder" }, [
+                          _c("span", { staticClass: "group-img-container" }, [
+                            _c("img", { attrs: { src: message.user.avatar } })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "message-sender" }, [
+                            _c("a", { attrs: { href: "#" } }, [
+                              _vm._v(_vm._s(message.user.name) + ", ")
+                            ]),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "time" }, [
+                              _vm._v(_vm._s(_vm.time(message.created_at)))
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "message-box message-partner" },
+                            [
+                              message.quote != null && message.quote.id != 0
+                                ? _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "font-italic pb-2 mb-2 quoted-message-outer",
+                                      staticStyle: {
+                                        "border-bottom": "1px solid #000"
+                                      }
+                                    },
+                                    [
+                                      message.quote.file_type == "image"
+                                        ? _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "d-block message-box-link",
+                                              attrs: {
+                                                "data-src":
+                                                  message.quote.file_path
+                                              }
+                                            },
+                                            [
+                                              message.quote.file_type == "image"
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "mb-1 pb-1 border-bottom msg-img-box",
+                                                    attrs: {
+                                                      src:
+                                                        message.quote.file_path
+                                                    }
+                                                  })
+                                                : _vm._e()
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      message.quote.file_type == "application"
+                                        ? _c(
+                                            "p",
+                                            {
+                                              staticClass:
+                                                "mb-1 pb-2 border-bottom"
+                                            },
+                                            [
+                                              message.quote.extension == "pdf"
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "mb-1 file-icon",
+                                                    attrs: {
+                                                      src:
+                                                        "public/assets/front_site/images/file_icons/pdficon.png"
+                                                    }
+                                                  })
+                                                : message.quote.extension ==
+                                                  "vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "mb-1 file-icon",
+                                                    attrs: {
+                                                      src:
+                                                        "public/assets/front_site/images/file_icons/excelicon.png"
+                                                    }
+                                                  })
+                                                : message.quote.extension ==
+                                                  "vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "mb-1 file-icon",
+                                                    attrs: {
+                                                      src:
+                                                        "public/assets/front_site/images/file_icons/wordicon.png"
+                                                    }
+                                                  })
+                                                : message.quote.extension ==
+                                                  "vnd.openxmlformats-officedocument.presentationml.presentation"
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "mb-1 file-icon",
+                                                    attrs: {
+                                                      src:
+                                                        "public/assets/front_site/images/file_icons/ppicon.png"
+                                                    }
+                                                  })
+                                                : message.quote.extension ==
+                                                  "x-zip-compressed"
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "mb-1 file-icon",
+                                                    attrs: {
+                                                      src:
+                                                        "public/assets/front_site/images/file_icons/zipicon.png"
+                                                    }
+                                                  })
+                                                : _c("img", {
+                                                    staticClass:
+                                                      "mb-1 file-icon",
+                                                    attrs: {
+                                                      src:
+                                                        "public/assets/front_site/images/file_icons/fileicon.ico"
+                                                    }
+                                                  }),
+                                              _vm._v(
+                                                "\n                            " +
+                                                  _vm._s(
+                                                    message.quote.file_path
+                                                  ) +
+                                                  "\n                        "
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      message.quote.file_type == "text"
+                                        ? _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "d-block msg-attachment"
+                                            },
+                                            [
+                                              _c(
+                                                "p",
+                                                {
+                                                  staticClass:
+                                                    "mb-1 pb-2 border-bottom"
+                                                },
+                                                [
+                                                  message.quote.file_type ==
+                                                  "text"
+                                                    ? _c("img", {
+                                                        staticClass:
+                                                          "mb-1 file-icon",
+                                                        attrs: {
+                                                          src:
+                                                            "public/assets/front_site/images/file_icons/txticon.png"
+                                                        }
+                                                      })
+                                                    : _vm._e(),
+                                                  _vm._v(
+                                                    "\n                                " +
+                                                      _vm._s(
+                                                        message.quote.file_path
+                                                      ) +
+                                                      "\n                            "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      message.quote.file_type == "audio"
+                                        ? _c(
+                                            "div",
+                                            {
+                                              staticClass: "d-block audio-msg"
+                                            },
+                                            [
+                                              message.quote.file_type == "audio"
+                                                ? _c(
+                                                    "audio",
+                                                    {
+                                                      staticClass:
+                                                        "mb-1 pb-1 border-bottom audio-msg-player",
+                                                      attrs: { controls: "" }
+                                                    },
+                                                    [
+                                                      _c("source", {
+                                                        attrs: {
+                                                          src:
+                                                            message.quote
+                                                              .file_path,
+                                                          type:
+                                                            "audio/" +
+                                                            message.quote
+                                                              .extension
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                : _vm._e()
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      message.quote.file_type == "video"
+                                        ? _c(
+                                            "div",
+                                            {
+                                              staticClass: "d-block video-msg"
+                                            },
+                                            [
+                                              message.quote.file_type == "video"
+                                                ? _c(
+                                                    "video",
+                                                    {
+                                                      staticClass:
+                                                        "mb-1 pb-1 border-bottom video-msg-player",
+                                                      attrs: { controls: "" }
+                                                    },
+                                                    [
+                                                      _c("source", {
+                                                        attrs: {
+                                                          src:
+                                                            message.quote
+                                                              .file_path,
+                                                          type:
+                                                            "video/" +
+                                                            message.quote
+                                                              .extension
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                : _vm._e()
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      message.quote.message
+                                        ? _c(
+                                            "p",
+                                            {
+                                              staticClass: "mb-0 quoted-message"
+                                            },
+                                            [
+                                              _vm._v(
+                                                '" ' +
+                                                  _vm._s(
+                                                    message.quote.message
+                                                  ) +
+                                                  ' "'
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "chat-dots-dropdown" }, [
+                                _c("ul", { staticClass: "m-0" }, [
+                                  _c("li", [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "quote-message",
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.setQuoteMessageId(
+                                              message.id,
+                                              message.message,
+                                              message.file_path,
+                                              message.file_ext,
+                                              message.extension
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("Quote this message")]
+                                    )
+                                  ])
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("span", {
+                                staticClass: "fas fa-ellipsis-v chat-dots"
+                              }),
+                              _vm._v(" "),
+                              message.file_ext == "image"
+                                ? _c(
+                                    "div",
+                                    {
+                                      staticClass: "d-block message-box-link",
+                                      attrs: { "data-src": message.file_path }
+                                    },
+                                    [
+                                      message.file_ext == "image"
+                                        ? _c("img", {
+                                            staticClass:
+                                              "mb-1 pb-1 border-bottom",
+                                            attrs: { src: message.file_path }
+                                          })
+                                        : _vm._e()
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              message.file_ext == "application"
+                                ? _c(
+                                    "div",
+                                    {
+                                      staticClass: "d-block msg-attachment",
+                                      attrs: { "data-msgid": message.id }
+                                    },
+                                    [
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass: "mb-1 pb-2 border-bottom"
+                                        },
+                                        [
+                                          message.extension == "pdf"
+                                            ? _c("img", {
+                                                staticClass: "mb-1 file-icon",
+                                                attrs: {
+                                                  src:
+                                                    "public/assets/front_site/images/file_icons/pdficon.png"
+                                                }
+                                              })
+                                            : message.extension ==
+                                              "vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                            ? _c("img", {
+                                                staticClass: "mb-1 file-icon",
+                                                attrs: {
+                                                  src:
+                                                    "public/assets/front_site/images/file_icons/excelicon.png"
+                                                }
+                                              })
+                                            : message.extension ==
+                                              "vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                            ? _c("img", {
+                                                staticClass: "mb-1 file-icon",
+                                                attrs: {
+                                                  src:
+                                                    "public/assets/front_site/images/file_icons/wordicon.png"
+                                                }
+                                              })
+                                            : message.extension ==
+                                              "vnd.openxmlformats-officedocument.presentationml.presentation"
+                                            ? _c("img", {
+                                                staticClass: "mb-1 file-icon",
+                                                attrs: {
+                                                  src:
+                                                    "public/assets/front_site/images/file_icons/ppicon.png"
+                                                }
+                                              })
+                                            : message.extension ==
+                                              "x-zip-compressed"
+                                            ? _c("img", {
+                                                staticClass: "mb-1 file-icon",
+                                                attrs: {
+                                                  src:
+                                                    "public/assets/front_site/images/file_icons/zipicon.png"
+                                                }
+                                              })
+                                            : _c("img", {
+                                                staticClass: "mb-1 file-icon",
+                                                attrs: {
+                                                  src:
+                                                    "public/assets/front_site/images/file_icons/fileicon.ico"
+                                                }
+                                              }),
+                                          _vm._v(
+                                            "\n                            " +
+                                              _vm._s(message.file_name) +
+                                              "\n                        "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              message.file_ext == "text"
+                                ? _c(
+                                    "div",
+                                    {
+                                      staticClass: "d-block msg-attachment",
+                                      attrs: { "data-msgid": message.id }
+                                    },
+                                    [
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass: "mb-1 pb-2 border-bottom"
+                                        },
+                                        [
+                                          message.file_ext == "text"
+                                            ? _c("img", {
+                                                staticClass: "mb-1 file-icon",
+                                                attrs: {
+                                                  src:
+                                                    "public/assets/front_site/images/file_icons/txticon.png"
+                                                }
+                                              })
+                                            : _vm._e(),
+                                          _vm._v(
+                                            "\n                            " +
+                                              _vm._s(message.file_name) +
+                                              "\n                        "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
                               message.file_ext == "audio"
                                 ? _c(
-                                    "audio",
-                                    {
-                                      staticClass:
-                                        "mb-1 pb-1 border-bottom audio-msg-player",
-                                      attrs: { controls: "" }
-                                    },
+                                    "div",
+                                    { staticClass: "d-block audio-msg" },
                                     [
-                                      _c("source", {
-                                        attrs: {
-                                          src: message.file_path,
-                                          type: "audio/" + message.extension
-                                        }
-                                      })
+                                      message.file_ext == "audio"
+                                        ? _c(
+                                            "audio",
+                                            {
+                                              staticClass:
+                                                "mb-1 pb-1 border-bottom audio-msg-player",
+                                              attrs: { controls: "" }
+                                            },
+                                            [
+                                              _c("source", {
+                                                attrs: {
+                                                  src: message.file_path,
+                                                  type:
+                                                    "audio/" + message.extension
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        : _vm._e()
                                     ]
                                   )
-                                : _vm._e()
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        message.file_ext == "video"
-                          ? _c("div", { staticClass: "d-block video-msg" }, [
+                                : _vm._e(),
+                              _vm._v(" "),
                               message.file_ext == "video"
                                 ? _c(
-                                    "video",
-                                    {
-                                      staticClass:
-                                        "mb-1 pb-1 border-bottom video-msg-player",
-                                      attrs: { controls: "" }
-                                    },
+                                    "div",
+                                    { staticClass: "d-block video-msg" },
                                     [
-                                      _c("source", {
-                                        attrs: {
-                                          src: message.file_path,
-                                          type: "video/" + message.extension
-                                        }
-                                      })
+                                      message.file_ext == "video"
+                                        ? _c(
+                                            "video",
+                                            {
+                                              staticClass:
+                                                "mb-1 pb-1 border-bottom video-msg-player",
+                                              attrs: { controls: "" }
+                                            },
+                                            [
+                                              _c("source", {
+                                                attrs: {
+                                                  src: message.file_path,
+                                                  type:
+                                                    "video/" + message.extension
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        : _vm._e()
                                     ]
                                   )
-                                : _vm._e()
-                            ])
-                          : _vm._e(),
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(message.message) +
-                            "\n                "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "my-img-container" }, [
-                        _c("img", { attrs: { src: message.user.avatar } })
-                      ])
-                    ])
-                  : _c("li", { staticClass: "message-box-holder" }, [
-                      _c("span", { staticClass: "group-img-container" }, [
-                        _c("img", { attrs: { src: message.user.avatar } })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "message-sender" }, [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v(_vm._s(message.user.name) + ", ")
-                        ]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "time" }, [
-                          _vm._v(_vm._s(_vm.time(message.created_at)))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "message-box message-partner" },
-                        [
-                          message.file_ext == "image"
-                            ? _c(
-                                "div",
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "p",
                                 {
-                                  staticClass: "d-block message-box-link",
-                                  attrs: { "data-src": message.file_path }
-                                },
-                                [
-                                  message.file_ext == "image"
-                                    ? _c("img", {
-                                        staticClass: "mb-1 pb-1 border-bottom",
-                                        attrs: { src: message.file_path }
-                                      })
-                                    : _vm._e()
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          message.file_ext == "application"
-                            ? _c(
-                                "div",
-                                {
-                                  staticClass: "d-block msg-attachment",
+                                  staticClass: "my-2 message-box-text",
                                   attrs: { "data-msgid": message.id }
                                 },
-                                [
-                                  _c(
-                                    "p",
-                                    { staticClass: "mb-1 pb-2 border-bottom" },
-                                    [
-                                      message.extension == "pdf"
-                                        ? _c("img", {
-                                            staticClass: "mb-1 file-icon",
-                                            attrs: {
-                                              src:
-                                                "public/assets/front_site/images/file_icons/pdficon.png"
-                                            }
-                                          })
-                                        : message.extension ==
-                                          "vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                                        ? _c("img", {
-                                            staticClass: "mb-1 file-icon",
-                                            attrs: {
-                                              src:
-                                                "public/assets/front_site/images/file_icons/excelicon.png"
-                                            }
-                                          })
-                                        : message.extension ==
-                                          "vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                        ? _c("img", {
-                                            staticClass: "mb-1 file-icon",
-                                            attrs: {
-                                              src:
-                                                "public/assets/front_site/images/file_icons/wordicon.png"
-                                            }
-                                          })
-                                        : message.extension ==
-                                          "vnd.openxmlformats-officedocument.presentationml.presentation"
-                                        ? _c("img", {
-                                            staticClass: "mb-1 file-icon",
-                                            attrs: {
-                                              src:
-                                                "public/assets/front_site/images/file_icons/ppicon.png"
-                                            }
-                                          })
-                                        : message.extension ==
-                                          "x-zip-compressed"
-                                        ? _c("img", {
-                                            staticClass: "mb-1 file-icon",
-                                            attrs: {
-                                              src:
-                                                "public/assets/front_site/images/file_icons/zipicon.png"
-                                            }
-                                          })
-                                        : _c("img", {
-                                            staticClass: "mb-1 file-icon",
-                                            attrs: {
-                                              src:
-                                                "public/assets/front_site/images/file_icons/fileicon.ico"
-                                            }
-                                          }),
-                                      _vm._v(
-                                        "\n                            " +
-                                          _vm._s(message.file_name) +
-                                          "\n                        "
-                                      )
-                                    ]
-                                  )
-                                ]
+                                [_vm._v(_vm._s(message.message))]
                               )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          message.file_ext == "text"
-                            ? _c(
-                                "div",
-                                {
-                                  staticClass: "d-block msg-attachment",
-                                  attrs: { "data-msgid": message.id }
-                                },
-                                [
-                                  _c(
-                                    "p",
-                                    { staticClass: "mb-1 pb-2 border-bottom" },
-                                    [
-                                      message.file_ext == "text"
-                                        ? _c("img", {
-                                            staticClass: "mb-1 file-icon",
-                                            attrs: {
-                                              src:
-                                                "public/assets/front_site/images/file_icons/txticon.png"
-                                            }
-                                          })
-                                        : _vm._e(),
-                                      _vm._v(
-                                        "\n                            " +
-                                          _vm._s(message.file_name) +
-                                          "\n                        "
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          message.file_ext == "audio"
-                            ? _c("div", { staticClass: "d-block audio-msg" }, [
-                                message.file_ext == "audio"
-                                  ? _c(
-                                      "audio",
-                                      {
-                                        staticClass:
-                                          "mb-1 pb-1 border-bottom audio-msg-player",
-                                        attrs: { controls: "" }
-                                      },
-                                      [
-                                        _c("source", {
-                                          attrs: {
-                                            src: message.file_path,
-                                            type: "audio/" + message.extension
-                                          }
-                                        })
-                                      ]
-                                    )
-                                  : _vm._e()
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          message.file_ext == "video"
-                            ? _c("div", { staticClass: "d-block video-msg" }, [
-                                message.file_ext == "video"
-                                  ? _c(
-                                      "video",
-                                      {
-                                        staticClass:
-                                          "mb-1 pb-1 border-bottom video-msg-player",
-                                        attrs: { controls: "" }
-                                      },
-                                      [
-                                        _c("source", {
-                                          attrs: {
-                                            src: message.file_path,
-                                            type: "video/" + message.extension
-                                          }
-                                        })
-                                      ]
-                                    )
-                                  : _vm._e()
-                              ])
-                            : _vm._e(),
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(message.message) +
-                              "\n                "
+                            ]
                           )
-                        ]
-                      )
-                    ])
-              ]
+                        ])
+                  ]
+                : _vm._e()
             ]
           : _vm._e()
       })
@@ -78131,7 +78896,8 @@ Vue.use(__webpack_require__(/*! vue-chat-scroll */ "./node_modules/vue-chat-scro
 window.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 Vue.prototype.$baseUrl = document.querySelector("meta[name='base-url']").getAttribute('content');
-Vue.prototype.$appUrl = document.querySelector("meta[name='app-url']").getAttribute('content'); // Vue.prototype.$profileId = document.querySelector("meta[name='profile-id']").getAttribute('content');
+Vue.prototype.$appUrl = document.querySelector("meta[name='app-url']").getAttribute('content');
+Vue.prototype.$company = document.querySelector("meta[name='company']").getAttribute('content'); // Vue.prototype.$profileId = document.querySelector("meta[name='profile-id']").getAttribute('content');
 
 /**
  * The following block of code may be used to automatically register your
@@ -78162,7 +78928,13 @@ var app = new Vue({
     current_user: {},
     auth_id: 0,
     show_chat: true,
+    active_company: this.$company,
     active_user_id: 0,
+    quote_msg_id: 0,
+    quote_msg_txt: "",
+    quote_file_path: "",
+    quote_file_type: "",
+    quote_extension: "",
     received_from: 0,
     notifications: [],
     total_notifications: 0,
@@ -78180,6 +78952,8 @@ var app = new Vue({
 
     this.fetchMessages();
     Echo["private"]('chat').listen('MessageSent', function (e) {
+      console.log("listening", e);
+
       _this.messages.push({
         // id: e.message.id,
         company_id: e.message.company_id,
@@ -78194,11 +78968,22 @@ var app = new Vue({
         id: e.message.id,
         user: {
           id: e.user.id,
-          name: e.user.id,
-          first_name: e.user.id,
-          last_name: e.user.id,
-          avatar: e.user.avatar != 'users/default.png' ? _this.$baseUrl + '/public/storage/' + e.user.avatar : _this.$baseUrl + '/public/storage/users/default.png'
-        }
+          name: e.user.name,
+          first_name: e.user.first_name,
+          last_name: e.user.last_name,
+          avatar: e.user.avatar != 'users/default.png' ? e.user.avatar : _this.$baseUrl + '/public/storage/users/default.png'
+        },
+        quote: e.quoted_message ? {
+          id: e.quoted_message.id,
+          message: e.quoted_message.message,
+          file_path: _this.$baseUrl + '/public/storage/' + e.quoted_message.file_path,
+          file_type: e.quoted_message.file_type,
+          extension: e.quoted_message.extention
+        } : null
+      });
+
+      axios.get(_this.$baseUrl + '/group-chat').then(function (response) {
+        console.log('done');
       });
     });
   },
@@ -78210,6 +78995,25 @@ var app = new Vue({
         _this2.messages = response.data; // console.log(this.messages);
       });
     },
+    fetchMessagesForUser: function fetchMessagesForUser(id) {
+      console.log('hello from the app.js file', id);
+      this.quote_msg_id = id.id;
+      this.quote_msg_txt = id.message;
+      this.quote_file_path = id.file_path;
+      this.quote_file_type = id.file_type;
+      this.quote_extension = id.extension;
+    },
+    emptyBox: function emptyBox(source) {
+      console.log('bhai', source);
+
+      if (source.feedback == true) {
+        this.quote_msg_id = 0;
+        this.quote_msg_txt = '';
+        this.quote_file_path = '';
+        this.quote_file_type = '';
+        this.quote_extension = '';
+      }
+    },
     addMessage: function addMessage(message, company_id) {
       var _this3 = this;
 
@@ -78219,6 +79023,7 @@ var app = new Vue({
         var formData = new FormData();
         formData.append('attachment', message.attachment);
         formData.append('message', message.message);
+        formData.append('quote_msg_id', this.quote_msg_id);
         formData.append('company_id', message.company_id);
         formData.append('file_type', message.file_ext);
         formData.append('extension', message.extension);
@@ -78233,6 +79038,12 @@ var app = new Vue({
           _this3.messages.push(message);
         });
       }
+
+      this.quote_msg_id = 0;
+      this.quote_msg_txt = '';
+      this.quote_file_path = '';
+      this.quote_file_type = '';
+      this.quote_extension = '';
     }
   }
 });
@@ -78271,6 +79082,7 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -78280,7 +79092,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  authEndpoint: '/bizonair/broadcasting/auth',
+  authEndpoint: '/broadcasting/auth',
   broadcaster: 'pusher',
   key: "e1906858d8a46c0437f0",
   cluster: "ap1",
@@ -78445,8 +79257,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\xampp-7.4\htdocs\bizonair\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\xampp-7.4\htdocs\bizonair\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! F:\xampp\htdocs\bizonair2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! F:\xampp\htdocs\bizonair2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
