@@ -82,19 +82,6 @@
                                                 <small class="text-danger" id="confirm_password_error"></small>
                                             </div>
                                         </div>
-                                        <div class="form-row">
-                                            <h6 class="w-100">Enter your business information</h6>
-                                            <div class="form-group col-sm-12">
-                                                <label class="d-none">Country Region <span class="required">*</span></label>
-                                                <select name="country_id" required class="form-control choose-country">
-                                                    <option disabled selected>Select Country Region</option>
-                                                    @foreach ($countries as $country)
-                                                        <option value="{{$country->id}}" countrycode="{{$country->country_code}}">{{$country->country_name}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <small class="text-danger" id="country_id_error"></small>
-                                            </div>
-                                        </div>
                                         <div class="mx-0 w-100 form-row user-type-section">
                                             <h6 class="w-100 px-0">User Type <span class="required">*</span></h6>
                                             <div class="form-group user-type col-xl-9 col-lg-12 px-0">
@@ -234,26 +221,25 @@
         /*scroll to error div*/
         $(document).on('click', '#accoutn_btn', function () {
             setTimeout(() => {
-                var navbarHeight = $('.tab-mob-header').innerHeight() + 2;
-                var navbarHeightFloatToInt = Math.ceil(navbarHeight);
+                var navbarHeight = $('.navbar').innerHeight();
                 $('html,body').animate({
-                        scrollTop: $('.text-danger:not(:empty), .error:not(:empty)').eq(0).closest('.form-group').offset().top - (navbarHeightFloatToInt)},
+                        scrollTop: $('.text-danger:not(:empty), .error:not(:empty)').eq(0).closest('.form-group').offset().top - (navbarHeight)},
                     'slow');
             }, 500);
         });
         /*scroll to error div*/
 
         $(document).on('click', '#termsCheckboxdiv', function () {
-            // alert('hello');
             if (!$('#termsCheckboxinput').is(':checked')) {
-                $('#accoutn_btn').attr('disabled', false);
-            } else {
-                $('#accoutn_btn').attr('disabled', true);
+                $('#termsCheckboxinput-error').hide();
+
             }
+            // else {
+            //     $('#accoutn_btn').attr('disabled', true);
+            // }
         });
 
         $(document).on('click', '#termsCheckboxinput', function () {
-            // alert('hello');
             if ($('#termsCheckboxinput').prop('checked') == true) {
                 $('#accoutn_btn').attr('disabled', false);
             } else {
@@ -312,9 +298,6 @@
                     registration_phone_no: {
                         mobilenumber: true
                     },
-                    country_id: {
-                        required: true
-                    },
                     company_name: {
                         required: false
                     },
@@ -325,6 +308,9 @@
                     confirm_password: {
                         required: true,
                         equalTo: '#reg_password'
+                    },
+                    termsCheckboxinput: {
+                        required: true,
                     },
                     birthday: {
                         required: true
@@ -339,6 +325,9 @@
                     },
                     confirm_password: {
                         same: "Password does not match"
+                    },
+                    termsCheckboxinput: {
+                        required: "Agree to proceed further"
                     },
                     email: "Please enter a valid email address",
                     birthday: "Please enter complete birthday"

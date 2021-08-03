@@ -57,7 +57,11 @@ class FavouriteController extends Controller
                 }
 
 
-                \Mail::to($user->email)->send(new \App\Mail\FavouriteProductMail($detail));
+                $userId=  \App\UserCompany::where('company_id', $product->company_id)->pluck('user_id');
+                $getUser = \App\User::whereIn('id',$userId)->get();
+                foreach ($getUser as $userEmail){
+                    \Mail::to($userEmail->email)->send(new \App\Mail\FavouriteProductMail($detail));
+                }
 
                 foreach ($company as $comp) {
                     $notification = new Notification();

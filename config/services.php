@@ -32,16 +32,16 @@ return [
     'facebook' => [
         'client_id' => '1084344805341566',
         'client_secret' => '1d56d39a68cd3e0641ad6150d9ab0b89',
-        'redirect' => 'https://bizbeta.ranglerztech.website/facebook/callback/',
+        'redirect' => 'https://bizonair.com/facebook/callback/',
     ],
     'google' => [
         'client_id' => '935726213696-8btf06od878funsdjjd80qh2s1ohin17.apps.googleusercontent.com',
         'client_secret' => 'ogQIr6-6k4bykG7KhgWmzOPQ',
-        'redirect' => 'https://bizbeta.ranglerztech.website/google/callback/',
+        'redirect' => 'https://bizonair.com//google/callback/',
     ],
     'linkedin' => [
         'client_id' => '78e9i6agogcb04',
         'client_secret' => 'PjWnD71mlzToDhI3',
-        'redirect' => 'https://bizbeta.ranglerztech.website/linkedin/callback/',
+        'redirect' => 'https://bizonair.com/linkedin/callback/',
     ],
 ];

@@ -21,7 +21,7 @@ class CreateUploadCvsTable extends Migration
             $table->string('phone_code')->nullable();
             $table->string('phone_no')->nullable();
             $table->string('email')->nullable();
-            $table->integer('total_experience')->nullable();
+            $table->string('total_experience')->nullable();
             $table->string('edu_level')->nullable();
             $table->string('functional_area')->nullable();
             $table->string('textile_sector')->nullable();

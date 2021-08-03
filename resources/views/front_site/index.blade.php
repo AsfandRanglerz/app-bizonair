@@ -12,7 +12,7 @@
             <div class="my-2 ads-slider">
                 @foreach($bnr_row1 as $row)
                 <div class="ad-slide px-1">
-                    <img src="{{ url('storage/app/public/'.$row->image) }}" class="w-100 banner-below-adds">
+                    <img src="{{ $row->image }}" class="w-100 banner-below-adds">
                 </div>
                 @endforeach
 
@@ -23,7 +23,7 @@
                 <div class="px-0 pt-1 container-fluid products-slider biz-deals-slider">
                     <div class="mx-3 text-center position-relative">
                         <h3 class="main-heading">MyBiz Leads</h3>
-                        <a href="{{ url('business-products/fibers-and-materials') }}" class="position-absolute red-link view-all">VIEW ALL</a>
+                        <a href="{{route('regular-suppliers','fibers-and-materials')}}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
                     <div class="px-1 container-fluid">
                         <div class="slider slider-nav w-100 mybizdeals-front">
@@ -33,7 +33,7 @@
                             <div class="slider-content">
                                 @foreach($prod->product_image as $j => $image)
                                     @if($loop->first)
-                                      <img class="w-100" alt="100x100" src="{{$ASSETS}}/{{$image->image}}" data-holder-rendered="true">
+                                      <img class="w-100" alt="100x100" src="{{$image->image}}" data-holder-rendered="true">
                                     @endif
                                 @endforeach
                                         <!-- <p>We are looking for a responsible and trustworthy manufacturer of Ladies Jackets.</p> -->
@@ -55,16 +55,16 @@
 
                 </div>
             </div>
-            @foreach($bnrthirdrow as $i => $row)
             <div class="row ad">
-                <img src="{{ url('storage/app/public/'.$row->image) }}" alt="" class="w-100">
+                <img src="{{ $bnrbig2nd->image }}" alt="" class="w-100">
+                <span class="fa fa-info position-absolute info-icon"></span>
+                <span class="img-info"></span>
             </div>
-            @endforeach
             <div class="row biz-services-container">
                 <div class="px-0 pt-1 container-fluid products-slider biz-services-slider">
                     <div class="mx-3 text-center position-relative">
                         <h3 class="main-heading">MyBiz Services</h3>
-                        <a href="{{ url('services/hr-and-admin') }}" class="position-absolute red-link view-all">VIEW ALL</a>
+                        <a href="{{route('regular-service','hr-and-admin')}}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
                     <div class="px-1 container-fluid">
                         <div class="slider slider-nav w-100 mybizdeals-front">
@@ -74,7 +74,7 @@
                                     <div class="slider-content">
                                         @foreach($prod->product_image as $j => $image)
                                             @if($loop->first)
-                                                <img class="w-100" alt="100x100" src="{{$ASSETS}}/{{$image->image}}" data-holder-rendered="true">
+                                                <img class="w-100" alt="100x100" src="{{$image->image}}" data-holder-rendered="true">
                                         @endif
                                     @endforeach
                                     <!-- <p>We are looking for a responsible and trustworthy manufacturer of Ladies Jackets.</p> -->
@@ -105,7 +105,7 @@
                         <div class="carousel-inner">
                             @foreach($bnr_slider as $i => $row)
                             <div class="carousel-item @if($i==0) active @endif">
-                                <img src="{{ url('storage/app/public/'.$row->image) }}">
+                                <img src="{{ $row->image }}">
                             </div>
                             @endforeach
                         </div>
@@ -125,7 +125,7 @@
                 <div class="px-0 pt-2 container-fluid products-slider featured-slider">
                     <div class="mx-3 text-center position-relative">
                         <h3 class="main-heading">One-Time Deals</h3>
-                        <a href="{{ url('business-products/fibers-and-materials#buySellProducts') }}" class="position-absolute red-link view-all">VIEW ALL</a>
+                        <a href="{{route('one-time-selling-deals','fibers-and-materials')}}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
                     <div class="px-1 container-fluid">
                         <div class="slider slider-nav w-100 products-front">
@@ -136,7 +136,7 @@
                                         <?php $img = \DB::table('buysell_images')->where('buy_sell_id',$prod->id)->get();?>
                                         @foreach($img as $i => $image)
                                             @if($loop->first)
-                                <img class="w-100" alt="100x100" src="{{$ASSETS}}/{{$image->image}}"
+                                <img class="w-100" alt="100x100" src="{{$image->image}}"
                                      data-holder-rendered="true">
                                                 @endif
                                             @endforeach
@@ -164,9 +164,9 @@
                         @foreach($news as $article)
                             <div class="px-1 textile-box">
                                 <a href="{{route('news-detail',['id'=>$article->id])}}" class="text-decoration-none">
-                                    <img src="{{ url('storage/app/public/'.$article->image) }}">
+                                    <img src="{{ $article->image}}">
                                     <div class="textile-caption">
-                                        <span>News | {{$article->publish_date}}</span>
+                                        <span>News | {{date("d-F-Y", strtotime($article->publish_date))}}</span>
                                         <p class="overflow-text-dots">{{$article->title}}</p>
                                     </div>
                                 </a>
@@ -179,8 +179,8 @@
             <div class="px-0 container-fluid logo-slider">
                 <div class="mb-0 slider slider-nav w-100">
                     @foreach($textile_partners as $text_partners)
-                    <a href="#" class="logo-container"><img
-                            src="{{ url('storage/app/public/'.$text_partners->image) }}"
+                    <a href="{{ $text_partners->link }}" class="logo-container"><img
+                            src="{{ $text_partners->image }}"
                             alt="100x100" data-holder-rendered="true"
                             class="w-100 h-100">
                     </a>

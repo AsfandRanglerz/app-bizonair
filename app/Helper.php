@@ -325,7 +325,7 @@ function get_user_profile_percentage($id)
     if ($user->state) {
         $percentage += 8;
     }
-    if ($user->country_id) {
+    if ($user->country) {
         $percentage += 8;
     }
     if ($user->registration_phone_no) {
@@ -378,7 +378,7 @@ function get_product_contact_no($prodid){
     foreach ($comp as $company){
         $usercontact =\App\User::where('id',$company->user_id)->get();
         foreach ($usercontact as $contact){
-            return $contact->registration_phone_no;
+            return '00'.$contact->registration_phone_no;
         }
     }
 }
@@ -445,7 +445,7 @@ function get_buysell_email($produserid){
 function get_buysell_contact_no($prodid){
     $username =\App\User::where('id',$prodid)->get();
     foreach ($username as $nasme){
-        return $nasme->registration_phone_no;
+        return '00'.$nasme->registration_phone_no;
     }
 
 }

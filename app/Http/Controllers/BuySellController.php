@@ -194,11 +194,10 @@ class BuySellController extends Controller
         $buysell->slug = Str::slug($request->product_service_name) . "-" . $buysell->reference_no;
 
         $buysell->subject = $request->subject;
-        if(!empty($request->keyword1)){
-            $buysell->keywords = $request->keyword1 . ',' . $request->keyword2 . ',' . $request->keyword3;
-        }else{
-            $buysell->keywords = '';
-        }
+
+        $buysell->keyword1 = $request->keyword1;
+        $buysell->keyword2 = $request->keyword2;
+        $buysell->keyword3 = $request->keyword3;
         $buysell->product_service_name = $request->product_service_name;
         $buysell->product_availability = $request->product_availability;
         $buysell->expiry_data = $request->expiry_date;
@@ -285,7 +284,7 @@ class BuySellController extends Controller
         if (in_array("Service", $request->product_service_types)) {
             $buysell->unit_price_from = $request->unit_price_from;
             $buysell->unit_price_to = $request->unit_price_to;
-            $buysell->unit_price_unit = $request->unit_price_unit;
+            $buysell->unit_price_unit = $request->price_unit;
         }
 
         if (in_array("Buy", $request->product_service_types)) {
@@ -302,9 +301,9 @@ class BuySellController extends Controller
             $buysell->other_suitable_currency = $request->other_suitable_currency;
         }
         if ($request->payment_terms) {
-            $buysell->payment_terms = implode(',', $request->payment_terms);
+            $buysell->payment_terms = $request->payment_terms;
         }
-        if ($request->payment_terms != null && in_array("Other", $request->payment_terms)) {
+        if ($request->payment_terms =="Other") {
             $buysell->other_payment_term = $request->other_payment_term;
         }
         $buysell->delivery_time = $request->delivery_time;
@@ -515,11 +514,9 @@ class BuySellController extends Controller
         $buysell->add_sub_sub_category = $request->add_sub_sub_category;
 
         $buysell->subject = $request->subject;
-        if(!empty($request->keyword1)){
-            $buysell->keywords = $request->keyword1 . ',' . $request->keyword2 . ',' . $request->keyword3;
-        }else{
-            $buysell->keywords = '';
-        }
+        $buysell->keyword1 = $request->keyword1;
+        $buysell->keyword2 = $request->keyword2;
+        $buysell->keyword3 = $request->keyword3;
 
         $buysell->product_service_name = $request->product_service_name;
         $buysell->product_availability = $request->product_availability;
@@ -582,7 +579,7 @@ class BuySellController extends Controller
         if (in_array("Service", $request->product_service_types)) {
             $buysell->unit_price_from = $request->unit_price_from;
             $buysell->unit_price_to = $request->unit_price_to;
-            $buysell->unit_price_unit = $request->unit_price_unit;
+            $buysell->unit_price_unit = $request->price_unit;
 
         }
         if (in_array("Buy", $request->product_service_types)) {
@@ -598,8 +595,8 @@ class BuySellController extends Controller
         if ($request->suitable_currencies == "Other") {
             $buysell->other_suitable_currency = $request->other_suitable_currency;
         }
-        $buysell->payment_terms = implode(',', $request->payment_terms);
-        if ($request->payment_terms != null && in_array("Other", $request->payment_terms)) {
+        $buysell->payment_terms = $request->payment_terms;
+        if ($request->payment_terms == "Other") {
             $buysell->other_payment_term = $request->other_payment_term;
         }
         $buysell->delivery_time = $request->delivery_time;

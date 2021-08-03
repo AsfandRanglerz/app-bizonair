@@ -33,7 +33,7 @@ class InviteMemberEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('noreply@ranglerztech.website', config('app.name'))->subject('Membership Invite From '.company_name($this->invite->company_id))
+        return $this->subject('Membership Invite From '.company_name($this->invite->company_id))
             ->markdown('emails.invite.template')->with([
                 'ínvite' => $this->invite,
                 'user' => $this->user

@@ -56,7 +56,7 @@ return [
     */
 
     'storage' => [
-        'disk' => env('FILESYSTEM_DRIVER', 'public'),
+        'disk' => 's3',
     ],
 
     /*
@@ -142,7 +142,7 @@ return [
                 'route'      => 'voyager.logout',
                 'icon_class' => 'voyager-power',
             ],
-            
+
         ],
 
         'widgets' => [
@@ -152,7 +152,7 @@ return [
             'App\\Widgets\\Category',
             'App\\Widgets\\SubCategory',
             'App\\Widgets\\ChildCategory',
-            
+
         ],
 
     ],

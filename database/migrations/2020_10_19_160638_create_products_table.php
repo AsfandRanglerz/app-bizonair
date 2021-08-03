@@ -20,7 +20,9 @@ class CreateProductsTable extends Migration
             $table->string('product_service_types', 20);
             $table->unsignedInteger('reference_no')->unique()->from(1000000)->to(9999999);
             $table->string('subject');
-            $table->string('keywords');
+            $table->string('keyword1')->nullable();
+            $table->string('keyword2')->nullable();
+            $table->string('keyword3')->nullable();
             $table->string('product_service_name');
             $table->string('product_availability', 15)->nullable();
             $table->text('details')->nullable();

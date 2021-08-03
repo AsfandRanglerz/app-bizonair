@@ -16,6 +16,7 @@ class CreateUTypesTable extends Migration
         Schema::create('u_types', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
+            $table->string('tooltip')->nullable();
             $table->timestamps();
         });
     }

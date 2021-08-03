@@ -206,10 +206,10 @@
                                             <select name="country" id="country_id" required class="form-control choose-country">
                                                 <option disabled selected>Select Country/Region</option>
                                                 @foreach ($countries as $item)
-                                                    <option value="{{$item->name->common}}" @if($item->name->common == $user->country) selected @endif >{{$item->name->common}}</option>
+                                                    <option value="{{$item->name->common}}">{{$item->name->common}}</option>
                                                 @endforeach
                                             </select>
-                                            <small class="text-danger" id="country_id_error"></small>
+                                            <small class="text-danger" id="country_error"></small>
                                         </div>
 
                                         <div class="form-group col-md-6 d-flex flex-column">
@@ -328,23 +328,15 @@
             }
         });
         $(function () {
-            $('#state').select2({
-                placeholder: "Select State/Province",
-            });
-
-            $('#city').select2({
-                placeholder: "Select City",
-            });
-
             $('.select2-multiple').select2({
                 closeOnSelect: false,
-                placeholder: "Categories - Select interest categories",
+                placeholder: "Select interest categories",
             });
 
             $('.select2-multiple5').select2({
                 maximumSelectionLength: 5,
                 closeOnSelect: false,
-                placeholder: "Sub-Categories - Select interest sub categories",
+                placeholder: "Select interest sub categories",
             });
 
             var validator = $("form[name='updateAccount']").validate({
@@ -367,13 +359,13 @@
                         required: true,
                         email: true
                     },
+                    country: {
+                        required: true
+                    },
                     city: {
                         required: true
                     },
                     state: {
-                        required: true
-                    },
-                    countries: {
                         required: true
                     },
                     gender: {
@@ -391,6 +383,9 @@
                     last_name: "Please enter your lastname",
                     email: "Please enter a valid email address",
                     website: "Please enter a valid URL starts from https",
+                    country: "Please select country",
+                    city: "Please select city",
+                    state: "Please select state",
                 },
                 errorClass: 'is-invalid error',
                 validClass: 'is-valid',
@@ -579,6 +574,29 @@
 
     <script>
         $(document).ready(function() {
+            $('#country_id').each(function() {
+                var country_id = this.value;
+                $("#state").html('');
+                $.ajax({
+                    url:"{{url('/get-state-list')}}",
+                    type: "POST",
+                    data: {
+                        country_id: country_id,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType : 'json',
+                    success: function(result){
+                        $('#state').html('<option value="" selected disabled>Select State/Province</option>');
+                        $.each(result.states,function(key,value){
+                            $("#state").append('<option value="'+value+'">'+value+'</option>');
+                        });
+                        $('#city').html('<option value="" selected disabled>Select City</option>');
+                        $.each(result.cities,function(key,value){
+                            $("#city").append('<option value="'+value+'">'+value+'</option>');
+                        });
+                    }
+                });
+            });
             $('#country_id').on('change', function() {
                 var country_id = this.value;
                 $("#state").html('');
@@ -591,11 +609,11 @@
                     },
                     dataType : 'json',
                     success: function(result){
-                        $('#state').html('<option value="" selected disabled></option>');
+                        $('#state').html('<option value="" selected disabled>Select State/Province</option>');
                         $.each(result.states,function(key,value){
                             $("#state").append('<option value="'+value+'">'+value+'</option>');
                         });
-                        $('#city').html('<option value="" selected disabled></option>');
+                        $('#city').html('<option value="" selected disabled>Select City</option>');
                         $.each(result.cities,function(key,value){
                             $("#city").append('<option value="'+value+'">'+value+'</option>');
                         });

@@ -33,20 +33,32 @@ class HomeController extends Controller
      */
     public function indexx()
     {
-        $bnr_row1 = Banner::where('addsdimensions', 'width 419.66 * height 79.94')->where('status', 1)->limit(3)->get();
-        $bnr_slider = Banner::where('addsdimensions', 'width 629.5 * height 437.45')->where('status', 1)->get();
-        $bnrlupr = Banner::where('addsdimensions', 'width 299.75 * height 109.36')->where('description','2nd row , Left Upper')->where('status', 1)->limit(1)->get();
-        $bnrlwr = Banner::where('addsdimensions', 'width 299.75 * height 306')->where('description','2nd row , Left Lower')->where('status', 1)->limit(1)->get();
-        $bnrupr = Banner::where('addsdimensions', 'width 299.75 * height 306')->where('description','2nd row , Right Upper')->where('status', 1)->limit(1)->get();
-        $bnrwr = Banner::where('addsdimensions', 'width 299.75 * height 109.36')->where('description','2nd row , Right Lower')->where('status', 1)->limit(1)->get();
+        $mainLogo = Banner::where('id', 77)->first();
+        $bnrslider1 = Banner::where('id', 78)->first();
+        $bnrslider2 = Banner::where('id', 79)->first();
+        $bnrslider3 = Banner::where('id', 80)->first();
+        $bnrslider4 = Banner::where('id', 81)->first();
+        $bnrslider5 = Banner::where('id', 82)->first();
+        $bnrslider6 = Banner::where('id', 83)->first();
 
-        $bnrthirdrow = Banner::where('addsdimensions', 'width 1349 * height 236')->where('description','3rd row')->where('status', 1)->limit(1)->get();
+
+        $bnr_row1 = Banner::where('dimension', 'width 419.66 * height 79.94')->where('status', 1)->limit(3)->get();
+        $bnr_slider = Banner::where('dimension', 'width 629.5 * height 437.45')->where('status', 1)->get();
+
+        $bnrlupr = Banner::where('id', 67)->first();
+        $bnrlwr = Banner::where('id', 68)->first();
+        $bnrupr = Banner::where('id', 69)->first();
+        $bnrwr = Banner::where('id', 70)->first();
+
+        $bnrbig1st = Banner::where('id', 84)->first();
+        $bnrbig2nd = Banner::where('id', 75)->first();
+        $bnrbig3rd = Banner::where('id', 85)->first();
 
         $news =\DB::table('news_management')->orderBy('created_at', 'desc')->get()->take(3);
 
-        $topproduct = \App\Product::where('product_service_types','!=','Service')->with('product_image')->latest()->limit(10)->get();
-        $topservice = \App\Product::where('product_service_types','Service')->with('product_image')->latest()->limit(10)->get();
-        $topbuysell = \DB::table('buy_sells')->where('product_service_types','!=','Service')->latest()->limit(10)->get();
+        $topproduct = \App\Product::where('product_service_types','!=','Service')->with('product_image')->whereNull('deleted_at')->latest()->limit(10)->get();
+        $topservice = \App\Product::where('product_service_types','Service')->with('product_image')->whereNull('deleted_at')->latest()->limit(10)->get();
+        $topbuysell = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types','!=','Service')->whereNull('deleted_at')->latest()->limit(10)->get();
 
         $latestjoin = \App\User::select('users.*', 'users.created_at as creation_date')->latest()->first();
 
@@ -55,7 +67,8 @@ class HomeController extends Controller
 
 
         return view('front_site.index', [
-            'bnr_row1' => $bnr_row1, 'bnr_slider' => $bnr_slider, 'bnrlupr' => $bnrlupr, 'bnrlwr' => $bnrlwr, 'bnrupr' => $bnrupr, 'bnrwr' => $bnrwr, 'bnrthirdrow' => $bnrthirdrow,
+            'mainLogo' => $mainLogo,'bnrslider1' => $bnrslider1,'bnrslider2' => $bnrslider2,'bnrslider3' => $bnrslider3,'bnrslider4' => $bnrslider4,'bnrslider5' => $bnrslider5,'bnrslider6' => $bnrslider6,'bnr_row1' => $bnr_row1, 'bnr_slider' => $bnr_slider, 'bnrlupr' => $bnrlupr, 'bnrlwr' => $bnrlwr, 'bnrupr' => $bnrupr, 'bnrwr' => $bnrwr,
+            'bnrbig1st' => $bnrbig1st,'bnrbig2nd' => $bnrbig2nd,'bnrbig3rd' => $bnrbig3rd,
             'news' => $news,'topproduct' => $topproduct,'topbuysell' => $topbuysell,
             'topservice' => $topservice,'latestjoin' => $latestjoin,'featuredmember' => $featuredmember,'textile_partners' => $textile_partners
         ]);
@@ -63,20 +76,32 @@ class HomeController extends Controller
 
     public function index(){
 
-        $bnr_row1 = Banner::where('addsdimensions', 'width 419.66 * height 79.94')->where('status', 1)->limit(3)->get();
-        $bnr_slider = Banner::where('addsdimensions', 'width 629.5 * height 437.45')->where('status', 1)->get();
-        $bnrlupr = Banner::where('addsdimensions', 'width 299.75 * height 109.36')->where('description','2nd row , Left Upper')->where('status', 1)->limit(1)->get();
-        $bnrlwr = Banner::where('addsdimensions', 'width 299.75 * height 306')->where('description','2nd row , Left Lower')->where('status', 1)->limit(1)->get();
-        $bnrupr = Banner::where('addsdimensions', 'width 299.75 * height 306')->where('description','2nd row , Right Upper')->where('status', 1)->limit(1)->get();
-        $bnrwr = Banner::where('addsdimensions', 'width 299.75 * height 109.36')->where('description','2nd row , Right Lower')->where('status', 1)->limit(1)->get();
+        $mainLogo = Banner::where('id', 77)->first();
+        $bnrslider1 = Banner::where('id', 78)->first();
+        $bnrslider2 = Banner::where('id', 79)->first();
+        $bnrslider3 = Banner::where('id', 80)->first();
+        $bnrslider4 = Banner::where('id', 81)->first();
+        $bnrslider5 = Banner::where('id', 82)->first();
+        $bnrslider6 = Banner::where('id', 83)->first();
 
-        $bnrthirdrow = Banner::where('addsdimensions', 'width 1349 * height 236')->where('description','3rd row')->where('status', 1)->limit(1)->get();
+
+        $bnr_row1 = Banner::where('dimension', 'width 419.66 * height 79.94')->where('status', 1)->limit(3)->get();
+        $bnr_slider = Banner::where('dimension', 'width 629.5 * height 437.45')->where('status', 1)->get();
+
+        $bnrlupr = Banner::where('id', 67)->first();
+        $bnrlwr = Banner::where('id', 68)->first();
+        $bnrupr = Banner::where('id', 69)->first();
+        $bnrwr = Banner::where('id', 70)->first();
+
+        $bnrbig1st = Banner::where('id', 84)->first();
+        $bnrbig2nd = Banner::where('id', 75)->first();
+        $bnrbig3rd = Banner::where('id', 85)->first();
 
         $news =\DB::table('news_management')->orderBy('created_at', 'desc')->get()->take(3);
 
-        $topproduct = \App\Product::where('product_service_types','!=','Service')->with('product_image')->latest()->limit(10)->get();
-        $topservice = \App\Product::where('product_service_types','Service')->with('product_image')->latest()->limit(10)->get();
-        $topbuysell = \DB::table('buy_sells')->where('product_service_types','!=','Service')->latest()->limit(10)->get();
+        $topproduct = \App\Product::where('product_service_types','!=','Service')->with('product_image')->whereNull('deleted_at')->latest()->limit(10)->get();
+        $topservice = \App\Product::where('product_service_types','Service')->with('product_image')->whereNull('deleted_at')->latest()->limit(10)->get();
+        $topbuysell = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types','!=','Service')->whereNull('deleted_at')->latest()->limit(10)->get();
 
         $latestjoin = \App\User::select('users.*', 'users.created_at as creation_date')->latest()->first();
 
@@ -85,7 +110,8 @@ class HomeController extends Controller
 
 
         return view('front_site.index', [
-            'bnr_row1' => $bnr_row1, 'bnr_slider' => $bnr_slider, 'bnrlupr' => $bnrlupr, 'bnrlwr' => $bnrlwr, 'bnrupr' => $bnrupr, 'bnrwr' => $bnrwr, 'bnrthirdrow' => $bnrthirdrow,
+            'mainLogo' => $mainLogo,'bnrslider1' => $bnrslider1,'bnrslider2' => $bnrslider2,'bnrslider3' => $bnrslider3,'bnrslider4' => $bnrslider4,'bnrslider5' => $bnrslider5,'bnrslider6' => $bnrslider6,'bnr_row1' => $bnr_row1, 'bnr_slider' => $bnr_slider, 'bnrlupr' => $bnrlupr, 'bnrlwr' => $bnrlwr, 'bnrupr' => $bnrupr, 'bnrwr' => $bnrwr,
+            'bnrbig1st' => $bnrbig1st,'bnrbig2nd' => $bnrbig2nd,'bnrbig3rd' => $bnrbig3rd,
             'news' => $news,'topproduct' => $topproduct,'topbuysell' => $topbuysell,
             'topservice' => $topservice,'latestjoin' => $latestjoin,'featuredmember' => $featuredmember,'textile_partners' => $textile_partners
         ]);
@@ -267,54 +293,56 @@ class HomeController extends Controller
             'email' => request('email_login'), 'password' => request('login_password'), 'role_id' => 2
         ])) {
             if (\Auth::user()->is_blocked != 1) {
-                $data['user'] = \App\User::find(Auth::user()->id);
-                $data['user']->save();
-                $data['msg'] = 'Logged in successfully !';
-                $data['feedback'] = 'true';
-                DB::table('notifications')
-                    ->where('user_id', auth()->id())
-                    ->update(['is_display' => 1]);
-                $usercompany = \App\UserCompany::where('user_id',Auth::id())->first();
-                if($usercompany){
-                    \session()->put('company_id',$usercompany->company_id);
-                    $data['usercompany'] = \App\UserCompany::where('user_id',Auth::id())->where('company_id',session()->get('company_id'))->first();
-                    if ($data['usercompany']->is_owner == 0 && $data['usercompany']->is_admin == 0 && $data['usercompany']->is_member == 0) {
-                        if ($data['user']->step_1 == null) {
-                            $data['url'] = route('my-account', [$data['user']->id]);
-                        } elseif ($data['user']->step_2 == null) {
-                            $data['url'] = route('company-profile');
+                if(Auth::user()->step_2 != Null){
+                    $data['user'] = \App\User::find(Auth::user()->id);
+                    $data['user']->save();
+                    $data['msg'] = 'Logged in successfully !';
+                    $data['feedback'] = 'true';
+                    DB::table('notifications')
+                        ->where('user_id', auth()->id())
+                        ->update(['is_display' => 1]);
+                    $usercompany = \App\UserCompany::where('user_id',Auth::id())->first();
+                    if($usercompany){
+                        \session()->put('company_id',$usercompany->company_id);
+                        $data['usercompany'] = \App\UserCompany::where('user_id',Auth::id())->where('company_id',session()->get('company_id'))->first();
+                        if ($data['usercompany']->is_owner == 0 && $data['usercompany']->is_admin == 0 && $data['usercompany']->is_member == 0) {
+                            if ($data['user']->step_1 == null) {
+                                $data['url'] = route('my-account', [$data['user']->id]);
+                            } elseif ($data['user']->step_2 == null) {
+                                $data['url'] = route('company-profile');
+                            } else {
+                                return redirect(request('previous_url'));
+                            }
                         } else {
-                            $data['url'] = url()->previous();
+                            return redirect(request('previous_url'));
                         }
-                    } else {
-                        $data['url'] = url()->previous();
+                    }else{
+
+                        \session()->put('company_id','');
+                        if (auth()->user()) {
+                            if ($data['user']->step_1 == null) {
+                                $data['url'] = route('my-account', [$data['user']->id]);
+                            } elseif ($data['user']->step_2 == null) {
+                                return redirect(request('previous_url'));
+                            } else {
+                                return redirect(request('previous_url'));
+                            }
+                        } else {
+                            return redirect(request('previous_url'));
+                        }
                     }
                 }else{
-
-                    \session()->put('company_id','');
-                    if (auth()->user()) {
-                        if ($data['user']->step_1 == null) {
-                            $data['url'] = route('my-account', [$data['user']->id]);
-                        } elseif ($data['user']->step_2 == null) {
-                            $data['url'] = url()->previous();
-                        } else {
-                            $data['url'] = url()->previous();
-                        }
-                    } else {
-                        $data['url'] = url()->previous();
-                    }
+                    return redirect('my-account/'.Auth::user()->id);
                 }
 
             } else {
                 \Auth::logout();
-                $data['msg'] = "Sorry, you have been blocked";
-                $data['feedback'] = 'invalid';
+                return back()->with('invalid', 'Sorry, you have been blocked');
             }
         } else {
-            $data['msg'] = "Invalid Credentials";
-            $data['feedback'] = 'invalid';
+            return back()->with('invalid', 'Invalid Credentials');
         }
-        return json_encode($data);
+        return redirect(request('previous_url'));
     }
 
 
@@ -337,14 +365,14 @@ class HomeController extends Controller
     {
         // dd(request()->all());
         $rules = [
-            'password' => 'required|min:8', 'confirm_password' => 'required|same:password', 'country_id' => 'required',
+            'password' => 'required|min:8', 'confirm_password' => 'required|same:password',
             'user_type' => 'required', 'first_name' => 'required',
             'last_name' => 'required', 'registration_phone_no' => 'required|min:10', 'birthday' => 'required',
         ];
         $messages = [
             'password.required' => 'Password is required', 'password.min' => 'Minimum 8 characters required',
             'confirm_password.required' => 'Please re-enter password',
-            'confirm_password.same' => 'Password did not matched', 'country_id.required' => 'Please select country',
+            'confirm_password.same' => 'Password did not matched',
             'user_type.required' => 'Please select user type', 'first_name.required' => 'First name is required',
             'last_name.required' => 'Last name is required',
             'registration_phone_no.required' => 'Phone number is required',
@@ -386,13 +414,24 @@ class HomeController extends Controller
         $user->email = request('email');
         $user->enc_password = encrypt(request('password'));
         $user->password = Hash::make(request('password'));
-        $user->country_id = request('country_id');
         $user->company_name = request('company_name');
         $user->registration_phone_no = str_replace(' ', '', $num);
         $user->birthday = date('Y-m-d H:i:s', strtotime(request('birthday')));
         if (request('industry_information_check'))
             $user->industry_information_check = 1;
-        if ($user->save()) {
+        $user->save();
+        if(request('registeration_member_company_id')){
+            $company = \App\CompanyProfile::where('id',request('registeration_member_company_id'))->first();
+            $usercompany = new \App\UserCompany();
+            $usercompany->user_id = $user->id;
+            $usercompany->company_id = $company->id;
+            $usercompany->company_name = $company->company_name;
+            $usercompany->is_member = 1;
+            $usercompany->save();
+            \session()->forget('company_id');
+        }
+        if ($user) {
+            Auth::loginUsingId($user->id);
             if (count(request('user_type')) > 0) {
                 foreach (request('user_type') as $key => $value) {
                     $new = new \App\UserType();
@@ -410,7 +449,6 @@ class HomeController extends Controller
                     }
                 }
             }
-            \Auth::login($user);
             $data['feedback'] = "true";
             $data['msg'] = 'User has been registered successfully';
             $data['url'] = route('my-account', [$user->id]);
@@ -440,13 +478,13 @@ class HomeController extends Controller
     {
 //         dd(request('sub_category'));
         $rules = [
-            'country' => 'required', 'first_name' => 'required', 'last_name' => 'required',
-            'phone_no' => 'required|min:11', 'state' => 'required', 'city' => 'required', // 'category' => 'required',
+            'first_name' => 'required', 'last_name' => 'required',
+            'phone_no' => 'required|min:11','country' => 'required', 'state' => 'required', 'city' => 'required', // 'category' => 'required',
             // 'sub_category' => 'required',
         ];
         $messages = [
-            'country.required' => 'Please select country', 'first_name.required' => 'First name is required',
-            'last_name.required' => 'Last name is required', 'phone_no.required' => 'Phone number is required',
+            'first_name.required' => 'First name is required', 'last_name.required' => 'Last name is required',
+            'phone_no.required' => 'Phone number is required','country.required' => 'Please select country',
             'city.required' => 'Please enter your City', 'state.required' => 'Please enter your State',
             // 'category.required' => 'Please select category',
             // 'sub-category.required' => 'Please select sub-category'
@@ -458,6 +496,7 @@ class HomeController extends Controller
             $data['msg'] = '';
             return json_encode($data);
         }
+        $country_id= \App\Country::where('country_name',request('country'))->first();
         $user = \App\User::find(request('id'));
         if ($user) {
             $num = preg_replace('/^(?:\+?' . request('whatsapp_number_country_code') . '|0)?/', request('whatsapp_number_country_code'), request('whatsapp_number'));
@@ -471,21 +510,23 @@ class HomeController extends Controller
             $user->whatsapp_number = str_replace(' ', '', $num);
             $user->telephone = str_replace(' ', '', $telephone_num);
             $user->fax = request('fax');
+            $user->country_id = $country_id->id;
             $user->country = request('country');
             $user->state = request('state');
             $user->city = request('city');
+            $user->step_2 = 1;
             $user->postcode = request('postcode');
             $user->designation = request('designation');
             $user->other_designation = request('other_designation');
             $user->gender = request('gender');
-//            if (request('sub_category')) {
-//                foreach (request('sub_category') as $key => $value) {
-//                    $new = new \App\UserInterest();
-//                    $new->user_id = $user->id;
-//                    $new->subcategory_id = $value;
-//                    $new->save();
-//                }
-//            }
+            if (request('sub_category')) {
+                foreach (request('sub_category') as $key => $value) {
+                    $new = new \App\UserInterest();
+                    $new->user_id = $user->id;
+                    $new->subcategory_id = $value;
+                    $new->save();
+                }
+            }
             if ($user->save()) {
                 $user->step_1 = 1;
                 $user->save();
@@ -516,27 +557,27 @@ class HomeController extends Controller
     public function updateAccount(Request $request)
     {
         $rules = [//            'email' => 'required|email',
-                  'first_name' => 'required', 'last_name' => 'required',
-                  //            'user_type' => 'required',
-                  //            'mobile' => function ($attribute, $value, $fail) {
-                  //                if ($value === '+92') {
-                  //                    $fail('Mobile number is required.');
-                  //                }
-                  //            },
-                  'mobileNumber' => 'required|min:10', 'city' => 'required', 'state' => 'required',
-                  'country' => function ($attribute, $value, $fail) {
-                      if ($value === 'Country') {
-                          $fail('Country required.');
-                      }
-                  },
+            'first_name' => 'required', 'last_name' => 'required',
+            //            'user_type' => 'required',
+            //            'mobile' => function ($attribute, $value, $fail) {
+            //                if ($value === '+92') {
+            //                    $fail('Mobile number is required.');
+            //                }
+            //            },
+            'mobileNumber' => 'required|min:10', 'city' => 'required', 'state' => 'required',
+            'country' => function ($attribute, $value, $fail) {
+                if ($value === 'Country') {
+                    $fail('Country required.');
+                }
+            },
         ];
         $messages = [//            'email.required' => 'Email is required',
-                     'email.email' => 'Invalid email', 'first_name.required' => 'First name is required',
-                     'first_name.alpha' => 'Only alphabets are allowed',
-                     'last_name.required' => 'Last name is required', 'last_name.alpha' => 'Only alphabets are allowed',
-                     //            'user_type.required' => 'Please select user type',
-                     'mobileNumber.required' => 'Mobile number is required', 'city.required' => 'City is required',
-                     'state.required' => 'State is required', 'country.required' => 'Please select country',
+            'email.email' => 'Invalid email', 'first_name.required' => 'First name is required',
+            'first_name.alpha' => 'Only alphabets are allowed',
+            'last_name.required' => 'Last name is required', 'last_name.alpha' => 'Only alphabets are allowed',
+            //            'user_type.required' => 'Please select user type',
+            'mobileNumber.required' => 'Mobile number is required', 'city.required' => 'City is required',
+            'state.required' => 'State is required', 'country.required' => 'Please select country',
         ];
         $validator = \Validator::make(request()->all(), $rules, $messages);
         if ($validator->fails()) {
@@ -548,6 +589,7 @@ class HomeController extends Controller
         $whatsappnum = ($whatsappnum == request('whatsapp_country_code')) ? '' : $whatsappnum;
         $telephonenum = preg_replace('/^(?:\+?' . request('telephone_country_code') . '|0)?/', request('telephone_country_code'), request('telephone'));
         $telephonenum = ($telephonenum == request('telephone_country_code')) ? '' : $telephonenum;
+        $country_id= \App\Country::where('country_name',$request->country)->first();
         $user = \App\User::find(\Auth::id());
         $user->email = $request->email;
         $user->designation = $request->designation;
@@ -560,6 +602,7 @@ class HomeController extends Controller
         $user->city = $request->city;
         $user->state = $request->state;
         $user->country = $request->country;
+        $user->country_id = $country_id->id;
         $user->whatsapp_number = str_replace(' ', '', $whatsappnum);
         $user->telephone = str_replace(' ', '', $telephonenum);
         $user->fax = $request->fax;
@@ -620,55 +663,55 @@ class HomeController extends Controller
         $results= [];
         $productsell = DB::table('products')
             ->where('product_service_types','sell')
-            ->where("product_service_name","LIKE","%$term%")->first();
+            ->where("product_service_name","LIKE","$term%")->whereNull('deleted_at')->first();
         if($productsell){
-                $results[] = ['value' => $productsell->product_service_name, 'link' => url('/search-product?category=Regular+Supplier&keywords='.$term),'category' => 'Regular Supplier'];
+            $results[] = ['value' => $productsell->product_service_name, 'link' => url('/search-product?category=Regular+Supplier&keywords='.$productsell->product_service_name),'category' => 'Regular Supplier'];
         }
         $productbuy = DB::table('products')
             ->where('product_service_types','buy')
-            ->where("product_service_name","LIKE","%$term%")->first();
+            ->where("product_service_name","LIKE","$term%")->whereNull('deleted_at')->first();
         if($productbuy){
-                $results[] = ['value' => $productbuy->product_service_name, 'link' => url('/search-product?category=Regular+Buyer&keywords='.$term),'category' => 'Regular Buyer'];
+            $results[] = ['value' => $productbuy->product_service_name, 'link' => url('/search-product?category=Regular+Buyer&keywords='.$productbuy->product_service_name),'category' => 'Regular Buyer'];
         }
         $productserv = DB::table('products')
             ->where('product_service_types','service')
-            ->where("product_service_name","LIKE","%$term%")->first();
+            ->where("product_service_name","LIKE","$term%")->whereNull('deleted_at')->first();
         if($productserv){
-                $results[] = ['value' => $productserv->product_service_name, 'link' => url('/search-product?category=Regular+Services&keywords='.$term),'category' => 'Service Providers'];
+            $results[] = ['value' => $productserv->product_service_name, 'link' => url('/search-product?category=Regular+Services&keywords='.$productserv->product_service_name),'category' => 'Service Providers'];
         }
         $buysell = DB::table('buy_sells')
             ->where('product_service_types','sell')
-            ->where('date_expire','>', now())->whereNull('deleted_at')
-            ->where("product_service_name","LIKE","%$term%")->first();
+            ->where('date_expire','>', now())
+            ->where("product_service_name","LIKE","$term%")->whereNull('deleted_at')->first();
         if($buysell){
-                $results[] = ['value' => $buysell->product_service_name, 'link' => url('/search-product?category=One-Time+Supplier&keywords='.$term),'category' => 'One-Time Supplier'];
+            $results[] = ['value' => $buysell->product_service_name, 'link' => url('/search-product?category=One-Time+Supplier&keywords='.$buysell->product_service_name),'category' => 'One-Time Supplier'];
         }
         $buysellbuy = DB::table('buy_sells')
             ->where('product_service_types','buy')
-            ->where('date_expire','>', now())->whereNull('deleted_at')
-            ->where("product_service_name","LIKE","%$term%")->first();
+            ->where('date_expire','>', now())
+            ->where("product_service_name","LIKE","$term%")->whereNull('deleted_at')->first();
         if($buysellbuy){
-                $results[] = ['value' => $buysellbuy->product_service_name, 'link' => url('/search-product?category=One-Time+Buyer&keywords='.$term),'category' => 'One-Time Buyer'];
+            $results[] = ['value' => $buysellbuy->product_service_name, 'link' => url('/search-product?category=One-Time+Buyer&keywords='.$buysellbuy->product_service_name),'category' => 'One-Time Buyer'];
         }
         $buysellserv = DB::table('buy_sells')
             ->where('product_service_types','service')
-            ->where('date_expire','>', now())->whereNull('deleted_at')
-            ->where("product_service_name","LIKE","%$term%")->first();
+            ->where('date_expire','>', now())
+            ->where("product_service_name","LIKE","$term%")->whereNull('deleted_at')->first();
         if($buysellserv){
-                $results[] = ['value' => $buysellserv->product_service_name, 'link' => url('/search-product?category=One-Time+Services&keywords='.$term),'category' => 'Service Seekers'];
+            $results[] = ['value' => $buysellserv->product_service_name, 'link' => url('/search-product?category=One-Time+Services&keywords='.$buysellserv->product_service_name),'category' => 'Service Seekers'];
         }
-        $articles = Journal::where('title','Like','%'.$term.'%')->where('journal_type_name','articles')->first();
+        $articles = Journal::where('title','Like',$term.'%')->where('journal_type_name','articles')->first();
 
         if($articles){
-                $results[] = ['value' => $articles->title, 'link' => url('/search-product?category=articles&keywords='.$term),'category' => 'Articles'];
+            $results[] = ['value' => $articles->title, 'link' => url('/search-product?category=articles&keywords='.$term),'category' => 'Articles'];
         }
-        $news = NewsManagement::where('title','Like','%'.$term.'%')->first();
+        $news = NewsManagement::where('title','Like',$term.'%')->first();
         if($news){
-                $results[] = ['value' => $news->title, 'link' => url('/search-product?category=news&keywords='.$term),'category' => 'News'];
+            $results[] = ['value' => $news->title, 'link' => url('/search-product?category=news&keywords='.$term),'category' => 'News'];
         }
-        $events = Journal::where('title','Like','%'.$term.'%')->where('journal_type_name','Upcomming Events')->first();
+        $events = Journal::where('title','Like',$term.'%')->where('journal_type_name','Upcomming Events')->first();
         if($events){
-                $results[] = ['value' => $events->title, 'link' => url('/search-product?category=events&keywords='.$term),'category' => 'Events'];
+            $results[] = ['value' => $events->title, 'link' => url('/search-product?category=events&keywords='.$term),'category' => 'Events'];
         }
         return json_encode($results);
     }
@@ -683,7 +726,9 @@ class HomeController extends Controller
         if ($category =='One-Time Buyer'){
             $buysell = BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where(function ($q) use ($search){
                 $q->where('subject','Like','%'.$search.'%')
-                    ->orwhere('keywords','Like','%'.$search.'%')
+                    ->orwhere('keyword1','Like','%'.$search.'%')
+                    ->orwhere('keyword2','Like','%'.$search.'%')
+                    ->orwhere('keyword3','Like','%'.$search.'%')
                     ->orwhere('reference_no','Like','%'.$search.'%')
                     ->orwhere('product_service_name','Like','%'.$search.'%');
             })->where('product_service_types','buy')->where('date_expire','>', now())->whereNull('deleted_at')->get();
@@ -692,15 +737,19 @@ class HomeController extends Controller
         }elseif ($category =='Regular Buyer'){
             $products = Product::select('products.*', 'products.created_at as creation_date')->where(function ($q) use ($search){
                 $q->where('subject','Like','%'.$search.'%')
-                    ->orwhere('keywords','Like','%'.$search.'%')
+                    ->orwhere('keyword1','Like','%'.$search.'%')
+                    ->orwhere('keyword2','Like','%'.$search.'%')
+                    ->orwhere('keyword3','Like','%'.$search.'%')
                     ->orwhere('reference_no','Like','%'.$search.'%')
                     ->orwhere('product_service_name','Like','%'.$search.'%');
-            })->where('product_service_types','buy')->get();
+            })->where('product_service_types','buy')->whereNull('deleted_at')->get();
             return view('front_site.product.product-search')->with(['countries'=>$countries,'products'=>$products,'category'=>$category,'search'=>$search]);
         }elseif ($category =='One-Time Supplier'){
             $buysell = BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where(function ($q) use ($search){
                 $q->where('subject','Like','%'.$search.'%')
-                    ->orwhere('keywords','Like','%'.$search.'%')
+                    ->orwhere('keyword1','Like','%'.$search.'%')
+                    ->orwhere('keyword2','Like','%'.$search.'%')
+                    ->orwhere('keyword3','Like','%'.$search.'%')
                     ->orwhere('reference_no','Like','%'.$search.'%')
                     ->orwhere('product_service_name','Like','%'.$search.'%');
             })->where('product_service_types','sell')->where('date_expire','>', now())->whereNull('deleted_at')->get();
@@ -708,15 +757,19 @@ class HomeController extends Controller
         }elseif ($category =='Regular Supplier'){
             $products = Product::select('products.*', 'products.created_at as creation_date')->where(function ($q) use ($search){
                 $q->where('subject','Like','%'.$search.'%')
-                    ->orwhere('keywords','Like','%'.$search.'%')
+                    ->orwhere('keyword1','Like','%'.$search.'%')
+                    ->orwhere('keyword2','Like','%'.$search.'%')
+                    ->orwhere('keyword3','Like','%'.$search.'%')
                     ->orwhere('reference_no','Like','%'.$search.'%')
                     ->orwhere('product_service_name','Like','%'.$search.'%');
-            })->where('product_service_types','sell')->get();
+            })->where('product_service_types','sell')->whereNull('deleted_at')->get();
             return view('front_site.product.product-search')->with(['countries'=>$countries,'products'=>$products,'category'=>$category,'search'=>$search]);
         }elseif ($category =='One-Time Services'){
             $buysell = BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where(function ($q) use ($search){
                 $q->where('subject','Like','%'.$search.'%')
-                    ->orwhere('keywords','Like','%'.$search.'%')
+                    ->orwhere('keyword1','Like','%'.$search.'%')
+                    ->orwhere('keyword2','Like','%'.$search.'%')
+                    ->orwhere('keyword3','Like','%'.$search.'%')
                     ->orwhere('reference_no','Like','%'.$search.'%')
                     ->orwhere('product_service_name','Like','%'.$search.'%');
             })->where('product_service_types','service')->where('date_expire','>', now())->whereNull('deleted_at')->get();
@@ -724,30 +777,32 @@ class HomeController extends Controller
         }elseif ($category =='Regular Services'){
             $products = Product::select('products.*', 'products.created_at as creation_date')->where(function ($q) use ($search){
                 $q->where('subject','Like','%'.$search.'%')
-                    ->orwhere('keywords','Like','%'.$search.'%')
+                    ->orwhere('keyword1','Like','%'.$search.'%')
+                    ->orwhere('keyword2','Like','%'.$search.'%')
+                    ->orwhere('keyword3','Like','%'.$search.'%')
                     ->orwhere('reference_no','Like','%'.$search.'%')
                     ->orwhere('product_service_name','Like','%'.$search.'%');
-            })->where('product_service_types','service')->get();
+            })->where('product_service_types','service')->whereNull('deleted_at')->get();
             return view('front_site.product.product-search')->with(['countries'=>$countries,'products'=>$products,'category'=>$category,'search'=>$search]);
         }elseif ($category =='Reference Number'){
             $products = Product::select('products.*', 'products.created_at as creation_date')->where(function ($q) use ($search){
                 $q->where('subject','Like','%'.$search.'%')
                     ->orwhere('reference_no','Like','%'.$search.'%');
-            })->get();
+            })->whereNull('deleted_at')->get();
             $buysell = BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where(function ($q) use ($search){
                 $q->where('subject','Like','%'.$search.'%')
                     ->orwhere('reference_no','Like','%'.$search.'%');
-            })->get();
+            })->whereNull('deleted_at')->get();
             return view('front_site.product.product-search')->with(['countries'=>$countries,'products'=>$products,'buysell'=>$buysell,'category'=>$category,'search'=>$search]);
         }elseif ($category =='Keywords'){
             $products = Product::select('products.*', 'products.created_at as creation_date')->where(function ($q) use ($search){
                 $q->where('subject','Like','%'.$search.'%')
-                    ->orwhere('keywords','Like','%'.$search.'%');
-            })->get();
+                    ->orwhere('keyword1','Like','%'.$search.'%')->orwhere('keyword2','Like','%'.$search.'%')->orwhere('keyword3','Like','%'.$search.'%');
+            })->whereNull('deleted_at')->get();
             $buysell = BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where(function ($q) use ($search){
                 $q->where('subject','Like','%'.$search.'%')
-                    ->orwhere('keywords','Like','%'.$search.'%');
-            })->get();
+                    ->orwhere('keyword1','Like','%'.$search.'%')->orwhere('keyword2','Like','%'.$search.'%')->orwhere('keyword3','Like','%'.$search.'%');
+            })->whereNull('deleted_at')->get();
             return view('front_site.product.product-search')->with(['countries'=>$countries,'products'=>$products,'buysell'=>$buysell,'category'=>$category,'search'=>$search]);
         }elseif ($category =='articles'){
             $articles = Journal::where('title','Like','%'.$search.'%')->where('journal_type_name','articles')->get();

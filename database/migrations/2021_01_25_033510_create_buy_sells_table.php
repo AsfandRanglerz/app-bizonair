@@ -33,7 +33,9 @@ class CreateBuySellsTable extends Migration
             $table->foreign('childsubcategory_id')->references('id')->on('childsubcategories')->onDelete('cascade');
 
             $table->string('subject');
-            $table->string('keywords');
+            $table->string('keyword1')->nullable();
+            $table->string('keyword2')->nullable();
+            $table->string('keyword3')->nullable();
             $table->string('product_service_name');
             $table->string('product_availability', 15)->nullable();
             $table->text('details')->nullable();

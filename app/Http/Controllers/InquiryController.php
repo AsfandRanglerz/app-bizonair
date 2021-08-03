@@ -304,10 +304,16 @@ class InquiryController extends Controller
             $email=$user->email;
             $phone=$user->registration_phone_no;
             $prod_name=$product->product_service_name;
+
+            $userId= \App\UserCompany::where('company_id',$product->company_id)->pluck('user_id');
+            $getUser = \App\User::whereIn('id',$userId)->get();
+            foreach ($getUser as $userEmail){
+                \Mail::to($userEmail->email)->send(new sendInquiryEmail($data, $userEmail->name, $prod_name));
+            }
             if(!empty(request('qcis'))){
                 \Mail::to('info@bizonair.com')->send(new sendInquiryQCISEmail($data, $name, $prod_name,$email,$phone));
             }
-            \Mail::to($user->email)->send(new sendInquiryEmail($data, $name, $prod_name));
+
 
             foreach ($company as $comp) {
                 $notification = new Notification();

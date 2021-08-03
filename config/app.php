@@ -163,7 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-
+        Intervention\Image\ImageServiceProvider::class,
 
 
         /*
@@ -234,6 +234,7 @@ return [
         'ProductHelper' => App\Helpers\ProductHelper::class,
         'MeetingHelper' => App\Helpers\MeetingHelper::class,
         'Share' => Jorenvh\Share\ShareFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

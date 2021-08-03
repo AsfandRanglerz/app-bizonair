@@ -7,6 +7,7 @@ use App\CompanyImage;
 use App\CompanyProfile;
 use App\Notification;
 use App\UserCompany;
+use Intervention\Image\Facades\Image;
 use Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -58,14 +59,14 @@ class CompanyController extends Controller
             $num = preg_replace('/^(?:\+?' . request('alternate_contact_country_code') . '|0)?/', request('alternate_contact_country_code'), request('alternate_contact'));
             $num = ($num == request('alternate_contact_country_code')) ? '' : $num;
             $export_market = "";
-            $logo_name="";
-            if($request->hasFile('logo_image')){
-                $image = $request->file('logo_image');
-                $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
-                $image->storeAs('companies/',$image_name,'s3');
-                $path = 'companies'.'/'.$image_name;
-                $logo_name = Storage::disk('s3')->url($path);
-            }
+//            $logo_name="";
+//            if($request->hasFile('logo_image')){
+//                $image = $request->file('logo_image');
+//                $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
+//                $image->storeAs('companies/',$image_name,'s3');
+//                $path = 'companies'.'/'.$image_name;
+//                $logo_name = Storage::disk('s3')->url($path);
+//            }
             if ($request->export_market) {
                 $export_market = implode(',', $request->export_market);
             }
@@ -83,6 +84,11 @@ class CompanyController extends Controller
             if ($request->business_nature == 'Other') {
                 $other_business_nature = $request->other_business_nature;
             }
+            if(empty($request->bavatar31_url)){
+                $logo= 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/1627548199287.png';
+            }else{
+                $logo= $request->bavatar31_url;
+            }
             $company = CompanyProfile::create([
                 'user_id' => auth()->id(),
                 'company_name' => $request->company_name,
@@ -95,7 +101,7 @@ class CompanyController extends Controller
                 'export_market' => $export_market,
                 'other_business_type' => $other_business_type,
                 'other_business_nature' => $other_business_nature,
-                'logo' => $logo_name,
+                'logo' => $logo,
                 'certifications' => $certifications,
                 'annual_turnover' => $request->annual_turnover,
                 'company_introduction' => $request->company_introduction,
@@ -104,6 +110,13 @@ class CompanyController extends Controller
                 'alternate_email' => $request->alternate_email,
                 'alternate_address' => $request->alternate_address,
             ]);
+
+            $images =  [$request->sheet16_url,$request->sheet17_url,$request->sheet18_url,$request->sheet19_url,$request->sheet20_url,$request->sheet21_url,$request->sheet22_url,$request->sheet23_url,$request->sheet24_url,$request->sheet25_url,$request->sheet26_url,$request->sheet27_url,$request->sheet28_url,$request->sheet29_url,$request->sheet30_url];
+            foreach ($images as $image) {
+                if ($image) {
+                    \App\CompanyImage::create(['company_id' => $company->id, 'image' => $image]);
+                }
+            }
 
             foreach ($request->industry as $i) {
                 CompanyProfileIndustry::create(['company_id' => $company->id, 'industry_id' => $i,]);
@@ -181,12 +194,18 @@ class CompanyController extends Controller
             $company->certifications = implode(',', $request->certifications);
         }
 
-        if ($request->file('logo_image')) {
-            $logo_name = rand(1000, 9999) . time() . '.' . $request->file('logo_image')->getClientOriginalExtension();
-            $request->file('logo_image')->storeAs('companies/',$logo_name,'s3');
-            $path = 'companies'.'/'.$logo_name;
-            $url = Storage::disk('s3')->url($path);
-            $company->logo = $url;
+//        if ($request->file('logo_image')) {
+//            $logo_name = rand(1000, 9999) . time() . '.' . $request->file('logo_image')->getClientOriginalExtension();
+//            $request->file('logo_image')->storeAs('companies/',$logo_name,'s3');
+//            $path = 'companies'.'/'.$logo_name;
+//            $url = Storage::disk('s3')->url($path);
+//            $company->logo = $url;
+//        }
+
+        if(empty($request->bavatar31_url)){
+            $logo= $company->logo;
+        }else{
+            $logo= $request->bavatar31_url;
         }
         $num = preg_replace('/^(?:\+?' . request('alternate_contact_country_code') . '|0)?/', request('alternate_contact_country_code'), request('alternate_contact'));
         $num = ($num == request('alternate_contact_country_code')) ? '' : $num;
@@ -195,6 +214,15 @@ class CompanyController extends Controller
         $company->alternate_contact = str_replace(' ', '', $num);
         $company->alternate_email = $request->alternate_email;
         $company->alternate_address = $request->alternate_address;
+        $company->logo = $logo;
+
+        $images =  [$request->sheet16_url,$request->sheet17_url,$request->sheet18_url,$request->sheet19_url,$request->sheet20_url,$request->sheet21_url,$request->sheet22_url,$request->sheet23_url,$request->sheet24_url,$request->sheet25_url,$request->sheet26_url,$request->sheet27_url,$request->sheet28_url,$request->sheet29_url,$request->sheet30_url];
+        foreach ($images as $image) {
+            if ($image) {
+                \App\CompanyImage::create(['company_id' => $company->id, 'image' => $image]);
+            }
+        }
+
         if ($company->save()) {
             $comp = \App\UserCompany::where('company_id',$request->company_id)->get();
             foreach ($comp as $compan){
@@ -213,27 +241,53 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function imageRemove($id)
+    public function imageRemove()
     {
-        $image = \App\CompanyImage::find($id);;
-        if (\File::delete(public_path('assets/front_site/images/company-images/' . $image->image))) {
-            $image->delete();
-            return json_encode(['msg' => true]);
+        try {
+            $sheet_id = decrypt(request('sheet_id'));
+
+        } catch (\RuntimeException $e) {
+            return json_encode(['feedback' => 'encrypt_issue', 'msg' => 'Something Went Wrong']);
         }
+        if ($sheet_id) {
+            DB::delete('delete from company_images where id = ?', [$sheet_id]);
+            $data['feedback'] = 'true';
+            $data['msg'] = 'Company attachment has been removed successfully';
+        } else {
+            $data['feedback'] = 'false';
+            $data['msg'] = 'Something went Wrong';
+        }
+
+        return json_encode($data);
+
     }
 
     public function companyImages(Request $request)
     {
-        if ($request->file) {
-            $image = $request->file('file');
-            $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('companies/',$image_name,'s3');
-            $path = 'companies'.'/'.$image_name;
-            $url = Storage::disk('s3')->url($path);
-            CompanyImage::create([
-                'image' => $url, 'title' => $image->getClientOriginalName(), 'company_id' => $request->companyId,
-            ]);
+        if($request->hasFile('avatar')) {
+            $image = request()->file('avatar');
+            $imageName = rand(1000, 999999) . time() . '.' . $image->getClientOriginalExtension();
+            $img = Image::make($image);
+            $img->resize(379, 295, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            //detach method is the key! Hours to find it... :/
+            $resource = $img->stream()->detach();
+            \Illuminate\Support\Facades\Storage::disk('s3')->put('companies/' . $imageName, $resource);
+            $url = Storage::disk('s3')->url('companies' . '/' . $imageName);
+            return response()->json(['url' => $url]);
         }
+
+//        if ($request->file) {
+//            $image = $request->file('file');
+//            $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
+//            $image->storeAs('companies/',$image_name,'s3');
+//            $path = 'companies'.'/'.$image_name;
+//            $url = Storage::disk('s3')->url($path);
+//            CompanyImage::create([
+//                'image' => $url, 'title' => $image->getClientOriginalName(), 'company_id' => $request->companyId,
+//            ]);
+//        }
     }
 
     public function get_office_code()
@@ -411,6 +465,7 @@ class CompanyController extends Controller
             \session()->put('reciver_email', $email);
             \session()->put('invitation_token', $token);
             \session()->put('office_code', $company->office_code);
+            \session()->put('company_id', $invite->company_id);
 //            $invite->delete();
             return redirect()->route('registeration-step-2');
         }
@@ -726,6 +781,12 @@ class CompanyController extends Controller
         // dd($messages);
         $data = [];
         foreach ($messages as $key => $value) {
+
+        	$qoute_msg = null;
+            if($value->quote_msg_id)
+            $qoute_msg = \App\Message::where('id',$value->quote_msg_id)->first();
+
+
             array_push($data, [
                 'id' => $value->id,
                 'sender_id' => $value->sender_id,
@@ -743,7 +804,8 @@ class CompanyController extends Controller
                     'first_name' => $value->user->first_name,
                     'last_name' => $value->user->last_name,
                     'avatar' => ($value->user->avatar != 'users/default.png') ?  $value->user->avatar : url('public/storage/users/default.png'),
-                ]
+                ],
+                'quote' => $qoute_msg? ['id' => $qoute_msg->id , 'message' => $qoute_msg->message, 'file_path' => url('public/storage/'.$qoute_msg->file_path) , 'file_type' => $qoute_msg->file_type , 'extension' => $qoute_msg->extension] : null
             ]);
         }
         return $data;

@@ -42,8 +42,8 @@
 <header class="header d-lg-block d-none">
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{route('home')}}"><img
-                    src="{{$STORAGEASSET}}/{{(setting('site.logo'))}}"></a>
+            <?php $siteLogo = 'https://bizapp.ranglerztech.website/public/storage/settings/November2020/E0uP1eE694Dov6zjO3A2.png';?>
+            <a class="navbar-brand" href="{{route('home')}}"><img src="{{$siteLogo}}"></a>
             <div class="d-flex">
                 <img src="{{$ASSET}}/front_site/images/android-icon.png" class="mr-2 d-lg-none android-icon" data-toggle="tooltip" data-placement="bottom" title="Bizonair Mobile App - Launching Soon">
                 <div class="d-lg-none d-block position-static nav-item search-dropdown dropdown category-nav-Search mobile-search">
@@ -457,8 +457,9 @@
     <div class="w-100 d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
             <span class="open-nav">&#9776;</span>
-            <a class="navbar-brand" href="{{route('home')}}"><img
-                    src="{{$STORAGEASSET}}/{{(setting('site.logo'))}}" class="ml-2 navbar-logo" /></a>
+            <a class="navbar-brand" href="{{route('home')}}">
+                <img src="{{$siteLogo}}" class="ml-2 navbar-logo"/>
+            </a>
         </div>
         <div class="d-flex align-items-center">
             @if(auth()->check())
@@ -790,42 +791,53 @@
                 }
             });
         });
-        setInterval(function()
-        {
-            $.ajax({
-                type:"post",
-                url:"{{route('notification')}}",
-                data:{_token: "{{csrf_token()}}" , current_url: '{{url()->current()}}' },
-                dataType: 'Json',
-                success: function (data) {
-                    console.log(data);
-                    $(".notafic").text('');
-                    $("#notify").text(data.notify);
-                    $('#isdiplay').html(data.output);
-                    $("#meeti").text(data.meetnoti);
-                    $("#chati").text(data.chatnoti);
-                    $("#leadinq").text(data.leadinq);
-                    $("#dealinq").text(data.dealinq);
-                    if (data.notifiactions){
-                        @if(!(\Request::is('group-chat')))
-                        var content = '<div class="modal-content">'+
-                            '<div class="modal-header">'+
-                            '<span class="modal-title">Notification</span>'+
-                            '<input type="hidden" name="display" value="'+data.notifiactions.id+'"/>'+
-                            '<button  class="close is-display" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-                            '</div>'+
-                            '<div class="modal-body pt-3">'+
-                            '<p style="color: white;">'+data.notifiactions.notification_text+'</p>'+
-                            '<input  id="view-page" class="red-btn" attr-val="'+data.notifiactions.id+'" value="View">'+
-                            '</div>'+
-                            "</div>";
-                        $('#notific').modal('show');
-                        $(".notafic").append(content);
-                        @endif
+
+        if (!(location.href.match('/products/create') || location.href.match('/create/buy-sell') || location.href.match('/company-profile') || location.href.match('/my-company-profile/') || location.href.match('/edit/buy-sell/'))) {
+            setInterval(function()
+            {
+                $.ajax({
+                    type:"post",
+                    url:"{{route('notification')}}",
+                    data:{_token: "{{csrf_token()}}" , current_url: '{{url()->current()}}' },
+                    dataType: 'Json',
+                    success: function (data) {
+                        console.log(data);
+                        $(".notafic").text('');
+                        $("#notify").text(data.notify);
+                        $('#isdiplay').html(data.output);
+                        $("#meeti").text(data.meetnoti);
+                        $("#chati").text(data.chatnoti);
+                        $("#leadinq").text(data.leadinq);
+                        $("#dealinq").text(data.dealinq);
+                        $("#fleadinq").text(data.fleadinq);
+                        $("#fdealinq").text(data.fdealinq);
+                        if (data.notifiactions){
+                            @if(!(\Request::is('group-chat')))
+                            var content = '<div class="modal-content">'+
+                                '<div class="modal-header">'+
+                                '<span class="modal-title">Notification</span>'+
+                                '<input type="hidden" name="display" value="'+data.notifiactions.id+'"/>'+
+                                '<button type="button" class="close is-display" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+                                '</div>'+
+                                '<div class="modal-body pt-3">'+
+                                '<p style="color: white;">'+data.notifiactions.notification_text+'</p>'+
+                                '<input type="button" id="view-page" class="red-btn" attr-val="'+data.notifiactions.id+'" value="View">'+
+                                '</div>'+
+                                "</div>";
+                            $('#notific').modal('show');
+                            $(".notafic").append(content);
+                            @endif
+                        }
                     }
-                }
+                });
+            }, 2000);//time in milliseconds
+        }else{
+            $(".notifications-scroll").css("display", "none");
+            $(".biz-notifications").hover(function() {
+                $(this).addClass('disable-notify');
             });
-        }, 3000);//time in milliseconds
+            console.log('return false');
+        }
     </script>
 
 @endpush
