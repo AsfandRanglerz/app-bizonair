@@ -269,9 +269,9 @@
                             <li data-toggle="tooltip" data-placement="bottom" title="Your Favourite Deals">
                                 <a href="{{route('view-deal-favourites')}}" class="sidebar-links">Your Favourite Deals <span class="biz-badge blue-badge">{{ getBuysellFavCount() }}</span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="#" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
+                                <a href="{{route('buysell-inquiries')}}" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="#" class="sidebar-links">Deal Favorites <span class="biz-badge" id="fdealinq"></span></a></li>
+                                <a href="{{route('get-one-time-fav')}}" class="sidebar-links">Deal Favorites <span class="biz-badge" id="fdealinq"></span></a></li>
                         </ul>
                     </li>
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
@@ -353,7 +353,7 @@
                                     href="{{route('get-members')}}" class="sidebar-links">All Members <span class="biz-badge blue-badge">{{getCompanyMembersCount(session()->get('company_id')) }}</span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="View All Meetings"><a
                                     href="{{route('company-get-meetings')}}" class="sidebar-links">All Meetings <span class="biz-badge" id="meeti"></span></a></li>
-                            <li data-toggle="tooltip" data-placement="bottom" title="Communicate With The Members"><a href="#" class="sidebar-links">Chat <span class="biz-badge" id="chati"></span></a></li>
+                            <li data-toggle="tooltip" data-placement="bottom" title="Communicate With The Members"><a href="{{route('company-group-chat')}}" class="sidebar-links">Chat <span class="biz-badge" id="chati"></span></a></li>
                         </ul>
                     </li>
 
@@ -369,14 +369,14 @@
                                 <a href="{{url('/products?case=archive')}}" class="sidebar-links">Archived Leads</a></li>
 
                             <li data-toggle="tooltip" data-placement="bottom" title="Your Favourite Leads">
-                                <a href="{{route('view-lead-favourites')}}" class="sidebar-links">Your Favourite Leads <span class="biz-badge blue-badge">{{ getProductFavCount(session()->get('company_id')) }}</a></li>
+                                <a href="{{route('view-lead-favourites')}}" class="sidebar-links">Your Favourite Leads <span class="biz-badge blue-badge">{{ getProductFavCount(session()->get('company_id')) }}</span></a></li>
                             <?php $company = \App\UserCompany::where('user_id',\Auth::id())->where('company_id',session()->get('company_id'))->first();?>
                             @if($company)
                                 <li data-toggle="tooltip" data-placement="bottom" title="Lead Inquiries">
-                                    <a href="#" class="sidebar-links">Lead Inquiries <span class="biz-badge" id="leadinq"></span></a></li>
+                                    <a href="{{route('product-inquiries')}}" class="sidebar-links">Lead Inquiries <span class="biz-badge" id="leadinq"></span></a></li>
                             @endif
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="#" class="sidebar-links">Lead Favorites <span class="biz-badge" id="fleadinq"></span></a></li>
+                                <a href="{{route('get-lead-fav')}}" class="sidebar-links">Lead Favorites <span class="biz-badge" id="fleadinq"></span></a></li>
                         </ul>
                     </li>
 
@@ -395,9 +395,9 @@
                             <li data-toggle="tooltip" data-placement="bottom" title="Your Favourite Deals">
                                 <a href="{{route('view-deal-favourites')}}" class="sidebar-links">Your Favourite Deals <span class="biz-badge blue-badge">{{ getBuysellFavCount() }}</span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="#" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
+                                <a href="{{route('buysell-inquiries')}}" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="#" class="sidebar-links">Deal Favorites <span class="biz-badge" id="fdealinq"></span></a></li>
+                                <a href="{{route('get-one-time-fav')}}" class="sidebar-links">Deal Favorites <span class="biz-badge" id="fdealinq"></span></a></li>
                         </ul>
                     </li>
 
@@ -433,6 +433,15 @@
 
                         </ul>
                     </li>
+                    <?php $user_company = \App\UserCompany::where('company_id',session()->get('company_id'))->where('user_id',\Auth::id())->first();?>
+                    @if($user_company)
+                        @if($user_company->is_owner != 1)
+                            @if($user_company->is_admin == 1 || $user_company->is_member == 1)
+                                <li class="position-relative  leave-btn" data-toggle="tooltip" data-placement="bottom" title="leave office" user_id="{{$user_company->user_id}}" company_id="{{$user_company->company_id}}">
+                                    <img class="dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/basics-vol-2/354/out_exit_comeout_goout_getout_dropout_moveout-512.png"><a href="javascript:;" class="sidebar-links">leave office</a></li>
+                            @endif
+                        @endif
+                    @endif
                     <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2" src="https://cdn1.iconfinder.com/data/icons/communication-set-1-1/100/Untitled-1-18-512.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
                     </li>
                     <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/basics-vol-2/354/out_exit_comeout_goout_getout_dropout_moveout-512.png"><a href="{{url('logout')}}" class="sidebar-links"> Sign Out</a>
@@ -615,6 +624,115 @@
                 return false;
             }
         });
+        $(document).on('click', '.leave-btn', function () {
+            btn = $(this);
+            var user_id = $(this).attr("user_id");
+            var company_id = $(this).attr("company_id");
+            swal({
+                title: "Are you sure that you want to leave?",
+                // text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $("#ajax-preloader").show();
+                        $.post("{{ route('company-leave-office') }}", {
+                            _token: '{{ csrf_token() }}',
+                            user_id: user_id,
+                            company_id: company_id,
+                            json: 'yes'
+                        }, function (data) {
+                            // document.getElementById("wait").style.display = "none";
+                            $("#ajax-preloader").hide();
+                            response = $.parseJSON(data);
+                            if (response.feedback == 'encrypt_issue') {
+                                toastr.error(response.msg, 'Error');
+                                $('#alert-error').html('response.msg')
+                                $('#alert-error').show().fadeOut(2500);
+                            } else if (response.feedback == 'true') {
+                                toastr.success(response.msg, 'Success');
+                                // $('#alert-success').html(response.msg)
+                                // $('#alert-success').show().fadeOut(2500);
+                                setTimeout(() => {
+                                    window.location.href = response.url
+                                }, 3000);
+                            } else {
+                                // toastr.error('Something went Wrong', 'Error');
+                                $('#alert-error').html('Something went Wrong')
+                                $('#alert-error').show().fadeOut(2500);
+                            }
+                        });
+                    }
+                });
+        });
+
+        $(document).on('change', '#avatar', function () {
+            var name = document.getElementById("avatar").files[0].name;
+            var form_data = new FormData();
+            var ext = name.split('.').pop().toLowerCase();
+            if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg','jfif']) == -1) {
+                alert("Invalid Image File");
+            }
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(document.getElementById("avatar").files[0]);
+            var f = document.getElementById("avatar").files[0];
+            var fsize = f.size || f.fileSize;
+            if (fsize > 2000000) {
+                alert("Image File Size is very big");
+            } else {
+                form_data.append("avatar", document.getElementById('avatar').files[0]);
+                $.ajax({
+                    url: "{{route('upload-user-avatar')}}",
+                    method: "POST",
+                    data: form_data,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    beforeSend: function () {
+                        $('#uploaded_image').html("<label class='text-success'>Image Uploading...</label>");
+                    },
+                    success: function (data) {
+                        $('#uploaded_image').html(data);
+                    }
+                });
+            }
+        });
+
+        @if(!Request::is('my-company-profile/'.Session::get('company_id')))
+        $(document).delegate('#compani_id', 'change', function(e) {
+            e.preventDefault();
+            var company_id=$(this).val();
+            var token='{{csrf_token()}}';
+            $.ajax({
+                type:'POST',
+                url: '{{ url('/ajax-company-id-get') }}',
+                data:{company_id:company_id,_token:token},
+                cache: false,
+                success: function(data) {
+
+                    window.location = window.location.href;
+                }
+            });
+        });
+        @else
+        $(document).delegate('#compani_id', 'change', function(e) {
+            e.preventDefault();
+            var company_id=$(this).val();
+            var token='{{csrf_token()}}';
+            $.ajax({
+                type:'POST',
+                url: '{{ url('/ajax-company-id-get') }}',
+                data:{company_id:company_id,_token:token},
+                cache: false,
+                dataType: 'json',
+                success: function(data) {
+                    window.location.href = data.url;
+                }
+            });
+        });
+        @endif
 
         var validator = $("form[name='pchanged']").validate({
             onfocusout: function (element) {
