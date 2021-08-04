@@ -103,13 +103,7 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 col-md-4 order-md-2 order-1 my-md-0 text-md-left text-center">
-                                        @if(\Auth::user()->gender == "Male" && get_user_image(Auth::user()) == Null)
-                                            <img class="object-cover rounded-circle header-profile-pic" src="http://localhost/bizonair/public/assets/front_site/images/male-avature.png" width="135" height="135">
-                                        @elseif(\Auth::user()->gender == "Female" && get_user_image(Auth::user()) == Null)
-                                            <img class="object-cover rounded-circle header-profile-pic" src="http://localhost/bizonair/public/assets/front_site/images/female-avature.png" width="135" height="135">
-                                        @else
-                                        <img class="object-cover rounded-circle header-profile-pic" src="{{ get_user_image(Auth::user()) }}" width="105" height="105">
-                                    @endif
+                                        <img class="object-cover rounded-circle header-profile-pic" src="{{ get_user_image(Auth::user()) }}" width="135" height="135">
                                     </div>
                                 </div>
                                 <div class="my-1">
@@ -230,7 +224,7 @@
                                         <div class="form-group col-md-6 mb-1">
                                             <select id="designation" name='designation'
                                                     class="form-control choose-country">
-                                                <option value="" selected>--- Select Designation (Optional) ---</option>
+                                                <option selected disabled>--- Select Designation (Optional) ---</option>
                                                 <option value="Director"
                                                         @if($user->designation == "Director") selected @endif >Director
                                                 </option>
@@ -470,13 +464,13 @@
                         required: true,
                         email: true
                     },
+                    country: {
+                        required: true
+                    },
                     city: {
                         required: true
                     },
                     state: {
-                        required: true
-                    },
-                    countries: {
                         required: true
                     },
                     gender: {
@@ -495,7 +489,10 @@
                 messages: {
                     first_name: "Please enter your firstname",
                     last_name: "Please enter your lastname",
-                    email: "Please enter a valid email address"
+                    email: "Please enter a valid email address",
+                    country: "Please select country",
+                    city: "Please select city",
+                    state: "Please select state",
                 },
                 errorClass: 'is-invalid error',
                 validClass: 'is-valid',
@@ -581,16 +578,6 @@
 
     <script>
         $(document).ready(function() {
-            /*for single select*/
-            $('select[name="state"]').select2({
-                placeholder: "Select a State"
-            });
-
-            $('select[name="city"]').select2({
-                placeholder: "Select a City"
-            });
-            /*for single select*/
-
             $('#country_id').on('change', function() {
                 var country_id = this.value;
                 $("#state").html('');

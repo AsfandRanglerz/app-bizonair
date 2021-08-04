@@ -199,9 +199,7 @@
                         <li class="nav-item dropdown profile-icon-main">
                             <a class="p-0 nav-link" href="#" role="button" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="true">
-                                <img
-                                    src="{{ get_user_image(Auth::user()) }}"
-                                    width="45" height="45" alt="logo" class="rounded-circle header-profile-pic">
+                                <img src="{{ get_user_image(Auth::user()) }}" width="45" height="45" alt="logo" class="rounded-circle header-profile-pic">
                             </a>
                             <div class="dropdown-menu animated-dropdown slideIn profile-icon-dropdown"
                                  aria-labelledby="navbarDropdownMenuLink">
@@ -233,7 +231,13 @@
         <div class="p-2 d-flex justify-content-between align-items-center login-cross-btns">
             @if(\Auth::user())
                 <div class="d-flex">
-                    <img class="rounded-circle" src="{{ get_user_image(Auth::user()) }}" width="50" height="50">
+                    <div class="avatar-wrapper" style="width: 50px;height: 50px;">
+                        <img class="profile-pic" id="uploaded_image" src="{{ get_user_image(Auth::user()) }}"/>
+                        <div class="upload-button">
+                            <span class="fa fa-plus"></span>
+                        </div>
+                        <input class="file-upload" name="avatar" id="avatar" type="file" accept="image/*"/>
+                    </div>
                     <div class="ml-3">
                         <p class="mb-0 biz-user">{{ auth()->user()->name }}</p>
                         <p class="mb-0 biz-country">{{ auth()->user()->country }}</p>
@@ -473,7 +477,7 @@
         <div class="d-flex align-items-center">
             @if(auth()->check())
                 <div class="mr-3 d-flex align-items-center header-profile-info">
-                    <img class="rounded-circle header-user-profile-pic" src="{{ get_user_image(Auth::user()) }}">
+                    <img src="{{ get_user_image(Auth::user()) }}" width="45" height="45" alt="logo" class="rounded-circle header-profile-pic">
                     <div class="ml-2">
                         <p class="mb-0 text-white biz-user overflow-text-dots-one-line">{{auth()->user()->name}}</p>
                     </div>

@@ -17,12 +17,12 @@
                             class="heading biz-product-heading">One-Time Deals {{ ($request->case && $request->case == 'archive') ? ' - Archived' : '' }}</span>
                         @if($request->case && $request->case == 'archive')
                             <div>
-                                <a href="{{ route('buy-sell.index') }}" class="red-btn">Active Deals</a>
+                                <a href="{{ route('buy-sell.index') }}" class="blue-btn">Active Deals</a>
                             </div>
                         @else
                             <div class="mt-0 mb-2 text-sm-left text-center">
                                 <a href="{{ route('buy-sell.create') }}" class="red-btn">Add A New Deal</a>
-                                <a href="{{ route('buy-sell.index') }}?case=archive" class="red-btn">Archived Deals</a>
+                                <a href="{{ route('buy-sell.index') }}?case=archive" class="blue-btn">Archived Deals</a>
                             </div>
                         @endif
                     </div>
@@ -50,7 +50,7 @@
                                 <th class="p2">Favourites</th>
                                 <th class="p2">Origin</th>
                                 @if(!($request->case && $request->case == 'archive'))
-                                <th class="p2">Ad Expiry</th>
+                                    <th class="p2">Ad Expiry</th>
                                 @endif
                                 <th class="p2">Created At</th>
                                 <th class="p2">Updated By</th>
@@ -66,16 +66,21 @@
                                         <td>{{ $buysell->product_service_types }}</td>
                                         <td>{{ $buysell->reference_no }}</td>
                                         @if(!($request->case && $request->case == 'archive'))
-                                        <td>  <a href="{{ route('buysellDetail',['category'=>get_category_slug($buysell->category_id),'subcategory'=>get_sub_category_slug($buysell->subcategory_id),'prod_slug'=>$buysell->slug]) }}">
-                                               {{ $buysell->product_service_name }}</a></td>
-                                       @endif
+                                            @if($buysell->product_service_types == 'Service')
+                                                <td>  <a href="{{ route('serviceDetail',['category'=>get_category_slug($buysell->category_id),'subcategory'=>get_sub_category_slug($buysell->subcategory_id),'prod_slug'=>$buysell->slug]) }}">
+                                                        {{ $buysell->product_service_name }}</a></td>
+                                            @else
+                                                <td>  <a href="{{ route('buysellDetail',['category'=>get_category_slug($buysell->category_id),'subcategory'=>get_sub_category_slug($buysell->subcategory_id),'prod_slug'=>$buysell->slug]) }}">
+                                                        {{ $buysell->product_service_name }}</a></td>
+                                            @endif
+                                        @endif
                                         <td>{{ $buysell->subject }}</td>
                                         <td>{{ $buysell->category->name }}</td>
                                         <td><a href="{{ route('buy-sell.edit', $buysell->id) }}">
                                                 @foreach(App\Helpers\BuysellHelper::getImages($buysell->id) as $i => $image)
                                                     @if(!empty($image))
                                                         <span>
-                                                    <img src="{{$ASSETS}}/{{$image->image}}" style="width: 70px;height: 70px;">
+                                                    <img src="{{$image->image}}" style="width: 70px;height: 70px;">
                                                 </span>
                                                         @if($i==0)
                                                             @break
@@ -107,40 +112,40 @@
                                             @endif
                                         </td>
                                         <td align="center">
-{{--                                            <input type="hidden" name='id' value="{{encrypt($buysell->id)}}">--}}
-{{--                                            <button  class="dropdown-toggle prWhiteBtn p-0"--}}
-{{--                                                    data-toggle="dropdown">--}}
-{{--                                                <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">--}}
-{{--                                            </button>--}}
-{{--                                            <input type="hidden" name='url' value="{{ route('buy-sell.destroy', $buysell->id) }}">--}}
-{{--                                            <ul class="dropdown-menu actionMenu p-10" role="menu">--}}
-{{--                                                <a href="{{ route('buy-sell.edit', $buysell->id) }}">--}}
-{{--                                                    <li class="font-500">--}}
-{{--                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View--}}
-{{--                                                    </li>--}}
-{{--                                                </a>--}}
-{{--                                                @if($request->case && $request->case == 'archive')--}}
-{{--                                                    <a href="javascript:;" class="restore-buysell" onclick="return false;">--}}
-{{--                                                        <li class="font-500">--}}
-{{--                                                        <span class="fa fa-undo delete-btn mr-3"--}}
-{{--                                                              aria-hidden="true"></span>Restore--}}
-{{--                                                        </li>--}}
-{{--                                                    </a>--}}
-{{--                                                    <a href="javascript:;" class="delete-buysell" onclick="return false;">--}}
-{{--                                                        <li class="font-500">--}}
-{{--                                                        <span class="fa fa-trash delete-btn mr-3"--}}
-{{--                                                              aria-hidden="true"></span>Permanent Delete--}}
-{{--                                                        </li>--}}
-{{--                                                    </a>--}}
-{{--                                                @else--}}
-{{--                                                    <a href="javascript:;" class="delete-buysell" onclick="return false;">--}}
-{{--                                                        <li class="font-500">--}}
-{{--                                                        <span class="fa fa-trash delete-btn mr-3"--}}
-{{--                                                              aria-hidden="true"></span>Archive--}}
-{{--                                                        </li>--}}
-{{--                                                    </a>--}}
-{{--                                                @endif--}}
-{{--                                            </ul>--}}
+                                            <input type="hidden" name='id' value="{{encrypt($buysell->id)}}">
+                                            <button  class="dropdown-toggle prWhiteBtn p-0"
+                                                     data-toggle="dropdown">
+                                                <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
+                                            </button>
+                                            <input type="hidden" name='url' value="{{ route('buy-sell.destroy', $buysell->id) }}">
+                                            <ul class="dropdown-menu actionMenu p-10" role="menu">
+                                                <a href="{{ route('buy-sell.edit', $buysell->id) }}">
+                                                    <li class="font-500">
+                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View
+                                                    </li>
+                                                </a>
+                                                @if($request->case && $request->case == 'archive')
+                                                    <a href="javascript:;" class="restore-buysell">
+                                                        <li class="font-500">
+                                                        <span class="fa fa-undo delete-btn mr-3"
+                                                              aria-hidden="true"></span>Restore
+                                                        </li>
+                                                    </a>
+                                                    <a href="javascript:;" class="delete-buysell">
+                                                        <li class="font-500">
+                                                        <span class="fa fa-trash delete-btn mr-3"
+                                                              aria-hidden="true"></span>Permanent Delete
+                                                        </li>
+                                                    </a>
+                                                @else
+                                                    <a href="javascript:;" class="delete-buysell">
+                                                        <li class="font-500">
+                                                        <span class="fa fa-trash delete-btn mr-3"
+                                                              aria-hidden="true"></span>Archive
+                                                        </li>
+                                                    </a>
+                                                @endif
+                                            </ul>
                                         </td>
                                         <?php $prod = \App\View::where('buysell_id',$buysell->id)->count(); ?>
                                         <td>{{ $prod }}</td>
@@ -148,9 +153,9 @@
 
                                         <td>{{$buysell->origin}}</td>
                                         @if(!($request->case && $request->case == 'archive'))
-                                        <td>@if(checkExpiryBuysell($buysell->id) == 'Expired')<span style="color: red">{{checkExpiryBuysell($buysell->id)}}</span> <button  class="btn red-btn" id="expirebtn" prod_id="{{$buysell->id}}">Repost</button> @else {{checkExpiryBuysell($buysell->id)}} @endif</td>
+                                            <td>@if(checkExpiryBuysell($buysell->id) == 'Expired')<span style="color: red">{{checkExpiryBuysell($buysell->id)}}</span> <button  class="btn btn-success" id="expirebtn" prod_id="{{$buysell->id}}">Repost</button> @else {{checkExpiryBuysell($buysell->id)}} @endif</td>
                                         @endif
-                                            <td> {!! $buysell->created_at !!}</td>
+                                        <td> {!! $buysell->created_at !!}</td>
                                         <td>{{ getUserNameById($buysell->updatedBy) }}</td>
                                     </tr>
                                 @endforeach

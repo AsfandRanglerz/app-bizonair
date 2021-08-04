@@ -531,7 +531,7 @@ class CompanyController extends Controller
 
 //        dd(request('email'));
         $rules = [
-            'password' => 'required|min:8', 'confirm_password' => 'required|same:password', 'country_id' => 'required',
+            'password' => 'required|min:8', 'confirm_password' => 'required|same:password',
             // 'user_type' => 'required',
             // 'company_name' => 'required',
             // 'designation' => 'required',
@@ -542,7 +542,7 @@ class CompanyController extends Controller
         $messages = [
             'password.required' => 'Password is required', 'password.min' => 'Minimum 8 characters required',
             'confirm_password.required' => 'Please re-enter password',
-            'confirm_password.same' => 'Password did not matched', 'country_id.required' => 'Please select country',
+            'confirm_password.same' => 'Password did not matched',
             // 'designation.required' => 'Please select your designation',
             // 'user_type.required' => 'Please select user type',
             'first_name.required' => 'First name is required', 'last_name.required' => 'Last name is required',

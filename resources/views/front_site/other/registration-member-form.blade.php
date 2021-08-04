@@ -71,6 +71,7 @@
                                             <input type="hidden" name="reciever" value="{{$reciever_mail}}"
                                                    id="reciever">
                                             <input type="hidden" name="email" value="{{$email}}">
+                                            <input type="hidden" name="registeration_member_company_id" value="{{\session()->get('company_id')}}">
                                             <input type="email" value="{{$email}}" class="form-control"
                                                    placeholder="example@email.com" disabled="disabled">
                                             <small class="text-danger" id="email_error"></small>
@@ -141,22 +142,6 @@
 
                                     </div>
 
-                                    <div class="form-row">
-                                        <h6 class="w-100">Enter your business information</h6>
-                                        <div class="form-group col-sm-12">
-                                            <label>Country Region <span class="required">*</span></label>
-                                            <select name="country_id" class="form-control choose-country">
-                                                <option disabled="" selected="">--Country Region--</option>
-                                                @foreach ($countries as $country)
-                                                    <option value="{{$country->id}}"
-                                                            countrycode="{{$country->country_code}}">{{$country->country_name}}</option>
-                                                @endforeach
-                                            </select>
-                                            <small class="text-danger" id="country_id_error"></small>
-                                        </div>
-
-                                    </div>
-
 
                                     {{--                                    <div class="form-row">--}}
                                     {{--                                        <div class="form-group col-md-12">--}}
@@ -189,7 +174,7 @@
                                             <label for="mobileNumber">Enter your phone number: <span
                                                     class="required">*</span></label>
                                             <!-- <input type="tel" class="form-control" id="phone" name="registration_phone_no" > -->
-                                            <input type="tel" name="registration_phone_no" class="form-control"
+                                            <input type="number" name="registration_phone_no" class="form-control"
                                                    id="mobileNumber" placeholder="03xxxxxxxxx/3xxxxxxxxx">
                                             {{--                                            <span id="error-msg" class="text-danger hide">Please enter valid mobile number</span>--}}
                                             <small class="text-danger d-block" id="registration_phone_no_error"></small>
@@ -202,23 +187,6 @@
                                         </div>
                                     </div>
                                     <div class="form-row mt-3">
-{{--                                        <div class="form-group check-stats col-sm-12">--}}
-
-{{--                                            <ul data-toggle="buttons">--}}
-{{--                                                <li class="w-100 btn d-flex" id="termsCheckbox">--}}
-{{--                                                    <input class="input fa fa-square-o" type="checkbox"--}}
-{{--                                                           id="termsCheckboxinput">--}}
-{{--                                                    <div id="termsCheckboxdiv">--}}
-{{--                                                        I Agree to the <a href="#" class="text-link">Terms of--}}
-{{--                                                            Services</a> and <a href="#" class="text-link">Privacy--}}
-{{--                                                            Policy</a>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            </ul>--}}
-
-{{--                                            --}}
-
-{{--                                        </div>--}}
                                         <div class="form-group check-stats">
                                             <div class="custom-control custom-checkbox d-flex flex-column-reverse">
                                                 <input type="checkbox" class="custom-control-input" name="termsCheckbox" id="termsCheckboxinput">
@@ -229,7 +197,7 @@
 
                                     <div class="form-row mt-3">
                                         <div class="form-group col-sm-12" align="center">
-                                            <button type="submit" id="accoutn_btn" disabled class="create-btn">
+                                            <button type="submit" id="accoutn_btn" class="create-btn">
                                                 Create My Account
                                             </button>
                                             <button  disabled class="btn-pro d-none create-btn"><span
@@ -320,9 +288,6 @@
                         var $element = $(element);
                         $element.valid();
                     },
-                    country_id: {
-                        required: true
-                    },
                     company_name: {
                         required: true
                     },
@@ -330,10 +295,9 @@
                         required: true,
                         minlength: 8
                     },
-                    // confirm_password: {
-                    //     required: true,
-                    //     equalTo: '#password'
-                    // },
+                    confirm_password: {
+                        required: true,
+                    },
                     birthday: {
                         required: true
                     }
@@ -345,9 +309,9 @@
                         required: "Please provide a password",
                         minlength: "Your password must be at least 8 characters long"
                     },
-                    // confirm_password: {
-                    //     equalTo: "Password does not match"
-                    // },
+                    confirm_password: {
+                        required: "Confirm password required",
+                    },
                     email: "Please enter a valid email address",
                     birthday: "Please enter complete birthday"
                 },

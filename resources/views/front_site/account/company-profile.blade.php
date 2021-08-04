@@ -8,24 +8,25 @@
             @include('front_site.common.dashboard-toggle')
             <div id="page-content-wrapper">
 
-                <div class="d-container py-2">
+                <div class="  d-container py-2">
                     <div class="company-profile">
-                        <div>
-                            <div class="alert alert-success m-0 mb-0 text-center" id='alert-success' style="display:none;"
+                        <div class="container">
+                            <div class="alert alert-success m-0 mb-2 text-center" id='alert-success' style="display:none;"
                                  role="alert">
                             </div>
                             <div class="alert alert-danger g m-0 mb-2 text-center" id='alert-error' style="display:none;"
                                  role="alert">
                             </div>
-                            <span class="d-block text-center mb-0 heading main-heading font-24">Company Profile</span>
+                            <span class="d-block text-center heading main-heading font-24">Company Profile</span>
                             <form id="companyForm" name="companyForm" autocomplete="off" action="{{route('company-profile-create')}}"
                                   method="post" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="office_code" value="{{ rand(2000, 1900000) }}">
-                                <span class="d-block mt-0 mb-2 heading basic-info">Basic Info</span>
+                                <span class="d-block heading font-18 basic-info">Basic Info</span>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <input type="text" class="form-control is-valid" id="companyName" name="company_name" placeholder="Company Name - My Textile" required>
+                                        <label for="companyName" class="label">Company Name <span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="companyName" name="company_name" placeholder="My Textile" required>
                                         <small class="text-danger" id="company_name_error"></small>
                                     </div>
                                 <!-- <div class="form-group col-md-6">
@@ -40,6 +41,8 @@
                                     <small class="text-danger" id="industry_error"></small>
                                 </div> -->
                                     <div class="form-group col-md-6">
+                                        <label for="industry" class="label d-block">Business Category <span
+                                                class="required">*</span></label>
                                         <select class="form-control select2-multiple1" required id="industry" name="industry[]"
                                                 multiple>
                                             @foreach (\App\Category::all() as $item)
@@ -51,23 +54,27 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 business-select">
+                                        <label class="label d-block">Business Type <span class="required">*</span></label>
                                         <select class="form-control select2-multiple2" required name="business_type[]"
                                                 multiple="multiple">
                                             <option value="Manufacturer">Manufacturer</option>
                                             <option value="Trading Company">Trading Company</option>
-                                            <option value="Supplier Data">Supplier Data</option>
+                                            <option value="Supplier">Supplier</option>
                                             <option value="Agent">Agent</option>
                                             <option value="Other" id="others">Other</option>
                                         </select>
                                         <small class="text-danger" id="business_type_error"></small>
                                     </div>
                                     <div class="form-group col-md-6 other-div">
-                                        <input type="text" name="other_business_type" placeholder="Add Business Type - Input Other Business Type"
+                                        <h6 class="w-100 p-0">Add Business Type <span class="required">*</span></h6>
+                                        <input type="text" name="other_business_type" placeholder="Input Other Business Type"
                                                class="form-control">
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <label class="label d-block">Nature of Business <small
+                                                class="font-500">(Optional)</small></label>
                                         <select class="form-control" name="business_nature">
-                                            <option value="" selected disabled>Select Nature of Business (Optional)</option>
+                                            <option value="" selected disabled>Select Nature of Business</option>
                                             <option value="Proprietorship">Proprietorship</option>
                                             <option value="Limited">Limited</option>
                                             <option value="Company">Company</option>
@@ -80,25 +87,32 @@
                                         <small class="text-danger" id="business_nature_error"></small>
                                     </div>
                                     <div class="form-group col-md-6 other-nature-div" style="display: none;">
-                                        <input type="text" name="other_business_nature" placeholder="Add Nature of Business - Input Other Nature of Business"
+                                        <h6 class="w-100 p-0">Add Nature of Business <span class="required">*</span></h6>
+                                        <input type="text" name="other_business_nature" placeholder="Input Other Nature of Business"
                                                class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
+                                        <label for="registeration_no" class="label">Business License Number/Registration Number <small
+                                                class="font-500">(Optional)</small></label>
                                         <input type="text" class="form-control" id="registeration_no" name="registeration_no"
-                                               placeholder="Business License No/Registration No (Optional) - Input Registration Number (if any)">
+                                               placeholder="Input Registration Number (if any)">
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <label for="year_established" class="label">Year Established <small class="font-500">(Optional)</small></label>
                                         <input type="text" class="form-control" id="year_established" name="year_established"
-                                               placeholder="Year Established (Optional) - Input the Year Company was Established">
+                                               placeholder="Input the Year Company was Established">
                                         <small class="text-danger" id="year_established_error"></small>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
+                                        <label for="no_of_employees" class="label">Number of Employees <small class="font-500">(Optional)</small></label>
+                                        {{--                            <input type="number" class="form-control" name="no_of_employees" id="no_of_employees"--}}
+                                        {{--                                   placeholder="Input total number of Employees">--}}
                                         <select class="form-control" name="no_of_employees" id="no_of_employees">
-                                            <option value="" selected disabled>Number of Employees (Optional) - Input total number of Employees</option>
+                                            <option value="" selected disabled>Input total number of Employees</option>
                                             <option value="0-10">0-10</option>
                                             <option value="Fewer than 50">Fewer than 50</option>
                                             <option value="Fewer than 100">Fewer than 100</option>
@@ -107,16 +121,19 @@
                                         <small class="text-danger" id="no_of_employees_error"></small>
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <label class="label">Annual Turnover <small class="font-500">(Optional)</small></label>
                                         <input type="text" class="form-control"
                                                name="annual_turnover"
                                                id="annual_turnover"
                                                pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
-                                               data-type="currency" placeholder="Annual Turnover (Optional) - Input total turnover in Dollars i.e. $1,000,000">
+                                               data-type="currency" placeholder="Input total turnover in Dollars i.e. $1,000,000">
                                         <small class="text-danger" id="annual_turnover_error"></small>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
+                                        <label class="label d-block">Export Market <small
+                                                class="font-500">(Optional)</small></label>
                                         <select class="form-control select2-multiple3" name="export_market[]"
                                                 multiple="multiple">
                                             <option value="Africa">Africa</option>
@@ -137,6 +154,8 @@
                                         <small class="text-danger" id="export_market_error"></small>
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <label class="label d-block">Certifications <small
+                                                class="font-500">(Optional)</small></label>
                                         <select class="form-control select2-multiple4" name="certifications[]"
                                                 multiple="multiple">
                                             <option value="BCI">BCI</option>
@@ -159,59 +178,368 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <span class="d-block mb-2 heading">LOGO Image <small class="font-500">(Optional | JPG or PNG file only | Upto
-                                                            10MB | Square image recommended)</small></span>
+                                    <span class="d-block mb-3 heading">LOGO Image <small class="font-500">(Optional | JPG or PNG file only | Upto
+                                                            10MB (Dimension: 65 x 65 Pixels) | Square image recommended)</small></span>
                                     <div class="avatar-wrapper">
-                                        <img class="profile-pic" src="{{$ASSET}}/front_site/images/dashboard-logo.jpg"/>
-                                        <div class="upload-button">
+                                        <img class="product-pic" id="buploaded_image31" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                        <div class="product-upload-button">
                                             <span class="fa fa-plus"></span>
                                         </div>
-                                        <input class="file-upload" type="file" name="logo_image" accept="image/*"/>
+                                        <input class="product-file-upload" name="bavatar31" id="bavatar31" type="file" accept="image/*"/>
+                                        <input name="bavatar31_url" type="hidden" value="" id="bavatar31_url" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <span class="d-block mb-2 heading">Company Images <small
-                                            class="font-500">(Optional | JPG & PNG files only | Upto 10MB)</small></span>
-                                    <div class="dropzone dz-clickable" id="myDrop">
-                                        <div class="dz-default dz-message" data-dz-message="">
-                                        <span class="fileinput-button">
-                                            <span class="fa fa-upload pr-2"></span>
-                                            Drop files here to upload
-                                        </span>
+                                    <span class="d-block mb-3 heading">Company Images <small
+                                            class="font-500">(Optional | JPG, PNG, Word, Excel & PDF files only | Upto 10MB)</small></span>
+                                    <div class="dropzone dz-clickable">
+                                        <div class="my-0 dz-default dz-message" data-dz-message="">
+                                            <div class="row product-img-sheet">
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image16"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet16"
+                                                               id="sheet16" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet16_url" type="hidden" value=""
+                                                               id="sheet16_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image17"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet17"
+                                                               id="sheet17" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet17_url" type="hidden" value=""
+                                                               id="sheet17_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image18"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet18"
+                                                               id="sheet18" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet18_url" type="hidden" value=""
+                                                               id="sheet18_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image19"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet19"
+                                                               id="sheet19" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet19_url" type="hidden" value=""
+                                                               id="sheet19_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image20"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet20"
+                                                               id="sheet20" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet20_url" type="hidden" value=""
+                                                               id="sheet20_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image21"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet21"
+                                                               id="sheet21" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet21_url" type="hidden" value=""
+                                                               id="sheet21_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image22"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet22"
+                                                               id="sheet22" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet22_url" type="hidden" value=""
+                                                               id="sheet22_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image23"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet23"
+                                                               id="sheet23" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet23_url" type="hidden" value=""
+                                                               id="sheet23_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image24"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet24"
+                                                               id="sheet24" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet24_url" type="hidden" value=""
+                                                               id="sheet24_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image25"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet25"
+                                                               id="sheet25" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet25_url" type="hidden" value=""
+                                                               id="sheet25_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image26"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet26"
+                                                               id="sheet26" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet26_url" type="hidden" value=""
+                                                               id="sheet26_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image27"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet27"
+                                                               id="sheet27" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet27_url" type="hidden" value=""
+                                                               id="sheet27_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image28"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet28"
+                                                               id="sheet28" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet28_url" type="hidden" value=""
+                                                               id="sheet28_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image29"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet29"
+                                                               id="sheet29" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet29_url" type="hidden" value=""
+                                                               id="sheet29_url"/>
+                                                    </div>
+                                                </div>
+                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="w-100 avatar-wrapper">
+                                                        <img class="product-pic" id="uploaded_image30"
+                                                             src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                        <span class="position-absolute del-btn fa fa-trash"></span>
+                                                        <div class="product-upload-button">
+                                                            <span class="fa fa-plus"></span>
+                                                            <div
+                                                                class="spinner-border text-danger loader-spinner d-none"
+                                                                role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                        <input class="product-file-upload" name="sheet30"
+                                                               id="sheet30" type="file"
+                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                        <input name="sheet30_url" type="hidden" value=""
+                                                               id="sheet30_url"/>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="label">Company Introduction <span class="required">*</span></label>
                                     <textarea class="form-control" name="company_introduction" maxlength="1200"
-                                              placeholder="Company Introduction - Introduce your company in 1200 characters"
+                                              placeholder="Introduce your company in 1200 characters"
                                               id="company_introduction"
                                               rows="5" required></textarea>
                                     <small class="text-danger" id="company_introduction_error"></small>
                                     <span class="text-danger"><span id="company_introduction_count">0</span>/1200</span>
                                 </div>
-                                <span class="d-block heading additional-info">Additional Business Info</span>
+                                <span class="d-block heading font-18 additional-info">Additional Business Info</span>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <input type="text" class="form-control" placeholder="Business Owner (Optional) - Input Business Owner Name"
+                                        <label class="label" for="business_owner">Business Owner <small
+                                                class="font-500">(Optional)</small></label>
+                                        <input type="text" class="form-control" placeholder="Input Business Owner Name"
                                                name="business_owner" id="business_owner">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="tel" class="form-control mobileNum inteltel"
+                                        <label for="alternate_contact" class="label">Alternate Contact Number <small
+                                                class="font-500">(Optional)</small></label>
+                                        <input type="number" class="form-control mobileNum inteltel"
                                                name="alternate_contact"
-                                               id="alternate_contact" placeholder="Alternate Contact No (Optional) - 03xxxxxxxxx/3xxxxxxxxx">
+                                               id="alternate_contact" placeholder="03xxxxxxxxx/3xxxxxxxxx">
                                         <input type="hidden" name="alternate_contact_country_code">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
+                                        <label class="label" for="alternate_email">Alternate Email <small
+                                                class="font-500">(Optional)</small></label>
                                         <input type="email" class="form-control" name="alternate_email"
                                                id="alternate_email"
-                                               placeholder="Alternate Email (Optional) - Input alternate Email Address">
+                                               placeholder="Input alternate Email Address">
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <label class="label" for="alternate_address">Alternate Office Address <small
+                                                class="font-500">(Optional)</small></label>
                                         <input type="text" class="form-control" name="alternate_address"
                                                id="alternate_address"
-                                               placeholder="Alternate Office Address (Optional) - Input Current Office Address">
+                                               placeholder="Input Current Office Address">
                                     </div>
                                 </div>
                                 <button type="submit" class="red-btn">Submit</button>
@@ -226,9 +554,13 @@
 
 @endsection
 @push('js')
-
-    <script>
-        Dropzone.autoDiscover = false;
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+    <script type="text/javascript">
+        AWS.config.update({
+            accessKeyId: 'AKIAT72REQKCOJOWLXVC',
+            secretAccessKey: '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'
+        });
+        AWS.config.region = 'ap-south-1';
         $(document).on("change", 'select[name="business_type[]"]', function () {
             var other_div = $(this).closest('.form-group').siblings('.other-div');
             if ($(this).val().includes('Other')) {
@@ -261,20 +593,20 @@
                 autoclose: true
             });
             $('.select2-multiple1').select2({
-                closeOnSelect: false,
+                closeOnSelect: true,
                 placeholder: "Choose Business Category",
             });
             $('.select2-multiple2').select2({
-                closeOnSelect: false,
+                closeOnSelect: true,
                 placeholder: "Choose Business Type",
             });
             $('.select2-multiple3').select2({
-                closeOnSelect: false,
-                placeholder: "Choose the Export Market (Optional)",
+                closeOnSelect: true,
+                placeholder: "Choose the Export Market",
             });
             $('.select2-multiple4').select2({
-                closeOnSelect: false,
-                placeholder: "Input Certifications (Optional) (If any)",
+                closeOnSelect: true,
+                placeholder: "Input Certifications (If any)",
             });
             $('.select2-multiple1, .select2-multiple2, .select2-multiple3, .select2-multiple4').on('select2:select', function (e) {
                 $(this).siblings('.select2').find('.select2-selection__choice').siblings('.select2-search--inline').css({'width': 'min-content', 'float': 'right'});
@@ -362,31 +694,6 @@
             $('.select2-multiple').on("change", function (e) {
                 $("form[name='companyForm']").valid()
             });
-            var myDropzone = new Dropzone("div#myDrop", {
-                companyId: '',
-                url: "{{route('company-images')}}",
-                addRemoveLinks: true,
-                dictRemoveFile: '<span class="fa fa-trash delete"></span>',
-                autoProcessQueue: false,
-                parallelUploads: 5,
-                maxThumbnailFilesize: 10,
-                maxFilesize: 10,
-                maxFiles: 15,
-                acceptedFiles: 'image/jpeg,image/png',
-                paramName: "file",
-                init: function () {
-                    let thisDropzone = this;
-                    this.on('sending', function (file, xhr, formData) {
-                        formData.append('companyId', thisDropzone.companyId);
-                    });
-
-                    console.log('init');
-                    this.on("maxfilesexceeded", function(file){
-                        alert("You cannot upload more than 15 images!");
-                        this.removeFile(file);
-                    });
-                }
-            });
             var options = {
                 dataType: 'Json',
                 beforeSerialize: function ($form, options) {
@@ -426,16 +733,13 @@
                         $('#alert-error').html(response.custom_msg);
                         $('#alert-error').show();
                     } else {
-                        myDropzone.companyId = response.company_id;
-                        myDropzone.processQueue();
                         $('#alert-error').hide();
                         $('#accoutn_btn').attr('disabled');
                         // $('#alert-success').html(response.msg);
                         // $('#alert-success').show();
                         toastr.success(response.msg);
-                        setTimeout(() => {
-                            window.location.href = response.url;
-                        }, 1000);
+                        window.location.href = response.url;
+
                     }
                 },
                 error: function (jqXHR, exception) {
@@ -469,6 +773,992 @@
 
             };
             $('#companyForm').ajaxForm(options);
+
+            $(document).on('change', '#sheet16', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet16").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image16');
+                    output.src = reader.result;
+                };
+
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet16').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet16')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet16').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet16_url').val(url);
+                        var name = $('input[name="sheet16_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image16').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image16').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image16').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+                    });
+                }
+
+            });
+            $(document).on('change', '#sheet17', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet17").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image17');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet17').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet17')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet117').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet17_url').val(url);
+                        var name = $('input[name="sheet17_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image17').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image17').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image17').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#sheet18', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet18").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image18');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet18').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet18')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet18').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet18_url').val(url);
+                        var name = $('input[name="sheet18_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image18').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image18').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image18').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#sheet19', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet19").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image19');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet19').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet19')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet18').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet19_url').val(url);
+                        var name = $('input[name="sheet19_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image19').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image19').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image19').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#sheet20', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet20").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image20');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet20').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet20')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet20').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet20_url').val(url);
+                        var name = $('input[name="sheet20_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image20').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image20').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image20').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#sheet21', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet21").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image21');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet21').files[0]);
+
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet21')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet21').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet21_url').val(url);
+                        var name = $('input[name="sheet21_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image21').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image21').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image21').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#sheet22', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet22").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image22');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet22').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet22')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet22').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet22_url').val(url);
+                        var name = $('input[name="sheet22_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image22').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image22').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image22').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#sheet23', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet23").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image23');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet23').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet23')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet23').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet23_url').val(url);
+                        var name = $('input[name="sheet23_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image23').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image23').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image23').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#sheet24', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet24").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image24');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet24').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet24')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet24').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet24_url').val(url);
+                        var name = $('input[name="sheet24_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image24').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image24').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image24').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#sheet25', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet25").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image25');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet25').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet25')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet25').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet25_url').val(url);
+                        var name = $('input[name="sheet25_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image25').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image25').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image25').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#sheet26', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet26").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image26');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet26').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet26')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet26').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet26_url').val(url);
+                        var name = $('input[name="sheet26_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image26').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image26').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image26').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#sheet27', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet27").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image27');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet27').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet27')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet27').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet27_url').val(url);
+                        var name = $('input[name="sheet27_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image27').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image27').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image27').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#sheet28', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet28").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image28');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet28').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet28')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet28').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet28_url').val(url);
+                        var name = $('input[name="sheet28_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image28').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image28').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image28').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#sheet29', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet29").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image29');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet29').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet29')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet29').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet29_url').val(url);
+                        var name = $('input[name="sheet29_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image29').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image29').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image29').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#sheet30', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("sheet30").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('uploaded_image30');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('sheet30').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#sheet30')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#sheet30').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#sheet30_url').val(url);
+                        var name = $('input[name="sheet30_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#uploaded_image30').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#uploaded_image30').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#uploaded_image30').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+
+            $(document).on('change', '#bavatar31', function (event) {
+                var name = document.getElementById("bavatar31").files[0].name;
+                var form_data = new FormData();
+                var token='{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg','jfif','heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function(){
+                    var output = document.getElementById('buploaded_image31');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token',token);
+                form_data.append("avatar", document.getElementById('bavatar31').files[0]);
+                $.ajax({
+                    url: "{{route('company-images')}}",
+                    method: "POST",
+                    data: form_data,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    beforeSend: function () {
+                        $('#buploaded_image31').html("<label class='text-success'>Image Uploading...</label>");
+                    },
+                    success: function (data) {
+                        $('#bavatar31_url').val(data.url);
+                    }
+                });
+            });
         });
     </script>
 @endpush

@@ -98,7 +98,7 @@ Route::post('do-login-pre', 'HomeController@do_login_pre')
     ->name('user-do-login-pre');
 Route::post('company-images', 'CompanyController@companyImages')
     ->name('company-images');
-Route::get('imageRemove/{id}', 'CompanyController@imageRemove');
+Route::post('imageRemove', 'CompanyController@imageRemove')->name('imageRemove');
 
 
     Route::group(['middleware' => 'User'], function () {

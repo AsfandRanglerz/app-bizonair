@@ -124,8 +124,12 @@
                                                     </div>
                                                     <div class="col-sm-6 col-6">
                                                         <span>
-                                                            @if(strlen($buysell->keywords)>3)
-                                                                {{ $buysell->keywords }}
+                                                           @if(!empty($buysell->keyword1 && $buysell->keyword2 && $buysell->keyword3))
+                                                                {{ $buysell->keyword1.' , '.$buysell->keyword2.' , '.$buysell->keyword3 }}
+                                                            @elseif(!empty($buysell->keyword1 && $buysell->keyword2))
+                                                                {{ $buysell->keyword1.' , '.$buysell->keyword2 }}
+                                                            @elseif(!empty($buysell->keyword1))
+                                                                {{ $buysell->keyword1 }}
                                                             @else
                                                                 -
                                                             @endif
@@ -237,7 +241,7 @@
                                                     <div class="col-sm-6 col-6">
                                                         <span>
                                                             @if($buysell->details!=null)
-                                                                {{ $buysell->details }}
+                                                                {!! $buysell->details  !!}
                                                             @else
                                                                 -
                                                             @endif
@@ -256,11 +260,11 @@
                                                                     <input type="hidden" name='img_id' value="{{encrypt($image->id)}}">
                                                                     <span class="position-absolute border-0 specification-bin specs fa fa-trash" img_id="{{$image->id}}" aria-hidden="true" style="z-index: 1;right: -8px"></span>
                                                                     <div class="include-in-gallery"
-                                                                         data-src="{{$ASSETS}}/{{$image->image}}"
+                                                                         data-src="{{$image->image}}"
                                                                          data-pinterest-text="Pin it"
                                                                          data-tweet-text="share on twitter">
                                                                         <a href="">
-                                                                            <img class="img-responsive product-img" src="{{$ASSETS}}/{{$image->image}}">
+                                                                            <img class="img-responsive product-img" src="{{$image->image}}">
                                                                             <div class="demo-gallery-poster">
                                                                                 <img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
                                                                             </div>
@@ -283,7 +287,7 @@
 
                                                                     @if($ext=="docx")
                                                                         <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center"
-                                                                            data-src="{{$ASSETS}}/{{$file->sheet}}"
+                                                                            data-src="{{$file->sheet}}"
                                                                             data-pinterest-text="Pin it"
                                                                             data-tweet-text="share on twitter">
                                                                             <img class="img-responsive product-img"
@@ -296,7 +300,7 @@
                                                                         </li>
                                                                     @elseif($ext=="xlsx")
                                                                         <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center"
-                                                                            data-src="{{$ASSETS}}/{{$file->sheet}}"
+                                                                            data-src="{{$file->sheet}}"
                                                                             data-pinterest-text="Pin it"
                                                                             data-tweet-text="share on twitter">
                                                                             <img class="img-responsive product-img"
@@ -309,7 +313,7 @@
                                                                         </li>
                                                                     @elseif($ext=="pdf")
                                                                         <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center"
-                                                                            data-src="{{$ASSETS}}/{{$file->sheet}}"
+                                                                            data-src="{{$file->sheet}}"
                                                                             data-pinterest-text="Pin it"
                                                                             data-tweet-text="share on twitter">
                                                                             <img class="img-responsive product-img"
@@ -325,11 +329,11 @@
                                                                         <input type="hidden" name='sheet_id' value="{{encrypt($file->id)}}">
                                                                         <span class="position-absolute border-0 specification-bin cross-sheet fa fa-trash cross-sheet" sheet_id="{{$file->id}}" aria-hidden="true" style="z-index: 1;right: -8px"></span>
                                                                        <div class="include-in-gallery"
-                                                                            data-src="{{$ASSETS}}/{{$file->sheet}}"
+                                                                            data-src="{{$file->sheet}}"
                                                                             data-pinterest-text="Pin it"
                                                                             data-tweet-text="share on twitter">
                                                                         <a href="">
-                                                                            <img class="img-responsive product-img" src="{{$ASSETS}}/{{$file->sheet}}">
+                                                                            <img class="img-responsive product-img" src="{{$file->sheet}}">
                                                                             <div class="demo-gallery-poster">
                                                                                 <img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
                                                                             </div>
@@ -755,7 +759,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <span class="modal-title">Close Form</span>
-                                            <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
+                                            <button  class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         </div>
                                         <div class="modal-body pt-3">
                                             <p style="color: white">The changes will not be saved – Do you want to continue?</p>
@@ -824,37 +828,47 @@
                                             <label for="category" class="font-500">Main Category
                                                 <span class="required"> *</span>
                                             </label>
-                                            <select class="form-control product-categories" id="category"
-                                                    name="category" required val="{{ $buysell->category_id }}">
-                                                <option value="" selected disabled> ---- Select Category ---
-                                                </option>
-                                                @foreach(\App\Category::all() as $category)
-                                                    <option value="{{ $category->id }}"
-                                                            cat-val="{{ $category->name }}"
-                                                            @if(in_array("Service", explode(",", $buysell->product_service_types)) && $category->type == 'Business') class="d-none"
-                                                            @endif
-                                                            @if(!in_array("Service", explode(",", $buysell->product_service_types)) && $category->type == 'Services') class="d-none"
-                                                            @endif
-                                                            @if($buysell->category_id == $category->id) selected
-                                                            @endif
-                                                            cat-type="{{ $category->type }}">{{ $category->name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <div class="position-relative">
+                                                <select class="form-control product-categories" id="category"
+                                                        name="category" required val="{{ $buysell->category_id }}">
+                                                    <option value="" selected disabled> ---- Select Category ---
+                                                    </option>
+                                                    @foreach(\App\Category::all() as $category)
+                                                        <option value="{{ $category->id }}"
+                                                                cat-val="{{ $category->name }}"
+                                                                @if(in_array("Service", explode(",", $buysell->product_service_types)) && $category->type == 'Business') class="d-none"
+                                                                @endif
+                                                                @if(!in_array("Service", explode(",", $buysell->product_service_types)) && $category->type == 'Services') class="d-none"
+                                                                @endif
+                                                                @if($buysell->category_id == $category->id) selected
+                                                                @endif
+                                                                cat-type="{{ $category->type }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="d-none position-absolute spinner-border text-danger loading-icon">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
                                             <small class="text-danger" id="category_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="sub_category" class="font-500">Sub-Category
                                                 <span class="required"> *</span>
                                             </label>
-                                            <select class="form-control product-subcategories" id="sub_category"
-                                                    name="sub_category" required
-                                                    val="{{ $buysell->subcategory_id }}">
-                                                @foreach(\App\Subcategory::where('category_id', \App\Category::where('id', $buysell->category_id)->first()->id)->get() as $sub_category)
-                                                    <option value="{{ $sub_category->id }}"
-                                                            cat-val="{{ $sub_category->name }}"
-                                                            @if($buysell->subcategory_id == $sub_category->id) selected @endif >{{ $sub_category->name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <div class="position-relative">
+                                                <select class="form-control product-subcategories" id="sub_category"
+                                                        name="sub_category" required
+                                                        val="{{ $buysell->subcategory_id }}">
+                                                    @foreach(\App\Subcategory::where('category_id', \App\Category::where('id', $buysell->category_id)->first()->id)->get() as $sub_category)
+                                                        <option value="{{ $sub_category->id }}"
+                                                                cat-val="{{ $sub_category->name }}"
+                                                                @if($buysell->subcategory_id == $sub_category->id) selected @endif >{{ $sub_category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="d-none position-absolute spinner-border text-danger loading-icon">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
                                             <small class="text-danger" id="sub_category_error"></small>
                                         </div>
                                     </div>
@@ -926,17 +940,17 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <input type="text" id="keyword1" name="keyword1"
-                                                           value="{{ isset(explode(",", $buysell->keywords)[0]) }}"
+                                                           value="{{ $buysell->keyword1 }}"
                                                            class="form-control" placeholder="Keyword 1">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <input type="text" id="keyword2" name="keyword2"
-                                                           value="{{ isset(explode(",", $buysell->keywords)[1]) }}"
+                                                           value="{{ $buysell->keyword2 }}"
                                                            class="form-control" placeholder="Keyword 2">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <input type="text" id="keyword3" name="keyword3"
-                                                           value="{{ (explode(",", $buysell->keywords)[2]) }}"
+                                                           value="{{ $buysell->keyword3 }}"
                                                            class="form-control" placeholder="Keyword 3">
                                                 </div>
                                             </div>
@@ -947,13 +961,235 @@
                                             <label class="font-500">Specification Sheets<br><small class="font-500">(Optional
                                                     | JPG, PNG, Word, Excel & PDF files only | Upto
                                                     10MB)</small></label>
-                                            <div class="dropzone dz-clickable images-files-drop">
-                                                <div class="dz-default dz-message"
-                                                     data-dz-message="">
-													<span class="fileinput-button">
-													<span class="fa fa-upload pr-2"></span>
-													Drop Images and Files here
-												</span>
+                                            <div class="dropzone dz-clickable">
+                                                <div class="my-0 dz-default dz-message" data-dz-message="">
+                                                    <div class="row product-img-sheet">
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image16" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet16" id="bsheet16" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet16_url" type="hidden" value="" id="bsheet16_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image17" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet17" id="bsheet17" type="file" accept="image/*"/>
+                                                                <input name="bsheet17_url" type="hidden" value="" id="bsheet17_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image18" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet18" id="bsheet18" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet18_url" type="hidden" value="" id="bsheet18_url"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image19" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet19" id="bsheet19" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet19_url" type="hidden" value="" id="bsheet19_url"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image20" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet20" id="bsheet20" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet20_url" type="hidden" value="" id="bsheet20_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image21" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet21" id="bsheet21" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet21_url" type="hidden" value="" id="bsheet21_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image22" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet22" id="bsheet22" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet22_url" type="hidden" value="" id="bsheet22_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image23" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet23" id="bsheet23" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet23_url" type="hidden" value="" id="bsheet23_url"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image24" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet24" id="bsheet24" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet24_url" type="hidden" value="" id="bsheet24_url"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image25" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet25" id="bsheet25" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet25_url" type="hidden" value="" id="bsheet25_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image26" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet26" id="bsheet26" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet26_url" type="hidden" value="" id="bsheet26_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image27" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet27" id="bsheet27" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet27_url" type="hidden" value="" id="bsheet27_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image28" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet28" id="bsheet28" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet28_url" type="hidden" value="" id="bsheet28_url"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image29" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet29" id="bsheet29" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet29_url" type="hidden" value="" id="bsheet29_url"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image30" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bsheet30" id="bsheet30" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bsheet30_url" type="hidden" value="" id="bsheet30_url" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -964,13 +1200,235 @@
                                                 <br><small class="font-500">(JPG & PNG
                                                     files only | Atleast one product image | Upto
                                                     10MB)</small></label>
-                                            <div class="dropzone dz-clickable images-drop">
-                                                <div class="dz-default dz-message "
-                                                     data-dz-message="">
-													<span class="fileinput-button">
-                                                        <span class="fa fa-upload pr-2"></span>
-                                                        Drop Images here
-												    </span>
+                                            <div class="dropzone dz-clickable">
+                                                <div class="my-0 dz-default dz-message" data-dz-message="">
+                                                    <div class="row product-img-sheet">
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image1" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar1" id="bavatar1" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                                <input name="bavatar1_url" type="hidden" value="" id="bavatar1_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image2" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar2" id="bavatar2" type="file" accept="image/*"/>
+                                                                <input name="bavatar2_url" type="hidden" value="" id="bavatar2_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image3" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar3" id="bavatar3" type="file" accept="image/*"/>
+                                                                <input name="bavatar3_url" type="hidden" value="" id="bavatar3_url"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image4" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar4" id="bavatar4" type="file" accept="image/*"/>
+                                                                <input name="bavatar4_url" type="hidden" value="" id="bavatar4_url"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image5" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar5" id="bavatar5" type="file" accept="image/*"/>
+                                                                <input name="bavatar5_url" type="hidden" value="" id="bavatar5_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image6" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar6" id="bavatar6" type="file" accept="image/*"/>
+                                                                <input name="bavatar6_url" type="hidden" value="" id="bavatar6_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image7" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar7" id="bavatar7" type="file" accept="image/*"/>
+                                                                <input name="bavatar7_url" type="hidden" value="" id="bavatar7_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image8" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar8" id="bavatar8" type="file" accept="image/*"/>
+                                                                <input name="bavatar8_url" type="hidden" value="" id="bavatar8_url"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image9" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar9" id="bavatar9" type="file" accept="image/*"/>
+                                                                <input name="bavatar9_url" type="hidden" value="" id="bavatar9_url"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image10" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar10" id="bavatar10" type="file" accept="image/*"/>
+                                                                <input name="bavatar10_url" type="hidden" value="" id="bavatar10_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image11" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar11" id="bavatar11" type="file" accept="image/*"/>
+                                                                <input name="bavatar11_url" type="hidden" value="" id="bavatar11_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image12" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar12" id="bavatar12" type="file" accept="image/*"/>
+                                                                <input name="bavatar12_url" type="hidden" value="" id="bavatar12_url" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image13" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar13" id="bavatar13" type="file" accept="image/*"/>
+                                                                <input name="bavatar13_url" type="hidden" value="" id="bavatar13_url"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image14" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar14" id="bavatar14" type="file" accept="image/*"/>
+                                                                <input name="bavatar14_url" type="hidden" value="" id="bavatar14_url"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                            <div class="w-100 avatar-wrapper">
+                                                                <img class="product-pic" id="buploaded_image15" src="{{$ASSET}}/front_site/images/preview.svg"/>
+                                                                <span class="position-absolute del-btn fa fa-trash"></span>
+                                                                <div class="product-upload-button">
+                                                                    <span class="fa fa-plus"></span>
+                                                                    <div class="spinner-border text-danger loader-spinner d-none"
+                                                                         role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                    </div>
+                                                                </div>
+                                                                <input class="product-file-upload" name="bavatar15" id="bavatar15" type="file" accept="image/*"/>
+                                                                <input name="bavatar15_url" type="hidden" value="" id="bavatar15_url" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -980,7 +1438,7 @@
                                             <div class="product-img-spec-container">
                                                 <h6 class="my-2 px-2 heading pro-spec-heading">Specification Sheets</h6>
                                                 <div class="product-images-gallery">
-                                                    <ul class="row mx-0 my-2 product-gallery">
+                                                    <ul class="mx-0 my-2 product-gallery edit-comp-prof-imgs">
                                                         @foreach(App\Helpers\BuysellHelper::getSheets($buysell->id) as $file)
                                                             <?php $pathinfo = pathinfo($file->sheet);
                                                             $supported_ext = array('docx', 'xlsx', 'pdf');
@@ -988,8 +1446,8 @@
                                                             $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
 
                                                             @if($ext=="docx")
-                                                                <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center"
-                                                                    data-src="{{$ASSETS}}/{{$file->sheet}}"
+                                                                <li class="position-relative d-inline-block px-1 my-1 d-flex justify-content-center align-items-center"
+                                                                    data-src="{{$file->sheet}}"
                                                                     data-pinterest-text="Pin it"
                                                                     data-tweet-text="share on twitter">
                                                                     <img class="img-responsive product-img"
@@ -1000,8 +1458,8 @@
 
                                                                 </li>
                                                             @elseif($ext=="xlsx")
-                                                                <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center"
-                                                                    data-src="{{$ASSETS}}/{{$file->sheet}}"
+                                                                <li class="position-relative d-inline-block px-1 my-1 d-flex justify-content-center align-items-center"
+                                                                    data-src="{{$file->sheet}}"
                                                                     data-pinterest-text="Pin it"
                                                                     data-tweet-text="share on twitter">
                                                                     <img class="img-responsive product-img"
@@ -1012,8 +1470,8 @@
 
                                                                 </li>
                                                             @elseif($ext=="pdf")
-                                                                <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center"
-                                                                    data-src="{{$ASSETS}}/{{$file->sheet}}"
+                                                                <li class="position-relative d-inline-block px-1 my-1 d-flex justify-content-center align-items-center"
+                                                                    data-src="{{$file->sheet}}"
                                                                     data-pinterest-text="Pin it"
                                                                     data-tweet-text="share on twitter">
                                                                     <img class="img-responsive product-img"
@@ -1024,17 +1482,17 @@
 
                                                                 </li>
                                                             @else
-                                                                <li class="px-1 my-1 col-lg-2 col-md-3 col-6">
+                                                                <li class="position-relative d-inline-block px-1 my-1">
                                                                     <input type="hidden" name='sheet_id' value="{{encrypt($file->id)}}">
                                                                     <span class="position-absolute border-0 specification-bin cross-sheet fa fa-trash cross-sheet" sheet_id="{{$file->id}}" aria-hidden="true" style="z-index: 1;right: -8px"></span>
                                                                     <div class="include-in-gallery"
-                                                                         data-src="{{$ASSETS}}/{{$file->sheet}}"
+                                                                         data-src="{{$file->sheet}}"
                                                                          data-pinterest-text="Pin it"
                                                                          data-tweet-text="share on twitter">
                                                                         <a href="">
-                                                                            <img class="img-responsive product-img" src="{{$ASSETS}}/{{$file->sheet}}">
+                                                                            <img class="img-responsive product-img" src="{{$file->sheet}}">
                                                                             <div class="demo-gallery-poster">
-                                                                                <img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
+                                                                                <span class="fa fa-search text-white"></span>
                                                                             </div>
                                                                         </a>
                                                                     </div>
@@ -1051,19 +1509,19 @@
                                             <div class="product-img-spec-container mb-3">
                                                 <h6 class="my-2 px-2 heading pro-img-heading">Product Images</h6>
                                                 <div class="product-images-gallery">
-                                                    <ul class="row mx-0 my-2 product-gallery">
+                                                    <ul class="mx-0 my-2 product-gallery edit-comp-prof-imgs">
                                                         @foreach(App\Helpers\BuysellHelper::getImages($buysell->id) as $image)
-                                                            <li class="px-1 my-1 col-lg-2 col-md-3 col-6">
+                                                            <li class="position-relative d-inline-block px-1 my-1">
                                                                 <input type="hidden" name='img_id' value="{{encrypt($image->id)}}">
                                                                 <span class="position-absolute border-0 specification-bin specs fa fa-trash" img_id="{{$image->id}}" aria-hidden="true" style="z-index: 1;right: -8px"></span>
                                                                 <div class="include-in-gallery"
-                                                                     data-src="{{$ASSETS}}/{{$image->image}}"
+                                                                     data-src="{{$image->image}}"
                                                                      data-pinterest-text="Pin it"
                                                                      data-tweet-text="share on twitter">
                                                                     <a href="">
-                                                                        <img class="img-responsive product-img" src="{{$ASSETS}}/{{$image->image}}">
+                                                                        <img class="img-responsive product-img" src="{{$image->image}}">
                                                                         <div class="demo-gallery-poster">
-                                                                            <img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
+                                                                            <span class="fa fa-search text-white"></span>
                                                                         </div>
                                                                     </a>
                                                                 </div>
@@ -1078,157 +1536,159 @@
                                              role="alert">
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-lg-6 product-available">
-                                            <label class="font-500 avail-quantity">Available Quantity <span
-                                                    class="required"> *</span></label>
-                                            <input type="number" min="0" id="product_availability"
-                                                   value="{{ $buysell->product_availability }}" class="form-control"
-                                                   name="product_availability" placeholder="e.g 50, 100" required>
-                                            <small class="text-danger" id="product_availability_error"></small>
+                                    @if(in_array("Buy", explode(",", $buysell->product_service_types)) || in_array("Sell", explode(",", $buysell->product_service_types)))
+                                        <div class="form-row">
+                                            <div class="form-group col-lg-6 product-available">
+                                                <label class="font-500 avail-quantity">Available Quantity <span
+                                                        class="required"> *</span></label>
+                                                <input type="number" min="0" id="product_availability"
+                                                       value="{{ $buysell->product_availability }}" class="form-control"
+                                                       name="product_availability" placeholder="e.g 50, 100" required>
+                                                <small class="text-danger" id="product_availability_error"></small>
+                                            </div>
+                                            {{--                                        <div class="form-group col-lg-6">--}}
+                                            {{--                                            <label class="font-500">Price <span class="required"> *</span></label>--}}
+                                            {{--                                            <input type="text" class="form-control" id="price"--}}
+                                            {{--                                                   value="{{ $buysell->price }}" name="price" placeholder="Price"--}}
+                                            {{--                                                   required>--}}
+                                            {{--                                        </div>--}}
+                                            <div class="form-group col-lg-6 product-available">
+                                                <label for="available_unit" class="font-500">Unit <span class="required"> *</span></label>
+                                                <select class="form-control other-option-included" id="available_unit" name="available_unit">
+                                                    <option value="20' Container"
+                                                            @if($buysell->available_unit == "20' Container") selected @endif>
+                                                        20' Container
+                                                    </option>
+                                                    <option value="40' Container"
+                                                            @if($buysell->available_unit == "40' Container") selected @endif>
+                                                        40' Container
+                                                    </option>
+                                                    <option value="Bale"
+                                                            @if($buysell->available_unit == 'Bale') selected @endif>
+                                                        Bale
+                                                    </option>
+                                                    <option value="Barel"
+                                                            @if($buysell->available_unit == 'Barel') selected @endif>
+                                                        Barel
+                                                    </option>
+                                                    <option value="Box"
+                                                            @if($buysell->available_unit == 'Box') selected @endif>
+                                                        Box
+                                                    </option>
+                                                    <option value="Bag"
+                                                            @if($buysell->available_unit == 'Bag') selected @endif>
+                                                        Bag
+                                                    </option>
+                                                    <option value="Carton"
+                                                            @if($buysell->available_unit == 'Carton') selected @endif>
+                                                        Carton
+                                                    </option>
+                                                    <option value="Cone"
+                                                            @if($buysell->available_unit == 'Cone') selected @endif>
+                                                        Cone
+                                                    </option>
+                                                    <option value="Dozen"
+                                                            @if($buysell->available_unit == 'Dozen') selected @endif>
+                                                        Dozen
+                                                    </option>
+                                                    <option value="Gallon"
+                                                            @if($buysell->available_unit == 'Gallon') selected @endif>
+                                                        Gallon
+                                                    </option>
+                                                    <option value="Gram"
+                                                            @if($buysell->available_unit == 'Gram') selected @endif>
+                                                        Gram
+                                                    </option>
+                                                    <option value="Gross"
+                                                            @if($buysell->available_unit == 'Gross') selected @endif>
+                                                        Gross
+                                                    </option>
+                                                    <option value="Kg"
+                                                            @if($buysell->available_unit == 'Kg') selected @endif>
+                                                        Kg
+                                                    </option>
+                                                    <option value="Lb"
+                                                            @if($buysell->available_unit == 'Lb') selected @endif>
+                                                        Lb
+                                                    </option>
+                                                    <option value="Liter"
+                                                            @if($buysell->available_unit == 'Liter') selected @endif>
+                                                        Liter
+                                                    </option>
+                                                    <option value="Meter"
+                                                            @if($buysell->available_unit == 'Meter') selected @endif>
+                                                        Meter
+                                                    </option>
+                                                    <option value="MT"
+                                                            @if($buysell->available_unit == 'MT') selected @endif>
+                                                        MT
+                                                    </option>
+                                                    <option value="Pack"
+                                                            @if($buysell->available_unit == 'Pack') selected @endif>
+                                                        Pack
+                                                    </option>
+                                                    <option value="Pair"
+                                                            @if($buysell->available_unit == 'Pair') selected @endif>
+                                                        Pair
+                                                    </option>
+                                                    <option value="Pallet"
+                                                            @if($buysell->available_unit == 'Pallet') selected @endif>
+                                                        Pallet
+                                                    </option>
+                                                    <option value="Piece"
+                                                            @if($buysell->available_unit == 'Piece') selected @endif>
+                                                        Piece
+                                                    </option>
+                                                    <option value="Pound"
+                                                            @if($buysell->available_unit == 'Pound') selected @endif>
+                                                        Pounds
+                                                    </option>
+                                                    <option value="Roll"
+                                                            @if($buysell->available_unit == 'Roll') selected @endif>
+                                                        Roll
+                                                    </option>
+                                                    <option value="Set"
+                                                            @if($buysell->available_unit == 'Set') selected @endif>
+                                                        Set
+                                                    </option>
+                                                    <option value="Sheet"
+                                                            @if($buysell->available_unit == 'Sheet') selected @endif>
+                                                        Sheet
+                                                    </option>
+                                                    <option value="Spool"
+                                                            @if($buysell->available_unit == 'Spool') selected @endif>
+                                                        Spool
+                                                    </option>
+                                                    <option value="Square Feet"
+                                                            @if($buysell->available_unit == 'Square Feet') selected @endif>
+                                                        Square Feet
+                                                    </option>
+                                                    <option value="Square Meter"
+                                                            @if($buysell->available_unit == 'Square Meter') selected @endif>
+                                                        Square Meter
+                                                    </option>
+                                                    <option value="Ton"
+                                                            @if($buysell->available_unit == 'Ton') selected @endif>
+                                                        Ton
+                                                    </option>
+                                                    <option value="Yard"
+                                                            @if($buysell->available_unit == 'Yard') selected @endif>
+                                                        Yard
+                                                    </option>
+                                                    <option value="Other"
+                                                            @if($buysell->available_unit == 'Other') selected
+                                                            @endif class="other-check">Other
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-lg-6 other-div" @if($buysell->available_unit == 'Other') style="display: block;"
+                                                @endif>
+                                                <label class="font-500">Other Unit <span
+                                                        class="required">*</span></label>
+                                                <input type="text" name="other_available_unit" placeholder="Other Unit" value="{{ $buysell->other_available_unit }}" class="form-control">
+                                            </div>
                                         </div>
-{{--                                        <div class="form-group col-lg-6">--}}
-{{--                                            <label class="font-500">Price <span class="required"> *</span></label>--}}
-{{--                                            <input type="text" class="form-control" id="price"--}}
-{{--                                                   value="{{ $buysell->price }}" name="price" placeholder="Price"--}}
-{{--                                                   required>--}}
-{{--                                        </div>--}}
-                                        <div class="form-group col-lg-6 product-available">
-                                            <label for="available_unit" class="font-500">Unit <span class="required"> *</span></label>
-                                            <select class="form-control other-option-included" id="available_unit" name="available_unit">
-                                                <option value="20' Container"
-                                                        @if($buysell->available_unit == "20' Container") selected @endif>
-                                                    20' Container
-                                                </option>
-                                                <option value="40' Container"
-                                                        @if($buysell->available_unit == "40' Container") selected @endif>
-                                                    40' Container
-                                                </option>
-                                                <option value="Bale"
-                                                        @if($buysell->available_unit == 'Bale') selected @endif>
-                                                    Bale
-                                                </option>
-                                                <option value="Barel"
-                                                        @if($buysell->available_unit == 'Barel') selected @endif>
-                                                    Barel
-                                                </option>
-                                                <option value="Box"
-                                                        @if($buysell->available_unit == 'Box') selected @endif>
-                                                    Box
-                                                </option>
-                                                <option value="Bag"
-                                                        @if($buysell->available_unit == 'Bag') selected @endif>
-                                                    Bag
-                                                </option>
-                                                <option value="Carton"
-                                                        @if($buysell->available_unit == 'Carton') selected @endif>
-                                                    Carton
-                                                </option>
-                                                <option value="Cone"
-                                                        @if($buysell->available_unit == 'Cone') selected @endif>
-                                                    Cone
-                                                </option>
-                                                <option value="Dozen"
-                                                        @if($buysell->available_unit == 'Dozen') selected @endif>
-                                                    Dozen
-                                                </option>
-                                                <option value="Gallon"
-                                                        @if($buysell->available_unit == 'Gallon') selected @endif>
-                                                    Gallon
-                                                </option>
-                                                <option value="Gram"
-                                                        @if($buysell->available_unit == 'Gram') selected @endif>
-                                                    Gram
-                                                </option>
-                                                <option value="Gross"
-                                                        @if($buysell->available_unit == 'Gross') selected @endif>
-                                                    Gross
-                                                </option>
-                                                <option value="Kg"
-                                                        @if($buysell->available_unit == 'Kg') selected @endif>
-                                                    Kg
-                                                </option>
-                                                <option value="Lb"
-                                                        @if($buysell->available_unit == 'Lb') selected @endif>
-                                                    Lb
-                                                </option>
-                                                <option value="Liter"
-                                                        @if($buysell->available_unit == 'Liter') selected @endif>
-                                                    Liter
-                                                </option>
-                                                <option value="Meter"
-                                                        @if($buysell->available_unit == 'Meter') selected @endif>
-                                                    Meter
-                                                </option>
-                                                <option value="MT"
-                                                        @if($buysell->available_unit == 'MT') selected @endif>
-                                                    MT
-                                                </option>
-                                                <option value="Pack"
-                                                        @if($buysell->available_unit == 'Pack') selected @endif>
-                                                    Pack
-                                                </option>
-                                                <option value="Pair"
-                                                        @if($buysell->available_unit == 'Pair') selected @endif>
-                                                    Pair
-                                                </option>
-                                                <option value="Pallet"
-                                                        @if($buysell->available_unit == 'Pallet') selected @endif>
-                                                    Pallet
-                                                </option>
-                                                <option value="Piece"
-                                                        @if($buysell->available_unit == 'Piece') selected @endif>
-                                                    Piece
-                                                </option>
-                                                <option value="Pound"
-                                                        @if($buysell->available_unit == 'Pound') selected @endif>
-                                                    Pounds
-                                                </option>
-                                                <option value="Roll"
-                                                        @if($buysell->available_unit == 'Roll') selected @endif>
-                                                    Roll
-                                                </option>
-                                                <option value="Set"
-                                                        @if($buysell->available_unit == 'Set') selected @endif>
-                                                    Set
-                                                </option>
-                                                <option value="Sheet"
-                                                        @if($buysell->available_unit == 'Sheet') selected @endif>
-                                                    Sheet
-                                                </option>
-                                                <option value="Spool"
-                                                        @if($buysell->available_unit == 'Spool') selected @endif>
-                                                    Spool
-                                                </option>
-                                                <option value="Square Feet"
-                                                        @if($buysell->available_unit == 'Square Feet') selected @endif>
-                                                    Square Feet
-                                                </option>
-                                                <option value="Square Meter"
-                                                        @if($buysell->available_unit == 'Square Meter') selected @endif>
-                                                    Square Meter
-                                                </option>
-                                                <option value="Ton"
-                                                        @if($buysell->available_unit == 'Ton') selected @endif>
-                                                    Ton
-                                                </option>
-                                                <option value="Yard"
-                                                        @if($buysell->available_unit == 'Yard') selected @endif>
-                                                    Yard
-                                                </option>
-                                                <option value="Other"
-                                                        @if($buysell->available_unit == 'Other') selected
-                                                        @endif class="other-check">Other
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-6 other-div" @if($buysell->available_unit == 'Other') style="display: block;"
-                                            @endif>
-                                            <label class="font-500">Other Unit <span
-                                                    class="required">*</span></label>
-                                            <input type="text" name="other_available_unit" value="{{ $buysell->other_available_unit }}" class="form-control">
-                                        </div>
-                                    </div>
+                                    @endif
                                     <div class="form-row">
                                         <div class="form-group col-lg-6"
                                              @if(in_array("Service", explode(",", $buysell->product_service_types))) style="display: none;" @endif>
@@ -1250,7 +1710,7 @@
                                                 <option value="" selected disabled> ---- Select Origin ---</option>
                                                 <option value="Any"
                                                         @if($buysell->origin == 'Any') selected @endif >Any</option>
-                                                @foreach(\DB::table('countriyes')->get() as $country)
+                                                @foreach(\DB::table('countries')->get() as $country)
                                                     <option value="{{ $country->country_name }}"
                                                             @if($buysell->origin == $country->country_name) selected @endif >{{ $country->country_name }}</option>
                                                 @endforeach
@@ -1417,15 +1877,15 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-{{--                                            <div class="form-group col-lg-6">--}}
-{{--                                                <label for="additional_trade_notes" class="font-500">Additional Trade--}}
-{{--                                                    notes <small class="font-500"> (Optional)</small></label>--}}
-{{--                                                <input type="text" class="form-control optional-field"--}}
-{{--                                                       id="additional_trade_notes" name="additional_trade_notes"--}}
-{{--                                                       placeholder="Additional Trade notes"--}}
-{{--                                                       @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->additional_trade_notes) value="{{ $buysell->machineryBuySellInfo->additional_trade_notes }}"--}}
-{{--                                                    @endif >--}}
-{{--                                            </div>--}}
+                                            {{--                                            <div class="form-group col-lg-6">--}}
+                                            {{--                                                <label for="additional_trade_notes" class="font-500">Additional Trade--}}
+                                            {{--                                                    notes <small class="font-500"> (Optional)</small></label>--}}
+                                            {{--                                                <input type="text" class="form-control optional-field"--}}
+                                            {{--                                                       id="additional_trade_notes" name="additional_trade_notes"--}}
+                                            {{--                                                       placeholder="Additional Trade notes"--}}
+                                            {{--                                                       @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->additional_trade_notes) value="{{ $buysell->machineryBuySellInfo->additional_trade_notes }}"--}}
+                                            {{--                                                    @endif >--}}
+                                            {{--                                            </div>--}}
                                             <div class="form-group col-lg-6">
                                                 <label for="product_related_certifications" class="font-500">Company
                                                     Certifications <small
@@ -1440,17 +1900,17 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12 clearfix">
-                                            <label for="details" class="font-500">Additional Info <small class="font-500">
+                                            <label for="editor1" class="font-500">Additional Info <small class="font-500">
                                                     (Optional)</small></label>
                                             <span class="pull-right font-500"><span class="counter-total-digits">0</span>/1200</span>
-                                            <textarea id="details" rows="5" maxlength = "1200" class="form-control" name="details"
-                                                      placeholder="Add product details">{{ $buysell->details }}</textarea>
+                                            <textarea id="editor1" rows="5" maxlength = "1200" class="form-control" name="details"
+                                                      placeholder="Add product details">{!! $buysell->details !!}</textarea>
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
-                                        <button  class="red-btn next-btn" id="nextBtn1">NEXT</button>
+                                        <a class="text-white red-btn next-btn" id="nextBtn1">NEXT</a>
                                     </div>
-                                    <div class="my-1">
+                                    <div class="mt-4 mb-4">
                                         <hr class="horizontal-line">
                                     </div>
                                 </div>
@@ -1476,160 +1936,160 @@
                                                            @endif placeholder="e.g. 1000" required>
                                                 </div>
                                                 @if(in_array("Sell", explode(",", $buysell->product_service_types)))
-                                                <div class="col-md-6">
-                                                    <label for="unit_price_unit" class="font-500 unit_price_range_label">Per Unit <span
-                                                            class="required">*</span></label>
-                                                    <select class="form-control other-option-included"
-                                                            id="unit_price_unit"
-                                                            name="unit_price_unit" required>
-                                                        <option value="20' Container"
-                                                                @if($buysell->unit_price_unit == "20' Container") selected @endif>
-                                                            20' Container
-                                                        </option>
-                                                        <option value="40' Container"
-                                                                @if($buysell->unit_price_unit == "40' Container") selected @endif>
-                                                            40' Container
-                                                        </option>
-                                                        <option value="Bale"
-                                                                @if($buysell->unit_price_unit == 'Bale') selected @endif>
-                                                            Bale
-                                                        </option>
-                                                        <option value="Barel"
-                                                                @if($buysell->unit_price_unit == 'Barel') selected @endif>
-                                                            Barel
-                                                        </option>
-                                                        <option value="Box"
-                                                                @if($buysell->unit_price_unit == 'Box') selected @endif>
-                                                            Box
-                                                        </option>
-                                                        <option value="Bag"
-                                                                @if($buysell->unit_price_unit == 'Bag') selected @endif>
-                                                            Bag
-                                                        </option>
-                                                        <option value="Carton"
-                                                                @if($buysell->unit_price_unit == 'Carton') selected @endif>
-                                                            Carton
-                                                        </option>
-                                                        <option value="Cone"
-                                                                @if($buysell->unit_price_unit == 'Cone') selected @endif>
-                                                            Cone
-                                                        </option>
-                                                        <option value="Dozen"
-                                                                @if($buysell->unit_price_unit == 'Dozen') selected @endif>
-                                                            Dozen
-                                                        </option>
-                                                        <option value="Gallon"
-                                                                @if($buysell->unit_price_unit == 'Gallon') selected @endif>
-                                                            Gallon
-                                                        </option>
-                                                        <option value="Gram"
-                                                                @if($buysell->unit_price_unit == 'Gram') selected @endif>
-                                                            Gram
-                                                        </option>
-                                                        <option value="Gross"
-                                                                @if($buysell->unit_price_unit == 'Gross') selected @endif>
-                                                            Gross
-                                                        </option>
-                                                        <option value="Kg"
-                                                                @if($buysell->unit_price_unit == 'Kg') selected @endif>
-                                                            Kg
-                                                        </option>
-                                                        <option value="Lb"
-                                                                @if($buysell->unit_price_unit == 'Lb') selected @endif>
-                                                            Lb
-                                                        </option>
-                                                        <option value="Liter"
-                                                                @if($buysell->unit_price_unit == 'Liter') selected @endif>
-                                                            Liter
-                                                        </option>
-                                                        <option value="Meter"
-                                                                @if($buysell->unit_price_unit == 'Meter') selected @endif>
-                                                            Meter
-                                                        </option>
-                                                        <option value="MT"
-                                                                @if($buysell->unit_price_unit == 'MT') selected @endif>
-                                                            MT
-                                                        </option>
-                                                        <option value="Pack"
-                                                                @if($buysell->unit_price_unit == 'Pack') selected @endif>
-                                                            Pack
-                                                        </option>
-                                                        <option value="Pair"
-                                                                @if($buysell->unit_price_unit == 'Pair') selected @endif>
-                                                            Pair
-                                                        </option>
-                                                        <option value="Pallet"
-                                                                @if($buysell->unit_price_unit == 'Pallet') selected @endif>
-                                                            Pallet
-                                                        </option>
-                                                        <option value="Piece"
-                                                                @if($buysell->unit_price_unit == 'Piece') selected @endif>
-                                                            Piece
-                                                        </option>
-                                                        <option value="Pound"
-                                                                @if($buysell->unit_price_unit == 'Pound') selected @endif>
-                                                            Pound
-                                                        </option>
-                                                        <option value="Roll"
-                                                                @if($buysell->unit_price_unit == 'Roll') selected @endif>
-                                                            Roll
-                                                        </option>
-                                                        <option value="Set"
-                                                                @if($buysell->unit_price_unit == 'Set') selected @endif>
-                                                            Set
-                                                        </option>
-                                                        <option value="Sheet"
-                                                                @if($buysell->unit_price_unit == 'Sheet') selected @endif>
-                                                            Sheet
-                                                        </option>
-                                                        <option value="Spool"
-                                                                @if($buysell->unit_price_unit == 'Spool') selected @endif>
-                                                            Spool
-                                                        </option>
-                                                        <option value="Square Feet"
-                                                                @if($buysell->unit_price_unit == 'Square Feet') selected @endif>
-                                                            Square Feet
-                                                        </option>
-                                                        <option value="Square Meter"
-                                                                @if($buysell->unit_price_unit == 'Square Meter') selected @endif>
-                                                            Square Meter
-                                                        </option>
-                                                        <option value="Ton"
-                                                                @if($buysell->unit_price_unit == 'Ton') selected @endif>
-                                                            Ton
-                                                        </option>
-                                                        <option value="Yard"
-                                                                @if($buysell->unit_price_unit == 'Yard') selected @endif>
-                                                            Yard
-                                                        </option>
-                                                        <option value="Other"
-                                                                @if($buysell->unit_price_unit == 'Other') selected
-                                                                @endif class="other-check">Other
-                                                        </option>
+                                                    <div class="col-md-6">
+                                                        <label for="unit_price_unit" class="font-500 unit_price_range_label">Per Unit <span
+                                                                class="required">*</span></label>
+                                                        <select class="form-control other-option-included"
+                                                                id="unit_price_unit"
+                                                                name="unit_price_unit" required>
+                                                            <option value="20' Container"
+                                                                    @if($buysell->unit_price_unit == "20' Container") selected @endif>
+                                                                20' Container
+                                                            </option>
+                                                            <option value="40' Container"
+                                                                    @if($buysell->unit_price_unit == "40' Container") selected @endif>
+                                                                40' Container
+                                                            </option>
+                                                            <option value="Bale"
+                                                                    @if($buysell->unit_price_unit == 'Bale') selected @endif>
+                                                                Bale
+                                                            </option>
+                                                            <option value="Barel"
+                                                                    @if($buysell->unit_price_unit == 'Barel') selected @endif>
+                                                                Barel
+                                                            </option>
+                                                            <option value="Box"
+                                                                    @if($buysell->unit_price_unit == 'Box') selected @endif>
+                                                                Box
+                                                            </option>
+                                                            <option value="Bag"
+                                                                    @if($buysell->unit_price_unit == 'Bag') selected @endif>
+                                                                Bag
+                                                            </option>
+                                                            <option value="Carton"
+                                                                    @if($buysell->unit_price_unit == 'Carton') selected @endif>
+                                                                Carton
+                                                            </option>
+                                                            <option value="Cone"
+                                                                    @if($buysell->unit_price_unit == 'Cone') selected @endif>
+                                                                Cone
+                                                            </option>
+                                                            <option value="Dozen"
+                                                                    @if($buysell->unit_price_unit == 'Dozen') selected @endif>
+                                                                Dozen
+                                                            </option>
+                                                            <option value="Gallon"
+                                                                    @if($buysell->unit_price_unit == 'Gallon') selected @endif>
+                                                                Gallon
+                                                            </option>
+                                                            <option value="Gram"
+                                                                    @if($buysell->unit_price_unit == 'Gram') selected @endif>
+                                                                Gram
+                                                            </option>
+                                                            <option value="Gross"
+                                                                    @if($buysell->unit_price_unit == 'Gross') selected @endif>
+                                                                Gross
+                                                            </option>
+                                                            <option value="Kg"
+                                                                    @if($buysell->unit_price_unit == 'Kg') selected @endif>
+                                                                Kg
+                                                            </option>
+                                                            <option value="Lb"
+                                                                    @if($buysell->unit_price_unit == 'Lb') selected @endif>
+                                                                Lb
+                                                            </option>
+                                                            <option value="Liter"
+                                                                    @if($buysell->unit_price_unit == 'Liter') selected @endif>
+                                                                Liter
+                                                            </option>
+                                                            <option value="Meter"
+                                                                    @if($buysell->unit_price_unit == 'Meter') selected @endif>
+                                                                Meter
+                                                            </option>
+                                                            <option value="MT"
+                                                                    @if($buysell->unit_price_unit == 'MT') selected @endif>
+                                                                MT
+                                                            </option>
+                                                            <option value="Pack"
+                                                                    @if($buysell->unit_price_unit == 'Pack') selected @endif>
+                                                                Pack
+                                                            </option>
+                                                            <option value="Pair"
+                                                                    @if($buysell->unit_price_unit == 'Pair') selected @endif>
+                                                                Pair
+                                                            </option>
+                                                            <option value="Pallet"
+                                                                    @if($buysell->unit_price_unit == 'Pallet') selected @endif>
+                                                                Pallet
+                                                            </option>
+                                                            <option value="Piece"
+                                                                    @if($buysell->unit_price_unit == 'Piece') selected @endif>
+                                                                Piece
+                                                            </option>
+                                                            <option value="Pound"
+                                                                    @if($buysell->unit_price_unit == 'Pound') selected @endif>
+                                                                Pound
+                                                            </option>
+                                                            <option value="Roll"
+                                                                    @if($buysell->unit_price_unit == 'Roll') selected @endif>
+                                                                Roll
+                                                            </option>
+                                                            <option value="Set"
+                                                                    @if($buysell->unit_price_unit == 'Set') selected @endif>
+                                                                Set
+                                                            </option>
+                                                            <option value="Sheet"
+                                                                    @if($buysell->unit_price_unit == 'Sheet') selected @endif>
+                                                                Sheet
+                                                            </option>
+                                                            <option value="Spool"
+                                                                    @if($buysell->unit_price_unit == 'Spool') selected @endif>
+                                                                Spool
+                                                            </option>
+                                                            <option value="Square Feet"
+                                                                    @if($buysell->unit_price_unit == 'Square Feet') selected @endif>
+                                                                Square Feet
+                                                            </option>
+                                                            <option value="Square Meter"
+                                                                    @if($buysell->unit_price_unit == 'Square Meter') selected @endif>
+                                                                Square Meter
+                                                            </option>
+                                                            <option value="Ton"
+                                                                    @if($buysell->unit_price_unit == 'Ton') selected @endif>
+                                                                Ton
+                                                            </option>
+                                                            <option value="Yard"
+                                                                    @if($buysell->unit_price_unit == 'Yard') selected @endif>
+                                                                Yard
+                                                            </option>
+                                                            <option value="Other"
+                                                                    @if($buysell->unit_price_unit == 'Other') selected
+                                                                    @endif class="other-check">Other
+                                                            </option>
 
-                                                    </select>
-                                                </div>
+                                                        </select>
+                                                    </div>
                                                 @endif
                                                 @if(in_array("Service", explode(",", $buysell->product_service_types)))
-                                                <div class="col-md-6 service-unit">
-                                                    <label for="unit_price_unit" class="font-500">Per Unit <span class="required">*</span></label>
-                                                    <input type="text" name="unit_price_unit" value="@if($buysell->unit_price_unit){{$buysell->unit_price_unit}}@endif" class="form-control" required>
-                                                    <small class="text-danger" id="unit_price_unit_error"></small>
-                                                </div>
-                                                    @endif
+                                                    <div class="col-md-6 service-unit">
+                                                        <label for="price_unit" class="font-500">Per Unit <span class="required">*</span></label>
+                                                        <input type="text" name="price_unit" id="price_unit" placeholder="Per Unit" value="@if($buysell->unit_price_unit){{$buysell->unit_price_unit}}@endif" class="form-control" required>
+                                                        <small class="text-danger" id="price_unit_error"></small>
+                                                    </div>
+                                                @endif
 
                                             </div>
                                         </div>
                                         @if(!in_array("Service", explode(",", $buysell->product_service_types)))
-                                        <div class="form-group col-lg-6 other-div add-unit_price_unit"
-                                             @if($buysell->unit_price_unit == 'Other') style="display: block;"
-                                            @endif>
-                                            <label class="font-500">Other Price Unit <span
-                                                    class="required">*</span></label>
-                                            <input type="text" name="other_unit_price_unit"
-                                                   value="{{ $buysell->other_unit_price_unit }}"
-                                                   class="form-control" required>
-                                        </div>
+                                            <div class="form-group col-lg-6 other-div add-unit_price_unit"
+                                                 @if($buysell->unit_price_unit == 'Other') style="display: block;"
+                                                @endif>
+                                                <label class="font-500">Other Price Unit <span
+                                                        class="required">*</span></label>
+                                                <input type="text" name="other_unit_price_unit"
+                                                       value="{{ $buysell->other_unit_price_unit }}"
+                                                       class="form-control" placeholder="Other Price Unit" required>
+                                            </div>
                                         @endif
                                         <div class="form-group col-lg-6 target_price_range"
                                              @if(in_array("Buy", explode(",", $buysell->product_service_types))) style="display: block;" @endif>
@@ -1923,65 +2383,53 @@
                                             <label for="payment_terms" class="font-500" class="font-500">Payment
                                                 Terms
                                                 <span class="required"> *</span></label>
-                                            <select class="select2-multiple select-suitable-payment form-control payment-terms"
-                                                    id="payment_terms" name="payment_terms[]" multiple="multiple"
-                                                    required>
-                                                <option value="" class="d-none" disabled></option>
-                                                <option value="L/C"
-                                                        @if(in_array("L/C", explode(",", $buysell->payment_terms))) selected @endif >
+                                            <select class="single-select-dropdown select-suitable-payment other-option-included form-control payment-terms"
+                                                    id="payment_terms" name="payment_terms" required>
+                                                <option value="" selected disabled>Select Payment Terms</option>
+                                                <option value="L/C" @if($buysell->payment_terms == "L/C") selected @endif>
                                                     L/C
                                                 </option>
-                                                <option value="D/A"
-                                                        @if(in_array("D/A", explode(",", $buysell->payment_terms))) selected @endif >
+                                                <option value="D/A" @if($buysell->payment_terms == "D/A") selected @endif>
                                                     D/A
                                                 </option>
-                                                <option value="D/P"
-                                                        @if(in_array("D/P", explode(",", $buysell->payment_terms))) selected @endif >
+                                                <option value="D/P" @if($buysell->payment_terms == "D/P") selected @endif>
                                                     D/P
                                                 </option>
-                                                <option value="T/T"
-                                                        @if(in_array("T/T", explode(",", $buysell->payment_terms))) selected @endif >
+                                                <option value="T/T" @if($buysell->payment_terms == "T/T") selected @endif>
                                                     T/T
                                                 </option>
-                                                <option value="CFR"
-                                                        @if(in_array("CFR", explode(",", $buysell->payment_terms))) selected @endif >
+                                                <option value="CFR" @if($buysell->payment_terms == "CFR") selected @endif>
                                                     CFR
                                                 </option>
-                                                <option value="CIF"
-                                                        @if(in_array("CIF", explode(",", $buysell->payment_terms))) selected @endif >
+                                                <option value="CIF" @if($buysell->payment_terms == "CIF") selected @endif>
                                                     CIF
                                                 </option>
-                                                <option value="CIP"
-                                                        @if(in_array("CIP", explode(",", $buysell->payment_terms))) selected @endif >
+                                                <option value="CIP" @if($buysell->payment_terms == "CIP") selected @endif>
                                                     CIP
                                                 </option>
-                                                <option value="CPT"
-                                                        @if(in_array("CPT", explode(",", $buysell->payment_terms))) selected @endif >
+                                                <option value="CPT" @if($buysell->payment_terms == "CPT") selected @endif>
                                                     CPT
                                                 </option>
-                                                <option value="FOB"
-                                                        @if(in_array("FOB", explode(",", $buysell->payment_terms))) selected @endif >
+                                                <option value="FOB" @if($buysell->payment_terms == "FOB") selected @endif>
                                                     FOB
                                                 </option>
-                                                <option value="Ex-Works"
-                                                        @if(in_array("Ex-Works", explode(",", $buysell->payment_terms))) selected @endif >
+                                                <option value="Ex-Works" @if($buysell->payment_terms == "Ex-Works") selected @endif>
                                                     Ex-Works
                                                 </option>
-                                                <option value="Western Union"
-                                                        @if(in_array("Western Union", explode(",", $buysell->payment_terms))) selected @endif >
+                                                <option value="Western Union" @if($buysell->payment_terms == "Western Union") selected @endif>
                                                     Western
                                                     Union
                                                 </option>
-                                                <option value="PayPal"
-                                                        @if(in_array("PayPal", explode(",", $buysell->payment_terms))) selected @endif >
+                                                <option value="PayPal" @if($buysell->payment_terms == "PayPal") selected @endif>
                                                     PayPal
                                                 </option>
-                                                <option value="Other" @if(in_array("Other", explode(",", $buysell->payment_terms))) selected @endif class="other-check">Other</option>
+                                                <option value="Other" @if($buysell->payment_terms == "Other") selected @endif class="other-check">Other
+                                                </option>
                                             </select>
                                             <small class="text-danger" id="payment_terms_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-payment-terms"
-                                             @if(in_array("Other", explode(",", $buysell->payment_terms))) style="display: block;" @endif>
+                                             @if($buysell->payment_terms =='Other') style="display: block;" @endif>
                                             <label class="font-500">Add Your Payment Terms <span
                                                     class="required">*</span></label>
                                             <input
@@ -1991,9 +2439,9 @@
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
-                                        <button type="submit" class="red-btn" disabled>UPDATE</button>
+                                        <button type="submit" class="red-btn">UPDATE</button>
                                     </div>
-                                    <div class="my-1">
+                                    <div class="mt-4 mb-4">
                                         <hr class="horizontal-line">
                                     </div>
                                 </div>
@@ -2010,7 +2458,18 @@
 @endsection
 
 @push('js')
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
     <script type="text/javascript">
+        AWS.config.update({
+            accessKeyId: 'AKIAT72REQKCOJOWLXVC',
+            secretAccessKey: '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'
+        });
+        AWS.config.region = 'ap-south-1';
+        ClassicEditor
+            .create( document.querySelector( '#editor1' ) )
+            .catch( error => {
+                console.error( error );
+            } );
         $(document).ready(function () {
             /*for add expiry days*/
             $( ".add-date" ).change(function() {
@@ -2128,6 +2587,9 @@
                     'unit_price_unit':{
                         required: true,
                     },
+                    'price_unit':{
+                        required: true,
+                    },
                     'suitable_currencies':{
                         required: true,
                     },
@@ -2177,6 +2639,9 @@
                         required: "Range from required"
                     },
                     'unit_price_unit': {
+                        required: "Range unit required"
+                    },
+                    'price_unit': {
                         required: "Range unit required"
                     },
                     'suitable_currencies': {
@@ -2286,15 +2751,9 @@
                         // $("#alert-success-create-product").show().html("New product added successfully.");
                         $(window).off('beforeunload');
 
-                        mySheetsDropzone.buysellId = response.buysell_id;
-                        mySheetsDropzone.processQueue();
-                        myImagesDropzone.buysellId = response.buysell_id;
-                        myImagesDropzone.processQueue();
-                        setTimeout(() => {
                             $("#loader").hide();
                             toastr.success("Buy sell updated successfully.");
                             window.location.href = response.url;
-                        }, 30000);
                     } else if (response.feedback == "validation_error") {
                         toastr.error("Please enter the required fields.");
                         $form.find('button[type=submit]').prop('disabled', false);
@@ -2351,77 +2810,6 @@
                 },
             };
             $('#updateBuysell').ajaxForm(options);
-            Dropzone.autoDiscover = false;
-            $(".dropzone").sortable({
-                change: function (event, ui) {
-                    ui.placeholder.css({visibility: 'visible', border: '2px dashed #673ab75e' });
-                }
-            });
-            var mySheetsDropzone = new Dropzone("div.images-files-drop", {
-                buysellId: '',
-                url: "{{url('upload-buysell-sheets')}}",
-                addRemoveLinks: true,
-                dictRemoveFile: '<span class="delete fa fa-trash"></span>',
-                autoProcessQueue: false,
-                parallelUploads: 15,
-                maxThumbnailFilesize: 15,
-                maxFilesize: 15,
-                maxFiles: 15,
-                acceptedFiles: 'image/jpeg,image/jpg,image/png,application/pdf,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                paramName: "file",
-                init: function () {
-                    let thisDropzone = this;
-                    this.on('sending', function (file, xhr, formData) {
-                        formData.append('buysellId', thisDropzone.buysellId);
-                        formData.append("_token", "{{ csrf_token() }}");
-                    });
-
-                    console.log('init');
-                    this.on("maxfilesexceeded", function (file) {
-                        alert("You cannot upload more than 15 images or files!");
-                        this.removeFile(file);
-                    });
-                    this.on("addedfile", function (data) {
-                        console.log(data);
-
-                        var ext = data.name.split('.').pop();
-
-                        if (ext == "pdf") {
-                            $(data.previewElement).find(".dz-image img").attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
-                        } else if (ext.indexOf("doc") != -1) {
-                            $(data.previewElement).find(".dz-image img").attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
-                        } else if (ext.indexOf("xlsx") != -1) {
-                            $(data.previewElement).find(".dz-image img").attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
-                        }
-                    });
-                }
-            });
-            var myImagesDropzone = new Dropzone("div.images-drop", {
-                buysellId: '',
-                url: "{{url('upload-buysell-images')}}",
-                addRemoveLinks: true,
-                dictRemoveFile: '<span class="delete fa fa-trash"></span>',
-                autoProcessQueue: false,
-                parallelUploads: 15,
-                maxThumbnailFilesize: 15,
-                maxFilesize: 15,
-                maxFiles: 15,
-                acceptedFiles: 'image/jpeg,image/png',
-                paramName: "file",
-                init: function () {
-                    let thisDropzone = this;
-                    this.on('sending', function (file, xhr, formData) {
-                        formData.append('buysellId', thisDropzone.buysellId);
-                        formData.append("_token", "{{ csrf_token() }}");
-                    });
-
-                    console.log('init');
-                    this.on("maxfilesexceeded", function (file) {
-                        alert("You cannot upload more than 15 images!");
-                        this.removeFile(file);
-                    });
-                }
-            });
 
             $('.edit-payment').click(function () {
                 $('#companyTab1').hide();
@@ -2516,6 +2904,1780 @@
                     }
                 });
             }, 5000);
+
+            $(document).on('change', '#bsheet16', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet16").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image16');
+                    output.src = reader.result;
+                };
+
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet16').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet16')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet16').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet16_url').val(url);
+                        var name = $('input[name="bsheet16_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image16').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image16').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image16').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+                    });
+                }
+
+            });
+            $(document).on('change', '#bsheet17', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet17").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image17');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet17').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet17')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet117').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet17_url').val(url);
+                        var name = $('input[name="bsheet17_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image17').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image17').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image17').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bsheet18', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet18").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image18');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet18').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet18')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet18').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet18_url').val(url);
+                        var name = $('input[name="bsheet18_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image18').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image18').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image18').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bsheet19', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet19").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image19');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet19').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet19')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet18').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet19_url').val(url);
+                        var name = $('input[name="bsheet19_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image19').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image19').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image19').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bsheet20', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet20").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image20');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet20').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet20')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet20').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet20_url').val(url);
+                        var name = $('input[name="bsheet20_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image20').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image20').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image20').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bsheet21', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet21").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image21');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet21').files[0]);
+
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet21')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet21').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet21_url').val(url);
+                        var name = $('input[name="bsheet21_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image21').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image21').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image21').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bsheet22', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet22").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image22');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet22').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet22')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet22').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet22_url').val(url);
+                        var name = $('input[name="bsheet22_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image22').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image22').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image22').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bsheet23', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet23").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image23');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet23').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet23')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet23').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet23_url').val(url);
+                        var name = $('input[name="bsheet23_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image23').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image23').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image23').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bsheet24', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet24").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image24');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet24').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet24')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet24').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet24_url').val(url);
+                        var name = $('input[name="bsheet24_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image24').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image24').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image24').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bsheet25', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet25").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image25');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet25').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet25')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet25').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet25_url').val(url);
+                        var name = $('input[name="bsheet25_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image25').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image25').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image25').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bsheet26', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet26").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image26');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet26').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet26')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet26').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet26_url').val(url);
+                        var name = $('input[name="bsheet26_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image26').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image26').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image26').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bsheet27', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet27").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image27');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet27').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet27')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet27').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet27_url').val(url);
+                        var name = $('input[name="bsheet27_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image27').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image27').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image27').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bsheet28', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet28").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image28');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet28').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet28')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet28').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet28_url').val(url);
+                        var name = $('input[name="bsheet28_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image28').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image28').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image28').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bsheet29', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet29").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image29');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet29').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet29')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet29').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet29_url').val(url);
+                        var name = $('input[name="bsheet29_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image29').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image29').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image29').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bsheet30', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bsheet30").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image30');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("sheet", document.getElementById('bsheet30').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bsheet30')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bsheet30').val(null);
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bsheet30_url').val(url);
+                        var name = $('input[name="bsheet30_url"]').val()
+                        var ext = name.split('.').pop().toLowerCase();
+
+                        if (ext == "pdf") {
+                            $('#buploaded_image30').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $('#buploaded_image30').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                        } else if (ext.indexOf("xlsx") != -1) {
+                            $('#buploaded_image30').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                        }
+
+
+                    });
+                }
+            });
+
+            $(document).on('change', '#bavatar1', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar1").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image1');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar1').files[0]);
+
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar1')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar1_url').val(url);
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bavatar2', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar2").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image2');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar2').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar2')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar2').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar2_url').val(url);
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bavatar3', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar3").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image3');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar3').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar3')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar3').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar3_url').val(url);
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bavatar4', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar4").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image4');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar4').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar4')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar4').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar4_url').val(url);
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bavatar5', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar5").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image5');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar5').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar5')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar5').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar5_url').val(url);
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bavatar6', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar6").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image6');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar6').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar6')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar6').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar6_url').val(url);
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bavatar7', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar7").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image7');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar7').files[0]);
+
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar7')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar7').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar7_url').val(url);
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bavatar8', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar8").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image8');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar8').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar8')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar8').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar8_url').val(url);
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bavatar9', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar9").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image9');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar9').files[0]);
+
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar9')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar9').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar9_url').val(url);
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bavatar10', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar10").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image10');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar10').files[0]);
+
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar10')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar10').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar10_url').val(url);
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bavatar11', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar11").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image11');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar11').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar11')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar11').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar11_url').val(url);
+
+                    });
+                }
+            });
+            $(document).on('change', '#bavatar12', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar12").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image12');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar12').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar12')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar12').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar12_url').val(url);
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bavatar13', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar13").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image13');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar13').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar13')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar13').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar13_url').val(url);
+
+
+                    });
+                }
+            });
+            $(document).on('change', '#bavatar14', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar14").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image14');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar14').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar14')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar14').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar14_url').val(url);
+
+
+                    });
+                }
+
+            });
+            $(document).on('change', '#bavatar15', function (event) {
+                var $this = $(this);
+                $this.siblings('.product-upload-button').find('.loader-spinner').removeClass('d-none');
+                $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000075');
+                var name = document.getElementById("bavatar15").files[0].name;
+                var form_data = new FormData();
+                var token = '{{csrf_token()}}';
+
+                var MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+                var fileSize = this.files[0].size;
+                if (fileSize > MAX_FILE_SIZE) {
+                    alert("File must not exceed 10 MB!");
+                    $this.val(null);
+                    $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                    $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', 'unset');
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = $this.closest('.product-pic');
+                        output.src = reader.result;
+                    };
+                }
+
+                var ext = name.split('.').pop().toLowerCase();
+                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                    alert("Invalid Image File");
+                }
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('buploaded_image15');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+                form_data.append('_token', token);
+                form_data.append("avatar", document.getElementById('bavatar15').files[0]);
+
+                var bucket = new AWS.S3({params: {Bucket: 'bizonairfiles'}});
+                var uploadFiles = $('#bavatar15')[0];
+                var upFile = uploadFiles.files[0];
+                if (upFile) {
+                    let filename = Date.now() + '.' + upFile.name.split('.').pop();
+                    var uploadParams = {Key: filename, ContentType: upFile.type, Body: upFile};
+
+                    bucket.upload(uploadParams).on('httpUploadProgress', function (evt) {
+                    }).send(function (err, data) {
+                        $('#bavatar15').val(null);
+                        $this.siblings('.product-upload-button').find('.loader-spinner').addClass('d-none');
+                        $this.siblings('.product-upload-button').find('.loader-spinner').parent('.product-upload-button').css('background', '#00000015');
+                        let url = data.Location;
+                        $('#bavatar15_url').val(url);
+
+
+                    });
+                }
+            });
         });
 
         /*for downloading files*/

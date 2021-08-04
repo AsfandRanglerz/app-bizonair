@@ -183,7 +183,7 @@
                                             <label class="d-none">Categories</label>
                                             <select name="category[]" class="form-control select2-multiple" id="category"
                                                     multiple>
-                                                <option value="" disabled selected>Select Category</option>
+                                                <option disabled selected>Select Category</option>
                                                 @foreach (\App\Category::all() as $item)
 
                                                     <option value="{{$item->id}}">{{$item->name}}</option>

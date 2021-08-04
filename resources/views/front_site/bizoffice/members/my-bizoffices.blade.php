@@ -50,7 +50,7 @@
                                     <td>@if($list->is_owner==1) Owner/Admin @elseif($list->is_member==1 && $list->is_admin==1) Admin,Member @else Member @endif</td>
                                     <td>{{$list->company->business_type }}</td>
                                     <td><a href="{{route('get-members')}}">{{getCompanyMembersCount($list->company->id) }}</a></td>
-                                    <td><img src="{{$ASSET.'/front_site/images/company-images/'.$list->company->logo }}" style="width: 50px;
+                                    <td><img src="{{$list->company->logo }}" style="width: 50px;
     height: 50px;"></td>
                                     <td>{{str_replace('ago', ' ',\Carbon\Carbon::parse($list->company->created_at)->diffForHumans())}}</td>
 

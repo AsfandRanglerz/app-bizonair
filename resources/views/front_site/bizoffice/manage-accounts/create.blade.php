@@ -32,7 +32,7 @@
                                             <small class="text-danger" id="email_error"></small>
                                         </div>
                                         <div class="form-group col-xl-12 col-lg-12" align="center">
-                                            <button class="verify-btn red-btn" type="submit" id="accoutn_btn" disabled>Invite A New Member
+                                            <button class="verify-btn red-btn" type="submit" id="accoutn_btn">Invite A New Member
                                             </button>
                                             <button  disabled class="btn-pro d-none red-btn"><span
                                                     class="spinner-border  spinner-border-sm mr-1" role="status"
