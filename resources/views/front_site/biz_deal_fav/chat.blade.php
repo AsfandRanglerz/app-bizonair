@@ -11,7 +11,7 @@
                     <?php $img = \DB::table('buysell_images')->where('buy_sell_id',$convo->product->id)->get();?>
                     @foreach($img as $i => $image)
                         @if($loop->first)
-                <img alt="40x40" src="{{$ASSETS}}/{{$image->image}}" data-holder-rendered="true" class="rounded-circle" width="40" height="40">
+                <img alt="40x40" src="{{$image->image}}" data-holder-rendered="true" class="rounded-circle" width="40" height="40">
                         @endif
                     @endforeach
             </a>
@@ -21,7 +21,7 @@
 </div>
 <ul class="mb-3 nav nav-tabs">
     <li class="nav-item">
-        <a class="nav-link active" id="inboxMail-tab" data-toggle="tab" href="#inboxMail" role="tab"
+        <a class="nav-link" id="inboxMail-tab" data-toggle="tab" href="#inboxMail" role="tab"
            aria-controls="home" aria-selected="true">INBOX</a>
     </li>
     <li class="nav-item">
@@ -33,27 +33,35 @@
            aria-controls="contact" aria-selected="false">TRASH</a>
     </li>
 </ul>
+<div class="tab-content">
+    <div class="tab-pane fade" id="inboxMail" role="tabpanel"
+         aria-labelledby="inboxMail-tab"></div>
+    <div class="tab-pane fade" id="sentMail" role="tabpanel" aria-labelledby="sentMail-tab"></div>
+    <div class="tab-pane fade" id="trashMail" role="tabpanel" aria-labelledby="trashMail-tab"></div>
+</div>
 <div class="mail-reply-box-outer">
     <input type="hidden" class="convo-data" data-convo={{encrypt($convo->id)}}>
     {{-- {{dd($convo->messages)}} --}}
     @foreach ($convo->messages as $list)
-    <div class="p-4 mail-reply-box @if($list->created_by != \Auth::id()) msg-sender @endif">
+    <div class="p-4 mail-reply-box @if($list->created_by == \Auth::id()) msg-sender @endif">
         <div class="d-flex justify-content-between">
             @if($list->created_by == \Auth::id())
-            <div>
-                <p class="mb-0 font-500 user">{{get_name(\Auth::user())}}</p>
-                <p class="recipient">To - <span class="to-recipient"></span>{{getUserNameById($convo->created_by)}}</p>
-            </div>
+                <div>
+                    <p class="mb-0 font-500 user">{{get_name(\Auth::user())}}</p>
+                    <p class="recipient">To - <span class="to-recipient"></span>{{
+            \Auth::id() == $convo->created_by ? get_name($convo->product->user) : get_name($convo->created_by_user)}}</p>
+                </div>
             @else
-            <div>
-                <p class="mb-0 font-500 user">XXXXXXXXXX</p>
-                <p class="recipient">To - <span class="to-recipient"></span>{{get_name(\Auth::user())}}</p>
-            </div>
+                <div>
+                    <p class="mb-0 font-500 user">{{get_name($list->user)}}</p>
+                    <p class="recipient">To - <span class="to-recipient"></span>{{get_name(\Auth::user())}}</p>
+                </div>
             @endif
 
             <div class="d-flex">
                 <div class="d-flex flex-column">
                     <span class="day-date-time">{{$list->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</span>
+                    <span>{{$convo->product->city}} , {{$convo->product->country}}</span>
                     @if($list->file_path)
                     <a href="{{url($list->file_path)}}" download="download">
                     <span class="d-inline fa fa-paperclip attached-icon"></span>

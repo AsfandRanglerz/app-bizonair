@@ -69,7 +69,7 @@
                                     <small class="text-danger" id="detail_error"></small>
                                 </div>
                                 <div class="form-group col-xl-12 col-lg-12">
-                                    <button class="verify-btn red-btn" type="submit" id="accoutn_btn" disabled>Schedule Meeting
+                                    <button class="verify-btn red-btn" type="submit" id="accoutn_btn">Schedule Meeting
                                     </button>
                                     <button  disabled class="btn-pro d-none red-btn"><span
                                             class="spinner-border  spinner-border-sm mr-1" role="status"

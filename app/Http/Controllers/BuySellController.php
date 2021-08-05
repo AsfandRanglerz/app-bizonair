@@ -190,7 +190,7 @@ class BuySellController extends Controller
         $buysell->childsubcategory_id = $request->sub_sub_category;
         $buysell->add_sub_sub_category = $request->add_sub_sub_category;
 
-        $buysell->reference_no = mt_rand(100000,9999999);
+        $buysell->reference_no = mt_rand(5000000,10000000);
         $buysell->slug = Str::slug($request->product_service_name) . "-" . $buysell->reference_no;
 
         $buysell->subject = $request->subject;

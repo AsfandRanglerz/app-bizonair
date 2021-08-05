@@ -126,7 +126,7 @@ class FavouriteController extends Controller
         $data['title'] = 'Your Favourite Leads';
         $data['user'] = \App\User::find(\auth()->id());
         $data['order'] = 'desc';
-        $data['favourite'] = \App\Favourite::where('user_id','=',auth()->user()->id)->whereBetween('reference_no', ['1000000', '10000000']);
+        $data['favourite'] = \App\Favourite::where('user_id','=',auth()->user()->id)->whereBetween('reference_no', ['100000', '4900000']);
         $data['count'] = $data['favourite']->count();
         $data['favourite'] = $data['favourite']->paginate();
         $data['page'] = 'bizoffice.favourite.favourite-lead-list';
@@ -146,7 +146,7 @@ class FavouriteController extends Controller
         $data['title'] = 'Your Favourite Deals';
         $data['user'] = \App\User::find(\auth()->id());
         $data['order'] = 'desc';
-        $data['favourite'] = \App\Favourite::where('user_id','=',auth()->user()->id)->whereNotBetween('reference_no', ['1000000', '10000000']);
+        $data['favourite'] = \App\Favourite::where('user_id','=',auth()->user()->id)->whereNotBetween('reference_no', ['100000', '4900000']);
         $data['count'] = $data['favourite']->count();
         $data['favourite'] = $data['favourite']->paginate();
         $data['page'] = 'bizoffice.favourite.favourite-deal-list';

@@ -190,7 +190,7 @@
             <!-- Sidebar -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" >
+            <div id="page-content-wrapper" style="background: #d9eefe8c">
 
                 <div class="my-2 mx-4" id="dynamic-body">
                     <ul class="mb-3 nav nav-tabs">
@@ -442,7 +442,7 @@
                                                 class="d-none upload-file"> <span
                                                 class="fa fa-paperclip text-white p-2"></span></label></span></div>
                             </div>
-                            <button class="ml-2 send-icon send-icon-convo" disabled><span
+                            <button class="ml-2 send-icon send-icon-convo"><span
                                     class="fa fa-paper-plane"></span></button>
                         </div>
                     </div>
@@ -798,8 +798,9 @@ $(document).on('click', '.click', function(){
                     $('#dynamic-body').html(response.data);
                     $(document).on('click', '.send-icon-messages', function () {
                     // console.log('ff');
+                    var $this = $(this);
                     var valInputField = $(this).parent().siblings('textarea').val();
-                    var valInputfile = $(this).parent().find('.upload-file').val();
+                    var valInputfile = $(this).parent().find('.upload-file')[0].files;
                     // console.log(valInputField);
 
                     let convo_id = $('.convo-data').attr('data-convo');
@@ -836,15 +837,15 @@ $(document).on('click', '.click', function(){
                                 toastr.error(response.msg, 'Error');
                             } else if (response.feedback == 'true') {
                                 toastr.success(response.msg, 'Success').fadeOut(2000);
-
+                                $this.closest('.reply-input-field').remove();
                                 var mailReplyBox = "<div class='p-4 mail-reply-box msg-sender'>" +
                                     "<div class='d-flex justify-content-between'>" +
                                         "<div>" +
                                             "<p class='mb-0 font-500 user'>" +
-                                                "{{get_name(\Auth::user())}}" +
+                                                response.sent_from +
                                             "</p>" +
                                             "<p class='recipient'>"
-                                                + "To -" + "<span class='to-recipient'>" + "</span>" + "XXXXXXXXXX" +
+                                                + "To -" + "<span class='to-recipient'>" + "</span>" + response.sent_to +
                                             "</p>" +
                                         "</div>" +
                                         "<div class='d-flex'>" +
@@ -1180,6 +1181,7 @@ $(document).on('click', '.click', function(){
                         } else if (response.feedback == 'true') {
                             // toastr.success(response.msg, 'Success');
                             $('#inboxMail').html(response.data);
+                            $('.mail-reply-box-outer').remove();
                         } else {
                             toastr.error('Some other issues', 'Error');
                         }
@@ -1205,6 +1207,7 @@ $(document).on('click', '.click', function(){
                         } else if (response.feedback == 'true') {
                             // toastr.success(response.msg, 'Success');
                             $('#sentMail').html(response.data);
+                            $('.mail-reply-box-outer').remove();
                         } else {
                             toastr.error('Some other issues', 'Error');
                         }
@@ -1229,6 +1232,7 @@ $(document).on('click', '.click', function(){
                         } else if (response.feedback == 'true') {
                             // toastr.success(response.msg, 'Success');
                             $('#trashMail').html(response.data);
+                            $('.mail-reply-box-outer').remove();
                         } else {
                             toastr.error('Some other issues', 'Error');
                         }

@@ -12,8 +12,11 @@
             <div id="page-content-wrapper">
 
                 <div class="table-responsive table-mt d-container mt-2">
-                    <span class="main-heading mb-1 text-danger">{{ company_name(session()->get('company_id'))??'' }}</span>
-                    <span class="main-heading mb-2">{{$title}}</span>
+                        <span class="main-heading mb-1 text-danger">{{ company_name(session()->get('company_id'))??'' }}</span>
+                        <span class="main-heading mb-2">{{$title}}</span>
+                        <div class="my-3">
+                            <a href="{{route('create-member')}}" class="red-btn">Add New Member</a>
+                        </div>
                     <div class="alert alert-success m-0 mb-2 text-center" id='alert-success' style="display:none;"
                          role="alert">
                     </div>
@@ -55,36 +58,36 @@
                                     <td align="center">
 
                                         @if(!check_member(\Auth::id()))
-                                        @if(!($list->is_owner==1 && $list->is_admin==1)  )
+                                            @if(!($list->is_owner==1 && $list->is_admin==1)  )
 
-                                            @if(!(\Auth::id() == $list->user_id && ($list->is_member==1 && $list->is_admin==1)))
+                                                @if(!(\Auth::id() == $list->user_id && ($list->is_member==1 && $list->is_admin==1)))
 
-                                                <button  class="dropdown-toggle prWhiteBtn p-0 abc"
-                                                        data-toggle="dropdown" disabled>
-                                                    <img src="./images/3_dots.png" alt="">
-                                                </button>
-                                                <input type="hidden" name='id' value="{{encrypt($list->user->id)}}">
-                                                <ul class="dropdown-menu actionMenu p-10" role="menu">
-                                                    @if($list->is_admin == 0 && $list->is_member == 1)
-                                                    <li class="font-500">
-                                                        <a href="javascript:;" class="status-btn" onclick="return false;">
-                                                            <span class="fa fa-check mr-3" aria-hidden="true"></span>Mark as Admin</a>
-                                                    </li>
+                                                    <button  class="dropdown-toggle prWhiteBtn p-0 abc"
+                                                             data-toggle="dropdown">
+                                                        <img src="./images/3_dots.png" alt="">
+                                                    </button>
+                                                    <input type="hidden" name='id' value="{{encrypt($list->user->id)}}">
+                                                    <ul class="dropdown-menu actionMenu p-10" role="menu">
+                                                        @if($list->is_admin == 0 && $list->is_member == 1)
+                                                            <li class="font-500">
+                                                                <a href="javascript:;" class="status-btn">
+                                                                    <span class="fa fa-check mr-3" aria-hidden="true"></span>Mark as Admin</a>
+                                                            </li>
                                                         @elseif($list->is_admin == 1 && $list->is_member == 1)
-                                                    <li class="font-500">
-                                                        <a href="javascript:;" class="status-btn" onclick="return false;">
-                                                            <span class="fa fa-check mr-3" aria-hidden="true"></span>Unmark as Admin</a>
-                                                    </li>
-                                                    @endif
-                                                    <li class="font-500">
-                                                        <a href="javascript:;" class="delete-btn" onclick="return false;">
-                                                            <span class="fa fa-trash mr-3" aria-hidden="true"></span>Remove</a>
-                                                    </li>
-                                                </ul>
+                                                            <li class="font-500">
+                                                                <a href="javascript:;" class="status-btn">
+                                                                    <span class="fa fa-check mr-3" aria-hidden="true"></span>Unmark as Admin</a>
+                                                            </li>
+                                                        @endif
+                                                        <li class="font-500">
+                                                            <a href="javascript:;" class="delete-btn">
+                                                                <span class="fa fa-trash mr-3" aria-hidden="true"></span>Remove</a>
+                                                        </li>
+                                                    </ul>
 
+                                                @endif
                                             @endif
-                                            @endif
-                                            @endif
+                                        @endif
 
                                     </td>
 

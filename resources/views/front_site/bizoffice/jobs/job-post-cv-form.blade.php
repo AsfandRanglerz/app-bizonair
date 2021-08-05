@@ -16,7 +16,7 @@
             <div id="page-content-wrapper">
 
                 <div class="d-container py-2">
-                    <span class="main-heading">Post Your CV</span>
+                    <span class="main-heading">Upload Your CV</span>
                     <div class="alert alert-success m-0 mb-2 text-center" id='alert-success-cv' style="display:none;"
                          role="alert">
                     </div>

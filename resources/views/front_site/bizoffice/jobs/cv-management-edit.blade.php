@@ -139,7 +139,17 @@
                                         <div class="mb-2">
                                             <br>
                                         </div>
-                                            <img class="object-cover header-profile-pic" src="{{$ASSETS}}/{{ $info->image }}" width="135" height="135">
+                                        <?php $ext = strtolower(pathinfo($info->image, PATHINFO_EXTENSION)); ?>
+                                        @if($ext=="docx")
+                                            <img class="img-responsive product-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png">
+                                        @elseif($ext=="xlsx")
+                                            <img class="img-responsive product-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png">
+                                        @elseif($ext=="pdf")
+                                            <img class="img-responsive product-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png">
+                                        @else
+                                            <img class="object-contain header-profile-pic" src="{{ $info->image }}" width="135" height="135">
+                                        @endif
+
                                     </div>
                                 </div>
                                 <div class="my-1">
@@ -183,7 +193,17 @@
                                                required>
                                         <small class="text-danger" id="lname_error"></small>
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-2">
+                                        <label class="font-500">Phone Code <span class="required">*</span></label>
+                                        <select name="phone_code" id="phone_code" class="form-control single-select-dropdown" required>
+                                            <option value="" selected disabled>Select</option>
+                                            @foreach (\DB::table('countries')->get() as $item)
+                                                <option value="+{{$item->phonecode}}" @if($info->phone_code == +$item->phonecode) selected @endif>+{{$item->phonecode}}</option>
+                                            @endforeach
+                                        </select>
+                                        <small class="text-danger" id="phone_code_error"></small>
+                                    </div>
+                                    <div class="form-group col-md-2">
                                         <label class="font-500">Contact Number <span class="required">*</span></label>
                                         <input type="text"
                                                name="phone_no" id="phone_no" value="{{ $info->phone_no }}" class="form-control"
@@ -345,10 +365,29 @@
                                             <small class="text-danger" id="image_error"></small>
                                         </div>
                                     </div>
+                                    <div class="form-group col-md-4">
+                                        <div class="px-3 product-img-spec-container">
+                                            <h6 class="mt-3 px-2 heading pro-spec-heading">Attachment</h6>
+                                            <div class="product-images-gallery">
+                                                <div class="row mx-0 my-2 product-gallery">
+                                                    <?php $ext = strtolower(pathinfo($info->image, PATHINFO_EXTENSION)); ?>
+                                                    @if($ext=="docx")
+                                                        <img class="img-responsive product-img attachment-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png">
+                                                    @elseif($ext=="xlsx")
+                                                        <img class="img-responsive product-img attachment-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png">
+                                                    @elseif($ext=="pdf")
+                                                        <img class="img-responsive product-img attachment-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png">
+                                                    @else
+                                                        <img class="img-responsive product-img attachment-img" src="{{$info->image}}">
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-12 mt-2">
-                                        <button class="verify-btn red-btn" type="submit" id="cv_update_btn" disabled>Update CV
+                                        <button class="verify-btn red-btn" type="submit" id="cv_update_btn">Update CV
                                         </button>
                                         <button  disabled class="btn-pro d-none red-btn"><span
                                                 class="spinner-border  spinner-border-sm mr-1" role="status"

@@ -13,10 +13,10 @@
         <!-- /#sidebar-wrapper -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" >
+            <div id="page-content-wrapper" class="page-bg">
 
-                <div class="d-container py-2">
-                    <span class="main-heading">News & Articles</span>
+                <div class="d-container mx-3">
+                    <span class="main-heading mt-3 mb-3">News & Articles</span>
                     <div class="alert alert-success m-0 mb-2 text-center" id='alert-success' style="display:none;"
                          role="alert">
                     </div>
@@ -27,59 +27,60 @@
                         <form id="updateNewsArticleForm" method="POST" action="{{route('update-news-article')}}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" value="{{ $info->id }}"><div class="form-row">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label class="font-500"> <span class="required">*</span></label>
-                                    <input type="text" placeholder="Title"
-                                           name="title" id="title" value="{{ $info->title }}" class="form-control"
-                                           >
-                                    <small class="text-danger" id="title_error"></small>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="font-500">Title <span class="required">*</span></label>
+                                        <input type="text"
+                                               name="title" id="title" value="{{ $info->title }}" class="form-control"
+                                        >
+                                        <small class="text-danger" id="title_error"></small>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="font-500">Type<span class="required">*</span></label>
+
+                                        <select name="journal_type" id="journal_type" class="form-control">
+                                            <option value="{{ $info->journal_type_name }}" selected>{{ $info->journal_type_name }}</option>
+                                            @foreach(\App\JournalType::all() as $type)
+                                                <option value="{{$type->name}}">{{$type->name}}</option>
+                                            @endforeach
+
+                                        </select>
+                                        <small class="text-danger" id="journal_type_error"></small>
+
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label class="font-500">Description</label>
+                                        <textarea name="description" id="description" class="form-control ckeditor"
+                                                  style="min-height:200px;">{{ $info->description }}</textarea>
+                                    </div>
+
+                                    {{--                                <div class="form-group col-md-4">--}}
+                                    {{--                                    <label class="font-500">Date <span class="required">*</span></label>--}}
+                                    {{--                                    <input type="text" autocomplete="off"--}}
+                                    {{--                                           name="date" id="date"--}}
+                                    {{--                                           class="form-control closingdatepicker"--}}
+                                    {{--                                           value="{{ $info->publish_date }}">--}}
+                                    {{--                                    <small class="text-danger" id="date_error"></small>--}}
+                                    {{--                                </div>--}}
+
+                                    <div class="form-group col-md-6 career-img-drop-outer attachment-img-file" >
+                                        <label>Image <span class="required">*</span></label>
+                                        <div class="custom-file">
+                                            <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile"><span class="fa fa-upload"></span></label>
+                                            <small class="text-danger" id="image_error"></small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-xl-12 col-lg-12">
+                                        <button class="verify-btn red-btn" type="submit" id="blog_update_btn">Update Post
+                                        </button>
+                                        <button  disabled class="btn-pro d-none red-btn"><span
+                                                class="spinner-border  spinner-border-sm mr-1" role="status"
+                                                aria-hidden="true"></span>Processing
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label class="font-500">Image <span class="required">*</span></label>
-                                    <input type="file"
-                                           name="image"  id="image" class="form-control"
-                                    >
-                                    <small class="text-danger" id="image_error"></small>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <label class="font-500">Description</label>
-                                    <textarea name="description" id="description" class="form-control ckeditor"
-                                              style="min-height:200px;">{{ $info->description }}</textarea>
-                                </div>
-
-{{--                                <div class="form-group col-md-4">--}}
-{{--                                    <label class="font-500">Date <span class="required">*</span></label>--}}
-{{--                                    <input type="text" autocomplete="off"--}}
-{{--                                           name="date" id="date"--}}
-{{--                                           class="form-control closingdatepicker"--}}
-{{--                                           value="{{ $info->publish_date }}">--}}
-{{--                                    <small class="text-danger" id="date_error"></small>--}}
-{{--                                </div>--}}
-
-                                <div class="form-group col-md-4">
-                                    <label class="font-500">Type<span class="required">*</span></label>
-
-                                    <select name="journal_type" id="journal_type" class="form-control">
-                                        <option value="{{ $info->journal_type_name }}" selected>{{ $info->journal_type_name }}</option>
-                                        @foreach(\App\JournalType::all() as $type)
-                                            <option value="{{$type->name}}">{{$type->name}}</option>
-                                        @endforeach
-
-                                    </select>
-                                    <small class="text-danger" id="journal_type_error"></small>
-
-                                </div>
-                                <div class="form-group col-xl-12 col-lg-12">
-                                    <button class="verify-btn red-btn" type="submit" id="blog_update_btn" disabled>Update Post
-                                    </button>
-                                    <button  disabled class="btn-pro d-none red-btn"><span
-                                            class="spinner-border  spinner-border-sm mr-1" role="status"
-                                            aria-hidden="true"></span>Processing
-                                    </button>
-                                </div>
-                            </div>
                         </form>
                     </div>
                 </div>

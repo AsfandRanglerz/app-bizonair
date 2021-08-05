@@ -73,7 +73,7 @@
                                                         class="fa fa-paperclip text-white p-2"></span></label></span>
                                         </div>
                                     </div>
-                                    <button class="ml-2 send-icon send-icon-convo" disabled><span
+                                    <button class="ml-2 send-icon send-icon-convo"><span
                                             class="fa fa-paper-plane"></span></button>
                                             <button type="submit" disabled="" class="btn-pro btn red-btn d-none ml-2 align-items-center  justify-content-center"><span class="spinner-border spinner-border-sm mr-1" ml-2="" role="status" aria-hidden="true"></span></button>
                                 </div>

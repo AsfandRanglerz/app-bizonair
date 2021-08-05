@@ -191,7 +191,7 @@
             <!-- Sidebar -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" >
+            <div id="page-content-wrapper" style="background: #d9eefe8c">
 
                 <div class="my-2 mx-4" id="dynamic-body">
                     <ul class="mb-3 nav nav-tabs">
@@ -219,7 +219,7 @@
                                 style="right: 2px;top: 8px;font-size: 15px;color: gray"></span>
                         </div>
                         <input type="text" class="date-reference-number" name="ref_no" placeholder="By Refno">
-                        <button class="btn fa fa-search red-btn single-chat-box-search" disabled></button>
+                        <button class="btn fa fa-search red-btn single-chat-box-search"></button>
                         </form>
                     </div>
                     <div class="tab-content">
@@ -798,6 +798,7 @@ $(document).on('click', '.click', function(){
                     $('#dynamic-body').html(response.data);
                     $(document).on('click', '.send-icon-messages', function () {
                     // console.log('ff');
+                    var $this = $(this);
                     var valInputField = $(this).parent().siblings('textarea').val();
                     var valInputfile = $(this).parent().find('.upload-file')[0].files;
                     // console.log(valInputField);
@@ -836,7 +837,7 @@ $(document).on('click', '.click', function(){
                                 toastr.error(response.msg, 'Error');
                             } else if (response.feedback == 'true') {
                                 toastr.success(response.msg, 'Success').fadeOut(2000);
-
+                                $this.closest('.reply-input-field').remove();
                                 var mailReplyBox = "<div class='p-4 mail-reply-box msg-sender'>" +
                                     "<div class='d-flex justify-content-between'>" +
                                         "<div>" +
@@ -844,7 +845,7 @@ $(document).on('click', '.click', function(){
                                                 "{{get_name(\Auth::user())}}" +
                                             "</p>" +
                                             "<p class='recipient'>"
-                                                + "To -" + "<span class='to-recipient'>" + "</span>" + "XXXXXXXXXX" +
+                                                + "To -" + "<span class='to-recipient'>" + "</span>" + response.sent_to +
                                             "</p>" +
                                         "</div>" +
                                         "<div class='d-flex'>" +
@@ -1185,6 +1186,7 @@ $(document).on('click', '.click', function(){
                         } else if (response.feedback == 'true') {
                             // toastr.success(response.msg, 'Success');
                             $('#inboxMail').html(response.data);
+                            $('.mail-reply-box-outer').remove();
                         } else {
                             toastr.error('Some other issues', 'Error');
                         }
@@ -1210,6 +1212,7 @@ $(document).on('click', '.click', function(){
                         } else if (response.feedback == 'true') {
                             // toastr.success(response.msg, 'Success');
                             $('#sentMail').html(response.data);
+                            $('.mail-reply-box-outer').remove();
                         } else {
                             toastr.error('Some other issues', 'Error');
                         }
@@ -1234,6 +1237,7 @@ $(document).on('click', '.click', function(){
                         } else if (response.feedback == 'true') {
                             // toastr.success(response.msg, 'Success');
                             $('#trashMail').html(response.data);
+                            $('.mail-reply-box-outer').remove();
                         } else {
                             toastr.error('Some other issues', 'Error');
                         }

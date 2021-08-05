@@ -63,12 +63,12 @@
                                                     <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
                                                 </button>
                                         <ul class="dropdown-menu actionMenu p-10" role="menu">
-                                            <a href="{{ route('my-company-profile',$list->company->id) }}" onclick="return false;">
+                                            <a href="{{ route('my-company-profile',$list->company->id) }}">
                                                 <li class="font-500">
                                                     <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>Edit
                                                 </li>
                                             </a>
-                                            <a href="javascript:;" class="delete-product" onclick="return false;">
+                                            <a href="javascript:;" class="delete-product">
                                                 <li class="font-500" id="cross" companies_id="{{$list->company->id}}">
                                                         <span class="fa fa-trash delete-btn mr-3"
                                                               aria-hidden="true"></span>Delete

@@ -199,7 +199,16 @@
                                                 <h3>Image</h3>
                                             </div>
                                         </div>
-                                        <img class="object-contain header-profile-pic" src="{{$ASSETS}}/{{ $info->image }}" width="135" height="135">
+                                        <?php $ext = strtolower(pathinfo($info->image, PATHINFO_EXTENSION)); ?>
+                                        @if($ext=="docx")
+                                            <img class="img-responsive product-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png">
+                                        @elseif($ext=="xlsx")
+                                            <img class="img-responsive product-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png">
+                                        @elseif($ext=="pdf")
+                                            <img class="img-responsive product-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png">
+                                        @else
+                                            <img class="object-contain header-profile-pic" src="{{ $info->image }}" width="135" height="135">
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row text">
@@ -209,7 +218,7 @@
                                 </div>
                                 <div class="row text">
                                     <div class="col-sm-12">
-                                        <span>{{ $info->job_description }}</span>
+                                        <span>{!! $info->job_description !!}</span>
                                     </div>
                                 </div>
                                 <div class="my-1">
@@ -554,7 +563,14 @@
                 console.error(error);
             });
         $(document).ready(function () {
-
+            $('#company').change(function () {
+                if ($(this).val() == 'Other') {
+                    $(this).closest('.form-group').siblings('.other-div').show();
+                }
+                else {
+                    $(this).closest('.form-group').siblings('.other-div').hide();
+                }
+            });
             // // console.log('ready')
             $('.closingdatepicker').datepicker({
                 startDate: "0d",

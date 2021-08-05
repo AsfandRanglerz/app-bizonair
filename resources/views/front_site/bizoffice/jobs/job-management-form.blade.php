@@ -16,7 +16,7 @@
             <div id="page-content-wrapper">
 
                 <div class="d-container py-2">
-                    <span class="main-heading">Add a Job</span>
+                    <span class="main-heading">Jobs</span>
                     <div class="alert alert-success m-0 mb-2 text-center" id='alert-success-jbbac' style="display:none;"
                          role="alert">
                     </div>
@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <select class="form-control single-select-dropdown" id="work_experience" name="work_experience" required>
-                                        <option value="" selected disabled>Select Work Experience </option>
+                                        <option value="" selected disabled>Select Experience </option>
                                         <option value="Fresh / No Experience">Fresh / No Experience</option>
                                         <option value="01-03 Years">01-03 Years</option>
                                         <option value="03-05 Years">03-05 Years</option>
@@ -245,16 +245,17 @@
                                             @foreach(getCompanies(auth()->id()) as $company)
                                                 <option value="{{$company->company_name}}">{{ucwords($company->company_name)}}</option>
                                             @endforeach
-                                            <option value="Other" class="other-check">Other</option>
+                                            <option value="Other" class="other-check" id="other_company">Other</option>
                                         </select>
                                         <small class="text-danger" id="company_error"></small>
                                     </div>
                                     <div class="form-group col-md-4 other-div">
-                                        <input type="text" name="ocompany" id="ocompany" class="form-control" placeholder="Other Company Name">
+                                        <input type="text" name="ocompany" id="ocompany" class="form-control" placeholder="Input Other Company Name">
+
                                     </div>
                                 @else
                                     <div class="form-group col-md-4">
-                                        <input type="text" name="company" id="company" class="form-control" placeholder="Company Name" >
+                                        <input type="text" name="company" id="company" class="form-control" placeholder="Input Company Name" >
                                     </div>
                                 @endif
                                 <div class="form-group col-md-4 career-img-drop-outer attachment-img-file">
@@ -292,6 +293,15 @@
     <script>
 
         $(document).ready(function () {
+            $('#company').change(function () {
+                if ($(this).val() == 'Other') {
+                    $(this).closest('.form-group').siblings('.other-div').show();
+                }
+                else {
+                    $(this).closest('.form-group').siblings('.other-div').hide();
+                }
+            });
+
             // CKEDITOR.replace( 'job_description' );
             // CKEDITOR.config.width = '100%';
             ClassicEditor

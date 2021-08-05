@@ -23,15 +23,15 @@
         <div class="py-3 px-3 d-flex justify-content-between">
             <div class="d-flex w-75">
                 <p class="mb-0 px-3"><span
-                        class="fa @if(check_in_my_fav($list)) fa-star-o @else fa-star @endif fav add-fav"></span>
+                        class="fa @if(check_in_my_fav($list,'fav_lead')) fa-star-o @else fa-star @endif fav add-fav"></span>
                 </p>
-                <p class="mb-0 px-3"><span class=" @if(check_in_my_pin($list,'lead'))far @else fas @endif fa-flag add-to-pin"></span></p>
-                <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'lead')  ) font-weight-bold @endif"
+                <p class="mb-0 px-3"><span class=" @if(check_in_my_pin($list,'fav_lead'))far @else fas @endif fa-flag add-to-pin"></span></p>
+                <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  ) font-weight-bold @endif"
                     data-click-id="{{$list->id}}"><span>{{$list->product->product_service_name}}</span> -
                     <span class="refer">Ref# {{$list->product->reference_no}}</span> -
                     <span>{{mb_strimwidth((strip_tags($list->latestMessage->message)), 0, 50, "...")}}</span>
                 </p>
-                <p class="mb-0 click @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'lead')  ) font-weight-bold @endif"
+                <p class="mb-0 click @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  ) font-weight-bold @endif"
                     data-click-id="{{$list->id}}">
                     <span>{{date('F d h:i:s A', strtotime($list->latestMessage->created_at))}}</span></p>
             </div>

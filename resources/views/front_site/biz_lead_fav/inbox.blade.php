@@ -30,7 +30,7 @@
                         <div class="dynamic-filters-body">
                             @if(count($listing) > 0)
                         @foreach ($listing as $key => $list)
-                        @if(check_deleted_by_me($list))
+                        @if(check_deleted_by_me($list, 'fav_lead'))
 
                         <div class="content-box-email mail-reply-box">
                             <input type="hidden" class="main-convo" data-main-convo="{{encrypt($list->id)}}">
@@ -43,10 +43,10 @@
                                             for="customControlAutosizing1{{$key}}"></label>
                                     </div>
                                     <p class="mb-0 px-3"><span
-                                            class="fa @if(check_in_my_fav($list))fa-star-o @else fa-star @endif fav add-fav"></span>
+                                            class="fa @if(check_in_my_fav($list,'fav_lead'))fa-star-o @else fa-star @endif fav add-fav"></span>
                                     </p>
-                                    <p class="mb-0 px-3"><span class=" @if(check_in_my_pin($list))far @else fas @endif fa-flag add-to-pin"></span></p>
-                                    <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm @if($list->latestMessageNotMine && $list->latestMessageNotMine->is_read == 0  ) font-weight-bold @endif"
+                                    <p class="mb-0 px-3"><span class=" @if(check_in_my_pin($list,'fav_lead'))far @else fas @endif fa-flag add-to-pin"></span></p>
+                                    <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  ) font-weight-bold @endif"
                                         data-click-id="{{$list->id}}">
                                         <span>{{$list->product->product_service_name}}</span> - <span
                                             class="refer">Ref# {{$list->product->reference_no}}</span> -
@@ -54,7 +54,7 @@
                                     </p>
                                 </div>
                                 <div class="d-flex">
-                                    <p class="mb-0 click @if($list->latestMessageNotMine && $list->latestMessageNotMine->is_read == 0  ) font-weight-bold @endif"
+                                    <p class="mb-0 click @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  ) font-weight-bold @endif"
                                        data-click-id="{{$list->id}}">
                                         <span>{{date('F d h:i:s A', strtotime($list->latestMessage->created_at))}}</span>
                                     </p>

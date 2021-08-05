@@ -11,7 +11,7 @@
                 </div>
                     @foreach($convo->product->product_image as $j => $image)
                         @if($loop->first)
-                <img alt="40x40" src="{{$ASSETS}}/{{$image->image}}" data-holder-rendered="true" class="rounded-circle" width="40" height="40">
+                <img alt="40x40" src="{{$image->image}}" data-holder-rendered="true" class="rounded-circle" width="40" height="40">
                         @endif
                     @endforeach
             </a>
@@ -33,26 +33,36 @@
            aria-controls="contact" aria-selected="false">TRASH</a>
     </li>
 </ul>
+<div class="tab-content">
+    <div class="tab-pane fade" id="inboxMail" role="tabpanel"
+         aria-labelledby="inboxMail-tab"></div>
+    <div class="tab-pane fade" id="sentMail" role="tabpanel" aria-labelledby="sentMail-tab"></div>
+    <div class="tab-pane fade" id="trashMail" role="tabpanel" aria-labelledby="trashMail-tab"></div>
+</div>
 <div class="mail-reply-box-outer">
     <input type="hidden" class="convo-data" data-convo={{encrypt($convo->id)}}>
     @foreach ($convo->messages as $list)
-    <div class="p-4 mail-reply-box @if($list->created_by != \Auth::id()) msg-sender @endif">
+    <div class="p-4 mail-reply-box @if($list->created_by == \Auth::id()) msg-sender @endif">
         <div class="d-flex justify-content-between">
             @if($list->created_by == \Auth::id())
+
             <div>
-                <p class="mb-0 font-500 user">{{get_name(\Auth::user())}}</p>
-                <p class="recipient">To - <span class="to-recipient"></span>{{getUserNameById($convo->created_by)}}</p>
+                <p class="mb-0 font-500 user">{{in_array($convo->product->company->id,array_unique(\Arr::pluck(\Auth::user()->company_profiles,'id')))? $convo->product->company->company_name : get_name(\Auth::user())}}</p>
+                <p class="recipient">To - <span class="to-recipient"></span>{{
+                    \Auth::id() == $convo->created_by ? $convo->product->company->company_name : get_name($convo->created_by_user)}}</p>
             </div>
             @else
             <div>
-                <p class="mb-0 font-500 user">XXXXXXXXXX</p>
-                <p class="recipient">To - <span class="to-recipient"></span>{{get_name(\Auth::user())}}</p>
+                <p class="mb-0 font-500 user">{{\Auth::id() == $convo->created_by?  $convo->product->company->company_name : get_name($convo->created_by_user)}}</p>
+                <p class="recipient">To - <span class="to-recipient"></span>{{
+                    \Auth::id() != $convo->created_by ? $convo->product->company->company_name : get_name($convo->created_by_user)}}</p>
             </div>
             @endif
 
             <div class="d-flex">
                 <div class="d-flex flex-column">
                     <span class="day-date-time">{{$list->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</span>
+                    <span>{{$convo->product->city}} , {{$convo->product->country}}</span>
                     @if($list->file_path)
                     <a href="{{url($list->file_path)}}" download="download">
                     <span class="d-inline fa fa-paperclip attached-icon"></span>
@@ -73,7 +83,7 @@
             {{-- <button class="position-absolute send-icon"><span class="fa fa-paper-plane"></span></button> --}}
             <div class="h-100 position-absolute d-flex align-items-center top-0 sent-attach-btn-send-icon">
                 <div class="input-group-prepend"><div class="input-group-text blue-btn p-0"><span id="upload_button" class="p-0" data-original-title="" title=""><label class="m-0"><input type="file" id="file" class="d-none upload-file"> <span class="fa fa-paperclip text-white p-2"></span></label></span></div></div>
-                <button class="ml-2 send-icon send-icon-messages" disabled><span class="fa fa-paper-plane"></span></button>
+                <button class="ml-2 send-icon send-icon-messages"><span class="fa fa-paper-plane"></span></button>
                 <button type='submit' disabled='' class='btn-pro btn red-btn d-none ml-2 align-items-center  justify-content-center'><span class='spinner-border spinner-border-sm mr-1' role='status' aria-hidden='true'></span></button>
             </div>
         </div>

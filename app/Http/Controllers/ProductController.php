@@ -1440,7 +1440,7 @@ class ProductController extends Controller
         $product->childsubcategory_id = $request->sub_sub_category;
         $product->add_sub_sub_category = $request->add_sub_sub_category;
 
-        $product->reference_no = mt_rand(100000,9999999);
+        $product->reference_no = mt_rand(100000,4900000);
         $product->slug = Str::slug($request->product_service_name) . "-" . $product->reference_no;
 
         $product->subject = $request->subject;

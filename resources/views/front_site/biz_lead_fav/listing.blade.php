@@ -109,8 +109,7 @@
             cursor: pointer;
         }
 
-        .mails-inbox-icons:hover,
-        .mails-inbox-icons.active {
+        .mails-inbox-icons:hover {
             color: #FFF;
             background: #700011;
         }
@@ -193,6 +192,7 @@
             @include('front_site.common.dashboard-toggle')
             <div id="page-content-wrapper" style="background: #d9eefe8c">
 
+
                 <div class="my-2 mx-4" id="dynamic-body">
                     <ul class="mb-3 nav nav-tabs">
                         <li class="nav-item">
@@ -209,7 +209,7 @@
                         </li>
                     </ul>
                     <div align="right" class="mb-3">
-                        <form id="filter-bizdeal-onetime-inquiry-fav" method="POST" action="{{route('filter-bizdeal-onetime-inquiry-fav')}}">
+                        <form id="filter-bizdeal-onetime-inquiry" method="POST" action="{{route('filter-lead-onetime-inquiry-fav')}}">
                         @csrf
                         <input type="hidden" id="date_filter_form" name="from" value="inbox">
                             <div class="mr-2 position-relative d-inline-block">
@@ -259,7 +259,7 @@
                         <div class="dynamic-filters-body">
                             @if(count($listing) > 0)
                         @foreach ($listing as $key => $list)
-                        @if(check_deleted_by_me($list,'fav'))
+                        @if(check_deleted_by_me($list, 'fav_lead'))
                         <div class="content-box-email mail-reply-box">
                             <input type="hidden" class="main-convo" data-main-convo="{{encrypt($list->id)}}">
                             <div class="py-3 px-3 d-flex justify-content-between">
@@ -271,10 +271,10 @@
                                             for="customControlAutosizing1{{$key}}"></label>
                                     </div>
                                     <p class="mb-0 px-3"><span
-                                            class="fa @if(check_in_my_fav($list,'fav'))fa-star-o @else fa-star @endif fav add-fav"></span>
+                                            class="fa @if(check_in_my_fav($list, 'fav_lead'))fa-star-o @else fa-star @endif fav add-fav"></span>
                                     </p>
-                                    <p class="mb-0 px-3"><span class=" @if(check_in_my_pin($list,'fav'))far @else fas @endif fa-flag add-to-pin"></span></p>
-                                    <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm @if($list->latestMessageNotMine && $list->latestMessageNotMine->is_read == 0  ) font-weight-bold @endif"
+                                    <p class="mb-0 px-3"><span class=" @if(check_in_my_pin($list, 'fav_lead'))far @else fas @endif fa-flag add-to-pin"></span></p>
+                                    <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  ) font-weight-bold @endif"
                                         data-click-id="{{$list->id}}">
                                         <span>{{$list->product->product_service_name}}</span> - <span
                                             class="refer">Ref# {{$list->product->reference_no}}</span> -
@@ -282,7 +282,7 @@
                                     </p>
                                 </div>
                                 <div class="d-flex">
-                                    <p class="mb-0 click @if($list->latestMessageNotMine && $list->latestMessageNotMine->is_read == 0  ) font-weight-bold @endif"
+                                    <p class="mb-0 click @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  )  font-weight-bold @endif"
                                        data-click-id="{{$list->id}}">
                                         <span>{{date('F d h:i:s A', strtotime($list->latestMessage->created_at))}}</span>
                                     </p>
@@ -303,7 +303,7 @@
                                     </div>
                                     <button class="ml-2 send-icon send-icon-convo"><span
                                             class="fa fa-paper-plane"></span></button>
-                                            <button type='submit' disabled='' class='btn-pro btn red-btn d-none ml-2 align-items-center  justify-content-center'><span class='spinner-border spinner-border-sm mr-1' role='status' aria-hidden='true'></span></button>
+                                            <button type="submit" disabled="" class="btn-pro btn red-btn d-none ml-2 align-items-center  justify-content-center"><span class="spinner-border spinner-border-sm mr-1" ml-2="" role="status" aria-hidden="true"></span></button>
                                 </div>
                             </div>
                         </div>
@@ -366,11 +366,11 @@
                                         class="refer">Ref# {{$list->product->reference_no}}</span> -
                                     <span>{{mb_strimwidth((strip_tags($list->my_latest_message->message)), 0, 50, "...")}}</span>
                                 </p>
+                            </div>
+                            <div class="d-flex">
                                 <p class="mb-0 click" data-click-id="{{$list->id}}">
                                     <span>{{date('F d h:i:s A', strtotime($list->my_latest_message->created_at))}}</span>
                                 </p>
-                            </div>
-                            <div class="d-flex">
                                 <p class="mb-0 px-3"><span class="fa fa-trash trash-bin"></span></p>
                                 <p class="mb-0"><span class="ml-2 fa fa-reply reply-msg"></span></p>
                             </div>
@@ -499,7 +499,7 @@ $(document).on('click', '.add-pin', function(){
     });
 
 
-    $.post("{{route('pin-bizdeal-fav-convo-multiple')}}", {
+    $.post("{{route('pin-lead-fav-convo-multiple')}}", {
         _token: '{{csrf_token()}}',
         conversation_id: fav,
         json: 'yes'
@@ -541,7 +541,7 @@ $(document).on('click', '.remove-pin', function(){
     });
 
 
-    $.post("{{route('un-pin-bizdeal-fav-convo-multiple')}}", {
+    $.post("{{route('un-pin-lead-fav-convo-multiple')}}", {
         _token: '{{csrf_token()}}',
         conversation_id: fav,
         json: 'yes'
@@ -583,7 +583,7 @@ $(document).on('click', '.star', function(){
     });
 
 
-    $.post("{{route('favorite-bizdeal-fav-convo-multiple')}}", {
+    $.post("{{route('favorite-lead-fav-convo-multiple')}}", {
         _token: '{{csrf_token()}}',
         conversation_id: fav,
         json: 'yes'
@@ -625,7 +625,7 @@ $(document).on('click', '.un-star', function(){
     });
 
 
-    $.post("{{route('un-favorite-bizdeal-fav-convo-multiple')}}", {
+    $.post("{{route('un-favorite-lead-fav-convo-multiple')}}", {
         _token: '{{csrf_token()}}',
         conversation_id: fav,
         json: 'yes'
@@ -665,7 +665,7 @@ $(document).on('click', '.un-star', function(){
     });
 
 
-    $.post("{{route('delete-bizdeal-fav-convo-multiple')}}", {
+    $.post("{{route('delete-lead-fav-convo-multiple')}}", {
         _token: '{{csrf_token()}}',
         conversation_id: fav,
         json: 'yes'
@@ -707,7 +707,7 @@ $(document).on('click', '.un-read', function(){
     });
 
 
-    $.post("{{route('unread-bizdeal-fav-convo-multiple')}}", {
+    $.post("{{route('unread-lead-fav-convo-multiple')}}", {
         _token: '{{csrf_token()}}',
         conversation_id: fav,
         json: 'yes'
@@ -721,6 +721,7 @@ $(document).on('click', '.un-read', function(){
             toastr.error(response.msg, 'Error');
         } else if (response.feedback == 'true') {
             toastr.success(response.msg, 'Success').fadeOut(2000);
+
             $.each(div.parents('.mails-inbox').find('.mail-reply-box').find('.custom-control-input'), function(){
                 if($(this).is(':checked') )
                 $(this).parent().siblings('.click').addClass('font-weight-bold');
@@ -747,7 +748,7 @@ $(document).on('click', '.read', function(){
     });
 
 
-    $.post("{{route('read-bizdeal-fav-convo-multiple')}}", {
+    $.post("{{route('read-lead-fav-convo-multiple')}}", {
         _token: '{{csrf_token()}}',
         conversation_id: fav,
         json: 'yes'
@@ -781,7 +782,7 @@ $(document).on('click', '.read', function(){
 
 $(document).on('click', '.click', function(){
             let id = $(this).data('click-id');
-            $.post("{{route('get-bizdeal-fav-messages')}}", {
+            $.post("{{route('get-lead-fav-messages')}}", {
                 _token: '{{csrf_token()}}',
                 conversation_id: id,
                 json: 'yes'
@@ -801,7 +802,7 @@ $(document).on('click', '.click', function(){
                     var $this = $(this);
                     var valInputField = $(this).parent().siblings('textarea').val();
                     var valInputfile = $(this).parent().find('.upload-file')[0].files;
-                    // console.log(valInputField);
+                    console.log(valInputfile[0]);
 
                     let convo_id = $('.convo-data').attr('data-convo');
 
@@ -816,13 +817,13 @@ $(document).on('click', '.click', function(){
                     fd.append('json','yes');
                     fd.append('file', valInputfile[0]);
 
+
                     $('.send-icon-messages').addClass('d-none');
                     $('.btn-pro').removeClass('d-none').addClass('d-flex');
 
-
                     $.ajax({
                         type: "post",
-                        url: "{{route('reply-bizdeal-fav-convo')}}",
+                        url: "{{route('reply-lead-fav-convo')}}",
                         processData: false,
                         contentType: false,
                         data: fd,
@@ -842,7 +843,7 @@ $(document).on('click', '.click', function(){
                                     "<div class='d-flex justify-content-between'>" +
                                         "<div>" +
                                             "<p class='mb-0 font-500 user'>" +
-                                                "{{get_name(\Auth::user())}}" +
+                                                response.sent_from +
                                             "</p>" +
                                             "<p class='recipient'>"
                                                 + "To -" + "<span class='to-recipient'>" + "</span>" + response.sent_to +
@@ -898,6 +899,10 @@ $(document).on('click', '.click', function(){
                     $(this).parents('.mail-reply-box').children('.reply-input-field').fadeIn(500);
                 });
 
+
+
+
+
                 } else {
                     toastr.error('Some other issues', 'Error');
                 }
@@ -907,10 +912,10 @@ $(document).on('click', '.click', function(){
         $(function(){
             $(document).on('click','.mails-inbox-header .selectAll', function () {
                 if ($(this).is(":checked")) {
-                    $(this).parents('.mails-inbox-header').siblings('.dynamic-filters-body').find('.custom-control-input').prop('checked', true);
+                    $(this).parents('.mails-inbox-header').siblings('.mail-reply-box').find('.custom-control-input').prop('checked', true);
                     $('.chat-action-btns').show();
                 } else {
-                    $(this).parents('.mails-inbox-header').siblings('.dynamic-filters-body').find('.custom-control-input').prop('checked', false);
+                    $(this).parents('.mails-inbox-header').siblings('.mail-reply-box').find('.custom-control-input').prop('checked', false);
                     $('.chat-action-btns').hide();
                 }
             });
@@ -918,9 +923,8 @@ $(document).on('click', '.click', function(){
             $(document).on('click','.mail-reply-box .custom-control-input',function () {
                 if ($(this).is(":checked")) {
                     $('.chat-action-btns').show();
-                } else if(!$('.mail-reply-box .custom-control-input').is(':checked')) {
+                } else {
                     $('.chat-action-btns').hide();
-                    $('.selectAll').prop('checked', false);
                 }
             });
 
@@ -960,11 +964,12 @@ $(document).on('click', '.click', function(){
 
                     $.ajax({
                         type: "post",
-                        url: "{{route('reply-bizdeal-fav-convo')}}",
+                        url: "{{route('reply-lead-fav-convo')}}",
                         processData: false,
                         contentType: false,
                         data: fd,
                         dataType: "json",
+
                         success: function (response) {
                             $('.btn-pro').removeClass('d-flex').addClass('d-none');
                             $('.send-icon-convo').removeClass('d-none');
@@ -991,7 +996,7 @@ $(document).on('click', '.click', function(){
                                     "<div class='d-flex justify-content-between'>" +
                                         "<div>" +
                                             "<p class='mb-0 font-500 user'>" +
-                                                "{{get_name(\Auth::user())}}" +
+                                                response.sent_from +
                                             "</p>" +
                                             "<p class='recipient'>"
                                                 + "To -" + "<span class='to-recipient'>" + "</span>" + response.sent_to +
@@ -1026,7 +1031,7 @@ $(document).on('click', '.click', function(){
 
                     $('.mail-reply-box-outer').prepend(mailReplyBox);
                     $( ".reply-msg" ).bind( "click", function() {
-                        $(this).parents('.mail-reply-box').children('.reply-input-field').fadeIn(500);
+                        $(this).parents('.mail-reply-box').children('.reply-input-field').fadeToggle(500);
                     });
 
                     $(this).siblings('input').val("");
@@ -1042,7 +1047,7 @@ $(document).on('click', '.click', function(){
                     let div = $(this);
                     let convo_id = $(this).parents('.mail-reply-box').find('.main-convo').attr('data-main-convo');
                     // console.log(convo_id);
-                    $.post("{{route('delete-bizdeal-fav-convo')}}", {
+                    $.post("{{route('delete-lead-fav-convo')}}", {
                         _token: '{{csrf_token()}}',
                         conversation_id: convo_id,
                         json: 'yes'
@@ -1074,7 +1079,7 @@ $(document).on('click', '.click', function(){
                     let div = $(this);
                     let convo_id = $(this).parents('.mail-reply-box').find('.main-convo').attr('data-main-convo');
                     // console.log(convo_id);
-                    $.post("{{route('favorite-bizdeal-fav-convo')}}", {
+                    $.post("{{route('favorite-lead-fav-convo')}}", {
                         _token: '{{csrf_token()}}',
                         conversation_id: convo_id,
                         json: 'yes'
@@ -1101,7 +1106,7 @@ $(document).on('click', '.click', function(){
                     let div = $(this);
                     let convo_id = $(this).parents('.mail-reply-box').find('.main-convo').attr('data-main-convo');
                     // console.log(convo_id);
-                    $.post("{{route('pin-bizdeal-fav-convo')}}", {
+                    $.post("{{route('pin-lead-fav-convo')}}", {
                         _token: '{{csrf_token()}}',
                         conversation_id: convo_id,
                         json: 'yes'
@@ -1127,15 +1132,14 @@ $(document).on('click', '.click', function(){
 //// to get the listing  according to the filter action button ajax
 
                 $(document).on('click', '.mails-inbox-icons', function () {
-
-                    let currentElem = $(this);
+                    // console.log('ff');
 
                     $("#loader").show();
                     let div = $(this);
                     let from = $(this).parent().children('input[name="from"]').val();
                     let filter= $(this).attr('data-action');
                     console.log(`han ji ${from} and ${filter}`);
-                    $.post("{{route('get-filter-inqueries-fav')}}", {
+                    $.post("{{route('get-filter-inqueries-fav-lead')}}", {
                         _token: '{{csrf_token()}}',
                         filter: filter,
                         from: from,
@@ -1150,14 +1154,6 @@ $(document).on('click', '.click', function(){
                             toastr.error(response.msg, 'Error');
                         } else if (response.feedback == 'true') {
                             $('#'+response.body_id).html(response.data);
-
-                            setTimeout(() => {
-                                $(".mails-inbox-icons").removeClass("active");
-                                // $(".mails-inbox-icons").addClass("active"); // instead of this do the below
-                                $(currentElem).addClass("active");
-                                console.log(currentElem);
-                            }, 1000);
-
                         } else {
                             toastr.error('Some other issues', 'Error');
                         }
@@ -1171,7 +1167,7 @@ $(document).on('click', '.click', function(){
                     // console.log('ff');
                     $('#date_filter_form').val("inbox");
                     $("#loader").show();
-                    $.post("{{route('get-inbox-refresh-fav')}}", {
+                    $.post("{{route('get-inbox-refresh-fav-lead')}}", {
                         _token: '{{csrf_token()}}',
                         user_id: "{{encrypt(\Auth::id())}}",
                         json: 'yes'
@@ -1197,7 +1193,7 @@ $(document).on('click', '.click', function(){
                     // console.log('ff');
                     $('#date_filter_form').val("sent-box");
                     $("#loader").show();
-                    $.post("{{route('get-sent-box-refresh-fav')}}", {
+                    $.post("{{route('get-sent-box-refresh-fav-lead')}}", {
                         _token: '{{csrf_token()}}',
                         user_id: "{{encrypt(\Auth::id())}}",
                         json: 'yes'
@@ -1222,7 +1218,7 @@ $(document).on('click', '.click', function(){
                 $(document).on('click', '#trashMail-tab', function () {
                     $('#date_filter_form').val("delete-box");
                     $("#loader").show();
-                    $.post("{{route('get-delete-refresh-fav')}}", {
+                    $.post("{{route('get-delete-refresh-fav-lead')}}", {
                         _token: '{{csrf_token()}}',
                         user_id: "{{encrypt(\Auth::id())}}",
                         json: 'yes'
@@ -1242,10 +1238,6 @@ $(document).on('click', '.click', function(){
                             toastr.error('Some other issues', 'Error');
                         }
                     });
-                });
-
-                $(document).on('click', '.send-icon', function() {
-                    $(this).closest('.reply-input-field').fadeOut(500);
                 });
 
 $(function(){
@@ -1268,7 +1260,7 @@ $(function(){
             }
         }
     };
-        $('#filter-bizdeal-onetime-inquiry-fav').ajaxForm(options);
+        $('#filter-bizdeal-onetime-inquiry').ajaxForm(options);
     });
     </script>
     @endpush

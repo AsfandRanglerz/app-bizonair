@@ -13,9 +13,10 @@
         <!-- /#sidebar-wrapper -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" >
-                <div class="d-container py-2">
-                    <span class="main-heading">News & Articles</span>
+            <div id="page-content-wrapper">
+
+                <div class="d-container mx-3">
+                    <span class="main-heading mt-3 mb-3">News & Articles</span>
                     <div class="alert alert-success m-0 mb-2 text-center" id='alert-success' style="display:none;"
                          role="alert">
                     </div>
@@ -28,47 +29,47 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
+                                    <label>Title <span class="required">*</span></label>
                                     <input type="text"
                                            name="title" id="title" class="form-control"
-                                           placeholder="Title - Enter title">
+                                           placeholder="Enter title">
                                     <small class="text-danger" id="title_error"></small>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <div class="mb-0 form-group col-md-12 px-0 career-img-drop-outer attachment-img-file">
-                                        <label class="label" for="image">Image <span class="required">*</span></label>
-                                        <div class="custom-file">
-                                            <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile" style="color: #A52C3E;"><span class="fa fa-upload"></span></label>
-                                        </div>
-                                    </div>
-                                    <small class="text-danger" id="image_error"></small>
-                                </div>
+                                    <label>Type<span class="required">*</span></label>
 
+                                    <select name="journal_type" id="journal_type" class="form-control">
+                                        <option value="" selected disabled>--- Type ---</option>
+                                        @foreach(\App\JournalType::all() as $type)
+                                            <option value="{{$type->name}}">{{$type->name}}</option>
+                                        @endforeach
+
+                                    </select>
+                                    <small class="text-danger" id="journal_type_error"></small>
+
+                                </div>
                                 <div class="form-group col-md-12">
                                     <label>Description</label>
                                     <textarea name="description" id="description" class="form-control ckeditor" style="min-height:200px;"></textarea>
 
                                 </div>
 
-{{--                                <div class="form-group col-md-4">--}}
-{{--                                    <label>Date <span class="required">*</span></label>--}}
-{{--                                    <input type="text" autocomplete="off"--}}
-{{--                                           name="date" id="date"--}}
-{{--                                           class="form-control closingdatepicker"--}}
-{{--                                           placeholder="Publish Date">--}}
-{{--                                    <small class="text-danger" id="date_error"></small>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="form-group col-md-4">--}}
+                                {{--                                    <label>Date <span class="required">*</span></label>--}}
+                                {{--                                    <input type="text" autocomplete="off"--}}
+                                {{--                                           name="date" id="date"--}}
+                                {{--                                           class="form-control closingdatepicker"--}}
+                                {{--                                           placeholder="Publish Date">--}}
+                                {{--                                    <small class="text-danger" id="date_error"></small>--}}
+                                {{--                                </div>--}}
 
-                                <div class="form-group col-md-4">
-                                    <select name="journal_type" id="journal_type" class="form-control">
-                                        <option value="" selected disabled>Type (Mandatory)</option>
-                                        @foreach(\App\JournalType::all() as $type)
-                                        <option value="{{$type->name}}">{{$type->name}}</option>
-                                        @endforeach
-
-                                    </select>
-                                    <small class="text-danger" id="journal_type_error"></small>
-
+                                <div class="form-group col-md-6 career-img-drop-outer attachment-img-file" >
+                                    <label>Image <span class="required">*</span></label>
+                                    <div class="custom-file">
+                                        <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile"><span class="fa fa-upload"></span></label>
+                                        <small class="text-danger" id="image_error"></small>
+                                    </div>
                                 </div>
                                 <div class="form-group col-xl-12 col-lg-12">
                                     <button class="verify-btn red-btn" type="submit" id="blog_create_btn">Create Post
