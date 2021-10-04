@@ -75,7 +75,6 @@ Route::get('accept-token/{token}/{email}', 'CompanyController@acceptToken')
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@indexx')->name('homee');
 Route::get('email-confirmation', 'HomeController@email_confirmation')
     ->name('email-confirmation');
 Route::post('get-email-verification-code', 'HomeController@get_email_verification_code')
@@ -412,6 +411,7 @@ Route::get('/terms-of-use', 'JournalController@terms')->name('terms-of-use');
 Route::get('/faq', 'JournalController@faq')->name('faq');
 Route::get('/journal/currency-rates', 'JournalController@currency_rates')->name('currency-rates');
 Route::get('/journal/cotton-rates', 'JournalController@cotton_rates')->name('cotton-rates');
+Route::get('/journal/yarn-rates', 'JournalController@yarn_rates')->name('yarn-rates');
 Route::get('/journal/textile-calculation', 'JournalController@calculation_formula')->name('calculation-formula');
 Route::get('/journal/articles', 'JournalController@articles')->name('articles');
 Route::get('/journal/events', 'JournalController@events')->name('events');
@@ -428,7 +428,7 @@ Route::get('/suppliers-services', 'AboutUsController@services')->name('suppliers
 Route::get('/suppliers-contact-us', 'AboutUsController@contact_us')->name('suppliers-contact-us');
 Route::post('/create-contact-us-user', 'AboutUsController@create_contact_us_user')->name('create-contact-us-user');
 
-Route::get('/{id}/about-us-suppliers', 'ContactUsController@about_us_supplier')->name('about-us-suppliers');
+Route::get('/{id}/{company?}/about-us-suppliers', 'ContactUsController@about_us_supplier')->name('about-us-suppliers');
 Route::get('/{id}/products-suppliers', 'ContactUsController@products_supplier')->name('products-suppliers');
 Route::get('/{id}/services-suppliers', 'ContactUsController@services_supplier')->name('services-suppliers');
 Route::get('/{id}/contact-us-suppliers', 'ContactUsController@contact_us_supplier')->name('contact-us-suppliers');
@@ -467,7 +467,7 @@ Route::get('business-products/{category}/{subcategory}/{childsubcategory}/buyers
 Route::get('business-products/{category}/{subcategory}/{childsubcategory}/sellers/search/{city=city?}', 'ProductController@product_one_time_search_supplier')->name('search-otsup');
 Route::get('business-products/{category}/{subcategory}/{childsubcategory}/buyyers/search/{city=city?}', 'ProductController@product_one_time_search_buyer')->name('search-otbuy');
 
-Route::get('business-products/{category}/CompareProducts', 'ProductController@compareProducts')->name('products-compare');
+Route::get('business-products/{category}/compare-products', 'ProductController@compareProducts')->name('products-compare');
 
 Route::get('business-products/{category?}/{subcategory?}/{prod_slug?}', 'ProductController@productDetail')->name('productDetail');
 Route::get('one-time-deal/{category?}/{subcategory?}/{prod_slug?}', 'ProductController@buysellDetail')->name('buysellDetail');
@@ -482,7 +482,7 @@ Route::get('one-time-selling-deals/{category}', 'ProductController@view_all_one_
 Route::get('one-time-buying-deals/{category}', 'ProductController@view_all_one_time_buying_deals')->name('one-time-buying-deals');
 Route::get('regular-service/{category}', 'ServiceController@view_all_regular_service')->name('regular-service');
 Route::get('service-deals/{category}', 'ServiceController@view_all_service_deals')->name('service-deals');
-Route::get('view-all-companies', 'ServiceController@view_all_companies')->name('view-all-companies');
+Route::get('view-all-companies/{category?}', 'ServiceController@view_all_companies')->name('view-all-companies');
 
 // Product Routes End
 // Ajax Routes Start

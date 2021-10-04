@@ -21,7 +21,7 @@
         <div class="d-flex">
             <p class="mb-0 click @if($list->latestMessage->is_read == 0 && $list->latestMessage->created_by != \Auth::id() ) font-weight-bold @endif"
                data-click-id="{{$list->id}}">
-                <span>{{date('F d h:i:s A', strtotime($list->my_latest_message->created_at))}}</span>
+                <span>{{date('M d h:i:s A', strtotime($list->my_latest_message->created_at))}}</span>
             </p>
             <p class="mb-0 px-3"><span class="fa fa-trash trash-bin"></span></p>
             <p class="mb-0"><span class="ml-2 fa fa-reply reply-msg"></span></p>

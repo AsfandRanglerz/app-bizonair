@@ -15,6 +15,7 @@ class AddBirthdayColumnUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->timestamp('birthday')->nullable()->after('gender');
+            $table->string('is_featured')->nullable()->after('deleted_at');
         });
     }
 

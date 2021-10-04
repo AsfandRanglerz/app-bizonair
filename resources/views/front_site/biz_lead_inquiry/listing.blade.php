@@ -187,10 +187,11 @@
     <main id="maincontent" class="page-main group-chat">
         <div class="d-flex" id="dashboardWrapper">
             <!-- Sidebar -->
+            @include('front_site.common.dashboard-sidebar')
             <!-- Sidebar -->
             <!-- Page Content -->
-            @include('front_site.common.dashboard-toggle')
             <div id="page-content-wrapper" style="background: #d9eefe8c">
+                @include('front_site.common.dashboard-toggle')
 
                 <div class="my-2 mx-4" id="dynamic-body">
                     <ul class="mb-3 nav nav-tabs">
@@ -275,15 +276,16 @@
                                     <p class="mb-0 px-3"><span class=" @if(check_in_my_pin($list, 'lead'))far @else fas @endif fa-flag add-to-pin"></span></p>
                                     <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'lead')  ) font-weight-bold @endif"
                                         data-click-id="{{$list->id}}">
-                                        <span>{{$list->product->product_service_name}}</span> - <span
-                                            class="refer">Ref# {{$list->product->reference_no}}</span> -
+
+                                        <span>@if(isset($list->product)) {{$list->product->product_service_name ?:''}} @endif</span> - <span
+                                            class="refer">Ref# @if(isset($list->product)) {{$list->product->reference_no ?:''}} @endif</span> -
                                         <span>{{mb_strimwidth((strip_tags($list->latestMessage->message)), 0, 50, "...")}}</span>
                                     </p>
                                 </div>
                                 <div class="d-flex">
                                     <p class="mb-0 click @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'lead')  )  font-weight-bold @endif"
                                        data-click-id="{{$list->id}}">
-                                        <span>{{date('F d h:i:s A', strtotime($list->latestMessage->created_at))}}</span>
+                                        <span>{{date('M d h:i:s A', strtotime($list->latestMessage->created_at))}}</span>
                                     </p>
                                     <p class="mb-0 px-3"><span class="fa fa-trash trash-bin"></span></p>
                                     <p class="mb-0"><span class="ml-2 fa fa-reply reply-msg"></span></p>
@@ -361,14 +363,14 @@
                                         class="fa @if($list->is_favorite == 0)fa-star @else fa-star-o @endif fav add-fav"></span>
                                 </p>
                                 <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm" data-click-id="{{$list->id}}">
-                                    <span>{{$list->product->product_service_name}}</span> - <span
-                                        class="refer">Ref# {{$list->product->reference_no}}</span> -
+                                    <span>@if(isset($list->product)) {{$list->product->product_service_name ?:''}} @endif</span> - <span
+                                        class="refer">Ref# @if(isset($list->product)) {{$list->product->reference_no ?:''}} @endif</span> -
                                     <span>{{mb_strimwidth((strip_tags($list->my_latest_message->message)), 0, 50, "...")}}</span>
                                 </p>
                             </div>
                             <div class="d-flex">
                                 <p class="mb-0 click" data-click-id="{{$list->id}}">
-                                    <span>{{date('F d h:i:s A', strtotime($list->my_latest_message->created_at))}}</span>
+                                    <span>{{date('M d h:i:s A', strtotime($list->my_latest_message->created_at))}}</span>
                                 </p>
                                 <p class="mb-0 px-3"><span class="fa fa-trash trash-bin"></span></p>
                                 <p class="mb-0"><span class="ml-2 fa fa-reply reply-msg"></span></p>
@@ -420,13 +422,13 @@
                                     class="fa @if($list->is_favorite == 0)fa-star-o @else fa-star @endif fav add-fav"></span>
                             </p>
                             <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm @if($list->latestMessage->is_read == 0 && $list->latestMessage->created_by != \Auth::id() ) font-weight-bold @endif"
-                                data-click-id="{{$list->id}}"><span>{{$list->product->product_service_name}}</span> -
-                                <span class="refer">Ref# {{$list->product->reference_no}}</span> -
+                                data-click-id="{{$list->id}}"><span>@if(isset($list->product)) {{$list->product->product_service_name ?:''}} @endif</span> -
+                                <span class="refer">Ref# @if(isset($list->product)) {{$list->product->reference_no ?:''}} @endif</span> -
                                 <span>{{mb_strimwidth((strip_tags($list->latestMessage->message)), 0, 50, "...")}}</span>
                             </p>
                             <p class="mb-0 click @if($list->latestMessage->is_read == 0  && $list->latestMessage->created_by != \Auth::id()) font-weight-bold @endif"
                                 data-click-id="{{$list->id}}">
-                                <span>{{date('F d h:i:s A', strtotime($list->latestMessage->created_at))}}</span></p>
+                                <span>{{date('M d h:i:s A', strtotime($list->latestMessage->created_at))}}</span></p>
                         </div>
 
 

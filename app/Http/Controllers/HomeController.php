@@ -6,7 +6,7 @@ use App\BuySell;
 use App\Mail\resetPassword;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 use App\User;
 use App\EmailVerification;
 use App\Journal;
@@ -31,7 +31,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexx()
+    public function index()
     {
         $mainLogo = Banner::where('id', 77)->first();
         $bnrslider1 = Banner::where('id', 78)->first();
@@ -54,7 +54,7 @@ class HomeController extends Controller
         $bnrbig2nd = Banner::where('id', 75)->first();
         $bnrbig3rd = Banner::where('id', 85)->first();
 
-        $news =\DB::table('news_management')->orderBy('created_at', 'desc')->get()->take(3);
+        $news =\DB::table('news_management')->orderBy('publish_date', 'desc')->get()->take(4);
 
         $topproduct = \App\Product::where('product_service_types','!=','Service')->with('product_image')->whereNull('deleted_at')->latest()->limit(10)->get();
         $topservice = \App\Product::where('product_service_types','Service')->with('product_image')->whereNull('deleted_at')->latest()->limit(10)->get();
@@ -62,60 +62,19 @@ class HomeController extends Controller
 
         $latestjoin = \App\User::select('users.*', 'users.created_at as creation_date')->latest()->first();
 
-        $featuredmember = \App\CompanyProfile::oldest()->limit(8)->get();
+        $featuredmember = \App\User::where('is_featured','1')->get();
         $textile_partners = \App\TextilePartner::all();
+        $counters = \App\Counter::all();
 
 
         return view('front_site.index', [
             'mainLogo' => $mainLogo,'bnrslider1' => $bnrslider1,'bnrslider2' => $bnrslider2,'bnrslider3' => $bnrslider3,'bnrslider4' => $bnrslider4,'bnrslider5' => $bnrslider5,'bnrslider6' => $bnrslider6,'bnr_row1' => $bnr_row1, 'bnr_slider' => $bnr_slider, 'bnrlupr' => $bnrlupr, 'bnrlwr' => $bnrlwr, 'bnrupr' => $bnrupr, 'bnrwr' => $bnrwr,
             'bnrbig1st' => $bnrbig1st,'bnrbig2nd' => $bnrbig2nd,'bnrbig3rd' => $bnrbig3rd,
             'news' => $news,'topproduct' => $topproduct,'topbuysell' => $topbuysell,
-            'topservice' => $topservice,'latestjoin' => $latestjoin,'featuredmember' => $featuredmember,'textile_partners' => $textile_partners
+            'topservice' => $topservice,'latestjoin' => $latestjoin,'featuredmember' => $featuredmember,'textile_partners' => $textile_partners,'counters' => $counters
         ]);
     }
 
-    public function index(){
-
-        $mainLogo = Banner::where('id', 77)->first();
-        $bnrslider1 = Banner::where('id', 78)->first();
-        $bnrslider2 = Banner::where('id', 79)->first();
-        $bnrslider3 = Banner::where('id', 80)->first();
-        $bnrslider4 = Banner::where('id', 81)->first();
-        $bnrslider5 = Banner::where('id', 82)->first();
-        $bnrslider6 = Banner::where('id', 83)->first();
-
-
-        $bnr_row1 = Banner::where('dimension', 'width 419.66 * height 79.94')->where('status', 1)->limit(3)->get();
-        $bnr_slider = Banner::where('dimension', 'width 629.5 * height 437.45')->where('status', 1)->get();
-
-        $bnrlupr = Banner::where('id', 67)->first();
-        $bnrlwr = Banner::where('id', 68)->first();
-        $bnrupr = Banner::where('id', 69)->first();
-        $bnrwr = Banner::where('id', 70)->first();
-
-        $bnrbig1st = Banner::where('id', 84)->first();
-        $bnrbig2nd = Banner::where('id', 75)->first();
-        $bnrbig3rd = Banner::where('id', 85)->first();
-
-        $news =\DB::table('news_management')->orderBy('created_at', 'desc')->get()->take(3);
-
-        $topproduct = \App\Product::where('product_service_types','!=','Service')->with('product_image')->whereNull('deleted_at')->latest()->limit(10)->get();
-        $topservice = \App\Product::where('product_service_types','Service')->with('product_image')->whereNull('deleted_at')->latest()->limit(10)->get();
-        $topbuysell = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types','!=','Service')->whereNull('deleted_at')->latest()->limit(10)->get();
-
-        $latestjoin = \App\User::select('users.*', 'users.created_at as creation_date')->latest()->first();
-
-        $featuredmember = \App\CompanyProfile::oldest()->limit(8)->get();
-        $textile_partners = \App\TextilePartner::all();
-
-
-        return view('front_site.index', [
-            'mainLogo' => $mainLogo,'bnrslider1' => $bnrslider1,'bnrslider2' => $bnrslider2,'bnrslider3' => $bnrslider3,'bnrslider4' => $bnrslider4,'bnrslider5' => $bnrslider5,'bnrslider6' => $bnrslider6,'bnr_row1' => $bnr_row1, 'bnr_slider' => $bnr_slider, 'bnrlupr' => $bnrlupr, 'bnrlwr' => $bnrlwr, 'bnrupr' => $bnrupr, 'bnrwr' => $bnrwr,
-            'bnrbig1st' => $bnrbig1st,'bnrbig2nd' => $bnrbig2nd,'bnrbig3rd' => $bnrbig3rd,
-            'news' => $news,'topproduct' => $topproduct,'topbuysell' => $topbuysell,
-            'topservice' => $topservice,'latestjoin' => $latestjoin,'featuredmember' => $featuredmember,'textile_partners' => $textile_partners
-        ]);
-    }
 
     public function getEmail()
     {
@@ -133,7 +92,7 @@ class HomeController extends Controller
         $data['savereset'] = \DB::table('password_resets')->insert(
             ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
         );
-        $data['sendmail'] = \Mail::to($request->email)->send(new resetPassword($token));
+        $data['sendmail'] = Mail::to($request->email)->send(new resetPassword($token));
 
         if($data['savereset']){
             $data['msg'] = 'We have e-mailed your password reset link please check';
@@ -278,9 +237,9 @@ class HomeController extends Controller
 
     public function do_login_pre()
     {
-        $rules = ['email_login' => 'required', 'login_password' => 'required'];
+        $rules = ['email' => 'required', 'password' => 'required'];
         $messages = [
-            'email_login.required' => 'Email is required', 'login_password.required' => 'Password is required'
+            'email.required' => 'Email is required', 'password.required' => 'Password is required'
         ];
         $validator = \Validator::make(request()->all(), $rules);
         if ($validator->fails()) {
@@ -289,9 +248,10 @@ class HomeController extends Controller
             $data['feedback'] = 'false';
             return json_encode($data);
         }
+        $remember = request()->has('remember') ? true : false;
         if (Auth::attempt([
-            'email' => request('email_login'), 'password' => request('login_password'), 'role_id' => 2
-        ])) {
+            'email' => request('email'), 'password' => request('password'), 'role_id' => 2
+        ],$remember)) {
             if (\Auth::user()->is_blocked != 1) {
                 if(Auth::user()->step_2 != Null){
                     $data['user'] = \App\User::find(Auth::user()->id);
@@ -367,7 +327,7 @@ class HomeController extends Controller
         $rules = [
             'password' => 'required|min:8', 'confirm_password' => 'required|same:password',
             'user_type' => 'required', 'first_name' => 'required',
-            'last_name' => 'required', 'registration_phone_no' => 'required|min:10', 'birthday' => 'required',
+            'last_name' => 'required', 'registration_phone_no' => 'required', 'birthday' => 'required',
         ];
         $messages = [
             'password.required' => 'Password is required', 'password.min' => 'Minimum 8 characters required',
@@ -405,8 +365,8 @@ class HomeController extends Controller
             $data['custom_msg'] = 'You have entered wrong password';
             return json_encode($data);
         }*/
-        $num = preg_replace('/^(?:\+?' . request('registration_phone_no_country_code') . '|0)?/', request('registration_phone_no_country_code'), request('registration_phone_no'));
-        $num = ($num == request('registration_phone_no_country_code')) ? '' : $num;
+//        $num = preg_replace('/^(?:\+?' . request('registration_phone_no_country_code') . '|0)?/', request('registration_phone_no_country_code'), request('registration_phone_no'));
+//        $num = ($num == request('registration_phone_no_country_code')) ? '' : $num;
         $user = new \App\User();
         $user->first_name = request('first_name');
         $user->last_name = request('last_name');
@@ -415,7 +375,7 @@ class HomeController extends Controller
         $user->enc_password = encrypt(request('password'));
         $user->password = Hash::make(request('password'));
         $user->company_name = request('company_name');
-        $user->registration_phone_no = str_replace(' ', '', $num);
+        $user->registration_phone_no = request('registration_phone_no');
         $user->birthday = date('Y-m-d H:i:s', strtotime(request('birthday')));
         if (request('industry_information_check'))
             $user->industry_information_check = 1;
@@ -499,16 +459,16 @@ class HomeController extends Controller
         $country_id= \App\Country::where('country_name',request('country'))->first();
         $user = \App\User::find(request('id'));
         if ($user) {
-            $num = preg_replace('/^(?:\+?' . request('whatsapp_number_country_code') . '|0)?/', request('whatsapp_number_country_code'), request('whatsapp_number'));
-            $num = ($num == request('whatsapp_number_country_code')) ? '' : $num;
-            $telephone_num = preg_replace('/^(?:\+?' . request('telephone_country_code') . '|0)?/', request('telephone_country_code'), request('telephone'));
-            $telephone_num = ($num == request('telephone_country_code')) ? '' : $telephone_num;
+//            $num = preg_replace('/^(?:\+?' . request('whatsapp_number_country_code') . '|0)?/', request('whatsapp_number_country_code'), request('whatsapp_number'));
+//            $num = ($num == request('whatsapp_number_country_code')) ? '' : $num;
+//            $telephone_num = preg_replace('/^(?:\+?' . request('telephone_country_code') . '|0)?/', request('telephone_country_code'), request('telephone'));
+//            $telephone_num = ($num == request('telephone_country_code')) ? '' : $telephone_num;
             $user->first_name = request('first_name');
             $user->last_name = request('last_name');
             $user->website = request('website');
             // $user->phone_no = request('phone_no');
-            $user->whatsapp_number = str_replace(' ', '', $num);
-            $user->telephone = str_replace(' ', '', $telephone_num);
+            $user->whatsapp_number = request('whatsapp_number');
+            $user->telephone = request('telephone');
             $user->fax = request('fax');
             $user->country_id = $country_id->id;
             $user->country = request('country');
@@ -519,6 +479,11 @@ class HomeController extends Controller
             $user->designation = request('designation');
             $user->other_designation = request('other_designation');
             $user->gender = request('gender');
+            if(request('gender') == 'Female'){
+                $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/82441633072560.png';
+            }else{
+                $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png';
+            }
             if (request('sub_category')) {
                 foreach (request('sub_category') as $key => $value) {
                     $new = new \App\UserInterest();
@@ -564,7 +529,7 @@ class HomeController extends Controller
             //                    $fail('Mobile number is required.');
             //                }
             //            },
-            'mobileNumber' => 'required|min:10', 'city' => 'required', 'state' => 'required',
+            'mobileNumber' => 'required', 'city' => 'required', 'state' => 'required',
             'country' => function ($attribute, $value, $fail) {
                 if ($value === 'Country') {
                     $fail('Country required.');
@@ -583,12 +548,12 @@ class HomeController extends Controller
         if ($validator->fails()) {
             return json_encode(['feedback' => 'validation_error', 'errors' => $validator->errors()->getMessages(),]);
         }
-        $num = preg_replace('/^(?:\+?' . request('mobile_country_code') . '|0)?/', request('mobile_country_code'), request('mobileNumber'));
-        $num = ($num == request('mobile_country_code')) ? '' : $num;
-        $whatsappnum = preg_replace('/^(?:\+?' . request('whatsapp_country_code') . '|0)?/', request('whatsapp_country_code'), request('whatsapp'));
-        $whatsappnum = ($whatsappnum == request('whatsapp_country_code')) ? '' : $whatsappnum;
-        $telephonenum = preg_replace('/^(?:\+?' . request('telephone_country_code') . '|0)?/', request('telephone_country_code'), request('telephone'));
-        $telephonenum = ($telephonenum == request('telephone_country_code')) ? '' : $telephonenum;
+//        $num = preg_replace('/^(?:\+?' . request('mobile_country_code') . '|0)?/', request('mobile_country_code'), request('mobileNumber'));
+//        $num = ($num == request('mobile_country_code')) ? '' : $num;
+//        $whatsappnum = preg_replace('/^(?:\+?' . request('whatsapp_country_code') . '|0)?/', request('whatsapp_country_code'), request('whatsapp'));
+//        $whatsappnum = ($whatsappnum == request('whatsapp_country_code')) ? '' : $whatsappnum;
+//        $telephonenum = preg_replace('/^(?:\+?' . request('telephone_country_code') . '|0)?/', request('telephone_country_code'), request('telephone'));
+//        $telephonenum = ($telephonenum == request('telephone_country_code')) ? '' : $telephonenum;
         $country_id= \App\Country::where('country_name',$request->country)->first();
         $user = \App\User::find(\Auth::id());
         $user->email = $request->email;
@@ -597,14 +562,14 @@ class HomeController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->gender = $request->gender;
-        $user->registration_phone_no = str_replace(' ', '', $num);
+        $user->registration_phone_no = request('mobileNumber');
         $user->street_address = $request->street_address;
         $user->city = $request->city;
         $user->state = $request->state;
         $user->country = $request->country;
         $user->country_id = $country_id->id;
-        $user->whatsapp_number = str_replace(' ', '', $whatsappnum);
-        $user->telephone = str_replace(' ', '', $telephonenum);
+        $user->whatsapp_number = request('whatsapp');
+        $user->telephone = request('telephone');
         $user->fax = $request->fax;
         $user->postcode = $request->postcode;
         $user->website = $request->url;
@@ -652,10 +617,14 @@ class HomeController extends Controller
 
     public function dashboard()
     {
+        if(auth()->user()){
         $data['title'] = 'Dashboard';
         $data['user'] = \App\User::find(\Auth::id());
 
         return view('front_site.bizoffice.user_dashboard', $data);
+        }else{
+            return view('front_site.other.login_pre');
+        }
     }
 
     public function livesearch(Request $request){
@@ -663,57 +632,64 @@ class HomeController extends Controller
         $results= [];
         $productsell = DB::table('products')
             ->where('product_service_types','sell')
-            ->where("product_service_name","LIKE","$term%")->whereNull('deleted_at')->first();
+            ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->first();
         if($productsell){
             $results[] = ['value' => $productsell->product_service_name, 'link' => url('/search-product?category=Regular+Supplier&keywords='.$productsell->product_service_name),'category' => 'Regular Supplier'];
         }
         $productbuy = DB::table('products')
             ->where('product_service_types','buy')
-            ->where("product_service_name","LIKE","$term%")->whereNull('deleted_at')->first();
+            ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->first();
         if($productbuy){
             $results[] = ['value' => $productbuy->product_service_name, 'link' => url('/search-product?category=Regular+Buyer&keywords='.$productbuy->product_service_name),'category' => 'Regular Buyer'];
         }
         $productserv = DB::table('products')
             ->where('product_service_types','service')
-            ->where("product_service_name","LIKE","$term%")->whereNull('deleted_at')->first();
+            ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->first();
         if($productserv){
             $results[] = ['value' => $productserv->product_service_name, 'link' => url('/search-product?category=Regular+Services&keywords='.$productserv->product_service_name),'category' => 'Service Providers'];
         }
         $buysell = DB::table('buy_sells')
             ->where('product_service_types','sell')
             ->where('date_expire','>', now())
-            ->where("product_service_name","LIKE","$term%")->whereNull('deleted_at')->first();
+            ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->first();
         if($buysell){
             $results[] = ['value' => $buysell->product_service_name, 'link' => url('/search-product?category=One-Time+Supplier&keywords='.$buysell->product_service_name),'category' => 'One-Time Supplier'];
         }
         $buysellbuy = DB::table('buy_sells')
             ->where('product_service_types','buy')
             ->where('date_expire','>', now())
-            ->where("product_service_name","LIKE","$term%")->whereNull('deleted_at')->first();
+            ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->first();
         if($buysellbuy){
             $results[] = ['value' => $buysellbuy->product_service_name, 'link' => url('/search-product?category=One-Time+Buyer&keywords='.$buysellbuy->product_service_name),'category' => 'One-Time Buyer'];
         }
         $buysellserv = DB::table('buy_sells')
             ->where('product_service_types','service')
             ->where('date_expire','>', now())
-            ->where("product_service_name","LIKE","$term%")->whereNull('deleted_at')->first();
+            ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->first();
         if($buysellserv){
             $results[] = ['value' => $buysellserv->product_service_name, 'link' => url('/search-product?category=One-Time+Services&keywords='.$buysellserv->product_service_name),'category' => 'Service Seekers'];
         }
-        $articles = Journal::where('title','Like',$term.'%')->where('journal_type_name','articles')->first();
+        $companies = \App\CompanyProfile::where('company_name','Like','%'.$term.'%')->latest()->first();
+
+        if($companies){
+            $results[] = ['value' => $companies->company_name, 'link' => url('/search-product?category=Companies&keywords='.$companies->company_name),'category' => 'Companies'];
+        }
+
+        $articles = Journal::where('title','Like','%'.$term.'%')->where('journal_type_name','articles')->first();
 
         if($articles){
-            $results[] = ['value' => $articles->title, 'link' => url('/search-product?category=articles&keywords='.$term),'category' => 'Articles'];
+            $results[] = ['value' => substr_replace($articles->title, "...", 80), 'link' => url('/search-product?category=articles&keywords='.$articles->title),'category' => 'Articles'];
         }
-        $news = NewsManagement::where('title','Like',$term.'%')->first();
+        $news = NewsManagement::where('title','Like','%'.$term.'%')->first();
         if($news){
-            $results[] = ['value' => $news->title, 'link' => url('/search-product?category=news&keywords='.$term),'category' => 'News'];
+            $results[] = ['value' => substr_replace($news->title, "...", 80), 'link' => url('/search-product?category=news&keywords='.$news->title),'category' => 'News'];
         }
-        $events = Journal::where('title','Like',$term.'%')->where('journal_type_name','Upcomming Events')->first();
+        $events = Journal::where('title','Like','%'.$term.'%')->where('journal_type_name','Upcomming Events')->first();
         if($events){
-            $results[] = ['value' => $events->title, 'link' => url('/search-product?category=events&keywords='.$term),'category' => 'Events'];
+            $results[] = ['value' => substr_replace($events->title, "...", 80), 'link' => url('/search-product?category=events&keywords='.$events->title),'category' => 'Events'];
         }
         return json_encode($results);
+
     }
 
     public function searchProduct(Request $request)
@@ -804,6 +780,9 @@ class HomeController extends Controller
                     ->orwhere('keyword1','Like','%'.$search.'%')->orwhere('keyword2','Like','%'.$search.'%')->orwhere('keyword3','Like','%'.$search.'%');
             })->whereNull('deleted_at')->get();
             return view('front_site.product.product-search')->with(['countries'=>$countries,'products'=>$products,'buysell'=>$buysell,'category'=>$category,'search'=>$search]);
+        }elseif ($category =='Companies'){
+            $allcompanies = \App\CompanyProfile::where('company_name','Like','%'.$search.'%')->get();
+            return view('front_site.view-all.view-all-companies')->with(['allcompanies'=>$allcompanies,'category'=>$category,'search'=>$search]);
         }elseif ($category =='articles'){
             $articles = Journal::where('title','Like','%'.$search.'%')->where('journal_type_name','articles')->get();
             return view('front_site.journals.articles')->with(['articles'=>$articles,'category'=>$category,'search'=>$search]);

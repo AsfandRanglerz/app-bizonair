@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsManagementTable extends Migration
+class CreateVcastsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateNewsManagementTable extends Migration
      */
     public function up()
     {
-        Schema::create('news_management', function (Blueprint $table) {
+        Schema::create('vcasts', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->longText ('description')->nullable();
-            $table->string('image')->nullable();
-            $table->date('publish_date')->nullable();
-            $table->integer('status')->default(1);
+            $table->string('name')->nullable();
+            $table->string('video')->nullable();
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateNewsManagementTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_management');
+        Schema::dropIfExists('vcasts');
     }
 }

@@ -42,21 +42,28 @@
 <header class="header d-lg-block d-none">
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <?php $siteLogo = 'https://bizapp.ranglerztech.website/public/storage/settings/November2020/E0uP1eE694Dov6zjO3A2.png';?>
+            <?php $siteLogo = 'https://app.bizonair.com/public/storage/settings/November2020/E0uP1eE694Dov6zjO3A2.png';?>
             <a class="navbar-brand" href="{{route('home')}}"><img src="{{$siteLogo}}"></a>
             <div class="d-flex">
                 <img src="{{$ASSET}}/front_site/images/android-icon.png" class="mr-2 d-lg-none android-icon" data-toggle="tooltip" data-placement="bottom" title="Bizonair Mobile App - Launching Soon">
                 <div class="d-lg-none d-block position-static nav-item search-dropdown dropdown category-nav-Search mobile-search">
                     <button class="mr-2 red-btn nav-search-btn z-index-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SEARCH<span class="pl-2 fa fa-search" aria-hidden="true"></span></button>
                     <div class="w-100 m-0 p-0 dropdown-menu animated-dropdown slideIn" aria-labelledby="navbarDropdown">
-                        <form class="form-inline">
+                        <form class="form-inline" action="{{route('search_product')}}">
                             <div class="w-100 px-2" style="background: #12253D">
                                 <select class="w-100 px-0 py-1 rounded-0 select-cat" name="category" style="background: #12253D">
-                                    <option value="">All Categories</option>
+                                    <option value="" selected disabled>Select Category</option>
+                                    <option value="Regular Supplier">Regular Supplier</option>
+                                    <option value="Regular Buyer">Regular Buyer</option>
+                                    <option value="One-Time Supplier">One-Time Supplier</option>
+                                    <option value="One-Time Buyer">One-Time Buyer</option>
+                                    <option value="Regular Services">Service Providers</option>
+                                    <option value="One-Time Services">Service Seekers</option>
+                                    <option value="Reference Number">Reference Number</option>
+                                    <option value="Keywords">Keywords</option>
+                                    <option value="Companies">Companies</option>
                                     <option value="articles">Articles</option>
                                     <option value="news">News</option>
-                                    <option value="buyers">Buyers</option>
-                                    <option value="suppliers">Suppliers</option>
                                     <option value="events">Events</option>
                                 </select>
                             </div>
@@ -178,12 +185,19 @@
                         <div class="p-0 dropdown-menu" aria-labelledby="navbarDropdown">
                             <form class="form-inline" action="{{route('search_product')}}">
                                 <div class="w-100 px-2" style="background: #12253D">
-                                    <select class="w-100 px-0 py-1 rounded-0 select-cat" name="category" style="background: #12253D">
-                                        <option value="">All Categories</option>
+                                    <select class="w-100 px-0 py-1 rounded-0 select-cat" id="searchFilt" name="category" style="background: #12253D">
+                                        <option value="" selected disabled>Select Category</option>
+                                        <option value="Regular Supplier">Regular Supplier</option>
+                                        <option value="Regular Buyer">Regular Buyer</option>
+                                        <option value="One-Time Supplier">One-Time Supplier</option>
+                                        <option value="One-Time Buyer">One-Time Buyer</option>
+                                        <option value="Regular Services">Service Providers</option>
+                                        <option value="One-Time Services">Service Seekers</option>
+                                        <option value="Reference Number">Reference Number</option>
+                                        <option value="Keywords">Keywords</option>
+                                        <option value="Companies">Companies</option>
                                         <option value="articles">Articles</option>
                                         <option value="news">News</option>
-                                        <option value="buyers">Buyers</option>
-                                        <option value="suppliers">Suppliers</option>
                                         <option value="events">Events</option>
                                     </select>
                                 </div>
@@ -913,53 +927,56 @@
                 }
             });
         });
-
-        if (!(location.href.match('/products/create') || location.href.match('/create/buy-sell') || location.href.match('/company-profile') || location.href.match('/my-company-profile/') || location.href.match('/edit/buy-sell/'))) {
-            setInterval(function()
-            {
-                $.ajax({
-                    type:"post",
-                    url:"{{route('notification')}}",
-                    data:{_token: "{{csrf_token()}}" , current_url: '{{url()->current()}}' },
-                    dataType: 'Json',
-                    success: function (data) {
-                        console.log(data);
-                        $(".notafic").text('');
-                        $("#notify").text(data.notify);
-                        $('#isdiplay').html(data.output);
-                        $("#meeti").text(data.meetnoti);
-                        $("#chati").text(data.chatnoti);
-                        $("#leadinq").text(data.leadinq);
-                        $("#dealinq").text(data.dealinq);
-                        $("#fleadinq").text(data.fleadinq);
-                        $("#fdealinq").text(data.fdealinq);
-                        if (data.notifiactions){
-                            @if(!(\Request::is('group-chat')))
-                            var content = '<div class="modal-content">'+
-                                '<div class="modal-header">'+
-                                '<span class="modal-title">Notification</span>'+
-                                '<input type="hidden" name="display" value="'+data.notifiactions.id+'"/>'+
-                                '<button type="button" class="close is-display" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-                                '</div>'+
-                                '<div class="modal-body pt-3">'+
-                                '<p style="color: white;">'+data.notifiactions.notification_text+'</p>'+
-                                '<input type="button" id="view-page" class="red-btn" attr-val="'+data.notifiactions.id+'" value="View">'+
-                                '</div>'+
-                                "</div>";
-                            $('#notific').modal('show');
-                            $(".notafic").append(content);
-                            @endif
-                        }
-                    }
-                });
-            }, 2000);//time in milliseconds
-        }else{
-            $(".notifications-scroll").css("display", "none");
-            $(".biz-notifications").hover(function() {
-                $(this).addClass('disable-notify');
-            });
-            console.log('return false');
-        }
     </script>
+    @if(Auth::check())
+        <script type="text/javascript">
+            if (!(location.href.match('/products/create') || location.href.match('/create/buy-sell') || location.href.match('/company-profile') || location.href.match('/my-company-profile/') || location.href.match('/edit/buy-sell/'))) {
+                setInterval(function()
+                {
+                    $.ajax({
+                        type:"post",
+                        url:"{{route('notification')}}",
+                        data:{_token: "{{csrf_token()}}" , current_url: '{{url()->current()}}' },
+                        dataType: 'Json',
+                        success: function (data) {
+                            console.log(data);
+                            $(".notafic").text('');
+                            $("#notify").text(data.notify);
+                            $('#isdiplay').html(data.output);
+                            $("#meeti").text(data.meetnoti);
+                            $("#chati").text(data.chatnoti);
+                            $("#leadinq").text(data.leadinq);
+                            $("#dealinq").text(data.dealinq);
+                            $("#fleadinq").text(data.fleadinq);
+                            $("#fdealinq").text(data.fdealinq);
+                            if (data.notifiactions){
+                                @if(!(\Request::is('group-chat')))
+                                var content = '<div class="modal-content">'+
+                                    '<div class="modal-header">'+
+                                    '<span class="modal-title">Notification</span>'+
+                                    '<input type="hidden" name="display" value="'+data.notifiactions.id+'"/>'+
+                                    '<button type="button" class="close is-display" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+                                    '</div>'+
+                                    '<div class="modal-body pt-3">'+
+                                    '<p style="color: white;">'+data.notifiactions.notification_text+'</p>'+
+                                    '<input type="button" id="view-page" class="red-btn" attr-val="'+data.notifiactions.id+'" value="View">'+
+                                    '</div>'+
+                                    "</div>";
+                                $('#notific').modal('show');
+                                $(".notafic").append(content);
+                                @endif
+                            }
+                        }
+                    });
+                }, 2000);//time in milliseconds
+            }else{
+                $(".notifications-scroll").css("display", "none");
+                $(".biz-notifications").hover(function() {
+                    $(this).addClass('disable-notify');
+                });
+                console.log('return false');
+            }
+        </script>
+    @endif
 
 @endpush

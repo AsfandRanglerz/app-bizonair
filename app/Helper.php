@@ -240,50 +240,31 @@ function file_uploader($file, $row, $folder)
 function get_user_image($user)
 {
     if ($user->role_id == 2) {
-        if($user->gender == 'Male'){
-            if ($user->avatar == 'users/default.png') {
-                return url('public/storage/users/male-avature.png');
+        if ($user->avatar == 'users/default.png') {
+            if ($user->gender == 'Male') {
+                return 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png';
             } else {
-                return url($user->avatar);
+                return 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/78961631173213.png';
             }
-        } elseif($user->gender == 'Female') {
-            if ($user->avatar == 'users/default.png') {
-                return url('public/storage/users/female-avature.png');
-            } else {
-                return url($user->avatar);
-            }
-        } else{
-            if ($user->avatar == 'users/default.png') {
-                return url('public/storage/users/male-avature.png');
-            } else {
-                return url($user->avatar);
-            }
+        }else{
+            return $user->avatar;
         }
-
     }
 }
 
 function get_userimage($user)
 {
-        if($user->gender == 'Male'){
-            if ($user->avatar == 'users/default.png') {
-                return url('public/storage/users/male-avature.png');
+    if ($user->role_id == 2) {
+        if ($user->avatar == 'users/default.png') {
+            if ($user->gender == 'Male') {
+                return 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png';
             } else {
-                return url('public/storage/' . $user->avatar);
+                return 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/78961631173213.png';
             }
-        } elseif($user->gender == 'Female') {
-            if ($user->avatar == 'users/default.png') {
-                return url('public/storage/users/female-avature.png');
-            } else {
-                return url('public/storage/' . $user->avatar);
-            }
-        } else{
-            if ($user->avatar == 'users/default.png') {
-                return url('public/storage/users/male-avature.png');
-            } else {
-                return url('public/storage/' . $user->avatar);
-            }
+        }else{
+            return $user->avatar;
         }
+    }
 
 }
 
@@ -378,7 +359,7 @@ function get_product_contact_no($prodid){
     foreach ($comp as $company){
         $usercontact =\App\User::where('id',$company->user_id)->get();
         foreach ($usercontact as $contact){
-            return '00'.$contact->registration_phone_no;
+            return $contact->registration_phone_no;
         }
     }
 }
@@ -445,7 +426,7 @@ function get_buysell_email($produserid){
 function get_buysell_contact_no($prodid){
     $username =\App\User::where('id',$prodid)->get();
     foreach ($username as $nasme){
-        return '00'.$nasme->registration_phone_no;
+        return $nasme->registration_phone_no;
     }
 
 }
@@ -708,6 +689,12 @@ function getCompanyMembersCount($comp_id)
 {
     $membercompCount = \App\UserCompany::where('company_id',$comp_id)->count();
     return $membercompCount;
+}
+
+function getCompanyName($comp_id)
+{
+    $compname = \App\CompanyProfile::find($comp_id);
+   return $compname['company_name'];
 }
 
 function getCompanies($userId)

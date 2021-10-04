@@ -3,7 +3,7 @@
 
 Dear Member,
 
-You are reminded that a meeting had been arranged.
+This email notification is reminder for the following meeting from {!! getCompanyName($meeting->company_id) !!};
 
 @component('mail::table')
 <table class="table-light table-bordered">
@@ -23,7 +23,7 @@ You are reminded that a meeting had been arranged.
 		</tr>
 		<tr>
 			<th>Time</th>
-			<td>{{ $meeting->meeting_time }}</td>
+			<td>{{ date('h:i A', strtotime($meeting->meeting_time)) }}</td>
 		</tr>
 	</tbody>
 </table>

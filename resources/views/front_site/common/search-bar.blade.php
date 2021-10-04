@@ -9,6 +9,7 @@
         <option value="One-Time Services">Service Seekers</option>
         <option value="Reference Number">Reference Number</option>
         <option value="Keywords">Keywords</option>
+        <option value="Companies">Companies</option>
         <option value="articles">Articles</option>
         <option value="news">News</option>
         <option value="events">Events</option>

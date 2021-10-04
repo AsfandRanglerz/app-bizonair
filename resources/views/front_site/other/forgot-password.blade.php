@@ -20,7 +20,7 @@
 
           <p>Enter the email address associated with your account, and we'll email you a link to reset your password.</p>
             <div align="center">
-                <button class="btn submit-btn" id="emailSend" type="submit" disabled>Send Password Reset Link</button>
+                <button class="btn submit-btn" id="emailSend" type="submit">Send Password Reset Link</button>
             </div>
         </form>
 

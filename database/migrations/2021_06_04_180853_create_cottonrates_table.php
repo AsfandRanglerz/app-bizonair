@@ -16,8 +16,9 @@ class CreateCottonratesTable extends Migration
         Schema::create('cottonrates', function (Blueprint $table) {
             $table->id();
             $table->string('cotton_region');
-            $table->integer('price');
+            $table->string('price');
             $table->string('unit')->nullable();
+            $table->date('publish_date')->nullable();
             $table->timestamps();
         });
     }

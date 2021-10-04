@@ -57,6 +57,16 @@
 
                         <div class="panel-body">
                             <div class="form-group">
+                                <label for="first_name">First Name</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name"
+                                       value="{{ old('first_name', $dataTypeContent->first_name ?? '') }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Last Name</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name"
+                                       value="{{ old('last_name', $dataTypeContent->last_name ?? '') }}">
+                            </div>
+                            <div class="form-group">
                                 <label for="name">{{ __('voyager::generic.name') }}</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('voyager::generic.name') }}"
                                        value="{{ old('name', $dataTypeContent->name ?? '') }}">
@@ -77,6 +87,19 @@
                                 <input type="password" class="form-control" id="password" name="password" value="" autocomplete="new-password">
                             </div>
 
+                            <div class="form-group">
+                                <label for="registration_phone_no">Phone No</label>
+                                <input type="text" class="form-control" id="registration_phone_no" name="registration_phone_no" placeholder="Phone No"
+                                       value="{{ old('registration_phone_no', $dataTypeContent->registration_phone_no ?? '') }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="is_featured">Featured Member</label>
+                                <select class="form-control select2" id="is_featured" name="is_featured">
+                                        <option value="1" @if($dataTypeContent->is_featured =='0') selected @endif>Non Featured</option>
+                                        <option value="0" @if($dataTypeContent->is_featured =='1') selected @endif>Featured</option>
+                                </select>
+                            </div>
                             @can('editRoles', $dataTypeContent)
                                 <div class="form-group">
                                     <label for="default_role">{{ __('voyager::profile.role_default') }}</label>
@@ -146,7 +169,7 @@
     </div>
 
 <script>
-    
+
 </script>
 
     @stop

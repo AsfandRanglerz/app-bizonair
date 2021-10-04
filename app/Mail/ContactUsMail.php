@@ -31,6 +31,7 @@ class ContactUsMail extends Mailable
     public function build()
     {
         return $this->markdown('emails.contact_bizonair')
+                                ->attach($this->data['$contact']->image)
                                 ->with('data',$this->data)
                                 ->subject('Contact Bizonair');
     }

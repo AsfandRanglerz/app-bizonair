@@ -10,7 +10,7 @@
     }
 
     .label-heading {
-        font-weight: 500!important;
+        font-weight: bold!important;
         display: inline-block!important;
         width: 125px!important;
     }
@@ -31,6 +31,5 @@
 <p><span class="label-heading">Phone:</span> {{$data['$contact']->phone}}</p>
 <p><span class="label-heading">Country:</span> {{$data['$contact']->country}}</p>
 <p><span class="label-heading">Message:</span> {{$data['$contact']->description}}</p>
-<p><span class="label-heading">Attachment:</span></p>
-<img src="{{$data['$contact']->image}}" class="attachment-img">
+
 @endcomponent

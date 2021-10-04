@@ -187,11 +187,11 @@
     <main id="maincontent" class="page-main group-chat">
         <div class="d-flex" id="dashboardWrapper">
             <!-- Sidebar -->
+            @include('front_site.common.dashboard-sidebar')
             <!-- Sidebar -->
             <!-- Page Content -->
-            @include('front_site.common.dashboard-toggle')
             <div id="page-content-wrapper" style="background: #d9eefe8c">
-
+                @include('front_site.common.dashboard-toggle')
 
                 <div class="my-2 mx-4" id="dynamic-body">
                     <ul class="mb-3 nav nav-tabs">
@@ -284,7 +284,7 @@
                                 <div class="d-flex">
                                     <p class="mb-0 click @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  )  font-weight-bold @endif"
                                        data-click-id="{{$list->id}}">
-                                        <span>{{date('F d h:i:s A', strtotime($list->latestMessage->created_at))}}</span>
+                                        <span>{{date('M d h:i:s A', strtotime($list->latestMessage->created_at))}}</span>
                                     </p>
                                     <p class="mb-0 px-3"><span class="fa fa-trash trash-bin"></span></p>
                                     <p class="mb-0"><span class="ml-2 fa fa-reply reply-msg"></span></p>
@@ -369,7 +369,7 @@
                             </div>
                             <div class="d-flex">
                                 <p class="mb-0 click" data-click-id="{{$list->id}}">
-                                    <span>{{date('F d h:i:s A', strtotime($list->my_latest_message->created_at))}}</span>
+                                    <span>{{date('M d h:i:s A', strtotime($list->my_latest_message->created_at))}}</span>
                                 </p>
                                 <p class="mb-0 px-3"><span class="fa fa-trash trash-bin"></span></p>
                                 <p class="mb-0"><span class="ml-2 fa fa-reply reply-msg"></span></p>
@@ -427,7 +427,7 @@
                             </p>
                             <p class="mb-0 click @if($list->latestMessage->is_read == 0  && $list->latestMessage->created_by != \Auth::id()) font-weight-bold @endif"
                                 data-click-id="{{$list->id}}">
-                                <span>{{date('F d h:i:s A', strtotime($list->latestMessage->created_at))}}</span></p>
+                                <span>{{date('M d h:i:s A', strtotime($list->latestMessage->created_at))}}</span></p>
                         </div>
 
 

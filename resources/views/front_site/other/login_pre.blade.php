@@ -32,26 +32,26 @@
                     <input type="hidden" class="form-control" name="previous_url" value="{{url()->previous()}}">
                 @endif
             <div class="form-group">
-                <input type="email" class="form-control" name="email_login" id="emailid" placeholder="Email-example@gmail.com">
-                <small class="text-white" id="email_login_error"></small>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email-example@gmail.com">
+                <small class="text-white" id="email_error"></small>
             </div>
             <div class="form-group">
                 <div class="position-relative d-flex align-items-center">
-                    <input type="password" name="login_password" id="userPassword" class="form-control pr-4" placeholder="Password">
-                    <span toggle="#userPassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    <input type="password" name="password" id="password" class="form-control pr-4" placeholder="Password">
+                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 </div>
-                <small class="text-white" id="login_password_error"></small>
+                <small class="text-white" id="password_error"></small>
             </div>
             <div class="form-group text-center mb-0">
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="rememberPassword">
-                    <label class="custom-control-label" for="rememberPassword">Remember me</label>
+                    <input type="checkbox" class="custom-control-input" id="remember" name="remember">
+                    <label class="custom-control-label" for="remember">Remember me</label>
                 </div>
 
                 <input type="submit" id="login-create" class="rounded px-4 my-1 red-btn login-btn" value="Login"><br>
-                <a href="{{route('forgot-password')}}" class="font-500 red-link" disabled>Forgot your password?</a>
+                <a href="{{route('forgot-password')}}" class="font-500 red-link">Forgot your password?</a>
             </div>
-            <p class="mb-0 text-center paragraph">Don't have an account? <a href="{{route('email-confirmation')}}"  class="font-500 red-link" disabled>Sign up</a></p>
+            <p class="mb-0 text-center paragraph">Don't have an account? <a href="{{route('email-confirmation')}}"  class="font-500 red-link">Sign up</a></p>
         </form>
     </div>
 </main>
@@ -59,10 +59,8 @@
 @endsection
 @push('js')
     <script>
-
-
         $(document).ready(function () {
-            var validator = $("form[name='Login']").validate({
+            var validator = $("form[name='loginForm']").validate({
                 onfocusout: function (element) {
                     var $element = $(element);
                     if ($element.prop('required')) {
@@ -74,10 +72,10 @@
                     }
                 },
                 rules: {
-                    'email_login': {
+                    'email': {
                         required: true,
                     },
-                    'login_password':{
+                    'password':{
                         required: true,
                     },
                     onkeyup: function (element) {
@@ -86,10 +84,10 @@
                     },
                 },
                 messages: {
-                    'email_login': {
+                    'email': {
                         required: "Email is required"
                     },
-                    'login_password': {
+                    'password': {
                         required: "Password is required"
                     },
                 },
@@ -196,27 +194,8 @@
                 },
 
             };
-
-            $('#logForm').ajaxForm(options_login);
-
+            $('#loginForm').ajaxForm(options);
         });
-        // toastr.options = {
-        //     "closeButton": true,
-        //     "debug": false,
-        //     "newestOnTop": false,
-        //     "progressBar": false,
-        //     "positionClass": "toast-bottom-left",
-        //     "preventDuplicates": false,
-        //     "onclick": null,
-        //     "showDuration": "0",
-        //     "hideDuration": "0",
-        //     "timeOut": "0",
-        //     "extendedTimeOut": "0",
-        //     "showEasing": "swing",
-        //     "hideEasing": "linear",
-        //     "showMethod": "fadeIn",
-        //     "hideMethod": "fadeOut"
-        // }
     </script>
 
 @endpush
