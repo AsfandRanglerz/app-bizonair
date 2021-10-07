@@ -87,7 +87,7 @@ class HomeController extends Controller
             'email' => 'required|email|exists:users',
         ]);
 
-        $token = Str::random(64);
+        $token = mt_rand(399999, 799999);
 
         $data['savereset'] = \DB::table('password_resets')->insert(
             ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
@@ -97,7 +97,8 @@ class HomeController extends Controller
         if($data['savereset']){
             $data['msg'] = 'We have e-mailed your password reset link please check';
             $data['feedback'] = 'true';
-
+            $data['url'] = url('reset-password/'.$token);
+            $data['verification_code'] = $token;
         }
         return json_encode($data);
     }
@@ -109,39 +110,45 @@ class HomeController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $rules = [
-            'email' => 'required|email|exists:users',
-            'password' => 'required',
-            'password_confirmation' => 'same:password',
+        $userinpcode = $request->get('digit-1').$request->get('digit-2').$request->get('digit-3').$request->get('digit-4').$request->get('digit-5').$request->get('digit-6');
+        if($request->get('token') == $userinpcode) {
+            $rules = [
+                'email' => 'required|email|exists:users',
+                'password' => 'required',
+                'password_confirmation' => 'same:password',
 
-        ];
-        $messages = [
-            'title.required' => 'title is required',
-            'password.required' => 'password is required',
-            'password_confirmation.same:password' => 'password_confirmation must be same as password',
-        ];
-        $validator = \Validator::make(request()->all(), $rules, $messages);
-        if ($validator->fails()) {
-            $data['feedback'] = 'false';
-            $data['errors'] = $validator->errors()->getMessages();
-            $data['msg'] = '';
-            return json_encode($data);
-        } else {
-            $updatePassword = DB::table('password_resets')
-                ->where(['email' => $request->email, 'token' => $request->token])
-                ->first();
+            ];
+            $messages = [
+                'title.required' => 'title is required',
+                'password.required' => 'password is required',
+                'password_confirmation.same:password' => 'password_confirmation must be same as password',
+            ];
+            $validator = \Validator::make(request()->all(), $rules, $messages);
+            if ($validator->fails()) {
+                $data['feedback'] = 'false';
+                $data['errors'] = $validator->errors()->getMessages();
+                $data['msg'] = '';
+                return json_encode($data);
+            } else {
+                $updatePassword = DB::table('password_resets')
+                    ->where(['email' => $request->email, 'token' => $request->token])
+                    ->first();
 
-            $data['password_change'] = User::where('email', $request->email)->update(['password'=> bcrypt($request->password)]);
+                $data['password_change'] = User::where('email', $request->email)->update(['password' => bcrypt($request->password)]);
 
-            \DB::table('password_resets')->where(['email'=> $request->email])->delete();
+                \DB::table('password_resets')->where(['email' => $request->email])->delete();
 
-            if($data['password_change']){
-                $data['msg'] = 'Password Changed  Successfully';
-                $data['feedback'] = 'true';
-                $data['url'] = route('home');
+                if ($data['password_change']) {
+                    $data['msg'] = 'Password Changed  Successfully';
+                    $data['feedback'] = 'true';
+                    $data['url'] = route('home');
+
+                }
 
             }
-
+        }else {
+            $data['feedback'] = 'other';
+            $data['custom_msg']  = 'Failed to Reset Password . Otp code is invalid';
         }
 
         return json_encode($data);
@@ -232,7 +239,10 @@ class HomeController extends Controller
 
     public function log_in_pre()
     {
+        if(auth()->guest())
         return view('front_site.other.login_pre');
+        else
+         return redirect()->action([HomeController::class, 'index']);
     }
 
     public function do_login_pre()
@@ -438,12 +448,10 @@ class HomeController extends Controller
     {
 //         dd(request('sub_category'));
         $rules = [
-            'first_name' => 'required', 'last_name' => 'required',
             'phone_no' => 'required|min:11','country' => 'required', 'state' => 'required', 'city' => 'required', // 'category' => 'required',
             // 'sub_category' => 'required',
         ];
         $messages = [
-            'first_name.required' => 'First name is required', 'last_name.required' => 'Last name is required',
             'phone_no.required' => 'Phone number is required','country.required' => 'Please select country',
             'city.required' => 'Please enter your City', 'state.required' => 'Please enter your State',
             // 'category.required' => 'Please select category',
@@ -463,8 +471,8 @@ class HomeController extends Controller
 //            $num = ($num == request('whatsapp_number_country_code')) ? '' : $num;
 //            $telephone_num = preg_replace('/^(?:\+?' . request('telephone_country_code') . '|0)?/', request('telephone_country_code'), request('telephone'));
 //            $telephone_num = ($num == request('telephone_country_code')) ? '' : $telephone_num;
-            $user->first_name = request('first_name');
-            $user->last_name = request('last_name');
+            $user->first_name = auth()->user()->first_name;
+            $user->last_name = auth()->user()->last_name;
             $user->website = request('website');
             // $user->phone_no = request('phone_no');
             $user->whatsapp_number = request('whatsapp_number');
@@ -521,6 +529,7 @@ class HomeController extends Controller
 
     public function updateAccount(Request $request)
     {
+//        dd($request->all());
         $rules = [//            'email' => 'required|email',
             'first_name' => 'required', 'last_name' => 'required',
             //            'user_type' => 'required',

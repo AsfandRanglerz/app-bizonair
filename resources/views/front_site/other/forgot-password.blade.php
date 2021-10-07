@@ -73,10 +73,14 @@
                         // $('html, body').animate({scrollTop:0}, 'slow');
 
                         $('#emailSend').attr('disabled');
+                        console.log(response.url);
                         // $('#alert-success').html(response.msg);
                         // $('#alert-success').show().fadeOut(2500);
-
                         toastr.success(response.msg);
+                        setTimeout(() => {
+                            window.location.href = response.url;
+                        }, 1000);
+
                     }
 
                 },

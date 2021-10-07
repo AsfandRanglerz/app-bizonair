@@ -1,13 +1,9 @@
 @component('mail::message')
-# Dear Member,
+    # Dear Member,
 
-To confirm authenticity of your email address, please click the following verification button. Thank you
+    Your OTP is {{$verification_code}}
 
-@component('mail::button', ['url' => $url])
-    Verify Email
-@endcomponent
-
-Have a nice day!<br>
-Regards,<br>
-{{ config('app.name') }}
+    Have a nice day!
+    Regards,
+    {{ config('app.name') }}
 @endcomponent

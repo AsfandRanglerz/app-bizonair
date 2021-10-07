@@ -57,26 +57,26 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{$user->id}}">
                                     <h5 class="w-100">My Account</h5>
-                                    <div class="form-group mb-1">
-                                        <label class="d-none">Account Email<span class="required">*</span></label>
-                                        <input type="email" value="{{$user->email}}" class="form-control is-valid"
-                                               placeholder="Account Email - example@email.com" disabled="disabled">
-                                    </div>
-                                    <div class="form-row">
-                                        <h6 class="w-100">Contact Person</h6>
-                                        <div class="form-group col-md-6 mb-1">
-                                            <label class="d-none">First Name <span class="required">*</span></label>
-                                            <input type="text" name="first_name" value="{{$user->first_name}}"
-                                                   class="form-control is-valid" required placeholder="First Name - First Name">
-                                            <small class="text-danger" id="last_name_error"></small>
-                                        </div>
-                                        <div class="form-group col-md-6 mb-1">
-                                            <label class="d-none">Last Name <span class="required">*</span></label>
-                                            <input type="text" name="last_name" class="form-control is-valid"
-                                                   value="{{$user->last_name}}" required placeholder="Last Name">
-                                            <small class="text-danger" id="last_name_error"></small>
-                                        </div>
-                                    </div>
+{{--                                    <div class="form-group mb-1">--}}
+{{--                                        <label class="d-none">Account Email<span class="required">*</span></label>--}}
+{{--                                        <input type="email" value="{{$user->email}}" class="form-control is-valid"--}}
+{{--                                               placeholder="Account Email - example@email.com" disabled="disabled">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-row">--}}
+{{--                                        <h6 class="w-100">Contact Person</h6>--}}
+{{--                                        <div class="form-group col-md-6 mb-1">--}}
+{{--                                            <label class="d-none">First Name <span class="required">*</span></label>--}}
+{{--                                            <input type="text" name="first_name" value="{{$user->first_name}}"--}}
+{{--                                                   class="form-control is-valid" required placeholder="First Name - First Name">--}}
+{{--                                            <small class="text-danger" id="last_name_error"></small>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="form-group col-md-6 mb-1">--}}
+{{--                                            <label class="d-none">Last Name <span class="required">*</span></label>--}}
+{{--                                            <input type="text" name="last_name" class="form-control is-valid"--}}
+{{--                                                   value="{{$user->last_name}}" required placeholder="Last Name">--}}
+{{--                                            <small class="text-danger" id="last_name_error"></small>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                     {{-- <div class="w-100 form-row user-type-section">
 
                                         <h6 class="w-100 pl-0">Member Type <span class="required">*</span></h6>
@@ -183,7 +183,6 @@
                                             <label class="d-none">Categories</label>
                                             <select name="category[]" class="form-control select2-multiple" id="category"
                                                     multiple>
-                                                <option disabled selected>Select Category</option>
                                                 @foreach (\App\Category::all() as $item)
 
                                                     <option value="{{$item->id}}">{{$item->name}}</option>
@@ -243,7 +242,7 @@
                                                 <label class="d-none">Mobile <span class="required">*</span></label>
                                                 <input type="tel" readonly="" name="phone_no"
                                                        value="{{$user->registration_phone_no}}"
-                                                       class="form-control d-inline" id="" placeholder="Mobile - 03xxxxxxxxx/3xxxxxxxxx">
+                                                       class="form-control d-inline" id="" placeholder="Mobile Number - 03xxxxxxxxx/3xxxxxxxxx">
                                                 <a class="red-btn mt-sm-0 mt-2">Verify Mobile</a>
                                             </div>
                                             <small class="text-danger" id="phone_no_error"></small>
@@ -266,20 +265,20 @@
                                             <div>
                                                 <label class="d-none">Telephone <small
                                                         class="font-500">(Optional)</small></label>
-                                                <input type="tel" name="telephone" placeholder="Telephone (Optional) - 042xxxxxxxx"
+                                                <input type="tel" name="telephone" placeholder="Telephone Number (Optional) - 042xxxxxxxx"
                                                        class="form-control mobileNum inteltel">
                                                 <input type="hidden" name="telephone_country_code">
                                             </div>
                                             <small class="text-danger" id="telephone_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <div>
-                                                <label class="d-none">Fax <small
-                                                        class="font-500">(Optional)</small></label>
-                                                <input type="tel" name="fax" class="form-control" id="" placeholder="Fax (Optional) - Input Fax Number">
-                                            </div>
-                                            <small class="text-danger" id="fax_error"></small>
-                                        </div>
+{{--                                        <div class="form-group col-md-6">--}}
+{{--                                            <div>--}}
+{{--                                                <label class="d-none">Fax <small--}}
+{{--                                                        class="font-500">(Optional)</small></label>--}}
+{{--                                                <input type="tel" name="fax" class="form-control" id="" placeholder="Fax (Optional) - Input Fax Number">--}}
+{{--                                            </div>--}}
+{{--                                            <small class="text-danger" id="fax_error"></small>--}}
+{{--                                        </div>--}}
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
@@ -290,7 +289,7 @@
                                         <div class="form-group col-md-6 mb-1">
                                             <label class="d-none">Website <small class="font-500">(Optional)</small></label>
                                             <input type="url" name="website" class="form-control" id="webSite"
-                                                   name="website" placeholder="Website (Optional) - Example: https://www.bizonair.com">
+                                                   name="website" placeholder="Website Address (Optional) - Example: https://www.bizonair.com">
                                             <small class="text-danger" id="website_error"></small>
                                         </div>
                                     </div>
@@ -371,12 +370,6 @@
                     gender: {
                         required: true
                     },
-                    whatsapp_number: {
-                        phoneNumberFormat: true
-                    },
-                    telephone: {
-                        phoneNumberFormat: true
-                    }
                 },
                 messages: {
                     first_name: "Please enter your firstname",

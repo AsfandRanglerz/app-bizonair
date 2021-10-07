@@ -245,7 +245,10 @@
         <div class="p-2 d-flex justify-content-between align-items-center login-cross-btns">
             @if(\Auth::user())
                 <div class="d-flex">
-                    <div class="avatar-wrapper" style="width: 50px;height: 50px;">
+                    <div class="d-flex justify-content-center align-items-center avatar-wrapper">
+                        <div class="position-absolute spinner-border text-danger loader-spinner d-none" role="status" style="z-index: 1">
+                            <span class="sr-only">Loading...</span>
+                        </div>
                         <img class="profile-pic" id="uploaded_image" src="{{ get_user_image(Auth::user()) }}"/>
                         <div class="upload-button">
                             <span class="fa fa-plus"></span>
@@ -690,32 +693,29 @@
             var name = document.getElementById("avatar").files[0].name;
             var form_data = new FormData();
             var ext = name.split('.').pop().toLowerCase();
-            if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg','jfif']) == -1) {
-                alert("Invalid Image File");
-            }
+            var $this = $(this);
             var oFReader = new FileReader();
             oFReader.readAsDataURL(document.getElementById("avatar").files[0]);
-            var f = document.getElementById("avatar").files[0];
-            var fsize = f.size || f.fileSize;
-            if (fsize > 2000000) {
-                alert("Image File Size is very big");
-            } else {
-                form_data.append("avatar", document.getElementById('avatar').files[0]);
-                $.ajax({
-                    url: "{{route('upload-user-avatar')}}",
-                    method: "POST",
-                    data: form_data,
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    beforeSend: function () {
-                        $('#uploaded_image').html("<label class='text-success'>Image Uploading...</label>");
-                    },
-                    success: function (data) {
-                        $('#uploaded_image').html(data);
-                    }
-                });
-            }
+
+            form_data.append("avatar", document.getElementById('avatar').files[0]);
+            $.ajax({
+                url: "{{route('upload-user-avatar')}}",
+                method: "POST",
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function () {
+                    $('#uploaded_image').html("<label class='text-success'>Image Uploading...</label>");
+                    $this.siblings('.loader-spinner').removeClass('d-none');
+                    $this.siblings('.upload-button').css('background', 'rgb(0 0 0 / 65%)');
+                },
+                success: function (data) {
+                    $this.siblings('.loader-spinner').addClass('d-none');
+                    $this.siblings('.upload-button').css('background', 'unset');
+                    $('#uploaded_image').html(data);
+                }
+            });
         });
 
         @if(!Request::is('my-company-profile/'.Session::get('company_id')))

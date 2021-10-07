@@ -30,8 +30,8 @@ class EmailConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.confirmation.template')->with([
-            'url' => url('verify-email/' . $this->number),
+        return $this->from('info@bizonair.com', 'Bizonair')->markdown('emails.confirmation.template')->with([
+            'url' => url('verify-otp/' . $this->number),'verification_code' =>  $this->number,
         ]);
     }
 }

@@ -66,6 +66,20 @@
                                                 <small class="text-danger" id="email_error"></small>
                                             </div>
                                             <div class="form-group col-md-6 mb-1">
+                                                <label class="d-none">First Name <span class="required">*</span></label>
+                                                <input type="text" class="form-control required-control" placeholder="First Name - Input First Name"
+                                                       name="first_name">
+                                                <small class="text-danger" id="first_name_error"></small>
+                                            </div>
+                                            <div class="form-group col-md-6 mb-1">
+                                                <label class="d-none">Last Name <span class="required">*</span></label>
+                                                <input type="text" name="last_name" class="form-control required-control"
+                                                       placeholder="Last Name - Input Last Name">
+                                                <small class="text-danger" id="last_name_error"></small>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6 mb-1">
                                                 <label class="d-none">Password <span class="required">*</span></label>
                                                 <span toggle="#reg_password" class="fa fa-fw fa-eye toggle-password-eye"></span>
                                                 <input type="password" id="reg_password" class="form-control"
@@ -80,6 +94,24 @@
                                                 <input type="password" id="confirm_password" class="form-control"
                                                        placeholder="Confirm Password" name="confirm_password">
                                                 <small class="text-danger" id="confirm_password_error"></small>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6 mb-1">
+                                                <label for="mobileNumber" class="d-none">Mobile Number <span
+                                                        class="required">*</span></label>
+                                                <!-- <input type="tel" class="form-control" id="phone" name="registration_phone_no" > -->
+                                                <input type="tel" name="registration_phone_no" class="form-control"
+                                                       id="mobileNumber" placeholder="Mobile Number - +923xxxxxxxxx">
+                                                <input type="hidden" name="registration_phone_no_country_code">
+                                                {{--                                            <span id="error-msg" class="text-danger hide">Please enter valid mobile number</span>--}}
+                                                <small class="text-danger d-block" id="registration_phone_no_error"></small>
+                                            </div>
+                                            <div class="form-group col-md-6 mb-1">
+                                                <label for="birthday">Date of Birth <span class="required">*</span></label>
+                                                <input type="text" name="birthday" placeholder="Date of Birth"
+                                                       class="form-control birthday" id="birthday" required>
+                                                <small class="text-danger" id="birthday_error"></small>
                                             </div>
                                         </div>
                                         <div class="mx-0 w-100 form-row user-type-section">
@@ -128,39 +160,6 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <h6 class="w-100">Contact Person</h6>
-                                            <div class="form-group col-md-6 mb-1">
-                                                <label class="d-none">First Name <span class="required">*</span></label>
-                                                <input type="text" class="form-control required-control" placeholder="First Name - Input First Name"
-                                                       name="first_name">
-                                                <small class="text-danger" id="first_name_error"></small>
-                                            </div>
-                                            <div class="form-group col-md-6 mb-1">
-                                                <label class="d-none">Last Name <span class="required">*</span></label>
-                                                <input type="text" name="last_name" class="form-control required-control"
-                                                       placeholder="Last Name - Input Last Name">
-                                                <small class="text-danger" id="last_name_error"></small>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6 mb-1">
-                                                <label for="mobileNumber" class="d-none">Enter your phone number: <span
-                                                        class="required">*</span></label>
-                                                <!-- <input type="tel" class="form-control" id="phone" name="registration_phone_no" > -->
-                                                <input type="tel" name="registration_phone_no" class="form-control"
-                                                       id="mobileNumber" placeholder="Phone number - 03xxxxxxxxx/3xxxxxxxxx">
-                                                <input type="hidden" name="registration_phone_no_country_code">
-                                                {{--                                            <span id="error-msg" class="text-danger hide">Please enter valid mobile number</span>--}}
-                                                <small class="text-danger d-block" id="registration_phone_no_error"></small>
-                                            </div>
-                                            <div class="form-group col-md-6 mb-1">
-                                                <label for="birthday">Date of Birth <span class="required">*</span></label>
-                                                <input type="text" name="birthday" placeholder="Date of Birth"
-                                                       class="form-control birthday" id="birthday" required>
-                                                <small class="text-danger" id="birthday_error"></small>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
 {{--                                            <div class="form-group check-stats">--}}
 {{--                                                <ul class="pl-2">--}}
 {{--                                                    <li class="w-100 btn d-flex" id="termsCheckbox">--}}
@@ -193,7 +192,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-sm-12 mb-1" align="center">
-                                                <input type="submit" id="accoutn_btn" class="red-btn create-btn" value="Create My Account" disabled>
+                                                <input type="submit" id="accoutn_btn" class="red-btn create-btn" value="Create My Account">
                                                 <button  disabled class="btn-pro d-none create-btn"><span
                                                         class="spinner-border spinner-border-sm mr-1" role="status"
                                                         aria-hidden="true"></span>Processing
@@ -218,6 +217,17 @@
 @push('js')
     <script src="{{$ASSET}}/front_site/js/jquery.date-dropdowns.min.js"></script>
     <script>
+        /*checkbox: "I Agree to the Terms of Services and Privacy Policy"*/
+        $(document).on('click', '#termsCheckbox', function(){
+            if($(this).is(":checked") == false){
+                $('button[type="submit"]').prop("disabled", true);
+            }
+            else if($(this).is(":checked") == true){
+                $('button[type="submit"]').prop("disabled", false);
+            }
+        });
+        /*checkbox: "I Agree to the Terms of Services and Privacy Policy"*/
+
         /*scroll to error div*/
         $(document).on('click', '#accoutn_btn', function () {
             setTimeout(() => {
@@ -307,6 +317,7 @@
                     },
                     confirm_password: {
                         required: true,
+                        minlength: 8,
                         equalTo: '#reg_password'
                     },
                     termsCheckboxinput: {
@@ -324,7 +335,9 @@
                         minlength: "Your password must be at least 8 characters long"
                     },
                     confirm_password: {
-                        same: "Password does not match"
+                        required: "Please enter the confirm password.",
+                        minlength: "Password do no match",
+                        equalTo: "Please enter the same password as above"
                     },
                     termsCheckboxinput: {
                         required: "Agree to proceed further"

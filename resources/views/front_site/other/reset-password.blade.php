@@ -3,9 +3,9 @@
 
 <body class="reset-password-page">
   <main id="maincontent" class="page-main" >
+      <h1>Reset Your Account Password :</h1>
     <div class="container">
       <div class="reset-password">
-        <h4>Enter a new password for account:</h4>
           <div class="alert alert-success m-0 mb-2 text-center" id='alert-success' style="display:none;"
                role="alert">
           </div>
@@ -19,7 +19,29 @@
 				<label>Email</label>
 				<input id="email" type="email" class="form-control" placeholder="email" name="email">
 			</div>
-
+                  <div class="form-group">
+                      <label>OTP</label>
+                      <div class="row mx-0">
+                          <div class="col-2 px-1">
+                              <input type="text" maxLength="1" name="digit-1" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
+                          </div>
+                          <div class="col-2 px-1">
+                              <input type="text" maxLength="1" name="digit-2" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
+                          </div>
+                          <div class="col-2 px-1">
+                              <input type="text" maxLength="1" name="digit-3" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
+                          </div>
+                          <div class="col-2 px-1">
+                              <input type="text" maxLength="1" name="digit-4" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
+                          </div>
+                          <div class="col-2 px-1">
+                              <input type="text" maxLength="1" name="digit-5" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
+                          </div>
+                          <div class="col-2 px-1">
+                              <input type="text" maxLength="1" name="digit-6" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
+                          </div>
+                      </div>
+                  </div>
               <div class="form-group">
                   <label>Password</label>
                   <input type="password" id="password" class="form-control" placeholder="New Password" name="password" required="required">
@@ -76,7 +98,7 @@
                         $form.find('button[type=submit]').prop('disabled', false);
                         $('html, body').animate({scrollTop: 0}, 'slow');
                         $('#alert-error').html(response.custom_msg);
-                        $('#alert-error').show().fadeOut(2500);
+                        $('#alert-error').show().fadeOut(5500);
                     } else if (response.feedback === 'true') {
                         // $('html, body').animate({scrollTop:0}, 'slow');
 

@@ -5,6 +5,10 @@
         .iti.iti--allow-dropdown {
             width: 100%;
         }
+        .my-account-avatar {
+            width: 135px!important;
+            height: 135px!important;
+        }
     </style>
     <main id="maincontent" class="page-main">
         <div class="d-flex edit-company-profile" id="dashboardWrapper">
@@ -85,7 +89,7 @@
                                             </div>
                                             <div class="row text">
                                                 <div class="col-sm-6 col-6">
-                                                    <span class="font-500">Mobile</span>
+                                                    <span class="font-500">Mobile Number</span>
                                                 </div>
                                                 <div class="col-sm-6 col-6">
                                                     <span>{{ $user->registration_phone_no }}</span>
@@ -103,7 +107,18 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 col-md-4 order-md-2 order-1 my-md-0 text-md-left text-center">
-                                        <img class="object-cover rounded-circle header-profile-pic" src="{{ get_user_image(Auth::user()) }}" width="135" height="135">
+                                        {{--<img class="object-cover rounded-circle header-profile-pic" src="{{ get_user_image(Auth::user()) }}" width="135" height="135">--}}
+                                        <div class="d-flex justify-content-center align-items-center avatar-wrapper rounded-circle my-account-avatar">
+                                            {{--<img class="profile-pic" id="uploaded_image" src="{{ get_user_image(Auth::user()) }}"/>--}}
+                                            <div class="position-absolute spinner-border text-danger loader-spinner d-none" role="status" style="z-index: 1">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <img class="w-100 h-100 object-cover rounded-circle header-profile-pic" id="uploaded_image1" src="{{ get_user_image(Auth::user()) }}">
+                                            <div class="upload-button rounded-circle">
+                                                <span class="fa fa-plus"></span>
+                                            </div>
+                                            <input class="file-upload" name="avatar" id="avatar1" type="file" accept="image/*"/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="my-1">
@@ -125,22 +140,22 @@
                                             </div>
                                             <div class="row text">
                                                 <div class="col-sm-6 col-6">
-                                                    <span class="font-500">Telephone</span>
+                                                    <span class="font-500">Telephone Number</span>
                                                 </div>
                                                 <div class="col-sm-6 col-6">
                                                     <span>@if($user->telephone && $user->telephone != '+92') {{ $user->telephone }} @else
                                                             - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row text">
-                                                <div class="col-sm-6 col-6">
-                                                    <span class="font-500">Fax</span>
-                                                </div>
-                                                <div class="col-sm-6 col-6">
-                                                    <span>@if($user->fax && $user->fax != '+92') {{ $user->fax }} @else
-                                                            - @endif</span>
-                                                </div>
-                                            </div>
+{{--                                            <div class="row text">--}}
+{{--                                                <div class="col-sm-6 col-6">--}}
+{{--                                                    <span class="font-500">Fax</span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="col-sm-6 col-6">--}}
+{{--                                                    <span>@if($user->fax && $user->fax != '+92') {{ $user->fax }} @else--}}
+{{--                                                            - @endif</span>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                             <div class="row text">
                                                 <div class="col-sm-6 col-6">
                                                     <span class="font-500">Post Code</span>
@@ -151,7 +166,7 @@
                                             </div>
                                             <div class="row text">
                                                 <div class="col-sm-6 col-6">
-                                                    <span class="font-500">Website</span>
+                                                    <span class="font-500">Website Address</span>
                                                 </div>
                                                 <div class="col-sm-6 col-6">
                                                     <span>
@@ -174,7 +189,7 @@
                                     <div class="row text">
                                         <div class="col-sm-6 col-6">
                                             <?php $comp = \App\CompanyProfile::where('user_id',auth()->id())->first();?>
-                                            <span class="font-500">@if($comp) {{getUserFirstCompany()}} @else - @endif </span>
+                                            <span>@if($comp) {{getUserFirstCompany()}} @else No Parent Company Created as yet @endif </span>
                                         </div>
                                     </div>
                                 </div>
@@ -201,12 +216,26 @@
                                    aria-controls="tabReg" aria-selected="true">ACCOUNT DETAILS</a>
                             </li>
                             <li class="nav-item ml-auto">
-                                <button class="red-btn close-form">Close</button>
+                                <button class="red-btn close-form" href="#add-cancil" data-toggle="modal">CLOSE</button>
                             </li>
-                            {{--                            <li class="nav-item">--}}
-                            {{--                                <a class="nav-link" id="linkInfo" data-toggle="tab" href="#tabInfo" role="tab"--}}
-                            {{--                                   aria-controls="tabInfo" aria-selected="false">ADDITIONAL INFO</a>--}}
-                            {{--                            </li>--}}
+                            <div id="add-cancil" class="change-password-modal modal fade">
+                                <div class="modal-dialog modal-dialog-centered modal-login">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <span class="modal-title">Close Form</span>
+                                            <button  class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body pt-3">
+                                            <p style="color: white">The changes will not be saved – Do you want to continue?</p>
+                                            <div class="form-group mt-4 mb-0">
+                                                <button class="red-btn add-cancil-form" type="submit">Proceed</button>
+                                                <button class="red-btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </ul>
                         <form id="updateAccount" name="updateAccount" method="post"
                               action="{{ route('update-my-account') }}">
@@ -408,10 +437,6 @@
                                             <span class="text-danger hide row pl-3 tel-error-msg">Please enter valid mobile number</span>
                                             <input type="hidden" name="telephone_country_code">
                                         </div>
-                                        <div class="form-group col-md-6 mb-1">
-                                            <input type="tel" id="mobileNumber4" class="form-control" name="fax"
-                                                   value="{{ old('fax', $user->fax) }}" placeholder="Fax (Optional)">
-                                        </div>
                                     </div>
                                     <div class="d-flex justify-content-between mt-1">
                                         <button type="submit" class="red-btn">Update</button>
@@ -420,15 +445,6 @@
                                         <hr>
                                     </div>
                                 </div>
-                                {{--                                <div class="p-3 tab-pane fade" id="tabInfo" role="tabpanel" aria-labelledby="tabInfo">--}}
-                                {{--                                    --}}
-                                {{--                                    <div class="d-flex justify-content-between mt-1">--}}
-                                {{--                                        <button type="submit" class="red-btn">SAVE</button>--}}
-                                {{--                                    </div>--}}
-                                {{--                                    <div class="my-1">--}}
-                                {{--                                        <hr>--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
                             </div>
                         </form>
                     </div>
@@ -442,7 +458,7 @@
 @endsection
 
 @push('js')
-    <script type="text/javascript">
+    <script>
         $(document).ready(function () {
             var validator = $("form[name='updateAccount']").validate({
                 onfocusout: function (element) {
@@ -458,8 +474,12 @@
                     $element.valid();
                 },
                 rules: {
-                    first_name: "required",
-                    last_name: "required",
+                    first_name: {
+                        required: true
+                    },
+                    last_name: {
+                        required: true
+                    },
                     email: {
                         required: true,
                         email: true
@@ -598,6 +618,35 @@
                         $.each(result.cities,function(key,value){
                             $("#city").append('<option value="'+value+'">'+value+'</option>');
                         });
+                    }
+                });
+            });
+
+            $(document).on('change', '#avatar1', function () {
+                var name = document.getElementById("avatar1").files[0].name;
+                var form_data = new FormData();
+                var ext = name.split('.').pop().toLowerCase();
+                var $this = $(this);
+                var oFReader = new FileReader();
+                oFReader.readAsDataURL(document.getElementById("avatar1").files[0]);
+
+                form_data.append("avatar", document.getElementById('avatar1').files[0]);
+                $.ajax({
+                    url: "{{route('upload-user-avatar')}}",
+                    method: "POST",
+                    data: form_data,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    beforeSend: function () {
+                        $('#uploaded_image1').html("<label class='text-success'>Image Uploading...</label>");
+                        $this.siblings('.loader-spinner').removeClass('d-none');
+                        $this.siblings('.upload-button').css('background', 'rgb(0 0 0 / 65%)');
+                    },
+                    success: function (data) {
+                        $this.siblings('.loader-spinner').addClass('d-none');
+                        $this.siblings('.upload-button').css('background', 'unset');
+                        $('#uploaded_image1').html(data);
                     }
                 });
             });

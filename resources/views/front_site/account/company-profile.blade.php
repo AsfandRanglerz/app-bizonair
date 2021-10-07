@@ -192,7 +192,7 @@
                                 </div>
                                 <div class="form-group">
                                     <span class="d-block mb-3 heading">Company Images <small
-                                            class="font-500">(Optional | JPG, PNG, Word, Excel & PDF files only | Upto 10MB)</small></span>
+                                            class="font-500">(Optional | JPG, PNG & PDF files only | Upto 10MB)</small></span>
                                     <div class="dropzone dz-clickable">
                                         <div class="my-0 dz-default dz-message" data-dz-message="">
                                             <div class="row product-img-sheet">
@@ -211,7 +211,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet16"
                                                                id="sheet16" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet16_url" type="hidden" value=""
                                                                id="sheet16_url"/>
                                                     </div>
@@ -231,7 +231,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet17"
                                                                id="sheet17" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet17_url" type="hidden" value=""
                                                                id="sheet17_url"/>
                                                     </div>
@@ -251,7 +251,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet18"
                                                                id="sheet18" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet18_url" type="hidden" value=""
                                                                id="sheet18_url"/>
                                                     </div>
@@ -271,7 +271,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet19"
                                                                id="sheet19" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet19_url" type="hidden" value=""
                                                                id="sheet19_url"/>
                                                     </div>
@@ -291,7 +291,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet20"
                                                                id="sheet20" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet20_url" type="hidden" value=""
                                                                id="sheet20_url"/>
                                                     </div>
@@ -311,7 +311,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet21"
                                                                id="sheet21" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet21_url" type="hidden" value=""
                                                                id="sheet21_url"/>
                                                     </div>
@@ -331,7 +331,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet22"
                                                                id="sheet22" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet22_url" type="hidden" value=""
                                                                id="sheet22_url"/>
                                                     </div>
@@ -351,7 +351,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet23"
                                                                id="sheet23" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet23_url" type="hidden" value=""
                                                                id="sheet23_url"/>
                                                     </div>
@@ -371,7 +371,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet24"
                                                                id="sheet24" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet24_url" type="hidden" value=""
                                                                id="sheet24_url"/>
                                                     </div>
@@ -391,7 +391,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet25"
                                                                id="sheet25" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet25_url" type="hidden" value=""
                                                                id="sheet25_url"/>
                                                     </div>
@@ -411,7 +411,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet26"
                                                                id="sheet26" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet26_url" type="hidden" value=""
                                                                id="sheet26_url"/>
                                                     </div>
@@ -431,7 +431,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet27"
                                                                id="sheet27" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet27_url" type="hidden" value=""
                                                                id="sheet27_url"/>
                                                     </div>
@@ -451,7 +451,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet28"
                                                                id="sheet28" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet28_url" type="hidden" value=""
                                                                id="sheet28_url"/>
                                                     </div>
@@ -471,7 +471,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet29"
                                                                id="sheet29" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet29_url" type="hidden" value=""
                                                                id="sheet29_url"/>
                                                     </div>
@@ -491,7 +491,7 @@
                                                         </div>
                                                         <input class="product-file-upload" name="sheet30"
                                                                id="sheet30" type="file"
-                                                               accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+                                                               accept="image/*, .pdf"/>
                                                         <input name="sheet30_url" type="hidden" value=""
                                                                id="sheet30_url"/>
                                                     </div>
@@ -500,14 +500,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group mt-2">
                                     <label class="label">Company Introduction <span class="required">*</span></label>
-                                    <textarea class="form-control" name="company_introduction" maxlength="1200"
-                                              placeholder="Introduce your company in 1200 characters"
-                                              id="company_introduction"
+                                    <textarea class="form-control" name="company_introduction" maxlength="5000"
+                                              placeholder="Introduce your company in 5000 characters"
+                                              id="editor1"
                                               rows="5" required></textarea>
                                     <small class="text-danger" id="company_introduction_error"></small>
-                                    <span class="text-danger"><span id="company_introduction_count">0</span>/1200</span>
+                                    {{--<span class="text-danger"><span id="company_introduction_count">0</span>/3000</span>--}}
                                 </div>
                                 <span class="d-block heading font-18 additional-info">Additional Business Info</span>
                                 <div class="form-row">
@@ -555,6 +555,7 @@
 @endsection
 @push('js')
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script type="text/javascript">
         AWS.config.update({
             accessKeyId: 'AKIAT72REQKCOJOWLXVC',
@@ -582,7 +583,23 @@
             }
         });
         $(document).ready(function () {
-            $("#company_introduction").on('keyup', function () {
+            /*scroll to error div*/
+            $(document).on('click', 'button[type="submit"]', function () {
+                setTimeout(() => {
+                    var navbarHeight = $('.navbar').innerHeight();
+                    $('html,body').animate({
+                            scrollTop: $('.error:not(:empty)').eq(0).closest('.form-group').offset().top - (navbarHeight)},
+                        'slow');
+                }, 500);
+            });
+            /*scroll to error div*/
+
+            ClassicEditor
+                .create(document.querySelector('#editor1'))
+                .catch(error => {
+                    console.error(error);
+                });
+            $("#editor1").on('keyup', function () {
                 $('#company_introduction_count').text($(this).val().length);
             });
             $('#year_established').datepicker({
@@ -644,9 +661,9 @@
                     company_name: "required",
                     industry: "required",
                     business_type: "required",
-                    alternate_contact: {
-                        phoneNumberFormat: true
-                    }
+                    // alternate_contact: {
+                    //     phoneNumberFormat: true
+                    // }
                 },
                 messages: {
                     company_name: "Please enter your company name",
@@ -828,9 +845,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image16').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image16').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet16_url').val('');
+                            $('#uploaded_image16').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image16').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet16_url').val('');
+                            $('#uploaded_image16').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
                     });
                 }
@@ -889,9 +910,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image17').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image17').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet17_url').val('');
+                            $('#uploaded_image17').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image17').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet17_url').val('');
+                            $('#uploaded_image17').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -951,9 +976,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image18').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image18').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet18_url').val('');
+                            $('#uploaded_image18').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image18').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet18_url').val('');
+                            $('#uploaded_image18').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1013,9 +1042,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image19').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image19').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet19_url').val('');
+                            $('#uploaded_image19').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image19').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet19_url').val('');
+                            $('#uploaded_image19').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1076,9 +1109,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image20').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image20').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet20_url').val('');
+                            $('#uploaded_image20').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image20').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet20_url').val('');
+                            $('#uploaded_image20').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1140,9 +1177,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image21').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image21').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet21_url').val('');
+                            $('#uploaded_image21').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image21').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet21_url').val('');
+                            $('#uploaded_image21').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1202,9 +1243,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image22').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image22').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet22_url').val('');
+                            $('#uploaded_image22').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image22').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet22_url').val('');
+                            $('#uploaded_image22').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1264,9 +1309,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image23').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image23').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet23_url').val('');
+                            $('#uploaded_image23').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image23').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet23_url').val('');
+                            $('#uploaded_image23').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1327,9 +1376,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image24').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image24').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet24_url').val('');
+                            $('#uploaded_image24').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image24').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet24_url').val('');
+                            $('#uploaded_image24').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1390,9 +1443,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image25').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image25').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet25_url').val('');
+                            $('#uploaded_image25').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image25').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet25_url').val('');
+                            $('#uploaded_image25').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1452,9 +1509,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image26').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image26').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet26_url').val('');
+                            $('#uploaded_image26').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image26').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet26_url').val('');
+                            $('#uploaded_image26').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1514,9 +1575,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image27').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image27').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet27_url').val('');
+                            $('#uploaded_image27').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image27').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet27_url').val('');
+                            $('#uploaded_image27').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1577,9 +1642,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image28').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image28').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet28_url').val('');
+                            $('#uploaded_image28').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image28').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet28_url').val('');
+                            $('#uploaded_image28').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1640,9 +1709,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image29').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image29').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet29_url').val('');
+                            $('#uploaded_image29').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image29').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet29_url').val('');
+                            $('#uploaded_image29').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1702,9 +1775,13 @@
                         if (ext == "pdf") {
                             $('#uploaded_image30').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png");
                         } else if (ext.indexOf("doc") != -1) {
-                            $('#uploaded_image30').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet30_url').val('');
+                            $('#uploaded_image30').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         } else if (ext.indexOf("xlsx") != -1) {
-                            $('#uploaded_image30').attr("src", "{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png");
+                            alert('JPG, PNG & PDF files accepted only!');
+                            $('#sheet30_url').val('');
+                            $('#uploaded_image30').attr("src", "{{$ASSET}}/front_site/images/preview.svg");
                         }
 
 
@@ -1733,9 +1810,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg','jfif','heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                // if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg','jfif','heic']) == -1) {
+                //     alert("Invalid Image File");
+                // }
                 var reader = new FileReader();
                 reader.onload = function(){
                     var output = document.getElementById('buploaded_image31');
