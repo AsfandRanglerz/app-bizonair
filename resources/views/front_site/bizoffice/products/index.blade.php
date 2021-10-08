@@ -63,14 +63,18 @@
                                         <th>{{ $i++ }}</th>
                                         <td>{{ $product->product_service_types }}</td>
                                         <td>{{ $product->reference_no }}</td>
-                                        <td><a href="{{ route('productDetail',['category'=>get_category_slug($product->category_id),'subcategory'=>get_sub_category_slug($product->subcategory_id),'prod_slug'=>$product->slug]) }}">{{ $product->product_service_name }}</a></td>
+                                        @if($product->product_service_types =='Service')
+                                            <td><a href="{{ route('serviceDetail',['category'=>get_category_slug($product->category_id),'subcategory'=>get_sub_category_slug($product->subcategory_id),'prod_slug'=>$product->slug]) }}">{{ $product->product_service_name }}</a></td>
+                                        @else
+                                            <td><a href="{{ route('productDetail',['category'=>get_category_slug($product->category_id),'subcategory'=>get_sub_category_slug($product->subcategory_id),'prod_slug'=>$product->slug]) }}">{{ $product->product_service_name }}</a></td>
+                                        @endif
                                         <td>{{ $product->subject }}</td>
-                                        <td>  @if(sizeof($product->product_image) > 0)
+                                        <td class="img-td-outer">  @if(sizeof($product->product_image) > 0)
                                                 <img src="{{$product->product_image[0]['image']}}"
-                                                     style="width: 40px;height: 40px;">
+                                                     class="img-td">
                                             @else
                                                 <img src="{{$ASSET}}/front_site/images/noimage.png"
-                                                     style="width: 40px;height: 40px;">
+                                                     class="img-td">
                                             @endif</td>
                                         <td>@if($product->suitable_currencies)
                                                 {{ str_replace(',', ', ', $product->suitable_currencies) }}
@@ -95,7 +99,7 @@
                                         <td align="center">
                                             <input type="hidden" name='id' value="{{encrypt($product->id)}}">
                                             <button  class="dropdown-toggle prWhiteBtn p-0"
-                                                    data-toggle="dropdown">
+                                                     data-toggle="dropdown">
                                                 <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
                                             </button>
                                             <input type="hidden" name='url'
@@ -113,7 +117,7 @@
                                                               aria-hidden="true"></span>Restore
                                                         </li>
                                                     </a>
-                                                    <a href="javascript:;" class="delete-product" >
+                                                    <a href="javascript:;" class="delete-product">
                                                         <li class="font-500">
                                                         <span class="fa fa-trash delete-btn mr-3"
                                                               aria-hidden="true"></span>Permanent Delete
@@ -158,7 +162,7 @@
 @endsection
 
 @push('js')
-
+    <script src="{{$ASSET}}/front_site/plugins/DataTables/datatables.js"></script>
     <script type="text/javascript">
         var alert_close_btn = '<button  class="close"><span aria-hidden="true">&times;</span> </button>';
         $(document).on('click', '.delete-product', function () {

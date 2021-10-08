@@ -28,51 +28,48 @@
                             <tr>
                                 <th style="width: 5px">#</th>
                                 <th class="p2">Name</th>
-                                <th class="p2">Email</th>
                                 <th class="p2">Functional Area</th>
                                 <th class="p2">Textile Sector</th>
+                                <th style="width: 85px">Action</th>
                                 <th class="p2">Expected Salary</th>
                                 <th class="p2">Experience (Years)</th>
                                 <th class="p2">Address</th>
-                                <th style="width: 85px">Action</th>
                             </tr>
                             </thead>
                             <?php $i=1;?>
                             <tbody>
                             @foreach ($cv as $key => $list)
-                                    <tr>
-                                        <th>{{ $i++ }}</th>
-                                        <td>{{$list->fname }} {{$list->lname }}</td>
-                                        <td>{{$list->email }}</td>
-                                        <td>{{$list->functional_area }}</td>
-                                        <td>{{$list->textile_sector }}</td>
-                                        <td>{{$list->sal_unit }} {{$list->exp_salary }}</td>
-                                        <td>{{$list->total_experience }} Year</td>
-                                        <td>{{$list->city,$list->country }} Year</td>
+                                <tr>
+                                    <th>{{ $i++ }}</th>
+                                    <td><a href="{{route('cvc-detail',$list->id) }}">{{$list->fname }} {{$list->lname }}</a></td>
+                                    <td>{{$list->functional_area }}</td>
+                                    <td>{{$list->textile_sector }}</td>
+                                    <td align="center">
+                                        <input type="hidden" name='job_id' value="{{encrypt($list->id)}}">
+                                        <button  class="dropdown-toggle prWhiteBtn p-0"
+                                                 data-toggle="dropdown">
+                                            <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
+                                        </button>
 
-                                        <td align="center">
-                                            <input type="hidden" name='job_id' value="{{encrypt($list->id)}}">
-                                            <button  class="dropdown-toggle prWhiteBtn p-0"
-                                                    data-toggle="dropdown">
-                                                <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
-                                            </button>
+                                        <ul class="dropdown-menu actionMenu p-10" role="menu">
+                                            <a href="{{ route('edit-cv-management',$list->id) }}">
+                                                <li class="font-500">
+                                                    <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View
+                                                </li>
+                                            </a>
 
-                                            <ul class="dropdown-menu actionMenu p-10" role="menu">
-                                                <a href="{{ route('edit-cv-management',$list->id) }}">
-                                                    <li class="font-500">
-                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View
-                                                    </li>
-                                                </a>
-
-                                                    <a href="javascript:;" class="delete-product">
-                                                        <li class="font-500" id="cross" cv_id="{{$list->id}}">
+                                            <a href="javascript:;" class="delete-product">
+                                                <li class="font-500" id="cross" cv_id="{{$list->id}}">
                                                         <span class="fa fa-trash delete-btn mr-3"
                                                               aria-hidden="true"></span>Delete
-                                                        </li>
-                                                    </a>
-                                            </ul>
-                                        </td>
-                                    </tr>
+                                                </li>
+                                            </a>
+                                        </ul>
+                                    </td>
+                                    <td>{{$list->sal_unit }} {{$list->exp_salary }}</td>
+                                    <td>{{$list->total_experience }}</td>
+                                    <td>{{$list->city,$list->country }}</td>
+                                </tr>
                             @endforeach
 
                             </tbody>
@@ -86,6 +83,7 @@
                 </div>
                 <!-- /#page-content-wrapper -->
             </div>
+        </div>
     </main>
     </body>
 
@@ -93,7 +91,7 @@
 
 
 @push('js')
-
+    <script src="{{$ASSET}}/front_site/plugins/DataTables/datatables.js"></script>
     <script>
         $(document).delegate('#cross', 'click', function(e) {
             e.preventDefault();

@@ -96,7 +96,7 @@
 
 
 @push('js')
-
+    <script src="{{$ASSET}}/front_site/plugins/DataTables/datatables.js"></script>
     <script>
         $(document).delegate('#cross', 'click', function(e) {
             e.preventDefault();

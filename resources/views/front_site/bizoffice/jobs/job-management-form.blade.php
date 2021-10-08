@@ -24,7 +24,7 @@
                          role="alert">
                     </div>
                     <div class="create-account">
-                        <form id="addJobForm" name="addJobpost" method="POST" action="{{route('create-view-job-management')}}">
+                        <form id="addJobPost" name="addJobPost" method="POST" action="{{route('create-view-job-management')}}">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-4">
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                     <select class="form-control single-select-dropdown" id="unit" name="unit" required>
-                                        <option value="" selected disabled>Select Currency</option>
+                                        <option value="" selected disabled>Select Unit</option>
                                         <option value="PKR">PKR</option>
                                         <option value="USD">USD</option>
                                         <option value="Euro">Euro</option>
@@ -189,7 +189,7 @@
                                 <div class="form-group col-md-4">
                                     <input type="text"
                                            name="address" id="address" class="form-control"
-                                           placeholder="Office Address" required>
+                                           placeholder="Input Office Address" required>
                                     <small class="text-danger" id="address_error"></small>
                                 </div>
                             </div>
@@ -206,12 +206,12 @@
                                 <div class="form-group col-md-4">
                                     <input type="number"
                                            name="work_hour" id="work_hour" class="form-control"
-                                           placeholder="Work Hours (Optional)">
+                                           placeholder="Input Job Work Hours (Optional)">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <input type="text"
                                            name="qualification" id="qualification" class="form-control"
-                                           placeholder="Qualification" required>
+                                           placeholder="Input Required Qualification" required>
                                     <small class="text-danger" id="qualification_error"></small>
                                 </div>
                             </div>
@@ -219,19 +219,19 @@
                                 <div class="form-group col-md-4">
                                     <input type="text"
                                            name="skills" id="skills" class="form-control"
-                                           placeholder="Key Skills" required>
+                                           placeholder="Input Required Job Skills" required>
                                     <small class="text-danger" id="skills_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <input type="number"
                                            name="vacancies" id="vacancies" class="form-control"
-                                           placeholder="Number Of Vacancies" required>
+                                           placeholder="Input Number Of Job Vacancies" required>
                                     <small class="text-danger" id="vacancies_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <input type="text" autocomplete="off"
                                            name="datePicker" class="form-control closingdatepicker"
-                                           placeholder="Last Date to Apply" required>
+                                           placeholder="Set Closing Date" required>
                                     <small class="text-danger" id="datePicker_error"></small>
                                 </div>
                             </div>
@@ -289,9 +289,8 @@
 
 @push('js')
     <script src="{{$ASSET}}/front_site/js/timepicker.min.js"></script>
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script>
-
         $(document).ready(function () {
             $('#company').change(function () {
                 if ($(this).val() == 'Other') {
@@ -313,7 +312,11 @@
             $('.closingdatepicker').datepicker({
                 startDate: "0d",
                 autoclose: true,
-                format: 'yyyy-mm-dd'
+                format: 'yyyy-mm-dd',
+            }).on('changeDate', function (selected) {
+                $('.closingdatepicker').addClass('is-valid');
+                $('.closingdatepicker').removeClass('is-invalid');
+                $('#datePicker-error').hide();
             });
             $("textarea[name='job_description']").on('keyup',function() {
                 $(this).siblings('span').find('.counter-total-digits').text($(this).val().length);
@@ -474,12 +477,12 @@
                     $form.find('button[type=submit]').prop('disabled', true);
                     $('#job_create_btn').addClass('d-none');
                     $('.btn-pro').removeClass('d-none');
-                    $('#alert-error-jbbac').hide();
+                    $('#alert-error').hide();
                 },
                 success: function (data, statusText, xhr, $form) {
                     $("#loader").hide();
-                    $('#alert-success-jbbac').hide();
-                    $('#alert-error-jbbac').hide();
+                    $('#alert-success').hide();
+                    $('#alert-error').hide();
                     $('small.text-danger').html('');
                     $(':input').removeClass('is-invalid');
                     response = data;
@@ -499,8 +502,8 @@
                     } else if (response.feedback === 'other') {
                         $form.find('button[type=submit]').prop('disabled', false);
                         $('html, body').animate({scrollTop: 0}, 'slow');
-                        $('#alert-error-jbbac').html(response.custom_msg);
-                        $('#alert-error-jbbac').show().fadeOut(2500);
+                        $('#alert-error').html(response.custom_msg);
+                        $('#alert-error').show().fadeOut(2500);
                     } else if (response.feedback === 'true') {
                         // $('html, body').animate({scrollTop:0}, 'slow');
 
@@ -521,7 +524,7 @@
                     $("#loader").hide();
                     $('button[type=submit]').prop('disabled', false);
                     $('html, body').animate({scrollTop: 0}, 'slow');
-                    $('#alert-success-jbbac').hide();
+                    $('#alert-success').hide();
                     $('.btn-pro').addClass('d-none').removeClass('d-flex');
                     $('#job_create_btn').removeClass('d-none');
                     // form.find('button[type=submit]').html('<i aria-hidden="true" class="fa fa-check"></i> {{ __('Save') }}');
@@ -541,12 +544,12 @@
                     } else {
                         msg = 'Uncaught Error, Please try again later';
                     }
-                    $('#alert-error-jbbac').html(msg);
-                    $('#alert-error-jbbac').show();
+                    $('#alert-error').html(msg);
+                    $('#alert-error').show();
                 },
 
             };
-            $('#addJobForm').ajaxForm(options);
+            $('#addJobPost').ajaxForm(options);
         });
 
         $(document).delegate('#countryId', 'change', function(e) {

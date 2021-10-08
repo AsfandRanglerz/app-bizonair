@@ -47,24 +47,24 @@
                                     <td>{{$fav->product_service_name }}</td>
                                     <?php $product = \App\Product::where('reference_no','=',$fav->reference_no)->first(); ?>
                                     @if($product)
-                                    <td>
-                                        @if(\App\Helpers\ProductHelper::getImages($product->id)->isNotEmpty())
-                                        @foreach(\App\Helpers\ProductHelper::getImages($product->id) as $i => $image)
+                                        <td>
+                                            @if(\App\Helpers\ProductHelper::getImages($product->id)->isNotEmpty())
+                                                @foreach(\App\Helpers\ProductHelper::getImages($product->id) as $i => $image)
 
-                                                <span>
+                                                    <span>
                                                      <a href="{{ route('productDetail',['category'=>get_category_slug($product->category_id),'subcategory'=>get_sub_category_slug($product->subcategory_id),'prod_slug'=>$product->slug]) }}">
                                                     <img src="{{$image->image}}" style="width: 70px;height: 70px;">
                                                      </a>
                                                 </span>
-                                                @if($i==0)
-                                                    @break
-                                                @endif
-                                        @endforeach
-                                        @else
-                                            <img src="{{$ASSET}}/front_site/images/noimage.png" style="width: 70px;height: 70px;">
-                                        @endif
-                                    </td>
-                                        @endif
+                                                    @if($i==0)
+                                                        @break
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                <img src="{{$ASSET}}/front_site/images/noimage.png" style="width: 70px;height: 70px;">
+                                            @endif
+                                        </td>
+                                    @endif
 
                                     <td>{{$fav->reference_no }}</td>
                                     <td>{{$fav->product_service_types }}</td>
@@ -72,7 +72,7 @@
                                     <td align="center">
                                         <input type="hidden" name='favourite_id' value="{{encrypt($fav->id)}}">
                                         <button  class="dropdown-toggle prWhiteBtn p-0"
-                                                data-toggle="dropdown">
+                                                 data-toggle="dropdown">
                                             <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
                                         </button>
 
@@ -93,7 +93,7 @@
                             </tbody>
                         </table>
                     </div>
-{{--                    <div class="float-right">{{ $favourite->links() }}</div>--}}
+                    {{--                    <div class="float-right">{{ $favourite->links() }}</div>--}}
 
                     @if($favourite->isEmpty())
                         <h3 class="text-center mt-5">No Favourite Product  yet</h3>
@@ -108,7 +108,7 @@
 
 
 @push('js')
-
+    <script src="{{$ASSET}}/front_site/plugins/DataTables/datatables.js"></script>
     <script>
         $(document).delegate('#cross', 'click', function(e) {
             e.preventDefault();

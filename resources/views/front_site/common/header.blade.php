@@ -394,10 +394,10 @@
                             <?php $company = \App\UserCompany::where('user_id',\Auth::id())->where('company_id',session()->get('company_id'))->first();?>
                             @if($company)
                                 <li data-toggle="tooltip" data-placement="bottom" title="Lead Inquiries">
-                                    <a href="{{route('product-inquiries')}}" class="sidebar-links">Lead Inquiries <span class="biz-badge" id="leadinq"></span></a></li>
+                                    <a href="{{route('product-inquiries')}}" class="sidebar-links">Lead Inquiries <span class="biz-badge" id="leadinq">0</span></a></li>
                             @endif
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="{{route('get-lead-fav')}}" class="sidebar-links">Lead Favorites <span class="biz-badge" id="fleadinq"></span></a></li>
+                                <a href="{{route('get-lead-fav')}}" class="sidebar-links">Lead Favorites <span class="biz-badge" id="fleadinq">0</span></a></li>
                         </ul>
                     </li>
 

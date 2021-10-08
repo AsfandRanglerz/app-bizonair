@@ -43,43 +43,43 @@
                             <?php $i=1;?>
                             <tbody>
                             @foreach ($job as $key => $list)
-                                    <tr>
-                                        <th>{{ $i++ }}</th>
-                                        <td>{{$list->title }}</td>
-                                        <td>{{$list->salary }}</td>
-                                        <td>{{$list->designation }}</td>
-                                        <td>{{$list->company??'N/A' }}</td>
-                                        <td>{{getUserNameById($list->user_id) }}</td>
-                                        <td>{{date("d-F-Y", strtotime($list->created_at))}}</td>
+                                <tr>
+                                    <th>{{ $i++ }}</th>
+                                    <td><a href="{{ route('jobs-detail',$list->id) }}">{{$list->title }}</a></td>
+                                    <td>{{$list->salary }}</td>
+                                    <td>{{$list->designation }}</td>
+                                    <td>@if($list->company == 'Other') {{$list->other_company}} @else {{$list->company}} @endif</td>
+                                    <td>{{getUserNameById($list->user_id) }}</td>
+                                    <td>{{date("d-F-Y", strtotime($list->created_at))}}</td>
 
-                                        <td align="center">
-                                            <input type="hidden" name='job_id' value="{{encrypt($list->id)}}">
-                                            <button  class="dropdown-toggle prWhiteBtn p-0"
-                                                    data-toggle="dropdown">
-                                                <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
-                                            </button>
+                                    <td align="center">
+                                        <input type="hidden" name='job_id' value="{{encrypt($list->id)}}">
+                                        <button  class="dropdown-toggle prWhiteBtn p-0"
+                                                 data-toggle="dropdown">
+                                            <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
+                                        </button>
 
-                                            <ul class="dropdown-menu actionMenu p-10" role="menu">
-                                                <a href="{{ route('edit-job-management',$list->id) }}">
-                                                    <li class="font-500">
-                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View
-                                                    </li>
-                                                </a>
-                                                <a href="{{ route('edit-job-management',$list->id.'#jobTab2') }}">
-                                                    <li class="font-500">
-                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>Edit
-                                                    </li>
-                                                </a>
+                                        <ul class="dropdown-menu actionMenu p-10" role="menu">
+                                            <a href="{{ route('edit-job-management',$list->id) }}">
+                                                <li class="font-500">
+                                                    <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View
+                                                </li>
+                                            </a>
+                                            <a href="{{ route('edit-job-management',$list->id.'#jobTab2') }}">
+                                                <li class="font-500">
+                                                    <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>Edit
+                                                </li>
+                                            </a>
 
-                                                    <a href="javascript:;" class="delete-product">
-                                                        <li class="font-500" id="cross" job_id="{{$list->id}}">
+                                            <a href="javascript:;" class="delete-product">
+                                                <li class="font-500" id="cross" job_id="{{$list->id}}">
                                                         <span class="fa fa-trash delete-btn mr-3"
                                                               aria-hidden="true"></span>Delete
-                                                        </li>
-                                                    </a>
-                                            </ul>
-                                        </td>
-                                    </tr>
+                                                </li>
+                                            </a>
+                                        </ul>
+                                    </td>
+                                </tr>
                             @endforeach
 
                             </tbody>
@@ -93,6 +93,7 @@
                 </div>
                 <!-- /#page-content-wrapper -->
             </div>
+        </div>
     </main>
     </body>
 
@@ -100,7 +101,7 @@
 
 
 @push('js')
-
+    <script src="{{$ASSET}}/front_site/plugins/DataTables/datatables.js"></script>
     <script>
         $(document).delegate('#cross', 'click', function(e) {
             e.preventDefault();

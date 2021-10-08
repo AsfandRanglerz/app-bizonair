@@ -1171,7 +1171,7 @@
                                             <div class="form-group mb-3 col-md-6">
                                                 <label for="alternate_contact" class="font-500">Alternate Contact Number
                                                     <small class="font-500">(Optional)</small></label>
-                                                <input type="number" class="form-control mobileNum"
+                                                <input type="tel" class="form-control mobileNum"
                                                        id="alternate_contact"
                                                        name="alternate_contact"
                                                        value="{{ old('alternate_contact', $company->alternate_contact) }}"

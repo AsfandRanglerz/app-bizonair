@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="form-group text-center">
-                    <button type="submit" class="red-btn" disabled>Join Biz Office</button>
+                    <button type="submit" class="red-btn">Join Biz Office</button>
                 </div>
             </form>
         </div>

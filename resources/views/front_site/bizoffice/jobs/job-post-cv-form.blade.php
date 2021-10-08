@@ -28,11 +28,11 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name - Input First Name" required="required">
+                                    <input type="text" class="form-control" name="fname" id="fname" placeholder="Input First Name" required="required">
                                     <small class="text-danger" id="fname_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" name="lname" id="lname"  placeholder="Last Name - Input Last Name" required="required">
+                                    <input type="text" class="form-control" name="lname" id="lname"  placeholder="Input Last Name" required="required">
                                     <small class="text-danger" id="lname_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
@@ -45,29 +45,64 @@
                                     <small class="text-danger" id="phone_code_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Contact Number - Input Contact Number" required="required">
+                                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Input Contact Number" required="required">
                                     <small class="text-danger" id="phone_no_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email - example@gmail.com" required="required">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Input Email Address" required="required">
                                     <small class="text-danger" id="email_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="number" class="form-control" name="total_experience" id="total_experience" placeholder="Total Experience (Years) - Input Total Experience (Years)" required="required">
+                                    <select class="form-control single-select-dropdown" id="total_experience" name="total_experience" required>
+                                        <option value="" selected disabled>Select Experience </option>
+                                        <option value="Fresh / No Experience">Fresh / No Experience</option>
+                                        <option value="01-03 Years">01-03 Years</option>
+                                        <option value="03-05 Years">03-05 Years</option>
+                                        <option value="05-07 Years">05-07 Years</option>
+                                        <option value="07-10 Years">07-10 Years</option>
+                                        <option value="10-15 Years">10-15 Years</option>
+                                        <option value="15-20 Years">15-20 Years</option>
+                                        <option value="20+ Years">20+ Years</option>
+                                    </select>
                                     <small class="text-danger" id="total_experience_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" name="edu_level" id="edu_level" placeholder="Highest Education Level - Input Highest Education Level" required>
+                                    <input type="text" class="form-control" name="edu_level" id="edu_level" placeholder="Input Highest Education Level" required>
                                     <small class="text-danger" id="edu_level_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <select class="form-control"
+                                    <select class="form-control single-select-dropdown"
+                                            id="textile_sector" name="textile_sector" required>
+                                        <option value="" selected disabled>Jobs Sector</option>
+                                        <option value="Ginning">Ginning </option>
+                                        <option value="Spinning">Spinning</option>
+                                        <option value="Knitting">Knitting</option>
+                                        <option value="Weaving">Weaving</option>
+                                        <option value="Non-Woven">Non-Woven</option>
+                                        <option value="Wet Processing">Wet Processing</option>
+                                        <option value="Embroidery">Embroidery</option>
+                                        <option value="Garments">Garments</option>
+                                        <option value="Accessories">Accessories</option>
+                                        <option value="Dyes & Chemicals">Dyes & Chemicals</option>
+                                        <option value="Retail">Retail</option>
+                                        <option value="Personal Protective Equipment">Personal Protective Equipment</option>
+                                        <option value="Institutional">Institutional </option>
+                                        <option value="Leather">Leather</option>
+                                        <option value="Footwear & Bags">Footwear & Bags</option>
+                                        <option value="Home Textiles">Home Textiles</option>
+                                        <option value="Technical Textiles">Technical Textiles</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <small class="text-danger" id="textile_sector_error"></small>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <select class="form-control single-select-dropdown"
                                             id="functional_area" name="functional_area" required>
-                                        <option value="" selected disabled>Select Functional Area</option>
+                                        <option value="" selected disabled>Functional Area</option>
                                         <option value="Electrical">Electrical </option>
                                         <option value="Mechanical">Mechanical</option>
                                         <option value="Human Resources">Human Resources</option>
@@ -91,47 +126,24 @@
                                         <option value="Procurement">Procurement</option>
                                         <option value="PPC">PPC</option>
                                         <option value="Imports & Exports">Imports & Exports</option>
-                                        <option value="Audit">Audit</option>
+                                        <option value="Quality Audit">Quality Audit</option>
                                         <option value="Utilities">Utilities</option>
                                         <option value="ERP">ERP</option>
                                         <option value="Branding">Branding</option>
                                         <option value="Warehouse">Warehouse</option>
                                         <option value="Transportation">Transportation</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Financial Audit">Financial Audit</option>
                                         <option value="Other">Other</option>
                                     </select>
                                     <small class="text-danger" id="functional_area_error"></small>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <select class="form-control"
-                                            id="textile_sector" name="textile_sector" required>
-                                        <option value="" selected disabled>Select Jobs Sector</option>
-                                        <option value="Ginning">Ginning </option>
-                                        <option value="Spinning">Spinning</option>
-                                        <option value="Knitting">Knitting</option>
-                                        <option value="Weaving">Weaving</option>
-                                        <option value="Non-Woven">Non-Woven</option>
-                                        <option value="Wet Processing">Wet Processing</option>
-                                        <option value="Embroidery">Embroidery</option>
-                                        <option value="Garments">Garments</option>
-                                        <option value="Accessories">Accessories</option>
-                                        <option value="Dyes & Chemicals">Dyes & Chemicals</option>
-                                        <option value="Retail">Retail</option>
-                                        <option value="Personal Protective Equipment">Personal Protective Equipment</option>
-                                        <option value="Institutional">Institutional </option>
-                                        <option value="Leather">Leather</option>
-                                        <option value="Footwear & Bags">Footwear & Bags</option>
-                                        <option value="Home Textiles">Home Textiles</option>
-                                        <option value="Technical Textiles">Technical Textiles</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                    <small class="text-danger" id="textile_sector_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <input type="number" class="form-control" name="exp_salary" id="exp_salary" placeholder="Expected Salary" required="required">
                                     <small class="text-danger" id="exp_salary_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <select class="form-control"
+                                    <select class="form-control single-select-dropdown"
                                             id="unit" name="unit" required>
                                         <option value="" selected disabled>Select Currency</option>
                                         <option value="PKR">PKR</option>
@@ -146,8 +158,8 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <select name="country" id="countryId" class="form-control" required>
-                                        <option value="" selected disabled>Select Country</option>
+                                    <select name="country" id="countryId" class="form-control single-select-dropdown" required>
+                                        <option value="" selected disabled>--- Select Country ---</option>
                                         @foreach ($countries as $item)
                                             <option value="{{$item->name->common}}">{{$item->name->common}}</option>
                                         @endforeach
@@ -155,13 +167,13 @@
                                     <small class="text-danger" id="country_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <select name="city" id="cityId" class="form-control" required>
-                                        <option value="" selected disabled>Select City</option>
+                                    <select name="city" id="cityId" class="form-control single-select-dropdown" required>
+                                        <option value="" selected disabled>--- Select City ---</option>
                                     </select>
                                     <small class="text-danger" id="city_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" name="key_skills" id="key_skill" placeholder="Key Skills - Input Key Skills" required="required">
+                                    <input type="text" class="form-control" name="key_skills" id="key_skill" placeholder="Input Key Skills" required="required">
                                     <small class="text-danger" id="key_skills_error"></small>
                                 </div>
                             </div>
@@ -175,14 +187,14 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="px-0 form-group col-12">
-                                    <button class="verify-btn red-btn" type="submit" id="post_cv_btn">POST CV
-                                    </button>
-                                    <button  disabled class="btn-pro d-none red-btn"><span
-                                            class="spinner-border  spinner-border-sm mr-1" role="status"
-                                            aria-hidden="true"></span>Processing
-                                    </button>
-                                </div>
+                            <div class="form-group col-12 mt-2">
+                                <button class="verify-btn red-btn" type="submit" id="post_cv_btn">Submit
+                                </button>
+                                <button  disabled class="btn-pro d-none red-btn"><span
+                                        class="spinner-border  spinner-border-sm mr-1" role="status"
+                                        aria-hidden="true"></span>Processing
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>

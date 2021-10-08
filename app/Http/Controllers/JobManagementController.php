@@ -117,6 +117,7 @@ class JobManagementController extends Controller
             $job->gender = request('gender');
             $job->company = request('company');
             $job->other_company = request('ocompany');
+            $job->status = 1;
 
             if($request->hasFile('image')){
                 $image = $request->file('image');
@@ -146,9 +147,15 @@ class JobManagementController extends Controller
     public  function edit_job_management($id)
     {
         $data['user'] = \App\User::find(\auth()->id());
+        $data['info'] = \App\JobManagement::where('id','=',$id)->first();
         $country = new Countries();
         $data['countries'] = $country->all();
-        $data['info'] = \App\JobManagement::where('id','=',$id)->first();
+
+        $data['city'] = $country->where('name.common', $data['info']->country)
+            ->first()
+            ->hydrate('cities')
+            ->cities
+            ->pluck('name');
 
         return view('front_site.bizoffice.jobs.job-management-edit', $data);
 
@@ -248,7 +255,7 @@ class JobManagementController extends Controller
 
         return json_encode($data);
     }
-        public function remove_cv()
+    public function remove_cv()
     {
         try {
             $cv_id = decrypt(request('cv_id'));

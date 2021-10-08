@@ -9,6 +9,7 @@ use App\Product;
 use App\Category;
 use App\Subcategory;
 use App\View;
+use Illuminate\Database\Eloquent\Model;
 use Intervention\Image\Facades\Image;
 use Storage;
 use Illuminate\Support\Facades\DB;
@@ -57,9 +58,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $user = \App\User::where('id', \Auth::id())->first();
-        $userCompany = \App\UserCompany::where('user_id',$user->id)->where('company_id',session()->get('company_id'))->first();
-        return view('front_site.bizoffice.products.create', compact('user','userCompany'));
+        if(auth()->user()){
+            $user = \App\User::where('id', \Auth::id())->first();
+            $userCompany = \App\UserCompany::where('user_id',$user->id)->where('company_id',session()->get('company_id'))->first();
+            return view('front_site.bizoffice.products.create', compact('user','userCompany'));
+        }else{
+            return view('front_site.other.login');
+        }
     }
 
     public function product_list_by_category($slug)
@@ -85,7 +90,7 @@ class ProductController extends Controller
         $topbuyproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->where('category_id', $cat->id)->where('product_service_types', 'Buy')->with('product_image')->orderBy('is_featured','DESC')->latest()->limit(10)->get();
 
         $topcompanies = \App\CompanyProfile::whereHas('industry',function ($q) use($cat){
-                $q->where('categories.id',$cat->id);
+            $q->where('categories.id',$cat->id);
         })->limit(2)->latest()->get();
 
 //        self logic practice
@@ -106,8 +111,7 @@ class ProductController extends Controller
         $sub_category = \App\Subcategory::where('slug', $subcategory);
         $subcatid = $sub_category->pluck('id');
         $data['sub_category'] = $sub_category->with('category')->first();
-        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->first();
-
+        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->where('subcategory_id',$subcatid)->first();
         $prod_city_search = DB::table('products')->where('product_service_types', 'Sell')
             ->where('childsubcategory_id', $childsubcategory->id)->where('subcategory_id', $subcatid)
             ->select('city', DB::raw('count(*) as total'))
@@ -119,18 +123,16 @@ class ProductController extends Controller
         $country = new Countries();
         $data['countries'] = $country->all();
 
-        $products = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Sell')->where('childsubcategory_id', $childsubcategory->id)->where('subcategory_id', $subcatid)->with('product_image')->latest()->get();
+        $products = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Sell')->where('childsubcategory_id', $childsubcategory->id)->whereNull('deleted_at')->with('product_image')->latest()->get();
         $viewCount = count($products);
 
         $cats = \App\Category::where('type', 'Business')->orderBy('priority')->get();
-
-        $buysell_selling = \DB::table('buy_sells')->where('product_service_types','Buy')->where('subcategory_id', $subcatid)->whereNull('deleted_at')->latest()->get();
 
         $topcompanies = \App\CompanyProfile::whereHas('industry',function ($q) use($cat){
             $q->where('categories.id',$cat->id);
         })->limit(2)->latest()->get();
 
-        return view('front_site.product-by-childsubcategories.product-childsubcategory-supplier',$data, compact('prod_city_search','childsubcategory','topcompanies','category', 'viewCount', 'subcategory', 'products', 'cats','buysell_selling'));
+        return view('front_site.product-by-childsubcategories.product-childsubcategory-supplier',$data, compact('prod_city_search','childsubcategory','topcompanies','category', 'viewCount', 'subcategory', 'products', 'cats'));
     }
 
     public function product_buyer_list_by_childsubcategory($category, $subcategory,$childsubcategory)
@@ -139,7 +141,7 @@ class ProductController extends Controller
         $sub_category = \App\Subcategory::where('slug', $subcategory);
         $subcatid = $sub_category->pluck('id');
         $data['sub_category'] = $sub_category->with('category')->first();
-        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->first();
+        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->where('subcategory_id',$subcatid)->first();
         $prod_city_search = DB::table('products')->where('product_service_types', 'Buy')
             ->where('childsubcategory_id', $childsubcategory->id)->where('subcategory_id', $subcatid)
             ->select('city', DB::raw('count(*) as total'))
@@ -150,17 +152,15 @@ class ProductController extends Controller
         $country = new Countries();
         $data['countries'] = $country->all();
 
-        $products = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Buy')->where('childsubcategory_id', $childsubcategory->id)->where('subcategory_id', $subcatid)->with('product_image')->latest()->get();
+        $products = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Buy')->where('childsubcategory_id', $childsubcategory->id)->whereNull('deleted_at')->with('product_image')->latest()->get();
         $viewCount = count($products);
 
         $cats = \App\Category::where('type', 'Business')->orderBy('priority')->get();
 
-        $buysell_buying = \DB::table('buy_sells')->where('product_service_types','Sell')->where('subcategory_id', $subcatid)->whereNull('deleted_at')->latest()->get();
-
         $topcompanies = \App\CompanyProfile::whereHas('industry',function ($q) use($cat){
             $q->where('categories.id',$cat->id);
         })->limit(2)->latest()->get();
-        return view('front_site.product-by-childsubcategories.product-childsubcategory-buyer',$data, compact('prod_city_search','topcompanies','childsubcategory','category', 'viewCount', 'subcategory', 'products', 'cats','buysell_buying'));
+        return view('front_site.product-by-childsubcategories.product-childsubcategory-buyer',$data, compact('prod_city_search','topcompanies','childsubcategory','category', 'viewCount', 'subcategory', 'products', 'cats'));
     }
 
     public function one_time_childsubcategory_seller($category, $subcategory,$childsubcategory)
@@ -170,7 +170,7 @@ class ProductController extends Controller
         $subcatid = $sub_category->pluck('id');
         $data['sub_category'] = $sub_category->with('category')->first();
 
-        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->first();
+        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->where('subcategory_id',$subcatid)->first();
         $prod_city_search = DB::table('buy_sells')->where('subcategory_id',$subcatid)
             ->where('date_expire','>', now())->where('product_service_types','Sell')
             ->where('childsubcategory_id', $childsubcategory->id)
@@ -184,7 +184,7 @@ class ProductController extends Controller
 
         $cats = \App\Category::where('type', 'Business')->orderBy('priority')->get();
 
-        $buysell_selling = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types','Sell')->where('childsubcategory_id', $childsubcategory->id)->where('subcategory_id', $subcatid)->whereNull('deleted_at')->latest()->get();
+        $buysell_selling = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types','Sell')->where('childsubcategory_id', $childsubcategory->id)->whereNull('deleted_at')->latest()->get();
         $viewCount = count($buysell_selling);
         $topcompanies = \App\CompanyProfile::whereHas('industry',function ($q) use($cat){
             $q->where('categories.id',$cat->id);
@@ -199,7 +199,7 @@ class ProductController extends Controller
         $subcatid = $sub_category->pluck('id');
         $data['sub_category'] = $sub_category->with('category')->first();
 
-        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->first();
+        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->where('subcategory_id',$subcatid)->first();
         $prod_city_search = DB::table('buy_sells')->where('subcategory_id',$subcatid)
             ->where('date_expire','>', now())->where('product_service_types','Buy')
             ->where('childsubcategory_id', $childsubcategory->id)
@@ -213,7 +213,7 @@ class ProductController extends Controller
 
         $cats = \App\Category::where('type', 'Business')->orderBy('priority')->get();
 
-        $buysell_buying = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>=', now())->where('product_service_types','Buy')->where('childsubcategory_id', $childsubcategory->id)->where('subcategory_id', $subcatid)->whereNull('deleted_at')->latest()->get();
+        $buysell_buying = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>=', now())->where('product_service_types','Buy')->where('childsubcategory_id', $childsubcategory->id)->whereNull('deleted_at')->latest()->get();
         $viewCount = count($buysell_buying);
         $topcompanies = \App\CompanyProfile::whereHas('industry',function ($q) use($cat){
             $q->where('categories.id',$cat->id);
@@ -225,7 +225,7 @@ class ProductController extends Controller
     {
         $subcatid = \App\Subcategory::where('slug', $subcategory)->pluck('id');
         $catid = \App\Subcategory::where('slug', $subcategory)->pluck('category_id');
-        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->first();
+        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->where('subcategory_id',$subcatid)->first();
         $category = \App\Category::where('id', $catid)->first();
 
         $prod_city_search = DB::table('products')->where('product_service_types', 'Sell')
@@ -253,7 +253,7 @@ class ProductController extends Controller
     {
         $subcatid = \App\Subcategory::where('slug', $subcategory)->pluck('id');
         $catid = \App\Subcategory::where('slug', $subcategory)->pluck('category_id');
-        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->first();
+        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->where('subcategory_id',$subcatid)->first();
         $category = \App\Category::where('id', $catid)->first();
 
         $prod_city_search = DB::table('products')->where('product_service_types', 'Buy')
@@ -286,7 +286,7 @@ class ProductController extends Controller
 
         $country = new Countries();
         $data['countries'] = $country->all();
-        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->first();
+        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->where('subcategory_id',$subcatid)->first();
         $prod_city_search = DB::table('buy_sells')->where('product_service_types', 'Sell')
             ->where('subcategory_id',$subcatid)->where('date_expire','>', now())
             ->where('childsubcategory_id', $childsubcategory->id)
@@ -313,7 +313,7 @@ class ProductController extends Controller
 
         $country = new Countries();
         $data['countries'] = $country->all();
-        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->first();
+        $childsubcategory =\App\Childsubcategory::where('slug',$childsubcategory)->where('subcategory_id',$subcatid)->first();
         $prod_city_search = DB::table('buy_sells')->where('product_service_types', 'Buy')
             ->where('subcategory_id',$subcatid)->where('date_expire','>', now())
             ->where('childsubcategory_id', $childsubcategory->id)
@@ -345,11 +345,15 @@ class ProductController extends Controller
 
         $categories = $this->_category->getAllCompanies();
         $cats = \App\Category::where('type', 'Business')->orderBy('priority')->get();
-
-        $toptensellproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->where('category_id', $cat->id)->where('product_service_types', 'Sell')->with('product_image')->whereNull('deleted_at')->orderBy('is_featured','DESC')->latest()->limit(6)->get();
-        $top_6 = array_unique(\Arr::pluck($toptensellproduct,'id'));
-        $topsellproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->where('category_id', $cat->id)->whereNotIn('id',$top_6)->where('product_service_types', 'Sell')->with('product_image')->whereNull('deleted_at')->get();
-
+        if(str_contains(url()->full(), '?status=all')){
+            $toptensellproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types','!=','Service')->with('product_image')->whereNull('deleted_at')->orderBy('is_featured','DESC')->latest()->limit(6)->get();
+            $top_6 = array_unique(\Arr::pluck($toptensellproduct,'id'));
+            $topsellproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->whereNotIn('id',$top_6)->where('product_service_types','!=','Service')->with('product_image')->whereNull('deleted_at')->get();
+        }else{
+            $toptensellproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->where('category_id', $cat->id)->where('product_service_types', 'Sell')->with('product_image')->whereNull('deleted_at')->orderBy('is_featured','DESC')->latest()->limit(6)->get();
+            $top_6 = array_unique(\Arr::pluck($toptensellproduct,'id'));
+            $topsellproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->where('category_id', $cat->id)->whereNotIn('id',$top_6)->where('product_service_types', 'Sell')->with('product_image')->whereNull('deleted_at')->get();
+        }
         $topcompanies = \App\CompanyProfile::whereHas('industry',function ($q) use($cat){
             $q->where('categories.id',$cat->id);
         })->limit(2)->latest()->get();
@@ -405,11 +409,15 @@ class ProductController extends Controller
         $subcategories = \App\Subcategory::where('category_id', $cat->id)->get();
         $categories = $this->_category->getAllCompanies();
         $cats = \App\Category::where('type', 'Business')->orderBy('priority')->get();
-
-        $buyselltopten_selling = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types','Sell')->where('category_id', $cat->id)->whereNull('deleted_at')->orderBy('is_featured','DESC')->latest()->limit(6)->get();
-        $top_6 = array_unique(\Arr::pluck($buyselltopten_selling,'id'));
-        $buysell_selling = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->whereNotIn('id',$top_6)->where('date_expire','>', now())->where('product_service_types','Sell')->where('category_id', $cat->id)->whereNull('deleted_at')->get();
-
+        if(str_contains(url()->full(), '?status=all')){
+            $buyselltopten_selling = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types','!=','Service')->whereNull('deleted_at')->orderBy('is_featured','DESC')->latest()->limit(6)->get();
+            $top_6 = array_unique(\Arr::pluck($buyselltopten_selling,'id'));
+            $buysell_selling = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->whereNotIn('id',$top_6)->where('date_expire','>', now())->where('product_service_types','!=','Service')->whereNull('deleted_at')->get();
+        }else{
+            $buyselltopten_selling = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types','Sell')->where('category_id', $cat->id)->whereNull('deleted_at')->orderBy('is_featured','DESC')->latest()->limit(6)->get();
+            $top_6 = array_unique(\Arr::pluck($buyselltopten_selling,'id'));
+            $buysell_selling = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->whereNotIn('id',$top_6)->where('date_expire','>', now())->where('product_service_types','Sell')->where('category_id', $cat->id)->whereNull('deleted_at')->get();
+        }
         $topcompanies = \App\CompanyProfile::whereHas('industry',function ($q) use($cat){
             $q->where('categories.id',$cat->id);
         })->limit(2)->latest()->get();
@@ -433,9 +441,9 @@ class ProductController extends Controller
         $categories = $this->_category->getAllCompanies();
         $cats = \App\Category::where('type', 'Business')->orderBy('priority')->get();
 
-         $buyselltopten_buying = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types','Buy')->where('category_id', $cat->id)->whereNull('deleted_at')->orderBy('is_featured','DESC')->latest()->limit(6)->get();
-         $top_6 = array_unique(\Arr::pluck($buyselltopten_buying,'id'));
-         $buysell_buying = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->whereNotIn('id',$top_6)->where('date_expire','>', now())->where('product_service_types','Buy')->where('category_id', $cat->id)->whereNull('deleted_at')->get();
+        $buyselltopten_buying = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types','Buy')->where('category_id', $cat->id)->whereNull('deleted_at')->orderBy('is_featured','DESC')->latest()->limit(6)->get();
+        $top_6 = array_unique(\Arr::pluck($buyselltopten_buying,'id'));
+        $buysell_buying = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->whereNotIn('id',$top_6)->where('date_expire','>', now())->where('product_service_types','Buy')->where('category_id', $cat->id)->whereNull('deleted_at')->get();
 
         $topcompanies = \App\CompanyProfile::whereHas('industry',function ($q) use($cat){
             $q->where('categories.id',$cat->id);
@@ -447,7 +455,7 @@ class ProductController extends Controller
             $q->where('categories.id',$cat->id);
         })->get();
         $textile_partners = \App\TextilePartner::all();
-         return view('front_site.view-all.view-all-one-time-buying-deals',$data, compact('textile_partners','companies','topcompanies','cats','buyselltopten_buying', 'buysell_buying', 'subcategories', 'urlslug', 'categories'));
+        return view('front_site.view-all.view-all-one-time-buying-deals',$data, compact('textile_partners','companies','topcompanies','cats','buyselltopten_buying', 'buysell_buying', 'subcategories', 'urlslug', 'categories'));
     }
 
     public function product_supplier_list_by_subcategory($category, $subcategory)
@@ -733,50 +741,34 @@ class ProductController extends Controller
 
     public function compareProducts($category)
     {
-        $viewproduct = DB::table('compares')->join('products', 'products.reference_no', '=', 'compares.reference_no')->join('product_images', 'product_images.product_id', '=', 'products.id')
-            ->where('compares.user_id', '=', Auth::user()->id)
-            ->orderBy('compares.id', 'desc')
-            ->take(3)
-            ->get();
-
-        //dd($viewproduct);
-
+        $reference = DB::table('compares')->get()->pluck('reference_no');
+        $viewproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->whereIn('reference_no',$reference)->with('product_image')->whereNull('deleted_at')->latest()->take(3)->get();
+        $country = new Countries();
+        $countries = $country->all();
+        $viewbuysell = \App\BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->whereIn('reference_no',$reference)->whereNull('deleted_at')->latest()->where('date_expire','>', now())->take(3)->get();
         $cats = \App\Category::where('type', 'Business')->orderBy('priority')->get();
-        return view('front_site.product.compare-products', compact('cats', 'viewproduct'));
+        return view('front_site.product.compare-products', compact('cats', 'viewproduct','viewbuysell','countries','category'));
     }
 
     public function add_to_compare(Request $request)
     {
 
-        $data = $request->all();
-        $loger_id = auth()->user()->id;
-        $reference_no = $data['reference_no'];
-        $created_at = Carbon::now();
-        $check_compare = DB::table('compares')
-            ->where('user_id', '=', $loger_id)
-            ->where('reference_no', '=', $reference_no)
-            ->count();
-
-        if (empty($check_compare)) {
-            DB::insert('insert into compares (reference_no,user_id,created_at) values (?, ?,?)', [
-                $reference_no, $loger_id, $created_at
-            ]);
-            $again_compare = DB::table('compares')
-                ->where('user_id', '=', $loger_id)->count();
-
-            if ($again_compare > 3) {
-                $viewas = DB::table('compares')
-                    ->where('user_id', '=', $loger_id)
-                    ->orderBy('id', 'asc')
-                    ->get();
-                $pcid = $viewas[0]->id;
-                DB::delete('delete from compares where user_id="' . $loger_id . '" and id = ?', [$pcid]);
+        DB::table('compares')->delete();
+        if(sizeof(request('ref')) <=3){
+            foreach(request('ref') as $reference_no) {
+                $compare = new \App\Compare();
+                $compare->reference_no = $reference_no;
+                if(auth()->check()){
+                    $compare->user_id = auth()->id();
+                }
+                $compare->save();
             }
             $response = 'success';
-
             return response()->json(['response' => $response, 'status' => 'success']);
+        }else{
+            $response = 'error';
+            return response()->json(['response' => $response, 'status' => 'error']);
         }
-
     }
 
     public function delete_compare($reference_no)
@@ -789,8 +781,7 @@ class ProductController extends Controller
 
     public function delete_all_compare()
     {
-
-        DB::delete('delete from compares where user_id = ?', [Auth::user()->id]);
+        DB::table('compares')->delete();
 
         return response()->json(['response' => 'success', 'status' => 'success']);
     }
@@ -819,7 +810,7 @@ class ProductController extends Controller
         $data['category'] = $data['sub_category']->category;
 
         // $product = $this->_product->getProduct($id)->with('product_image');
-        $product = \App\Product::where('slug', $slug)->with('product_image')->with('product_manufacturer')->first();
+        $product = \App\Product::where('slug', $slug)->with('product_image')->with('product_manufacturer')->withTrashed()->first();
 
         $view = new View();
         $view->prod_id= $product->id;
@@ -830,11 +821,11 @@ class ProductController extends Controller
         $country = new Countries();
         $data['countries'] = $country->all();
 
-        $osdts = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Sell')->where('company_id', $product->company_id)->with('product_image')->whereNull('deleted_at')->latest()->paginate(15);
+        $osdts = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Sell')->where('company_id', $product->company_id)->with('product_image')->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
 
-        $ssdos = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Sell')->where('subcategory_id',$product->subcategory_id)->where('company_id', '!=', $product->company_id)->with('product_image')->whereNull('deleted_at')->latest()->paginate(15);
+        $ssdos = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Sell')->where('subcategory_id',$product->subcategory_id)->where('company_id', '!=', $product->company_id)->with('product_image')->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
 
-        $sdfc = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Sell')->where('subcategory_id',$product->subcategory_id)->where('origin', $product->origin)->with('product_image')->whereNull('deleted_at')->latest()->paginate(15);
+        $sdfc = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Sell')->where('subcategory_id',$product->subcategory_id)->where('origin', $product->origin)->with('product_image')->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
 
         $cats = \App\Category::where('type', 'Business')->orderBy('priority')->get();
         $ads = \App\Banner::where('dimension', 'width 300 * height 477')->where('description','1st row right sidebar')->where('page','Textile Business Detail')->where('status', 1)->limit(1)->get();
@@ -860,11 +851,11 @@ class ProductController extends Controller
         $country = new Countries();
         $data['countries'] = $country->all();
 
-        $osdts = \App\BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('product_service_types', 'Sell')->where('date_expire','>', now())->where('user_id', $product->user_id)->whereNull('deleted_at')->latest()->paginate(15);
+        $osdts = \App\BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('product_service_types', 'Sell')->where('date_expire','>', now())->where('user_id', $product->user_id)->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
 
-        $ssdos = \App\BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('product_service_types', 'Sell')->where('date_expire','>', now())->where('subcategory_id',$product->subcategory_id)->where('user_id', '!=', $product->user_id)->whereNull('deleted_at')->latest()->paginate(15);
+        $ssdos = \App\BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('product_service_types', 'Sell')->where('date_expire','>', now())->where('subcategory_id',$product->subcategory_id)->where('user_id', '!=', $product->user_id)->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
 
-        $sdfc = \App\BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('product_service_types', 'Sell')->where('date_expire','>', now())->where('subcategory_id',$product->subcategory_id)->where('origin', $product->origin)->latest()->whereNull('deleted_at')->paginate(15);
+        $sdfc = \App\BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('product_service_types', 'Sell')->where('date_expire','>', now())->where('subcategory_id',$product->subcategory_id)->where('origin', $product->origin)->latest()->whereNull('deleted_at')->where('id','!=',$product->id)->paginate(15);
 
         $cats = \App\Category::where('type', 'Business')->orderBy('priority')->get();
         $ads = \App\Banner::where('dimension', 'width 300 * height 477')->where('description','1st row right sidebar')->where('page','Textile Business Detail')->where('status', 1)->limit(1)->get();
@@ -881,7 +872,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-      //dd($request->all());
+        //dd($request->all());
 
         $rules = [
             'product_service_types' => 'required', 'category' => 'required', 'sub_category' => 'required',
@@ -1398,10 +1389,10 @@ class ProductController extends Controller
                     $rules['manufacturer_name'] = '';
                     $rules['origin'] = '';
                     for ($i = 1; $i <= $request->company_counter; $i++) {
-                        $rules['manufacturer_company_name' . $i] = 'required';
-                        $rules['origin' . $i] = 'required';
-                        $rules['chemicals_listed' . $i] = 'required';
-                        $rules['supply_type' . $i] = 'required';
+                        /*                        $rules['manufacturer_company_name' . $i] = 'required';
+                                                $rules['origin' . $i] = 'required';*/
+                        /*                        $rules['chemicals_listed' . $i] = 'required';
+                                                $rules['supply_type' . $i] = 'required';*/
                         $messages['manufacturer_company_name' . $i . '.required'] = 'Manufacturer company name is required';
                         $messages['origin' . $i . '.required'] = 'Origin is required';
                         $messages['chemicals_listed' . $i . '.required'] = 'Chemicals listed is required';
@@ -1412,10 +1403,10 @@ class ProductController extends Controller
                 $rules['manufacturer_name'] = '';
                 $rules['origin'] = '';
                 for ($i = 1; $i <= $request->company_counter; $i++) {
-                    $rules['manufacturer_company_name' . $i] = 'required';
-                    $rules['origin' . $i] = 'required';
-                    $rules['chemicals_listed' . $i] = 'required';
-                    $rules['supply_type' . $i] = 'required';
+                    /*$rules['manufacturer_company_name' . $i] = 'required';
+                    $rules['origin' . $i] = 'required';*/
+                    /*                    $rules['chemicals_listed' . $i] = 'required';
+                                        $rules['supply_type' . $i] = 'required';*/
                     $messages['manufacturer_company_name' . $i . '.required'] = 'Manufacturer company name is required';
                     $messages['origin' . $i . '.required'] = 'Origin is required';
                     $messages['chemicals_listed' . $i . '.required'] = 'Chemicals listed is required';
@@ -2383,10 +2374,10 @@ class ProductController extends Controller
                     $rules['manufacturer_name'] = '';
                     $rules['origin'] = '';
                     for ($i = 1; $i <= $request->company_counter; $i++) {
-                        $rules['manufacturer_company_name' . $i] = 'required';
-                        $rules['origin' . $i] = 'required';
-                        $rules['chemicals_listed' . $i] = 'required';
-                        $rules['supply_type' . $i] = 'required';
+                        /*$rules['manufacturer_company_name' . $i] = 'required';
+                        $rules['origin' . $i] = 'required';*/
+                        /*                        $rules['chemicals_listed' . $i] = 'required';
+                                                $rules['supply_type' . $i] = 'required';*/
                         $messages['manufacturer_company_name' . $i . '.required'] = 'Manufacturer company name is required';
                         $messages['origin' . $i . '.required'] = 'Origin is required';
                         $messages['chemicals_listed' . $i . '.required'] = 'Chemicals listed is required';
@@ -2397,10 +2388,10 @@ class ProductController extends Controller
                 $rules['manufacturer_name'] = '';
                 $rules['origin'] = '';
                 for ($i = 1; $i <= $request->company_counter; $i++) {
-                    $rules['manufacturer_company_name' . $i] = 'required';
-                    $rules['origin' . $i] = 'required';
-                    $rules['chemicals_listed' . $i] = 'required';
-                    $rules['supply_type' . $i] = 'required';
+                    /*$rules['manufacturer_company_name' . $i] = 'required';
+                    $rules['origin' . $i] = 'required';*/
+                    /*                    $rules['chemicals_listed' . $i] = 'required';
+                                        $rules['supply_type' . $i] = 'required';*/
                     $messages['manufacturer_company_name' . $i . '.required'] = 'Manufacturer company name is required';
                     $messages['origin' . $i . '.required'] = 'Origin is required';
                     $messages['chemicals_listed' . $i . '.required'] = 'Chemicals listed is required';
@@ -2506,6 +2497,15 @@ class ProductController extends Controller
             $product->sampling_type = $request->sampling_type;
             if ($request->sampling_type == 'Paid') {
                 $product->paid_sampling_price = $request->paid_sampling_price;
+            }
+        }else{
+            $product->is_sampling = null;
+            $product->sampling_type = $request->sampling_type;
+            if ($request->sampling_type == 'Paid') {
+                $product->paid_sampling_price = null;
+            }
+            if ($request->sampling_type == 'Free') {
+                $product->paid_sampling_price = null;
             }
         }
         if ($request->service_durations != null) {
@@ -2968,10 +2968,10 @@ class ProductController extends Controller
     {
         try {
             $img_id = decrypt(request('img_id'));
-    } catch (\RuntimeException $e) {
-        return json_encode(['feedback' => 'encrypt_issue', 'msg' => 'Something Went Wrong']);
-    }
-    $prodId =\App\ProductImage::where('id',$img_id)->first();
+        } catch (\RuntimeException $e) {
+            return json_encode(['feedback' => 'encrypt_issue', 'msg' => 'Something Went Wrong']);
+        }
+        $prodId =\App\ProductImage::where('id',$img_id)->first();
         $prodImage =\App\ProductImage::where('product_id',$prodId->product_id)->count();
         if ($prodImage>1) {
 

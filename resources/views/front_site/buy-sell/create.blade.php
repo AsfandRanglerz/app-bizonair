@@ -44,15 +44,15 @@
                               class="needs-validation" novalidate>
                             @csrf
                             <div class="tab-content" id="myCompanyTab">
-                                <div class="px-0 py-2 tab-pane fade show active" id="tabReg" role="tabpanel"
+                                <div class="p-3 tab-pane fade show active" id="tabReg" role="tabpanel"
                                      aria-labelledby="tabReg">
                                     <div class="form-row">
-                                        <div class="form-group col-md-12 mb-0">
+                                        <div class="form-group col-md-12">
                                             <label class="font-500">Post Your Deal As
                                                 <span class="required"> *</span>
                                             </label>
                                             <a href="#" class="pull-right text-decoration-none red-link font-500 help-txt">Help<span class="ml-1 fa fa-question-circle" aria-hidden="true"></span></a>
-                                            <div class="mb-2 d-flex flex-row">
+                                            <div class="d-flex flex-row">
                                                 <div
                                                     class="form-check form-check-inline custom-control custom-radio d-sm-inline">
                                                     <input type="radio" required
@@ -82,34 +82,53 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 mb-1">
-                                            <select class="form-control product-categories" id="category"
-                                                    name="category" required>
-                                                <option value="" selected disabled> ---- Select Main Category ---</option>
-                                                @foreach(\App\Category::all() as $category)
-                                                    <option value="{{ $category->id }}" cat-val="{{ $category->name }}"
-                                                            class="d-none"
-                                                            cat-type="{{ $category->type }}">{{ $category->name }}</option>
-                                                @endforeach
-                                            </select>
+                                        <div class="form-group col-lg-6">
+                                            <label for="category" class="font-500">Main Category
+                                                <span class="required"> *</span>
+                                            </label>
+                                            <div class="position-relative">
+                                                <select class="form-control product-categories" id="category"
+                                                        name="category" required>
+                                                    <option value="" selected disabled> ---- Select Main Category ---</option>
+                                                    @foreach(\App\Category::all() as $category)
+                                                        <option value="{{ $category->id }}" cat-val="{{ $category->name }}"
+                                                                class="d-none"
+                                                                cat-type="{{ $category->type }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="d-none position-absolute spinner-border text-danger loading-icon">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
                                             <small class="text-danger" id="category_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6 mb-1">
-                                            <select class="form-control product-subcategories" id="sub_category"
-                                                    name="sub_category" required>
-                                                <option value="" selected disabled> ---- Select Sub-Category ---
-                                                </option>
-                                                <option disabled class="text-danger">Please select category first
-                                                </option>
-                                            </select>
+                                        <div class="form-group col-lg-6">
+                                            <label for="sub_category" class="font-500">Sub-Category
+                                                <span class="required"> *</span>
+                                            </label>
+                                            <div class="position-relative">
+                                                <select class="form-control product-subcategories" id="sub_category"
+                                                        name="sub_category" required>
+                                                    <option value="" selected disabled> ---- Select Sub-Category ---
+                                                    </option>
+                                                    <option disabled class="text-danger">Please select category first
+                                                    </option>
+                                                </select>
+                                                <div class="d-none position-absolute spinner-border text-danger loading-icon">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
                                             <small class="text-danger" id="sub_category_error"></small>
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 d-flex flex-column subCat-Sec mb-0">
+                                        <div class="form-group col-lg-6 d-flex flex-column subCat-Sec">
+                                            <label for="sub_sub_category" class="font-500">Product Type
+                                                <span class="required"> *</span></label>
                                             <select class="form-control single-select-dropdown" id="sub_sub_category" name="sub_sub_category"
                                                     required>
-                                                <option value="" selected disabled></option>
+                                                <option value="" selected disabled> ---- Select Product Type ---
+                                                </option>
                                                 <option value="one">option 1</option>
                                                 <option value="two">option 2</option>
                                                 <optgroup label="Group Options">
@@ -120,20 +139,26 @@
 
                                             <small class="text-danger" id="sub_sub_category_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6 add-sub-sub-cat">
+                                        <div class="form-group col-lg-6 add-sub-sub-cat">
                                             <label class="font-500">Add Product Type <span class="required"> *</span></label>
                                             <input type="text" name="add_sub_sub_category" class="form-control"
                                                    required>
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 mb-0 clearfix">
+                                        <div class="form-group col-lg-6 clearfix">
+                                            <label for="subject" class="font-500">Subject
+                                                <span class="required"> *</span>
+                                            </label>
                                             <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/80</span>
                                             <input type="text" id="subject" class="form-control" maxlength = "80"name="subject"
-                                                   placeholder="Subject - It will appear as title" required>
+                                                   placeholder="It will appear as title" required>
                                             <small class="text-danger" id="subject_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6 mb-1 clearfix product-name">
+                                        <div class="form-group col-lg-6 clearfix product-name">
+                                            <label for="product_service_name" class="font-500">Product Name
+                                                <span class="required"> *</span>
+                                            </label>
                                             <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/50</span>
                                             <input type="text" id="product_service_name" class="form-control" maxlength = "50"
                                                    name="product_service_name" placeholder="Product Name" required>
@@ -141,36 +166,46 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-lg-3 mb-1">
+                                        <div class="form-group col-lg-3">
+                                            <label class="font-500">Ad Expiry Days <span class="required"> *</span></label>
                                             <select name="expiry_date" id="expiry_date" class="form-control add-date" required>
-                                                <option value="" selected disabled>--- Ad Expiry Days ---</option>
+                                                <option value="" selected disabled>--- Expiry Days ---</option>
                                                 <option value="10">10 Days</option>
                                                 <option value="20">20 Days</option>
                                                 <option value="30">30 Days</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-lg-3 mb-1">
-                                            <input type="text" name="date_expire" id="date_expire" placeholder="Ad Expiry Date" class="form-control append-inp" readonly/>
+                                        <div class="form-group col-lg-3">
+                                            <label class="font-500">Ad Expiry Date</label>
+                                            <input type="text" name="date_expire" id="date_expire" class="form-control append-inp" readonly/>
                                         </div>
-                                        <div class="form-group col-md-6 mb-1">
+                                        <div class="form-group col-lg-6">
+                                            <label class="font-500">
+                                                Additional Keyword For Search
+                                                <span class="fa fa-question-circle" data-toggle="tooltip"
+                                                      data-placement="right"
+                                                      title="Please select appropriate words with exact spellings for better search of your product"
+                                                      aria-hidden="true"></span>
+                                                <small class="font-500"> (Optional)</small>
+                                            </label>
                                             <div class="form-row">
-                                                <div class="form-group col-md-4 mb-1">
+                                                <div class="form-group col-md-4">
                                                     <input type="text" id="keyword1" name="keyword1"
-                                                           class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 1">
+                                                           class="form-control" placeholder="Keyword 1">
                                                 </div>
-                                                <div class="form-group col-md-4 mb-1">
+                                                <div class="form-group col-md-4">
                                                     <input type="text" id="keyword2" name="keyword2"
-                                                           class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 2">
+                                                           class="form-control" placeholder="Keyword 2">
                                                 </div>
-                                                <div class="form-group col-md-4 mb-1">
+                                                <div class="form-group col-md-4">
                                                     <input type="text" id="keyword3" name="keyword3"
-                                                           class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 3">
+                                                           class="form-control" placeholder="Keyword 3">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 mb-1">
+                                        <div class="form-group col-lg-6">
                                             <label class="font-500">Specification Sheets<br><small class="font-500">(Optional
                                                     | JPG, PNG, Word, Excel & PDF files only | Upto 10MB)</small></label>
                                             <div class="dropzone dz-clickable">
@@ -405,8 +440,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-md-6 mb-1">
-                                            <label for="product_images" class="font-500">Product Images <span class="required"> *</span><small class="font-500">            (Note: First image will be displayed as Ad Cover Photo)</small><br><small class="font-500">(JPG & PNG  files only | Atleast one product image | Upto
+                                        <div class="form-group col-lg-6">
+                                            <label for="product_images" class="font-500">Product Images <span class="required"> *</span><small class="font-500">            (Note: First image will be displayed as Ad Cover Photo)</small><br><small class="font-500">(Atleast one product image | Upto
                                                     10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
@@ -639,7 +674,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <small class="text-danger" id="bavatar1_error"></small>
+                                            <small class="text-danger" id="file_error"></small>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -884,8 +919,137 @@
                                     </div>
                                 </div>
 
+                                {{--                                <div class="p-3 tab-pane fade trade-info-tab" id="tabCom" role="tabpanel"--}}
+                                {{--                                     aria-labelledby="tabCom">--}}
+                                {{--                                    <div class="form-row">--}}
+                                {{--                                        <div class="form-group col-lg-6 trade-info-container">--}}
+                                {{--                                            <label for="focused_selling_region" class="font-500">Target Selling--}}
+                                {{--                                                Region--}}
+                                {{--                                                <small class="font-500"> (Optional)</small></label>--}}
+                                {{--                                            <input type="text" id="focused_selling_region" class="form-control"--}}
+                                {{--                                                   name="focused_selling_region"--}}
+                                {{--                                                   placeholder="City, Province, State...">--}}
+                                {{--                                        </div>--}}
+                                {{--                                        <div class="form-group col-lg-6 trade-info-container">--}}
+                                {{--                                            <label for="production_capacity" class="font-500">Production Capacity--}}
+                                {{--                                                <small--}}
+                                {{--                                                    class="font-500">(Optional)</small></label>--}}
+                                {{--                                            <input type="text" id="production_capacity" class="form-control"--}}
+                                {{--                                                   name="production_capacity" placeholder="Mention Production Capacity Per Day, Per Month">--}}
+                                {{--                                        </div>--}}
+                                {{--                                    </div>--}}
 
-                                <div class="px-0 py-2 tab-pane fade payment-info-tab" id="tabInfo" role="tabpanel"
+                                {{--                                    <div class="form-row">--}}
+                                {{--                                        <div class="form-group col-lg-6 trade-info-container">--}}
+                                {{--                                            <label for="min_order_quantity" class="font-500">Min Order Quantity--}}
+                                {{--                                                (MOQ)--}}
+                                {{--                                                <small class="font-500"> (Optional)</small></label>--}}
+                                {{--                                            <div class="row">--}}
+                                {{--                                                <div class="col-md-12">--}}
+                                {{--                                                    <input type="text" id="min_order_quantity" class="form-control"--}}
+                                {{--                                                           name="min_order_quantity"--}}
+                                {{--                                                           placeholder="Min Order Quantity (MOQ)">--}}
+                                {{--                                                </div>--}}
+                                {{--                                            </div>--}}
+                                {{--                                        </div>--}}
+                                {{--                                        <div class="form-group col-md-6 trade-info-container">--}}
+                                {{--                                            <div class="row">--}}
+                                {{--                                                <div class="col-md-6">--}}
+                                {{--                                                    <label class="font-500 d-block">Sampling <small--}}
+                                {{--                                                            class="font-500">(Optional)</small></label>--}}
+                                {{--                                                    <div--}}
+                                {{--                                                        class=" custom-control custom-radio custom-control-inline form-check-inline">--}}
+                                {{--                                                        <input type="radio" class="custom-control-input" value="1"--}}
+                                {{--                                                               id="proYes" name="is_sampling">--}}
+                                {{--                                                        <label class="custom-control-label" for="proYes">Yes</label>--}}
+                                {{--                                                    </div>--}}
+                                {{--                                                    <div--}}
+                                {{--                                                        class="custom-control custom-radio ml-3 custom-control-inline form-check-inline">--}}
+                                {{--                                                        <input type="radio" class="custom-control-input" value="0"--}}
+                                {{--                                                               id="proNo" name="is_sampling">--}}
+                                {{--                                                        <label class="custom-control-label" for="proNo">No</label>--}}
+                                {{--                                                    </div>--}}
+                                {{--                                                    <div class="paid-or-free">--}}
+                                {{--                                                        <div--}}
+                                {{--                                                            class="custom-control custom-radio custom-control-inline form-check-inline">--}}
+                                {{--                                                            <input type="radio" class="custom-control-input"--}}
+                                {{--                                                                   value="Paid"--}}
+                                {{--                                                                   id="proPaid" name="sampling_type">--}}
+                                {{--                                                            <label class="custom-control-label"--}}
+                                {{--                                                                   for="proPaid">Paid</label>--}}
+                                {{--                                                        </div>--}}
+                                {{--                                                        <div--}}
+                                {{--                                                            class="custom-control custom-radio ml-3 custom-control-inline form-check-inline">--}}
+                                {{--                                                            <input type="radio" class="custom-control-input"--}}
+                                {{--                                                                   value="Free"--}}
+                                {{--                                                                   id="proFree" name="sampling_type">--}}
+                                {{--                                                            <label class="custom-control-label"--}}
+                                {{--                                                                   for="proFree">Free</label>--}}
+                                {{--                                                        </div>--}}
+                                {{--                                                    </div>--}}
+                                {{--                                                </div>--}}
+                                {{--                                                <div class="col-md-6">--}}
+                                {{--                                                    <div class="form-row d-none trade-info-container position-relative"--}}
+                                {{--                                                         id="paidField">--}}
+                                {{--                                                        <div class="form-group ">--}}
+                                {{--                                                            <label class="font-500 pt-3">Add Price <span--}}
+                                {{--                                                                    class="required">*</span></label>--}}
+                                {{--                                                            <input type="text" id="paidSample"--}}
+                                {{--                                                                   name="paid_sampling_price"--}}
+                                {{--                                                                   class="form-control">--}}
+                                {{--                                                        </div>--}}
+                                {{--                                                    </div>--}}
+                                {{--                                                </div>--}}
+                                {{--                                            </div>--}}
+                                {{--                                        </div>--}}
+                                {{--                                    </div>--}}
+                                {{--                                    <div class="form-row">--}}
+                                {{--                                        <div class="form-group col-lg-6 trade-info-container">--}}
+                                {{--                                            <label for="dealing_as" class="label d-block">Dealing Product As <span--}}
+                                {{--                                                    class="required">*</span></label>--}}
+                                {{--                                            <select id="dealing_as" name="dealing_as[]"--}}
+                                {{--                                                    class="select2-multiple form-control required-control"--}}
+                                {{--                                                    multiple="multiple" required>--}}
+                                {{--                                                <option value="" class="d-none" disabled></option>--}}
+                                {{--                                                <option value="Manufacturer">Manufacturer</option>--}}
+                                {{--                                                <option value="Sole Agent">Sole Agent</option>--}}
+                                {{--                                                <option value="Stockist">Stockist</option>--}}
+                                {{--                                                <option value="Supplier">Supplier</option>--}}
+                                {{--                                                <option value="Marketing Manager">Marketing Manager</option>--}}
+                                {{--                                                <option value="Other" class="other-check">Other</option>--}}
+                                {{--                                            </select>--}}
+                                {{--                                            <small class="text-danger" id="dealing_as_error"></small>--}}
+                                {{--                                        </div>--}}
+                                {{--                                        <div class="form-group col-lg-6 other-div add-Certifications">--}}
+                                {{--                                            <label class="font-500">Add Other Details <span--}}
+                                {{--                                                    class="required">*</span></label>--}}
+                                {{--                                            <input type="text" id="other_dealing_as" name="other_dealing_as"--}}
+                                {{--                                                   class="form-control" required>--}}
+                                {{--                                        </div>--}}
+                                {{--                                    </div>--}}
+                                {{--                                    <div class="form-row">--}}
+                                {{--                                        <div class="form-group col-lg-6 trade-info-container">--}}
+                                {{--                                            <label class="font-500">Target Selling Country <span--}}
+                                {{--                                                    class="required">*</span></label>--}}
+                                {{--                                            <select name="focused_selling_countries[]"--}}
+                                {{--                                                    class="select2-multiple form-control required-control"--}}
+                                {{--                                                    multiple="multiple" id="focused_selling_countries" required>--}}
+                                {{--                                                @foreach(\App\Country::all() as $country)--}}
+                                {{--                                                    <option--}}
+                                {{--                                                        value="{{ $country->country_name }}">{{ $country->country_name }}</option>--}}
+                                {{--                                                @endforeach--}}
+                                {{--                                            </select>--}}
+                                {{--                                            <small class="text-danger" id="focused_selling_countries_error"></small>--}}
+                                {{--                                        </div>--}}
+                                {{--                                    </div>--}}
+                                {{--                                    <div class="mt-3" align="right">--}}
+                                {{--                                        <button  class="red-btn next-btn" id="nextBtn2">NEXT</button>--}}
+                                {{--                                    </div>--}}
+                                {{--                                    <div class="mt-4 mb-4">--}}
+                                {{--                                        <hr class="horizontal-line">--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
+                                <div class="p-3 tab-pane fade payment-info-tab" id="tabInfo" role="tabpanel"
                                      aria-labelledby="tabInfo">
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 unit_price_range">
@@ -1146,6 +1310,7 @@
 
 @push('js')
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script type="text/javascript">
         AWS.config.update({
             accessKeyId: 'AKIAT72REQKCOJOWLXVC',
@@ -1170,16 +1335,6 @@
             }
         });
         $(document).ready(function () {
-            /*for select single place holders*/
-            $('select[name="sub_sub_category"]').select2({
-                placeholder: "---- Select Product Type ---"
-            });
-
-            $('select[name="suitable_currencies"]').select2({
-                placeholder: "---- Select Suitable Currency ---"
-            });
-            /*for select single place holders*/
-
             /*for add expiry days*/
             $( ".add-date" ).change(function() {
                 var add_day = $(this).find(":checked").val();
@@ -2560,9 +2715,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image1');
@@ -2617,9 +2772,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image2');
@@ -2673,9 +2828,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image3');
@@ -2728,9 +2883,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image4');
@@ -2783,9 +2938,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image5');
@@ -2839,9 +2994,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image6');
@@ -2895,9 +3050,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image7');
@@ -2951,9 +3106,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image8');
@@ -3006,9 +3161,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image9');
@@ -3063,9 +3218,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image10');
@@ -3120,9 +3275,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image11');
@@ -3174,9 +3329,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image12');
@@ -3229,9 +3384,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image13');
@@ -3284,9 +3439,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image14');
@@ -3340,9 +3495,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image15');
@@ -3371,6 +3526,7 @@
                     });
                 }
             });
+
         });
     </script>
 @endpush

@@ -485,6 +485,7 @@
                             <div class="form-row">
                                 @if(getCompanies(auth()->id())->isNotEmpty())
                                     <div class="form-group col-md-4">
+                                        <label class="font-500">Company <span class="required">*</span></label>
                                         <select name="company" id="company" class="form-control other-option-included single-select-dropdown" required>
                                             @foreach(getCompanies(auth()->id()) as $company)
                                                 <option value="{{$company->company_name}}" @if($info->company == $company->company_name) selected @endif>{{ucwords($company->company_name)}}</option>
@@ -494,15 +495,18 @@
                                         <small class="text-danger" id="company_error"></small>
                                     </div>
                                     <div class="form-group other-div col-md-4" @if($info->company == "Other") style="display: block"; @endif>
+                                        <label class="font-500">Other Company Name <span class="required">*</span></label>
                                         <input type="text" name="ocompany" id="ocompany" value="{{$info->other_company}}" class="form-control">
                                         <small class="text-danger" id="ocompany_error"></small>
                                     </div>
                                 @else
                                     <div class="form-group col-md-4">
+                                        <label class="font-500">Company <small class="font-500">(Optional)</small></label>
                                         <input type="text" name="company" id="company" class="form-control" placeholder="Input Company Name"  value="{{$info->company}}">
                                     </div>
                                 @endif
                                 <div class="form-group col-md-4 career-img-drop-outer attachment-img-file">
+                                    <label class="d-block text-left mb-2 font-500">Attachment <small class="font-500">(Optional | Attach Reference or Image)</small></label>
                                     <div class="custom-file">
                                         <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
                                         <label class="custom-file-label" for="customFile"><span class="fa fa-upload"></span></label>
@@ -516,13 +520,13 @@
                                             <div class="row mx-0 my-2 product-gallery">
                                                 <?php $ext = strtolower(pathinfo($info->image, PATHINFO_EXTENSION)); ?>
                                                 @if($ext=="docx")
-                                                    <img class="img-responsive product-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png">
+                                                    <img class="img-responsive product-img attachment-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png">
                                                 @elseif($ext=="xlsx")
-                                                    <img class="img-responsive product-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png">
+                                                    <img class="img-responsive product-img attachment-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png">
                                                 @elseif($ext=="pdf")
-                                                    <img class="img-responsive product-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png">
+                                                    <img class="img-responsive product-img attachment-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png">
                                                 @else
-                                                    <img class="img-responsive product-img" src="{{$info->image}}">
+                                                    <img class="img-responsive product-img attachment-img" src="{{$info->image}}">
                                                 @endif
                                             </div>
                                         </div>
@@ -553,7 +557,7 @@
 
 @push('js')
     <script src="{{$ASSET}}/front_site/js/timepicker.min.js"></script>
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script>
         // CKEDITOR.replace( 'job_description' );
         // CKEDITOR.config.width = '100%';

@@ -786,7 +786,7 @@
                                             <label class="font-500">Update Your Deal As
                                                 <span class="required"> *</span>
                                             </label>
-                                            <div class="d-flex flex-sm-row flex-column">
+                                            <div class="d-flex flex-row">
                                                 <div
                                                     class="form-check form-check-inline custom-control custom-radio d-sm-inline">
                                                     <input type="radio" required
@@ -1197,8 +1197,7 @@
                                             <label for="product_images" class="font-500">Product Images <span
                                                     class="required"> *</span>
                                                 <small class="font-500">(Note: First image will be displayed as Ad Cover Photo)</small>
-                                                <br><small class="font-500">(JPG & PNG
-                                                    files only | Atleast one product image | Upto
+                                                <br><small class="font-500">(Atleast one product image | Upto
                                                     10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
@@ -1446,7 +1445,7 @@
                                                             $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
 
                                                             @if($ext=="docx")
-                                                                <li class="position-relative d-inline-block px-1 my-1 d-flex justify-content-center align-items-center"
+                                                                <li class="position-relative d-inline-block my-1 d-flex justify-content-center align-items-center"
                                                                     data-src="{{$file->sheet}}"
                                                                     data-pinterest-text="Pin it"
                                                                     data-tweet-text="share on twitter">
@@ -1458,7 +1457,7 @@
 
                                                                 </li>
                                                             @elseif($ext=="xlsx")
-                                                                <li class="position-relative d-inline-block px-1 my-1 d-flex justify-content-center align-items-center"
+                                                                <li class="position-relative d-inline-block my-1 d-flex justify-content-center align-items-center"
                                                                     data-src="{{$file->sheet}}"
                                                                     data-pinterest-text="Pin it"
                                                                     data-tweet-text="share on twitter">
@@ -1470,7 +1469,7 @@
 
                                                                 </li>
                                                             @elseif($ext=="pdf")
-                                                                <li class="position-relative d-inline-block px-1 my-1 d-flex justify-content-center align-items-center"
+                                                                <li class="position-relative d-inline-block my-1 d-flex justify-content-center align-items-center"
                                                                     data-src="{{$file->sheet}}"
                                                                     data-pinterest-text="Pin it"
                                                                     data-tweet-text="share on twitter">
@@ -1482,7 +1481,7 @@
 
                                                                 </li>
                                                             @else
-                                                                <li class="position-relative d-inline-block px-1 my-1">
+                                                                <li class="position-relative d-inline-block my-1">
                                                                     <input type="hidden" name='sheet_id' value="{{encrypt($file->id)}}">
                                                                     <span class="position-absolute border-0 specification-bin cross-sheet fa fa-trash cross-sheet" sheet_id="{{$file->id}}" aria-hidden="true" style="z-index: 1;right: -8px"></span>
                                                                     <div class="include-in-gallery"
@@ -1492,7 +1491,7 @@
                                                                         <a href="">
                                                                             <img class="img-responsive product-img" src="{{$file->sheet}}">
                                                                             <div class="demo-gallery-poster">
-                                                                                <span class="fa fa-search text-white"></span>
+                                                                                <span class="fa fa-eye text-white"></span>
                                                                             </div>
                                                                         </a>
                                                                     </div>
@@ -1511,7 +1510,7 @@
                                                 <div class="product-images-gallery">
                                                     <ul class="mx-0 my-2 product-gallery edit-comp-prof-imgs">
                                                         @foreach(App\Helpers\BuysellHelper::getImages($buysell->id) as $image)
-                                                            <li class="position-relative d-inline-block px-1 my-1">
+                                                            <li class="position-relative d-inline-block my-1">
                                                                 <input type="hidden" name='img_id' value="{{encrypt($image->id)}}">
                                                                 <span class="position-absolute border-0 specification-bin specs fa fa-trash" img_id="{{$image->id}}" aria-hidden="true" style="z-index: 1;right: -8px"></span>
                                                                 <div class="include-in-gallery"
@@ -1521,7 +1520,7 @@
                                                                     <a href="">
                                                                         <img class="img-responsive product-img" src="{{$image->image}}">
                                                                         <div class="demo-gallery-poster">
-                                                                            <span class="fa fa-search text-white"></span>
+                                                                            <span class="fa fa-eye text-white"></span>
                                                                         </div>
                                                                     </a>
                                                                 </div>
@@ -2458,6 +2457,7 @@
 @endsection
 
 @push('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
     <script type="text/javascript">
         AWS.config.update({
@@ -2482,9 +2482,19 @@
                 input.val(("0" + new_date.getDate()).slice(-2)+'-'+("0"+(new_date.getMonth()+1)).slice(-2)+'-'+new_date.getFullYear());
             });
             /*for add expiry days*/
-
+            /*
             $( ".updt-button" ).click(function() {
                 $( "#updateBuysell" ).submit();
+            });
+            */
+            $( ".updt-button" ).click(function() {
+                var serviceProduct = $('#productService').prop('checked');
+                if(serviceProduct==false) {
+                    $('.services-container').hide();
+                }
+                else {
+                    $('.services-container').show();
+                }
             });
             /*for general select multiple*/
             $('.select2-multiple').select2({
@@ -2518,9 +2528,7 @@
                 placeholder: "Select Service Duration"
             });
 
-            $('.select-suitable-payment').select2({
-                placeholder: "Select Payment Terms"
-            });
+
             /*for select multiple place holders*/
 
             var validator = $("form[name='updateBuysell']").validate({
@@ -2751,9 +2759,9 @@
                         // $("#alert-success-create-product").show().html("New product added successfully.");
                         $(window).off('beforeunload');
 
-                            $("#loader").hide();
-                            toastr.success("Buy sell updated successfully.");
-                            window.location.href = response.url;
+                        $("#loader").hide();
+                        toastr.success("Buy sell updated successfully.");
+                        window.location.href = response.url;
                     } else if (response.feedback == "validation_error") {
                         toastr.error("Please enter the required fields.");
                         $form.find('button[type=submit]').prop('disabled', false);
@@ -2821,9 +2829,11 @@
             });
 
             $("#category").on("change", function () {
-                $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
-                $('#keyword1').val($('#category option:selected').attr('cat-val'));
-                $('#keyword1').valid();
+                // $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
+                var $this = $(this);
+                $this.siblings(".loading-icon").removeClass("d-none");
+                // $('#keyword1').val($('#category option:selected').attr('cat-val'));
+                // $('#keyword1').valid();
                 $.ajax({
                     url: '{{ route("get-subcategories") }}',
                     type: 'get',
@@ -2837,14 +2847,17 @@
                                 .html('<option value="" selected disabled> ---- Select Sub-Sub-Category --- </option><option disabled class="text-danger">Please select sub-category first</option>');
                             $('#sub_category').find('option[value="' + $('#sub_category').attr('val') + '"]').prop('selected', 'true').trigger('change');
                         }
-                        $("#loader").hide();
+                        // $("#loader").hide();
+                        $this.siblings(".loading-icon").addClass("d-none");
                     }
                 });
             });
             $("#sub_category").on("change", function () {
-                $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
-                $('#keyword2').val($('#category option:selected').attr('cat-val'));
-                $('#keyword2').valid();
+                // $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
+                var $this = $(this);
+                $this.siblings(".loading-icon").removeClass("d-none");
+                // $('#keyword2').val($('#category option:selected').attr('cat-val'));
+                // $('#keyword2').valid();
                 $.ajax({
                     url: '{{ route("get-subcategories") }}',
                     type: 'get',
@@ -2856,7 +2869,8 @@
                             $('#sub_sub_category').html(response.output);
                             $('#sub_sub_category').find('option[value="' + $('#sub_sub_category').attr('val') + '"]').prop('selected', 'true').trigger('change');
                         }
-                        $("#loader").hide();
+                        // $("#loader").hide();
+                        $this.siblings(".loading-icon").addClass("d-none");
                     }
                 });
             });
@@ -2869,7 +2883,6 @@
                 }
 
             });
-
 
             $('#proFree').on('click', function () {
                 // alert($('#proPaid').val());
@@ -3867,9 +3880,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image1');
@@ -3924,9 +3937,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image2');
@@ -3980,9 +3993,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image3');
@@ -4035,9 +4048,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image4');
@@ -4090,9 +4103,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image5');
@@ -4146,9 +4159,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image6');
@@ -4202,9 +4215,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image7');
@@ -4258,9 +4271,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image8');
@@ -4313,9 +4326,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image9');
@@ -4370,9 +4383,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image10');
@@ -4427,9 +4440,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image11');
@@ -4481,9 +4494,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image12');
@@ -4536,9 +4549,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image13');
@@ -4591,9 +4604,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image14');
@@ -4647,9 +4660,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
-                    alert("Invalid Image File");
-                }
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+             alert("Invalid Image File");
+         } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('buploaded_image15');

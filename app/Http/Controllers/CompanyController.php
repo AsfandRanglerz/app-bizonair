@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Invite;
 use App\CompanyImage;
 use App\CompanyProfile;
 use App\Notification;
 use App\UserCompany;
+use Illuminate\Database\Eloquent\Model;
 use Intervention\Image\Facades\Image;
 use Storage;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +20,6 @@ use App\CompanyProfileIndustry;
 use App\Mail\InviteMemberEmail;
 use App\Mail\acceptInvitation;
 use App\Mail\MeetingReminderEmail;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -40,13 +41,14 @@ class CompanyController extends Controller
 
     public function companyProfile()
     {
-
-        $data['title'] = 'Company Profile';
-
-        $data['countries'] = \App\Country::all();
-
-        $data['user'] = \App\User::find(\auth()->id());
-        return view('front_site.account.company-profile', $data);
+        if(auth()->user()){
+            $data['title'] = 'Company Profile';
+            $data['countries'] = \App\Country::all();
+            $data['user'] = \App\User::find(\auth()->id());
+            return view('front_site.account.company-profile', $data);
+        }else{
+            return view('front_site.other.login');
+        }
     }
 
     public function saveCompany(Request $request, CompanyHelper $companyHelper)
@@ -56,8 +58,8 @@ class CompanyController extends Controller
         if ($validator) {
             return $validator;
         } else {
-            $num = preg_replace('/^(?:\+?' . request('alternate_contact_country_code') . '|0)?/', request('alternate_contact_country_code'), request('alternate_contact'));
-            $num = ($num == request('alternate_contact_country_code')) ? '' : $num;
+//            $num = preg_replace('/^(?:\+?' . request('alternate_contact_country_code') . '|0)?/', request('alternate_contact_country_code'), request('alternate_contact'));
+//            $num = ($num == request('alternate_contact_country_code')) ? '' : $num;
             $export_market = "";
 //            $logo_name="";
 //            if($request->hasFile('logo_image')){
@@ -106,7 +108,7 @@ class CompanyController extends Controller
                 'annual_turnover' => $request->annual_turnover,
                 'company_introduction' => $request->company_introduction,
                 'business_owner' => $request->business_owner,
-                'alternate_contact' => str_replace(' ', '', $num),
+                'alternate_contact' => $request->alternate_contact,
                 'alternate_email' => $request->alternate_email,
                 'alternate_address' => $request->alternate_address,
             ]);
@@ -162,6 +164,7 @@ class CompanyController extends Controller
 
     public function updateCompany(Request $request)
     {
+        //dd($request->all());
         $rules = ['company_name' => 'required', 'industry' => 'required', 'business_type' => 'required',];
         $messages = [
             'company_name.required' => 'Company name is required',
@@ -202,16 +205,16 @@ class CompanyController extends Controller
 //            $company->logo = $url;
 //        }
 
-        if(empty($request->bavatar31_url)){
-            $logo= $company->logo;
-        }else{
+        if($request->bavatar31_url){
             $logo= $request->bavatar31_url;
+        }else{
+            $logo= $company->logo;
         }
-        $num = preg_replace('/^(?:\+?' . request('alternate_contact_country_code') . '|0)?/', request('alternate_contact_country_code'), request('alternate_contact'));
-        $num = ($num == request('alternate_contact_country_code')) ? '' : $num;
+//        $num = preg_replace('/^(?:\+?' . request('alternate_contact_country_code') . '|0)?/', request('alternate_contact_country_code'), request('alternate_contact'));
+//        $num = ($num == request('alternate_contact_country_code')) ? '' : $num;
         $company->company_introduction = $request->company_introduction;
         $company->business_owner = $request->business_owner;
-        $company->alternate_contact = str_replace(' ', '', $num);
+        $company->alternate_contact = $request->alternate_contact;
         $company->alternate_email = $request->alternate_email;
         $company->alternate_address = $request->alternate_address;
         $company->logo = $logo;
@@ -339,9 +342,13 @@ class CompanyController extends Controller
 
     public function create()
     {
-        $data['title'] = 'Add a Member';
-        $data['user'] = \App\User::find(\Auth::id());
-        return view('front_site.bizoffice.manage-accounts.create', $data);
+        if(auth()->user()){
+            $data['title'] = 'Add a Member';
+            $data['user'] = \App\User::find(\Auth::id());
+            return view('front_site.bizoffice.manage-accounts.create', $data);
+        }else{
+            return view('front_site.other.login');
+        }
     }
 
     public function get_members()
@@ -532,7 +539,7 @@ class CompanyController extends Controller
 //        dd(request('email'));
         $rules = [
             'password' => 'required|min:8', 'confirm_password' => 'required|same:password',
-            // 'user_type' => 'required',
+            'user_type' => 'required',
             // 'company_name' => 'required',
             // 'designation' => 'required',
             'first_name' => 'required', 'last_name' => 'required', 'registration_phone_no' => 'required|min:11',
@@ -544,7 +551,7 @@ class CompanyController extends Controller
             'confirm_password.required' => 'Please re-enter password',
             'confirm_password.same' => 'Password did not matched',
             // 'designation.required' => 'Please select your designation',
-            // 'user_type.required' => 'Please select user type',
+            'user_type.required' => 'Please select user type',
             'first_name.required' => 'First name is required', 'last_name.required' => 'Last name is required',
             'registration_phone_no.required' => 'Phone number is required',
             // 'company_name.required' => 'Company name is required',
@@ -617,6 +624,7 @@ class CompanyController extends Controller
         $user->password = Hash::make(request('password'));
         $user->country_id = request('country_id');
         $user->designation = request('designation');
+        $user->company_name = request('company_name');
         $user->registration_phone_no = request('registration_phone_no');
         $user->birthday = \Carbon\Carbon::parse(request('birthday'))->startOfDay();
         $user->is_member = 1;
@@ -629,6 +637,24 @@ class CompanyController extends Controller
 
             if (\Mail::failures()) {
                 return 'mail not send successfully';
+            }
+
+            if (count(request('user_type')) > 0) {
+                foreach (request('user_type') as $key => $value) {
+                    $new = new \App\UserType();
+                    $new->u_type_id = $value;
+                    $new->user_id = $user->id;
+                    $new->save();
+                    if ($value == 4 && count(request('userservices')) > 0) {
+                        foreach (request('userservices') as $key => $value) {
+                            $new1 = new \App\UserServices();
+                            $new1->user_id = $user->id;
+                            $new1->subservice_id = $value;
+                            $new1->u_type_id = 4;
+                            $new1->save();
+                        }
+                    }
+                }
             }
 
             $comprofile = \App\CompanyProfile::where('id',$invite->company_id)->first();
@@ -756,23 +782,28 @@ class CompanyController extends Controller
             $url = Storage::disk('s3')->url($path);
             $user->avatar = $url;
             $user->save();
+            return response()->json(['url'=>$url]);
         }
-        return 1;
+
     }
 
     /////////////////////////Group Chat//////////////////////////////
 
     public function group_chat()
     {
-        $data['title'] = 'Group Chat';
-        $data['user'] = \App\User::find(\Auth::id());
-        DB::table('notifications')
-            ->where('user_id', auth()->id())
-            ->where('prod_comp_id',\session()->get('company_id'))
-            ->where('table_name','chats')
-            ->where('table_data','message')
-            ->update(['is_display' => 1,'is_read'=>1]);
-        return view('front_site.bizoffice.group-chat.chat', $data);
+        if(auth()->user()){
+            $data['title'] = 'Group Chat';
+            $data['user'] = \App\User::find(\Auth::id());
+            DB::table('notifications')
+                ->where('user_id', auth()->id())
+                ->where('prod_comp_id',\session()->get('company_id'))
+                ->where('table_name','chats')
+                ->where('table_data','message')
+                ->update(['is_display' => 1,'is_read'=>1]);
+            return view('front_site.bizoffice.group-chat.chat', $data);
+        }else{
+            return view('front_site.other.login');
+        }
     }
 
     public function fetch_messages()
@@ -782,9 +813,9 @@ class CompanyController extends Controller
         $data = [];
         foreach ($messages as $key => $value) {
 
-        	$qoute_msg = null;
+            $qoute_msg = null;
             if($value->quote_msg_id)
-            $qoute_msg = \App\Message::where('id',$value->quote_msg_id)->first();
+                $qoute_msg = \App\Message::where('id',$value->quote_msg_id)->first();
 
 
             array_push($data, [
@@ -803,7 +834,7 @@ class CompanyController extends Controller
                     'name' => $value->user->name,
                     'first_name' => $value->user->first_name,
                     'last_name' => $value->user->last_name,
-                    'avatar' => ($value->user->avatar != 'users/default.png') ?  $value->user->avatar : url('public/storage/users/default.png'),
+                    'avatar' => ($value->user->avatar != 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png') ?  $value->user->avatar : 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png',
                 ],
                 'quote' => $qoute_msg? ['id' => $qoute_msg->id , 'message' => $qoute_msg->message, 'file_path' => url('public/storage/'.$qoute_msg->file_path) , 'file_type' => $qoute_msg->file_type , 'extension' => $qoute_msg->extension] : null
             ]);
@@ -873,38 +904,42 @@ class CompanyController extends Controller
 
     public function get_meetings()
     {
-        $data['active'] = 'meeting';
-        $data['title'] = 'Planned Meetings';
-        $data['user'] = \App\User::find(\Auth::id());
-        $data['sortBy'] = request('sortby', 'meetingtime');
-        $data['order'] = 'desc';
-//        $data['title'] = ucwords(request('condition', 'active') .
-//            ' ' . \Str::plural('Meetings', 2));
-        $data['listing'] = \App\Meeting::select(\DB::raw("TIMESTAMPDIFF(SECOND,TIMESTAMP(STR_TO_DATE(meeting_date, '%d-%m-%Y'), STR_TO_DATE(meeting_time, '%H:%i')), now()) as meetingtime, meetings.*, case when TIMESTAMPDIFF(SECOND,TIMESTAMP(STR_TO_DATE(meeting_date, '%d-%m-%Y'), STR_TO_DATE(meeting_time, '%H:%i')), now()) < 0 THEN 1 else 0 end as isgreater"))->where('company_id', session()->get('company_id'));
-        // if(!empty(request('condition')))
-        // {
+        if(auth()->user()){
+            $data['active'] = 'meeting';
+            $data['title'] = 'Planned Meetings';
+            $data['user'] = \App\User::find(\Auth::id());
+            $data['sortBy'] = request('sortby', 'meetingtime');
+            $data['order'] = 'desc';
+            //        $data['title'] = ucwords(request('condition', 'active') .
+            //            ' ' . \Str::plural('Meetings', 2));
+            $data['listing'] = \App\Meeting::select(\DB::raw("TIMESTAMPDIFF(SECOND,TIMESTAMP(STR_TO_DATE(meeting_date, '%d-%m-%Y'), STR_TO_DATE(meeting_time, '%H:%i')), now()) as meetingtime, meetings.*, case when TIMESTAMPDIFF(SECOND,TIMESTAMP(STR_TO_DATE(meeting_date, '%d-%m-%Y'), STR_TO_DATE(meeting_time, '%H:%i')), now()) < 0 THEN 1 else 0 end as isgreater"))->where('company_id', session()->get('company_id'));
+            // if(!empty(request('condition')))
+            // {
 
-        //     if(request('condition') == 'archived')
-        //     {
-        //         $data['listing'] = $data['listing']->where('student_status','!=' , null)->orWhere([['expiry_date', '<', date('m/d/Y')],['rto_id','=', \Auth::user()->userable->id]]);
-        //     }elseif(request('condition') == 'active'){
-        //         $data['listing'] = $data['listing']->where([['student_status','=' , null],['expiry_date','>', date('m/d/Y')]]);
-        //             rto_student_search($data);
-        //     }
-        // }
-        $data['listing'] = $data['listing']->orderBy('isgreater', 'desc');
-        $data['listing'] = $data['listing']->orderBy($data['sortBy'], $data['order']);
-        $data['count'] = $data['listing']->count();
-        $data['listing'] = $data['listing']->paginate();
-        $data['page'] = 'bizoffice.meetings.listing';
-//         dd($data['listing']);
-        DB::table('notifications')
-            ->where('user_id', auth()->id())
-            ->where('prod_comp_id',\session()->get('company_id'))
-            ->where('table_name','meetings')
-            ->where('table_data','schedule')
-            ->update(['is_display' => 1,'is_read'=>1]);
-        return view('front_site.' . $data['page'])->with($data);
+            //     if(request('condition') == 'archived')
+            //     {
+            //         $data['listing'] = $data['listing']->where('student_status','!=' , null)->orWhere([['expiry_date', '<', date('m/d/Y')],['rto_id','=', \Auth::user()->userable->id]]);
+            //     }elseif(request('condition') == 'active'){
+            //         $data['listing'] = $data['listing']->where([['student_status','=' , null],['expiry_date','>', date('m/d/Y')]]);
+            //             rto_student_search($data);
+            //     }
+            // }
+            $data['listing'] = $data['listing']->orderBy('isgreater', 'desc');
+            $data['listing'] = $data['listing']->orderBy($data['sortBy'], $data['order']);
+            $data['count'] = $data['listing']->count();
+            $data['listing'] = $data['listing']->paginate();
+            $data['page'] = 'bizoffice.meetings.listing';
+            //         dd($data['listing']);
+            DB::table('notifications')
+                ->where('user_id', auth()->id())
+                ->where('prod_comp_id',\session()->get('company_id'))
+                ->where('table_name','meetings')
+                ->where('table_data','schedule')
+                ->update(['is_display' => 1,'is_read'=>1]);
+            return view('front_site.' . $data['page'])->with($data);
+        }else{
+            return view('front_site.other.login');
+        }
     }
 
     public function create_meeting()

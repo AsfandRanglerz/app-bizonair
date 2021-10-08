@@ -58,7 +58,7 @@
                                                         class="ml-1 fa fa-question-circle"
                                                         aria-hidden="true"></span></a>
                                             </div>
-                                            <div class="d-flex flex-sm-row flex-column">
+                                            <div class="d-flex flex-row">
                                                 <div
                                                     class="form-check form-check-inline custom-control custom-radio d-sm-inline">
                                                     <input type="radio" required
@@ -547,7 +547,7 @@
                                             <label for="product_images" class="font-500">Product Images <span
                                                     class="required"> *</span><small class="font-500"> (Note: First
                                                     image will be displayed as Ad Cover Photo)</small><br><small
-                                                    class="font-500">(JPG & PNG files only | Atleast one product image |
+                                                    class="font-500">(Atleast one product image |
                                                     Upto
                                                     10MB)</small></label>
                                             <div class="dropzone dz-clickable">
@@ -2805,7 +2805,7 @@
                                                 <div class="col-md-12">
                                                     <h5 class="chemical-info-heading">Product Info 1</h5>
                                                 </div>
-                                                <div class="form-group col-lg-6">
+                                                <div class="form-group col-lg-6 additonial-info">
                                                     <label class="font-500">Manufacturer Company Name <small
                                                             class="font-500"> (Optional)</small></label>
                                                     <input type="text" id="manufacturer_company_name1"
@@ -3406,6 +3406,7 @@
 
 @push('js')
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script type="text/javascript">
         AWS.config.update({
             accessKeyId: 'AKIAT72REQKCOJOWLXVC',
@@ -3435,43 +3436,23 @@
             });
 
             $('.select2-multiple').on('select2:select', function (e) {
-                $(this).siblings('.select2').find('.select2-selection__choice').siblings('.select2-search--inline').css({'width': 'min-content', 'float': 'right'});
+                $(this).siblings('.select2').find('.select2-selection__choice').siblings('.select2-search--inline').css({
+                    'width': 'min-content',
+                    'float': 'right'
+                });
             });
 
             $('.select2-multiple').on('select2:unselect', function (e) {
-                $(this).siblings('.select2').find('.select2-selection__rendered').children('.select2-search--inline').css({'width': '100%', 'float': 'left'});
+                $(this).siblings('.select2').find('.select2-selection__rendered').children('.select2-search--inline').css({
+                    'width': '100%',
+                    'float': 'left'
+                });
             });
             /*for general select multiple*/
 
-            /*for select single place holders*/
-            $('select[name="yarn_technology"]').select2({
-                placeholder: "Select Yarn Technology"
-            });
-
-            $('select[name="yarn_attribute"]').select2({
-                placeholder: "Select Yarn Attribute"
-            });
-
-            $('.sel-pro-type').select2({
-                placeholder: "---- Select Product Type ---"
-            });
-
-            $('select[name="suitable_currencies"]').select2({
-                placeholder: "Select Suitable Currency"
-            });
-
-            $('select[name="woven_fabric_types"]').select2({
-                placeholder: "Select Fabric Type"
-            });
-
-            $('select[name="woven_weave_types"]').select2({
-                placeholder: "Select Weave Type"
-            });
-            /*for select single place holders*/
-
             /*for select multiple place holders*/
             $('.select-suitable-type').select2({
-                placeholder: "Select Dealing Product As"
+                placeholder: "Select Dealing As"
             });
 
             $('.select-target-country').select2({
@@ -3480,10 +3461,6 @@
 
             $('.select-suitable-currency').select2({
                 placeholder: "Select Suitable Currency"
-            });
-
-            $('.select-suitable-payment').select2({
-                placeholder: "Select Payment Terms"
             });
             /*for select multiple place holders*/
 
@@ -3846,13 +3823,11 @@
             });
 
             $("#nextBtn2").on("click", function () {
-                if (focused_selling_countries.value.length == 0)
-                {
+                if (focused_selling_countries.value.length == 0) {
                     alert("Enter the missing data");
                     return false;
                 }
-                if (dealing_as.value.length == 0)
-                {
+                if (dealing_as.value.length == 0) {
                     alert("Enter the missing data");
                     return false;
                 }
@@ -3861,9 +3836,33 @@
             var options = {
                 dataType: 'JSON',
                 beforeSubmit: function (arr, $form) {
-                    $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
+                    $("#loader").addClass('d-flex justify-content-center align-items-center');
+                    $("#loader").css({'background-color': 'rgb(255, 255, 255, 0.5)', 'background-image':'none'}).show();
+                    $('.progress-bar-ajax').parent().removeClass('d-none');
                     $('#avatar1').val('');
                     $form.find('button[type=submit]').prop('disabled', true);
+
+                    var timerId = 0;
+                    var ctr=0;
+                    var max=10;
+
+                    var progressBarPercent = $(".progress-bar-ajax").width() / $(".progress").width() * 100;
+                    var progressBarPercentRoundOff = Math.ceil(progressBarPercent);
+
+                    if(progressBarPercentRoundOff <= 70) {
+                        timerId = setInterval(function () {
+                            // interval function
+                            ctr++;
+                            $('.progress-bar-ajax').attr("style","width:" + ctr*max + "%");
+                            $('.progress-bar-ajax').text(ctr*max + "%");
+                            // max reached?
+                            if (ctr=='7'){
+                                clearInterval(timerId);
+                            }
+
+                        }, 500);
+                    }
+
                 },
                 success: function (data, statusText, xhr, $form) {
                     $("#loader").hide();
@@ -3879,8 +3878,32 @@
                         $(window).off('beforeunload');
                         $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
                         $("#loader").hide();
-                        toastr.success("New product added successfully.");
-                        window.location.href = response.url;
+
+                        var timerId = 0;
+                        var ctr=0;
+                        var max=10;
+                        var progressBarPercent = $(".progress-bar-ajax").width() / $(".progress").width() * 100;
+                        var progressBarPercentRoundOff = Math.ceil(progressBarPercent);
+
+                        if(ctr < 10) {
+                            timerId = setInterval(function () {
+                                // interval function
+                                ctr++;
+
+                                // max reached?
+                                if (ctr==max){
+                                    var progressBarPercent = $(".progress-bar-ajax").width() / $(".progress").width() * 100;
+                                    var progressBarPercentRoundOff = Math.ceil(progressBarPercent);
+                                    $(".progress-bar-ajax").width(progressBarPercentRoundOff  + 30 + "%");
+                                    $('.progress-bar-ajax').text(progressBarPercentRoundOff  + 30 + "%");
+
+                                    clearInterval(timerId);
+                                    toastr.success("New product added successfully.");
+                                    window.location.href = response.url;
+                                }
+                            }, 500);
+                        }
+
                     } else if (response.feedback == "validation_error") {
                         toastr.error("Please enter the required fields.");
                         $form.find('button[type=submit]').prop('disabled', false);
@@ -3932,8 +3955,11 @@
             };
             $('#createProduct').ajaxForm(options);
 
+
             $("#category").on("change", function () {
-                $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
+                // $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
+                var $this = $(this);
+                $this.siblings(".loading-icon").removeClass("d-none");
                 // $('#keyword1').val($('#category option:selected').attr('cat-val'));
                 // $('#keyword1').valid();
                 $.ajax({
@@ -3948,12 +3974,15 @@
                             $('#sub_sub_category')
                                 .html('<option value="" selected disabled> ---- Select Sub-Sub-Category --- </option><option disabled class="text-danger">Please select sub-category first</option>');
                         }
-                        $("#loader").hide();
+                        // $("#loader").hide();
+                        $this.siblings(".loading-icon").addClass("d-none");
                     }
                 });
             });
             $("#sub_category").on("change", function () {
-                $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
+                // $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
+                var $this = $(this);
+                $this.siblings(".loading-icon").removeClass("d-none");
                 // $('#keyword2').val($('#sub_category option:selected').attr('cat-val'));
                 // $('#keyword2').valid();
                 $.ajax({
@@ -3966,7 +3995,8 @@
                         if (response.feedback == 'success') {
                             $('#sub_sub_category').html(response.output);
                         }
-                        $("#loader").hide();
+                        // $("#loader").hide();
+                        $this.siblings(".loading-icon").addClass("d-none");
                     }
                 });
             });
@@ -4962,9 +4992,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image1');
@@ -5019,9 +5049,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image2');
@@ -5075,9 +5105,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image3');
@@ -5130,9 +5160,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image4');
@@ -5185,9 +5215,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image5');
@@ -5241,9 +5271,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image6');
@@ -5297,9 +5327,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image7');
@@ -5353,9 +5383,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image8');
@@ -5408,9 +5438,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image9');
@@ -5465,9 +5495,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image10');
@@ -5522,9 +5552,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image11');
@@ -5576,9 +5606,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image12');
@@ -5631,9 +5661,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image13');
@@ -5686,9 +5716,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image14');
@@ -5742,9 +5772,9 @@
                 }
 
                 var ext = name.split('.').pop().toLowerCase();
-                if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
+                /*  if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'jfif', 'heic']) == -1) {
                     alert("Invalid Image File");
-                }
+                } */
                 var reader = new FileReader();
                 reader.onload = function () {
                     var output = document.getElementById('uploaded_image15');
@@ -5773,43 +5803,6 @@
                     });
                 }
             });
-            // $('#fabric_types').on('change' , function (){
-            //
-            //     if(jQuery.inArray("Other", $(this).val()) !== -1){
-            //         $('#other_fabric_option').removeClass('d-none');
-            //     }else{
-            //         $('#other_fabric_option').addClass('d-none');
-            //     }
-            // });
-            //
-            // $('#materials').on('change' , function (){
-            //
-            //     if(jQuery.inArray("Other", $(this).val()) !== -1){
-            //         $('#add_material').removeClass('d-none');
-            //     }else{
-            //         $('#add_material').addClass('d-none');
-            //     }
-            // });
-            //
-            // $('#fabric_sub_categories').on('change' , function (){
-            //
-            //     if(jQuery.inArray("Other", $(this).val()) !== -1){
-            //         $('#addSubCat').removeClass('d-none');
-            //     }else{
-            //         $('#addSubCat').addClass('d-none');
-            //     }
-            // });
-            //
-            // $('#styles').on('change' , function (){
-            //
-            //     if(jQuery.inArray("Other", $(this).val()) !== -1){
-            //         $('#oter_style').removeClass('d-none');
-            //     }else{
-            //         $('#oter_style').addClass('d-none');
-            //     }
-            // });
-
-
         });
     </script>
 @endpush

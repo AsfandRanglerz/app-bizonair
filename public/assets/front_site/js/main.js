@@ -48,6 +48,92 @@ $(".job-description-below").scroll(function () {
 });
 
 $(document).ready(function () {
+    /*inquiry checkboxes*/
+    $(document).on('click', '#selectAll1', function() {
+        if($(this).prop('checked')==true) {
+            $(this).parents('.mails-inbox-header').siblings('.dynamic-filters-body').find('.custom-control-input').prop('checked', true);
+        }
+        else {
+            $(this).parents('.mails-inbox-header').siblings('.dynamic-filters-body').find('.custom-control-input').prop('checked', false);
+        }
+    });
+
+    $(document).on('click', '.mail-reply-box .custom-control-input', function() {
+        let totalCheckBoxes = $('.mail-reply-box .custom-control-input').length;
+        let tickCheckBoxes = $('.mail-reply-box .custom-control-input:checked').length;
+        if(totalCheckBoxes != tickCheckBoxes) {
+            $('#selectAll1').prop('checked', false);
+        }
+        else {
+            $('#selectAll1').prop('checked', true);
+        }
+    });
+    /*inquiry checkboxes*/
+
+    $('button[type="submit"]').click(function (){
+        /*errors will be shown at bottom of select2 tags*/
+        $('.select2').parent('.form-group').css({'display': 'flex', 'flex-direction': 'column'});
+        /*errors will be shown at bottom of select2 tags*/
+    });
+
+    /*details comparison page js*/
+    $('.details-comparison #selectAll').click(function () {
+        if ($(this).is(":checked")) {
+            $('.select-supplier').prop('checked', true);
+        } else {
+            $('.select-supplier').prop('checked', false);
+        }
+    });
+
+    $('.details-comparison .cross-icon').click(function () {
+        $(this).closest('.product-info-container').remove();
+        if ($('.product-info-container').length == 0) {
+            $('.name-product-heading').css('width', '100%');
+        }
+    });
+    /*details comparison page js*/
+    /*suppliers and buyers pages js*/
+    $(".add-product-to-compare").change(function () {
+        var idSelector = $(this).attr('id');
+        if ($(this).is(":checked")) {
+            var productTitle = "<p class='text-center text-white pt-3 font-500 product-title'>" + $(this).parents('.product-img-container').siblings('.product-details').children('.title').text() + "</p>";
+            var crossIcon = "<span class='fa fa-times cross-icon' aria-hidden='true'></span>";
+            var contentCompare = "<div class='w-100 text-right position-absolute content-compare'>" + crossIcon + productTitle + "</div>";
+
+            $(".compare-container").append($(this).parent().siblings('.product-img-container').find('.product-img').clone().wrapAll("<div class='d-inline-block position-relative compare-div'></div>").after(contentCompare).parent().addClass(idSelector));
+
+            $(".cross-icon").click(function () {
+                $(this).parent(".content-compare").parent(".compare-div").remove();
+                if ($(this).parent(".content-compare").parent(".compare-div").hasClass(idSelector)) {
+// alert(idSelector);
+                    $("#" + idSelector).prop('checked', false);
+                }
+                if ($('.compare-div').length == 0) {
+                    $('.compare-cancel-btns').hide();
+                }
+            });
+
+            $('.compare-cancel-btns').show();
+        } else {
+            $(".compare-container ." + idSelector).remove();
+            if ($('.compare-div').length == 0) {
+                $('.compare-cancel-btns').hide();
+            }
+        }
+    });
+    /*suppliers and buyers pages js*/
+
+    /*faq tab sections onclick scroll to top*/
+    $(".faqs .card-header").on('click', function(event) {
+        setTimeout(() => {
+            var navbarHeight = $('.navbar').innerHeight();
+            $('html, body').animate({
+                scrollTop: $(this).closest('.card-header').offset().top - (navbarHeight)
+            }, 1000);
+        }, 500);
+    });
+    /*faq tab sections onclick scroll to top*/
+
     /*copy url*/
     $(document).on("click", "#shareLinkbtn", function (e) {
         $("body").append('<input id="copyURL" type="text" value="" />');
@@ -57,6 +143,17 @@ $(document).ready(function () {
         toastr.success("Url Copied!").fadeOut(2000);
     });
     /*copy url*/
+
+    /*Modal inquiry form check: "Please agree to the Terms of Services and Privacy Policy"*/
+    $(document).on('click', '#termsCheckbox', function(){
+        if($(this).is(":checked") == false){
+            $('.submit-btn').prop("disabled", true);
+        }
+        else if($(this).is(":checked") == true){
+            $('.submit-btn').prop("disabled", false);
+        }
+    });
+    /*Modal inquiry form check: "Please agree to the Terms of Services and Privacy Policy"*/
 
     /*contact us form check: "I Agree to the Terms of Services and Privacy Policy"*/
     $(document).on('click', '#terms', function(){
@@ -83,7 +180,7 @@ $(document).ready(function () {
     /*banner search keyword*/
     $('#searchKeyword').focus(function() {
         var search_term = $('#searchKeyword').val();
-        $('.search_results_links').removeHighlight().highlight(search_term);
+        $('.search_results_links').removeHighlight().highlight(" " + search_term);
     });
     /*banner search keyword*/
 
@@ -154,7 +251,7 @@ $(document).ready(function () {
             $(this).siblings('.select2').find('.select2-selection--single').addClass('is-valid');
             $(this).siblings('.select2').find('.select2-selection--single').removeClass('is-invalid');
         }
-        else if ($(this).val() == 'Other') {
+        if ($(this).val() == 'Other') {
             $(this).closest(".form-group").next(".form-group.other-div").first().show().find('input').prop('required', true);
         }
         else {
@@ -755,15 +852,15 @@ $(document).ready(function () {
     /*single-select-dropdown*/
 
     /*fibers-and-materials text exist or not*/
-    $(".nav-link").each(function () {
-        var fibMaterial = window.location.href.indexOf("fibers-and-materials");
-        var navfibLink = $(this).attr("href").indexOf("fibers-and-materials");
-        if(fibMaterial > -1 == true && navfibLink > -1) {
-            $(this).addClass("nav-underline-pg");
-            $(this).parent().addClass('active');
-            $(this).children('img').addClass("img-hover");
-        }
-    });
+    // $(".nav-link").each(function () {
+    //     var fibMaterial = window.location.href.indexOf("fibers-and-materials");
+    //     var navfibLink = $(this).attr("href").indexOf("fibers-and-materials");
+    //     if(fibMaterial > -1 == true && navfibLink > -1) {
+    //         $(this).addClass("nav-underline-pg");
+    //         $(this).parent().addClass('active');
+    //         $(this).children('img').addClass("img-hover");
+    //     }
+    // });
     /*fibers-and-materials text exist or not*/
 
     /*nav link active onclick*/
@@ -1099,26 +1196,26 @@ $(document).ready(function () {
         chemicalInfo.css({"border-top": "1px solid black", "padding-top": "10px"})
         chemicalInfo.find('.chemical-info-heading').html('Product Info ' + (counter + 1) + '<button type="button" class="red-btn mb-1 chemical-info-remove float-right">Remove</button>');
         // Manufacturer
-        chemicalInfo.find("input#manufacturer_company_name" + counter).attr({
-            "id": "manufacturer_company_name" + (counter + 1),
-            "name": "manufacturer_company_name" + (counter + 1)
-        }).val("").prop('required', 'true');
-        chemicalInfo.find("input#manufacturer_company_name" + (counter + 1)).removeClass('is-invalid');
-        chemicalInfo.find("input#manufacturer_company_name" + (counter + 1)).next('label').remove();
-        chemicalInfo.find("small#manufacturer_company_name" + counter + "_error").attr({
-            "id": "manufacturer_company_name" + (counter + 1) + "_error"
-        });
-        // Origin
-        chemicalInfo.find("select#origin" + counter).attr({
-            "id": "origin" + (counter + 1),
-            "name": "origin" + (counter + 1)
-        }).val("").prop('required', 'true');
-        chemicalInfo.find("select#origin" + (counter + 1)).removeClass('is-invalid');
-        chemicalInfo.find("select#origin" + (counter + 1)).removeClass('is-valid');
-        chemicalInfo.find("select#origin" + (counter + 1)).next('label').remove();
-        chemicalInfo.find("small#origin" + counter + "_error").attr({
-            "id": "origin" + (counter + 1) + "_error"
-        });
+        // chemicalInfo.find("input#manufacturer_company_name" + counter).attr({
+        //     "id": "manufacturer_company_name" + (counter + 1),
+        //     "name": "manufacturer_company_name" + (counter + 1)
+        // }).val("").prop('required', 'true');
+        // chemicalInfo.find("input#manufacturer_company_name" + (counter + 1)).removeClass('is-invalid');
+        // chemicalInfo.find("input#manufacturer_company_name" + (counter + 1)).next('label').remove();
+        // chemicalInfo.find("small#manufacturer_company_name" + counter + "_error").attr({
+        //     "id": "manufacturer_company_name" + (counter + 1) + "_error"
+        // });
+        // // Origin
+        // chemicalInfo.find("select#origin" + counter).attr({
+        //     "id": "origin" + (counter + 1),
+        //     "name": "origin" + (counter + 1)
+        // }).val("").prop('required', 'true');
+        // chemicalInfo.find("select#origin" + (counter + 1)).removeClass('is-invalid');
+        // chemicalInfo.find("select#origin" + (counter + 1)).removeClass('is-valid');
+        // chemicalInfo.find("select#origin" + (counter + 1)).next('label').remove();
+        // chemicalInfo.find("small#origin" + counter + "_error").attr({
+        //     "id": "origin" + (counter + 1) + "_error"
+        // });
         // Chemicals Listed
         chemicalInfo.find("input#chemicals_listed" + counter).attr({
             "id": "chemicals_listed" + (counter + 1),
@@ -2468,18 +2565,28 @@ $(function () {
     });
 
     /*Avatar upload*/
-    var readURL = function (input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+    $('input[name="avatar"]').change(function() {
+        var MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
+        var fileSize = this.files[0].size;
+        if (fileSize > MAX_FILE_SIZE) {
+            alert("File must not exceed 2 MB!");
+            $(this).val(null);
+        } else {
+            /*alert("File less than 2 MB!");*/
+            var readURL = function (input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $('#uploaded_image').attr('src', e.target.result);
-                $('.header-profile-pic').attr('src', e.target.result);
+                    reader.onload = function (e) {
+                        $('#uploaded_image').attr('src', e.target.result);
+                        $('.header-profile-pic').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
             }
-
-            reader.readAsDataURL(input.files[0]);
         }
-    }
+    });
 
     $(".file-upload").on('change', function () {
         readURL(this);

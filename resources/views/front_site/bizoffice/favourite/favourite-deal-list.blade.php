@@ -11,7 +11,6 @@
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
             <div id="page-content-wrapper">
-
                 <div class="  d-container mt-2">
                     <div class="">
                         <span
@@ -48,23 +47,23 @@
                                     <?php $buysell = \App\BuySell::where('reference_no','=',$fav->reference_no)->first();?>
                                     @if($buysell)
                                         <td>
-                                      <?php  $img = \DB::table('buysell_images')->where('buy_sell_id',$buysell->id)->get();?>
-                                    @if($img->isNotEmpty())
-                                        @foreach($img as $i => $image)
-                                            @if($loop->first)
-                                                    <span>
+                                            <?php  $img = \DB::table('buysell_images')->where('buy_sell_id',$buysell->id)->get();?>
+                                            @if($img->isNotEmpty())
+                                                @foreach($img as $i => $image)
+                                                    @if($loop->first)
+                                                        <span>
                                                      <a href="{{ route('buysellDetail',['category'=>get_category_slug($buysell->category_id),'subcategory'=>get_sub_category_slug($buysell->subcategory_id),'prod_slug'=>$buysell->slug]) }}">
                                                     <img src="{{$image->image}}" style="width: 70px;height: 70px;">
                                                      </a>
                                                 </span>
 
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                <img src="{{$ASSET}}/front_site/images/noimage.png" style="width: 70px;height: 70px;">
                                             @endif
-                                        @endforeach
-                                    @else
-                                      <img src="{{$ASSET}}/front_site/images/noimage.png" style="width: 70px;height: 70px;">
-                                    @endif
                                         </td>
-                                        @endif
+                                    @endif
 
                                     <td>{{$fav->reference_no }}</td>
                                     <td>{{$fav->product_service_types }}</td>
@@ -72,7 +71,7 @@
                                     <td align="center">
                                         <input type="hidden" name='favourite_id' value="{{encrypt($fav->id)}}">
                                         <button  class="dropdown-toggle prWhiteBtn p-0"
-                                                data-toggle="dropdown">
+                                                 data-toggle="dropdown">
                                             <img src="{{asset($ASSET.'/front_site/images/3_dots.png') }}" alt="">
                                         </button>
 
@@ -93,7 +92,7 @@
                             </tbody>
                         </table>
                     </div>
-{{--                    <div class="float-right">{{ $favourite->links() }}</div>--}}
+                    {{--                    <div class="float-right">{{ $favourite->links() }}</div>--}}
 
                     @if($favourite->isEmpty())
                         <h3 class="text-center mt-5">No Favourite Product  yet</h3>
@@ -108,7 +107,7 @@
 
 
 @push('js')
-
+    <script src="{{$ASSET}}/front_site/plugins/DataTables/datatables.js"></script>
     <script>
         $(document).delegate('#cross', 'click', function(e) {
             e.preventDefault();

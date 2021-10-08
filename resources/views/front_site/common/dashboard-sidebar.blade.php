@@ -40,12 +40,7 @@
                         <li data-toggle="tooltip" data-placement="bottom" title="All Buy/Sell">
                             <a href="{{route('buy-sell.index')}}" class="sidebar-links">View All Deals
                             </a></li>
-                        <li data-toggle="tooltip" data-placement="bottom" title="Favourite Product">
-                            <a href="{{route('view-favourites')}}" class="sidebar-links">Favourite Deals</a></li>
-                        <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                            <a href="{{route('buysell-inquiries')}}" class="sidebar-links">Deal Inquiries</a></li>
-                        <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                            <a href="{{route('get-one-time-fav')}}" class="sidebar-links">Deal Favorites </a></li>
+
 
                     </ul>
                 </li>
@@ -132,14 +127,6 @@
                                 <a href="{{ route('products.index') }}" class="sidebar-links">All Active Leads</a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Product Listing">
                                 <a href="#" class="sidebar-links">Archived Leads</a></li>
-
-                            <li data-toggle="tooltip" data-placement="bottom" title="Favourite Product">
-                                <a href="{{route('view-favourites')}}" class="sidebar-links">Favourite Leads</a></li>
-                            <?php $company = \App\CompanyProfile::where('user_id',\Auth::id())->where('id',session()->get('company_id'))->first();?>
-                            @if($company)
-                            <li data-toggle="tooltip" data-placement="bottom" title="Lead Inquiries">
-                                <a href="{{route('product-inquiries')}}" class="sidebar-links">Lead Inquiries</a></li>
-                                @endif
                         </ul>
                     </li>
 
@@ -152,12 +139,7 @@
                             <li data-toggle="tooltip" data-placement="bottom" title="All Buy/Sell">
                                 <a href="{{route('buy-sell.index')}}" class="sidebar-links">View All Deals
                                 </a></li>
-                            <li data-toggle="tooltip" data-placement="bottom" title="Favourite Product">
-                                <a href="{{route('view-favourites')}}" class="sidebar-links">Favourite Deals</a></li>
-                            <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="{{route('buysell-inquiries')}}" class="sidebar-links">Deal Inquiries</a></li>
-                            <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="{{route('get-one-time-fav')}}" class="sidebar-links">Deal Favorites </a></li>
+
                         </ul>
                     </li>
 

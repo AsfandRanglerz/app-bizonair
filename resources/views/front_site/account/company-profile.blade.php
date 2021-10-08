@@ -520,7 +520,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="alternate_contact" class="label">Alternate Contact Number <small
                                                 class="font-500">(Optional)</small></label>
-                                        <input type="number" class="form-control mobileNum inteltel"
+                                        <input type="tel" class="form-control mobileNum inteltel"
                                                name="alternate_contact"
                                                id="alternate_contact" placeholder="03xxxxxxxxx/3xxxxxxxxx">
                                         <input type="hidden" name="alternate_contact_country_code">

@@ -53,10 +53,14 @@ class BuySellController extends Controller
      */
     public function create()
     {
-        $user = Auth()->user();
-        $country = new Countries();
-        $countries = $country->all();
-        return view('front_site.buy-sell.create', compact('user','countries'));
+        if(auth()->user()) {
+            $user = Auth()->user();
+            $country = new Countries();
+            $countries = $country->all();
+            return view('front_site.buy-sell.create', compact('user', 'countries'));
+        }else{
+            return view('front_site.other.login');
+        }
     }
 
     /**
@@ -67,7 +71,7 @@ class BuySellController extends Controller
      */
     public function store(Request $request)
     {
-   //dd($request->all());
+        //dd($request->all());
 
 
         $rules = [
@@ -872,21 +876,21 @@ class BuySellController extends Controller
 
     public function repost_buysell(Request $request)
     {
-            $buysell = \App\BuySell::where('id',$request->prod_id)->first();
-            if ($buysell) {
-                $mydate = date("d-m-Y");
-                $daystosum = $buysell->expiry_data;
+        $buysell = \App\BuySell::where('id',$request->prod_id)->first();
+        if ($buysell) {
+            $mydate = date("d-m-Y");
+            $daystosum = $buysell->expiry_data;
 //                $datesum = date('d-m-Y', strtotime($mydate.' + '.$daystosum.' days'));
-                $datesum = now()->addDays($daystosum);
-                $unexpiredate = \App\BuySell::find($buysell->id);
-                $unexpiredate->date_expire = $datesum;
-                $unexpiredate->save();
-                $data['feedback'] = 'true';
-                $data['msg'] = 'Expiry Date has been extended successfully';
-            } else {
-                $data['feedback'] = 'false';
-                $data['msg'] = 'Something went Wrong';
-            }
+            $datesum = now()->addDays($daystosum);
+            $unexpiredate = \App\BuySell::find($buysell->id);
+            $unexpiredate->date_expire = $datesum;
+            $unexpiredate->save();
+            $data['feedback'] = 'true';
+            $data['msg'] = 'Expiry Date has been extended successfully';
+        } else {
+            $data['feedback'] = 'false';
+            $data['msg'] = 'Something went Wrong';
+        }
         return json_encode($data);
     }
 }

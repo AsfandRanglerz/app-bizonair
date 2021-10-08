@@ -176,7 +176,7 @@
 @endsection
 
 @push('js')
-
+    <script src="{{$ASSET}}/front_site/plugins/DataTables/datatables.js"></script>
     <script type="text/javascript">
         var alert_close_btn = '<button  class="close"><span aria-hidden="true">&times;</span> </button>';
         $(document).on('click', '.delete-buysell', function () {
