@@ -135,7 +135,7 @@
                                         <div class="form-group col-md-6">
                                             <h6 class="w-100 p-0 d-none">Designation <small class="font-500">(Optional)</small>
                                             </h6>
-                                            <select name='designation' class="form-control">
+                                            <select name='designation' class="form-control single-select-dropdown">
                                                 <option value="" disabled selected>Select Designation (Optional)</option>
                                                 <option value="Director">Director</option>
                                                 <option value="CEO">CEO</option>
@@ -202,7 +202,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
                                             <label class="d-none">Country/Region <span class="required">*</span></label>
-                                            <select name="country" id="country_id" required class="form-control choose-country">
+                                            <select name="country" id="country_id" required class="form-control single-select-dropdown choose-country">
                                                 <option disabled selected>Select Country/Region</option>
                                                 @foreach ($countries as $item)
                                                     <option value="{{$item->name->common}}">{{$item->name->common}}</option>

@@ -24,6 +24,21 @@ th {
     height: 1.5rem!important;
 }
 
+/*toastr*/
+#toast-container>div {
+    font-size: 12px;
+    width: 100%;
+}
+
+#toast-container .toast-close-button {
+    font-size: 16px;
+}
+
+#toast-container>.toast-success {
+    background-size: 14px;
+}
+/*toastr*/
+
 /*ck editor*/
 .ck-editor__main h1,
 .ck-editor__main h2,
@@ -58,6 +73,19 @@ th {
     margin: 0!important;
 }
 /*ck editor*/
+
+.counter-span {
+    border: 1px solid;
+    padding: 6px;
+    border-radius: 0 .25rem .25rem 0;
+    background: #FFF;
+}
+
+#subject-error,
+#product_service_name-error {
+    order: 3;
+    width: 100%;
+}
 
 .content-box-email.mail-reply-box {
     font-size: 15px;
@@ -371,11 +399,11 @@ select, input.form-control {
 }
 
 .loading-icon {
-    right: 25px;
+    right: 18px;
     top: 9px;
-    width: 1rem;
-    height: 1rem;
-    border-width: .20rem;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-width: .15rem;
 }
 
 .text-danger {
@@ -763,7 +791,7 @@ select {
     left: 0;
     background: #FFF;
     overflow-x: hidden;
-    transition: 1s;
+    transition: 0.7s;
 }
 
 .biz-nav .link {
@@ -3019,7 +3047,7 @@ span.select2-selection.select2-selection--single {
 }
 
 .select2-container--open .select2-dropdown--below {
-    border-radius: 6px;
+    border-radius: 0 0 6px 6px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
@@ -3044,9 +3072,9 @@ span.select2-selection.select2-selection--single {
     padding: 0 .75rem!important;
 }
 
-/*.select2-container--default .select2-search--inline .select2-search__field {*/
-/*    width: 100% !important;*/
-/*}*/
+.select2-multiple + .select2-container--default .select2-search--inline .select2-search__field {
+    width: 100% !important;
+}
 
 .select2-container--default .select2-search--inline .select2-search__field::placeholder {
     font-size: 10px;
@@ -9998,7 +10026,7 @@ form label {
 }
 
 .form-group {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
 }
 
 @media only screen and (max-width: 280px) {
@@ -10097,9 +10125,9 @@ form label {
     height: 4px !important;
 }
 
-.dropzone .dz-message {
+/*.dropzone .dz-message {
     margin: 1rem 0!important;
-}
+}*/
 
 .dropzone .dz-preview .dz-success-mark, .dropzone .dz-preview .dz-error-mark {
     margin-left: -18px !important;

@@ -442,12 +442,26 @@ $(document).ready(function () {
     });
 
     /*digits counter*/
+    $("textarea[name='details'], input[name='subject'], input[name='product_service_name']").on('focusout', function () {
+        setTimeout(() => {
+            if($(this).hasClass('is-valid')) {
+                $(this).siblings('.counter-span').css('border-color', '#28a745');
+            }
+            else {
+                $(this).siblings('.counter-span').css('border-color', '#dc3545');
+            }
+        }, 10);
+    });
+
+
     $("textarea[name='details'], input[name='subject'], input[name='product_service_name']").on('keyup', function () {
         $(this).siblings('span').find('.counter-total-digits').text($(this).val().length);
+        $(this).siblings('.counter-span').find('.counter-total-digits').text($(this).val().length);
     });
 
     $("textarea[name='details'], input[name='subject'], input[name='product_service_name']").each(function() {
         $(this).siblings('span').find('.counter-total-digits').text($(this).val().length);
+        $(this).siblings('.counter-span').find('.counter-total-digits').text($(this).val().length);
     });
     /*digits counter*/
 
@@ -1614,7 +1628,8 @@ $(document).ready(function () {
                 $('#sub_sub_category').closest('.form-group').addClass('d-flex').removeClass('d-none');;
                 $('#sub_sub_category').prop('required', true);
                 $('.product-service-info').text('PRODUCT INFO');
-                $('.payment-delivery-info').text('PAYMENT & DELIVERY INFO');
+                // $('.payment-delivery-info').text('PAYMENT & DELIVERY INFO');
+                $('.payment-delivery-info').text('PAYMENT INFO');
             }
 
             if (buyProduct === true) {
@@ -1653,7 +1668,7 @@ $(document).ready(function () {
                 $("label[for='product_images']").html('Service Image <span class="required"> *</span><br><small class="font-500">(JPG & PNG  files only | Atleast one product image | Upto\n' + '10MB)</small>');
                 $(".services-container").find('.multiselectButton').prop('required', true);
                 $(".product-name").find('label').html('Service Name <span class="required"> *</span>');
-                $(".product-name").find('input').attr('placeholder', 'Service Name');
+                $(".product-name").find('input').attr('placeholder', 'Service Name *');
                 $(".trade-info-tab").find(".required-control").prop('required', false);
                 $(".product-availability").hide();
                 $(".product-available").hide();
@@ -1664,7 +1679,8 @@ $(document).ready(function () {
                 $(".form-control.manufacturer-name").parent().hide();
                 $(".form-control.origin").parent().hide();
                 $('.unit_price_range_label').hide();
-                $('.service_charges_range_label').show();
+                // $('.service_charges_range_label').show();
+                $('#unit_price_from').attr('placeholder', 'Service Charges *');
                 $('.service_charges_range_unit_label').show();
                 $('.product_lead_time').hide();
                 $('.product_delivery').hide();
@@ -1675,7 +1691,7 @@ $(document).ready(function () {
                 $("label[for='product_images']").html('Product Image <span class="required"> *</span><br><small class="font-500">(JPG & PNG  files only | Atleast one product image | Upto\n' + '10MB)</small>');
                 // $(".services-container").find('.multiselectButton').prop('required', false);
                 $(".product-name").find('label').html('Product Name <span class="required"> *</span>');
-                $(".product-name").find('input').attr('placeholder', 'Product Name');
+                $(".product-name").find('input').attr('placeholder', 'Product Name *');
                 $(".product-availability").show();
                 $(".product-available").show();
                 $(".trade-info-container").show();
@@ -1683,7 +1699,8 @@ $(document).ready(function () {
                 $(".optional-field").find(".form-control").prop("required", false);
                 $(".form-control.manufacturer-name").parent().show();
                 $(".form-control.origin").parent().show();
-                $('.service_charges_range_label').hide();
+                // $('.service_charges_range_label').hide();
+                $('#unit_price_from').attr('placeholder', 'Unit Price *');
                 $('.service_charges_range_unit_label').hide();
                 $('.unit_price_range_label').show();
                 $('.product_lead_time').show();

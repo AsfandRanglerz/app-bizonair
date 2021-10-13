@@ -44,7 +44,7 @@
                               class="needs-validation" novalidate>
                             @csrf
                             <div class="tab-content" id="myCompanyTab">
-                                <div class="p-3 tab-pane fade show active" id="tabReg" role="tabpanel"
+                                <div class="py-2 tab-pane fade show active" id="tabReg" role="tabpanel"
                                      aria-labelledby="tabReg">
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
@@ -83,11 +83,11 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
-                                            <label for="category" class="font-500">Main Category
+                                            <label for="category" class="d-none font-500">Main Category
                                                 <span class="required"> *</span>
                                             </label>
                                             <div class="position-relative">
-                                                <select class="form-control product-categories" id="category"
+                                                <select class="form-control single-select-dropdown product-categories" id="category"
                                                         name="category" required>
                                                     <option value="" selected disabled> ---- Select Main Category ---</option>
                                                     @foreach(\App\Category::all() as $category)
@@ -103,11 +103,11 @@
                                             <small class="text-danger" id="category_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <label for="sub_category" class="font-500">Sub-Category
+                                            <label for="sub_category" class="d-none font-500">Sub-Category
                                                 <span class="required"> *</span>
                                             </label>
                                             <div class="position-relative">
-                                                <select class="form-control product-subcategories" id="sub_category"
+                                                <select class="form-control single-select-dropdown product-subcategories" id="sub_category"
                                                         name="sub_category" required>
                                                     <option value="" selected disabled> ---- Select Sub-Category ---
                                                     </option>
@@ -123,18 +123,12 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 d-flex flex-column subCat-Sec">
-                                            <label for="sub_sub_category" class="font-500">Product Type
+                                            <label for="sub_sub_category" class="d-none font-500">Product Type
                                                 <span class="required"> *</span></label>
                                             <select class="form-control single-select-dropdown" id="sub_sub_category" name="sub_sub_category"
                                                     required>
-                                                <option value="" selected disabled> ---- Select Product Type ---
-                                                </option>
-                                                <option value="one">option 1</option>
-                                                <option value="two">option 2</option>
-                                                <optgroup label="Group Options">
-                                                    <option>Nested option 1</option>
-                                                    <option>Nested option 2</option>
-                                                </optgroup>
+                                                <option value="" selected disabled> ---- Select Product Type ---</option>
+                                                <option disabled class="text-danger">Please select category first</option>
                                             </select>
 
                                             <small class="text-danger" id="sub_sub_category_error"></small>
@@ -146,41 +140,69 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-lg-6 clearfix">
-                                            <label for="subject" class="font-500">Subject
+                                        <div class="form-group col-lg-6">
+                                            <label for="subject" class="d-none font-500">Subject
+                                                <span class="required"> *</span>
+                                            </label>
+                                            <div class="input-group">
+                                                <input type="text" id="subject" class="form-control" maxlength = "80" name="subject"
+                                                       placeholder="Subject * - It will appear as title" required>
+                                                <div class="input-group-append counter-span">
+                                                    <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/80</span>
+                                                </div>
+                                            </div>
+                                            <small class="text-danger" id="subject_error"></small>
+                                        </div>
+
+<!--                                        <div class="form-group col-lg-6 clearfix">
+                                            <label for="subject" class="d-none font-500">Subject
                                                 <span class="required"> *</span>
                                             </label>
                                             <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/80</span>
                                             <input type="text" id="subject" class="form-control" maxlength = "80"name="subject"
-                                                   placeholder="It will appear as title" required>
+                                                   placeholder="Subject * - It will appear as title" required>
                                             <small class="text-danger" id="subject_error"></small>
-                                        </div>
+                                        </div>-->
+
                                         <div class="form-group col-lg-6 clearfix product-name">
-                                            <label for="product_service_name" class="font-500">Product Name
+                                            <label for="product_service_name" class="d-none font-500">Product Name
+                                                <span class="required"> *</span>
+                                            </label>
+                                            <div class="input-group">
+                                                <input type="text" id="product_service_name" class="form-control" maxlength = "50"
+                                                       name="product_service_name" placeholder="Product Name *" required>
+                                                <div class="input-group-append counter-span">
+                                                    <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/50</span>
+                                                </div>
+                                            </div>
+                                            <small class="text-danger" id="product_service_name_error"></small>
+
+
+<!--                                            <label for="product_service_name" class="d-none font-500">Product Name
                                                 <span class="required"> *</span>
                                             </label>
                                             <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/50</span>
                                             <input type="text" id="product_service_name" class="form-control" maxlength = "50"
-                                                   name="product_service_name" placeholder="Product Name" required>
-                                            <small class="text-danger" id="product_service_name_error"></small>
+                                                   name="product_service_name" placeholder="Product Name *" required>
+                                            <small class="text-danger" id="product_service_name_error"></small>-->
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-3">
-                                            <label class="font-500">Ad Expiry Days <span class="required"> *</span></label>
-                                            <select name="expiry_date" id="expiry_date" class="form-control add-date" required>
-                                                <option value="" selected disabled>--- Expiry Days ---</option>
+                                            <label class="d-none font-500">Ad Expiry Days <span class="required"> *</span></label>
+                                            <select name="expiry_date" id="expiry_date" class="form-control single-select-dropdown add-date" required>
+                                                <option value="" selected disabled>-&#45;&#45; Expiry Days -&#45;&#45;</option>
                                                 <option value="10">10 Days</option>
                                                 <option value="20">20 Days</option>
                                                 <option value="30">30 Days</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-3">
-                                            <label class="font-500">Ad Expiry Date</label>
-                                            <input type="text" name="date_expire" id="date_expire" class="form-control append-inp" readonly/>
+                                            <label class="d-none font-500">Ad Expiry Date</label>
+                                            <input type="text" placeholder="Ad Expiry Date (Optional)" name="date_expire" id="date_expire" class="form-control append-inp" readonly/>
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <label class="font-500">
+                                            <label class="d-none font-500">
                                                 Additional Keyword For Search
                                                 <span class="fa fa-question-circle" data-toggle="tooltip"
                                                       data-placement="right"
@@ -191,15 +213,15 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <input type="text" id="keyword1" name="keyword1"
-                                                           class="form-control" placeholder="Keyword 1">
+                                                           class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 1">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <input type="text" id="keyword2" name="keyword2"
-                                                           class="form-control" placeholder="Keyword 2">
+                                                           class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 2">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <input type="text" id="keyword3" name="keyword3"
-                                                           class="form-control" placeholder="Keyword 3">
+                                                           class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 3">
                                                 </div>
                                             </div>
                                         </div>
@@ -210,7 +232,7 @@
                                                     | JPG, PNG, Word, Excel & PDF files only | Upto 10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
-                                                    <div class="row product-img-sheet">
+                                                    <div class="mx-0 row product-img-sheet">
                                                         <div class="my-1 px-1 col-md-2 col-4">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image16" src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -445,7 +467,7 @@
                                                     10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
-                                                    <div class="row product-img-sheet">
+                                                    <div class="mx-0 row product-img-sheet">
                                                         <div class="my-1 px-1 col-md-2 col-4">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image1" src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -679,9 +701,9 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 product-available">
-                                            <label class="font-500 avail-quantity">Available Quantity <span class="required"> *</span></label>
+                                            <label class="d-none font-500 avail-quantity">Available Quantity <span class="required"> *</span></label>
                                             <input type="number" min="0" id="product_availability" class="form-control"
-                                                   name="product_availability" placeholder="e.g 50,100" required>
+                                                   name="product_availability" placeholder="Available Quantity * - e.g 50,100" required>
                                             <small class="text-danger" id="product_availability_error"></small>
                                         </div>
                                         {{--                                        <div class="form-group col-lg-6">--}}
@@ -689,8 +711,8 @@
                                         {{--                                            <input type="text" class="form-control" id="price" name="price" placeholder="Price" required>--}}
                                         {{--                                        </div>--}}
                                         <div class="form-group col-lg-6 product-available">
-                                            <label for="available_unit" class="font-500">Unit <span class="required"> *</span></label>
-                                            <select class="form-control other-option-included" id="available_unit" name="available_unit" required>
+                                            <label for="available_unit" class="d-none font-500">Unit <span class="required"> *</span></label>
+                                            <select class="form-control single-select-dropdown other-option-included" id="available_unit" name="available_unit" required>
                                                 <option value="" selected disabled>-- Select Suitable Unit --</option>
                                                 <option value="20' Container">20' Container</option>
                                                 <option value="40' Container">40' Container</option>
@@ -737,12 +759,12 @@
 
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
-                                            <label for="manufacturer_name" class="font-500 manufacturer_name">Manufacturer
+                                            <label for="manufacturer_name" class="d-none font-500 manufacturer_name">Manufacturer
                                                 Name </label>
                                             <input type="text" id="manufacturer_name"
                                                    value="{{$user->name}}" name="manufacturer_name"
                                                    class="form-control manufacturer-name optional-field"
-                                                   placeholder="Manufacture spelling must be correct to be visible in the search.">
+                                                   placeholder="Manufacturer Name (Optional) - Manufacture spelling must be correct to be visible in the search.">
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="origin" class="font-500">Product Origin <span class="required"> *</span></label>
@@ -760,28 +782,28 @@
                                     </div>
 
                                     <div class="additional-product-info machinery-info" style="display: none;">
-                                        <span class="d-block mb-3 heading">Products Specification</span>
+                                        <span class="d-block mb-1 heading">Products Specification</span>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Brand Name
+                                                <label class="d-none font-500">Brand Name
                                                     <small class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="brand_name" class="form-control optional-field"
                                                        name="brand_name"
-                                                       placeholder="Brand Name">
+                                                       placeholder="Brand Name (Optional)">
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Model Number
+                                                <label class="d-none font-500">Model Number
                                                     <small class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="model_number" class="form-control optional-field"
                                                        name="model_number"
-                                                       placeholder="Model Number">
+                                                       placeholder="Model Number (Optional)">
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Year of Manufacturing
+                                                <label class="font-500 d-none">Year of Manufacturing
                                                     <small class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="year_manufacturing" class="form-control optional-field"
                                                        name="year_manufacturing"
-                                                       placeholder="Year of Manufacturing">
+                                                       placeholder="Year of Manufacturing (Optional)">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -893,22 +915,22 @@
                                             {{--                                                       placeholder="Additional Trade notes">--}}
                                             {{--                                            </div>--}}
                                             <div class="form-group col-lg-6">
-                                                <label for="product_related_certifications" class="font-500">Company Certification <small
+                                                <label for="product_related_certifications" class="d-none font-500">Company Certification <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="product_related_certifications"
                                                        class="form-control optional-field"
                                                        name="product_related_certifications"
-                                                       placeholder="Company Certification">
+                                                       placeholder="Company Certification (Optional)">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-row">
                                         <div class="form-group col-md-12 clearfix">
-                                            <label for="editor1" class="font-500">Additional Info <small class="font-500"> (Optional)</small></label>
-                                            <span class="pull-right font-500"><span class="counter-total-digits">0</span>/1200</span>
+                                            <label for="editor1" class="d-none font-500">Additional Info <small class="font-500"> (Optional)</small></label>
+                                            <span class="d-block font-500">(Limit = 1200 Characters)</span>
                                             <textarea id="editor1" rows="5" maxlength = "1200" class="form-control addi_info" name="details"
-                                                      placeholder="Add product details"></textarea>
+                                                      placeholder="Additional Info (Optional)"></textarea>
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
@@ -919,7 +941,7 @@
                                     </div>
                                 </div>
 
-                                {{--                                <div class="p-3 tab-pane fade trade-info-tab" id="tabCom" role="tabpanel"--}}
+                                {{--                                <div class="py-2 tab-pane fade trade-info-tab" id="tabCom" role="tabpanel"--}}
                                 {{--                                     aria-labelledby="tabCom">--}}
                                 {{--                                    <div class="form-row">--}}
                                 {{--                                        <div class="form-group col-lg-6 trade-info-container">--}}
@@ -1049,27 +1071,27 @@
                                 {{--                                        <hr class="horizontal-line">--}}
                                 {{--                                    </div>--}}
                                 {{--                                </div>--}}
-                                <div class="p-3 tab-pane fade payment-info-tab" id="tabInfo" role="tabpanel"
+                                <div class="py-2 tab-pane fade payment-info-tab" id="tabInfo" role="tabpanel"
                                      aria-labelledby="tabInfo">
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 unit_price_range">
 
                                             <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <label for="unit_price_from" class="font-500 unit_price_range_label">Unit Price <span
+                                                <div class="col-md-6 form-group">
+                                                    <label for="unit_price_from" class="d-none font-500 unit_price_range_label">Unit Price <span
                                                             class="required">*</span></label>
-                                                    <label for="unit_price_from" class="font-500 service_charges_range_label">Service
+                                                    <label for="unit_price_from" class="d-none font-500 service_charges_range_label">Service
                                                         Charges <span
                                                             class="required">*</span></label>
                                                     <input type="number" min="0" id="unit_price_from" class="form-control"
-                                                           name="unit_price_from" placeholder="e.g. 1000" required>
+                                                           name="unit_price_from" placeholder="Service Charges * - e.g. 1000" required>
                                                 </div>
                                                 {{--                                                <div class="col-md-6">--}}
                                                 {{--                                                    <input type="number" id="unit_price_to" class="form-control"--}}
                                                 {{--                                                           name="unit_price_to" placeholder="e.g. 200">--}}
                                                 {{--                                                </div>--}}
                                                 <div class="col-md-6 hide-for-service" style="display: none;">
-                                                    <label for="unit_price_unit" class="font-500 unit_price_range_label">Per Unit <span
+                                                    <label for="unit_price_unit" class="d-none font-500 unit_price_range_label">Per Unit <span
                                                             class="required">*</span></label>
                                                     <select class="form-control other-option-included" id="unit_price_unit" name="unit_price_unit" required>
                                                         <option value="" selected disabled>-- Select Suitable Unit --</option>
@@ -1107,9 +1129,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6 service-unit">
-                                                    <label for="price_unit" class="font-500 service_charges_range_unit_label">Per Unit <span
+                                                    <label for="price_unit" class="d-none font-500 service_charges_range_unit_label">Per Unit <span
                                                             class="required">*</span></label>
-                                                    <input type="text" name="price_unit" id="price_unit" placeholder="Per Unit" class="form-control" required>
+                                                    <input type="text" name="price_unit" id="price_unit" placeholder="Per Unit *" class="form-control" required>
                                                     <small class="text-danger" id="price_unit_error"></small>
                                                 </div>
                                             </div>
@@ -1121,18 +1143,18 @@
                                         </div>
                                         <div class="form-group col-lg-6 target_price_range">
                                             <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <label for="target_price_from" class="font-500">Target Price <span
+                                                <div class="col-md-6 form-group">
+                                                    <label for="target_price_from" class="d-none font-500">Target Price <span
                                                             class="required">*</span></label>
                                                     <input type="number" min="0" id="target_price_from" class="form-control"
-                                                           name="target_price_from" placeholder="e.g. 1000" required>
+                                                           name="target_price_from" placeholder="Target Price * - e.g. 1000" required>
                                                 </div>
                                                 {{--                                                <div class="col-md-6">--}}
                                                 {{--                                                    <input type="number" id="target_price_to" class="form-control"--}}
                                                 {{--                                                           name="target_price_to" placeholder="e.g. 200">--}}
                                                 {{--                                                </div>--}}
                                                 <div class="col-md-6">
-                                                    <label for="target_price_unit" class="font-500">Per Unit <span
+                                                    <label for="target_price_unit" class="d-none font-500">Per Unit <span
                                                             class="required">*</span></label>
                                                     <select class="form-control other-option-included"
                                                             id="target_price_unit"
@@ -1182,7 +1204,7 @@
 
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
-                                            <label class="font-500">Suitable Currency <span
+                                            <label class="d-none font-500">Suitable Currency <span
                                                     class="required">*</span></label>
                                             <select class="form-control single-select-dropdown"
                                                     id="suitable_currencies" name="suitable_currencies" required>
@@ -1205,11 +1227,11 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 product_lead_time">
-                                            <label for="delivery_time" class="font-500">Lead Time <small
+                                            <label for="delivery_time" class="d-none font-500">Lead Time <small
                                                     class="font-500"> (Optional)</small></label>
                                             <input type="text" id="lead_time" class="form-control"
                                                    name="delivery_time"
-                                                   placeholder="Mention Suitable Lead Time">
+                                                   placeholder="Lead Time (Optional) - Mention Suitable Lead Time">
                                         </div>
                                         <div class="form-group col-lg-6 product_delivery">
                                             <label class="font-500">Delivery <small
@@ -1234,7 +1256,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 services-container">
-                                            <label class="label d-block">Service Duration <span
+                                            <label class="d-none label">Service Duration <span
                                                     class="required">*</span></label>
                                             <select id="service_durations" name="service_durations[]"
                                                     class="select2-multiple form-control select-service-duration" multiple="multiple">
@@ -1261,7 +1283,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
-                                            <label for="payment_terms" class="font-500" class="font-500">Payment
+                                            <label for="payment_terms" class="d-none font-500">Payment
                                                 Terms
                                                 <span class="required"> *</span></label>
                                             <select class="single-select-dropdown select-suitable-payment other-option-included form-control payment-terms" id="payment_terms" name="payment_terms" required>
@@ -1363,12 +1385,48 @@
             /*for general select multiple*/
 
             /*for select single place holders*/
+            $("#target_price_unit").select2({
+                placeholder: "Per Unit *"
+            });
+
+            $("#unit_price_unit").select2({
+                placeholder: "Per Unit *"
+            });
+
+            $("#origin").select2({
+                placeholder: "Product Origin *"
+            });
+
+            $("#available_unit").select2({
+                placeholder: "Unit *"
+            });
+
+            $("#expiry_date").select2({
+                placeholder: "An Expiry Days *"
+            });
+
+            $("#category").select2({
+                placeholder: "Main Category *"
+            });
+
+            $("#sub_category").select2({
+                placeholder: "Sub-Category *"
+            });
+
+            $("#sub_sub_category").select2({
+                placeholder: "Product Type *"
+            });
+
             $('select[name=suitable_currencies]').select2({
-                placeholder: "Select Suitable Currency"
+                placeholder: "Select Suitable Currency *"
             });
             /*for select single place holders*/
 
             /*for select multiple place holders*/
+            $('.select-suitable-payment').select2({
+                placeholder: "Select Payment Terms *"
+            });
+
             $('.select-suitable-type').select2({
                 placeholder: "Select Dealing As"
             });
@@ -1382,7 +1440,7 @@
             });
 
             $('.select-service-duration').select2({
-                placeholder: "Select Service Duration"
+                placeholder: "Select Service Duration *"
             });
 
             /*for select multiple place holders*/

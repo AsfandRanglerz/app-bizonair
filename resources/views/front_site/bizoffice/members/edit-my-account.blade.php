@@ -429,7 +429,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
-                                            <input type="text" id="mobileNumber3"
+                                            <input type="tel" id="mobileNumber3"
                                                    class="form-control mobileNum inteltel is-valid"
                                                    name="telephone"
                                                    value="{{ old('telephone', $user->telephone) }}"
@@ -500,9 +500,6 @@
                         phoneNumberFormat: true
                     },
                     mobileNumber: {
-                        phoneNumberFormat: true
-                    },
-                    telephone: {
                         phoneNumberFormat: true
                     },
                 },
