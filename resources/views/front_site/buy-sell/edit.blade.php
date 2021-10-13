@@ -250,8 +250,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 col-12">
-                                            <div class="product-img-spec-container mb-3">
+                                        <div class="my-2 col-sm-12 col-12">
+                                            <div class="product-img-spec-container mb-1">
                                                 <h6 class="my-2 px-2 heading pro-img-heading">Product Images</h6>
                                                 <div class="product-images-gallery">
                                                         <ul class="row mx-0 my-2 product-gallery">
@@ -358,7 +358,7 @@
                                                  role="alert"></div>
                                         </div>
                                     </div>
-                                <div class="my-1">
+                                <div class="my-2">
                                     <hr class="horizontal-line">
                                 </div>
                                 @if($buysell->variation != null)
@@ -529,14 +529,14 @@
                                             </div>
                                         @endif
                                     </div>
-                                    <div class="my-1">
+                                    <div class="my-2">
                                         <hr class="horizontal-line">
                                     </div>
                                 @endif
 
 
                                 <div class="edit-company-section">
-                                    <h6 class="heading">Payment & Delivery Info<span
+                                    <h6 class="heading">Payment Info<span
                                             class="fa fa-edit edit-btn edit-payment"></span></h6>
                                     @if($buysell->product_service_types == "Buy")
                                         <div class="row text">
@@ -708,7 +708,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="my-1">
+                                <div class="my-2">
                                     <hr class="horizontal-line">
                                 </div>
                             </div>
@@ -743,15 +743,15 @@
                                    href="#tabInfo" role="tab"
                                    aria-controls="tabInfo"
                                    aria-selected="false">@if(in_array("Buy", explode(",", $buysell->product_service_types)) || in_array("Sell", explode(",", $buysell->product_service_types)))
-                                        Payment & Delivery Info
+                                        Payment Info
                                     @else
                                         Payment Info
                                     @endif</a>
                             </li>
-                            <li class="w-unset my-sm-0 my-2 d-sm-flex d-inline-block justify-content-end ml-auto nav-item">
+                            <li class="w-unset my-sm-0 d-sm-flex d-inline-block justify-content-end ml-auto nav-item">
                                 <button type="submit" class="red-btn updt-button">UPDATE</button>
                             </li>
-                            <li class="w-unset my-sm-0 my-2 ml-2 d-sm-flex d-inline-block justify-content-end nav-item">
+                            <li class="w-unset my-sm-0 ml-2 d-sm-flex d-inline-block justify-content-end nav-item">
                                 <button class="text-uppercase red-btn close-form" href="#ad-cancil" data-toggle="modal">CLOSE</button>
                             </li>
                             <div id="ad-cancil" class="change-password-modal modal fade">
@@ -779,7 +779,7 @@
                             @csrf
                             @method('put')
                             <div class="tab-content" id="myCompanyTab">
-                                <div class="p-3 tab-pane fade show active" id="tabReg" role="tabpanel"
+                                <div class="py-2 tab-pane fade show active" id="tabReg" role="tabpanel"
                                      aria-labelledby="tabReg">
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
@@ -825,14 +825,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
-                                            <label for="category" class="font-500">Main Category
+                                            <label for="category" class="d-none font-500">Main Category
                                                 <span class="required"> *</span>
                                             </label>
                                             <div class="position-relative">
                                                 <select class="form-control product-categories" id="category"
                                                         name="category" required val="{{ $buysell->category_id }}">
-                                                    <option value="" selected disabled> ---- Select Category ---
-                                                    </option>
+                                                    <option value="Main Category *" disabled> Main Category *</option>
                                                     @foreach(\App\Category::all() as $category)
                                                         <option value="{{ $category->id }}"
                                                                 cat-val="{{ $category->name }}"
@@ -852,13 +851,14 @@
                                             <small class="text-danger" id="category_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <label for="sub_category" class="font-500">Sub-Category
+                                            <label for="sub_category" class="d-none font-500">Sub-Category
                                                 <span class="required"> *</span>
                                             </label>
                                             <div class="position-relative">
                                                 <select class="form-control product-subcategories" id="sub_category"
                                                         name="sub_category" required
                                                         val="{{ $buysell->subcategory_id }}">
+                                                    <option value="Sub-Category *" disabled>Sub-Category *</option>
                                                     @foreach(\App\Subcategory::where('category_id', \App\Category::where('id', $buysell->category_id)->first()->id)->get() as $sub_category)
                                                         <option value="{{ $sub_category->id }}"
                                                                 cat-val="{{ $sub_category->name }}"
@@ -875,8 +875,9 @@
                                     @if(!in_array("Service", explode(",", $buysell->product_service_types)))
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 d-flex flex-column subCat-Sec">
-                                                <label for="sub_sub_category" class="font-500">Product Type<span class="required"> *</span></label>
+                                                <label for="sub_sub_category" class="d-none font-500">Product Type<span class="required"> *</span></label>
                                                 <select class="form-control single-select-dropdown" id="sub_sub_category" name="sub_sub_category" required val="{{ $buysell->childsubcategory_id }}">
+                                                    <option value="Product Type *" disabled>Product Type *</option>
                                                     @foreach (\App\Childsubcategory::where('subcategory_id', \App\Subcategory::where('id', $buysell->subcategory_id)->first()->id)->get() as $sub_sub_category)
                                                         <option value="{{ $sub_sub_category->id }}" cat-val="{{ $sub_sub_category->name }}"
                                                                 @if($buysell->childsubcategory_id == $sub_sub_category->id) selected @endif >{{ $sub_sub_category->name }}</option>
@@ -892,30 +893,38 @@
                                     @endif
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 clearfix">
-                                            <label for="subject" class="font-500">Subject
+                                            <label for="subject" class="d-none font-500">Subject
                                                 <span class="required"> *</span>
                                             </label>
-                                            <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/80</span>
-                                            <input type="text" id="subject" class="form-control" maxlength = "80" name="subject"
-                                                   placeholder="It will appear as title"
-                                                   value="{{ $buysell->subject }}"
-                                                   required>
+                                            <div class="input-group">
+                                                <input type="text" id="subject" class="form-control" maxlength = "80" name="subject"
+                                                       placeholder="It will appear as title"
+                                                       value="{{ $buysell->subject }}"
+                                                       required>
+                                                <div class="input-group-append counter-span">
+                                                    <span class="text-danger font-500"><span class="counter-total-digits">0</span>/80</span>
+                                                </div>
+                                            </div>
                                             <small class="text-danger" id="subject_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 clearfix product-name">
-                                            <label for="product_service_name" class="font-500">Product Name
+                                            <label for="product_service_name" class="d-none font-500">Product Name
                                                 <span class="required"> *</span>
                                             </label>
-                                            <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/50</span>
-                                            <input type="text" id="product_service_name"
+                                            <div class="input-group">
+                                                <input type="text" id="product_service_name"
                                                    value="{{ $buysell->product_service_name }}" maxlength = "50" class="form-control"
                                                    name="product_service_name" placeholder="Product Name" required>
+                                                <div class="input-group-append counter-span">
+                                                    <span class="text-danger font-500"><span class="counter-total-digits">0</span>/50</span>
+                                                </div>
+                                            </div>
                                             <small class="text-danger" id="product_service_name_error"></small>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-3">
-                                            <label class="font-500">Ad Expiry Days <span
+                                            <label class="d-none font-500">Ad Expiry Days <span
                                                     class="required"> *</span></label>
                                             <select name="expiry_date" id="expiry_date" class="form-control add-date" required>
                                                 <option value="10" @if($buysell->expiry_data == "10") selected @endif>10 Days</option>
@@ -924,12 +933,12 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-3">
-                                            <label class="font-500">Ad Expiry Date</label>
+                                            <label class="d-none font-500">Ad Expiry Date</label>
                                             <input type="text" name="date_expire" id="date_expire" value="@if($buysell->date_expire){{date('d-m-Y',strtotime($buysell->date_expire))}}@endif" class="form-control append-inp" readonly/>
                                         </div>
 
                                         <div class="form-group col-lg-6">
-                                            <label class="font-500">
+                                            <label class="d-none font-500">
                                                 Additional Keyword
                                                 <span class="fa fa-question-circle" data-toggle="tooltip"
                                                       data-placement="right"
@@ -941,17 +950,17 @@
                                                 <div class="form-group col-md-4">
                                                     <input type="text" id="keyword1" name="keyword1"
                                                            value="{{ $buysell->keyword1 }}"
-                                                           class="form-control" placeholder="Keyword 1">
+                                                           class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 1">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <input type="text" id="keyword2" name="keyword2"
                                                            value="{{ $buysell->keyword2 }}"
-                                                           class="form-control" placeholder="Keyword 2">
+                                                           class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 2">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <input type="text" id="keyword3" name="keyword3"
                                                            value="{{ $buysell->keyword3 }}"
-                                                           class="form-control" placeholder="Keyword 3">
+                                                           class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 3">
                                                 </div>
                                             </div>
                                         </div>
@@ -963,7 +972,7 @@
                                                     10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
-                                                    <div class="row product-img-sheet">
+                                                    <div class="mx-0 row product-img-sheet">
                                                         <div class="my-1 px-1 col-md-2 col-4">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image16" src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -1201,7 +1210,7 @@
                                                     10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
-                                                    <div class="row product-img-sheet">
+                                                    <div class="mx-0 row product-img-sheet">
                                                         <div class="my-1 px-1 col-md-2 col-4">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image1" src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -1505,7 +1514,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6">
-                                            <div class="product-img-spec-container mb-3">
+                                            <div class="product-img-spec-container">
                                                 <h6 class="my-2 px-2 heading pro-img-heading">Product Images</h6>
                                                 <div class="product-images-gallery">
                                                     <ul class="mx-0 my-2 product-gallery edit-comp-prof-imgs">
@@ -1538,11 +1547,11 @@
                                     @if(in_array("Buy", explode(",", $buysell->product_service_types)) || in_array("Sell", explode(",", $buysell->product_service_types)))
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 product-available">
-                                                <label class="font-500 avail-quantity">Available Quantity <span
+                                                <label class="d-none font-500 avail-quantity">Available Quantity <span
                                                         class="required"> *</span></label>
                                                 <input type="number" min="0" id="product_availability"
                                                        value="{{ $buysell->product_availability }}" class="form-control"
-                                                       name="product_availability" placeholder="e.g 50, 100" required>
+                                                       name="product_availability" placeholder="Available Quantity * - e.g 50, 100" required>
                                                 <small class="text-danger" id="product_availability_error"></small>
                                             </div>
                                             {{--                                        <div class="form-group col-lg-6">--}}
@@ -1552,8 +1561,9 @@
                                             {{--                                                   required>--}}
                                             {{--                                        </div>--}}
                                             <div class="form-group col-lg-6 product-available">
-                                                <label for="available_unit" class="font-500">Unit <span class="required"> *</span></label>
+                                                <label for="available_unit" class="d-none font-500">Unit <span class="required"> *</span></label>
                                                 <select class="form-control other-option-included" id="available_unit" name="available_unit">
+                                                    <option value="Unit *" disabled>Unit *</option>
                                                     <option value="20' Container"
                                                             @if($buysell->available_unit == "20' Container") selected @endif>
                                                         20' Container
@@ -1682,31 +1692,31 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div" @if($buysell->available_unit == 'Other') style="display: block;"
                                                 @endif>
-                                                <label class="font-500">Other Unit <span
+                                                <label class="d-none font-500">Other Unit <span
                                                         class="required">*</span></label>
-                                                <input type="text" name="other_available_unit" placeholder="Other Unit" value="{{ $buysell->other_available_unit }}" class="form-control">
+                                                <input type="text" name="other_available_unit" placeholder="Other Unit *" value="{{ $buysell->other_available_unit }}" class="form-control">
                                             </div>
                                         </div>
                                     @endif
                                     <div class="form-row">
                                         <div class="form-group col-lg-6"
                                              @if(in_array("Service", explode(",", $buysell->product_service_types))) style="display: none;" @endif>
-                                            <label for="manufacturer_name" class="font-500 manufacturer_name">Manufacturer Name <span
+                                            <label for="manufacturer_name" class="d-none font-500 manufacturer_name">Manufacturer Name <span
                                                     class="required">*</span></label>
                                             <input type="text" id="manufacturer_name"
                                                    value="{{ \Auth::user()->name }}"
                                                    name="manufacturer_name"
                                                    class="form-control manufacturer-name optional-field"
-                                                   placeholder="Manufacture spelling must be correct to be visible in the search."
+                                                   placeholder="Manufacturer Name (Optional) - Manufacture spelling must be correct to be visible in the search."
                                                    required>
                                             <small class="text-danger" id="manufacturer_name_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6"
                                              @if(in_array("Service", explode(",", $buysell->product_service_types))) style="display: none;" @endif>
-                                            <label for="origin" class="font-500">Product Origin <span
+                                            <label for="origin" class="d-none font-500">Product Origin <span
                                                     class="required"> *</span></label>
                                             <select class="form-control origin" id="origin" name="origin" required>
-                                                <option value="" selected disabled> ---- Select Origin ---</option>
+                                                <option value="Product Origin *" disabled>Product Origin *</option>
                                                 <option value="Any"
                                                         @if($buysell->origin == 'Any') selected @endif >Any</option>
                                                 @foreach(\DB::table('countries')->get() as $country)
@@ -1718,34 +1728,34 @@
                                         </div>
                                     </div>
                                     <div class="additional-product-info machinery-info">
-                                        <span class="d-block mb-3 heading">Products Specification</span>
+                                        <span class="d-block mb-1 heading">Products Specification</span>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Brand Name
+                                                <label class="d-none font-500">Brand Name
                                                     <small class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="brand_name"
                                                        @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->brand_name) value="{{ $buysell->machineryBuySellInfo->brand_name }}"
                                                        @endif class="form-control optional-field"
                                                        name="brand_name"
-                                                       placeholder="Brand Name">
+                                                       placeholder="Brand Name (Optional)">
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Model Number
+                                                <label class="d-none font-500">Model Number
                                                     <small class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="model_number"
                                                        @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->model_no) value="{{ $buysell->machineryBuySellInfo->model_no }}"
                                                        @endif class="form-control optional-field"
                                                        name="model_number"
-                                                       placeholder="Model Number">
+                                                       placeholder="Model Number (Optional)">
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Year of Manufacturing
+                                                <label class="d-none font-500">Year of Manufacturing
                                                     <small class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="year_manufacturing"
                                                        @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->year_manufacture) value="{{ $buysell->machineryBuySellInfo->year_manufacture }}"
                                                        @endif class="form-control optional-field"
                                                        name="year_manufacturing"
-                                                       placeholder="Year of Manufacturing">
+                                                       placeholder="Year of Manufacturing (Optional)">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -1753,21 +1763,21 @@
                                                 <label class="font-500">After Sales Service <span
                                                         class="required">*</span></label>
                                                 <div class="">
-                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                    <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="Yes"
                                                                id="productYes" name="after_sales_service"
                                                                @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->after_sales_service == "Yes") checked="true"
                                                                @endif  required>
                                                         <label class="custom-control-label" for="productYes">Yes</label>
                                                     </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                    <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="No"
                                                                id="productNo" name="after_sales_service"
                                                                @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->after_sales_service == "No") checked="true"
                                                                @endif required>
                                                         <label class="custom-control-label" for="productNo">No</label>
                                                     </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                    <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input"
                                                                value="Not Applicable" id="productNa"
                                                                name="after_sales_service"
@@ -1795,7 +1805,7 @@
                                                 <label class="font-500">Warranty <span
                                                         class="required"> *</span></label>
                                                 <div class="">
-                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                    <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="Yes"
                                                                id="warrantyYes" name="warranty"
                                                                @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->warranty == "Yes") checked="true"
@@ -1803,14 +1813,14 @@
                                                         <label class="custom-control-label"
                                                                for="warrantyYes">Yes</label>
                                                     </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                    <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="No"
                                                                id="warrantyNo" name="warranty"
                                                                @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->warranty == "No") checked="true"
                                                             @endif >
                                                         <label class="custom-control-label" for="warrantyNo">No</label>
                                                     </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                    <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input"
                                                                value="Not Applicable" id="warrantyNa"
                                                                name="warranty"
@@ -1838,21 +1848,21 @@
                                                 <label class="font-500">Product Certification <span
                                                         class="required">*</span></label>
                                                 <div class="">
-                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                    <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="Yes"
                                                                id="certifyYes" name="certification"
                                                                @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->certification == "Yes") checked="true"
                                                                @endif required>
                                                         <label class="custom-control-label" for="certifyYes">Yes</label>
                                                     </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                    <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" value="No" class="custom-control-input"
                                                                id="certifyNo" name="certification"
                                                                @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->certification == "No") checked="true"
                                                             @endif >
                                                         <label class="custom-control-label" for="certifyNo">No</label>
                                                     </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                    <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" value="Not Applicable"
                                                                class="custom-control-input" id="certifyNa"
                                                                name="certification"
@@ -1886,24 +1896,24 @@
                                             {{--                                                    @endif >--}}
                                             {{--                                            </div>--}}
                                             <div class="form-group col-lg-6">
-                                                <label for="product_related_certifications" class="font-500">Company
+                                                <label for="product_related_certifications" class="d-none font-500">Company
                                                     Certifications <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="product_related_certifications"
                                                        @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->product_related_certifications) value="{{ $buysell->machineryBuySellInfo->product_related_certifications }}"
                                                        @endif class="form-control optional-field"
                                                        name="product_related_certifications"
-                                                       placeholder="Product Related certifications">
+                                                       placeholder="Company Certifications (Optional) - Product Related certifications">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-12 clearfix">
-                                            <label for="editor1" class="font-500">Additional Info <small class="font-500">
+                                        <div class="form-group col-md-12">
+                                            <label for="editor1" class="d-none font-500">Additional Info <small class="font-500">
                                                     (Optional)</small></label>
-                                            <span class="pull-right font-500"><span class="counter-total-digits">0</span>/1200</span>
+                                            <span class="d-block font-500">(Limit = 1200 Characters)</span>
                                             <textarea id="editor1" rows="5" maxlength = "1200" class="form-control" name="details"
-                                                      placeholder="Add product details">{!! $buysell->details !!}</textarea>
+                                                      placeholder="Additional Info (Optional)">{!! $buysell->details !!}</textarea>
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
@@ -1913,19 +1923,19 @@
                                         <hr class="horizontal-line">
                                     </div>
                                 </div>
-                                <div class="p-3 tab-pane fade payment-info-tab" id="tabInfo" role="tabpanel"
+                                <div class="py-2 tab-pane fade payment-info-tab" id="tabInfo" role="tabpanel"
                                      aria-labelledby="tabInfo">
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 unit_price_range"
                                              @if(in_array("Sell", explode(",", $buysell->product_service_types)) || in_array("Service", explode(",", $buysell->product_service_types))) style="display: block;" @endif>
                                             <div class="form-row">
                                                 <div class="col-md-6">
-                                                    <label for="unit_price_from" class="font-500 unit_price_range_label"
+                                                    <label for="unit_price_from" class="d-none font-500 unit_price_range_label"
                                                            @if(in_array("Sell", explode(",", $buysell->product_service_types))) style="display: block;"
                                                            @else style="display: none;" @endif>Unit Price <span
                                                             class="required">*</span></label>
                                                     <label for="unit_price_from"
-                                                           class="font-500 service_charges_range_label"
+                                                           class="d-none font-500 service_charges_range_label"
                                                            @if(in_array("Service", explode(",", $buysell->product_service_types))) style="display: block;"
                                                            @else style="display: none;" @endif>Service Charges <span
                                                             class="required">*</span></label>
@@ -2093,20 +2103,21 @@
                                         <div class="form-group col-lg-6 target_price_range"
                                              @if(in_array("Buy", explode(",", $buysell->product_service_types))) style="display: block;" @endif>
                                             <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <label for="target_price_from" class="font-500">Target Price <span
+                                                <div class="col-md-6 form-group">
+                                                    <label for="target_price_from" class="d-none font-500">Target Price <span
                                                             class="required">*</span></label>
                                                     <input type="number" min="0" id="target_price_from"
                                                            @if($buysell->target_price_from) value="{{ $buysell->target_price_from }}"
                                                            @endif class="form-control"
-                                                           name="target_price_from" placeholder="e.g. 1000" required>
+                                                           name="target_price_from" placeholder="Target Price * - e.g. 1000" required>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="target_price_unit" class="font-500">Per Unit <span
+                                                    <label for="target_price_unit" class="d-none font-500">Per Unit <span
                                                             class="required">*</span></label>
                                                     <select class="form-control other-option-included"
                                                             id="target_price_unit"
                                                             name="target_price_unit" required>
+                                                        <option value="Per Unit *" disabled>Per Unit *</option>
                                                         <option value="20' Container"
                                                                 @if($buysell->target_price_unit == "20' Container") selected @endif>
                                                             20' Container
@@ -2238,19 +2249,20 @@
                                         <div class="form-group col-lg-6 other-div add-target_price_unit"
                                              @if($buysell->target_price_unit == 'Other') style="display: block;"
                                             @endif>
-                                            <label class="font-500">Add Your Price Unit <span
+                                            <label class="d-none font-500">Add Your Price Unit <span
                                                     class="required">*</span></label>
                                             <input type="text" name="other_target_price_unit"
                                                    value="{{ $buysell->other_target_price_unit }}"
-                                                   class="form-control" required>
+                                                   class="form-control" placeholder="Add Your Price Unit *" required>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
-                                            <label class="font-500">Suitable Currency <span
+                                            <label class="d-none font-500">Suitable Currency <span
                                                     class="required">*</span></label>
                                             <select class="form-control single-select-dropdown"
                                                     id="suitable_currencies" name="suitable_currencies" required>
+                                                <option value="Suitable Currency *" disabled>Suitable Currency *</option>
                                                 <option value="PKR" @if($buysell->suitable_currencies == "PKR") selected @endif>
                                                     PKR
                                                 </option>
@@ -2277,23 +2289,23 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-suitable-currency"
                                              @if($buysell->suitable_currencies == "Other") style="display: block;" @endif>
-                                            <label class="font-500">Add Your Suitable Currency <span
+                                            <label class="d-none font-500">Add Your Suitable Currency <span
                                                     class="required">*</span></label>
                                             <input type="text"
                                                    @if($buysell->other_suitable_currency) value="{{ $buysell->other_suitable_currency }}"
                                                    required
-                                                   @endif name="other_suitable_currency" class="form-control">
+                                                   @endif name="other_suitable_currency" class="form-control"  placeholder="Add Your Suitable Currency *">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 product_lead_time">
-                                            <label for="delivery_time" class="font-500">Lead Time <small
+                                            <label for="delivery_time" class="d-none font-500">Lead Time <small
                                                     class="font-500">(Optional)</small></label>
                                             <input type="text" id="lead_time" class="form-control"
                                                    name="delivery_time"
                                                    @if($buysell->delivery_time) value="{{ $buysell->delivery_time }}"
                                                    @endif
-                                                   placeholder="Suitable Lead Time">
+                                                   placeholder="Lead Time (Optional) - Suitable Lead Time">
                                         </div>
                                         <div class="form-group col-lg-6 product_delivery">
                                             <label class="font-500">Delivery</label>
@@ -2321,10 +2333,11 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 services-container">
-                                            <label class="label d-block">Service Duration <span
+                                            <label class="d-none label">Service Duration <span
                                                     class="required">*</span></label>
                                             <select id="service_durations" name="service_durations[]"
                                                     class="select2-multiple form-control select-service-duration" multiple="multiple">
+                                                <option value="Suitable Currency *" disabled>Service Duration *</option>
                                                 <option value="One Time"
                                                         @if(in_array("One Time", explode(",", $buysell->service_durations))) selected @endif >
                                                     One Time
@@ -2357,34 +2370,31 @@
                                                         @if(in_array("Annually", explode(",", $buysell->service_durations))) selected @endif >
                                                     Annually
                                                 </option>
-                                                <option value="Other" class="other-check"
-                                                        @if(in_array("Other", explode(",", $buysell->service_durations))) selected @endif >
-                                                    Other
-                                                </option>
+                                                <option value="Other" class="other-check" @if(in_array("Other", explode(",", $buysell->service_durations))) selected @endif >Other</option>
                                             </select>
                                             <small class="text-danger" id="service_durations_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 add-services-duration other-div"
                                              @if(in_array("Other", explode(",", $buysell->service_durations))) style="display: block;" @endif>
-                                            <label class="font-500">Add Your Service Duration <span
+                                            <label class="d-none font-500">Add Your Service Duration <span
                                                     class="required">*</span></label>
                                             <input id="other_service_duration" name="other_service_duration"
                                                    type="text"
                                                    @if($buysell->other_service_duration) value="{{ $buysell->other_service_duration }}"
                                                    required
                                                    @endif
-                                                   class="form-control">
+                                                   class="form-control" placeholder="Add Your Service Duration *">
                                         </div>
 
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
-                                            <label for="payment_terms" class="font-500" class="font-500">Payment
+                                            <label for="payment_terms" class="d-none font-500">Payment
                                                 Terms
                                                 <span class="required"> *</span></label>
                                             <select class="single-select-dropdown select-suitable-payment other-option-included form-control payment-terms"
                                                     id="payment_terms" name="payment_terms" required>
-                                                <option value="" selected disabled>Select Payment Terms</option>
+                                                <option value="Payment Terms *" selected disabled>Payment Terms *</option>
                                                 <option value="L/C" @if($buysell->payment_terms == "L/C") selected @endif>
                                                     L/C
                                                 </option>
@@ -2429,12 +2439,12 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-payment-terms"
                                              @if($buysell->payment_terms =='Other') style="display: block;" @endif>
-                                            <label class="font-500">Add Your Payment Terms <span
+                                            <label class="d-none font-500">Add Your Payment Terms <span
                                                     class="required">*</span></label>
                                             <input
                                                 @if($buysell->other_payment_term) value="{{ $buysell->other_payment_term }}"
                                                 required @endif type="text" id="other_payment_term"
-                                                name="other_payment_term" class="form-control">
+                                                name="other_payment_term" class="form-control" placeholder="Add Your Payment Terms *">
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
@@ -2511,7 +2521,49 @@
             });
             /*for general select multiple*/
 
+            /*for select single place holders*/
+            $("#target_price_unit").select2({
+                placeholder: "Per Unit *"
+            });
+
+            $("#unit_price_unit").select2({
+                placeholder: "Per Unit *"
+            });
+
+            $("#origin").select2({
+                placeholder: "Product Origin *"
+            });
+
+            $("#available_unit").select2({
+                placeholder: "Unit *"
+            });
+
+            $("#expiry_date").select2({
+                placeholder: "An Expiry Days *"
+            });
+
+            $("#category").select2({
+                placeholder: "Main Category *"
+            });
+
+            $("#sub_category").select2({
+                placeholder: "Sub-Category *"
+            });
+
+            $("#sub_sub_category").select2({
+                placeholder: "Product Type *"
+            });
+
+            $('select[name=suitable_currencies]').select2({
+                placeholder: "Select Suitable Currency *"
+            });
+            /*for select single place holders*/
+
             /*for select multiple place holders*/
+            $('.select-suitable-payment').select2({
+                placeholder: "Select Payment Terms *"
+            });
+
             $('.select-suitable-type').select2({
                 placeholder: "Select Dealing As"
             });
@@ -2525,10 +2577,8 @@
             });
 
             $('.select-service-duration').select2({
-                placeholder: "Select Service Duration"
+                placeholder: "Select Service Duration *"
             });
-
-
             /*for select multiple place holders*/
 
             var validator = $("form[name='updateBuysell']").validate({

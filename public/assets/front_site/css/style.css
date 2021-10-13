@@ -4862,10 +4862,10 @@ hr.horizontal-line {
     transition: 0.5s;
     background-size: 200% auto;
     color: #FFF;
-    padding: 8px 15px;
+    padding: 4px 8px;
     border-radius: 5px;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 10px;
     border: none;
     display: inline-block;
 }
@@ -9251,7 +9251,8 @@ header .navbar .navbar-toggler {
     }
 
     .red-btn,
-    .label {
+    .label,
+    .blue-btn {
         font-size: 9px!important;
     }
 

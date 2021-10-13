@@ -2,20 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1743fe27-46cb-4a2e-b625-a8b6f229c939" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/jshint.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/app-bizonair.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/app-bizonair.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/bizonair-database(app).iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel-plugin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/front_site/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/front_site/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/front_site/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/front_site/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front_site/account/add_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/account/add_form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front_site/bizoffice/members/edit-my-account.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/bizoffice/members/edit-my-account.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/front_site/buy-sell/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/buy-sell/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front_site/other/verify-otp.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/other/verify-otp.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front_site/buy-sell/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/buy-sell/edit.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +201,7 @@
       <updated>1634016693183</updated>
       <workItem from="1634016696286" duration="9887000" />
       <workItem from="1634036555496" duration="10068000" />
-      <workItem from="1634102127320" duration="12794000" />
+      <workItem from="1634102127320" duration="23539000" />
     </task>
     <servers />
   </component>

@@ -148,7 +148,7 @@
                                                 <input type="text" id="subject" class="form-control" maxlength = "80" name="subject"
                                                        placeholder="Subject * - It will appear as title" required>
                                                 <div class="input-group-append counter-span">
-                                                    <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/80</span>
+                                                    <span class="text-danger font-500"><span class="counter-total-digits">0</span>/80</span>
                                                 </div>
                                             </div>
                                             <small class="text-danger" id="subject_error"></small>
@@ -172,7 +172,7 @@
                                                 <input type="text" id="product_service_name" class="form-control" maxlength = "50"
                                                        name="product_service_name" placeholder="Product Name *" required>
                                                 <div class="input-group-append counter-span">
-                                                    <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/50</span>
+                                                    <span class="text-danger font-500"><span class="counter-total-digits">0</span>/50</span>
                                                 </div>
                                             </div>
                                             <small class="text-danger" id="product_service_name_error"></small>
@@ -749,9 +749,9 @@
                                             <small class="text-danger" id="available_unit_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 other-div">
-                                            <label class="font-500">Other Unit <span
+                                            <label class="d-none font-500">Other Unit <span
                                                     class="required">*</span></label>
-                                            <input type="text" name="other_available_unit" placeholder="Other Unit" class="form-control">
+                                            <input type="text" name="other_available_unit" placeholder="Other Unit *" class="form-control">
                                         </div>
                                     </div>
 
@@ -926,7 +926,7 @@
                                     </div>
 
                                     <div class="form-row">
-                                        <div class="form-group col-md-12 clearfix">
+                                        <div class="form-group col-md-12">
                                             <label for="editor1" class="d-none font-500">Additional Info <small class="font-500"> (Optional)</small></label>
                                             <span class="d-block font-500">(Limit = 1200 Characters)</span>
                                             <textarea id="editor1" rows="5" maxlength = "1200" class="form-control addi_info" name="details"
@@ -1159,7 +1159,7 @@
                                                     <select class="form-control other-option-included"
                                                             id="target_price_unit"
                                                             name="target_price_unit" required>
-                                                        <option value="" selected disabled>-- Select Suitable Unit --</option>
+                                                        <option value="" selected disabled>Per Unit *</option>
                                                         <option value="20' Container">20' Container</option>
                                                         <option value="40' Container">40' Container</option>
                                                         <option value="Bale">Bale</option>
@@ -1220,9 +1220,9 @@
                                             <small class="text-danger" id="suitable_currencies_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-suitable-currency">
-                                            <label class="font-500">Add Your Suitable Currency <span
+                                            <label class="d-none font-500">Add Your Suitable Currency <span
                                                     class="required">*</span></label>
-                                            <input type="text" name="other_suitable_currency" placeholder="" class="form-control">
+                                            <input type="text" name="other_suitable_currency" placeholder="Add Your Suitable Currency *" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -1273,11 +1273,11 @@
                                             <small class="text-danger" id="service_durations_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 add-services-duration other-div">
-                                            <label class="font-500">Add Your Service Duration <span
+                                            <label class="d-none font-500">Add Your Service Duration <span
                                                     class="required">*</span></label>
                                             <input id="other_service_duration" name="other_service_duration"
                                                    type="text"
-                                                   class="form-control">
+                                                   class="form-control" placeholder="Add Your Service Duration *">
                                         </div>
 
                                     </div>
@@ -1305,10 +1305,10 @@
                                             <small class="text-danger" id="payment_terms_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-payment-terms">
-                                            <label class="font-500">Add Your Payment Terms <span
+                                            <label class="d-none font-500">Add Your Payment Terms <span
                                                     class="required">*</span></label>
                                             <input type="text" id="other_payment_term" name="other_payment_term"
-                                                   class="form-control">
+                                                   class="form-control" placeholder="Add Your Payment Terms *">
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
