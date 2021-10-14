@@ -1201,7 +1201,7 @@ $(document).ready(function () {
     var counter = parseInt($('#company_counter').val());
     $(".add-btn").click(function () {
         var chemicalInfo = $(".chemical-info-inner").children("div.form-row").last().clone();
-        chemicalInfo.css({"border-top": "1px solid black", "padding-top": "10px"})
+        chemicalInfo.css({"border-top": "1px solid #777", "padding-top": "10px"})
         chemicalInfo.find('.chemical-info-heading').html('Product Info ' + (counter + 1) + '<button type="button" class="red-btn mb-1 chemical-info-remove float-right">Remove</button>');
         // Manufacturer
         // chemicalInfo.find("input#manufacturer_company_name" + counter).attr({
@@ -1572,6 +1572,8 @@ $(document).ready(function () {
             }
 
             if (sellProduct === true) {
+                $('.mybiz-leads #unit_price_from').attr('placeholder', 'Unit Price From *');
+                $('.mybiz-leads #unit_price_to').attr('placeholder', 'Unit Price To *');
                 $(".custom-control-input.product-availability").prop('required', true);
                 $(".form-control.manufacturer-name").prop('required', false);
                 $(".form-control.origin").prop('required', true);
@@ -1674,7 +1676,9 @@ $(document).ready(function () {
                 $(".form-control.origin").parent().hide();
                 $('.unit_price_range_label').hide();
                 // $('.service_charges_range_label').show();
-                $('#unit_price_from').attr('placeholder', 'Service Charges *');
+                $('.mybiz-leads #unit_price_from').attr('placeholder', 'Service Charges *');
+                $('.mybiz-deals #unit_price_from').attr('placeholder', 'Service Charges *');
+                $('.mybiz-leads #unit_price_to').attr('placeholder', 'Charges Range *');
                 $('.service_charges_range_unit_label').show();
                 $('.product_lead_time').hide();
                 $('.product_delivery').hide();
@@ -1694,7 +1698,7 @@ $(document).ready(function () {
                 $(".form-control.manufacturer-name").parent().show();
                 $(".form-control.origin").parent().show();
                 // $('.service_charges_range_label').hide();
-                $('#unit_price_from').attr('placeholder', 'Unit Price *');
+                $('.mybiz-deals #unit_price_from').attr('placeholder', 'Unit Price *');
                 $('.service_charges_range_unit_label').hide();
                 $('.unit_price_range_label').show();
                 $('.product_lead_time').show();

@@ -76,17 +76,17 @@
                                         @endif
                                         <td>{{ $buysell->subject }}</td>
                                         <td>{{ $buysell->category->name }}</td>
-                                        <td><a href="{{ route('buy-sell.edit', $buysell->id) }}">
+                                        <td class="img-td-outer"><a href="{{ route('buy-sell.edit', $buysell->id) }}">
                                                 @foreach(App\Helpers\BuysellHelper::getImages($buysell->id) as $i => $image)
                                                     @if(!empty($image))
                                                         <span>
-                                                    <img src="{{$image->image}}" style="width: 70px;height: 70px;">
+                                                    <img src="{{$image->image}}" class="img-td">
                                                 </span>
                                                         @if($i==0)
                                                             @break
                                                         @endif
                                                     @else
-                                                        <img src="{{$ASSET}}/front_site/images/noimage.png" style="width: 70px;height: 70px;">
+                                                        <img src="{{$ASSET}}/front_site/images/noimage.png" class="img-td">
                                                     @endif
                                                 @endforeach
                                             </a>
@@ -121,7 +121,7 @@
                                             <ul class="dropdown-menu actionMenu p-10" role="menu">
                                                 <a href="{{ route('buy-sell.edit', $buysell->id) }}">
                                                     <li class="font-500">
-                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View
+                                                        <span class="fa fa-eye view-btn mr-2" aria-hidden="true"></span>View
                                                     </li>
                                                 </a>
                                                 @if($request->case && $request->case == 'archive')
@@ -133,14 +133,14 @@
                                                     </a>
                                                     <a href="javascript:;" class="delete-buysell">
                                                         <li class="font-500">
-                                                        <span class="fa fa-trash delete-btn mr-3"
+                                                        <span class="fa fa-trash delete-btn mr-2"
                                                               aria-hidden="true"></span>Permanent Delete
                                                         </li>
                                                     </a>
                                                 @else
                                                     <a href="javascript:;" class="delete-buysell">
                                                         <li class="font-500">
-                                                        <span class="fa fa-trash delete-btn mr-3"
+                                                        <span class="fa fa-trash delete-btn mr-2"
                                                               aria-hidden="true"></span>Archive
                                                         </li>
                                                     </a>

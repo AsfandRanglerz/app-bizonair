@@ -17,7 +17,7 @@
         <!-- Sidebar -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" >
+            <div id="page-content-wrapper" class="mybiz-deals">
 
                 <div id='alert-success-create-product' class="alert alert-success py-2" style="display: none;"></div>
                 <div id='alert-error-create-product' class="alert alert-danger py-2" style="display: none;"></div>
@@ -89,7 +89,8 @@
                                             <div class="position-relative">
                                                 <select class="form-control single-select-dropdown product-categories" id="category"
                                                         name="category" required>
-                                                    <option value="" selected disabled> ---- Select Main Category ---</option>
+                                                    <option value=""></option>
+                                                    <option disabled>Please select category *</option>
                                                     @foreach(\App\Category::all() as $category)
                                                         <option value="{{ $category->id }}" cat-val="{{ $category->name }}"
                                                                 class="d-none"
@@ -109,10 +110,8 @@
                                             <div class="position-relative">
                                                 <select class="form-control single-select-dropdown product-subcategories" id="sub_category"
                                                         name="sub_category" required>
-                                                    <option value="" selected disabled> ---- Select Sub-Category ---
-                                                    </option>
-                                                    <option disabled class="text-danger">Please select category first
-                                                    </option>
+                                                    <option value=""></option>
+                                                    <option disabled>Please select category first *</option>
                                                 </select>
                                                 <div class="d-none position-absolute spinner-border text-danger loading-icon">
                                                     <span class="sr-only">Loading...</span>
@@ -127,8 +126,8 @@
                                                 <span class="required"> *</span></label>
                                             <select class="form-control single-select-dropdown" id="sub_sub_category" name="sub_sub_category"
                                                     required>
-                                                <option value="" selected disabled> ---- Select Product Type ---</option>
-                                                <option disabled class="text-danger">Please select category first</option>
+                                                <option value=""></option>
+                                                <option disabled>Please select category first *</option>
                                             </select>
 
                                             <small class="text-danger" id="sub_sub_category_error"></small>
@@ -145,7 +144,7 @@
                                                 <span class="required"> *</span>
                                             </label>
                                             <div class="input-group">
-                                                <input type="text" id="subject" class="form-control" maxlength = "80" name="subject"
+                                                <input type="text" id="subject" class="h-auto form-control" maxlength = "80" name="subject"
                                                        placeholder="Subject * - It will appear as title" required>
                                                 <div class="input-group-append counter-span">
                                                     <span class="text-danger font-500"><span class="counter-total-digits">0</span>/80</span>
@@ -169,7 +168,7 @@
                                                 <span class="required"> *</span>
                                             </label>
                                             <div class="input-group">
-                                                <input type="text" id="product_service_name" class="form-control" maxlength = "50"
+                                                <input type="text" id="product_service_name" class="h-auto form-control" maxlength = "50"
                                                        name="product_service_name" placeholder="Product Name *" required>
                                                 <div class="input-group-append counter-span">
                                                     <span class="text-danger font-500"><span class="counter-total-digits">0</span>/50</span>
@@ -233,7 +232,7 @@
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
                                                     <div class="mx-0 row product-img-sheet">
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image16" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -248,7 +247,7 @@
                                                                 <input name="bsheet16_url" type="hidden" value="" id="bsheet16_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image17" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -263,7 +262,7 @@
                                                                 <input name="bsheet17_url" type="hidden" value="" id="bsheet17_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image18" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -278,7 +277,7 @@
                                                                 <input name="bsheet18_url" type="hidden" value="" id="bsheet18_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image19" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -293,7 +292,7 @@
                                                                 <input name="bsheet19_url" type="hidden" value="" id="bsheet19_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image20" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -308,7 +307,7 @@
                                                                 <input name="bsheet20_url" type="hidden" value="" id="bsheet20_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image21" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -323,7 +322,7 @@
                                                                 <input name="bsheet21_url" type="hidden" value="" id="bsheet21_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image22" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -338,7 +337,7 @@
                                                                 <input name="bsheet22_url" type="hidden" value="" id="bsheet22_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image23" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -353,7 +352,7 @@
                                                                 <input name="bsheet23_url" type="hidden" value="" id="bsheet23_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image24" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -368,7 +367,7 @@
                                                                 <input name="bsheet24_url" type="hidden" value="" id="bsheet24_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image25" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -383,7 +382,7 @@
                                                                 <input name="bsheet25_url" type="hidden" value="" id="bsheet25_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image26" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -398,7 +397,7 @@
                                                                 <input name="bsheet26_url" type="hidden" value="" id="bsheet26_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image27" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -413,7 +412,7 @@
                                                                 <input name="bsheet27_url" type="hidden" value="" id="bsheet27_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image28" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -428,7 +427,7 @@
                                                                 <input name="bsheet28_url" type="hidden" value="" id="bsheet28_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image29" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -443,7 +442,7 @@
                                                                 <input name="bsheet29_url" type="hidden" value="" id="bsheet29_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image30" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -468,7 +467,7 @@
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
                                                     <div class="mx-0 row product-img-sheet">
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image1" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -483,7 +482,7 @@
                                                                 <input name="bavatar1_url" type="hidden" value="" id="bavatar1_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image2" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -498,7 +497,7 @@
                                                                 <input name="bavatar2_url" type="hidden" value="" id="bavatar2_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image3" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -513,7 +512,7 @@
                                                                 <input name="bavatar3_url" type="hidden" value="" id="bavatar3_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image4" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -528,7 +527,7 @@
                                                                 <input name="bavatar4_url" type="hidden" value="" id="bavatar4_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image5" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -543,7 +542,7 @@
                                                                 <input name="bavatar5_url" type="hidden" value="" id="bavatar5_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image6" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -558,7 +557,7 @@
                                                                 <input name="bavatar6_url" type="hidden" value="" id="bavatar6_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image7" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -573,7 +572,7 @@
                                                                 <input name="bavatar7_url" type="hidden" value="" id="bavatar7_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image8" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -588,7 +587,7 @@
                                                                 <input name="bavatar8_url" type="hidden" value="" id="bavatar8_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image9" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -603,7 +602,7 @@
                                                                 <input name="bavatar9_url" type="hidden" value="" id="bavatar9_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image10" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -618,7 +617,7 @@
                                                                 <input name="bavatar10_url" type="hidden" value="" id="bavatar10_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image11" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -633,7 +632,7 @@
                                                                 <input name="bavatar11_url" type="hidden" value="" id="bavatar11_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image12" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -648,7 +647,7 @@
                                                                 <input name="bavatar12_url" type="hidden" value="" id="bavatar12_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image13" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -663,7 +662,7 @@
                                                                 <input name="bavatar13_url" type="hidden" value="" id="bavatar13_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image14" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -678,7 +677,7 @@
                                                                 <input name="bavatar14_url" type="hidden" value="" id="bavatar14_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image15" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -767,9 +766,10 @@
                                                    placeholder="Manufacturer Name (Optional) - Manufacture spelling must be correct to be visible in the search.">
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <label for="origin" class="font-500">Product Origin <span class="required"> *</span></label>
+                                            <label for="origin" class="d-none font-500">Product Origin <span class="required"> *</span></label>
                                             <select class="form-control origin" id="origin" name="origin" required>
-                                                <option value="" selected disabled> ---- Select Origin ---</option>
+                                                <option value=""></option>
+                                                <option disabled>Product Origin *</option>
                                                 <option value="Any">Any</option>
                                                 @foreach(\DB::table('countries')->get() as $country)
                                                     <option
@@ -930,7 +930,7 @@
                                             <label for="editor1" class="d-none font-500">Additional Info <small class="font-500"> (Optional)</small></label>
                                             <span class="d-block font-500">(Limit = 1200 Characters)</span>
                                             <textarea id="editor1" rows="5" maxlength = "1200" class="form-control addi_info" name="details"
-                                                      placeholder="Additional Info (Optional)"></textarea>
+                                                      placeholder="Additional Info (Optional) - Add product details"></textarea>
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
@@ -1094,7 +1094,8 @@
                                                     <label for="unit_price_unit" class="d-none font-500 unit_price_range_label">Per Unit <span
                                                             class="required">*</span></label>
                                                     <select class="form-control other-option-included" id="unit_price_unit" name="unit_price_unit" required>
-                                                        <option value="" selected disabled>-- Select Suitable Unit --</option>
+                                                        <option value=""></option>
+                                                        <option disabled>Per Unit *</option>
                                                         <option value="20' Container">20' Container</option>
                                                         <option value="40' Container">40' Container</option>
                                                         <option value="Bale">Bale</option>
@@ -1159,7 +1160,8 @@
                                                     <select class="form-control other-option-included"
                                                             id="target_price_unit"
                                                             name="target_price_unit" required>
-                                                        <option value="" selected disabled>Per Unit *</option>
+                                                        <option value=""></option>
+                                                        <option disabled>Per Unit *</option>
                                                         <option value="20' Container">20' Container</option>
                                                         <option value="40' Container">40' Container</option>
                                                         <option value="Bale">Bale</option>

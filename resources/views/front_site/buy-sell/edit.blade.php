@@ -897,7 +897,7 @@
                                                 <span class="required"> *</span>
                                             </label>
                                             <div class="input-group">
-                                                <input type="text" id="subject" class="form-control" maxlength = "80" name="subject"
+                                                <input type="text" id="subject" class="h-auto form-control" maxlength = "80" name="subject"
                                                        placeholder="It will appear as title"
                                                        value="{{ $buysell->subject }}"
                                                        required>
@@ -913,7 +913,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <input type="text" id="product_service_name"
-                                                   value="{{ $buysell->product_service_name }}" maxlength = "50" class="form-control"
+                                                   value="{{ $buysell->product_service_name }}" maxlength = "50" class="h-auto form-control"
                                                    name="product_service_name" placeholder="Product Name" required>
                                                 <div class="input-group-append counter-span">
                                                     <span class="text-danger font-500"><span class="counter-total-digits">0</span>/50</span>

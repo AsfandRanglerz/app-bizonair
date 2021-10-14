@@ -18,7 +18,7 @@
         <!-- Sidebar -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper">
+            <div id="page-content-wrapper" class="mybiz-leads">
 
                 <div id='alert-success-create-product' class="alert alert-success py-2" style="display: none;"></div>
                 <div id='alert-error-create-product' class="alert alert-danger py-2" style="display: none;"></div>
@@ -37,7 +37,7 @@
                             <li class="product-tab-btn nav-item">
                                 <a class="nav-link payment-delivery-info" id="linkInfo" data-toggle="tab"
                                    href="#tabInfo" role="tab"
-                                   aria-controls="tabInfo" aria-selected="false">Payment & Delivery Info</a>
+                                   aria-controls="tabInfo" aria-selected="false">Payment Info</a>
                             </li>
                         </ul>
                         <form id="createProduct" name="createProduct" method="post"
@@ -45,19 +45,17 @@
                               class="needs-validation" novalidate>
                             @csrf
                             <div class="tab-content" id="myCompanyTab">
-                                <div class="p-3 tab-pane fade show active" id="tabReg" role="tabpanel"
+                                <div class="py-2 tab-pane fade show active" id="tabReg" role="tabpanel"
                                      aria-labelledby="tabReg">
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label class="font-500">Post Your Lead As
                                                 <span class="required"> *</span>
                                             </label>
-                                            <div class="clearfix d-inline">
-                                                <a href="#"
-                                                   class="pull-right text-decoration-none red-link font-500 help-txt">Help<span
-                                                        class="ml-1 fa fa-question-circle"
-                                                        aria-hidden="true"></span></a>
-                                            </div>
+                                            <a href="#"
+                                               class="pull-right text-decoration-none red-link font-500 help-txt">Help<span
+                                                    class="ml-1 fa fa-question-circle"
+                                                    aria-hidden="true"></span></a>
                                             <div class="d-flex flex-row">
                                                 <div
                                                     class="form-check form-check-inline custom-control custom-radio d-sm-inline">
@@ -89,14 +87,14 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
-                                            <label for="category" class="font-500">Main Category
+                                            <label for="category" class="d-none font-500">Main Category
                                                 <span class="required"> *</span>
                                             </label>
                                             <div class="position-relative">
                                                 <select class="form-control product-categories" id="category"
                                                         name="category" required>
-                                                    <option value="" selected disabled> ---- Select Main Category ---
-                                                    </option>
+                                                    <option value=""></option>
+                                                    <option disabled>Please select category *</option>
                                                     @foreach(\App\Category::all() as $category)
                                                         <option value="{{ $category->id }}"
                                                                 cat-val="{{ $category->name }}"
@@ -112,16 +110,14 @@
                                             <small class="text-danger" id="category_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <label for="sub_category" class="font-500">Sub-Category
+                                            <label for="sub_category" class="d-none font-500">Sub-Category
                                                 <span class="required"> *</span>
                                             </label>
                                             <div class="position-relative">
                                                 <select class="form-control product-subcategories" id="sub_category"
                                                         name="sub_category" required>
-                                                    <option value="" selected disabled> ---- Select Sub-Category ---
-                                                    </option>
-                                                    <option disabled class="text-danger">Please select category first
-                                                    </option>
+                                                    <option value=""></option>
+                                                    <option disabled>Please select category first *</option>
                                                 </select>
                                                 <div
                                                     class="d-none position-absolute spinner-border text-danger loading-icon">
@@ -133,13 +129,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 d-flex flex-column subCat-Sec">
-                                            <label for="sub_sub_category" class="font-500">Product Type
+                                            <label for="sub_sub_category" class="d-none font-500">Product Type
                                                 <span class="required"> *</span></label>
                                             <select class="form-control single-select-dropdown" id="sub_sub_category"
                                                     name="sub_sub_category"
                                                     required>
-                                                <option value="" selected disabled> ---- Select Product Type ---
-                                                </option>
+                                                <option value=""></option>
+                                                <option disabled>Please select category first *</option>
                                             </select>
 
                                             <small class="text-danger" id="sub_sub_category_error"></small>
@@ -152,26 +148,30 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-lg-6 clearfix">
-                                            <label for="subject" class="font-500">Subject
+                                        <div class="form-group col-lg-6">
+                                            <label for="subject" class="d-none font-500">Subject
                                                 <span class="required"> *</span>
                                             </label>
-                                            <span class="text-danger pull-right font-500"><span
-                                                    class="counter-total-digits">0</span>/80</span>
-                                            <input type="text" id="subject" maxlength="80" class="form-control"
-                                                   name="subject"
-                                                   placeholder="It will appear as title" required>
+                                            <div class="input-group">
+                                                <input type="text" id="subject" class="h-auto form-control" maxlength = "80" name="subject"
+                                                       placeholder="Subject * - It will appear as title" required>
+                                                <div class="input-group-append counter-span">
+                                                    <span class="text-danger font-500"><span class="counter-total-digits">0</span>/80</span>
+                                                </div>
+                                            </div>
                                             <small class="text-danger" id="subject_error"></small>
                                         </div>
-                                        <div class="form-group col-lg-6 clearfix product-name">
-                                            <label for="product_service_name" class="font-500">Product Name
+                                        <div class="form-group col-lg-6 product-name">
+                                            <label for="product_service_name" class="d-none font-500">Product Name
                                                 <span class="required"> *</span>
                                             </label>
-                                            <span class="text-danger pull-right font-500"><span
-                                                    class="counter-total-digits">0</span>/50</span>
-                                            <input type="text" id="product_service_name" maxlength="50"
-                                                   class="form-control"
-                                                   name="product_service_name" placeholder="Product Name" required>
+                                            <div class="input-group">
+                                                <input type="text" id="product_service_name" class="h-auto form-control" maxlength = "50"
+                                                       name="product_service_name" placeholder="Product Name *" required>
+                                                <div class="input-group-append counter-span">
+                                                    <span class="text-danger font-500"><span class="counter-total-digits">0</span>/50</span>
+                                                </div>
+                                            </div>
                                             <small class="text-danger" id="product_service_name_error"></small>
                                         </div>
                                     </div>
@@ -179,7 +179,7 @@
                                         <div class="form-group col-lg-6 product-availability">
                                             <label class="font-500">Product Availability</label>
                                             <div class="d-flex">
-                                                <div class="custom-control custom-radio ml-3">
+                                                <div class="custom-control custom-radio">
                                                     <input type="radio"
                                                            class="custom-control-input product-availability"
                                                            value="Made to order" name="product_availability"
@@ -207,7 +207,7 @@
                                             <small class="text-danger" id="product_availability_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <label class="font-500">
+                                            <label class="d-none font-500">
                                                 Additional Keyword For Search
                                                 <span class="fa fa-question-circle" data-toggle="tooltip"
                                                       data-placement="right"
@@ -218,15 +218,15 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <input type="text" id="keyword1" name="keyword1"
-                                                           class="form-control" placeholder="Keyword 1">
+                                                           class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 1">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <input type="text" id="keyword2" name="keyword2"
-                                                           class="form-control" placeholder="Keyword 2">
+                                                           class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 2">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <input type="text" id="keyword3" name="keyword3"
-                                                           class="form-control" placeholder="Keyword 3">
+                                                           class="form-control" placeholder="Additional Keyword For Search (Optional) - Keyword 3">
                                                 </div>
                                             </div>
                                         </div>
@@ -238,8 +238,8 @@
                                                     10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
-                                                    <div class="row product-img-sheet">
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="mx-0 row product-img-sheet">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image16"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -259,7 +259,7 @@
                                                                        id="sheet16_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image17"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -279,7 +279,7 @@
                                                                        id="sheet17_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image18"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -299,7 +299,7 @@
                                                                        id="sheet18_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image19"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -319,7 +319,7 @@
                                                                        id="sheet19_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image20"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -339,7 +339,7 @@
                                                                        id="sheet20_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image21"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -359,7 +359,7 @@
                                                                        id="sheet21_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image22"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -379,7 +379,7 @@
                                                                        id="sheet22_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image23"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -399,7 +399,7 @@
                                                                        id="sheet23_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image24"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -419,7 +419,7 @@
                                                                        id="sheet24_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image25"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -439,7 +439,7 @@
                                                                        id="sheet25_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image26"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -459,7 +459,7 @@
                                                                        id="sheet26_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image27"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -479,7 +479,7 @@
                                                                        id="sheet27_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image28"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -499,7 +499,7 @@
                                                                        id="sheet28_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image29"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -519,7 +519,7 @@
                                                                        id="sheet29_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image30"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -552,8 +552,8 @@
                                                     10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
-                                                    <div class="row product-img-sheet">
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                    <div class="mx-0 row product-img-sheet">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image1"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -572,7 +572,7 @@
                                                                        id="avatar1_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image2"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -591,7 +591,7 @@
                                                                        id="avatar2_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image3"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -610,7 +610,7 @@
                                                                        id="avatar3_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image4"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -629,7 +629,7 @@
                                                                        id="avatar4_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image5"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -648,7 +648,7 @@
                                                                        id="avatar5_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image6"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -667,7 +667,7 @@
                                                                        id="avatar6_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image7"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -686,7 +686,7 @@
                                                                        id="avatar7_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image8"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -705,7 +705,7 @@
                                                                        id="avatar8_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image9"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -724,7 +724,7 @@
                                                                        id="avatar9_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image10"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -743,7 +743,7 @@
                                                                        id="avatar10_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image11"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -762,7 +762,7 @@
                                                                        id="avatar11_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image12"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -781,7 +781,7 @@
                                                                        id="avatar12_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image13"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -800,7 +800,7 @@
                                                                        id="avatar13_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image14"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -819,7 +819,7 @@
                                                                        id="avatar14_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image15"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -847,17 +847,18 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
-                                            <label for="manufacturer_name" class="font-500 manufacturer_name">Manufacturer
+                                            <label for="manufacturer_name" class="d-none font-500 manufacturer_name">Manufacturer
                                                 Name </label>
                                             <input type="text" id="manufacturer_name"
                                                    value="{{$userCompany->company_name}}" name="manufacturer_name"
                                                    class="form-control manufacturer-name optional-field"
-                                                   placeholder="Manufacture spelling must be correct to be visible in the search.">
+                                                   placeholder="Manufacturer Name (Optional) - Manufacture spelling must be correct to be visible in the search.">
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <label for="origin" class="font-500">Product Origin <span class="required"> *</span></label>
+                                            <label for="origin" class="d-none font-500">Product Origin <span class="required"> *</span></label>
                                             <select class="form-control origin" id="origin" name="origin" required>
-                                                <option value="" selected disabled> ---- Select Origin ---</option>
+                                                <option value=""></option>
+                                                <option disabled>Product Origin *</option>
                                                 <option value="Any">Any</option>
                                                 @foreach(\DB::table('countries')->get() as $country)
                                                     <option
@@ -870,91 +871,94 @@
                                     </div>
 
                                     <div class="additional-product-info fibre-info" style="display: none">
-                                        <span class="d-block mb-3 heading">Product Specifications</span>
+                                        <span class="d-block mb-1 heading">Product Specifications</span>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">Fibre Type <span
                                                         class="required"> *</span></label>
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio"
-                                                           class="dyed-greige-Other custom-control-input radio-btn"
-                                                           id="purposeDyed" value="Dyed" name="purpose"
-                                                           required>
-                                                    <label class="custom-control-label"
-                                                           for="purposeDyed">Dyed</label>
-                                                </div>
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio"
-                                                           class="dyed-greige-Other custom-control-input radio-btn"
-                                                           value="Greige"
-                                                           id="purposeGreige" name="purpose" required>
-                                                    <label class="custom-control-label"
-                                                           for="purposeGreige">Greige</label>
-                                                </div>
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input type="radio"
-                                                           class="dyed-greige-Other custom-control-input radio-btn"
-                                                           value="Other"
-                                                           id="purposeOther" name="purpose" required>
-                                                    <label class="custom-control-label"
-                                                           for="purposeOther">Other</label>
+                                                <div class="d-flex">
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio"
+                                                               class="dyed-greige-Other custom-control-input radio-btn"
+                                                               id="purposeDyed" value="Dyed" name="purpose"
+                                                               required>
+                                                        <label class="custom-control-label"
+                                                               for="purposeDyed">Dyed</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio"
+                                                               class="dyed-greige-Other custom-control-input radio-btn"
+                                                               value="Greige"
+                                                               id="purposeGreige" name="purpose" required>
+                                                        <label class="custom-control-label"
+                                                               for="purposeGreige">Greige</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio"
+                                                               class="dyed-greige-Other custom-control-input radio-btn"
+                                                               value="Other"
+                                                               id="purposeOther" name="purpose" required>
+                                                        <label class="custom-control-label"
+                                                               for="purposeOther">Other</label>
+                                                    </div>
                                                 </div>
                                                 <small class="text-danger" id="purpose_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Fibre Type <span
+                                                <label class="d-none font-500">Other Fibre Type <span
                                                         class="required"> *</span></label>
-                                                <input type="text" name="other_purpose" class="form-control"
+                                                <input type="text" name="other_purpose" class="form-control" placeholder="Other Fibre Type *"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="size" class="font-500">Fibre Size/Length <span
+                                                <label for="size" class="d-none font-500">Fibre Size/Length <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="size" class="form-control"
-                                                       name="size" placeholder="e.g. 1-2 cm,2-3 cm,3-4 cm,4+ cm, Other"
+                                                       name="size" placeholder="Fibre Size/Length * - e.g. 1-2 cm,2-3 cm,3-4 cm,4+ cm, Other"
                                                        required>
                                                 <small class="text-danger" id="size_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="strength" class="font-500">Tensile Strength <small
+                                                <label for="strength" class="d-none font-500">Tensile Strength <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="strength" class="form-control optional-field"
                                                        name="strength"
-                                                       placeholder="e.g. Tenacity, Breaking, Extension, Work Of Rupture, Other">
+                                                       placeholder="Tensile Strength (Optional) - e.g. Tenacity, Breaking, Extension, Work Of Rupture, Other">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="end_app" class="font-500">End Use Application <small
+                                                <label for="end_app" class="d-none font-500">End Use Application <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="end_app" class="form-control optional-field"
                                                        name="end_app"
-                                                       placeholder="e.g. Open End, Ring, Non-Woven, Other">
+                                                       placeholder="End Use Application (Optional) - e.g. Open End, Ring, Non-Woven, Other">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="additional-product-info Yarn-info" style="display: none;">
-                                        <span class="d-block mb-3 heading">Product Specifications</span>
+                                        <span class="d-block mb-1 heading">Product Specifications</span>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Yarn Count <span
+                                                <label class="d-none font-500">Yarn Count <span
                                                         class="required"> *</span></label>
                                                 <input name="yarn_count" class="form-control"
-                                                       placeholder="i.e 20 Ne,80 Ne, 50 Dtex, 150 Danier, Other"
+                                                       placeholder="Yarn Count * - i.e 20 Ne,80 Ne, 50 Dtex, 150 Danier, Other"
                                                        required>
                                                 <small class="text-danger" id="yarn_count_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Yarn Count Unit <span class="required"> *</span></label>
+                                                <label class="d-none font-500">Yarn Count Unit <span class="required"> *</span></label>
                                                 <select id="yarn_count_unit" name="yarn_count_unit"
                                                         class="form-control single-select-dropdown" required>
-                                                    <option value selected disabled>Select Yarn Count Unit</option>
+                                                    <option value=""></option>
+                                                    <option disabled>Select Yarn Count Unit</option>
                                                     <option value="Ne">Ne</option>
                                                     <option value="Nm">Nm</option>
                                                     <option value="Lea">Lea</option>
@@ -969,20 +973,21 @@
                                                 <small class="text-danger" id="yarn_count_unit_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Count Unit <span
+                                                <label class="d-none font-500">Other Count Unit <span
                                                         class="required"> *</span></label>
-                                                <input type="text" name="other_yarn_count_unit" class="form-control"
+                                                <input type="text" name="other_yarn_count_unit" class="form-control" placeholder="Other Count Unit *"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Yarn Attribute<span
+                                                <label class="d-none font-500">Yarn Attribute<span
                                                         class="required"> *</span></label>
                                                 <select id="yarn_attribute" name="yarn_attribute"
                                                         class="form-control single-select-dropdown"
                                                         required>
-                                                    <option value selected disabled>Select Yarn Attribute</option>
+                                                    <option value=""></option>
+                                                    <option disabled>Select Yarn Attribute *</option>
                                                     <option value="Greige">Greige</option>
                                                     <option value="RFD">RFD</option>
                                                     <option value="Dyed">Dyed</option>
@@ -996,20 +1001,21 @@
                                                 <small class="text-danger" id="yarn_attribute_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Yarn Attribute <span
+                                                <label class="d-none font-500">Other Yarn Attribute <span
                                                         class="required"> *</span></label>
-                                                <input type="text" name="other_yarn_attribute" class="form-control"
+                                                <input type="text" name="other_yarn_attribute" class="form-control" placeholder="Other Yarn Attribute *"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Technology<span
+                                                <label class="d-none font-500">Technology<span
                                                         class="required"> *</span></label>
                                                 <select id="yarn_technology" name="yarn_technology"
                                                         class="form-control single-select-dropdown"
                                                         required>
-                                                    <option value selected disabled>Select Yarn Technology</option>
+                                                    <option value=""></option>
+                                                    <option disabled>Select Yarn Technology *</option>
                                                     <option value="Ring">Ring</option>
                                                     <option value="Rotor">Rotor</option>
                                                     <option value="Jet/MJS">Jet/MJS</option>
@@ -1024,39 +1030,38 @@
                                                 <small class="text-danger" id="yarn_technology_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Technology <span
+                                                <label class="d-none font-500">Other Technology <span
                                                         class="required"> *</span></label>
-                                                <input type="text" name="other_yarn_technology" class="form-control"
+                                                <input type="text" name="other_yarn_technology" class="form-control" placeholder="Other Technology *"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Yarn Grade <span
+                                                <label class="d-none font-500">Yarn Grade <span
                                                         class="required"> *</span></label>
                                                 <input name="yarn_grade" class="form-control"
-                                                       placeholder="i.e A-Grade, B-Grade, Other"
+                                                       placeholder="Yarn Grade * - i.e A-Grade, B-Grade, Other"
                                                        required>
                                                 <small class="text-danger" id="yarn_grade_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="tpi" class="font-500">TPI <small class="font-500">
+                                                <label for="tpi" class="d-none font-500">TPI <small class="font-500">
                                                         (Optional)</small></label>
                                                 <input type="text" id="tpi" name="tpi"
                                                        class="form-control optional-field"
-                                                       placeholder="TPI (Twist Per Inch) i.e Mention TPI">
+                                                       placeholder="TPI (Optional) - TPI (Twist Per Inch) i.e Mention TPI">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="tenacity" class="font-500">Tenacity <small class="font-500">
+                                                <label for="tenacity" class="d-none font-500">Tenacity <small class="font-500">
                                                         (Optional)</small></label>
                                                 <input type="text" id="tenacity" name="tenacity"
                                                        class="form-control optional-field"
-                                                       placeholder="i.e Mention Yarn Tenacity"
-                                                >
+                                                       placeholder="Tenacity (Optional) - i.e Mention Yarn Tenacity">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -1105,9 +1110,9 @@
                                                 <small class="text-danger" id="count_type_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Count Type <span
+                                                <label class="d-none font-500">Other Count Type <span
                                                         class="required"> *</span></label>
-                                                <input type="text" name="other_count_type" class="form-control"
+                                                <input type="text" name="other_count_type" class="form-control" placeholder="Other Count Type *"
                                                        required>
                                             </div>
                                         </div>
@@ -1160,9 +1165,9 @@
                                                 <small class="text-danger" id="yarn_specialty_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Yarn Speciality <span
+                                                <label class="d-none font-500">Other Yarn Speciality <span
                                                         class="required"> *</span></label>
-                                                <input type="text" name="other_yarn_speciality" class="form-control"
+                                                <input type="text" name="other_yarn_speciality" class="form-control" placeholder="Other Yarn Speciality *"
                                                        required>
                                             </div>
                                         </div>
@@ -1243,22 +1248,23 @@
                                                 <small class="text-danger" id="usage_type_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other End Use/Application <span
+                                                <label class="d-none font-500">Other End Use/Application <span
                                                         class="required"> *</span></label>
-                                                <input type="text" name="other_usage_type" class="form-control"
+                                                <input type="text" name="other_usage_type" class="form-control" placeholder="Other End Use/Application *"
                                                        required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="additional-product-info knitted-fabric-info" style="display: none;">
-                                        <span class="d-block mb-3 heading">Product Specifications</span>
+                                        <span class="d-block mb-1 heading">Product Specifications</span>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 fabric-type">
-                                                <label class="font-500">Fabric Type <span
+                                                <label class="d-none font-500">Fabric Type <span
                                                         class="required">*</span></label>
                                                 <select id="knitted_fabric_types" name="knitted_fabric_types"
                                                         class="form-control single-select-dropdown" required>
-                                                    <option value selected disabled>Select Fabric Type</option>
+                                                    <option value=""></option>
+                                                    <option disabled>Select Fabric Type *</option>
                                                     <option value="Greige">Greige</option>
                                                     <option value="Dyed">Dyed</option>
                                                     <option value="Yarn Dyed">Yarn Dyed</option>
@@ -1272,19 +1278,20 @@
                                                 <small class="text-danger" id="knitted_fabric_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Fabric Type <span
+                                                <label class="d-none font-500">Other Fabric Type <span
                                                         class="required"> *</span></label>
                                                 <input type="text" name="other_knitted_fabric_type"
-                                                       class="form-control">
+                                                       class="form-control" placeholder="Other Fabric Type *">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 weave-type">
-                                                <label class="font-500">Knitting Type <span
+                                                <label class="d-none font-500">Knitting Type <span
                                                         class="required">*</span></label>
                                                 <select name="knitted_knitting_types"
                                                         class="form-control single-select-dropdown" required>
-                                                    <option value selected disabled>Select Knitting Type</option>
+                                                    <option value=""></option>
+                                                    <option disabled>Select Knitting Type *</option>
                                                     <option value="Warp">Warp</option>
                                                     <option value="Weft">Weft</option>
                                                     <option value="Circular">Circular</option>
@@ -1295,57 +1302,57 @@
                                                 <small class="text-danger" id="weave_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Knitting Type <span
+                                                <label class="d-none font-500">Other Knitting Type <span
                                                         class="required"> *</span></label>
                                                 <input type="text" name="other_knitted_knitting_type"
-                                                       class="form-control"
+                                                       class="form-control" placeholder="Other Knitting Type *"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="knitted_fabric_construction" class="font-500">Fabric
+                                                <label for="knitted_fabric_construction" class="d-none font-500">Fabric
                                                     Construction <span class="required"> *</span></label>
                                                 <input type="text" id="knitted_fabric_construction" class="form-control"
                                                        name="knitted_fabric_construction"
-                                                       placeholder="e.g. 80*80/100*80, Other" required>
+                                                       placeholder="Fabric Construction * - e.g. 80*80/100*80, Other" required>
                                                 <small class="text-danger"
                                                        id="knitted_fabric_construction_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="knitted_gsm_thickness" class="font-500">GSM/Thickness <span
+                                                <label for="knitted_gsm_thickness" class="d-none font-500">GSM/Thickness <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="knitted_gsm_thickness" class="form-control"
                                                        name="knitted_gsm_thickness"
-                                                       placeholder="e.g. 75 GSM,150 GSM, Other"
+                                                       placeholder="GSM/Thickness * - e.g. 75 GSM,150 GSM, Other"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="knitted_fabric_composition" class="font-500">Fabric
+                                                <label for="knitted_fabric_composition" class="d-none font-500">Fabric
                                                     Composition<small class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="knitted_fabric_composition"
                                                        class="form-control optional-field"
                                                        name="knitted_fabric_composition"
-                                                       placeholder="e.g. 60% Cotton, 40% Polyester, Other">
+                                                       placeholder="Fabric Composition (Optional) - e.g. 60% Cotton, 40% Polyester, Other">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="knitted_width" class="font-500">Width Range <span
+                                                <label for="knitted_width" class="d-none font-500">Width Range <span
                                                         class="required">*</span></label>
                                                 <div class="form-row">
-                                                    <div class="col-md-6">
+                                                    <div class="form-group col-md-6">
                                                         <input type="text" id="knitted_width_from" class="form-control"
-                                                               name="knitted_width_from" placeholder="e.g. 75 Inches"
+                                                               name="knitted_width_from" placeholder="Knitted Width Range From * - e.g. 75 Inches"
                                                                required>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="form-group col-md-6">
                                                         <input type="text" id="knitted_width_to" class="form-control"
-                                                               name="knitted_width_to" placeholder="e.g. 105 Inches"
+                                                               name="knitted_width_to" placeholder="Knitted Width Range From * - e.g. 105 Inches"
                                                                required>
                                                     </div>
                                                 </div>
@@ -1423,11 +1430,11 @@
                                                 <small class="text-danger" id="knitted_manufact_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Manufacturing Technique <span
+                                                <label class="d-none font-500">Other Manufacturing Technique <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="other_knitted_manufact"
                                                        name="other_knitted_manufact"
-                                                       class="form-control">
+                                                       class="form-control" placeholder="Other Manufacturing Technique *">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -1469,10 +1476,10 @@
                                                 <small class="text-danger" id="knitted_yarn_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Yarn Type <span class="required"> *</span></label>
+                                                <label class="d-none font-500">Other Yarn Type <span class="required"> *</span></label>
                                                 <input type="text" id="other_knitted_yarn_type"
                                                        name="other_knitted_yarn_type"
-                                                       class="form-control">
+                                                       class="form-control" placeholder="Other Yarn Type *">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -1568,11 +1575,11 @@
                                                 <small class="text-danger" id="knitted_features_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 add-knitted-features-field other-div">
-                                                <label class="font-500">Other Features <span
+                                                <label class="d-none font-500">Other Features <span
                                                         class="required">*</span></label>
                                                 <input name="other_knitted_features" id="knittedFeaturesOther"
                                                        type="text"
-                                                       class="form-control" required>
+                                                       class="form-control" placeholder="Other Features *" required>
                                                 <small class="text-danger" id="knittedFeaturesOther_error"></small>
                                             </div>
                                         </div>
@@ -1658,24 +1665,25 @@
                                                 <small class="text-danger" id="knitted_use_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 add-knitted-Use-field">
-                                                <label class="font-500">Other End Use Application <span
+                                                <label class="d-none font-500">Other End Use Application <span
                                                         class="required">*</span></label>
                                                 <input name="other_knitted_use" id="otherKnittedUse" type="text"
-                                                       class="form-control"
+                                                       class="form-control" placeholder="Other End Use Application *"
                                                        required>
                                                 <small class="text-danger" id="otherKnittedUse_error"></small>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="additional-product-info fabric-info" style="display: none;">
-                                        <span class="d-block mb-3 heading">Product Specifications</span>
+                                        <span class="d-block mb-1 heading">Product Specifications</span>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 fabric-type">
                                                 <label class="font-500">Fabric Type <span
                                                         class="required"> *</span></label>
                                                 <select id="woven_fabric_types" name="woven_fabric_types"
                                                         class="form-control single-select-dropdown" required>
-                                                    <option value selected disabled>Select Fabric Type</option>
+                                                    <option value=""></option>
+                                                    <option disabled>Select Fabric Type *</option>
                                                     <option value="Greige">Greige</option>
                                                     <option value="Dyed">Dyed</option>
                                                     <option value="Yarn Dyed">Yarn Dyed</option>
@@ -1689,18 +1697,19 @@
                                                 <small class="text-danger" id="woven_fabric_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Woven Fabric Type <span class="required"> *</span></label>
-                                                <input type="text" name="other_woven_fabric_type" class="form-control">
+                                                <label class="d-none font-500">Other Woven Fabric Type <span class="required"> *</span></label>
+                                                <input type="text" name="other_woven_fabric_type" class="form-control" placeholder="Other Woven Fabric Type *">
                                                 <small class="text-danger" id="other_woven_fabric_type_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 weave-type">
-                                                <label class="font-500">Weave Type <span
+                                                <label class="d-none font-500">Weave Type <span
                                                         class="required"> *</span></label>
                                                 <select id="woven_weave_types" name="woven_weave_types"
                                                         class="form-control single-select-dropdown" required>
-                                                    <option value selected disabled>Select Weave Type</option>
+                                                    <option value=""></option>
+                                                    <option disabled>Select Weave Type *</option>
                                                     <option value="Plain">Plain</option>
                                                     <option value="Twill">Twill</option>
                                                     <option value="Satin">Satin</option>
@@ -1719,56 +1728,56 @@
                                                 <small class="text-danger" id="woven_weave_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="font-500">Other Woven Weave Type <span
+                                                <label class="d-none font-500">Other Woven Weave Type <span
                                                         class="required"> *</span></label>
-                                                <input type="text" name="other_woven_weave_type" class="form-control">
+                                                <input type="text" name="other_woven_weave_type" class="form-control" placeholder="Other Woven Weave Type *">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="woven_fabric_construction" class="font-500">Fabric
+                                                <label for="woven_fabric_construction" class="d-none font-500">Fabric
                                                     Construction <span class="required"> *</span></label>
                                                 <input type="text" id="woven_fabric_construction" class="form-control"
                                                        name="woven_fabric_construction"
-                                                       placeholder="e.g. 80*80/100*80, Other"
+                                                       placeholder="Fabric Construction * - e.g. 80*80/100*80, Other"
                                                        required>
                                                 <small class="text-danger" id="woven_fabric_construction_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="woven_gsm_thickness" class="font-500">GSM/Thickness <span
+                                                <label for="woven_gsm_thickness" class="d-none font-500">GSM/Thickness <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="woven_gsm_thickness" class="form-control"
                                                        name="woven_gsm_thickness"
-                                                       placeholder="e.g. 75 GSM,150 GSM, Other"
+                                                       placeholder="GSM/Thickness * - e.g. 75 GSM,150 GSM, Other"
                                                        required>
                                                 <small class="text-danger" id="woven_gsm_thickness"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="woven_fabric_composition" class="font-500">Fabric
+                                                <label for="woven_fabric_composition" class="d-none font-500">Fabric
                                                     Composition<small> (Optional)</small></label>
                                                 <input type="text" id="woven_fabric_composition"
                                                        class="form-control optional-field"
                                                        name="woven_fabric_composition"
-                                                       placeholder="e.g. 60% Cotton, 40% Polyester, Other">
+                                                       placeholder="Fabric Composition (Optional) - e.g. 60% Cotton, 40% Polyester, Other">
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-lg-6">
-                                                <label for="woven_width" class="font-500">Width Range <span
+                                            <div class="col-lg-6">
+                                                <label for="woven_width" class="d-none font-500">Width Range <span
                                                         class="required">*</span></label>
                                                 <div class="form-row">
-                                                    <div class="col-md-6">
+                                                    <div class="form-group col-md-6">
                                                         <input type="text" id="woven_width_from" class="form-control"
-                                                               name="woven_width_from" placeholder="e.g. 75 Inches"
+                                                               name="woven_width_from" placeholder="Woven Width Range From * - e.g. 75 Inches"
                                                                required>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="form-group col-md-6">
                                                         <input type="text" id="woven_width_to" class="form-control"
-                                                               name="woven_width_to" placeholder="e.g. 105 Inches"
+                                                               name="woven_width_to" placeholder="Woven Width Range To * - e.g. 105 Inches"
                                                                required>
                                                     </div>
                                                 </div>
@@ -1850,10 +1859,10 @@
                                                 <small class="text-danger" id="woven_manufact_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div" id="addWovenOtherWeaving">
-                                                <label class="font-500">Other Manufacturing Technique<span
+                                                <label class="d-none font-500">Other Manufacturing Technique<span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="other_woven_manufact" name="other_woven_manufact"
-                                                       class="form-control">
+                                                       class="form-control" placeholder="Other Manufacturing Technique *">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -1894,9 +1903,9 @@
                                                 <small class="text-danger" id="woven_yarn_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div" id="otherWovenWeaving">
-                                                <label class="font-500">Other Yarn Type <span class="required"> *</span></label>
+                                                <label class="d-none font-500">Other Yarn Type <span class="required"> *</span></label>
                                                 <input type="text" id="other_woven_yarn" name="other_woven_yarn"
-                                                       class="form-control">
+                                                       class="form-control" placeholder="Other Yarn Type *">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -1995,10 +2004,10 @@
                                                 <small class="text-danger" id="woven_features_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 add-features-field">
-                                                <label class="font-500">Other Features <span
+                                                <label class="d-none font-500">Other Features <span
                                                         class="required">*</span></label>
                                                 <input id="other_woven_features" name="other_woven_features" type="text"
-                                                       class="form-control" required>
+                                                       class="form-control" placeholder="Other Features *" required>
                                                 <small class="text-danger" id="other_woven_features_error"></small>
                                             </div>
                                         </div>
@@ -2083,24 +2092,25 @@
                                                 <small class="text-danger" id="woven_use_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 add-Use-field">
-                                                <label class="font-500">Other End Use/Application <span
+                                                <label class="d-none font-500">Other End Use/Application <span
                                                         class="required">*</span></label>
                                                 <input id="other_woven_use" name="other_woven_use" type="text"
-                                                       class="form-control"
+                                                       class="form-control" placeholder="Other End Use/Application *"
                                                        required>
                                                 <small class="text-danger" id="other_woven_use_error"></small>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="additional-product-info non-woven-fabric-info" style="display: none;">
-                                        <span class="d-block mb-3 heading">Product Specifications</span>
+                                        <span class="d-block mb-1 heading">Product Specifications</span>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 fabric-type">
-                                                <label class="font-500">Fabric Type <span
+                                                <label class="d-none font-500">Fabric Type <span
                                                         class="required">*</span></label>
                                                 <select id="non_woven_fabric_types" name="non_woven_fabric_types"
                                                         class="form-control single-select-dropdown" required>
-                                                    <option value selected disabled>Select Fabric Type</option>
+                                                    <option value=""></option>
+                                                    <option disabled>Select Fabric Type *</option>
                                                     <option value="Greige">Greige</option>
                                                     <option value="Dyed">Dyed</option>
                                                     <option value="Yarn Dyed">Yarn Dyed</option>
@@ -2114,19 +2124,20 @@
                                                 <small class="text-danger" id="non_woven_fabric_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div add-fabric-type">
-                                                <label class="font-500">Other Fabric Type <span
+                                                <label class="d-none font-500">Other Fabric Type <span
                                                         class="required"> *</span></label>
                                                 <input type="text" name="other_non_woven_fabric_type"
-                                                       class="form-control">
+                                                       class="form-control" placeholder="Other Fabric Type *">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 weave-type">
-                                                <label class="font-500">Non Woven Type <span
+                                                <label class="d-none font-500">Non Woven Type <span
                                                         class="required">*</span></label>
                                                 <select id="non_woven_types" name="non_woven_types"
                                                         class="form-control single-select-dropdown" required>
-                                                    <option value selected disabled>Select Woven Type</option>
+                                                    <option value=""></option>
+                                                    <option disabled>Select Non Woven Type *</option>
                                                     <option value="Spun Lace">Spun Lace</option>
                                                     <option value="Composite">Composite</option>
                                                     <option value="PP Needle Felt">PP Needle Felt</option>
@@ -2140,60 +2151,60 @@
                                                 <small class="text-danger" id="non_woven_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div add-fabric-type">
-                                                <label class="font-500">Other Type <span
+                                                <label class="d-none font-500">Other Type <span
                                                         class="required"> *</span></label>
-                                                <input type="text" name="other_non_woven_type" class="form-control">
+                                                <input type="text" name="other_non_woven_type" class="form-control" placeholder="Other Type *">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="non_woven_fabric_construction" class="font-500">Fabric
+                                                <label for="non_woven_fabric_construction" class="d-none font-500">Fabric
                                                     Construction <span class="required"> *</span></label>
                                                 <input type="text" id="non_woven_fabric_construction"
                                                        class="form-control"
                                                        name="non_woven_fabric_construction"
-                                                       placeholder="e.g. 80*80/100*80, Other"
+                                                       placeholder="Fabric Construction * - e.g. 80*80/100*80, Other"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="non_woven_gsm_thickness" class="font-500">GSM/Thickness
+                                                <label for="non_woven_gsm_thickness" class="d-none font-500">GSM/Thickness
                                                     <span class="required"> *</span></label>
                                                 <input type="text" id="non_woven_gsm_thickness" class="form-control"
                                                        name="non_woven_gsm_thickness"
-                                                       placeholder="e.g. 75 GSM,150 GSM, Other"
+                                                       placeholder="GSM/Thickness * - e.g. 75 GSM,150 GSM, Other"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="non_woven_fabric_composition" class="font-500">Fabric
+                                                <label for="non_woven_fabric_composition" class="d-none font-500">Fabric
                                                     Composition<small class="font-500"> (Optional)</small></label>
                                                 <div class="form-row">
                                                     <div class="col-md-12">
                                                         <input type="text" id="non_woven_fabric_composition"
                                                                class="form-control optional-field"
                                                                name="non_woven_fabric_composition"
-                                                               placeholder="e.g. 60% Cotton, 40% Polyester, Other">
+                                                               placeholder="Fabric Composition (Optional) - e.g. 60% Cotton, 40% Polyester, Other">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-lg-6">
-                                                <label for="non_woven_width" class="font-500">Width Range <span
+                                            <div class="col-lg-6">
+                                                <label for="non_woven_width" class="d-none font-500">Width Range <span
                                                         class="required">*</span></label>
                                                 <div class="form-row">
-                                                    <div class="col-md-6">
+                                                    <div class="form-group col-md-6">
                                                         <input type="text" id="non_woven_width_from"
                                                                class="form-control"
-                                                               name="non_woven_width_from" placeholder="e.g. 75 Inches"
+                                                               name="non_woven_width_from" placeholder="Non Woven Width Range From * - e.g. 75 Inches"
                                                                required>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="form-group col-md-6">
                                                         <input type="text" id="non_woven_width_to" class="form-control"
-                                                               name="non_woven_width_to" placeholder="e.g. 105 Inches"
+                                                               name="non_woven_width_to" placeholder="Non Woven Width Range To * - e.g. 105 Inches"
                                                                required>
                                                     </div>
                                                 </div>
@@ -2274,11 +2285,11 @@
                                                 <small class="text-danger" id="non_woven_manufact_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div" id="addNonWovenOtherWeaving">
-                                                <label class="font-500">Other Manufacturing Technique <span
+                                                <label class="d-none font-500">Other Manufacturing Technique <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="other_non_woven_manufact"
                                                        name="other_non_woven_manufact"
-                                                       class="form-control">
+                                                       class="form-control" placeholder="Other Manufacturing Technique *">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -2320,9 +2331,9 @@
                                                 <small class="text-danger" id="non_woven_yarn_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div" id="addOtherNonWovenWeaving">
-                                                <label class="font-500">Other Yarn Type <span class="required"> *</span></label>
+                                                <label class="d-none font-500">Other Yarn Type <span class="required"> *</span></label>
                                                 <input type="text" id="other_non_woven_yarn" name="other_non_woven_yarn"
-                                                       class="form-control">
+                                                       class="form-control" placeholder="Other Yarn Type *">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -2428,11 +2439,11 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6 add-nonwoven-features-field">
-                                                <label class="font-500">Other Features <span
+                                                <label class="d-none font-500">Other Features <span
                                                         class="required">*</span></label>
                                                 <input id="other_non_woven_features" name="other_non_woven_features"
                                                        type="text"
-                                                       class="form-control" required>
+                                                       class="form-control" placeholder="Other Features *" required>
                                                 <small class="text-danger" id="other_non_woven_features_error"></small>
                                             </div>
                                         </div>
@@ -2521,10 +2532,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6 add-End-field">
-                                                <label class="font-500">Other End Use/Application <span
+                                                <label class="d-none font-500">Other End Use/Application <span
                                                         class="required">*</span></label>
                                                 <input id="other_non_woven_use" name="other_non_woven_use" type="text"
-                                                       class="form-control"
+                                                       class="form-control" placeholder="Other End Use/Application *"
                                                        required>
                                                 <small class="text-danger" id="other_non_woven_use_error"></small>
                                             </div>
@@ -2532,7 +2543,7 @@
                                     </div>
 
                                     <div class="additional-product-info machinery-info" style="display: none;">
-                                        <span class="d-block mb-3 heading">Product Specifications</span>
+                                        <span class="d-block mb-1 heading">Product Specifications</span>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Product Type <span
@@ -2613,10 +2624,10 @@
                                                 <small class="text-danger" id="after_sales_service_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 type-of-service">
-                                                <label for="service_type" class="font-500">Type of Service <span
+                                                <label for="service_type" class="d-none font-500">Type of Service <span
                                                         class="required">*</span></label>
                                                 <input type="text" id="service_type" class="form-control"
-                                                       name="service_type" placeholder="Type of Service" required>
+                                                       name="service_type" placeholder="Type of Service *" required>
                                                 <small class="text-danger" id="service_type_error"></small>
                                             </div>
                                         </div>
@@ -2650,10 +2661,10 @@
                                                 <small class="text-danger" id="warranty_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 warranty-services">
-                                                <label for="warranty_period" class="font-500">Warranty Period <span
+                                                <label for="warranty_period" class="d-none font-500">Warranty Period <span
                                                         class="required">*</span></label>
                                                 <input type="text" id="warranty_period" class="form-control"
-                                                       name="warranty_period" placeholder="Warranty Period" required>
+                                                       name="warranty_period" placeholder="Warranty Period *" required>
                                                 <small class="text-danger" id="warranty_period_error"></small>
                                             </div>
                                         </div>
@@ -2686,118 +2697,118 @@
                                                 <small class="text-danger" id="certification_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 certify-services">
-                                                <label for="certification_details" class="font-500">Certification
+                                                <label for="certification_details" class="d-none font-500">Certification
                                                     Details <span class="required"> *</span></label>
                                                 <input type="text" id="certification_details" class="form-control"
-                                                       name="certification_details" placeholder="Certification Details"
+                                                       name="certification_details" placeholder="Certification Details *"
                                                        required>
                                                 <small class="text-danger" id="certification_details_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="additional_trade_notes" class="font-500">Additional Trade
+                                                <label for="additional_trade_notes" class="d-none font-500">Additional Trade
                                                     notes <small class="font-500"> (Optional)</small></label>
                                                 <input type="text" class="form-control optional-field"
                                                        id="additional_trade_notes" name="additional_trade_notes"
-                                                       placeholder="Additional Trade notes">
+                                                       placeholder="Additional Trade notes (Optional)">
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label for="product_related_certifications" class="font-500">Company
+                                                <label for="product_related_certifications" class="d-none font-500">Company
                                                     Certification <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="product_related_certifications"
                                                        class="form-control optional-field"
                                                        name="product_related_certifications"
-                                                       placeholder="Company Certification">
+                                                       placeholder="Company Certification (Optional)">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="additional-product-info ppe-institutional-info" style="display: none;">
-                                        <span class="d-block mb-3 heading">Product Specifications</span>
+                                        <span class="d-block mb-1 heading">Product Specifications</span>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="material" class="font-500">Material Type <span
+                                                <label for="material" class="d-none font-500">Material Type <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="material" class="form-control" name="material"
-                                                       placeholder="i.e Cotton, Polyester, Nylon, Blend, Other"
+                                                       placeholder="Material Type * - i.e Cotton, Polyester, Nylon, Blend, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label for="composition" class="font-500">Composition/Construction <span
+                                                <label for="composition" class="d-none font-500">Composition/Construction <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="composition" class="form-control"
                                                        name="composition"
-                                                       placeholder="e.g. 60% Cotton, 40% Polyester, 80*80/100*80, 2 ply, Other"
+                                                       placeholder="Composition/Construction * - e.g. 60% Cotton, 40% Polyester, 80*80/100*80, 2 ply, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label for="size_age_group" class="font-500">Size/Age Group <span
+                                                <label for="size_age_group" class="d-none font-500">Size/Age Group <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="size_age_group" class="form-control"
                                                        name="size_age_group"
-                                                       placeholder="e.g. i.e XS-S-M-L-XL, 5-10 Years, King Size, Queen Size, Other"
+                                                       placeholder="Size/Age Group * - e.g. i.e XS-S-M-L-XL, 5-10 Years, King Size, Queen Size, Other"
                                                        required>
                                             </div>
 
                                             <div class="form-group col-lg-6">
-                                                <label for="colour" class="font-500">Color <span
+                                                <label for="colour" class="d-none font-500">Color <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="colour" class="form-control" name="colour"
-                                                       placeholder="e.g. Blue, Black, Grey, Green, Red, Multi, Other"
+                                                       placeholder="Color * - e.g. Blue, Black, Grey, Green, Red, Multi, Other"
                                                        required>
                                             </div>
 
                                             <div class="form-group col-lg-6">
-                                                <label for="gender" class="font-500">Gender <small class="font-500">
+                                                <label for="gender" class="d-none font-500">Gender <small class="font-500">
                                                         (Optional)</small></label>
 
                                                 <input type="text" id="gender" class="form-control optional-field"
-                                                       name="gender" placeholder="e.g. Man, Women, Boy, Girl, Other">
+                                                       name="gender" placeholder="Gender (Optional) - e.g. Man, Women, Boy, Girl, Other">
                                             </div>
 
                                             <div class="form-group col-lg-6">
-                                                <label for="thickness" class="font-500">Thickness/GSM/Width <small
+                                                <label for="thickness" class="d-none font-500">Thickness/GSM/Width <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="thickness" class="form-control optional-field"
                                                        name="thickness"
-                                                       placeholder="e.g. 75 GSM, 150 GSM, 3 mm, 10 mm, 45 Inches, 70 Inches, Other">
+                                                       placeholder="Thickness/GSM/Width (Optional) - e.g. 75 GSM, 150 GSM, 3 mm, 10 mm, 45 Inches, 70 Inches, Other">
                                             </div>
 
                                             <div class="form-group col-lg-6">
-                                                <label for="brand" class="font-500">Brand <small class="font-500">
+                                                <label for="brand" class="d-none font-500">Brand <small class="font-500">
                                                         (Optional)</small></label>
                                                 <input type="text" id="brand" class="form-control optional-field"
                                                        name="brand"
-                                                       placeholder="e.g. Levi's, Mustang, Blend, Servise, Other">
+                                                       placeholder="Brand (Optional) - e.g. Levi's, Mustang, Blend, Servise, Other">
                                             </div>
 
                                             <div class="form-group col-lg-6">
-                                                <label for="design" class="font-500">Design/Style <small
+                                                <label for="design" class="d-none font-500">Design/Style <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="design" class="form-control optional-field"
                                                        name="design"
-                                                       placeholder="e.g. Front Open, Front Zipper, 5 Pocket Trouser, 3 Ply, Other">
+                                                       placeholder="Design/Style (Optional) - e.g. Front Open, Front Zipper, 5 Pocket Trouser, 3 Ply, Other">
                                             </div>
 
                                             <div class="form-group col-lg-6">
-                                                <label for="season" class="font-500">Season <small class="font-500">
+                                                <label for="season" class="d-none font-500">Season <small class="font-500">
                                                         (Optional)</small></label>
                                                 <input type="text" id="season" class="form-control optional-field"
-                                                       name="season" placeholder="e.g. Summer, Winter, Festive, Other">
+                                                       name="season" placeholder="Season (Optional) - e.g. Summer, Winter, Festive, Other">
                                             </div>
 
                                             <div class="form-group col-lg-6">
-                                                <label for="use_end" class="font-500">End Use/Application <small
+                                                <label for="use_end" class="d-none font-500">End Use/Application <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="use_end" class="form-control optional-field"
                                                        name="use_end"
-                                                       placeholder="e.g. Safety, Protection, Flame Retardent, Water Proof, Other">
+                                                       placeholder="End Use/Application (Optional) - e.g. Safety, Protection, Flame Retardent, Water Proof, Other">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="additional-product-info chemical-info" style="display: none;">
-                                        <span class="d-block mb-3 heading">Additional Product Info</span>
+                                        <span class="d-block mb-1 heading">Additional Product Info</span>
                                         <div class="chemical-info-inner">
                                             <input type="hidden" id="company_counter" name="company_counter"
                                                    value="1">
@@ -2806,18 +2817,18 @@
                                                     <h5 class="chemical-info-heading">Product Info 1</h5>
                                                 </div>
                                                 <div class="form-group col-lg-6 additonial-info">
-                                                    <label class="font-500">Manufacturer Company Name <small
+                                                    <label class="d-none font-500">Manufacturer Company Name <small
                                                             class="font-500"> (Optional)</small></label>
                                                     <input type="text" id="manufacturer_company_name1"
                                                            name="manufacturer_company_name1" class="form-control"
-                                                           placeholder="Company Name">
+                                                           placeholder="Manufacturer Company Name (Optional) - Company Name">
                                                 </div>
                                                 <div class="form-group col-lg-6">
-                                                    <label class="font-500">Product Origin <small
+                                                    <label class="d-none font-500">Product Origin <small
                                                             class="font-500"> (Optional)</small></label>
                                                     <select class="form-control" id="origin1" name="origin1">
-                                                        <option value="" selected disabled> ---- Select Origin ---
-                                                        </option>
+                                                        <option value=""></option>
+                                                        <option disabled>Product Origin *</option>
                                                         @foreach(\App\Country::all() as $country)
                                                             <option
                                                                 @if($user->my_office->creator->country_id == $country->id) selected
@@ -2826,26 +2837,26 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-lg-6">
-                                                    <label class="font-500">Chemicals Listed <span
+                                                    <label class="d-none font-500">Chemicals Listed <span
                                                             class="required">*</span></label>
                                                     <input type="text" id="chemicals_listed1"
                                                            name="chemicals_listed1"
-                                                           class="form-control" placeholder="Chemicals Listed"
+                                                           class="form-control" placeholder="Chemicals Listed *"
                                                            required>
                                                     <small class="text-danger" id="chemicals_listed1_error"></small>
                                                 </div>
                                                 <div class="form-group col-lg-6 additonial-info">
-                                                    <label class="font-500">Additional Information <small
+                                                    <label class="d-none font-500">Additional Information <small
                                                             class="font-500"> (Optional)</small></label>
                                                     <input type="text" id="company_additional_info1"
                                                            name="company_additional_info1" class="form-control"
-                                                           placeholder="Additional Info">
+                                                           placeholder="Additional Info (Optional)">
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label class="font-500">Supply Type <span class="required"> *</span></label>
-                                                    <div class="">
+                                                    <div class="d-flex">
                                                         <div
-                                                            class="custom-control custom-radio manufacturer-supply-type custom-control-inline">
+                                                            class="w-unset custom-control custom-radio manufacturer-supply-type custom-control-inline">
                                                             <input type="radio" class="custom-control-input"
                                                                    id="inStock1" value="In Stock"
                                                                    name="supply_type1"
@@ -2854,7 +2865,7 @@
                                                                 Stock</label>
                                                         </div>
                                                         <div
-                                                            class="custom-control custom-radio manufacturer-supply-type custom-control-inline">
+                                                            class="w-unset custom-control custom-radio manufacturer-supply-type custom-control-inline">
                                                             <input type="radio" class="custom-control-input"
                                                                    id="makeOrder1" value="Made to Order"
                                                                    name="supply_type1" required>
@@ -2863,7 +2874,7 @@
                                                                 Order</label>
                                                         </div>
                                                         <div
-                                                            class="custom-control custom-radio manufacturer-supply-type custom-control-inline">
+                                                            class="w-unset custom-control custom-radio manufacturer-supply-type custom-control-inline">
                                                             <input type="radio" class="custom-control-input"
                                                                    id="both1"
                                                                    value="Both" name="supply_type1" required>
@@ -2873,83 +2884,80 @@
                                                     </div>
                                                     <small class="text-danger" id="supply_type1_error"></small>
                                                 </div>
-                                                <div class="mt-4 mb-4">
-                                                    <hr class="horizontal-line">
-                                                </div>
                                             </div>
                                         </div>
-                                        <button class="red-btn add-btn">Add +</button>
+                                        <button class="mb-2 red-btn add-btn">Add +</button>
                                     </div>
                                     <div class="additional-product-info garments-info" style="display: none;">
-                                        <span class="d-block mb-3 heading">Product Specifications</span>
+                                        <span class="d-block mb-1 heading">Product Specifications</span>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="material_type" class="font-500">Material Type <span
+                                                <label for="material_type" class="d-none font-500">Material Type <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="material_type" class="form-control"
                                                        name="material_type"
-                                                       placeholder="e.g. Cotton, Polyester, Sheep Leather, Metal, Other"
+                                                       placeholder="Material Type * - e.g. Cotton, Polyester, Sheep Leather, Metal, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label for="construction" class="font-500">Composition/Construction
+                                                <label for="construction" class="d-none font-500">Composition/Construction
                                                     <span class="required"> *</span></label>
                                                 <input type="text" id="construction" class="form-control"
                                                        name="construction"
-                                                       placeholder="e.g. 60% Cotton, 40% Polyester, 80*80/100*80, Bronze, Other"
+                                                       placeholder="Composition/Construction * - e.g. 60% Cotton, 40% Polyester, 80*80/100*80, Bronze, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label for="size_age" class="font-500">Size/Age Group <span
+                                                <label for="size_age" class="d-none font-500">Size/Age Group <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="size_age" class="form-control" name="size_age"
-                                                       placeholder="e.g. XS-S-M-L-XL, 1-2 Years, 5-10 Years, Other"
+                                                       placeholder="Size/Age Group * - e.g. XS-S-M-L-XL, 1-2 Years, 5-10 Years, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label for="color" class="font-500">Color <span
+                                                <label for="color" class="d-none font-500">Color <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="color" class="form-control" name="color"
-                                                       placeholder="e.g. Blue, Black, Grey, Green, Red, Multi, Other"
+                                                       placeholder="Color * - e.g. Blue, Black, Grey, Green, Red, Multi, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label for="garments_gender" class="font-500">Gender <small
+                                                <label for="garments_gender" class="d-none font-500">Gender <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="garments_gender"
                                                        class="form-control optional-field" name="garments_gender"
-                                                       placeholder="e.g. Man, Women, Boy, Girl, Other">
+                                                       placeholder="Gender (Optional) - e.g. Man, Women, Boy, Girl, Other">
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label for="thick_gsm_width" class="font-500">Thickness/GSM/Width <small
+                                                <label for="thick_gsm_width" class="d-none font-500">Thickness/GSM/Width <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="thick_gsm_width"
                                                        class="form-control optional-field" name="thickness_gsm_width"
-                                                       placeholder="e.g. 75 GSM, 150 GSM, 3 mm, 10 mm, 45 Inches, 70 Inches, Other">
+                                                       placeholder="Thickness/GSM/Width (Optional) - e.g. 75 GSM, 150 GSM, 3 mm, 10 mm, 45 Inches, 70 Inches, Other">
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label for="garments_brand" class="font-500">Brand <small
+                                                <label for="garments_brand" class="d-none font-500">Brand <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="garments_brand"
                                                        class="form-control optional-field" name="garments_brand"
-                                                       placeholder="e.g. Levi's, Mustang, Blend, Servise, Other">
+                                                       placeholder="Brand (Optional) - e.g. Levi's, Mustang, Blend, Servise, Other">
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label for="design_style" class="font-500">Design/Style <small
+                                                <label for="design_style" class="d-none font-500">Design/Style <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="design_style" class="form-control optional-field"
                                                        name="design_style"
-                                                       placeholder="e.g. Round Neck, Sleeveless, Fit, Baggy, Other">
+                                                       placeholder="Design/Style (Optional) - e.g. Round Neck, Sleeveless, Fit, Baggy, Other">
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label for="garments_season" class="font-500">Season <small
+                                                <label for="garments_season" class="d-none font-500">Season <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="garments_season"
                                                        class="form-control optional-field" name="garments_season"
-                                                       placeholder="e.g. Summer, Winter, Festive, Other">
+                                                       placeholder="Season (Optional) - e.g. Summer, Winter, Festive, Other">
                                             </div>
                                             <div class="form-group col-lg-6">
-                                                <label for="end_use_app" class="font-500">End Use/Application <small
+                                                <label for="end_use_app" class="d-none font-500">End Use/Application <small
                                                         class="font-500"> (Optional)</small></label>
                                                 <input type="text" id="end_use_app" class="form-control optional-field"
                                                        name="end_use_app"
@@ -2962,13 +2970,12 @@
 
                                     <div class="form-row">
                                         <div class="form-group col-md-12 clearfix">
-                                            <label for="editor1" class="font-500">Additional Info <small
+                                            <label for="editor1" class="d-none font-500">Additional Info <small
                                                     class="font-500"> (Optional)</small></label>
-                                            <span class="pull-right font-500"><span
-                                                    class="counter-total-digits">0</span>/1200</span>
+                                            <span class="d-block font-500">(Limit = 1200 Characters)</span>
                                             <textarea id="editor1" rows="5" class="form-control addi_info"
                                                       maxlength="1200" name="details"
-                                                      placeholder="Add product details"></textarea>
+                                                      placeholder="Additional Info (Optional) - Add product details"></textarea>
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
@@ -2979,24 +2986,24 @@
                                     </div>
                                 </div>
 
-                                <div class="p-3 tab-pane fade trade-info-tab" id="tabCom" role="tabpanel"
+                                <div class="py-2 tab-pane fade trade-info-tab" id="tabCom" role="tabpanel"
                                      aria-labelledby="tabCom">
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 trade-info-container">
-                                            <label for="focused_selling_region" class="font-500">Target Selling
+                                            <label for="focused_selling_region" class="d-none font-500">Target Selling
                                                 Region
                                                 <small class="font-500"> (Optional)</small></label>
                                             <input type="text" id="focused_selling_region" class="form-control"
                                                    name="focused_selling_region"
-                                                   placeholder="City, Province, State...">
+                                                   placeholder="Target Selling Region (Optional) - City, Province, State...">
                                         </div>
                                         <div class="form-group col-lg-6 trade-info-container">
-                                            <label for="production_capacity" class="font-500">Production Capacity
+                                            <label for="production_capacity" class="d-none font-500">Production Capacity
                                                 <small
                                                     class="font-500"> (Optional)</small></label>
                                             <input type="text" id="production_capacity" class="form-control"
                                                    name="production_capacity"
-                                                   placeholder="Mention Production Capacity Per Day, Per Month">
+                                                   placeholder="Production Capacity (Optional) - Mention Production Capacity Per Day, Per Month">
                                         </div>
                                         {{--                                        <div class="form-group col-md-3 trade-info-container">--}}
                                         {{--											<label for="production_capacity" class="font-500">Capacity Unit (Optional)</label>--}}
@@ -3008,14 +3015,14 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 trade-info-container">
-                                            <label for="min_order_quantity" class="font-500">Min Order Quantity
+                                            <label for="min_order_quantity" class="d-none font-500">Min Order Quantity
                                                 (MOQ)
                                                 <small class="font-500"> (Optional)</small></label>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <input type="text" id="min_order_quantity" class="form-control"
                                                            name="min_order_quantity"
-                                                           placeholder="Min Order Quantity (MOQ)">
+                                                           placeholder="Min Order Quantity (MOQ) (Optional)">
                                                 </div>
                                                 {{--                                                <div class="col-md-3">--}}
                                                 {{--                                                    <select class="form-control" name="min_order_quantity_unit">--}}
@@ -3064,12 +3071,12 @@
                                                 <div class="col-md-6">
                                                     <div class="form-row d-none trade-info-container position-relative"
                                                          id="paidField">
-                                                        <div class="form-group ">
-                                                            <label class="font-500 pt-3">Add Price <span
+                                                        <div class="mt-1 col-12">
+                                                            <label class="d-none font-500 pt-3">Add Price <span
                                                                     class="required">*</span></label>
                                                             <input type="text" id="paidSample"
                                                                    name="paid_sampling_price"
-                                                                   class="form-control">
+                                                                   class="form-control" placeholder="Add Price *">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3078,12 +3085,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 trade-info-container">
-                                            <label for="dealing_as" class="label d-block">Dealing Product As <span
+                                            <label for="dealing_as" class="d-none label">Dealing Product As <span
                                                     class="required">*</span></label>
                                             <select id="dealing_as" name="dealing_as[]"
                                                     class="select2-multiple select-suitable-type form-control required-control"
                                                     multiple="multiple" required>
-                                                <option value="" class="d-none" disabled></option>
+                                                <option value=""></option>
+                                                <option disabled>Dealing Product As *</option>
                                                 <option value="Manufacturer">Manufacturer</option>
                                                 <option value="Sole Agent">Sole Agent</option>
                                                 <option value="Stockist">Stockist</option>
@@ -3094,20 +3102,22 @@
                                             <small class="text-danger" id="dealing_as_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-Certifications">
-                                            <label class="font-500">Add Other Details <span
+                                            <label class="d-none font-500">Add Other Details <span
                                                     class="required">*</span></label>
                                             <input type="text" id="other_dealing_as" maxlength="50"
                                                    name="other_dealing_as"
-                                                   class="form-control" required>
+                                                   class="form-control" placeholder="Add Other Details *" required>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 trade-info-container">
-                                            <label class="font-500">Target Selling Country <span
+                                            <label class="d-none font-500">Target Selling Country <span
                                                     class="required">*</span></label>
                                             <select name="focused_selling_countries[]"
                                                     class="select2-multiple select-target-country form-control required-control"
                                                     multiple="multiple" id="focused_selling_countries" required>
+                                                <option value=""></option>
+                                                <option disabled>Target Selling Country *</option>
                                                 @foreach(\DB::table('countriyes')->get() as $country)
                                                     <option
                                                         value="{{ $country->country_name }}">{{ $country->country_name }}</option>
@@ -3123,42 +3133,42 @@
                                         <hr class="horizontal-line">
                                     </div>
                                 </div>
-                                <div class="p-3 tab-pane fade payment-info-tab" id="tabInfo" role="tabpanel"
+                                <div class="py-2 tab-pane fade payment-info-tab" id="tabInfo" role="tabpanel"
                                      aria-labelledby="tabInfo">
                                     <div class="form-row">
-                                        <div class="form-group col-lg-6 unit_price_range">
+                                        <div class="col-lg-6 unit_price_range">
 
                                             <div class="form-row">
-                                                <div class="col-md-4">
+                                                <div class="form-group col-md-4">
                                                     <label for="unit_price_from"
-                                                           class="font-500 unit_price_range_label">Price Range <span
+                                                           class="d-none font-500 unit_price_range_label">Price Range <span
                                                             class="required">*</span>
                                                     </label>
                                                     <label for="unit_price_from"
-                                                           class="font-500 service_charges_range_label">Service Charges
+                                                           class="d-none font-500 service_charges_range_label">Service Charges
                                                         <span class="required">*</span>
                                                     </label>
                                                     <input type="number" id="unit_price_from" class="form-control"
                                                            name="unit_price_from" placeholder="e.g. 1000" required>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="form-group col-md-4">
                                                     <label for="unit_price_to"
                                                            class="font-500 unit_price_range_label"></label>
                                                     <label for="unit_price_to"
-                                                           class="font-500 service_charges_range_label">Charges Range
+                                                           class="d-none font-500 service_charges_range_label">Charges Range
                                                         <span class="required">*</span>
                                                     </label>
                                                     <input type="number" id="unit_price_to" class="form-control"
                                                            name="unit_price_to" placeholder="e.g. 2000" required>
                                                 </div>
-                                                <div class="col-md-4 hide-for-service" style="display: none;">
+                                                <div class="form-group col-md-4 hide-for-service" style="display: none;">
                                                     <label for="unit_price_unit"
-                                                           class="font-500 unit_price_range_label">Per Unit <span
+                                                           class="d-none font-500 unit_price_range_label">Per Unit <span
                                                             class="required">*</span></label>
                                                     <select class="form-control other-option-included"
                                                             id="unit_price_unit" name="unit_price_unit" required>
-                                                        <option value="" selected disabled>-- Select Suitable Unit --
-                                                        </option>
+                                                        <option value=""></option>
+                                                        <option disabled>Per Unit *</option>
                                                         <option value="20' Container">20' Container</option>
                                                         <option value="40' Container">40' Container</option>
                                                         <option value="Bale">Bale</option>
@@ -3192,12 +3202,12 @@
                                                         <option value="Other" class="other-check">Other</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-md-4 service-unit">
-                                                    <label class="font-500 service_charges_range_unit_label">Per Unit
+                                                <div class="form-group col-md-4 service-unit">
+                                                    <label class="d-none font-500 service_charges_range_unit_label">Per Unit
                                                         <span
                                                             class="required">*</span></label>
                                                     <input type="text" name="other_unit_price_unitt"
-                                                           class="form-control" required>
+                                                           class="form-control" placeholder="Per Unit *" required>
                                                     <small class="text-danger"
                                                            id="other_unit_price_unitt_error"></small>
                                                 </div>
@@ -3209,27 +3219,27 @@
                                             <input type="text" name="other_unit_price_unit" class="form-control"
                                                    required>
                                         </div>
-                                        <div class="form-group col-lg-6 target_price_range">
+                                        <div class="col-lg-6 target_price_range">
                                             <div class="form-row">
-                                                <div class="col-md-4">
-                                                    <label for="target_price_from" class="font-500">Target Price
+                                                <div class="form-group col-md-4">
+                                                    <label for="target_price_from" class="d-none font-500">Target Price
                                                         Range<span
                                                             class="required">*</span></label>
                                                     <input type="number" id="target_price_from" class="form-control"
-                                                           name="target_price_from" placeholder="e.g. 1000" required>
+                                                           name="target_price_from" placeholder="Target Price From * - e.g. 1000" required>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <label for="target_price_to" class="font-500"></label>
+                                                <div class="form-group col-md-4">
+                                                    <label for="target_price_to" class="d-none font-500"></label>
                                                     <input type="number" id="target_price_to" class="form-control"
-                                                           name="target_price_to" placeholder="e.g. 200" required>
+                                                           name="target_price_to" placeholder="Target Price To * - e.g. 200" required>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <label for="target_price_unit" class="font-500">Per Unit <span
+                                                <div class="form-group col-md-4">
+                                                    <label for="target_price_unit" class="d-none font-500">Per Unit <span
                                                             class="required">*</span></label>
                                                     <select class="form-control other-option-included"
                                                             id="target_price_unit" name="target_price_unit" required>
-                                                        <option value="" selected disabled>-- Select Suitable Unit --
-                                                        </option>
+                                                        <option value=""></option>
+                                                        <option disabled>Per Unit *</option>
                                                         <option value="20' Container">20' Container</option>
                                                         <option value="40' Container">40' Container</option>
                                                         <option value="Bale">Bale</option>
@@ -3275,11 +3285,12 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
-                                            <label class="font-500">Suitable Currency <span
+                                            <label class="d-none font-500">Suitable Currency <span
                                                     class="required">*</span></label>
                                             <select class="form-control single-select-dropdown"
                                                     id="suitable_currencies" name="suitable_currencies" required>
-                                                <option value="" selected disabled>Select Suitable Currency</option>
+                                                <option value=""></option>
+                                                <option disabled>Select Suitable Currency *</option>
                                                 <option value="PKR">PKR</option>
                                                 <option value="USD">USD</option>
                                                 <option value="Euro">Euro</option>
@@ -3291,19 +3302,19 @@
                                             <small class="text-danger" id="suitable_currencies_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-suitable-currency">
-                                            <label class="font-500">Add Your Suitable Currency <span
+                                            <label class="d-none font-500">Add Your Suitable Currency <span
                                                     class="required"> *</span></label>
-                                            <input type="text" name="other_suitable_currency" class="form-control"
+                                            <input type="text" name="other_suitable_currency" class="form-control" placeholder="Add Your Suitable Currency *"
                                                    required>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 product_lead_time">
-                                            <label for="delivery_time" class="font-500">Lead Time <small
+                                            <label for="delivery_time" class="d-none font-500">Lead Time <small
                                                     class="font-500"> (Optional)</small></label>
                                             <input type="text" id="lead_time" class="form-control"
                                                    name="delivery_time"
-                                                   placeholder="Mention Suitable Lead Time">
+                                                   placeholder="Lead Time (Optional) - Mention Suitable Lead Time">
                                         </div>
                                         <div class="form-group col-lg-6 product_delivery">
                                             <label class="font-500">Delivery <small
@@ -3328,10 +3339,12 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 services-container">
-                                            <label class="label d-block">Service Duration <span
+                                            <label class="d-none label">Service Duration <span
                                                     class="required">*</span></label>
                                             <select id="service_durations" name="service_durations[]"
                                                     class="select2-multiple form-control" multiple="multiple">
+                                                <option value=""></option>
+                                                <option disabled>Service Duration *</option>
                                                 <option value="One Time">One Time</option>
                                                 <option value="On Call">On Call</option>
                                                 <option value="Regular">Regular</option>
@@ -3345,23 +3358,24 @@
                                             <small class="text-danger" id="service_durations_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 add-services-duration other-div">
-                                            <label class="font-500">Add Your Service Duration <span
+                                            <label class="d-none font-500">Add Your Service Duration <span
                                                     class="required">*</span></label>
                                             <input id="other_service_duration" name="other_service_duration"
                                                    type="text"
-                                                   class="form-control">
+                                                   class="form-control" placeholder="Add Your Service Duration *">
                                         </div>
 
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
-                                            <label for="payment_terms" class="font-500" class="font-500">Payment
+                                            <label for="payment_terms" class="d-none font-500" class="font-500">Payment
                                                 Terms
                                                 <span class="required"> *</span></label>
                                             <select
                                                 class="single-select-dropdown select-suitable-payment form-control other-option-included payment-terms"
                                                 id="payment_terms" name="payment_terms" required>
-                                                <option value="" selected disabled>Select Payment Terms</option>
+                                                <option value=""></option>
+                                                <option disabled>Select Payment Terms *</option>
                                                 <option value="L/C">L/C</option>
                                                 <option value="D/A">D/A</option>
                                                 <option value="D/P">D/P</option>
@@ -3379,10 +3393,10 @@
                                             <small class="text-danger" id="payment_terms_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-payment-terms">
-                                            <label class="font-500">Add Your Payment Terms <span
+                                            <label class="d-none font-500">Add Your Payment Terms <span
                                                     class="required"> *</span></label>
                                             <input type="text" id="other_payment_term" name="other_payment_term"
-                                                   class="form-control">
+                                                   class="form-control" placeholder="Add Your Payment Terms *">
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
@@ -3450,7 +3464,95 @@
             });
             /*for general select multiple*/
 
+            /*for select single place holders*/
+            $("#woven_weave_types").select2({
+                placeholder: "Select Weave Type *"
+            });
+
+            $("#non_woven_types").select2({
+                placeholder: "Select Woven Type *"
+            });
+
+            $("#non_woven_fabric_types").select2({
+                placeholder: "Select Fabric Type *"
+            });
+
+            $("#knitted_fabric_types").select2({
+                placeholder: "Select Fabric Type *"
+            });
+
+            $("#woven_fabric_types").select2({
+                placeholder: "Select Fabric Type *"
+            });
+
+            $("select[name=knitted_knitting_types]").select2({
+                placeholder: "Select Knitting Type *"
+            });
+
+            $("#yarn_technology").select2({
+                placeholder: "Select Yarn Technology *"
+            });
+
+            $("#yarn_attribute").select2({
+                placeholder: "Select Yarn Attribute *"
+            });
+
+            $("#yarn_count_unit").select2({
+                placeholder: "Select Yarn Count Unit *"
+            });
+
+            $("#category").select2({
+                placeholder: "Main Category *"
+            });
+
+            $("#sub_category").select2({
+                placeholder: "Sub-Category *"
+            });
+
+            $("#sub_sub_category").select2({
+                placeholder: "Product Type *"
+            });
+
+            $("#origin, #origin1").select2({
+                placeholder: "Product Origin *"
+            });
+
+            $('select[name=suitable_currencies]').select2({
+                placeholder: "Select Suitable Currency *"
+            });
+
+            $("#payment_terms").select2({
+                placeholder: "Payment Terms *"
+            });
+
+            $("#target_price_unit").select2({
+                placeholder: "Per Unit *"
+            });
+
+            $("#unit_price_unit").select2({
+                placeholder: "Per Unit *"
+            });
+            /*
+            $("#origin").select2({
+                placeholder: "Product Origin *"
+            });
+
+            $("#available_unit").select2({
+                placeholder: "Unit *"
+            });
+
+            $("#expiry_date").select2({
+                placeholder: "An Expiry Days *"
+            });
+            */
+            /*for select single place holders*/
+
             /*for select multiple place holders*/
+
+            $('#service_durations').select2({
+                placeholder: "Service Duration *"
+            });
+
             $('.select-suitable-type').select2({
                 placeholder: "Select Dealing As"
             });

@@ -2,9 +2,9 @@
 /public/hot
 /public/storage
 /storage/logs/laravel.log
-/.idea/workspace.xml
 /storage/*.key
 /vendor
+.idea/workspace.xml
 .env
 .env.backup
 .phpunit.result.cache

@@ -24,7 +24,7 @@
                         @else
                             <div class="mt-0 mb-2 text-sm-left text-center">
                                 <a href="{{ route('products.create') }}" class="red-btn">Add A New Lead</a>
-                                <a href="{{ route('products.index') }}?case=archive" class="red-btn">Archived
+                                <a href="{{ route('products.index') }}?case=archive" class="blue-btn">Archived
                                     Leads</a>
                             </div>
                         @endif
@@ -107,7 +107,7 @@
                                             <ul class="dropdown-menu actionMenu p-10" role="menu">
                                                 <a href="{{ route('products.edit', $product) }}">
                                                     <li class="font-500">
-                                                        <span class="fa fa-eye view-btn mr-3" aria-hidden="true"></span>View
+                                                        <span class="fa fa-eye view-btn mr-2" aria-hidden="true"></span>View
                                                     </li>
                                                 </a>
                                                 @if($request->case && $request->case == 'archive')
@@ -119,14 +119,14 @@
                                                     </a>
                                                     <a href="javascript:;" class="delete-product">
                                                         <li class="font-500">
-                                                        <span class="fa fa-trash delete-btn mr-3"
+                                                        <span class="fa fa-trash delete-btn mr-2"
                                                               aria-hidden="true"></span>Permanent Delete
                                                         </li>
                                                     </a>
                                                 @else
                                                     <a href="javascript:;" class="delete-product">
                                                         <li class="font-500">
-                                                        <span class="fa fa-trash delete-btn mr-3"
+                                                        <span class="fa fa-trash delete-btn mr-2"
                                                               aria-hidden="true"></span>Archive
                                                         </li>
                                                     </a>
