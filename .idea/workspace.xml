@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1743fe27-46cb-4a2e-b625-a8b6f229c939" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/front_site/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/front_site/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/front_site/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/front_site/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front_site/bizoffice/products/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/bizoffice/products/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/front_site/bizoffice/products/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/bizoffice/products/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front_site/buy-sell/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/buy-sell/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front_site/buy-sell/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/buy-sell/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/front_site/buy-sell/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/buy-sell/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/front_site/common/dashboard-toggle.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/common/dashboard-toggle.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/front_site/common/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/common/header.blade.php" afterDir="false" />
@@ -208,7 +203,7 @@
       <workItem from="1634036555496" duration="10068000" />
       <workItem from="1634102127320" duration="25060000" />
       <workItem from="1634192138427" duration="13723000" />
-      <workItem from="1634207481849" duration="18354000" />
+      <workItem from="1634207481849" duration="19567000" />
     </task>
     <servers />
   </component>

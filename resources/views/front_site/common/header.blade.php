@@ -242,7 +242,7 @@
 <header class="d-lg-none px-2 py-2 header tab-mob-header">
     <div id="sidenav-overlay"></div>
     <div class="biz-nav">
-        <div class="p-2 d-flex justify-content-between align-items-center login-cross-btns">
+        <div class="p-2 d-flex justify-content-between login-cross-btns">
             @if(\Auth::user())
                 <div class="d-flex">
                     <div class="d-flex justify-content-center align-items-center avatar-wrapper">
@@ -271,12 +271,12 @@
             <aside class="side-nav w-100 biz-nav-content">
 
                 <ul class="mb-0 categories">
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Dashboard"><img class="mr-2" src="https://cdn2.iconfinder.com/data/icons/thin-charts-analytics/24/thin-1086_kpi_dashboard_monitor-512.png" height="20"><a href="{{route('user-dashboard')}}" class="sidebar-links">Dashboard</a>
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Account"><img class="mr-2" src="https://image.flaticon.com/icons/png/128/2321/2321232.png" height="20"><a href="{{ route('my-account-detail') }}" class="sidebar-links">My
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Dashboard"><img class="dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/thin-charts-analytics/24/thin-1086_kpi_dashboard_monitor-512.png" height="20"><a href="{{route('user-dashboard')}}" class="sidebar-links">Dashboard</a>
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Account"><img class="mr-2 dashboard-sidebar-img" src="https://image.flaticon.com/icons/png/128/2321/2321232.png" height="20"><a href="{{ route('my-account-detail') }}" class="sidebar-links">My
                             Account</a></li>
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Business Profile"><img class="mr-2" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/work-desk-1-982669.png" height="20"><a href="{{route('company-profile')}}" class="sidebar-links">Create New Biz Office</a><span class="badge new-badge">New</span></li>
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Business Profile"><img class="mr-2 dashboard-sidebar-img" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/work-desk-1-982669.png" height="20"><a href="{{route('company-profile')}}" class="sidebar-links">Create New Biz Office</a><span class="badge new-badge">New</span></li>
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
-                        title="One-Time Deals"><img class="mr-2" src="https://static.thenounproject.com/png/1353582-200.png" height="20"><a href="javascript:;">One-Time Deals</a><span class="biz-badge blue-badge">{{ \App\BuySell::where('user_id', \Auth::user()->id)->count() }}</span>
+                        title="One-Time Deals"><img class="mr-2 dashboard-sidebar-img" src="https://static.thenounproject.com/png/1353582-200.png" height="20"><a href="javascript:;">One-Time Deals</a><span class="biz-badge blue-badge">{{ \App\BuySell::where('user_id', \Auth::user()->id)->count() }}</span>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom" title="Add New One-Time Deal">
                                 <a href="{{route('buy-sell.create')}}" class="sidebar-links">Add A New Deal
@@ -296,7 +296,7 @@
                         </ul>
                     </li>
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
-                        title="Careers"><img class="mr-2" src="https://www.pngrepo.com/png/128160/512/worker-career.png" height="20"><a href="javascript:;">Careers</a>
+                        title="Careers"><img class="mr-2 dashboard-sidebar-img" src="https://www.pngrepo.com/png/128160/512/worker-career.png" height="20"><a href="javascript:;">Careers</a>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom"
                                 title="Add New Job"><a href="{{route('view-form-job-management')}}"
@@ -317,7 +317,7 @@
                         </ul>
                     </li>
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
-                        title="Journal"><img class="mr-2" src="https://www.biotechconnection-sg.org/wp-content/uploads/2018/06/seo-and-web-glyph-3-04-512.png" height="20"><a href="javascript:;">Journal</a>
+                        title="Journal"><img class="mr-2 dashboard-sidebar-img" src="https://www.biotechconnection-sg.org/wp-content/uploads/2018/06/seo-and-web-glyph-3-04-512.png" height="20"><a href="javascript:;">Journal</a>
                         <ul class="side-nav-dropdown">
                             <li  data-toggle="tooltip" data-placement="bottom" title="Add Journal">
                                 <a href="{{  route('view-form-blog') }}" class="sidebar-links">Add Journal</a></li>
@@ -326,7 +326,7 @@
 
                         </ul>
                     </li>
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/basics-vol-2/354/out_exit_comeout_goout_getout_dropout_moveout-512.png"><a href="{{url('logout')}}" class="sidebar-links"> Sign Out</a>
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2 dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/basics-vol-2/354/out_exit_comeout_goout_getout_dropout_moveout-512.png"><a href="{{url('logout')}}" class="sidebar-links"> Sign Out</a>
                     </li>
                     <li class="invisible"></li>
                     <li class="invisible"></li>
@@ -336,12 +336,12 @@
         @else
             <aside class="side-nav w-100 biz-nav-content">
                 <ul class="mb-0 categories">
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Dashboard"><img class="mr-2" src="https://cdn2.iconfinder.com/data/icons/thin-charts-analytics/24/thin-1086_kpi_dashboard_monitor-512.png" height="20"><a href="{{route('user-dashboard')}}" class="sidebar-links">Dashboard</a>
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Account"><img class="mr-2" src="https://image.flaticon.com/icons/png/128/2321/2321232.png" height="20"><a href="{{ route('my-account-detail') }}" class="sidebar-links">My
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Dashboard"><img class="mr-2 dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/thin-charts-analytics/24/thin-1086_kpi_dashboard_monitor-512.png" height="20"><a href="{{route('user-dashboard')}}" class="sidebar-links">Dashboard</a>
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="My Account"><img class="mr-2 dashboard-sidebar-img" src="https://image.flaticon.com/icons/png/128/2321/2321232.png" height="20"><a href="{{ route('my-account-detail') }}" class="sidebar-links">My
                             Account</a></li>
 
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
-                        title="Business Profile"><img class="mr-2" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/business-profile-3-919606.png" height="20"><a href="javascript:;">Business Profile</a>
+                        title="Business Profile"><img class="mr-2 dashboard-sidebar-img" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/business-profile-3-919606.png" height="20"><a href="javascript:;">Business Profile</a>
                         <ul class="side-nav-dropdown">
 
                             <li  data-toggle="tooltip" data-placement="bottom" title="View Your Business Profile">
@@ -355,7 +355,7 @@
                     </li>
 
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
-                        title="Business Profile"><img class="mr-2" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/work-desk-1-982669.png" height="20"><a href="javascript:;">MyBiz
+                        title="Business Profile"><img class="mr-2 dashboard-sidebar-img" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/work-desk-1-982669.png" height="20"><a href="javascript:;">MyBiz
                             Office</a><span class="biz-badge blue-badge">{{ \App\UserCompany::where('user_id', \Auth::user()->id)->count() }}</span>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom" title="Biz Offices"><a
@@ -379,7 +379,7 @@
                     </li>
 
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
-                        title="Business Leads"><img class="mr-2" src="https://cdn4.iconfinder.com/data/icons/reputation-management-2/66/95-512.png" height="20"><a href="javascript:;">MyBiz
+                        title="Business Leads"><img class="mr-2 dashboard-sidebar-img" src="https://cdn4.iconfinder.com/data/icons/reputation-management-2/66/95-512.png" height="20"><a href="javascript:;">MyBiz
                             Leads</a><span class="biz-badge blue-badge">{{ \App\Product::where('company_id',session()->get('company_id'))->count() }}</span>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom" title="Add new product">
@@ -402,7 +402,7 @@
                     </li>
 
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
-                        title="One-Time Deals"><img class="mr-2" src="https://static.thenounproject.com/png/1353582-200.png" height="20"><a href="javascript:;">One-Time Deals</a><span class="biz-badge blue-badge">{{ \App\BuySell::where('user_id', \Auth::user()->id)->count() }}</span>
+                        title="One-Time Deals"><img class="mr-2 dashboard-sidebar-img" src="https://static.thenounproject.com/png/1353582-200.png" height="20"><a href="javascript:;">One-Time Deals</a><span class="biz-badge blue-badge">{{ \App\BuySell::where('user_id', \Auth::user()->id)->count() }}</span>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom" title="Add New One-Time Deal">
                                 <a href="{{route('buy-sell.create')}}" class="sidebar-links">Add A New Deal
@@ -423,7 +423,7 @@
                     </li>
 
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
-                        title="Careers"><img class="mr-2" src="https://www.pngrepo.com/png/128160/512/worker-career.png" height="20"><a href="javascript:;">Careers</a><span class="biz-badge blue-badge">{{ \App\JobManagement::where('user_id', \Auth::user()->id)->count() }}</span>
+                        title="Careers"><img class="mr-2 dashboard-sidebar-img" src="https://www.pngrepo.com/png/128160/512/worker-career.png" height="20"><a href="javascript:;">Careers</a><span class="biz-badge blue-badge">{{ \App\JobManagement::where('user_id', \Auth::user()->id)->count() }}</span>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom"
                                 title="Add New Job"><a href="{{route('view-form-job-management')}}"
@@ -445,7 +445,7 @@
                     </li>
 
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
-                        title="Journal"><img class="mr-2" src="https://www.biotechconnection-sg.org/wp-content/uploads/2018/06/seo-and-web-glyph-3-04-512.png" height="20"><a href="javascript:;">Journal</a><span class="biz-badge blue-badge">{{ \App\Journal::where('user_name', \Auth::user()->name)->count() }}</span>
+                        title="Journal"><img class="mr-2 dashboard-sidebar-img" src="https://www.biotechconnection-sg.org/wp-content/uploads/2018/06/seo-and-web-glyph-3-04-512.png" height="20"><a href="javascript:;">Journal</a><span class="biz-badge blue-badge">{{ \App\Journal::where('user_name', \Auth::user()->name)->count() }}</span>
                         <ul class="side-nav-dropdown">
                             <li  data-toggle="tooltip" data-placement="bottom" title="Add Journal">
                                 <a href="{{  route('view-form-blog') }}" class="sidebar-links">Add Journal</a></li>
@@ -459,13 +459,13 @@
                         @if($user_company->is_owner != 1)
                             @if($user_company->is_admin == 1 || $user_company->is_member == 1)
                                 <li class="position-relative  leave-btn" data-toggle="tooltip" data-placement="bottom" title="leave office" user_id="{{$user_company->user_id}}" company_id="{{$user_company->company_id}}">
-                                    <img class="dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/basics-vol-2/354/out_exit_comeout_goout_getout_dropout_moveout-512.png"><a href="javascript:;" class="sidebar-links">leave office</a></li>
+                                    <img class="mr-2 dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/basics-vol-2/354/out_exit_comeout_goout_getout_dropout_moveout-512.png"><a href="javascript:;" class="sidebar-links">leave office</a></li>
                             @endif
                         @endif
                     @endif
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2" src="https://cdn1.iconfinder.com/data/icons/communication-set-1-1/100/Untitled-1-18-512.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2 dashboard-sidebar-img" src="https://cdn1.iconfinder.com/data/icons/communication-set-1-1/100/Untitled-1-18-512.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
                     </li>
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/basics-vol-2/354/out_exit_comeout_goout_getout_dropout_moveout-512.png"><a href="{{url('logout')}}" class="sidebar-links"> Sign Out</a>
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2 dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/basics-vol-2/354/out_exit_comeout_goout_getout_dropout_moveout-512.png"><a href="{{url('logout')}}" class="sidebar-links"> Sign Out</a>
                     </li>
                     <li class="invisible"></li>
                     <li class="invisible"></li>
@@ -475,7 +475,7 @@
         @else
             <aside class="side-nav w-100 biz-nav-content">
                 <ul class="mb-0 categories">
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2" src="https://cdn1.iconfinder.com/data/icons/communication-set-1-1/100/Untitled-1-18-512.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2 dashboard-sidebar-img" src="https://cdn1.iconfinder.com/data/icons/communication-set-1-1/100/Untitled-1-18-512.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
                     </li>
                     <li class="invisible"></li>
                     <li class="invisible"></li>

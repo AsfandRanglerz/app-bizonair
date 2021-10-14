@@ -127,7 +127,7 @@
                                                 @if($request->case && $request->case == 'archive')
                                                     <a href="javascript:;" class="restore-buysell">
                                                         <li class="font-500">
-                                                        <span class="fa fa-undo delete-btn mr-3"
+                                                        <span class="fa fa-undo delete-btn mr-2"
                                                               aria-hidden="true"></span>Restore
                                                         </li>
                                                     </a>
