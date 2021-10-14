@@ -254,11 +254,11 @@
                                             <div class="product-img-spec-container mb-1">
                                                 <h6 class="my-2 px-2 heading pro-img-heading">Product Images</h6>
                                                 <div class="product-images-gallery">
-                                                        <ul class="row mx-0 my-2 product-gallery">
+                                                        <ul class="row mx-0 mb-2 product-gallery edit-comp-prof-imgs">
                                                             @foreach(App\Helpers\BuysellHelper::getImages($buysell->id) as $image)
-                                                                <li class="px-1 my-1 col-lg-2 col-md-3 col-6">
+                                                                <li class="position-relative d-inline-block my-1">
                                                                     <input type="hidden" name='img_id' value="{{encrypt($image->id)}}">
-                                                                    <span class="position-absolute border-0 specification-bin specs fa fa-trash" img_id="{{$image->id}}" aria-hidden="true" style="z-index: 1;right: -8px"></span>
+                                                                    <span class="position-absolute border-0 specification-bin specs fa fa-trash" img_id="{{$image->id}}" aria-hidden="true"></span>
                                                                     <div class="include-in-gallery"
                                                                          data-src="{{$image->image}}"
                                                                          data-pinterest-text="Pin it"
@@ -266,7 +266,7 @@
                                                                         <a href="">
                                                                             <img class="img-responsive product-img" src="{{$image->image}}">
                                                                             <div class="demo-gallery-poster">
-                                                                                <img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
+                                                                                <span class="fa fa-eye text-white"></span>
                                                                             </div>
                                                                         </a>
                                                                     </div>
@@ -276,9 +276,9 @@
                                                     </div>
                                             </div>
                                             <div class="product-img-spec-container">
-                                                <h6 class="my-2 px-2 heading pro-spec-heading">Product Specifications</h6>
+                                                <h6 class="my-1 px-2 heading pro-spec-heading">Product Specifications</h6>
                                                 <div class="product-images-gallery">
-                                                        <ul class="row mx-0 my-2 product-gallery">
+                                                        <ul class="row mx-0 mb-2 product-gallery edit-comp-prof-imgs">
                                                             @foreach(App\Helpers\BuysellHelper::getSheets($buysell->id) as $file)
                                                                 <?php $pathinfo = pathinfo($file->sheet);
                                                                 $supported_ext = array('docx', 'xlsx', 'pdf');
@@ -286,7 +286,7 @@
                                                                 $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
 
                                                                     @if($ext=="docx")
-                                                                        <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center"
+                                                                        <li class="position-relative d-inline-block my-1 d-flex justify-content-center align-items-center"
                                                                             data-src="{{$file->sheet}}"
                                                                             data-pinterest-text="Pin it"
                                                                             data-tweet-text="share on twitter">
@@ -299,7 +299,7 @@
                                                                                 class="position-absolute border-0 rounded-circle fa fa-download get-file"></button>
                                                                         </li>
                                                                     @elseif($ext=="xlsx")
-                                                                        <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center"
+                                                                        <li class="position-relative d-inline-block my-1 d-flex justify-content-center align-items-center"
                                                                             data-src="{{$file->sheet}}"
                                                                             data-pinterest-text="Pin it"
                                                                             data-tweet-text="share on twitter">
@@ -312,7 +312,7 @@
                                                                                 class="position-absolute border-0 rounded-circle fa fa-download get-file"></button>
                                                                         </li>
                                                                     @elseif($ext=="pdf")
-                                                                        <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center"
+                                                                        <li class="position-relative d-inline-block my-1 d-flex justify-content-center align-items-center"
                                                                             data-src="{{$file->sheet}}"
                                                                             data-pinterest-text="Pin it"
                                                                             data-tweet-text="share on twitter">
@@ -325,9 +325,9 @@
                                                                                 class="position-absolute border-0 rounded-circle fa fa-download get-file"></button>
                                                                         </li>
                                                                 @else
-                                                                    <li class="px-1 my-1 col-lg-2 col-md-3 col-6">
+                                                                     <li class="position-relative d-inline-block my-1">
                                                                         <input type="hidden" name='sheet_id' value="{{encrypt($file->id)}}">
-                                                                        <span class="position-absolute border-0 specification-bin cross-sheet fa fa-trash cross-sheet" sheet_id="{{$file->id}}" aria-hidden="true" style="z-index: 1;right: -8px"></span>
+                                                                        <span class="position-absolute border-0 specification-bin cross-sheet fa fa-trash cross-sheet" sheet_id="{{$file->id}}" aria-hidden="true"></span>
                                                                        <div class="include-in-gallery"
                                                                             data-src="{{$file->sheet}}"
                                                                             data-pinterest-text="Pin it"
@@ -335,7 +335,7 @@
                                                                         <a href="">
                                                                             <img class="img-responsive product-img" src="{{$file->sheet}}">
                                                                             <div class="demo-gallery-poster">
-                                                                                <img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
+                                                                                <span class="fa fa-eye text-white"></span>
                                                                             </div>
                                                                         </a>
                                                                        </div>
@@ -973,7 +973,7 @@
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
                                                     <div class="mx-0 row product-img-sheet">
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image16" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -988,7 +988,7 @@
                                                                 <input name="bsheet16_url" type="hidden" value="" id="bsheet16_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image17" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1003,7 +1003,7 @@
                                                                 <input name="bsheet17_url" type="hidden" value="" id="bsheet17_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image18" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1018,7 +1018,7 @@
                                                                 <input name="bsheet18_url" type="hidden" value="" id="bsheet18_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image19" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1033,7 +1033,7 @@
                                                                 <input name="bsheet19_url" type="hidden" value="" id="bsheet19_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image20" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1048,7 +1048,7 @@
                                                                 <input name="bsheet20_url" type="hidden" value="" id="bsheet20_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image21" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1063,7 +1063,7 @@
                                                                 <input name="bsheet21_url" type="hidden" value="" id="bsheet21_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image22" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1078,7 +1078,7 @@
                                                                 <input name="bsheet22_url" type="hidden" value="" id="bsheet22_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image23" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1093,7 +1093,7 @@
                                                                 <input name="bsheet23_url" type="hidden" value="" id="bsheet23_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image24" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1108,7 +1108,7 @@
                                                                 <input name="bsheet24_url" type="hidden" value="" id="bsheet24_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image25" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1123,7 +1123,7 @@
                                                                 <input name="bsheet25_url" type="hidden" value="" id="bsheet25_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image26" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1138,7 +1138,7 @@
                                                                 <input name="bsheet26_url" type="hidden" value="" id="bsheet26_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image27" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1153,7 +1153,7 @@
                                                                 <input name="bsheet27_url" type="hidden" value="" id="bsheet27_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image28" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1168,7 +1168,7 @@
                                                                 <input name="bsheet28_url" type="hidden" value="" id="bsheet28_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image29" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1183,7 +1183,7 @@
                                                                 <input name="bsheet29_url" type="hidden" value="" id="bsheet29_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image30" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1211,7 +1211,7 @@
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
                                                     <div class="mx-0 row product-img-sheet">
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image1" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1226,7 +1226,7 @@
                                                                 <input name="bavatar1_url" type="hidden" value="" id="bavatar1_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image2" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1241,7 +1241,7 @@
                                                                 <input name="bavatar2_url" type="hidden" value="" id="bavatar2_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image3" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1256,7 +1256,7 @@
                                                                 <input name="bavatar3_url" type="hidden" value="" id="bavatar3_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image4" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1271,7 +1271,7 @@
                                                                 <input name="bavatar4_url" type="hidden" value="" id="bavatar4_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image5" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1286,7 +1286,7 @@
                                                                 <input name="bavatar5_url" type="hidden" value="" id="bavatar5_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image6" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1301,7 +1301,7 @@
                                                                 <input name="bavatar6_url" type="hidden" value="" id="bavatar6_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image7" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1316,7 +1316,7 @@
                                                                 <input name="bavatar7_url" type="hidden" value="" id="bavatar7_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image8" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1331,7 +1331,7 @@
                                                                 <input name="bavatar8_url" type="hidden" value="" id="bavatar8_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image9" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1346,7 +1346,7 @@
                                                                 <input name="bavatar9_url" type="hidden" value="" id="bavatar9_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image10" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1361,7 +1361,7 @@
                                                                 <input name="bavatar10_url" type="hidden" value="" id="bavatar10_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image11" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1376,7 +1376,7 @@
                                                                 <input name="bavatar11_url" type="hidden" value="" id="bavatar11_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image12" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1391,7 +1391,7 @@
                                                                 <input name="bavatar12_url" type="hidden" value="" id="bavatar12_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image13" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1406,7 +1406,7 @@
                                                                 <input name="bavatar13_url" type="hidden" value="" id="bavatar13_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image14" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1421,7 +1421,7 @@
                                                                 <input name="bavatar14_url" type="hidden" value="" id="bavatar14_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-4">
+                                                        <div class="my-1 px-1 col-md-2 col-3">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image15" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -1444,9 +1444,9 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
                                             <div class="product-img-spec-container">
-                                                <h6 class="my-2 px-2 heading pro-spec-heading">Specification Sheets</h6>
+                                                <h6 class="my-1 px-2 heading pro-spec-heading">Specification Sheets</h6>
                                                 <div class="product-images-gallery">
-                                                    <ul class="mx-0 my-2 product-gallery edit-comp-prof-imgs">
+                                                    <ul class="mx-0 mb-2 product-gallery edit-comp-prof-imgs">
                                                         @foreach(App\Helpers\BuysellHelper::getSheets($buysell->id) as $file)
                                                             <?php $pathinfo = pathinfo($file->sheet);
                                                             $supported_ext = array('docx', 'xlsx', 'pdf');
@@ -1492,7 +1492,7 @@
                                                             @else
                                                                 <li class="position-relative d-inline-block my-1">
                                                                     <input type="hidden" name='sheet_id' value="{{encrypt($file->id)}}">
-                                                                    <span class="position-absolute border-0 specification-bin cross-sheet fa fa-trash cross-sheet" sheet_id="{{$file->id}}" aria-hidden="true" style="z-index: 1;right: -8px"></span>
+                                                                    <span class="position-absolute border-0 specification-bin cross-sheet fa fa-trash cross-sheet" sheet_id="{{$file->id}}" aria-hidden="true"></span>
                                                                     <div class="include-in-gallery"
                                                                          data-src="{{$file->sheet}}"
                                                                          data-pinterest-text="Pin it"
@@ -1517,11 +1517,11 @@
                                             <div class="product-img-spec-container">
                                                 <h6 class="my-2 px-2 heading pro-img-heading">Product Images</h6>
                                                 <div class="product-images-gallery">
-                                                    <ul class="mx-0 my-2 product-gallery edit-comp-prof-imgs">
+                                                    <ul class="mx-0 mb-2 product-gallery edit-comp-prof-imgs">
                                                         @foreach(App\Helpers\BuysellHelper::getImages($buysell->id) as $image)
                                                             <li class="position-relative d-inline-block my-1">
                                                                 <input type="hidden" name='img_id' value="{{encrypt($image->id)}}">
-                                                                <span class="position-absolute border-0 specification-bin specs fa fa-trash" img_id="{{$image->id}}" aria-hidden="true" style="z-index: 1;right: -8px"></span>
+                                                                <span class="position-absolute border-0 specification-bin specs fa fa-trash" img_id="{{$image->id}}" aria-hidden="true"></span>
                                                                 <div class="include-in-gallery"
                                                                      data-src="{{$image->image}}"
                                                                      data-pinterest-text="Pin it"

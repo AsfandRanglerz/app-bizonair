@@ -733,15 +733,6 @@ $(document).ready(function () {
     }
     /*page main padding bottom only when footer exist*/
 
-    /*body background, when dashboardSidebar exist*/
-    /*if($('.single-select-dropdown, .select2-multiple').is(':visible')) {
-        $('body').css('background', '#d9eefe8c');
-    }*/
-    if($('input').is(':visible')) {
-        $('body').css('background', '#d9eefe8c');
-    }
-    /*body background, when dashboardSidebar exist*/
-
     /*preview password*/
     $(".toggle-password").click(function() {
         $(this).toggleClass("fa-eye fa-eye-slash");

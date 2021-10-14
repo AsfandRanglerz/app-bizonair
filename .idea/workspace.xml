@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1743fe27-46cb-4a2e-b625-a8b6f229c939" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/front_site/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/front_site/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/front_site/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/front_site/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front_site/buy-sell/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/buy-sell/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/front_site/buy-sell/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/buy-sell/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front_site/buy-sell/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front_site/buy-sell/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +178,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../bizonair" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -201,7 +202,8 @@
       <updated>1634016693183</updated>
       <workItem from="1634016696286" duration="9887000" />
       <workItem from="1634036555496" duration="10068000" />
-      <workItem from="1634102127320" duration="23539000" />
+      <workItem from="1634102127320" duration="25060000" />
+      <workItem from="1634192138427" duration="5349000" />
     </task>
     <servers />
   </component>

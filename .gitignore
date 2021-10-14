@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /storage/logs/laravel.log
+/.idea/workspace.xml
 /storage/*.key
 /vendor
 .env

@@ -153,7 +153,7 @@
 
                                         <td>{{$buysell->origin}}</td>
                                         @if(!($request->case && $request->case == 'archive'))
-                                            <td>@if(checkExpiryBuysell($buysell->id) == 'Expired')<span style="color: red">{{checkExpiryBuysell($buysell->id)}}</span> <button  class="btn btn-success" id="expirebtn" prod_id="{{$buysell->id}}">Repost</button> @else {{checkExpiryBuysell($buysell->id)}} @endif</td>
+                                            <td>@if(checkExpiryBuysell($buysell->id) == 'Expired')<span style="color: red">{{checkExpiryBuysell($buysell->id)}}</span> <button class="red-btn" id="expirebtn" prod_id="{{$buysell->id}}">Repost</button> @else {{checkExpiryBuysell($buysell->id)}} @endif</td>
                                         @endif
                                         <td> {!! $buysell->created_at !!}</td>
                                         <td>{{ getUserNameById($buysell->updatedBy) }}</td>
