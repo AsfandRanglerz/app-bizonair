@@ -3,7 +3,7 @@
     <button type="button" class="btn btn-primary position-absolute h-100 px-1 py-1 select-cat" data-toggle="modal" data-target="#selCategoryModel">
         <span class="sel-cat-default-text">Select Category</span><span class="fa fa-angle-down"></span>
     </button>
-    <input type="hidden" value="" id="selCatInput" />
+    <input type="hidden" value="" name="category" id="selCatInput" />
 
     <!-- Modal -->
     <div class="modal fade sel-category-model" id="selCategoryModel" tabindex="-1" role="dialog" aria-labelledby="selCategoryModelTitle" aria-hidden="true">
@@ -18,51 +18,51 @@
                 <div class="modal-body">
                     <div class="d-flex flex-column align-items-start">
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="Regular Supplier" id="regSupplier" name="category" class="custom-control-input">
+                            <input type="radio" value="Regular Supplier" id="regSupplier" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="regSupplier" >Regular Supplier</label>
                         </div>
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="Regular Buyer" id="regBuyer" name="category" class="custom-control-input">
+                            <input type="radio" value="Regular Buyer" id="regBuyer" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="regBuyer">Regular Buyer</label>
                         </div>
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="One-Time Supplier" id="oneTimeSup" name="category" class="custom-control-input">
+                            <input type="radio" value="One-Time Supplier" id="oneTimeSup" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="oneTimeSup">One-Time Supplier</label>
                         </div>
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="One-Time Buyer" id="oneTimeBuy" name="category" class="custom-control-input">
+                            <input type="radio" value="One-Time Buyer" id="oneTimeBuy" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="oneTimeBuy">One-Time Buyer</label>
                         </div>
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="Service Providers" id="serProv" name="category" class="custom-control-input">
+                            <input type="radio" value="Service Providers" id="serProv" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="serProv">Service Providers</label>
                         </div>
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="Service Seekers" id="serSeek" name="category" class="custom-control-input">
+                            <input type="radio" value="Service Seekers" id="serSeek" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="serSeek">Service Seekers</label>
                         </div>
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="Reference Number" id="refNumber" name="category" class="custom-control-input">
+                            <input type="radio" value="Reference Number" id="refNumber" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="refNumber">Reference Number</label>
                         </div>
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="Keywords" id="catKeywords" name="category" class="custom-control-input">
+                            <input type="radio" value="Keywords" id="catKeywords" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="catKeywords">Keywords</label>
                         </div>
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="Companies" id="catCompanies" name="category" class="custom-control-input">
+                            <input type="radio" value="Companies" id="catCompanies" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="catCompanies">Companies</label>
                         </div>
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="articles" id="catArticles" name="category" class="custom-control-input">
+                            <input type="radio" value="articles" id="catArticles" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="catArticles">Articles</label>
                         </div>
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="news" id="catNews" name="category" class="custom-control-input">
+                            <input type="radio" value="news" id="catNews" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="catNews">News</label>
                         </div>
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
-                            <input type="radio" value="events" id="catEvents" name="category" class="custom-control-input">
+                            <input type="radio" value="events" id="catEvents" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="catEvents">Events</label>
                         </div>
                     </div>
@@ -99,8 +99,8 @@
 @push('js')
     <script>
         /*select category popup radio buttons*/
-        $('input[name="category"]').on('click', function() {
-            var selCatOption = $('input[name=category]:checked').val();
+        $('input[name="category_option"]').on('click', function() {
+            var selCatOption = $('input[name=category_option]:checked').val();
             $('#selCatInput').val(selCatOption);
             $('.sel-cat-default-text').text(selCatOption);
             $('.sel-category-model .close').trigger('click');
