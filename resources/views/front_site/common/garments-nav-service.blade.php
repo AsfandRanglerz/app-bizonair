@@ -9,7 +9,7 @@
                 <div class="position-relative px-1 pro-cat-links-box">
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('service-products',['category'=>$category->slug])}}" id="eachcat" cat-id="" cat-name="">
-                            <img src="{{$STORAGEASSET}}/{{ $category->image }}">
+                            <img src="{{ $category->image }}">
                             <span>{{ $category->name }}</span>
                         </a>
                     </li>

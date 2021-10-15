@@ -528,52 +528,52 @@
 <div id="login-form" class="modal fade">
     <div class="modal-dialog modal-login">
         <div class="modal-content">
-            <form action="{{route('user-do-login')}}" method="post" id="loginForm">
-                @csrf
-                <div class="modal-header">
-                    <span class="modal-title">Login</span>
-                    <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
-                </div>
-                <div class="modal-body pt-3">
-                    <div class="empty-div mb-2"></div>
-                    <div class="alert alert-success mb-2 text-center" id='alert-success-login' style="display: none"
-                         role="alert">
-                    </div>
-                    <div class="alert alert-danger mb-2 text-center" id='alert-error-login' style="display: none"
-                         role="alert">
-                    </div>
-                    <img src="{{$ASSET}}/front_site/images/favicon.png" class="mb-5">
-                    <div class="form-group">
-                        <input type="email" class="form-control" name="email_login" id="emailId" placeholder="E-mail">
-                        <small class="text-white" id="email_login_error"></small>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="login_password" class="form-control preview-password d-inline-block" placeholder="Password">
-                        <small class="text-white" id="login_password_error"></small>
-                    </div>
-                    <div class="form-group ticks-checkbox" style="margin: 35px 0">
-                        <!-- <ul data-toggle="buttons" class="mb-0 text-center">
+{{--            <form action="{{route('user-do-login')}}" method="post" id="loginForm">--}}
+{{--                @csrf--}}
+{{--                <div class="modal-header">--}}
+{{--                    <span class="modal-title">Login</span>--}}
+{{--                    <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>--}}
+{{--                </div>--}}
+{{--                <div class="modal-body pt-3">--}}
+{{--                    <div class="empty-div mb-2"></div>--}}
+{{--                    <div class="alert alert-success mb-2 text-center" id='alert-success-login' style="display: none"--}}
+{{--                         role="alert">--}}
+{{--                    </div>--}}
+{{--                    <div class="alert alert-danger mb-2 text-center" id='alert-error-login' style="display: none"--}}
+{{--                         role="alert">--}}
+{{--                    </div>--}}
+{{--                    <img src="{{$ASSET}}/front_site/images/favicon.png" class="mb-5">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <input type="email" class="form-control" name="email_login" id="emailId" placeholder="E-mail">--}}
+{{--                        <small class="text-white" id="email_login_error"></small>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group">--}}
+{{--                        <input type="password" name="login_password" class="form-control preview-password d-inline-block" placeholder="Password">--}}
+{{--                        <small class="text-white" id="login_password_error"></small>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group ticks-checkbox" style="margin: 35px 0">--}}
+{{--                        <!-- <ul data-toggle="buttons" class="mb-0 text-center">--}}
 
-                            <li class="btn d-inline">
+{{--                            <li class="btn d-inline">--}}
 
-                                <input class="input fa fa-square-o" type="checkbox" id="userCheckbox">Remember me
+{{--                                <input class="input fa fa-square-o" type="checkbox" id="userCheckbox">Remember me--}}
 
-                            </li>
+{{--                            </li>--}}
 
-                        </ul> -->
-                        <div
-                            class="form-check form-check-inline custom-control custom-checkbox d-flex justify-content-center">
-                            <input type="checkbox" class="custom-control-input" id="userCheckbox">
-                            <label class="custom-control-label remember-check" for="userCheckbox">Remember me</label>
-                        </div>
-                        <input type="submit" class="btn login-btn" value="Login"><br>
-                        <a href="{{route('forgot-password')}}" style="font-size: 13px;color: #FFF;font-weight: 100">Forgot your
-                            password?</a>
-                    </div>
-                    <p style="color: #FFF;font-size: 16px;font-weight: 100">Don't have an account? <a
-                            href="{{route('email-confirmation')}}" class="sign-up">Sign up</a></p>
-                </div>
-            </form>
+{{--                        </ul> -->--}}
+{{--                        <div--}}
+{{--                            class="form-check form-check-inline custom-control custom-checkbox d-flex justify-content-center">--}}
+{{--                            <input type="checkbox" class="custom-control-input" id="userCheckbox">--}}
+{{--                            <label class="custom-control-label remember-check" for="userCheckbox">Remember me</label>--}}
+{{--                        </div>--}}
+{{--                        <input type="submit" class="btn login-btn" value="Login"><br>--}}
+{{--                        <a href="{{route('forgot-password')}}" style="font-size: 13px;color: #FFF;font-weight: 100">Forgot your--}}
+{{--                            password?</a>--}}
+{{--                    </div>--}}
+{{--                    <p style="color: #FFF;font-size: 16px;font-weight: 100">Don't have an account? <a--}}
+{{--                            href="{{route('email-confirmation')}}" class="sign-up">Sign up</a></p>--}}
+{{--                </div>--}}
+{{--            </form>--}}
         </div>
     </div>
 </div>
