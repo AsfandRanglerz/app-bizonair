@@ -5263,7 +5263,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     background: #FFF;
 }
 
-.select-cat {
+/*.select-cat {
     background-image: url(../images/cat-dropdown-arrow.svg)!important;
     background-size: 9px!important;
     padding-right: 1rem!important;
@@ -5286,7 +5286,69 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 .select-cat:focus {
     background: #12253D;
     cursor: pointer;
+}*/
+
+/*select category popup*/
+.select-cat {
+    background-size: 9px!important;
+    padding-right: 1rem!important;
+    width: 85px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 10px;
+    font-weight: bold;
+    outline: none;
+    color: #FFF;
+    background: #344356;
+    transition: background-color 0.5s ease;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
+
+.select-cat .fa-angle-down {
+    color: #FFF;
+    font-size: 12px;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+}
+
+.select-cat:active,
+.select-cat:hover,
+.select-cat:focus {
+    cursor: pointer;
+    background: #12253D!important;
+    box-shadow: none!important;
+}
+
+.sel-category-model.show {
+    background: #00000085;
+}
+
+.sel-category-model .modal-header {
+    padding: 6px 8px;
+}
+
+.sel-category-model .modal-header .modal-title {
+    font-size: 12px!important;
+    text-align: left;
+    text-shadow: 0px 3px 6px #00000035;
+}
+
+.sel-category-model .modal-header .close {
+    display: flex;
+    opacity: 1;
+}
+
+.sel-category-model .custom-control-label {
+    text-shadow: 0px 3px 6px #00000035;
+}
+
+.sel-category-model .modal-body {
+    padding: 8px;
+}
+/*select category popup*/
 
 /*product banner container*/
 
@@ -8792,6 +8854,12 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (min-width: 576px) {
+    /*select category popup*/
+    .sel-category-model .modal-content {
+        top: 78px;
+    }
+    /*select category popup*/
+
     .biz-nav .side-nav .categories > li,
     .biz-nav .login-cross-btns {
         width: 335px;
@@ -8826,6 +8894,12 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 575px) {
+    /*select category popup*/
+    .sel-category-model .modal-content {
+        top: 90px;
+    }
+    /*select category popup*/
+
     .additional-product-info .custom-control {
         width: 27%;
     }
