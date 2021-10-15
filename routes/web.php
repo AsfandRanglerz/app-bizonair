@@ -91,8 +91,8 @@ Route::post('register-user', 'HomeController@register_user')->name('register-use
 Route::get('registeration-step/2', 'CompanyController@registeration_step_2')
     ->name('registeration-step-2');
 Route::post('register-member', 'CompanyController@register_member')->name('register-member');
-Route::post('do-login', 'HomeController@do_login')
-    ->name('user-do-login');
+//Route::post('do-login', 'HomeController@do_login')
+//    ->name('user-do-login');
 Route::post('do-login-pre', 'HomeController@do_login_pre')
     ->name('user-do-login-pre');
 Route::post('company-images', 'CompanyController@companyImages')

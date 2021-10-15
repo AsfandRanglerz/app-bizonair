@@ -67,7 +67,7 @@
                                                             <div class="position-relative suppliers-buyers">
                                                                 @foreach($prod->product_image as $j => $image)
                                                                     @if($loop->first)
-                                                                        <img src="{{$ASSETS}}/{{$image->image}}"
+                                                                        <img src="{{$image->image}}"
                                                                              class="w-100 h-100 certified-suppliers-img border-grey">
                                                                         @if($prod->is_certified ==1)
                                                                             <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">
@@ -103,9 +103,12 @@
                                                                                 <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
                                                                             @endif
                                                                             <div class="form-group mt-4 mb-0">
-                                                                                <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="red-btn" data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif type="submit">Yes</button>
+                                                                                @if(!Auth::check())
+                                                                                    <a href="{{url('log-in-pre')}}" class="red-btn">Yes</a>
+                                                                                @else
+                                                                                    <button class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}" type="submit">Yes</button>
+                                                                                @endif
                                                                                 <button class="red-btn" data-dismiss="modal" aria-hidden="true">No</button>
-
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -117,7 +120,7 @@
                                                                 <p class="heading overflow-text-dots-subject">{{$prod->product_service_name}}</p>
                                                                 <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                                                 <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
-                                                                <p class="price font-500 overflow-text-dots-subject"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif {{ moneyFormat($prod->unit_price_from) }} - {{ moneyFormat($prod->unit_price_to) }} Per {{ $prod->other_unit_price_unit }}</p>
+                                                                <p class="price font-500 overflow-text-dots-subject"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif {{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }} Per {{ $prod->other_unit_price_unit }}</p>
                                                                 <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
                                                                     <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
                                                                     <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
@@ -138,19 +141,19 @@
                             <h3 class="text-center main-heading">TOP COMPANIES</h3>
                             <div class="position-relative top-companies">
                                 @foreach($topcompanies as $comp)
+                                    <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',['id'=>$comp->id,'company'=>$comp->company_name])}}">
                                     <div class="top-companies-card">
-                                        <img alt="100x100" src="{{$ASSET.'/front_site/images/company-images/'.$comp->logo }}"
+                                        <img alt="100x100" src="{{$comp->logo }}"
                                              data-holder-rendered="true" height="145" class="w-100 object-contain border-grey">
-                                        <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$comp->id)}}">
                                             <div class="companies-card-content">
                                                 <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
                                                 <span class="company-nm">{{$comp->company_name}}</span>
-                                                <p class="company-content">{{substr_replace($comp->company_introduction, "...", 100) }}</p>
+                                                <p class="company-content overflow-text-dots-three-line">{!!strip_tags($comp->company_introduction)!!}</p>
                                             </div>
-                                        </a>
                                     </div>
+                                    </a>
                                 @endforeach
-                                <a href="{{route('view-all-companies')}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
+                                <a href="{{route('view-all-companies',['category'=>$subcategory->category->slug])}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
                             </div>
                         </div>
                     </div>
@@ -169,9 +172,10 @@
                                         <a class="text-decoration-none text-reset" href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                             <div class="position-relative suppliers-buyers" style="height: 65%;">
                                                 <?php $img = \DB::table('buysell_images')->where('buy_sell_id',$prod->id)->get();?>
+                                                    @if($img->isNotEmpty())
                                                 @foreach($img as $i => $image)
                                                     @if($loop->first)
-                                                        <img src="{{$ASSETS}}/{{$image->image}}"
+                                                        <img src="{{$image->image}}"
                                                              class="w-100 h-100 certified-suppliers-img border-grey">
                                                         @if($prod->is_certified ==1)
                                                             <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">
@@ -181,13 +185,16 @@
                                                         @endif
                                                         <div class="position-absolute heart-icon-div">
                                                             <a class="text-decoration-none text-reset" href="#add-fav-{{$prod->reference_no}}" data-toggle="modal">
-                                                                           <span class="text-decoration-none add-to-fav">
-                                                                                    <span class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span>
-                                                                           </span>
+                                                               <span class="text-decoration-none add-to-fav">
+                                                                        <span class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span>
+                                                               </span>
                                                             </a>
                                                         </div>
                                                     @endif
                                                 @endforeach
+                                                    @else
+                                                        <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img border-grey">
+                                                    @endif
                                             </div>
                                             <div id="add-fav-{{$prod->reference_no}}" class="change-password-modal modal fade">
                                                 <div class="modal-dialog modal-dialog-centered modal-login">
@@ -207,9 +214,12 @@
                                                                 <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
                                                             @endif
                                                             <div class="form-group mt-4 mb-0">
-                                                                <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="red-btn" data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif type="submit">Yes</button>
+                                                                @if(!Auth::check())
+                                                                    <a href="{{url('log-in-pre')}}" class="red-btn">Yes</a>
+                                                                @else
+                                                                    <button class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}" type="submit">Yes</button>
+                                                                @endif
                                                                 <button class="red-btn" data-dismiss="modal" aria-hidden="true">No</button>
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -221,7 +231,7 @@
                                                 <p class="heading overflow-text-dots-subject">{{$prod->product_service_name}}</p>
                                                 <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                                 <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
-                                                <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ moneyFormat($prod->unit_price_from) }}   @else {{ moneyFormat($prod->target_price_from) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
+                                                <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }}   @else {{ number_format($prod->target_price_from) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
                                                 <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
                                                     <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
                                                     <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
@@ -239,26 +249,30 @@
                     <div href="#" class="position-relative my-1 d-flex justify-content-end">
                         <a href="{{ route('buy-sell.create') }}" class="position-absolute post-requirement-btn">POST YOUR REQUIREMENT</a>
                         @foreach($ads as $ad)
-                            <a href="#" class="w-100">
-                                <img src="{{ url('storage/app/public/'.$ad->image) }}" class="w-100">
+                            <a href="{{ $ad->link }}" class="w-100">
+                                <img src="{{ $ad->image }}" class="w-100">
                             </a>
                         @endforeach
                     </div>
                     <div class="my-1 position-relative">
                         <h3 class="main-heading">RELATED COMPANIES</h3>
-                        <a href="{{route('view-all-companies')}}" class="position-absolute red-link view-all">VIEW ALL</a>
+                        <a href="{{route('view-all-companies',['category'=>$subcategory->category->slug])}}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
+                    @if(count($companies) > 0)
                     <div class="premium-suppliers-outer">
                         <div class="premium-suppliers">
                             @foreach($companies as $comp)
                                 <div class="content-column text-center">
-                                    <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$comp->id)}}">
+                                    <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',['id'=>$comp->id,'company'=>$comp->company_name])}}">
                                         <p class="mb-0 font-500 company-name overflow-text-dots-one-line text-uppercase">{{$comp->company_name}}</p>
                                     </a>
                                 </div>
                             @endforeach
                         </div>
                     </div>
+                    @else
+                        <p>No Related Companies to Show at Present</p>
+                    @endif
                     <div class="my-1 position-relative">
                         <h3 class="main-heading text-center">TEXTILE PARTNERS</h3>
                     </div>

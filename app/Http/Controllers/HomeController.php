@@ -448,7 +448,7 @@ class HomeController extends Controller
     {
 //         dd(request('sub_category'));
         $rules = [
-            'phone_no' => 'required|min:11','country' => 'required', 'state' => 'required', 'city' => 'required', // 'category' => 'required',
+            'phone_no' => 'required','country' => 'required', 'state' => 'required', 'city' => 'required', // 'category' => 'required',
             // 'sub_category' => 'required',
         ];
         $messages = [
