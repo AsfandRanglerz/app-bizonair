@@ -1923,6 +1923,7 @@ p.click {
     border: none;
     align-items: center;
     border-radius: 5px 5px 0 0;
+    padding: 6px 8px;
 }
 
 .modal .modal-header .modal-title {
@@ -1940,6 +1941,9 @@ p.click {
     height: 100%;
     line-height: unset;
     transition: .3s;
+    display: flex;
+    opacity: 1;
+    font-size: 10px;
 }
 
 .modal .modal-header .close:not(:disabled):not(.disabled):focus,
@@ -1953,7 +1957,7 @@ p.click {
 }
 
 .modal .modal-body {
-    padding: 30px;
+    padding: 16px!important;
     background-color: #344256;
     text-align: center;
     border-radius: 0 0 5px 5px;
@@ -5322,8 +5326,9 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     box-shadow: none!important;
 }
 
-.sel-category-model.show {
+.modal.show {
     background: #00000085;
+    z-index: 555555;
 }
 
 .sel-category-model .modal-header {
@@ -8414,7 +8419,7 @@ header .navbar .navbar-toggler {
 
     /*modal css*/
     .modal .modal-header .modal-title {
-        font-size: 18px;
+        font-size: 12px;
     }
     /*modal css*/
 

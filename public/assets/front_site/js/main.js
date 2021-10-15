@@ -2424,12 +2424,12 @@ $(function () {
         $('#companyTab1').hide();
         $('#companyTab2').show();
     });
-    $('.close-form').click(function () {
-        if (confirm("The changes will not be saved – Do you want to discard? Ok/Cancel")) {
-            $('#companyTab2').hide();
-            $('#companyTab1').show();
-        }
-    });
+    // $('.close-form').click(function () {
+    //     if (confirm("The changes will not be saved – Do you want to discard? Ok/Cancel")) {
+    //         $('#companyTab2').hide();
+    //         $('#companyTab1').show();
+    //     }
+    // });
     $('.add-cancil-form').click(function () {
         // if (confirm("The changes will not be saved – Do you want to discard? Ok/Cancel")) {
         //     $('#companyTab2').hide();
