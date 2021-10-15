@@ -3,8 +3,8 @@
 /public/storage
 /storage/logs/laravel.log
 /storage/*.key
-/vendor
 .idea/workspace.xml
+/vendor
 .env
 .env.backup
 .phpunit.result.cache
