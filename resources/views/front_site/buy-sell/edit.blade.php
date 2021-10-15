@@ -749,7 +749,7 @@
                                     @endif</a>
                             </li>
                             <li class="w-unset my-sm-0 d-sm-flex d-inline-block justify-content-end ml-auto nav-item">
-                                <button type="submit" class="red-btn updt-button">UPDATE</button>
+                                <button type="submit" class="red-btn updt-button" form="updateBuysell">UPDATE</button>
                             </li>
                             <li class="w-unset my-sm-0 ml-2 d-sm-flex d-inline-block justify-content-end nav-item">
                                 <button class="text-uppercase red-btn close-form" href="#ad-cancil" data-toggle="modal">CLOSE</button>
@@ -2542,9 +2542,9 @@
                 placeholder: "An Expiry Days *"
             });
 
-            $("#category").select2({
-                placeholder: "Main Category *"
-            });
+            // $("#category").select2({
+            //     placeholder: "Main Category *"
+            // });
 
             $("#sub_category").select2({
                 placeholder: "Sub-Category *"

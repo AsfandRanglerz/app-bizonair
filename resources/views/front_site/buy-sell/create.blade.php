@@ -87,10 +87,10 @@
                                                 <span class="required"> *</span>
                                             </label>
                                             <div class="position-relative">
-                                                <select class="form-control single-select-dropdown product-categories" id="category"
+                                                <select class="form-control product-categories" id="category"
                                                         name="category" required>
                                                     <option value=""></option>
-                                                    <option disabled>Please select category *</option>
+                                                    <option disabled selected>Please select category *</option>
                                                     @foreach(\App\Category::all() as $category)
                                                         <option value="{{ $category->id }}" cat-val="{{ $category->name }}"
                                                                 class="d-none"
@@ -1407,9 +1407,9 @@
                 placeholder: "An Expiry Days *"
             });
 
-            $("#category").select2({
+            /*$("#category").select2({
                 placeholder: "Main Category *"
-            });
+            });*/
 
             $("#sub_category").select2({
                 placeholder: "Sub-Category *"
