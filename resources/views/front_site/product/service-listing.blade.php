@@ -265,10 +265,8 @@
                     <div class="container-fluid logo-slider">
                         <div class="slider slider-nav w-100">
                             @foreach($textile_partners as $text_partners)
-                                <a href="#" class="logo-container"><img
-                                        src="{{ url('storage/app/public/'.$text_partners->image) }}"
-                                        alt="100x100" data-holder-rendered="true"
-                                        class="w-100 h-100">
+                                <a href="{{ $text_partners->link }}" class="logo-container">
+                                    <img src="{{ $text_partners->image }}" alt="100x100" data-holder-rendered="true" class="w-100 h-100">
                                 </a>
                             @endforeach
                         </div>

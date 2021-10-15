@@ -76,15 +76,20 @@
                                                    placeholder="example@email.com" disabled="disabled">
                                             <small class="text-danger" id="email_error"></small>
                                         </div>
-
-{{--                                        <div class="form-group col-md-6">--}}
-{{--                                            <label>Password <span class="required">*</span></label>--}}
-{{--                                            <span toggle="#password" class="fa fa-fw fa-eye toggle-password-eye"></span>--}}
-{{--                                            <input type="password" id="password" class="form-control"--}}
-{{--                                                   placeholder="Choose a password atleast 8 characters long"--}}
-{{--                                                   name="password">--}}
-{{--                                            <small class="text-danger" id="password_error"></small>--}}
-{{--                                        </div>--}}
+                                        <div class="form-group col-md-6 mb-1">
+                                            <label>First Name <span class="required">*</span></label>
+                                            <input type="text" class="form-control" placeholder="First Name"
+                                                   name="first_name">
+                                            <small class="text-danger" id="first_name_error"></small>
+                                        </div>
+                                        <div class="form-group col-md-6 mb-1">
+                                            <label>Last Name <span class="required">*</span></label>
+                                            <input type="text" name="last_name" class="form-control"
+                                                   placeholder="Last Name">
+                                            <small class="text-danger" id="last_name_error"></small>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
                                             <label>Password <span class="required">*</span></label>
                                             <span toggle="#reg_password" class="fa fa-fw fa-eye toggle-password-eye"></span>
@@ -102,73 +107,6 @@
                                             <small class="text-danger" id="confirm_password_error"></small>
                                         </div>
                                     </div>
-
-                                    <div class="form-row">
-
-                                        <h6 class="w-100">Designation <small class="font-500">(Optional)</small></h6>
-
-                                        <div class="form-group col-sm-12">
-
-                                            <select name='designation' class="form-control choose-country">
-
-                                                <option value="">Select your designation</option>
-                                                <option>Director</option>
-
-                                                <option value="CEO">CEO</option>
-
-                                                <option value="General Manager">General Manager</option>
-
-                                                <option value="Owner">Owner</option>
-
-                                                <option value="Entrepreneur">Entrepreneur</option>
-
-                                                <option value="Marketing">Marketing</option>
-
-                                                <option value="Sales">Sales</option>
-
-                                                <option value="Purchasing">Purchasing</option>
-
-                                                <option value="Technical & Engineering">Technical & Engineering</option>
-
-                                                <option value="Administration">Administration</option>
-
-                                                <option value="Others" id="otherUser">Others</option>
-
-                                            </select>
-
-                                            <small class="text-danger" id="designation_error"></small>
-
-                                        </div>
-
-                                    </div>
-
-
-                                    {{--                                    <div class="form-row">--}}
-                                    {{--                                        <div class="form-group col-md-12">--}}
-                                    {{--                                            <label>Biz Office Code <span class="required">*</span></label>--}}
-                                    {{--                                            <input type="text" class="form-control" required placeholder="Biz Office Code"--}}
-                                    {{--                                                   name="office_code">--}}
-                                    {{--                                            <small class="text-danger" id="office_code_error"></small>--}}
-                                    {{--                                        </div>--}}
-
-                                    {{--                                    </div>--}}
-
-                                    <div class="form-row">
-                                        <h6 class="w-100">Contact Person</h6>
-                                        <div class="form-group col-md-6 mb-1">
-                                            <label>First Name <span class="required">*</span></label>
-                                            <input type="text" class="form-control" placeholder="First Name"
-                                                   name="first_name">
-                                            <small class="text-danger" id="first_name_error"></small>
-                                        </div>
-                                        <div class="form-group col-md-6 mb-1">
-                                            <label>Last Name <span class="required">*</span></label>
-                                            <input type="text" name="last_name" class="form-control"
-                                                   placeholder="Last Name">
-                                            <small class="text-danger" id="last_name_error"></small>
-                                        </div>
-                                    </div>
-
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
                                             <label for="mobileNumber">Enter your phone number: <span
@@ -186,14 +124,90 @@
                                             <small class="text-danger" id="birthday_error"></small>
                                         </div>
                                     </div>
+{{--                                    <div class="form-row">--}}
+
+{{--                                        <h6 class="w-100">Designation <small class="font-500">(Optional)</small></h6>--}}
+
+{{--                                        <div class="form-group col-sm-12">--}}
+
+{{--                                            <select name='designation' class="form-control choose-country">--}}
+
+{{--                                                <option value="">Select your designation</option>--}}
+{{--                                                <option>Director</option>--}}
+
+{{--                                                <option value="CEO">CEO</option>--}}
+
+{{--                                                <option value="General Manager">General Manager</option>--}}
+
+{{--                                                <option value="Owner">Owner</option>--}}
+
+{{--                                                <option value="Entrepreneur">Entrepreneur</option>--}}
+
+{{--                                                <option value="Marketing">Marketing</option>--}}
+
+{{--                                                <option value="Sales">Sales</option>--}}
+
+{{--                                                <option value="Purchasing">Purchasing</option>--}}
+
+{{--                                                <option value="Technical & Engineering">Technical & Engineering</option>--}}
+
+{{--                                                <option value="Administration">Administration</option>--}}
+
+{{--                                                <option value="Others" id="otherUser">Others</option>--}}
+
+{{--                                            </select>--}}
+
+{{--                                            <small class="text-danger" id="designation_error"></small>--}}
+
+{{--                                        </div>--}}
+
+{{--                                    </div>--}}
+                                    <div class="w-100 form-row user-type-section">
+                                        <h6 class="w-100 pl-0">User Type <span class="required">*</span></h6>
+                                        <div class="form-group user-type col-xl-9 col-lg-12 pl-0">
+                                            <div>
+                                                <ul data-toggle="buttons">
+                                                    @foreach (\App\UType::all() as $item)
+                                                        <li class="btn @if($item->id == 4) service-provider @endif">
+                                                            <input class="input fa fa-square-o required-control" type="checkbox"
+                                                                   value="{{$item->id}}" data-id="{{$item->id}}"
+                                                                   name="user_type[]">{{$item->title}}
+                                                            <span class="fa fa-question-circle" data-toggle="tooltip"
+                                                                  data-placement="top" title="{{ $item->tooltip }}"
+                                                                  aria-hidden="true"></span>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                                <small class="text-danger" id="user_type_error"></small>
+                                            </div>
+                                        </div>
+                                        <select class="form-control choose-services col-xl-3 col-lg-12 select2-multiple-services " multiple name="userservices[]">
+                                            @foreach (\App\Subservice::all() as $item)
+                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label>Company/Institute Name <small class="font-500">(Optional)</small></label>
+                                            <input type="text" class="form-control" placeholder="Input Business Company Name OR Institute Name for Students"
+                                                   name="company_name">
+                                            <small class="text-danger" id="company_name_error"></small>
+                                        </div>
+                                    </div>
                                     <div class="form-row mt-3">
-                                        <div class="form-group check-stats">
-                                            <div class="custom-control custom-checkbox d-flex flex-column-reverse">
-                                                <input type="checkbox" class="custom-control-input" name="termsCheckbox" id="termsCheckboxinput">
+                                        <div class="form-group check-stats pl-2">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" name="termsCheckboxinput" id="termsCheckboxinput">
                                                 <label class="custom-control-label" for="termsCheckboxinput">I Agree to the <a href="{{url('terms-of-use')}}" class="text-link">Terms of Services</a> and <a href="{{url('privacy')}}" class="text-link">Privacy Policy</a></label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" name="infoCheckbox" id="infoCheckbox" value="1">
+                                                <label class="custom-control-label" for="infoCheckbox">I would like to recieve information related to my industry</label>
                                             </div>
                                         </div>
                                     </div>
+
 
                                     <div class="form-row mt-3">
                                         <div class="form-group col-sm-12" align="center">
@@ -219,10 +233,7 @@
             <div class="col-lg-3 col-md-4 join-us-sidebar">
                 @include("front_site.common.join-us-sidebar")
             </div>
-            <div>
-
-            </div>
-
+        </div>
     </main>
     </body>
 
@@ -232,24 +243,27 @@
     <script src="{{$ASSET}}/front_site/js/jquery.date-dropdowns.min.js"></script>
     <script>
 
-        $(document).on('click', '#termsCheckboxdiv', function () {
-            // alert('hello');
-            if (!$('#termsCheckboxinput').is(':checked')) {
-                $('#accoutn_btn').removeClass('fade').attr('disabled', false);
-            } else {
-                $('#accoutn_btn').addClass('fade').attr('disabled', 'true');
+        /*checkbox: "I Agree to the Terms of Services and Privacy Policy"*/
+        $(document).on('click', '#termsCheckbox', function(){
+            if($(this).is(":checked") == false){
+                $('button[type="submit"]').prop("disabled", true);
+            }
+            else if($(this).is(":checked") == true){
+                $('button[type="submit"]').prop("disabled", false);
             }
         });
+        /*checkbox: "I Agree to the Terms of Services and Privacy Policy"*/
 
-        $(document).on('click', '#termsCheckboxinput', function () {
-            // alert('hello');
-            if ($('#termsCheckboxinput').prop('checked') == true) {
-                $('#accoutn_btn').removeClass('fade').attr('disabled', false);
-            } else {
-                $('#accoutn_btn').addClass('fade').attr('disabled', 'true');
-            }
-        });
-
+        /*
+                $(document).on('click', '#termsCheckboxinput', function () {
+                    // alert('hello');
+                    if ($('#termsCheckboxinput').prop('checked') == true) {
+                        $('#accoutn_btn').removeClass('fade').attr('disabled', false);
+                    } else {
+                        $('#accoutn_btn').addClass('fade').attr('disabled', 'true');
+                    }
+                });
+        */
 
         $(document).ready(function () {
             $("#birthday").dateDropdowns({
@@ -288,16 +302,14 @@
                         var $element = $(element);
                         $element.valid();
                     },
-                    company_name: {
-                        required: true
-                    },
                     password: {
                         required: true,
                         minlength: 8
                     },
-                    confirm_password: {
-                        required: true,
-                    },
+                    // confirm_password: {
+                    //     required: true,
+                    //     equalTo: '#password'
+                    // },
                     birthday: {
                         required: true
                     }
@@ -309,9 +321,9 @@
                         required: "Please provide a password",
                         minlength: "Your password must be at least 8 characters long"
                     },
-                    confirm_password: {
-                        required: "Confirm password required",
-                    },
+                    // confirm_password: {
+                    //     equalTo: "Password does not match"
+                    // },
                     email: "Please enter a valid email address",
                     birthday: "Please enter complete birthday"
                 },

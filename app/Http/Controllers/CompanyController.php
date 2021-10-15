@@ -542,7 +542,7 @@ class CompanyController extends Controller
             'user_type' => 'required',
             // 'company_name' => 'required',
             // 'designation' => 'required',
-            'first_name' => 'required', 'last_name' => 'required', 'registration_phone_no' => 'required|min:11',
+            'first_name' => 'required', 'last_name' => 'required', 'registration_phone_no' => 'required',
             //            'office_code' => 'required',
             'birthday' => 'required',
         ];
