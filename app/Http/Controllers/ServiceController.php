@@ -6,6 +6,7 @@ use App\Product;
 use App\Category;
 use App\Subcategory;
 use App\View;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use PragmaRX\Countries\Package\Countries;
 
@@ -79,11 +80,11 @@ class ServiceController extends Controller
             $country = new Countries();
             $data['countries'] = $country->all();
 
-            $osdts = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Service')->where('company_id', $product->company_id)->with('product_image')->whereNull('deleted_at')->latest()->paginate(15);
+            $osdts = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Service')->where('company_id', $product->company_id)->with('product_image')->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
 
-            $ssdos = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Service')->where('subcategory_id',$product->subcategory_id)->where('company_id', '!=', $product->company_id)->with('product_image')->whereNull('deleted_at')->latest()->paginate(15);
+            $ssdos = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Service')->where('subcategory_id',$product->subcategory_id)->where('company_id', '!=', $product->company_id)->with('product_image')->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
 
-            $sdfc = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Service')->where('subcategory_id',$product->subcategory_id)->where('origin', $product->origin)->with('product_image')->whereNull('deleted_at')->latest()->paginate(15);
+            $sdfc = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Service')->where('subcategory_id',$product->subcategory_id)->where('origin', $product->origin)->with('product_image')->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
             $cats = \App\Category::where('type', 'Services')->get();
             $ads = \App\Banner::where('dimension', 'width 300 * height 477')->where('description','1st row right sidebar')->where('page','Textile Services Detail')->where('status', 1)->limit(1)->get();
             return view('front_site.product.service-regular-detail', $data, compact('category','subcategory','slug','cats', 'product', 'osdts', 'ssdos','sdfc','ads'));
@@ -100,11 +101,11 @@ class ServiceController extends Controller
             $country = new Countries();
             $data['countries'] = $country->all();
 
-            $osdts = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types', 'Service')->where('user_id', $product->user_id)->whereNull('deleted_at')->latest()->paginate(15);
+            $osdts = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types', 'Service')->where('user_id', $product->user_id)->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
 
-            $ssdos = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types', 'Service')->where('subcategory_id',$product->subcategory_id)->where('user_id', '!=', $product->user_id)->whereNull('deleted_at')->latest()->paginate(15);
+            $ssdos = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types', 'Service')->where('subcategory_id',$product->subcategory_id)->where('user_id', '!=', $product->user_id)->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
 
-            $sdfc = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types', 'Service')->where('subcategory_id',$product->subcategory_id)->where('origin', $product->origin)->whereNull('deleted_at')->latest()->paginate(15);
+            $sdfc = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types', 'Service')->where('subcategory_id',$product->subcategory_id)->where('origin', $product->origin)->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
             $cats = \App\Category::where('type', 'Services')->get();
             $ads = \App\Banner::where('dimension', 'width 300 * height 477')->where('description','1st row right sidebar')->where('page','Textile Services Detail')->where('status', 1)->limit(1)->get();
             return view('front_site.product.service-onetime-detail', $data, compact('category','subcategory','slug','cats', 'product', 'osdts', 'ssdos','sdfc','ads'));

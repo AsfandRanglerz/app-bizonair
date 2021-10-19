@@ -15,13 +15,13 @@
                     <div class="product-box col-md-3 col-6 px-0 textile-box">
                         <div class="border-0 p-0 d-block top-companies">
                             <div class="top-companies-card">
-                                <img alt="100x100" src="{{$ASSET.'/front_site/images/company-images/'.$company->logo }}"
+                                <img alt="100x100" src="{{$company->logo }}"
                                      data-holder-rendered="true" class="w-100 object-contain top-company-img border-grey">
-                                <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$company->id)}}">
+                                <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',['id'=>$company->id,'company'=>$company->company_name])}}">
                                     <div class="companies-card-content">
                                         <img src="{{$ASSET}}/front_site/images/groupsl-224.png" class="companies-card-img">
                                         <span class="company-nm">{{$company->company_name}}</span>
-                                        <p class="overflow-text-dots company-content">{{substr_replace($company->company_introduction, "...", 100) }}</p>
+                                        <p class="overflow-text-dots company-content">{!!strip_tags($company->company_introduction)!!}</p>
                                     </div>
                                 </a>
                             </div>

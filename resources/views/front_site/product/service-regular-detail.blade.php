@@ -28,9 +28,9 @@
                           <div class="px-1 col-lg-6 col-md-6 suppliers-buyers">
                               <ul id="left-thumb-slider">
                                   @foreach(ProductHelper::getImages($product->id) as $image)
-                                      <li data-thumb="{{$ASSETS}}/{{$image->image}}" class="position-relative suppliers-buyers">
+                                      <li data-thumb="{{$image->image}}" class="position-relative suppliers-buyers">
                                       <!-- {{asset($image->image)}} -->
-                                          <img  src="{{$ASSETS}}/{{$image->image}}" class="w-100 h-100 object-contain" style="border: 1px solid #BABABA">
+                                          <img  src="{{$image->image}}" class="w-100 h-100 object-contain" style="border: 1px solid #BABABA">
                                           <div class="position-absolute heart-icon-div">
                                               <a class="text-decoration-none text-reset" href="#add-fav-{{$product->reference_no}}" data-toggle="modal">
                                                <span class="text-decoration-none add-to-fav">
@@ -432,7 +432,7 @@
 
                                                   @if($ext=="docx")
                                                       <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center"
-                                                          data-src="{{$ASSETS}}/{{$file->sheet}}"
+                                                          data-src="{{$file->sheet}}"
                                                           data-pinterest-text="Pin it"
                                                           data-tweet-text="share on twitter">
                                                           <img class="img-responsive product-img"
@@ -444,7 +444,7 @@
                                                       </li>
                                                   @elseif($ext=="xlsx")
                                                       <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center"
-                                                          data-src="{{$ASSETS}}/{{$file->sheet}}"
+                                                          data-src="{{$file->sheet}}"
                                                           data-pinterest-text="Pin it"
                                                           data-tweet-text="share on twitter">
                                                           <img class="img-responsive product-img"
@@ -456,7 +456,7 @@
                                                       </li>
                                                   @elseif($ext=="pdf")
                                                       <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center"
-                                                          data-src="{{$ASSETS}}/{{$file->sheet}}"
+                                                          data-src="{{$file->sheet}}"
                                                           data-pinterest-text="Pin it"
                                                           data-tweet-text="share on twitter">
                                                           <img class="img-responsive product-img"
@@ -470,11 +470,11 @@
                                                       <li class="px-1 my-1 col-lg-2 col-md-3 col-6">
                                                           <input type="hidden" name='sheet_id' value="{{encrypt($file->id)}}">
                                                           <div class="include-in-gallery"
-                                                               data-src="{{$ASSETS}}/{{$file->sheet}}"
+                                                               data-src="{{$file->sheet}}"
                                                                data-pinterest-text="Pin it"
                                                                data-tweet-text="share on twitter">
                                                               <a href="">
-                                                                  <img class="img-responsive product-img" src="{{$ASSETS}}/{{$file->sheet}}">
+                                                                  <img class="img-responsive product-img" src="{{$file->sheet}}">
                                                                   <div class="demo-gallery-poster">
                                                                       <img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
                                                                   </div>
@@ -491,143 +491,78 @@
                       </div>
 
                   </div>
-{{--                  <div class="col-xl-3 col-lg-4 col-md-4 mt-sm-0 mt-3">--}}
-{{--                      @foreach($ads as $ad)--}}
-{{--                          <img src="{{ url('storage/app/public/'.$ad->image) }}" class="w-100 h-100 right-side-img">--}}
-{{--                      @endforeach--}}
-{{--                  </div>--}}
+                  <div class="col-xl-3 col-lg-4 col-md-4 mt-sm-0 mt-3">
+                      @foreach($ads as $ad)
+                          <a href="{{ $ad->link }}" class="text-decoration-none">
+                              <img src="{{ $ad->image }}" class="w-100 h-100 right-side-img">
+                          </a>
+                      @endforeach
+                  </div>
               </div>
 
               <span class="heading">Other Selling Deals from this Supplier</span>
-              <div class="row products-deals-slider">
-                  @if(count($osdts) > 5)
+                  @if(count($osdts) > 0)
+                  <div class="row products-deals-slider">
                       @foreach($osdts as $i => $prod)
                           <div class="content-column">
                               <div class="content-column-inner">
                                   <a href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                       <div class="suppliers-buyers" style="height: 65%;">
+                                          @if($prod->product_image->isNotEmpty())
                                           @foreach($prod->product_image as $j => $image)
-                                              @if(!empty($image))
-                                                  <img src="{{$ASSETS}}/{{$image->image}}" class="w-100 h-100 certified-suppliers-img border-grey">
+                                                  <img src="{{$image->image}}" class="w-100 h-100 certified-suppliers-img border-grey">
                                                   @if($j==0)
                                                       @break
                                                   @endif
-                                              @else
-                                                  <img src="{{$ASSET}}/front_site/images/noimage.png" width="50" height="50" class="position-absolute certified-logo">
-                                              @endif
-                                              @if($prod->is_featured ==1)
-                                                  <span class="position-absolute left-0 Featured-txt">Featured</span>
-                                              @endif
+                                                  @if($prod->is_featured ==1)
+                                                      <span class="position-absolute left-0 Featured-txt">Featured</span>
+                                                  @endif
                                           @endforeach
+                                          @else
+                                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img border-grey">
+                                          @endif
                                       </div>
                                   </a>
                                   <a class="text-decoration-none text-reset" href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
-                                    <div class="product-info">
-                                        <p class="heading overflow-text-dots-one-line">{{$prod->product_service_name}}</p>
-                                        <p class="mb-0 overflow-text-dots-one-line">{{$prod->subject}}</p>
-                                        <p class="mb-0 overflow-text-dots-one-line">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
-                                        <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ moneyFormat($prod->unit_price_from) }} - {{ moneyFormat($prod->unit_price_to) }}  @else {{ moneyFormat($prod->target_price_from) }} - {{ moneyFormat($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                        <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
-                                            <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
-                                            <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
-                                        </div>
-                                    </div>
+                                      <div class="product-info">
+                                          <p class="heading overflow-text-dots-one-line">{{$prod->product_service_name}}</p>
+                                          <p class="mb-0 overflow-text-dots-one-line">{{$prod->subject}}</p>
+                                          <p class="mb-0 overflow-text-dots-one-line">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
+                                          <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }}  @else {{ number_format($prod->target_price_from) }} - {{ number_format($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
+                                          <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                      </div>
                                   </a>
                               </div>
 
                           </div>
                       @endforeach
+                  </div>
                   @else
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span><
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+
                   @endif
-              </div>
+
 
               <span class="heading">Similar Selling Deals from Other Suppliers</span>
-              <div class="row products-deals-slider">
-                  @if(count($ssdos) > 5)
+               @if(count($ssdos) > 0)
+                  <div class="row products-deals-slider">
                       @foreach($ssdos as $i => $prod)
                           <div class="content-column">
                               <div class="content-column-inner">
                                   <a href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                       <div class="suppliers-buyers" style="height: 65%;">
+                                          @if($prod->product_image->isNotEmpty())
                                           @foreach($prod->product_image as $j => $image)
-                                              @if(!empty($image))
-                                                  <img src="{{$ASSETS}}/{{$image->image}}" class="w-100 h-100 certified-suppliers-img border-grey">
+                                                  <img src="{{$image->image}}" class="w-100 h-100 certified-suppliers-img border-grey">
                                                   @if($j==0)
                                                       @break
                                                   @endif
-                                              @else
-                                                  <img src="{{$ASSET}}/front_site/images/noimage.png" width="50" height="50" class="position-absolute certified-logo">
-                                              @endif
-                                              @if($prod->is_featured ==1)
-                                                  <span class="position-absolute left-0 Featured-txt">Featured</span>
-                                              @endif
+                                                  @if($prod->is_featured ==1)
+                                                      <span class="position-absolute left-0 Featured-txt">Featured</span>
+                                                  @endif
                                           @endforeach
+                                          @else
+                                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img border-grey">
+                                          @endif
                                       </div>
                                   </a>
                                   <a class="text-decoration-none text-reset" href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
@@ -635,107 +570,40 @@
                                           <p class="heading overflow-text-dots-one-line">{{$prod->product_service_name}}</p>
                                           <p class="mb-0 overflow-text-dots-one-line">{{$prod->subject}}</p>
                                           <p class="mb-0 overflow-text-dots-one-line">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
-                                          <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ moneyFormat($prod->unit_price_from) }} - {{ moneyFormat($prod->unit_price_to) }}  @else {{ moneyFormat($prod->target_price_from) }} - {{ moneyFormat($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                          <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
-                                                <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
-                                                <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
-                                          </div>
+                                          <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }}  @else {{ number_format($prod->target_price_from) }} - {{ number_format($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
+                                          <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
                                       </div>
                                   </a>
                               </div>
                           </div>
                       @endforeach
+                  </div>
                   @else
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+                  <p>There are no products to show at this moment</p>
                   @endif
-              </div>
+
 
               <span class="heading">Similar Deals from Country</span>
-              <div class="row products-deals-slider">
-                  @if(count($sdfc) > 5)
+                  @if(count($sdfc) > 0)
+                  <div class="row products-deals-slider">
                       @foreach($sdfc as $i => $prod)
                           <div class="content-column">
                               <div class="content-column-inner">
                                   <a href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                       <div class="suppliers-buyers" style="height: 65%;">
+                                          @if($prod->product_image->isNotEmpty())
                                           @foreach($prod->product_image as $j => $image)
-                                              @if(!empty($image))
-                                                  <img src="{{$ASSETS}}/{{$image->image}}" class="w-100 h-100 certified-suppliers-img border-grey">
+                                                  <img src="{{$image->image}}" class="w-100 h-100 certified-suppliers-img border-grey">
                                                   @if($j==0)
                                                       @break
                                                   @endif
-                                              @else
-                                                  <img src="{{$ASSET}}/front_site/images/noimage.png" width="50" height="50" class="position-absolute certified-logo">
-                                              @endif
-                                              @if($prod->is_featured ==1)
-                                                  <span class="position-absolute left-0 Featured-txt">Featured</span>
-                                              @endif
+                                                  @if($prod->is_featured ==1)
+                                                      <span class="position-absolute left-0 Featured-txt">Featured</span>
+                                                  @endif
                                           @endforeach
+                                          @else
+                                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img border-grey">
+                                          @endif
                                       </div>
                                   </a>
                                   <a class="text-decoration-none text-reset" href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
@@ -743,208 +611,18 @@
                                           <p class="heading overflow-text-dots-one-line">{{$prod->product_service_name}}</p>
                                           <p class="mb-0 overflow-text-dots-one-line">{{$prod->subject}}</p>
                                           <p class="mb-0 overflow-text-dots-one-line">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
-                                          <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ moneyFormat($prod->unit_price_from) }} - {{ moneyFormat($prod->unit_price_to) }}  @else {{ moneyFormat($prod->target_price_from) }} - {{ moneyFormat($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                          <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
-                                                <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
-                                                <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
-                                          </div>
+                                          <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }}  @else {{ number_format($prod->target_price_from) }} - {{ number_format($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
+                                          <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
                                       </div>
                                   </a>
                               </div>
                           </div>
                       @endforeach
+                  </div>
                   @else
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="content-column">
-                          <div class="content-column-inner">
-                              <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img">
-                              <div class="product-info">
-                                  <div class="product-info-inner">
-                                      <span class="heading">Not Available</span>
-                                      <span>Price</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
+                      <p>There are no products to show at this moment</p>
                   @endif
-              </div>
 
-              {{--          <span class="text-center heading">Textile Partners</span>--}}
-              {{--            <div class="container-fluid logo-slider">--}}
-              {{--                <div class="slider slider-nav w-100">--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/4-box.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/act.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100"></a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/adm.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/alkaram.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100"></a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/apparel-textile-logo.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/archroma.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100"></a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/azgard.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/cotton-web.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100"></a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/cresent.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/feroze.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/gadoon.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100"></a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/gohar.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/interlop.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/kohinoor.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100"></a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/mtm.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/naveena.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/nishat.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100"></a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/rajby.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/sapphire.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/sarena.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100"></a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/sgs.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/sockoye.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/style-textile.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/y-txt.jpeg"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100"></a>--}}
-              {{--                    <a href="#" class="logo-container"><img--}}
-              {{--                            src="{{$ASSET}}/front_site/images/our-clients-logos/zsk.png"--}}
-              {{--                            alt="100x100" data-holder-rendered="true"--}}
-              {{--                            class="w-100 h-100">--}}
-              {{--                    </a>--}}
-              {{--                </div>--}}
-              {{--            </div>--}}
           </div>
       </div>
     </div>

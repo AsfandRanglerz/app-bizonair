@@ -492,11 +492,11 @@ class HomeController extends Controller
             }else{
                 $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png';
             }
-            if (request('sub_category')) {
-                foreach (request('sub_category') as $key => $value) {
+            if (request('category')) {
+                foreach (request('category') as $key => $value) {
                     $new = new \App\UserInterest();
                     $new->user_id = $user->id;
-                    $new->subcategory_id = $value;
+                    $new->category_id = $value;
                     $new->save();
                 }
             }
@@ -572,16 +572,34 @@ class HomeController extends Controller
         $user->last_name = $request->last_name;
         $user->gender = $request->gender;
         $user->registration_phone_no = request('mobileNumber');
+        $user->company_name = request('company_name');
         $user->street_address = $request->street_address;
         $user->city = $request->city;
         $user->state = $request->state;
         $user->country = $request->country;
         $user->country_id = $country_id->id;
-        $user->whatsapp_number = request('whatsapp');
-        $user->telephone = request('telephone');
+        if(request('whatsapp')=='+92'){
+            $user->whatsapp_number = null;
+        }else{
+            $user->whatsapp_number = request('whatsapp');
+        }
+        if(request('telephone')=='+92') {
+            $user->telephone = null;
+        }else{
+            $user->telephone = request('telephone');
+        }
         $user->fax = $request->fax;
         $user->postcode = $request->postcode;
         $user->website = $request->url;
+        $userinterest = \App\UserInterest::where('user_id', auth()->id())->delete();
+        if (request('category')) {
+            foreach (request('category') as $key => $value) {
+                $new = new \App\UserInterest();
+                $new->user_id = $user->id;
+                $new->category_id = $value;
+                $new->save();
+            }
+        }
 //        dd($user->country_id);
         if ($user->save()) {
             if (!empty($request->user_type)) {
