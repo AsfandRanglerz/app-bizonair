@@ -3532,19 +3532,6 @@
             $("#unit_price_unit").select2({
                 placeholder: "Per Unit *"
             });
-            /*
-            $("#origin").select2({
-                placeholder: "Product Origin *"
-            });
-
-            $("#available_unit").select2({
-                placeholder: "Unit *"
-            });
-
-            $("#expiry_date").select2({
-                placeholder: "An Expiry Days *"
-            });
-            */
             /*for select single place holders*/
 
             /*for select multiple place holders*/
