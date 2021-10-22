@@ -94,7 +94,7 @@
                                                 <select class="form-control product-categories" id="category"
                                                         name="category" required>
                                                     <option value=""></option>
-                                                    <option disabled>Please select category *</option>
+                                                    <option disabled selected>Please select category *</option>
                                                     @foreach(\App\Category::all() as $category)
                                                         <option value="{{ $category->id }}"
                                                                 cat-val="{{ $category->name }}"
@@ -3501,9 +3501,9 @@
                 placeholder: "Select Yarn Count Unit *"
             });
 
-            $("#category").select2({
+            /*$("#category").select2({
                 placeholder: "Main Category *"
-            });
+            });*/
 
             $("#sub_category").select2({
                 placeholder: "Sub-Category *"
