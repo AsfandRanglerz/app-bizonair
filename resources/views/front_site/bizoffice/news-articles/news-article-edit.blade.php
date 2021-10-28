@@ -13,10 +13,10 @@
         <!-- /#sidebar-wrapper -->
             <!-- Page Content -->
             @include('front_site.common.dashboard-toggle')
-            <div id="page-content-wrapper" class="page-bg">
+            <div id="page-content-wrapper">
 
-                <div class="d-container mx-3">
-                    <span class="main-heading mt-3 mb-3">News & Articles</span>
+                <div class="d-container">
+                    <span class="main-heading my-2">News & Articles</span>
                     <div class="alert alert-success m-0 mb-2 text-center" id='alert-success' style="display:none;"
                          role="alert">
                     </div>
@@ -29,16 +29,18 @@
                             <input type="hidden" name="id" value="{{ $info->id }}"><div class="form-row">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label class="font-500">Title <span class="required">*</span></label>
-                                        <input type="text"
+                                        <label  class="d-none font-500">Title <span class="required">*</span></label>
+                                        <input type="text" placeholder="Title * - Enter title"
                                                name="title" id="title" value="{{ $info->title }}" class="form-control"
                                         >
                                         <small class="text-danger" id="title_error"></small>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="font-500">Type<span class="required">*</span></label>
+                                        <label class="d-none font-500">Type<span class="required">*</span></label>
 
                                         <select name="journal_type" id="journal_type" class="form-control">
+                                            <option value=""></option>
+                                            <option disabled>Type *</option>
                                             <option value="{{ $info->journal_type_name }}" selected>{{ $info->journal_type_name }}</option>
                                             @foreach(\App\JournalType::all() as $type)
                                                 <option value="{{$type->name}}">{{$type->name}}</option>
@@ -50,9 +52,9 @@
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <label class="font-500">Description</label>
-                                        <textarea name="description" id="description" class="form-control ckeditor"
-                                                  style="min-height:200px;">{{ $info->description }}</textarea>
+                                        <label class="d-none font-500">Description</label>
+                                        <textarea name="description" id="description" placeholder="Description (Optional)" class="form-control ckeditor"
+                                                  style="min-height:105px">{{ $info->description }}</textarea>
                                     </div>
 
                                     {{--                                <div class="form-group col-md-4">--}}
@@ -64,8 +66,8 @@
                                     {{--                                    <small class="text-danger" id="date_error"></small>--}}
                                     {{--                                </div>--}}
 
-                                    <div class="form-group col-md-6 career-img-drop-outer attachment-img-file" >
-                                        <label>Image <span class="required">*</span></label>
+                                    <div class="mb-0 form-group col-md-6 career-img-drop-outer attachment-img-file">
+                                        <label class="font-500">Image <span class="required">*</span></label>
                                         <div class="custom-file">
                                             <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
                                             <label class="custom-file-label" for="customFile"><span class="fa fa-upload"></span></label>
@@ -97,6 +99,11 @@
 
     <script>
         $(document).ready(function () {
+            $('#journal_type').select2({
+                closeOnSelect: true,
+                placeholder: "Type *"
+            });
+
             // // // console.log('ready')
             // $('.closingdatepicker').datepicker({
             //     startDate: "0d",
@@ -104,8 +111,8 @@
             //     format: 'yyyy-mm-dd',
             //     // minDate:0,
             // })
-            $('.ckeditor').ckeditor();
 
+            $('.ckeditor').ckeditor();
 
             var options = {
                 dataType: 'Json',
