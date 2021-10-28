@@ -21,12 +21,12 @@
                         <a href="{{ route('company-create-meeting') }}" class="red-btn pull-right">Schedule Meeting</a>
                     </div>
                     @foreach ($listing as $key => $list)
-                        <div class="card mt-3 shadow-lg">
-                            <div class="card-body ">
+                        <div class="card mt-2">
+                            <div class="card-body p-2">
                                 <h3>{{ucfirst($list->title)}}</h3>
-                                <p>{{date("F jS, Y", strtotime($list->meeting_date)).' '.date('h:i a', strtotime($list->meeting_time))}}</p>
-                                <p>{{$list->detail}}</p>
-                                <p class="text-right"><strong>Scheduled
+                                <p class="mb-2">{{date("F jS, Y", strtotime($list->meeting_date)).' '.date('h:i a', strtotime($list->meeting_time))}}</p>
+                                <p class="mb-2">{{$list->detail}}</p>
+                                <p class="mb-0 text-right"><strong>Scheduled
                                         By:</strong> {{$list->user->first_name}} {{$list->user->last_name}}</p>
                             </div>
                         </div>
