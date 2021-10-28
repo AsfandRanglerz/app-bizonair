@@ -276,7 +276,7 @@
                                                     </div>
                                             </div>
                                             <div class="product-img-spec-container">
-                                                <h6 class="my-1 px-2 heading pro-spec-heading">Product Specifications</h6>
+                                                <h6 class="my-2 px-2 heading pro-spec-heading">Product Specifications</h6>
                                                 <div class="product-images-gallery">
                                                         <ul class="row mx-0 mb-2 product-gallery edit-comp-prof-imgs">
                                                             @foreach(App\Helpers\BuysellHelper::getSheets($buysell->id) as $file)
@@ -1444,7 +1444,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
                                             <div class="product-img-spec-container">
-                                                <h6 class="my-1 px-2 heading pro-spec-heading">Specification Sheets</h6>
+                                                <h6 class="my-2 px-2 heading pro-spec-heading">Specification Sheets</h6>
                                                 <div class="product-images-gallery">
                                                     <ul class="mx-0 mb-2 product-gallery edit-comp-prof-imgs">
                                                         @foreach(App\Helpers\BuysellHelper::getSheets($buysell->id) as $file)

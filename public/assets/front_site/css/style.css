@@ -24,6 +24,10 @@ th {
     height: 1.5rem!important;
 }
 
+.company-profile-logo {
+    width: 95px;
+}
+
 /*toastr*/
 #toast-container>div {
     font-size: 12px;
@@ -53,7 +57,7 @@ th {
 }
 
 .ck-editor__main .ck-content {
-    padding: 15px!important;
+    padding: 12px!important;
 }
 
 .ck-editor__main ol,
@@ -3017,7 +3021,8 @@ span.select2-selection.select2-selection--single {
 }
 
 .select2-container .select2-selection--single .select2-selection__rendered {
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
+    padding: 0 0.75rem!important;
 }
 
 .select2-selection.select2-selection--multiple:after {
@@ -5166,8 +5171,6 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 }
 
 .company-profile .additional-info {
-    border-top: 1px solid #344356;
-    padding-top: 4px;
     margin-bottom: 15px;
     margin-top: 35px;
 }
@@ -9391,7 +9394,7 @@ header .navbar .navbar-toggler {
     }
 
     .font-18 {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .red-btn,

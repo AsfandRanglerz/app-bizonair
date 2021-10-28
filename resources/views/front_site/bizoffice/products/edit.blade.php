@@ -247,7 +247,7 @@
                                             </div>
                                         </div>
                                         <div class="product-img-spec-container">
-                                            <h6 class="mt-3 px-2 heading pro-spec-heading">Product Specifications</h6>
+                                            <h6 class="my-2 px-2 heading pro-spec-heading">Product Specifications</h6>
                                             <div class="product-images-gallery">
                                                 <ul class="row mx-0 mb-2 product-gallery edit-comp-prof-imgs">
                                                     @foreach(ProductHelper::getSheets($product->id) as $file)

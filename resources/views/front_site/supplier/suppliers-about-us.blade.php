@@ -19,9 +19,9 @@
 
                                 <div class="p-0 navbar">
                                     <div class="dropdown">
-                                        <a class="red-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="mr-2 fa fa-share-alt"></span>Share</a>
+                                        <a class="d-block red-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="mr-2 fa fa-share-alt"></span>Share</a>
                                         <div class="dropdown-menu animated-dropdown slideIn left-unset right-0 job-details-container">
-                                            <div class="d-flex justify-content-center mt-2">
+                                            <div class="d-flex justify-content-center">
                                                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.bizonair.com/{{$about_us->id}}/{{$about_us->company_name}}/about-us-suppliers" class="social-button text-decoration-none share-btn" id=""><span class="fa fa-facebook"></span></a>
                                                 <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.bizonair.com/{{$about_us->id}}/{{$about_us->company_name}}/about-us-suppliers&amp;title=my share text&amp;summary=dit is de linkedin summary" class="social-button text-decoration-none share-btn" id=""><span class="fa fa-linkedin"></span></a>
                                                 <a href="https://wa.me/?text=https://www.bizonair.com/{{$about_us->id}}/{{$about_us->company_name}}/about-us-suppliers" class="social-button text-decoration-none share-btn" id=""><span class="fa fa-whatsapp"></span></a>
@@ -41,7 +41,7 @@
                     <div class="switch-tabs bg-white rounded" id="productInfoSection">
                     <!-- Tab panes -->
                         <div class="tab-content">
-                            <div id="productInfo" class="mt-0 tab-pane product-tab active" style="overflow: unset;max-height: unset">
+                            <div id="productInfo" class="h-100 mt-0 tab-pane product-tab active" style="overflow: unset;max-height: unset">
                                 <span class="mt-0 text-center font-weight-bold heading">COMPANY INFO</span>
                                 <span class="mt-0 heading">Business Information</span>
                                 <div class="row text">

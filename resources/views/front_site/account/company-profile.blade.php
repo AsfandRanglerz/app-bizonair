@@ -10,23 +10,23 @@
 
                 <div class="  d-container py-2">
                     <div class="company-profile">
-                        <div class="container">
+                        <div class="container px-0">
                             <div class="alert alert-success m-0 mb-2 text-center" id='alert-success' style="display:none;"
                                  role="alert">
                             </div>
                             <div class="alert alert-danger g m-0 mb-2 text-center" id='alert-error' style="display:none;"
                                  role="alert">
                             </div>
-                            <span class="d-block text-center heading main-heading font-24">Company Profile</span>
+                            <span class="d-block heading font-18">Company Profile</span>
                             <form id="companyForm" name="companyForm" autocomplete="off" action="{{route('company-profile-create')}}"
                                   method="post" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="office_code" value="{{ rand(2000, 1900000) }}">
-                                <span class="d-block heading font-18 basic-info">Basic Info</span>
+                                <span class="d-block heading basic-info">Basic Info</span>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="companyName" class="label">Company Name <span class="required">*</span></label>
-                                        <input type="text" class="form-control" id="companyName" name="company_name" placeholder="My Textile" required>
+                                        <label for="companyName" class="d-none label">Company Name <span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="companyName" name="company_name" placeholder="Company Name * - My Textile" required>
                                         <small class="text-danger" id="company_name_error"></small>
                                     </div>
                                 <!-- <div class="form-group col-md-6">
@@ -41,10 +41,12 @@
                                     <small class="text-danger" id="industry_error"></small>
                                 </div> -->
                                     <div class="form-group col-md-6">
-                                        <label for="industry" class="label d-block">Business Category <span
+                                        <label for="industry" class="d-none label">Business Category <span
                                                 class="required">*</span></label>
                                         <select class="form-control select2-multiple1" required id="industry" name="industry[]"
                                                 multiple>
+                                            <option value=""></option>
+                                            <option disabled>Business Category *</option>
                                             @foreach (\App\Category::all() as $item)
                                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                             @endforeach
@@ -54,9 +56,11 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 business-select">
-                                        <label class="label d-block">Business Type <span class="required">*</span></label>
+                                        <label class="d-none label">Business Type <span class="required">*</span></label>
                                         <select class="form-control select2-multiple2" required name="business_type[]"
                                                 multiple="multiple">
+                                            <option value=""></option>
+                                            <option disabled>Business Type *</option>
                                             <option value="Manufacturer">Manufacturer</option>
                                             <option value="Trading Company">Trading Company</option>
                                             <option value="Supplier">Supplier</option>
@@ -66,15 +70,16 @@
                                         <small class="text-danger" id="business_type_error"></small>
                                     </div>
                                     <div class="form-group col-md-6 other-div">
-                                        <h6 class="w-100 p-0">Add Business Type <span class="required">*</span></h6>
-                                        <input type="text" name="other_business_type" placeholder="Input Other Business Type"
+                                        <h6 class="d-none w-100 p-0">Add Business Type <span class="required">*</span></h6>
+                                        <input type="text" name="other_business_type" placeholder="Add Business Type * - Input Other Business Type"
                                                class="form-control">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="label d-block">Nature of Business <small
+                                        <label class="d-none label">Nature of Business <small
                                                 class="font-500">(Optional)</small></label>
-                                        <select class="form-control" name="business_nature">
-                                            <option value="" selected disabled>Select Nature of Business</option>
+                                        <select class="form-control select2-multiple5" name="business_nature">
+                                            <option value=""></option>
+                                            <option disabled>Nature of Business (Optional)</option>
                                             <option value="Proprietorship">Proprietorship</option>
                                             <option value="Limited">Limited</option>
                                             <option value="Company">Company</option>
@@ -87,32 +92,33 @@
                                         <small class="text-danger" id="business_nature_error"></small>
                                     </div>
                                     <div class="form-group col-md-6 other-nature-div" style="display: none;">
-                                        <h6 class="w-100 p-0">Add Nature of Business <span class="required">*</span></h6>
-                                        <input type="text" name="other_business_nature" placeholder="Input Other Nature of Business"
+                                        <h6 class="d-none w-100 p-0">Add Nature of Business <span class="required">*</span></h6>
+                                        <input type="text" name="other_business_nature" placeholder="Add Nature of Business * - Input Other Nature of Business"
                                                class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="registeration_no" class="label">Business License Number/Registration Number <small
+                                        <label for="registeration_no" class="d-none label">Business License Number/Registration Number <small
                                                 class="font-500">(Optional)</small></label>
                                         <input type="text" class="form-control" id="registeration_no" name="registeration_no"
-                                               placeholder="Input Registration Number (if any)">
+                                               placeholder="Business License Number/Registration Number (Optional) - Input Registration Number (if any)">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="year_established" class="label">Year Established <small class="font-500">(Optional)</small></label>
+                                        <label for="year_established" class="d-none label">Year Established <small class="font-500">(Optional)</small></label>
                                         <input type="text" class="form-control" id="year_established" name="year_established"
-                                               placeholder="Input the Year Company was Established">
+                                               placeholder="Year Established (Optional) - Input the Year Company was Established">
                                         <small class="text-danger" id="year_established_error"></small>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="no_of_employees" class="label">Number of Employees <small class="font-500">(Optional)</small></label>
+                                        <label for="no_of_employees" class="d-none label">Number of Employees <small class="font-500">(Optional)</small></label>
                                         {{--                            <input type="number" class="form-control" name="no_of_employees" id="no_of_employees"--}}
                                         {{--                                   placeholder="Input total number of Employees">--}}
-                                        <select class="form-control" name="no_of_employees" id="no_of_employees">
-                                            <option value="" selected disabled>Input total number of Employees</option>
+                                        <select class="form-control select2-multiple6" name="no_of_employees" id="no_of_employees">
+                                            <option value=""></option>
+                                            <option disabled>Number of Employees (Optional)</option>
                                             <option value="0-10">0-10</option>
                                             <option value="Fewer than 50">Fewer than 50</option>
                                             <option value="Fewer than 100">Fewer than 100</option>
@@ -121,21 +127,23 @@
                                         <small class="text-danger" id="no_of_employees_error"></small>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="label">Annual Turnover <small class="font-500">(Optional)</small></label>
+                                        <label class="d-none label">Annual Turnover <small class="font-500">(Optional)</small></label>
                                         <input type="text" class="form-control"
                                                name="annual_turnover"
                                                id="annual_turnover"
                                                pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
-                                               data-type="currency" placeholder="Input total turnover in Dollars i.e. $1,000,000">
+                                               data-type="currency" placeholder="Annual Turnover (Optional) - Input total turnover in Dollars i.e. $1,000,000">
                                         <small class="text-danger" id="annual_turnover_error"></small>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label class="label d-block">Export Market <small
+                                        <label class="d-none label">Export Market <small
                                                 class="font-500">(Optional)</small></label>
                                         <select class="form-control select2-multiple3" name="export_market[]"
                                                 multiple="multiple">
+                                            <option value=""></option>
+                                            <option disabled>Export Market (Optional)</option>
                                             <option value="Africa">Africa</option>
                                             <option value="Central Asia">Central Asia</option>
                                             <option value="Eastern Asia">Eastern Asia</option>
@@ -154,10 +162,12 @@
                                         <small class="text-danger" id="export_market_error"></small>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="label d-block">Certifications <small
+                                        <label class="d-none label">Certifications <small
                                                 class="font-500">(Optional)</small></label>
                                         <select class="form-control select2-multiple4" name="certifications[]"
                                                 multiple="multiple">
+                                            <option value=""></option>
+                                            <option disabled>Certifications (Optional)</option>
                                             <option value="BCI">BCI</option>
                                             <option value="Bluesign">Bluesign</option>
                                             <option value="BSCI">BSCI</option>
@@ -178,7 +188,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <span class="d-block mb-3 heading">LOGO Image <small class="font-500">(Optional | JPG or PNG file only | Upto
+                                    <span class="d-block mb-2 heading">LOGO Image <small class="font-500">(Optional | JPG or PNG file only | Upto
                                                             10MB (Dimension: 65 x 65 Pixels) | Square image recommended)</small></span>
                                     <div class="avatar-wrapper">
                                         <img class="product-pic" id="buploaded_image31" src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -191,12 +201,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <span class="d-block mb-3 heading">Company Images <small
+                                    <span class="d-block mb-2 heading">Company Images <small
                                             class="font-500">(Optional | JPG, PNG & PDF files only | Upto 10MB)</small></span>
                                     <div class="dropzone dz-clickable">
                                         <div class="my-0 dz-default dz-message" data-dz-message="">
-                                            <div class="row product-img-sheet">
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                            <div class="mx-0 row product-img-sheet">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image16"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -216,7 +226,7 @@
                                                                id="sheet16_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image17"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -236,7 +246,7 @@
                                                                id="sheet17_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image18"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -256,7 +266,7 @@
                                                                id="sheet18_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image19"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -276,7 +286,7 @@
                                                                id="sheet19_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image20"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -296,7 +306,7 @@
                                                                id="sheet20_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image21"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -316,7 +326,7 @@
                                                                id="sheet21_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image22"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -336,7 +346,7 @@
                                                                id="sheet22_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image23"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -356,7 +366,7 @@
                                                                id="sheet23_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image24"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -376,7 +386,7 @@
                                                                id="sheet24_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image25"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -396,7 +406,7 @@
                                                                id="sheet25_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image26"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -416,7 +426,7 @@
                                                                id="sheet26_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image27"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -436,7 +446,7 @@
                                                                id="sheet27_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image28"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -456,7 +466,7 @@
                                                                id="sheet28_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image29"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -476,7 +486,7 @@
                                                                id="sheet29_url"/>
                                                     </div>
                                                 </div>
-                                                <div class="my-1 px-1 col-md-2 col-4">
+                                                <div class="my-1 px-1 col-md-2 col-3">
                                                     <div class="w-100 avatar-wrapper">
                                                         <img class="product-pic" id="uploaded_image30"
                                                              src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -501,9 +511,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group mt-2">
-                                    <label class="label">Company Introduction <span class="required">*</span></label>
+                                    <label class="d-none label">Company Introduction <span class="required">*</span></label>
                                     <textarea class="form-control" name="company_introduction" maxlength="5000"
-                                              placeholder="Introduce your company in 5000 characters"
+                                              placeholder="Company Introduction * - Introduce in 5000 characters"
                                               id="editor1"
                                               rows="5" required></textarea>
                                     <small class="text-danger" id="company_introduction_error"></small>
@@ -512,34 +522,34 @@
                                 <span class="d-block heading font-18 additional-info">Additional Business Info</span>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label class="label" for="business_owner">Business Owner <small
+                                        <label class="d-none label" for="business_owner">Business Owner <small
                                                 class="font-500">(Optional)</small></label>
-                                        <input type="text" class="form-control" placeholder="Input Business Owner Name"
+                                        <input type="text" class="form-control" placeholder="Business Owner (Optional) - Input Business Owner Name"
                                                name="business_owner" id="business_owner">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="alternate_contact" class="label">Alternate Contact Number <small
+                                        <label for="alternate_contact" class="d-none label">Alternate Contact Number <small
                                                 class="font-500">(Optional)</small></label>
                                         <input type="tel" class="form-control mobileNum inteltel"
                                                name="alternate_contact"
-                                               id="alternate_contact" placeholder="03xxxxxxxxx/3xxxxxxxxx">
+                                               id="alternate_contact" placeholder="Alternate Contact Number (Optional) - 03xxxxxxxxx/3xxxxxxxxx">
                                         <input type="hidden" name="alternate_contact_country_code">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label class="label" for="alternate_email">Alternate Email <small
+                                        <label class="d-none label" for="alternate_email">Alternate Email <small
                                                 class="font-500">(Optional)</small></label>
                                         <input type="email" class="form-control" name="alternate_email"
                                                id="alternate_email"
-                                               placeholder="Input alternate Email Address">
+                                               placeholder="Alternate Email (Optional) - Input alternate Email Address">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="label" for="alternate_address">Alternate Office Address <small
+                                        <label class="d-none label" for="alternate_address">Alternate Office Address <small
                                                 class="font-500">(Optional)</small></label>
                                         <input type="text" class="form-control" name="alternate_address"
                                                id="alternate_address"
-                                               placeholder="Input Current Office Address">
+                                               placeholder="Alternate Office Address (Optional) - Input Current Office Address">
                                     </div>
                                 </div>
                                 <button type="submit" class="red-btn">Submit</button>
@@ -611,20 +621,29 @@
             });
             $('.select2-multiple1').select2({
                 closeOnSelect: true,
-                placeholder: "Choose Business Category",
+                placeholder: "Choose Business Category *",
             });
             $('.select2-multiple2').select2({
                 closeOnSelect: true,
-                placeholder: "Choose Business Type",
+                placeholder: "Choose Business Type *",
             });
             $('.select2-multiple3').select2({
                 closeOnSelect: true,
-                placeholder: "Choose the Export Market",
+                placeholder: "Choose the Export Market (Optional)",
             });
             $('.select2-multiple4').select2({
                 closeOnSelect: true,
-                placeholder: "Input Certifications (If any)",
+                placeholder: "Certifications (Optional) - Input Certifications (If any)",
             });
+            $('.select2-multiple5').select2({
+                closeOnSelect: true,
+                placeholder: "Select Nature of Business (Optional)",
+            });
+            $('.select2-multiple6').select2({
+                closeOnSelect: true,
+                placeholder: "Number of Employees (Optional)",
+            });
+
             $('.select2-multiple1, .select2-multiple2, .select2-multiple3, .select2-multiple4').on('select2:select', function (e) {
                 $(this).siblings('.select2').find('.select2-selection__choice').siblings('.select2-search--inline').css({'width': 'min-content', 'float': 'right'});
             });

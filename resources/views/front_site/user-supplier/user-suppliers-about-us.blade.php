@@ -17,9 +17,9 @@
                                 <a id="shareLinkbtn" class="red-btn">Copy URL </a>
                                 <div class="p-0 navbar">
                                     <div class="dropdown">
-                                        <a class="red-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="mr-2 fa fa-share-alt"></span>Share</a>
+                                        <a class="d-block red-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="mr-2 fa fa-share-alt"></span>Share</a>
                                         <div class="dropdown-menu animated-dropdown slideIn left-unset right-0 job-details-container">
-                                            <div class="d-flex justify-content-center mt-2">
+                                            <div class="d-flex justify-content-center">
                                                 <a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" class="social-button text-decoration-none share-btn" id=""><span class="fa fa-facebook"></span></a>
                                                 <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{url()->current()}}&amp;title=my share text&amp;summary=dit is de linkedin summary" class="social-button text-decoration-none share-btn" id=""><span class="fa fa-linkedin"></span></a>
                                                 <a href="https://wa.me/?text={{url()->current()}}" class="social-button text-decoration-none share-btn" id=""><span class="fa fa-whatsapp"></span></a>
@@ -51,7 +51,7 @@
 
                     <!-- Tab panes -->
                         <div class="tab-content">
-                            <div id="productInfo" class="mt-0 tab-pane product-tab active" style="overflow: unset;max-height: unset">
+                            <div id="productInfo" class="h-100 mt-0 tab-pane product-tab active" style="overflow: unset;max-height: unset">
                                 {{--                                    <span class="mt-0 mb-1 heading">About</span>--}}
                                 {{--                                    <div>--}}
                                 {{--                                        <p class="mb-3">this is test bizonair company</p>--}}
