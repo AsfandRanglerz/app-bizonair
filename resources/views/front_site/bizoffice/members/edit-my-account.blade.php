@@ -218,6 +218,9 @@
                             <li class="nav-item ml-auto">
                                 <button class="red-btn close-form" href="#add-cancil" data-toggle="modal">CLOSE</button>
                             </li>
+                            <li class="nav-item ml-1">
+                                <button type="submit" class="red-btn" form="updateAccount">Update</button>
+                            </li>
                             <div id="add-cancil" class="change-password-modal modal fade">
                                 <div class="modal-dialog modal-dialog-centered modal-login">
                                     <div class="modal-content">
@@ -364,9 +367,10 @@
 {{--                                    </div>--}}
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
-                                            <select name="country" id="country_id" class="form-control choose-country"
+                                            <select name="country" id="country_id" class="form-control single-select-dropdown"
                                                     required="required">
-                                                <option value="" selected disabled>Select Country</option>
+                                                <option value=""></option>
+                                                <option disabled>Select Country/Region *</option>
                                                 @foreach($countries as $country)
                                                         <option value="{{ $country->name->common }}" {{($user->country == $country->name->common)?'selected':''}}>{{ $country->name->common }}</option>
                                                 @endforeach
@@ -376,7 +380,9 @@
                                         <div class="form-group col-md-6 mb-1">
                                             <select name="state" id="state" required
                                                     class="form-control single-select-dropdown">
-                                                <option value="{{$user->state}}">{{$user->state}}</option>
+                                                <option value=""></option>
+                                                <option disabled>State/Province *</option>
+                                                <option value="{{$user->state}}" selected>{{$user->state}}</option>
                                             </select>
                                             <small class="text-danger" id="state_error"></small>
                                         </div>
@@ -384,7 +390,9 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
                                             <select name="city" id="city" required class="form-control single-select-dropdown">
-                                                <option value="{{$user->city}}">{{$user->city}}</option>
+                                                <option value=""></option>
+                                                <option disabled>City *</option>
+                                                <option value="{{$user->city}}" selected>{{$user->city}}</option>
                                             </select>
                                             <small class="text-danger" id="city_error"></small>
                                         </div>
@@ -438,9 +446,9 @@
                                             <input type="hidden" name="telephone_country_code">
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-between mt-1">
+<!--                                    <div class="d-flex justify-content-between mt-1">
                                         <button type="submit" class="red-btn">Update</button>
-                                    </div>
+                                    </div>-->
                                     <div class="my-1">
                                         <hr>
                                     </div>
@@ -460,6 +468,23 @@
 @push('js')
     <script>
         $(document).ready(function () {
+            /*single select dropdown*/
+            $('#country_id').select2({
+                closeOnSelect: true,
+                placeholder: "Select Country/Region *"
+            });
+
+            $('#state').select2({
+                closeOnSelect: true,
+                placeholder: "State/Province *"
+            });
+
+            $('#city').select2({
+                closeOnSelect: true,
+                placeholder: "city *"
+            });
+            /*single select dropdown*/
+
             var validator = $("form[name='updateAccount']").validate({
                 onfocusout: function (element) {
                     var $element = $(element);
