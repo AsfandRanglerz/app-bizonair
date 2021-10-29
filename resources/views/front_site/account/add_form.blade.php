@@ -136,7 +136,8 @@
                                             <h6 class="w-100 p-0 d-none">Designation <small class="font-500">(Optional)</small>
                                             </h6>
                                             <select name='designation' class="form-control single-select-dropdown">
-                                                <option value="" disabled selected>Select Designation (Optional)</option>
+                                                <option value=""></option>
+                                                <option disabled>Select Designation (Optional)</option>
                                                 <option value="Director">Director</option>
                                                 <option value="CEO">CEO</option>
                                                 <option value="General Manager">General Manager</option>
@@ -151,7 +152,7 @@
                                         </div>
                                         <div class="form-group col-md-6 other-div">
                                             <h6 class="w-100 p-0 d-none">Add Designation <span class="required">*</span></h6>
-                                            <input type="text" name="other_designation" class="form-control" placeholder="Add Designation">
+                                            <input type="text" name="other_designation" class="form-control" placeholder="Add Designation *">
                                         </div>
                                     </div>
                                     {{-- <div class="form-row">
@@ -183,6 +184,8 @@
                                             <label class="d-none">Categories</label>
                                             <select name="category[]" class="form-control select2-multiple" id="category"
                                                     multiple>
+                                                <option value=""></option>
+                                                <option disabled>Categories (Optional)</option>
                                                 @foreach (\App\Category::all() as $item)
 
                                                     <option value="{{$item->id}}">{{$item->name}}</option>
@@ -200,10 +203,11 @@
 {{--                                        </div>--}}
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 mb-1">
+                                        <div class="form-group col-md-6 mb-1 flex-column-reverse">
                                             <label class="d-none">Country/Region <span class="required">*</span></label>
-                                            <select name="country" id="country_id" required class="form-control single-select-dropdown choose-country">
-                                                <option disabled selected>Select Country/Region</option>
+                                            <select name="country" id="country_id" required class="form-control single-select-dropdown">
+                                                <option value=""></option>
+                                                <option disabled>Select Country/Region *</option>
                                                 @foreach ($countries as $item)
                                                     <option value="{{$item->name->common}}">{{$item->name->common}}</option>
                                                 @endforeach
@@ -211,21 +215,23 @@
                                             <small class="text-danger" id="country_error"></small>
                                         </div>
 
-                                        <div class="form-group col-md-6 d-flex flex-column">
+                                        <div class="form-group col-md-6 flex-column-reverse">
                                             <label class="d-none">State/Province <span class="required">*</span></label>
                                             <select name="state" id="state" required
                                                     class="form-control single-select-dropdown">
-                                                <option value="" disabled selected></option>
+                                                <option value=""></option>
+                                                <option disabled>State/Province *</option>
                                             </select>
                                             <small class="text-danger" id="state_error"></small>
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 d-flex flex-column">
+                                        <div class="form-group col-md-6 flex-column-reverse">
                                             <label class="d-none">City <span class="required">*</span></label>
                                             <select name="city" id="city" required
                                                     class="form-control single-select-dropdown">
-                                                <option value="" disabled selected></option>
+                                                <option value=""></option>
+                                                <option disabled>City *</option>
                                             </select>
                                             <small class="text-danger" id="city_error"></small>
                                         </div>
@@ -327,9 +333,31 @@
             }
         });
         $(function () {
+            /*single select dropdown*/
+            $('select[name=designation]').select2({
+                closeOnSelect: true,
+                placeholder: "Select Designation (Optional)"
+            });
+
+            $('#country_id').select2({
+                closeOnSelect: true,
+                placeholder: "Select Country/Region *"
+            });
+
+            $('#state').select2({
+                closeOnSelect: true,
+                placeholder: "State/Province *"
+            });
+
+            $('#city').select2({
+                closeOnSelect: true,
+                placeholder: "city *"
+            });
+            /*single select dropdown*/
+
             $('.select2-multiple').select2({
                 closeOnSelect: false,
-                placeholder: "Select interest categories",
+                placeholder: "Select interest categories (Optional)",
             });
 
             $('.select2-multiple5').select2({

@@ -3071,6 +3071,10 @@ span.select2-selection.select2-selection--single {
     align-items: center;
 }
 
+.select2-container--default .select2-results>.select2-results__options {
+    max-height: 125px;
+}
+
 .select2-container--default .select2-results__option[aria-selected=true] {
     background-color: #fff;
     display: flex;
@@ -3125,9 +3129,9 @@ span.select2-selection.select2-selection--single {
     padding: 0 .75rem!important;
 }
 
-.select2-multiple + .select2-container--default .select2-search--inline .select2-search__field {
-    width: 100% !important;
-}
+/*.select2-multiple + .select2-container--default .select2-search--inline .select2-search__field {*/
+/*    width: 100% !important;*/
+/*}*/
 
 .select2-container--default .select2-search--inline .select2-search__field::placeholder {
     font-size: 10px;

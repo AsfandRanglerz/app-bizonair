@@ -180,7 +180,7 @@
 {{--                                                </ul>--}}
 {{--                                            </div>--}}
                                             <div class="form-group check-stats pl-2">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                <div class="flex-column-reverse custom-control custom-checkbox custom-control-inline">
                                                     <input type="checkbox" class="custom-control-input" name="termsCheckboxinput" id="termsCheckboxinput">
                                                     <label class="custom-control-label" for="termsCheckboxinput">I Agree to the <a href="{{url('terms-of-use')}}" class="text-link">Terms of Services</a> and <a href="{{url('privacy')}}" class="text-link">Privacy Policy</a></label>
                                                 </div>
@@ -192,7 +192,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-sm-12 mb-1" align="center">
-                                                <input type="submit" id="accoutn_btn" class="red-btn create-btn" value="Create My Account">
+                                                <input type="submit" id="accoutn_btn" class="red-btn create-btn" value="Create My Account" disabled>
                                                 <button  disabled class="btn-pro d-none create-btn"><span
                                                         class="spinner-border spinner-border-sm mr-1" role="status"
                                                         aria-hidden="true"></span>Processing

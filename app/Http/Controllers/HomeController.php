@@ -187,7 +187,7 @@ class HomeController extends Controller
             $data['url'] = url('verify-otp/'.$verification_code);
         } else {
             $data['feedback'] = 'invalid';
-            $data['msg'] = 'Email already exists';
+            $data['msg'] = 'Provided Email Address is already Registered with Bizonair';
         }
         return json_encode($data);
     }
