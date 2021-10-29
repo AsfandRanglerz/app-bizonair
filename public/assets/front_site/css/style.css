@@ -16,12 +16,15 @@ th {
 }
 
 .progress {
-    height: 1.5rem;
+    height: 1.1rem;
+    background-color: #a8b0b978;
 }
 
 .progress-bar {
-    background: #A52C3E!important;
-    height: 1.5rem!important;
+    background: #344356!important;
+    height: 1.1rem!important;
+    font-size: 9px;
+    padding: 0 4px;
 }
 
 .company-profile-logo {

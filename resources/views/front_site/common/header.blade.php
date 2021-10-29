@@ -258,6 +258,11 @@
                     <div class="ml-3">
                         <p class="mb-0 biz-user">{{ auth()->user()->name }}</p>
                         <p class="mb-0 biz-country">{{ auth()->user()->country }}</p>
+                        <div class="progress mt-2">
+                            <div class="progress-bar" role="progressbar"
+                                 aria-valuenow="{{ $profile_percentage = get_user_profile_percentage(auth()->id()) }}"
+                                 aria-valuemin="0" aria-valuemax="100">{{ $profile_percentage }}%</div>
+                        </div>
                     </div>
                 </div>
             @else
