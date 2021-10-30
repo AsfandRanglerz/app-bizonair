@@ -13,11 +13,6 @@
 
 <body class="dashboard">
     <style>
-        .sent-attach-btn-send-icon {
-            height: calc(100% - 16px);
-            right: 15px;
-        }
-
         .fa-envelope:before {
             content: "\f0e0";
             font-family: 'Font Awesome 5 Free';
@@ -40,10 +35,6 @@
         .reference-number {
             color: gray;
             font-weight: 500;
-        }
-
-        .send-box {
-            padding-right: 5.5rem;
         }
 
         .reply-input-field {
@@ -93,27 +84,6 @@
 
         .fa.fa-paperclip {
             color: #FFF;
-        }
-
-        .day-date-time {
-            color: #FFF;
-            font-size: 13px;
-        }
-
-        .user {
-            font-size: 16px;
-            color: #FFF;
-        }
-
-        .recipient {
-            color: #FFF;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .description {
-            color: #FFF;
-            font-size: 14px;
         }
 
         .send-icon {

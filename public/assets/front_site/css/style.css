@@ -402,6 +402,10 @@ body {
 /*css to make footer fixed at bottom*/
 
 /*global*/
+.top-0 {
+    top: 0!important;
+}
+
 .w-60 {
     width: 60%!important;
 }
@@ -1061,6 +1065,7 @@ p.click {
     color: #000!important;
     cursor: pointer;
     transition: .3s ease;
+    font-size: 10px;
 }
 
 .mail-reply-box-outer .mail-reply-box .user,
@@ -3557,6 +3562,42 @@ form .other-div {
 /*company profile dashboard*/
 
 /*Inquiries*/
+.mail-reply-box-outer .table td, .mail-reply-box-outer .table th {
+    font-size: 10px;
+}
+
+.mail-reply-box-outer .user {
+    font-size: 10px;
+}
+
+.mail-reply-box-outer .recipient {
+    font-size: 10px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.mail-reply-box-outer .fa.fa-paperclip,
+.mail-reply-box-outer .fa.fa-paper-plane {
+    font-size: 10px;
+}
+
+.mail-reply-box-outer .send-box {
+    padding-right: 3.5rem;
+    height: calc(2em + .75rem + 2px);
+}
+
+.mail-reply-box-outer .sent-attach-btn-send-icon {
+    right: 8px;
+}
+
+.mail-reply-box-outer .day-date-time {
+    font-size: 10px;
+}
+
+.mail-reply-box-outer .description {
+    font-size: 10px;
+}
+
 .inquiry-nav-tabs .nav-item.show .nav-link, .inquiry-nav-tabs .nav-link.active {
     border-bottom: 1px solid #2E90E5;
     background: none;

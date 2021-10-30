@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-between align-items-start">
+<div class="mt-2 d-flex justify-content-between align-items-start">
     <span class="main-heading">{{ucfirst($convo->product->product_service_name)}} Ref# {{$convo->product->reference_no}}</span>
     <div class="d-flex align-items-start">
         <div class="mr-4 info-content-inquiry">
