@@ -187,11 +187,11 @@
     <main id="maincontent" class="page-main group-chat">
         <div class="d-flex" id="dashboardWrapper">
             <!-- Sidebar -->
-            @include('front_site.common.dashboard-sidebar')
+        @include('front_site.common.dashboard-toggle')
             <!-- Sidebar -->
             <!-- Page Content -->
             <div id="page-content-wrapper" style="background: #d9eefe8c">
-                @include('front_site.common.dashboard-toggle')
+
 
                 <div class="my-2 mx-4" id="dynamic-body">
                     <ul class="mb-3 nav nav-tabs">

@@ -935,52 +935,60 @@
     </script>
     @if(Auth::check())
         <script type="text/javascript">
-            if (!(location.href.match('/products/create') || location.href.match('/create/buy-sell') || location.href.match('/company-profile') || location.href.match('/my-company-profile/') || location.href.match('/edit/buy-sell/'))) {
-                setInterval(function()
-                {
-                    $.ajax({
-                        type:"post",
-                        url:"{{route('notification')}}",
-                        data:{_token: "{{csrf_token()}}" , current_url: '{{url()->current()}}' },
-                        dataType: 'Json',
-                        success: function (data) {
-                            console.log(data);
-                            $(".notafic").text('');
-                            $("#notify").text(data.notify);
-                            $('#isdiplay').html(data.output);
-                            $("#meeti").text(data.meetnoti);
-                            $("#chati").text(data.chatnoti);
+            // if (!(location.href.match('/products/create') || location.href.match('/create/buy-sell') || location.href.match('/company-profile') || location.href.match('/my-company-profile/') || location.href.match('/edit/buy-sell/'))) {
+            setInterval(function()
+            {
+                $.ajax({
+                    type:"post",
+                    url:"{{route('notification')}}",
+                    data:{_token: "{{csrf_token()}}" , current_url: '{{url()->current()}}' },
+                    dataType: 'Json',
+                    success: function (data) {
+                        console.log(data);
+                        $(".notafic").text('');
+                        $("#notify").text(data.notify);
+                        $('#isdiplay').html(data.output);
+                        $("#meeti").text(data.meetnoti);
+                        $("#chati").text(data.chatnoti);
+                        if(data.leadinq ==0){
+                            $("#leadinq").text(0);
+                        }else{
                             $("#leadinq").text(data.leadinq);
-                            $("#dealinq").text(data.dealinq);
-                            $("#fleadinq").text(data.fleadinq);
-                            $("#fdealinq").text(data.fdealinq);
-                            if (data.notifiactions){
-                                @if(!(\Request::is('group-chat')))
-                                var content = '<div class="modal-content">'+
-                                    '<div class="modal-header">'+
-                                    '<span class="modal-title">Notification</span>'+
-                                    '<input type="hidden" name="display" value="'+data.notifiactions.id+'"/>'+
-                                    '<button type="button" class="close is-display" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-                                    '</div>'+
-                                    '<div class="modal-body pt-3">'+
-                                    '<p style="color: white;">'+data.notifiactions.notification_text+'</p>'+
-                                    '<input type="button" id="view-page" class="red-btn" attr-val="'+data.notifiactions.id+'" value="View">'+
-                                    '</div>'+
-                                    "</div>";
-                                $('#notific').modal('show');
-                                $(".notafic").append(content);
-                                @endif
-                            }
                         }
-                    });
-                }, 2000);//time in milliseconds
-            }else{
-                $(".notifications-scroll").css("display", "none");
-                $(".biz-notifications").hover(function() {
-                    $(this).addClass('disable-notify');
+                        $("#dealinq").text(data.dealinq);
+                        if(data.fleadinq ==0){
+                            $("#fleadinq").text(0);
+                        }else{
+                            $("#fleadinq").text(data.fleadinq);
+                        }
+                        $("#fdealinq").text(data.fdealinq);
+                        if (data.notifiactions){
+                            @if(!(\Request::is('group-chat')))
+                            var content = '<div class="modal-content">'+
+                                '<div class="modal-header">'+
+                                '<span class="modal-title">Notification</span>'+
+                                '<input type="hidden" name="display" value="'+data.notifiactions.id+'"/>'+
+                                '<button type="button" class="close is-display" data-dismiss="modal" aria-hidden="true">&times;</button>'+
+                                '</div>'+
+                                '<div class="modal-body pt-3">'+
+                                '<p style="color: white;">'+data.notifiactions.notification_text+'</p>'+
+                                '<input type="button" id="view-page" class="red-btn" attr-val="'+data.notifiactions.id+'" value="View">'+
+                                '</div>'+
+                                "</div>";
+                            $('#notific').modal('show');
+                            $(".notafic").append(content);
+                            @endif
+                        }
+                    }
                 });
-                console.log('return false');
-            }
+            }, 1000);//time in milliseconds
+            // }else{
+            //     $(".notifications-scroll").css("display", "none");
+            //     $(".biz-notifications").hover(function() {
+            //         $(this).addClass('disable-notify');
+            //     });
+            //     console.log('return false');
+            // }
         </script>
     @endif
 

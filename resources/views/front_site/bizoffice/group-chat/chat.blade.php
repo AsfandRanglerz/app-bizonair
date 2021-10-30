@@ -15,10 +15,11 @@
     <main id="maincontent" class="page-main group-chat">
         <div class="d-flex" id="dashboardWrapper">
             <!-- Sidebar -->
+        @include('front_site.common.dashboard-toggle')
         <!-- Sidebar -->
             <!-- Page Content -->
-            @include('front_site.common.dashboard-toggle')
             <div id="page-content-wrapper">
+
                 <div class="chatbox-holder" id="app">
                     <div class="chatbox group-chat">
                         <div class="chatbox-top">
