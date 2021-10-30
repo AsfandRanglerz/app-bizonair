@@ -19,7 +19,7 @@
         <a href="" class="btn red-btn float-right">Back</a>
     </div>
 </div>
-<ul class="mb-3 nav nav-tabs">
+<ul class="mb-2 nav nav-tabs inquiry-nav-tabs">
     <li class="nav-item">
         <a class="nav-link" id="inboxMail-tab" data-toggle="tab" href="#inboxMail" role="tab"
            aria-controls="home" aria-selected="true">INBOX</a>
@@ -43,7 +43,7 @@
     <input type="hidden" class="convo-data" data-convo={{encrypt($convo->id)}}>
     {{-- {{dd($convo->messages)}} --}}
     @foreach ($convo->messages as $list)
-    <div class="p-4 mail-reply-box @if($list->created_by == \Auth::id()) msg-sender @endif">
+    <div class="p-2 mail-reply-box@if($list->created_by == \Auth::id()) msg-sender @endif">
         <div class="d-flex justify-content-between">
             @if($list->created_by == \Auth::id())
                 <div>

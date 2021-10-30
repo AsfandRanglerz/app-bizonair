@@ -27,37 +27,6 @@
             display: none;
         }
 
-        .inquiry-btn {
-            background: none;
-            border: 1px solid #A52C3E;
-            color: #A52C3E;
-            border-radius: 8px;
-            width: 85px;
-            padding: 5px 0;
-            font-weight: 500;
-            transition: 1s ease;
-        }
-
-        .inquiry-btn:hover,
-        .inquiry-btn:focus {
-            background: #A52C3E;
-            color: #FFF;
-            outline: none;
-        }
-
-        .date-reference-number {
-            border: none;
-            background: transparent;
-            border-bottom: 1px solid grey;
-            font-size: 14px;
-            padding: 0 0 5px 0;
-            outline: none;
-        }
-
-        .date-reference-number[placeholder] {
-            color: grey;
-        }
-
         .info-content-inquiry {
             border: 2px dashed #808080b3;
             padding: 4px;
@@ -90,23 +59,6 @@
         .small-cell {
             width: 1px;
             white-space: nowrap;
-        }
-
-        .mails-inbox {
-            background: #FFF;
-            box-shadow: 0 0 10px rgb(0 0 0 / 15%);
-        }
-
-        .mails-inbox-header {
-            background: linear-gradient(270deg, #12253d91 0%, #12253d 75%);
-        }
-
-        .mails-inbox-icons {
-            padding: .75rem;
-            background: #80808045;
-            color: grey;
-            transition: .5s ease;
-            cursor: pointer;
         }
 
         .mails-inbox-icons:hover {
@@ -190,11 +142,11 @@
         @include('front_site.common.dashboard-toggle')
             <!-- Sidebar -->
             <!-- Page Content -->
-            <div id="page-content-wrapper" style="background: #d9eefe8c">
+            <div id="page-content-wrapper" >
 
 
-                <div class="my-2 mx-4" id="dynamic-body">
-                    <ul class="mb-3 nav nav-tabs">
+                <div class="mb-2 mx-2" id="dynamic-body">
+                    <ul class="mb-2 nav nav-tabs inquiry-nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link active" id="inboxMail-tab" data-toggle="tab" href="#inboxMail" role="tab"
                                 aria-controls="home" aria-selected="true">INBOX</a>
@@ -208,21 +160,21 @@
                                 aria-controls="contact" aria-selected="false">TRASH</a>
                         </li>
                     </ul>
-                    <div align="right" class="mb-3">
+                    <div align="right" class="mb-2">
                         <form id="filter-bizdeal-onetime-inquiry" method="POST" action="{{route('filter-lead-onetime-inquiry-fav')}}">
                         @csrf
                         <input type="hidden" id="date_filter_form" name="from" value="inbox">
-                            <div class="mr-2 position-relative d-inline-block">
+                            <div class="mr-1 position-relative d-inline-block">
                             <input type="text" autocomplete="off" name="datePicker" placeholder="by Date"
                                 class="date-reference-number" id="byDate">
                             <span class="position-absolute fa fa-calendar"
-                                style="right: 2px;top: 8px;font-size: 15px;color: gray"></span>
+                                style="right: 6px;top: 8px;font-size: 10px;color: gray"></span>
                         </div>
                         <input type="text" class="date-reference-number" name="ref_no" placeholder="By Refno">
                         <button class="btn fa fa-search red-btn single-chat-box-search"></button>
                         </form>
                     </div>
-                    <div class="tab-content">
+                    <div class="tab-content inquiry-tab-content">
 
                         <div class="tab-pane fade show active" id="inboxMail" role="tabpanel"
                             aria-labelledby="inboxMail-tab">
@@ -230,7 +182,7 @@
 
 
                     <div class="mails-inbox">
-                        <div class="py-3 px-3 mails-inbox-header">
+                        <div class="py-2 px-2 mails-inbox-header">
                             <input type="hidden" name="from" value="inbox">
                             <div class="d-inline-block custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input selectAll" id="selectAll1">
@@ -246,7 +198,7 @@
                             <span class="mx-2 fas fa-flag mails-inbox-icons" data-action="pin"></span>
                         </div>
                         <div class="chat-action-btns">
-                            <div class="py-2 px-3 d-flex" style="border-bottom: 2px dashed #A52C3E;gap: 15px">
+                            <div class="py-2 px-2 d-flex chat-action-btns-inner" style="border-bottom: 2px dashed #A52C3E">
                                 <button class="inquiry-btn read" data-from="inbox">Read</button>
                                 <button class="inquiry-btn un-read" data-from="inbox">Un-Read</button>
                                 <button class="inquiry-btn star" data-from="inbox">Star</button>
@@ -262,19 +214,19 @@
                         @if(check_deleted_by_me($list, 'fav_lead'))
                         <div class="content-box-email mail-reply-box">
                             <input type="hidden" class="main-convo" data-main-convo="{{encrypt($list->id)}}">
-                            <div class="py-3 px-3 d-flex justify-content-between">
-                                <div class="d-flex w-75">
+                            <div class="py-2 px-2 d-flex justify-content-between">
+                                <div class="d-flex w-60">
                                     <div class="d-inline-block custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input"
                                             id="customControlAutosizing1{{$key}}" data-main-convo="{{encrypt($list->id)}}">
                                         <label class="custom-control-label"
                                             for="customControlAutosizing1{{$key}}"></label>
                                     </div>
-                                    <p class="mb-0 px-3"><span
+                                    <p class="mb-0 px-2"><span
                                             class="fa @if(check_in_my_fav($list, 'fav_lead'))fa-star-o @else fa-star @endif fav add-fav"></span>
                                     </p>
-                                    <p class="mb-0 px-3"><span class=" @if(check_in_my_pin($list, 'fav_lead'))far @else fas @endif fa-flag add-to-pin"></span></p>
-                                    <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  ) font-weight-bold @endif"
+                                    <p class="mb-0 px-2"><span class=" @if(check_in_my_pin($list, 'fav_lead'))far @else fas @endif fa-flag add-to-pin"></span></p>
+                                    <p class="mb-0 ml-2 click overflow-text-dots-one-line h-1-5-rm @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  ) font-weight-bold @endif"
                                         data-click-id="{{$list->id}}">
                                         <span>{{$list->product->product_service_name}}</span> - <span
                                             class="refer">Ref# {{$list->product->reference_no}}</span> -
@@ -286,7 +238,7 @@
                                        data-click-id="{{$list->id}}">
                                         <span>{{date('M d h:i:s A', strtotime($list->latestMessage->created_at))}}</span>
                                     </p>
-                                    <p class="mb-0 px-3"><span class="fa fa-trash trash-bin"></span></p>
+                                    <p class="mb-0 px-2"><span class="fa fa-trash trash-bin"></span></p>
                                     <p class="mb-0"><span class="ml-2 fa fa-reply reply-msg"></span></p>
                                 </div>
                             </div>
@@ -320,7 +272,7 @@
 
                 <div class="tab-pane fade" id="sentMail" role="tabpanel" aria-labelledby="sentMail-tab">
                     <div class="mails-inbox">
-                        <div class="py-3 px-3 mails-inbox-header">
+                        <div class="py-2 px-2 mails-inbox-header">
                             <div class="d-inline-block custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input selectAll" id="selectAll2">
                                 <label class="custom-control-label" for="selectAll2"></label>
@@ -334,7 +286,7 @@
                             <span class="mx-2 fas fa-flag mails-inbox-icons"></span>
                         </div>
                         <div class="chat-action-btns">
-                            <div class="py-2 px-3 d-flex" style="border-bottom: 2px dashed #A52C3E;gap: 15px">
+                            <div class="py-2 px-2 d-flex chat-action-btns-inner" style="border-bottom: 2px dashed #A52C3E">
                                 <button class="inquiry-btn read" deta-from="sent">Read</button>
                                 <button class="inquiry-btn un-read" deta-from="sent">Un-Read</button>
                                 <button class="inquiry-btn star" deta-from="sent">Star</button>
@@ -351,17 +303,17 @@
                     @foreach ($sent_messages as $key => $list)
                     <div class="content-box-email mail-reply-box">
                         <input type="hidden" class="main-convo" data-main-convo="{{encrypt($list->id)}}">
-                        <div class="py-3 px-3 d-flex justify-content-between">
-                            <div class="d-flex w-75">
+                        <div class="py-2 px-2 d-flex justify-content-between">
+                            <div class="d-flex w-60">
                                 <div class="d-inline-block custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input"
                                         id="customControlAutosizing2{{$key}}" data-main-convo="{{encrypt($list->id)}}">
                                     <label class="custom-control-label" for="customControlAutosizing2{{$key}}"></label>
                                 </div>
-                                <p class="mb-0 px-3"><span
+                                <p class="mb-0 px-2"><span
                                         class="fa @if($list->is_favorite == 0)fa-star @else fa-star-o @endif fav add-fav"></span>
                                 </p>
-                                <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm" data-click-id="{{$list->id}}">
+                                <p class="mb-0 ml-2 click overflow-text-dots-one-line h-1-5-rm" data-click-id="{{$list->id}}">
                                     <span>{{$list->product->product_service_name}}</span> - <span
                                         class="refer">Ref# {{$list->product->reference_no}}</span> -
                                     <span>{{mb_strimwidth((strip_tags($list->my_latest_message->message)), 0, 50, "...")}}</span>
@@ -371,7 +323,7 @@
                                 <p class="mb-0 click" data-click-id="{{$list->id}}">
                                     <span>{{date('M d h:i:s A', strtotime($list->my_latest_message->created_at))}}</span>
                                 </p>
-                                <p class="mb-0 px-3"><span class="fa fa-trash trash-bin"></span></p>
+                                <p class="mb-0 px-2"><span class="fa fa-trash trash-bin"></span></p>
                                 <p class="mb-0"><span class="ml-2 fa fa-reply reply-msg"></span></p>
                             </div>
                         </div>
@@ -401,7 +353,7 @@
 
             <div class="tab-pane fade" id="trashMail" role="tabpanel" aria-labelledby="trashMail-tab">
                 <div class="mails-inbox">
-                <div class="py-3 px-3 mails-inbox-header">
+                <div class="py-2 px-2 mails-inbox-header">
                     <span class="mx-2 fa fa-refresh mails-inbox-icons"></span>
                     <span class="mx-2 fa fa-star-o mails-inbox-icons"></span>
                     <span class="mx-2 fa fa-star mails-inbox-icons"></span>
@@ -415,12 +367,12 @@
 
                 <div class="content-box-email mail-reply-box">
                     <input type="hidden" class="main-convo" data-main-convo="{{encrypt($list->id)}}">
-                    <div class="py-3 px-3 d-flex justify-content-between">
-                        <div class="d-flex w-75">
-                            <p class="mb-0 px-3"><span
+                    <div class="py-2 px-2 d-flex justify-content-between">
+                        <div class="d-flex w-60">
+                            <p class="mb-0 px-2"><span
                                     class="fa @if($list->is_favorite == 0)fa-star-o @else fa-star @endif fav add-fav"></span>
                             </p>
-                            <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm @if($list->latestMessage->is_read == 0 && $list->latestMessage->created_by != \Auth::id() ) font-weight-bold @endif"
+                            <p class="mb-0 ml-2 click overflow-text-dots-one-line h-1-5-rm @if($list->latestMessage->is_read == 0 && $list->latestMessage->created_by != \Auth::id() ) font-weight-bold @endif"
                                 data-click-id="{{$list->id}}"><span>{{$list->product->product_service_name}}</span> -
                                 <span class="refer">Ref# {{$list->product->reference_no}}</span> -
                                 <span>{{mb_strimwidth((strip_tags($list->latestMessage->message)), 0, 50, "...")}}</span>

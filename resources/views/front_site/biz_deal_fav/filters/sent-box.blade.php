@@ -2,17 +2,17 @@
 @foreach ($listing as $key => $list)
 <div class="content-box-email mail-reply-box">
     <input type="hidden" class="main-convo" data-main-convo="{{encrypt($list->id)}}">
-    <div class="py-3 px-3 d-flex justify-content-between">
-        <div class="d-flex w-75">
+    <div class="py-2 px-2 d-flex justify-content-between">
+        <div class="d-flex w-60">
             <div class="d-inline-block custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input"
                     id="customControlAutosizing2{{$key}}" data-main-convo="{{encrypt($list->id)}}">
                 <label class="custom-control-label" for="customControlAutosizing2{{$key}}"></label>
             </div>
-            <p class="mb-0 px-3"><span
+            <p class="mb-0 px-2"><span
                     class="fa @if(check_in_my_fav($list)) fa-star-o @else fa-star @endif fav add-fav"></span>
             </p>
-            <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm @if($list->latestMessageNotMine && $list->latestMessageNotMine->is_read == 0  ) font-weight-bold @endif" data-click-id="{{$list->id}}">
+            <p class="mb-0 ml-2 click overflow-text-dots-one-line h-1-5-rm @if($list->latestMessageNotMine && $list->latestMessageNotMine->is_read == 0  ) font-weight-bold @endif" data-click-id="{{$list->id}}">
                 <span>{{$list->product->product_service_name}}</span> - <span
                     class="refer">Ref# {{$list->product->reference_no}}</span> -
                 <span>{{mb_strimwidth((strip_tags($list->my_latest_message->message)), 0, 50, "...")}}</span>
@@ -23,7 +23,7 @@
                data-click-id="{{$list->id}}">
                 <span>{{date('M d h:i:s A', strtotime($list->my_latest_message->created_at))}}</span>
             </p>
-            <p class="mb-0 px-3"><span class="fa fa-trash trash-bin"></span></p>
+            <p class="mb-0 px-2"><span class="fa fa-trash trash-bin"></span></p>
             <p class="mb-0"><span class="ml-2 fa fa-reply reply-msg"></span></p>
         </div>
     </div>

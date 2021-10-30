@@ -351,8 +351,8 @@ $(document).ready(function () {
                 $('.quote-box .reply-txt').text(quoteMessage).show();
                 $('.reply-img-box').hide();
                 if($(window).width() <= 575) {
-                    $('.chat-messages').css('min-height', 'calc(100vh - 303px)');
-                    $('.chat-messages').css('max-height', 'calc(100vh - 303px)');
+                    $('.chat-messages').css('min-height', 'calc(100vh - 282px)');
+                    $('.chat-messages').css('max-height', 'calc(100vh - 282px)');
                 }
                 else if($(window).width() <= 991) {
                     $('.chat-messages').css('height', 'calc(100vh - 263px)');
@@ -382,7 +382,8 @@ $(document).ready(function () {
                 $('.reply-img-box').show();
                 $('.quote-box .reply-img-box .reply-img').attr('src', quoteImg);
                 if($(window).width() <= 575) {
-                    $('.chat-messages').css('height', 'calc(100vh - 364px)');
+                    $('.chat-messages').css('min-height', 'calc(100vh - 337px)');
+                    $('.chat-messages').css('max-height', 'calc(100vh - 337px)');
                 }
                 else if($(window).width() <= 991) {
                     $('.chat-messages').css('height', 'calc(100vh - 387px)');

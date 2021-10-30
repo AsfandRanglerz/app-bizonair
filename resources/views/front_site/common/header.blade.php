@@ -10,8 +10,8 @@
     <link rel="icon" type="image/png" href="{{$ASSET}}/front_site/images/favicon.png">
     <link rel="stylesheet" href="{{$ASSET}}/front_site/css/slick.css">
     <link rel="stylesheet" href="{{$ASSET}}/front_site/css/slick-theme.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{$ASSET}}/front_site/css/fonts5/fonts/fontawesome-free-5.3.1-web/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{$ASSET}}/front_site/css/bootstrap-4.5.0.min.css">
     <link rel="stylesheet"
           href="{{$ASSET}}/front_site/css/bootstrap-slider.min.css">

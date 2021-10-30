@@ -1,5 +1,5 @@
 <div class="mails-inbox">
-    <div class="py-3 px-3 mails-inbox-header">
+    <div class="py-2 px-2 mails-inbox-header">
         <input type="hidden" name="from" value="delete">
         {{-- <div class="d-inline-block custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input selectAll" id="selectAll1">
@@ -20,13 +20,13 @@
 
     <div class="content-box-email mail-reply-box">
         <input type="hidden" class="main-convo" data-main-convo="{{encrypt($list->id)}}">
-        <div class="py-3 px-3 d-flex justify-content-between">
-            <div class="d-flex w-75">
-                <p class="mb-0 px-3"><span
+        <div class="py-2 px-2 d-flex justify-content-between">
+            <div class="d-flex w-60">
+                <p class="mb-0 px-2"><span
                         class="fa @if(check_in_my_fav($list,'fav_lead')) fa-star-o @else fa-star @endif fav add-fav"></span>
                 </p>
-                <p class="mb-0 px-3"><span class=" @if(check_in_my_pin($list,'fav_lead'))far @else fas @endif fa-flag add-to-pin"></span></p>
-                <p class="mb-0 ml-3 click overflow-text-dots-one-line h-1-5-rm @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  ) font-weight-bold @endif"
+                <p class="mb-0 px-2"><span class=" @if(check_in_my_pin($list,'fav_lead'))far @else fas @endif fa-flag add-to-pin"></span></p>
+                <p class="mb-0 ml-2 click overflow-text-dots-one-line h-1-5-rm @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  ) font-weight-bold @endif"
                     data-click-id="{{$list->id}}"><span>{{$list->product->product_service_name}}</span> -
                     <span class="refer">Ref# {{$list->product->reference_no}}</span> -
                     <span>{{mb_strimwidth((strip_tags($list->latestMessage->message)), 0, 50, "...")}}</span>
