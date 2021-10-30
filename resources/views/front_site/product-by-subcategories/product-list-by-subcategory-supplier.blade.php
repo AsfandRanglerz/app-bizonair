@@ -26,11 +26,23 @@
                     <div class="row">
                         <div class="px-0 col-xl-10 col-lg-9 col-md-8 half-side-content">
                             <div class="d-md-flex text-center justify-content-between align-items-center mb-2">
-                                <p class="mb-md-0 mb-1 font-500">{{ strtoupper($subcategory) }} SUPPLIERS <span style="color: #999">({{ $viewCount}} PRODUCTS)</span></p>
-                                <a href="#" class="red-btn" >POST YOUR REQUIREMENT</a>
+                                <p class="mb-md-0 mb-1 font-500">{{ strtoupper(str_replace('-', ' ', $subcategory)) }} > REGULAR SUPPLIERS <span style="color: #999">({{ $viewCount}} PRODUCTS)</span></p>
+                                @if(!Auth::check())
+                                    <a href="{{ url('log-in-pre') }}" class="red-btn">Post Your Regular Lead</a>
+                                @else
+                                    <a href="{{ route('products.create') }}" class="red-btn">Post Your Regular Lead</a>
+                                @endif
                             </div>
 
                             <div class="row m-0 search-container">
+                                <div class="col-md-8 p-1 text-md-left text-center">
+                                    <h6 class="mt-2 text-left">TOP MANUFACTURING CITIES FOR {{ strtoupper($subcategory) }}</h6>
+                                    <div class="cities-btn">
+                                        @foreach($prod_city_search as $prod_city)
+                                            <a href="{{route('prod-search-supplier',['category'=>$category->slug,'subcategory'=>$subcategory,'city'=>$prod_city->city])}}"  class="mb-2 link">{{$prod_city->city}}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
                                 <div class="col-md-12 p-1 d-flex align-items-end">
                                     <form class="w-100 d-flex" action="{{route('prod-search-supplier',['category'=>$category->slug,'subcategory'=>$subcategory])}}" method="get">
                                         <input class="form-control mr-2 mb-0" id="city" name="city" type="search" value="{{ isset($city) ? $city : '' }}" placeholder="Search City" aria-label="Search">
@@ -38,12 +50,9 @@
                                     </form>
                                 </div>
                             </div>
-                            <?php $comp = DB::table('compares')->get();
-
-                            ?>
-                            <div class="mt-2 compare-container">
+                            <div class="mt-4 compare-container">
                                 <div class="mb-2 compare-cancel-btns">
-                                    <a href="{{route('products-compare',['category'=>$category])}}" class="pt-1 pb-1 pl-2 pr-2 red-btn" id="compa" com_cnt="{{ count($comp) }}" >Compare</a>
+                                    <a class="pt-1 pb-1 pl-2 pr-2 red-btn" id="compa">Compare</a>
                                     <a class="pt-1 pb-1 pl-2 pr-2 red-btn cancel-btn" id="cancel" >Cancel</a>
                                 </div>
                             </div>
@@ -95,7 +104,7 @@
 
                                                             @foreach($prod->product_image as $j => $image)
                                                                 @if(!empty($image))
-                                                                    <img id="productImg1" src="{{$ASSETS}}/{{$image->image}}" class="w-100 product-img border-grey">
+                                                                    <img id="productImg1" src="{{$image->image}}" class="w-100 product-img border-grey">
                                                                     @if($j==0)
                                                                         @break
                                                                     @endif
@@ -139,12 +148,11 @@
                                                         </div>
                                                     </a>
 
-                                                    {{--<div class="mt-2 custom-control custom-checkbox">
+                                                    <div class="mt-2 custom-control custom-checkbox">
                                                         <input type="checkbox" value="{{$prod->reference_no}}" class="custom-control-input add-product-to-compare"
-                                                               id="customCheck{{$i}}" reference_no="{{$prod->reference_no}}">
-                                                        <label class="custom-control-label font-500" for="customCheck{{$i}}">Add to
-                                                            Compare</label>
-                                                    </div>--}}
+                                                               id="customCheck{{$i}}" name="reference_no">
+                                                        <label class="custom-control-label font-500" for="customCheck{{$i}}">Add to Compare</label>
+                                                    </div>
 
                                                 </div>
 
@@ -163,7 +171,11 @@
                                                 <div class="col-6 p-1 border-grey">
                                                     <div>
                                                         <div class="d-flex membersince">Member <span class="number">since</span><span class="years">{{get_product_created_at($prod->company_id)}}</span></div>
-                                                        <a href="{{route('about-us-suppliers',$prod->company_id)}}" class="text-reset" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif> <p class="mb-1 text-uppercase font-500">{{get_product_company($prod->company_id)}}</p></a>
+                                                        @if(!Auth::check())
+                                                            <a href="{{url('log-in-pre')}}" class="text-reset"> <p class="text-uppercase font-500 font-24 overflow-text-dots-one-line">{{get_product_company($prod->company_id)}}</p></a>
+                                                        @else
+                                                            <a href="{{route('about-us-suppliers',['id'=>$prod->company_id,'company'=>getCompanyName($prod->company_id)])}}" class="text-reset"> <p class="mb-1 text-uppercase font-500">{{get_product_company($prod->company_id)}}</p></a>
+                                                        @endif
                                                         <small class="d-block mb-2 grey-text">{{get_product_city($prod->company_id)}}, {{get_product_country($prod->company_id)}}</small>
                                                         <div class="mb-2 membericon">
                                                             <a href="#">
@@ -174,8 +186,16 @@
                                                         {{--                                            <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                         {{--                                        </div>--}}
                                                         <div class="d-flex column-gap-4">
-                                                            <a href="#" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
-                                                            <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
+                                                            @if(!Auth::check())
+                                                                <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                                            @else
+                                                                <a href="#" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                                            @endif
+                                                            @if(!Auth::check())
+                                                                <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
+                                                            @else
+                                                                <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
+                                                            @endif
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                                 <div class="modal-dialog contact-form" role="document">
@@ -278,7 +298,7 @@
                                                                                     <ul data-toggle="buttons" class="mb-0">
                                                                                         <li class="w-100 btn d-flex">
                                                                                             <input class="input fa fa-square-o" type="checkbox" id="termsCheckbox" name="terms_condition" value="Terms & Conditions">
-                                                                                            <div>Please refer our <a href="{{route('privacy-policy')}}" target="_blank" class="text-link">Privacy Policy</a> and <a href="{{route('terms-of-use')}}" target="_blank" class="text-link">Terms & Conditions</a> before submitting your information</div>
+                                                                                            <div>Please refer our <a href="{{route('privacy-policy')}}"  class="text-link">Privacy Policy</a> and <a href="{{route('terms-of-use')}}"  class="text-link">Terms & Conditions</a> before submitting your information</div>
                                                                                         </li>
                                                                                     </ul>
                                                                                 </div>
@@ -299,7 +319,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-100 mt-1 d-flex justify-content-between other-product-link-sections">
-                                                    <a href="{{route('products-suppliers',$prod->company_id)}}" class="red-link text-decoration-none" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif>Other products from this Supplier</a>
+                                                    @if(!Auth::check())
+                                                        <a href="{{url('log-in-pre')}}" class="red-link text-decoration-none">Other products from this Supplier</a>
+                                                    @else
+                                                        <a href="{{route('products-suppliers',$prod->company_id)}}" class="red-link text-decoration-none">Other products from this Supplier</a>
+                                                    @endif
                                                     <a href="{{route('similar-product-this-supplier',['category'=>$category->slug,'subcategory'=>$subcategory,'comp_id'=>$prod->company_id])}}" class="text-decoration-none red-link">Similar product from this Supplier</a>
                                                 </div>
                                             </div>
@@ -322,18 +346,18 @@
                             <div class="position-relative top-companies">
                                 @foreach($topcompanies as $comp)
                                     <div class="top-companies-card">
-                                        <img alt="100x100" src="{{$ASSET.'/front_site/images/company-images/'.$comp->logo }}"
+                                        <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',['id'=>$comp->id,'company'=>$comp->company_name])}}">
+                                        <img alt="100x100" src="{{$comp->logo}}"
                                              data-holder-rendered="true" height="145" class="w-100 object-contain border-grey">
-                                        <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$comp->id)}}">
                                             <div class="companies-card-content">
                                                 <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
                                                 <span class="company-nm">{{$comp->company_name}}</span>
-                                                <p class="company-content">{{substr_replace($comp->company_introduction, "...", 100) }}</p>
+                                                <p class="company-content overflow-text-dots-three-line">{!!strip_tags($comp->company_introduction)!!}</p>
                                             </div>
                                         </a>
                                     </div>
                                 @endforeach
-                                <a href="{{route('view-all-companies')}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
+                                <a href="{{route('view-all-companies',['category'=>$category->slug])}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
                             </div>
                         </div>
                     </div>
@@ -343,53 +367,41 @@
         </div>
     </main>
 
-
-
     </body>
 
 
 @endsection
 
 @push('js')
-
     <!--  /*add to compare model*/ -->
     <script type="text/javascript">
-        $(document).on('click','.pre-login',function(){
-            window.location.href = "{{ route('log-in-pre')}}";
+        var ref = [];
+        $(".add-product-to-compare").click(function(){
+            // Initializing array with Checkbox checked values
+            if(ref.length > 2){
+                alert('you cannot select more then three products to compare');
+                this.checked = false;
+            }else{
+                ref.push(this.value);
+            }
+            console.log(ref);
         });
-        $(document).delegate('.add-product-to-compare', 'change', function(e) {
-            e.preventDefault();
-            if(this.checked) {
-                var reference_no=$(this).attr("reference_no");
-                var id=$(this).attr("id");
-                var token='{{csrf_token()}}';
 
+        $("#compa").click(function(){
+            var token='{{csrf_token()}}';
+            if(ref != ''){
                 $.ajax({
                     type:'POST',
                     url: '{{ url('/compare-product-ajax') }}',
-                    data:{reference_no:reference_no,log_id:log_id,_token:token},
+                    data:{ref:ref,_token:token},
                     cache: false,
                     success: function(response) {
-                        console.log(response);
-                    }
-                });
-            } else if(!this.checked){
-
-                var reference_no=$(this).attr("reference_no");
-                var id=$(this).attr("id");
-                var token='{{csrf_token()}}';
-
-                $.ajax({
-                    type:'DELETE',
-                    url: '{{ url('/compare-product-deleted-ajax') }}' + '/' + reference_no,
-                    data:{reference_no:reference_no,_token:token},
-                    cache: false,
-                    success: function(response) {
-                        console.log(response);
+                        window.location.href= "{{route('products-compare',['category'=>$category->slug,'subcategory'=>$sub_category->slug])}}";
                     }
                 });
             }
         });
+
         $(document).delegate('#cancel', 'click', function(e) {
             e.preventDefault();
             var token='{{csrf_token()}}';
@@ -400,36 +412,47 @@
                 cache: false,
                 success: function(response) {
                     console.log(response);
+                    window.location.reload();
                 }
             });
         });
         $(document).delegate('.add-to-favourite', 'click', function(e) {
             e.preventDefault();
+            $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
             var reference_no=$(this).attr("reference_no");
             var prod_id = $(this).attr("prod_id");
             var product_service_name=$(this).attr("product_service_name");
             var product_service_types=$(this).attr("product_service_types");
             var token='{{csrf_token()}}';
-            $("#ajax-preloader").show();
+            var thisVariable = $(this);
+            // console.log($(this).text());
             $.ajax({
                 type:'POST',
                 url: '{{ url('/favourite-product-ajax') }}',
                 data:{reference_no:reference_no,prod_id:prod_id,product_service_types:product_service_types,product_service_name:product_service_name,_token:token},
                 cache: false,
                 success: function(data) {
-                    $("#ajax-preloader").hide();
+
                     response = $.parseJSON(data);
                     if (response.feedback === "false") {
-                        $('html, body').animate({scrollTop: ($('#' + Object.keys(response.errors)[0]).offset().top)}, 'slow');
-                        $.each(response.errors, function (key, value) {
-                            $('#' + key + '_error').html(value[0]);
-                        });
+                        toastr.error(response.msg).fadeOut(2500);
                     } else if (response.feedback === 'true') {
-                        toastr.success(response.msg);
+                        $("#loader").hide();
+                        toastr.success(response.msg).fadeOut(2500);
 
-                        setTimeout(() => {
-                            window.location.href = response.close();
-                        }, 1000);
+                        let heart_btn = $(thisVariable).closest('.change-password-modal').siblings('.heart-icon-div').find('.check-heart');
+                        console.log(heart_btn);
+                        if($(heart_btn).hasClass('fa-heart-o'))
+                        {
+                            console.log(heart_btn);
+                            $(heart_btn).removeClass('fa-heart-o').addClass('fa-heart');
+                        }
+                        else if($(heart_btn).hasClass('fa-heart')){
+                            $(heart_btn).removeClass('fa-heart').addClass('fa-heart-o');
+                        }
+                        // setTimeout(() => {
+                        //     window.location.href = response.close();
+                        // }, 500);
                     }
                 }
             });
@@ -437,8 +460,16 @@
         $(document).ready(function () {
             var options_inquiry = {
                 dataType: 'Json',
+                beforeSubmit: function (arr, $form) {
+                    $('#alert-success-inquiry').hide();
+                    $('#alert-error-inquiry').hide();
+                    $('#inquiry_create_btn').addClass('d-none');
+                    $('.btn-proo').removeClass('d-none');
+                },
                 success: function (data) {
-                    $('html, body').animate({scrollTop: 0}, 'slow');
+                    $('.btn-proo').addClass('d-none');
+                    $('#inquiry_create_btn').removeClass('d-none');
+                    $('html, .modal').animate({scrollTop: 0}, 'slow');
                     $('#alert-success-inquiry').hide();
                     $('#alert-error-inquiry').hide();
                     response = data;
@@ -490,6 +521,26 @@
             };
 
             $('#postInquiry').ajaxForm(options_inquiry);
+
+            $('#country').on('change', function() {
+                var country_id = this.value;
+                $("#citydwn").html('');
+                $.ajax({
+                    url:"{{url('/get-state-list')}}",
+                    type: "POST",
+                    data: {
+                        country_id: country_id,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType : 'json',
+                    success: function(result){
+                        $('#citydwn').html('<option value="" selected disabled>Select City</option>');
+                        $.each(result.cities,function(key,value){
+                            $("#citydwn").append('<option value="'+value+'">'+value+'</option>');
+                        });
+                    }
+                });
+            });
 
         });
 

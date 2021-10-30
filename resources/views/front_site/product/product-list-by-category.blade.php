@@ -148,7 +148,7 @@
                                                                             @endif
                                                                             <div class="form-group mt-4 mb-0">
                                                                                 @if(!Auth::check())
-                                                                                    <button href="{{url('login')}}" class="red-btn">Yes</button>
+                                                                                    <button href="{{url('log-in-pre')}}" class="red-btn">Yes</button>
                                                                                 @else
                                                                                     <button class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}" type="submit">Yes</button>
                                                                                 @endif
@@ -263,7 +263,7 @@
                                                             @endif
                                                             <div class="form-group mt-4 mb-0">
                                                                 @if(!Auth::check())
-                                                                    <a href="{{url('login')}}" class="red-btn">Yes</a>
+                                                                    <a href="{{url('log-in-pre')}}" class="red-btn">Yes</a>
                                                                 @else
                                                                     <button class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}" type="submit">Yes</button>
                                                                 @endif
@@ -365,7 +365,7 @@
                                                             @endif
                                                             <div class="form-group mt-4 mb-0">
                                                                 @if(!Auth::check())
-                                                                    <a href="{{url('login')}}" class="red-btn">Yes</a>
+                                                                    <a href="{{url('log-in-pre')}}" class="red-btn">Yes</a>
                                                                 @else
                                                                     <button class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}" type="submit">Yes</button>
                                                                 @endif

@@ -1,4 +1,28 @@
 <?php
+function keywords(){
+    $keyword = 'Bizonair Textiles, Textile, Ginning, Spinning, Yarn Manufacturing, Spinning, Weaving, Fabric Manufacturing, Knitted, Woven, Non Woven, Natural Yarn, Synthetic Yarn, Blended Yarn,
+                Specialty Yarn, Natural Fiber, Manmade Fiber, Dyeing, Printing, Wet processing, Digital printing,  Flatbed printing, Embroidery, Garments, Apparel manufacturing, Denim, Jeans, Knitwear, Shoes, Bags,
+                Leather, Machines, Spare parts, Electrical, Mechanical, Cotton, Polyester, Erection, Commissioning, Product development, Sourcing, Production, Vendor management, Woven fabric, Knitted fabric,
+                Non woven fabric,  Natural fibers, Synthetic fibers, Manmade fibers, Natural yarn, Synthetic yarn, Manmade yarn, Textile business, Textile services, Textile testing, Factory Assessment, Factory Audit,
+                Quality check, Quality assurance, PPEs, Technical textiles, Hotel textiles, Hospital textiles, Home textiles, High performance textiles, Automotive textiles, Retail, Branding, Unstitched,
+                Mens unstitched, Women unstitched, unstitched, Kids garments, Pret, Dyes, Chemicals, Pigments, Coatings, Lubricants, Leftovers, Waste, Machine parts, Eastern clothing, Western clothing, Pakistan,
+                textile, textiles, online, portal, business, buy, sell, B2B, business to business, fibers, yarns, fabrics, machines, spareparts, garments, apparels, accessories, local, international, PPEs, institutional,
+                hometextiles, hoteltextiles, hospitaltextiles, dyes, chemicals, Bizonair, businessbeyondboundaries, unstitched, leftovers, increasesales, growbusiness, onlinebusiness, free, textile portal, textileservices,
+                jobs, careers, news, events, research, Lahore, leads, deals, onetime, regularbusiness, businessidea, Leather, Footwear, Testing, Inspection, Equipment, Leather products, footwear and bags, Trims, Packaging,
+                PPEs, Gym, Exercise wear, gym wear, sportswear, work wear, towel and mats, pigments, preparatory chemicals, finishing chemicals, sizing chemicals, Processing chemicals, general chemicals, lubricants, textile waste,
+                general waste, Human resources, admin, Contractual jobs, tranings, security, general, fabrication, repairing work, vendor selection, price negotiation, product development, order placement, certification, consultation, calibration,
+                Laboratory, Production control, shipping, online reporting, bizonair Accounts, finance, taxation, financial audit, information technology, Post jobs, post cvs, explore jobs, explore cvs, textile news, textile blogs, textile events,
+                textile articles, textile research, Textile projects, textile university, textile calculations, currency rates, cotton rates, yarn rates, textile student projects, regular supplier, regular buyer, one time supplier, one time buyer, service providers,
+                service seekers, textile companies, Textile office, Mybiz office, mybiz leads, bizonair mybiz deals, chat, meetings, textile trade, myiz partners';
+    return $keyword;
+}
+function descriptions(){
+    $description = 'Pakistan Portal, Bizonair Textiles Portal, Business Portal, Free Textile Portal, Chemicals Portal, Textile Fibers Portal, Textile Materials Portal, Textile Business Portal, Textile Services Portal, Textile Machinery Portal, Textile Spare Parts Portal,
+                    Textile Garments Portal, Textile Services Portal, PPEs Portal, Institutional Textiles Portal, Lahore Portal,  Best Portal, First Portal, Largest Portal, Number one Portal, #1 Portal, Textile Site, Textile Marketplace, Dyes Portal, Jobs Portal, Fastest
+                    Portal, Free Portal, Convenient Portal, Textile Trade Portal, Textile Leads Portal, Textile Inquiries Portal, Textile Deals Portal, Textiles Matchmaking, Textile Solution, Textile Fraternity, Textile Community, Excellent Portal, Great Portal, Superb
+                    Portal, Bizonair Pakistani portal, Global portal, worldwide portal, Textile Partners';
+    return $description;
+}
 
 function getCategories($type)
 {
@@ -240,30 +264,14 @@ function file_uploader($file, $row, $folder)
 function get_user_image($user)
 {
     if ($user->role_id == 2) {
-        if ($user->avatar == 'users/default.png') {
-            if ($user->gender == 'Male') {
-                return 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png';
-            } else {
-                return 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/78961631173213.png';
-            }
-        }else{
-            return $user->avatar;
-        }
+        return $user->avatar;
     }
 }
 
 function get_userimage($user)
 {
     if ($user->role_id == 2) {
-        if ($user->avatar == 'users/default.png') {
-            if ($user->gender == 'Male') {
-                return 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png';
-            } else {
-                return 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/78961631173213.png';
-            }
-        }else{
-            return $user->avatar;
-        }
+        return $user->avatar;
     }
 
 }
@@ -322,12 +330,9 @@ function get_user_profile_percentage($id)
         $percentage += 3;
     }
     if ($user->whatsapp_number) {
-        $percentage += 3;
+        $percentage += 6;
     }
     if ($user->telephone) {
-        $percentage += 3;
-    }
-    if ($user->fax) {
         $percentage += 3;
     }
     return $percentage;
@@ -442,7 +447,8 @@ function get_buysell_created_at($produserid){
 
 function get_product_company($prodid){
     $comp = \App\CompanyProfile::where('id',$prodid)->first();
-    return $comp['company_name'];
+    if(isset($comp))
+        return $comp['company_name'];
 }
 
 function get_product_manufacturer_company($prodid){
@@ -669,7 +675,7 @@ function getSingleProductFavCount($ref)
 }
 function getBuysellFavCount()
 {
-    $prod = \App\BuySell::whereNotBetween('reference_no', ['5000000', '10000000'])->get()->pluck('reference_no');
+    $prod = \App\BuySell::whereBetween('reference_no', ['5000000', '10000000'])->get()->pluck('reference_no');
     $products = \App\Favourite::where('user_id',auth()->id())->whereIn('reference_no',$prod)->count();
     return $products;
 }
@@ -694,7 +700,8 @@ function getCompanyMembersCount($comp_id)
 function getCompanyName($comp_id)
 {
     $compname = \App\CompanyProfile::find($comp_id);
-   return $compname['company_name'];
+    if(isset($compname))
+        return $compname['company_name'];
 }
 
 function getCompanies($userId)

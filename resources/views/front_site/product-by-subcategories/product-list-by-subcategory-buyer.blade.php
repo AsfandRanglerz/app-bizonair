@@ -29,9 +29,21 @@
                         <div class="col-md-9 p-lg-3 p-0">
                             <div class="d-md-flex text-center justify-content-between align-items-center mb-2">
                                 <p class="mb-md-0 mb-1 font-500">{{ strtoupper(str_replace('-', ' ', $subcategory)) }} > REGULAR BUYERS <span style="color: #999">({{ $viewCount}} PRODUCTS)</span></p>
-                                <a href="{{ route('products.create') }}" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif class="red-btn" >Post Your Regular Lead</a>
+                                @if(!Auth::check())
+                                    <a href="{{ url('log-in-pre') }}" class="red-btn">Post Your Regular Lead</a>
+                                @else
+                                    <a href="{{ route('products.create') }}" class="red-btn">Post Your Regular Lead</a>
+                                @endif
                             </div>
                             <div class="row m-0 search-container">
+                                <div class="col-md-8 p-1 text-md-left text-center">
+                                    <h6 class="mt-2 text-left">TOP MANUFACTURING CITIES FOR {{ strtoupper($subcategory) }}</h6>
+                                    <div class="cities-btn">
+                                        @foreach($prod_city_search as $prod_city)
+                                            <a href="{{route('prod-search-buyer',['category'=>$category->slug,'subcategory'=>$subcategory,'city'=>$prod_city->city])}}"  class="mb-2 link">{{$prod_city->city}}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
                                 <div class="col-md-12 p-1 d-flex align-items-end">
                                     <form class="w-100 d-flex" action="{{route('prod-search-buyer',['category'=>$category->slug,'subcategory'=>$subcategory])}}" method="get">
                                         <input class="form-control mr-2 mb-0" id="city" name="city" type="search" value="{{ isset($city) ? $city : '' }}" placeholder="Search City" aria-label="Search">
@@ -39,10 +51,10 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="mt-2 compare-container">
+                            <div class="mt-4 compare-container">
                                 <div class="mb-2 compare-cancel-btns">
-                                    <a href="{{route('products-compare',['category'=>$category])}}" class="pt-1 pb-1 pl-2 pr-2 red-btn" >Compare</a>
-                                    <a href="#" class="pt-1 pb-1 pl-2 pr-2 red-btn cancel-btn" >Cancel</a>
+                                    <a class="pt-1 pb-1 pl-2 pr-2 red-btn" id="compa">Compare</a>
+                                    <a class="pt-1 pb-1 pl-2 pr-2 red-btn cancel-btn" id="cancel" >Cancel</a>
                                 </div>
                             </div>
 
@@ -91,7 +103,7 @@
                                                         <div class="mb-2 position-relative product-img-container">
                                                             @foreach($prod->product_image as $j => $image)
                                                                 @if(!empty($image))
-                                                                    <img id="productImg1" src="{{$ASSETS}}/{{$image->image}}" class="w-100 product-img border-grey">
+                                                                    <img id="productImg1" src="{{$image->image}}" class="w-100 product-img border-grey">
                                                                     @if($j==0)
                                                                         @break
                                                                     @endif
@@ -101,9 +113,9 @@
                                                             @endforeach
                                                                 <div class="position-absolute heart-icon-div">
                                                                     <a class="text-decoration-none text-reset" href="#add-fav-{{$prod->reference_no}}" data-toggle="modal">
-                                                   <span class="text-decoration-none add-to-fav">
-                                                      <span class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span>
-                                                   </span>
+                                                                       <span class="text-decoration-none add-to-fav">
+                                                                          <span class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span>
+                                                                       </span>
                                                                     </a>
                                                                 </div>
                                                                 <div id="add-fav-{{$prod->reference_no}}" class="change-password-modal modal fade">
@@ -134,12 +146,11 @@
                                                                 </div>
                                                         </div>
                                                     </a>
-                                                    {{--<div class="mt-2 custom-control custom-checkbox">
+                                                    <div class="mt-2 custom-control custom-checkbox">
                                                         <input type="checkbox" value="{{$prod->reference_no}}" class="custom-control-input add-product-to-compare"
-                                                               id="customCheck{{$i}}" reference_no="{{$prod->reference_no}}">
-                                                        <label class="custom-control-label font-500" for="customCheck{{$i}}">Add to
-                                                            Compare</label>
-                                                    </div>--}}
+                                                               id="customCheck{{$i}}" name="reference_no">
+                                                        <label class="custom-control-label font-500" for="customCheck{{$i}}">Add to Compare</label>
+                                                    </div>
                                                 </div>
                                                 <div class="col-6 px-1 product-details">
                                                     <a class="text-reset text-decoration-none" href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
@@ -228,15 +239,15 @@
 
                                                                                 <div id="totalCharLeft">1000 characters remaining</div>
                                                                                      <textarea id="description" class="mb-4 textarea-box form-control" name="description" placeholder="Describe Your Requirement..." maxlength="1000"></textarea><div class="form-row">
-                                                      <div class="form-group col-md-12 career-img-drop-outer attachment-img-file">
-                                                      <label class="d-block text-left text-white mb-2 font-500">Attachment <small class="font-500">(Attach Reference or Image)</small></label>
-                                                          <div class="custom-file">
-                                                              <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
-                                                              <label class="custom-file-label" for="customFile"><span class="fa fa-download"></span></label>
-                                                              <small class="text-danger" id="image_error"></small>
-                                                          </div>
-                                                      </div>
-                                                  </div>
+                                                                                      <div class="form-group col-md-12 career-img-drop-outer attachment-img-file">
+                                                                                      <label class="d-block text-left text-white mb-2 font-500">Attachment <small class="font-500">(Attach Reference or Image)</small></label>
+                                                                                          <div class="custom-file">
+                                                                                              <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
+                                                                                              <label class="custom-file-label" for="customFile"><span class="fa fa-download"></span></label>
+                                                                                              <small class="text-danger" id="image_error"></small>
+                                                                                          </div>
+                                                                                      </div>
+                                                                                </div>
 
                                                                                 <div class="form-row">
                                                                                     <div class="form-group ticks-checkbox col-md-12 mt-0 mb-0">
@@ -271,15 +282,15 @@
                                                                                     <ul data-toggle="buttons" class="mb-0">
                                                                                         <li class="w-100 btn d-flex">
                                                                                             <input class="input fa fa-square-o" type="checkbox" id="termsCheckbox" name="terms_condition" value="Terms & Conditions">
-                                                                                            <div>Please refer our <a href="{{route('privacy-policy')}}" target="_blank" class="text-link">Privacy Policy</a> and <a href="{{route('terms-of-use')}}" target="_blank" class="text-link">Terms & Conditions</a> before submitting your information</div>
+                                                                                            <div>Please refer our <a href="{{route('privacy-policy')}}"  class="text-link">Privacy Policy</a> and <a href="{{route('terms-of-use')}}"  class="text-link">Terms & Conditions</a> before submitting your information</div>
                                                                                         </li>
                                                                                     </ul>
                                                                                 </div>
 
                                                                                 <button type="submit" class="btn submit-btn" id="inquiry_create_btn" disabled>Send Inquiry Now</button>
-                              <button type="submit" disabled class="btn submit-btn btn-proo d-none">
-                                   <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>Send Inquiry Now
-                              </button>
+                                                                                  <button type="submit" disabled class="btn submit-btn btn-proo d-none">
+                                                                                       <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>Send Inquiry Now
+                                                                                  </button>
 
                                                                             </form>
 
@@ -316,18 +327,18 @@
                             <div class="position-relative top-companies">
                                 @foreach($topcompanies as $comp)
                                     <div class="top-companies-card">
-                                        <img alt="100x100" src="{{$ASSET.'/front_site/images/company-images/'.$comp->logo }}"
+                                        <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',['id'=>$comp->id,'company'=>$comp->company_name])}}">
+                                        <img alt="100x100" src="{{$comp->logo }}"
                                              data-holder-rendered="true" height="145" class="w-100 object-contain border-grey">
-                                        <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$comp->id)}}">
                                             <div class="companies-card-content">
                                                 <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
                                                 <span class="company-nm">{{$comp->company_name}}</span>
-                                                <p class="company-content">{{substr_replace($comp->company_introduction, "...", 100) }}</p>
+                                                <p class="company-content overflow-text-dots-three-line">{!!strip_tags($comp->company_introduction)!!}</p>
                                             </div>
                                         </a>
                                     </div>
                                 @endforeach
-                                <a href="{{route('view-all-companies')}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
+                                <a href="{{route('view-all-companies',['category'=>$category->slug])}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
                             </div>
                         </div>
 
@@ -347,191 +358,194 @@
 @endsection
 @push('js')
 
-      <!--  /*add to compare model*/ -->
+    <!--  /*add to compare model*/ -->
 
     <script type="text/javascript">
-            $(document).delegate('.add-product-to-compare', 'change', function(e) {
-              e.preventDefault();
-            if(this.checked) {
+        var ref = [];
+        $(".add-product-to-compare").click(function(){
+            // Initializing array with Checkbox checked values
+            if(ref.length > 2){
+                alert('you cannot select more then three products to compare');
+                this.checked = false;
+            }else{
+                ref.push(this.value);
+            }
+            console.log(ref);
+        });
 
-            var reference_no=$(this).attr("reference_no");
-            var log_id=$(this).attr("log_id");
-            var id=$(this).attr("id");
+        $("#compa").click(function(){
             var token='{{csrf_token()}}';
-
-                $.ajax({
-                       type:'POST',
-                       url: '{{ url('/compare-product-ajax') }}',
-                       data:{reference_no:reference_no,log_id:log_id,_token:token},
-                       cache: false,
-                       success: function(response) {
-                        console.log(response);
-
-
-                       }
-                   });
-             } else if(!this.checked){
-
-            var reference_no=$(this).attr("reference_no");
-
-            var id=$(this).attr("id");
-            var token='{{csrf_token()}}';
-
-                $.ajax({
-                       type:'DELETE',
-                       url: '{{ url('/compare-product-deleted-ajax') }}' + '/' + reference_no,
-                       data:{reference_no:reference_no,_token:token},
-                       cache: false,
-                       success: function(response) {
-                         console.log(response);
-
-
-                       }
-                   });
-
-             }
-
-            });
-            $(document).delegate('#cancel', 'click', function(e) {
-                e.preventDefault();
-                var token='{{csrf_token()}}';
-                $.ajax({
-                    type:'DELETE',
-                    url: '{{ url('/compare-product-all-deleted-ajax') }}',
-                    data:{_token:token},
-                    cache: false,
-                    success: function(response) {
-                        console.log(response);
-                    }
-                });
-            });
-            $(document).delegate('.add-to-favourite', 'click', function(e) {
-                e.preventDefault();
-                $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
-                var reference_no=$(this).attr("reference_no");
-                var prod_id = $(this).attr("prod_id");
-                var product_service_name=$(this).attr("product_service_name");
-                var product_service_types=$(this).attr("product_service_types");
-                var token='{{csrf_token()}}';
-                var thisVariable = $(this);
-                // console.log($(this).text());
+            if(ref != ''){
                 $.ajax({
                     type:'POST',
-                    url: '{{ url('/favourite-product-ajax') }}',
-                    data:{reference_no:reference_no,prod_id:prod_id,product_service_types:product_service_types,product_service_name:product_service_name,_token:token},
+                    url: '{{ url('/compare-product-ajax') }}',
+                    data:{ref:ref,_token:token},
                     cache: false,
-                    success: function(data) {
+                    success: function(response) {
+                        window.location.href= "{{route('products-compare',['category'=>$category->slug,'subcategory'=>$sub_category->slug])}}";
+                    }
+                });
+            }
+        });
 
-                        response = $.parseJSON(data);
-                        if (response.feedback === "false") {
-                            toastr.error(response.msg).fadeOut(2500);
-                        } else if (response.feedback === 'true') {
-                            $("#loader").hide();
-                            toastr.success(response.msg).fadeOut(2500);
+        $(document).delegate('.cross-icon', 'click', function(e) {
+            e.preventDefault();
 
-                            let heart_btn = $(thisVariable).closest('.change-password-modal').siblings('.heart-icon-div').find('.check-heart');
+            var reference_no=$(this).attr("reference_no");
+            var token='{{csrf_token()}}';
+
+            $.ajax({
+                type:'DELETE',
+                url: '{{ url('/compare-product-deleted-ajax') }}' + '/' + reference_no,
+                data:{reference_no:reference_no,_token:token},
+                cache: false,
+                success: function(response) {
+                    console.log(response);
+
+
+                }
+            });
+        });
+        $(document).delegate('#cancel', 'click', function(e) {
+            e.preventDefault();
+            var token='{{csrf_token()}}';
+            $.ajax({
+                type:'DELETE',
+                url: '{{ url('/compare-product-all-deleted-ajax') }}',
+                data:{_token:token},
+                cache: false,
+                success: function(response) {
+                    console.log(response);
+                    window.location.reload();
+                }
+            });
+        });
+        $(document).delegate('.add-to-favourite', 'click', function(e) {
+            e.preventDefault();
+            $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
+            var reference_no=$(this).attr("reference_no");
+            var prod_id = $(this).attr("prod_id");
+            var product_service_name=$(this).attr("product_service_name");
+            var product_service_types=$(this).attr("product_service_types");
+            var token='{{csrf_token()}}';
+            var thisVariable = $(this);
+            // console.log($(this).text());
+            $.ajax({
+                type:'POST',
+                url: '{{ url('/favourite-product-ajax') }}',
+                data:{reference_no:reference_no,prod_id:prod_id,product_service_types:product_service_types,product_service_name:product_service_name,_token:token},
+                cache: false,
+                success: function(data) {
+
+                    response = $.parseJSON(data);
+                    if (response.feedback === "false") {
+                        toastr.error(response.msg).fadeOut(2500);
+                    } else if (response.feedback === 'true') {
+                        $("#loader").hide();
+                        toastr.success(response.msg).fadeOut(2500);
+
+                        let heart_btn = $(thisVariable).closest('.change-password-modal').siblings('.heart-icon-div').find('.check-heart');
+                        console.log(heart_btn);
+                        if($(heart_btn).hasClass('fa-heart-o'))
+                        {
                             console.log(heart_btn);
-                            if($(heart_btn).hasClass('fa-heart-o'))
-                            {
-                                console.log(heart_btn);
-                                $(heart_btn).removeClass('fa-heart-o').addClass('fa-heart');
-                            }
-                            else if($(heart_btn).hasClass('fa-heart')){
-                                $(heart_btn).removeClass('fa-heart').addClass('fa-heart-o');
-                            }
-                            // setTimeout(() => {
-                            //     window.location.href = response.close();
-                            // }, 500);
+                            $(heart_btn).removeClass('fa-heart-o').addClass('fa-heart');
                         }
+                        else if($(heart_btn).hasClass('fa-heart')){
+                            $(heart_btn).removeClass('fa-heart').addClass('fa-heart-o');
+                        }
+                        // setTimeout(() => {
+                        //     window.location.href = response.close();
+                        // }, 500);
+                    }
+                }
+            });
+        });
+        $(document).ready(function () {
+            var options_inquiry = {
+                dataType: 'Json',
+                beforeSubmit: function (arr, $form) {
+                    $('#alert-success-inquiry').hide();
+                    $('#alert-error-inquiry').hide();
+                    $('#inquiry_create_btn').addClass('d-none');
+                    $('.btn-proo').removeClass('d-none');
+                },
+                success: function (data) {
+                    $('.btn-proo').addClass('d-none');
+                    $('#inquiry_create_btn').removeClass('d-none');
+                    $('html, .modal').animate({scrollTop: 0}, 'slow');
+                    $('#alert-success-inquiry').hide();
+                    $('#alert-error-inquiry').hide();
+                    response = data;
+                    if (response.feedback == 'false') {
+                        $.each(response.errors, function (key, value) {
+                            $('#' + key + '_error').html(value[0]);
+                            $(":input[name=" + key + "]").addClass('is-invalid');
+                        });
+                    } else if (response.feedback == 'invalid') {
+                        $('#alert-error-inquiry').html(response.msg);
+                        $('#alert-error-inquiry').show();
+
+                    } else {
+                        $('#alert-error-inquiry').hide();
+                        $('#alert-success-inquiry').html(response.msg);
+                        $('#alert-success-inquiry').show();
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 3000);
+
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    $('html, body').animate({scrollTop: 0}, 'slow');
+                    $('#alert-success-inquiry').hide();
+                    $('#alert-error-inquiry').hide();
+                    // form.find('button[type=submit]').html('<i aria-hidden="true" class="fa fa-check"></i> {{ __('Save') }}');
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not Connected.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error, Please try again later';
+                    }
+                    $('#alert-error-inquiry').html(msg);
+                    $('#alert-error-inquiry').show();
+                },
+
+            };
+
+            $('#postInquiry').ajaxForm(options_inquiry);
+
+            $('#country').on('change', function() {
+                var country_id = this.value;
+                $("#citydwn").html('');
+                $.ajax({
+                    url:"{{url('/get-state-list')}}",
+                    type: "POST",
+                    data: {
+                        country_id: country_id,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType : 'json',
+                    success: function(result){
+                        $('#citydwn').html('<option value="" selected disabled>Select City</option>');
+                        $.each(result.cities,function(key,value){
+                            $("#citydwn").append('<option value="'+value+'">'+value+'</option>');
+                        });
                     }
                 });
             });
-            $(document).ready(function () {
-                var options_inquiry = {
-                    dataType: 'Json',
-                    beforeSubmit: function (arr, $form) {
-                        $('#alert-success-inquiry').hide();
-                        $('#alert-error-inquiry').hide();
-                        $('#inquiry_create_btn').addClass('d-none');
-                        $('.btn-proo').removeClass('d-none');
-                    },
-                    success: function (data) {
-                        $('.btn-proo').addClass('d-none');
-                        $('#inquiry_create_btn').removeClass('d-none');
-                        $('html, .modal').animate({scrollTop: 0}, 'slow');
-                        $('#alert-success-inquiry').hide();
-                        $('#alert-error-inquiry').hide();
-                        response = data;
-                        if (response.feedback == 'false') {
-                            $.each(response.errors, function (key, value) {
-                                $('#' + key + '_error').html(value[0]);
-                                $(":input[name=" + key + "]").addClass('is-invalid');
-                            });
-                        } else if (response.feedback == 'invalid') {
-                            $('#alert-error-inquiry').html(response.msg);
-                            $('#alert-error-inquiry').show();
 
-                        } else {
-
-                            $('#alert-error-inquiry').hide();
-                            $('#alert-success-inquiry').html(response.msg);
-                            $('#alert-success-inquiry').show();
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 3000);
-
-                        }
-                    },
-                    error: function (jqXHR, exception) {
-                        $('html, body').animate({scrollTop: 0}, 'slow');
-                        $('#alert-success-inquiry').hide();
-                        $('#alert-error-inquiry').hide();
-                        // form.find('button[type=submit]').html('<i aria-hidden="true" class="fa fa-check"></i> {{ __('Save') }}');
-                        var msg = '';
-                        if (jqXHR.status === 0) {
-                            msg = 'Not Connected.\n Verify Network.';
-                        } else if (jqXHR.status == 404) {
-                            msg = 'Requested page not found. [404]';
-                        } else if (jqXHR.status == 500) {
-                            msg = 'Internal Server Error [500].';
-                        } else if (exception === 'parsererror') {
-                            msg = 'Requested JSON parse failed.';
-                        } else if (exception === 'timeout') {
-                            msg = 'Time out error.';
-                        } else if (exception === 'abort') {
-                            msg = 'Ajax request aborted.';
-                        } else {
-                            msg = 'Uncaught Error, Please try again later';
-                        }
-                        $('#alert-error-inquiry').html(msg);
-                        $('#alert-error-inquiry').show();
-                    },
-
-                };
-
-                $('#postInquiryBuyer').ajaxForm(options_inquiry);
-
-                $('#country').on('change', function() {
-                    var country_id = this.value;
-                    $("#citydwn").html('');
-                    $.ajax({
-                        url:"{{url('/get-state-list')}}",
-                        type: "POST",
-                        data: {
-                            country_id: country_id,
-                            _token: '{{csrf_token()}}'
-                        },
-                        dataType : 'json',
-                        success: function(result){
-                            $('#citydwn').html('<option value="" selected disabled>Select City</option>');
-                            $.each(result.cities,function(key,value){
-                                $("#citydwn").append('<option value="'+value+'">'+value+'</option>');
-                            });
-                        }
-                    });
-                });
-
-            });
+        });
     </script>
 
 @endpush

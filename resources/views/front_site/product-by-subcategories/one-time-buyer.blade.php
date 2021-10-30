@@ -3,12 +3,8 @@
 @section('content')
 
 <body class="product-main product-details product-listing">
-
-<main id="maincontent" class="suppliers-buyers">
-
+    <main id="maincontent" class="suppliers-buyers">
          @include('front_site.common.product-banner')
-
-
         <div class="main-container">
             <div class="container-fluid px-2 py-2">
 
@@ -28,14 +24,33 @@
                         <div class="col-md-9 p-lg-3 p-0">
                             <div class="d-md-flex text-center justify-content-between align-items-center mb-2">
                                 <p class="mb-md-0 mb-1 font-500">{{ strtoupper(str_replace('-', ' ', $subcategory)) }} > ONE-TIME BUYERS <span style="color: #999">({{ $viewCount}} PRODUCTS)</span></p>
-                                <a href="{{route('buy-sell.create')}}" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif class="red-btn" >Post Your One-Time Deal</a>
+                                @if(!Auth::check())
+                                    <a href="{{ url('log-in-pre') }}" class="red-btn">Post Your One-Time Deal</a>
+                                @else
+                                    <a href="{{ route('buy-sell.create') }}" class="red-btn">Post Your One-Time Deal</a>
+                                @endif
                             </div>
                             <div class="row m-0 search-container">
+                                <div class="col-md-8 p-1 text-md-left text-center">
+                                    <h6 class="mt-2 text-left">TOP MANUFACTURING CITIES FOR {{ strtoupper($subcategory) }}</h6>
+                                    <div class="cities-btn">
+                                        @foreach($prod_city_search as $prod_city)
+                                            <a href="{{route('prod-search-one-time-buyer',['category'=>$category->slug,'subcategory'=>$subcategory,'city'=>$prod_city->city])}}"
+                                               target="_blank" class="mb-2 link">{{$prod_city->city}}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
                                 <div class="col-md-12 p-1 d-flex align-items-end">
                                     <form class="w-100 d-flex" action="{{route('prod-search-one-time-buyer',['category'=>$category->slug,'subcategory'=>$subcategory])}}" method="get">
                                         <input class="form-control mr-2 mb-0" id="city" name="city" type="search" value="{{ isset($city) ? $city : '' }}" placeholder="Search City" aria-label="Search">
                                         <button class="btn my-sm-0 search-btn" type="submit"><span class="fa fa-search" aria-hidden="true"></span></button>
                                     </form>
+                                </div>
+                                <div class="mt-4 compare-container">
+                                    <div class="mb-2 compare-cancel-btns">
+                                        <a class="pt-1 pb-1 pl-2 pr-2 red-btn" id="compa">Compare</a>
+                                        <a class="pt-1 pb-1 pl-2 pr-2 red-btn cancel-btn" id="cancel">Cancel</a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -85,7 +100,7 @@
                                                         <?php $img = \DB::table('buysell_images')->where('buy_sell_id',$prod->id)->get();?>
                                                         @foreach($img as $i => $image)
                                                             @if($loop->first)
-                                                                <img id="productImg1" src="{{$ASSETS}}/{{$image->image}}" class="w-100 product-img border-grey">
+                                                                <img id="productImg1" src="{{$image->image}}" class="w-100 product-img border-grey">
                                                                 @endif
                                                             @endforeach
                                                             <div class="position-absolute heart-icon-div">
@@ -125,9 +140,8 @@
                                                     </a>
                                                     <div class="mt-2 custom-control custom-checkbox">
                                                         <input type="checkbox" value="{{$prod->reference_no}}" class="custom-control-input add-product-to-compare"
-                                                               id="customCheck{{$i}}" reference_no="{{$prod->reference_no}}">
-                                                        <label class="custom-control-label font-500" for="customCheck{{$i}}">Add to
-                                                            Compare</label>
+                                                               id="customCheck{{$i}}" name="reference_no">
+                                                        <label class="custom-control-label font-500" for="customCheck{{$i}}">Add to Compare</label>
                                                     </div>
                                         </div>
                                                 <div class="col-xl-5 col-lg-5 p-lg-2 p-0 product-details">
@@ -289,8 +303,8 @@
                                 @endif
                             </div>
                             <div align="center" class="my-2">
-                        <a href="#" class="load-more red-btn">Load More<span class="ml-2 fa fa-spinner" aria-hidden="true"></span></a>
-                    </div>
+                              <a href="#" class="load-more red-btn">Load More<span class="ml-2 fa fa-spinner" aria-hidden="true"></span></a>
+                            </div>
 {{--                            {{ $products->links() }}--}}
                         </div>
 
@@ -299,18 +313,18 @@
                             <div class="position-relative top-companies">
                                 @foreach($topcompanies as $comp)
                                     <div class="top-companies-card">
-                                        <img alt="100x100" src="{{$ASSET.'/front_site/images/company-images/'.$comp->logo }}"
+                                        <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',['id'=>$comp->id,'company'=>$comp->company_name])}}">
+                                        <img alt="100x100" src="{{$comp->logo }}"
                                              data-holder-rendered="true" height="145" class="w-100 object-contain border-grey">
-                                        <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$comp->id)}}">
                                             <div class="companies-card-content">
                                                 <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
                                                 <span class="company-nm">{{$comp->company_name}}</span>
-                                                <p class="company-content">{{substr_replace($comp->company_introduction, "...", 100) }}</p>
+                                                <p class="company-content overflow-text-dots-three-line">{!!strip_tags($comp->company_introduction)!!}</p>
                                             </div>
                                         </a>
                                     </div>
                                 @endforeach
-                                <a href="{{route('view-all-companies')}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
+                                <a href="{{route('view-all-companies',['category'=>$category->slug])}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
                             </div>
                         </div>
 
@@ -319,202 +333,184 @@
 
             </div>
         </div>
-</main>
-
-
-
+    </main>
 </body>
-
-
-
 @endsection
 @push('js')
 
-      <!--  /*add to compare model*/ -->
+    <!--  /*add to compare model*/ -->
 
     <script type="text/javascript">
-            $(document).delegate('.add-product-to-compare', 'change', function(e) {
-              e.preventDefault();
-            if(this.checked) {
+        var ref = [];
+        $(".add-product-to-compare").click(function () {
+            // Initializing array with Checkbox checked values
+            if (ref.length > 2) {
+                alert('you cannot select more then three products to compare');
+                this.checked = false;
+            } else {
+                ref.push(this.value);
+            }
+            console.log(ref);
+        });
 
-            var reference_no=$(this).attr("reference_no");
-            var log_id=$(this).attr("log_id");
-            var id=$(this).attr("id");
-            var token='{{csrf_token()}}';
-
+        $("#compa").click(function () {
+            var token = '{{csrf_token()}}';
+            if (ref != '') {
                 $.ajax({
-                       type:'POST',
-                       url: '{{ url('/compare-product-ajax') }}',
-                       data:{reference_no:reference_no,log_id:log_id,_token:token},
-                       cache: false,
-                       success: function(response) {
-                        console.log(response);
-
-
-                       }
-                   });
-             } else if(!this.checked){
-
-            var reference_no=$(this).attr("reference_no");
-
-            var id=$(this).attr("id");
-            var token='{{csrf_token()}}';
-
-                $.ajax({
-                       type:'DELETE',
-                       url: '{{ url('/compare-product-deleted-ajax') }}' + '/' + reference_no,
-                       data:{reference_no:reference_no,_token:token},
-                       cache: false,
-                       success: function(response) {
-                         console.log(response);
-
-
-                       }
-                   });
-
-             }
-
-            });
-            $(document).delegate('#cancel', 'click', function(e) {
-                e.preventDefault();
-                var token='{{csrf_token()}}';
-                $.ajax({
-                    type:'DELETE',
-                    url: '{{ url('/compare-product-all-deleted-ajax') }}',
-                    data:{_token:token},
+                    type: 'POST',
+                    url: '{{ url('/compare-product-ajax') }}',
+                    data: {ref: ref, _token: token},
                     cache: false,
-                    success: function(response) {
-                        console.log(response);
+                    success: function (response) {
+                        window.location.href = "{{route('products-compare',['category'=>$category->slug,'subcategory'=>$sub_category->slug])}}";
                     }
                 });
+            }
+        });
+        $(document).delegate('#cancel', 'click', function (e) {
+            e.preventDefault();
+            var token = '{{csrf_token()}}';
+            $.ajax({
+                type: 'DELETE',
+                url: '{{ url('/compare-product-all-deleted-ajax') }}',
+                data: {_token: token},
+                cache: false,
+                success: function (response) {
+                    console.log(response);
+                }
             });
-            $(document).delegate('.add-to-favourite', 'click', function(e) {
-                e.preventDefault();
-                $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
-                var reference_no=$(this).attr("reference_no");
-                var prod_id = $(this).attr("prod_id");
-                var product_service_name=$(this).attr("product_service_name");
-                var product_service_types=$(this).attr("product_service_types");
-                var token='{{csrf_token()}}';
-                var thisVariable = $(this);
-                // console.log($(this).text());
-                $.ajax({
-                    type:'POST',
-                    url: '{{ url('/favourite-product-ajax') }}',
-                    data:{reference_no:reference_no,prod_id:prod_id,product_service_types:product_service_types,product_service_name:product_service_name,_token:token},
-                    cache: false,
-                    success: function(data) {
+        });
+        $(document).delegate('.add-to-favourite', 'click', function (e) {
+            e.preventDefault();
+            $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
+            var reference_no = $(this).attr("reference_no");
+            var prod_id = $(this).attr("prod_id");
+            var product_service_name = $(this).attr("product_service_name");
+            var product_service_types = $(this).attr("product_service_types");
+            var token = '{{csrf_token()}}';
+            var thisVariable = $(this);
+            // console.log($(this).text());
+            $.ajax({
+                type: 'POST',
+                url: '{{ url('/favourite-product-ajax') }}',
+                data: {
+                    reference_no: reference_no,
+                    prod_id: prod_id,
+                    product_service_types: product_service_types,
+                    product_service_name: product_service_name,
+                    _token: token
+                },
+                cache: false,
+                success: function (data) {
 
-                        response = $.parseJSON(data);
-                        if (response.feedback === "false") {
-                            toastr.error(response.msg).fadeOut(2500);
-                        } else if (response.feedback === 'true') {
-                            $("#loader").hide();
-                            toastr.success(response.msg).fadeOut(2500);
+                    response = $.parseJSON(data);
+                    if (response.feedback === "false") {
+                        toastr.error(response.msg).fadeOut(2500);
+                    } else if (response.feedback === 'true') {
+                        $("#loader").hide();
+                        toastr.success(response.msg).fadeOut(2500);
 
-                            let heart_btn = $(thisVariable).closest('.change-password-modal').siblings('.heart-icon-div').find('.check-heart');
+                        let heart_btn = $(thisVariable).closest('.change-password-modal').siblings('.heart-icon-div').find('.check-heart');
+                        console.log(heart_btn);
+                        if ($(heart_btn).hasClass('fa-heart-o')) {
                             console.log(heart_btn);
-                            if($(heart_btn).hasClass('fa-heart-o'))
-                            {
-                                console.log(heart_btn);
-                                $(heart_btn).removeClass('fa-heart-o').addClass('fa-heart');
-                            }
-                            else if($(heart_btn).hasClass('fa-heart')){
-                                $(heart_btn).removeClass('fa-heart').addClass('fa-heart-o');
-                            }
-                            // setTimeout(() => {
-                            //     window.location.href = response.close();
-                            // }, 500);
+                            $(heart_btn).removeClass('fa-heart-o').addClass('fa-heart');
+                        } else if ($(heart_btn).hasClass('fa-heart')) {
+                            $(heart_btn).removeClass('fa-heart').addClass('fa-heart-o');
                         }
+                        // setTimeout(() => {
+                        //     window.location.href = response.close();
+                        // }, 500);
+                    }
+                }
+            });
+        });
+        $(document).ready(function () {
+            var options_inquiry = {
+                dataType: 'Json',
+                beforeSubmit: function (arr, $form) {
+                    $('#alert-success-inquiry').hide();
+                    $('#alert-error-inquiry').hide();
+                    $('#inquiry_create_btn').addClass('d-none');
+                    $('.btn-proo').removeClass('d-none');
+                },
+                success: function (data) {
+                    $('.btn-proo').addClass('d-none');
+                    $('#inquiry_create_btn').removeClass('d-none');
+                    $('html, .modal').animate({scrollTop: 0}, 'slow');
+                    $('#alert-success-inquiry').hide();
+                    $('#alert-error-inquiry').hide();
+                    response = data;
+                    if (response.feedback == 'false') {
+                        $.each(response.errors, function (key, value) {
+                            $('#' + key + '_error').html(value[0]);
+                            $(":input[name=" + key + "]").addClass('is-invalid');
+                        });
+                    } else if (response.feedback == 'invalid') {
+                        $('#alert-error-inquiry').html(response.msg);
+                        $('#alert-error-inquiry').show();
+
+                    } else {
+
+                        $('#alert-error-inquiry').hide();
+                        $('#alert-success-inquiry').html(response.msg);
+                        $('#alert-success-inquiry').show();
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 3000);
+
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    $('html, body').animate({scrollTop: 0}, 'slow');
+                    $('#alert-success-inquiry').hide();
+                    $('#alert-error-inquiry').hide();
+                    // form.find('button[type=submit]').html('<i aria-hidden="true" class="fa fa-check"></i> {{ __('Save') }}');
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not Connected.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error, Please try again later';
+                    }
+                    $('#alert-error-inquiry').html(msg);
+                    $('#alert-error-inquiry').show();
+                },
+
+            };
+
+            $('#postInquiry').ajaxForm(options_inquiry);
+
+            $('#country').on('change', function () {
+                var country_id = this.value;
+                $("#citydwn").html('');
+                $.ajax({
+                    url: "{{url('/get-state-list')}}",
+                    type: "POST",
+                    data: {
+                        country_id: country_id,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#citydwn').html('<option value="" selected disabled>Select City</option>');
+                        $.each(result.cities, function (key, value) {
+                            $("#citydwn").append('<option value="' + value + '">' + value + '</option>');
+                        });
                     }
                 });
             });
-            $(document).ready(function () {
-                var options_inquiry = {
-                    dataType: 'Json',
-                    beforeSubmit: function (arr, $form) {
-                        $('#alert-success-inquiry').hide();
-                        $('#alert-error-inquiry').hide();
-                        $('#inquiry_create_btn').addClass('d-none');
-                        $('.btn-proo').removeClass('d-none');
-                    },
-                    success: function (data) {
-                        $('.btn-proo').addClass('d-none');
-                        $('#inquiry_create_btn').removeClass('d-none');
-                        $('html, .modal').animate({scrollTop: 0}, 'slow');
-                        $('#alert-success-inquiry').hide();
-                        $('#alert-error-inquiry').hide();
-                        response = data;
-                        if (response.feedback == 'false') {
-                            $.each(response.errors, function (key, value) {
-                                $('#' + key + '_error').html(value[0]);
-                                $(":input[name=" + key + "]").addClass('is-invalid');
-                            });
-                        } else if (response.feedback == 'invalid') {
-                            $('#alert-error-inquiry').html(response.msg);
-                            $('#alert-error-inquiry').show();
 
-                        } else {
-
-                            $('#alert-error-inquiry').hide();
-                            $('#alert-success-inquiry').html(response.msg);
-                            $('#alert-success-inquiry').show();
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, 3000);
-
-                        }
-                    },
-                    error: function (jqXHR, exception) {
-                        $('html, body').animate({scrollTop: 0}, 'slow');
-                        $('#alert-success-inquiry').hide();
-                        $('#alert-error-inquiry').hide();
-                        // form.find('button[type=submit]').html('<i aria-hidden="true" class="fa fa-check"></i> {{ __('Save') }}');
-                        var msg = '';
-                        if (jqXHR.status === 0) {
-                            msg = 'Not Connected.\n Verify Network.';
-                        } else if (jqXHR.status == 404) {
-                            msg = 'Requested page not found. [404]';
-                        } else if (jqXHR.status == 500) {
-                            msg = 'Internal Server Error [500].';
-                        } else if (exception === 'parsererror') {
-                            msg = 'Requested JSON parse failed.';
-                        } else if (exception === 'timeout') {
-                            msg = 'Time out error.';
-                        } else if (exception === 'abort') {
-                            msg = 'Ajax request aborted.';
-                        } else {
-                            msg = 'Uncaught Error, Please try again later';
-                        }
-                        $('#alert-error-inquiry').html(msg);
-                        $('#alert-error-inquiry').show();
-                    },
-
-                };
-
-                $('#postInquiry').ajaxForm(options_inquiry);
-
-                $('#country').on('change', function() {
-                    var country_id = this.value;
-                    $("#citydwn").html('');
-                    $.ajax({
-                        url:"{{url('/get-state-list')}}",
-                        type: "POST",
-                        data: {
-                            country_id: country_id,
-                            _token: '{{csrf_token()}}'
-                        },
-                        dataType : 'json',
-                        success: function(result){
-                            $('#citydwn').html('<option value="" selected disabled>Select City</option>');
-                            $.each(result.cities,function(key,value){
-                                $("#citydwn").append('<option value="'+value+'">'+value+'</option>');
-                            });
-                        }
-                    });
-                });
-
-            });
+        });
     </script>
 
 @endpush

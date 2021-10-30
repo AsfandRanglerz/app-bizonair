@@ -14,9 +14,9 @@
                                         <ul class="products-slider">
                                             @foreach($prod->product_image as $j => $image)
 
-                                                <li class="listing" data-thumb="{{$ASSETS}}/{{$image->image}}" data-src="{{$ASSETS}}/{{$image->image}}">
+                                                <li class="listing" data-thumb="{{$image->image}}" data-src="{{$image->image}}">
                                                     <a href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
-                                                        <img class="w-100" src="{{$ASSETS}}/{{$image->image}}" class="img-fluid">
+                                                        <img class="w-100" src="{{$image->image}}" class="img-fluid">
                                                     </a>
                                                 </li>
 

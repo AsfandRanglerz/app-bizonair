@@ -51,7 +51,7 @@
                                                             <div class="position-relative suppliers-buyers">
                                                                 @foreach($prod->product_image as $j => $image)
                                                                     @if($loop->first)
-                                                                        <img src="{{$ASSETS}}/{{$image->image}}"
+                                                                        <img src="{{$image->image}}"
                                                                              class="w-100 h-100 certified-suppliers-img border-grey">
                                                                         @if($prod->is_certified ==1)
                                                                             <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">
@@ -147,7 +147,7 @@
                                         <div class="position-relative suppliers-buyers" style="height: 65%">
                                                 @foreach($prod->product_image as $i => $image)
                                                     @if($loop->first)
-                                                        <img src="{{$ASSETS}}/{{$image->image}}"
+                                                        <img src="{{$image->image}}"
                                                              class="w-100 h-100 certified-suppliers-img border-grey">
                                                     @if($prod->is_certified ==1)
                                                         <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">

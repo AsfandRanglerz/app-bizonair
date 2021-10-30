@@ -52,7 +52,7 @@
                                                                 <?php $img = \DB::table('buysell_images')->where('buy_sell_id',$prod->id)->get();?>
                                                                 @foreach($img as $i => $image)
                                                                     @if($loop->first)
-                                                                        <img src="{{$ASSETS}}/{{$image->image}}"
+                                                                        <img src="{{$image->image}}"
                                                                              class="w-100 h-100 certified-suppliers-img border-grey">
                                                                             @if($prod->is_certified ==1)
                                                                                 <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">
@@ -146,7 +146,7 @@
                                                 <?php $img = \DB::table('buysell_images')->where('buy_sell_id',$prod->id)->get();?>
                                                 @foreach($img as $i => $image)
                                                     @if($loop->first)
-                                                        <img src="{{$ASSETS}}/{{$image->image}}"
+                                                        <img src="{{$image->image}}"
                                                              class="w-100 h-100 certified-suppliers-img border-grey">
                                                             @if($prod->is_certified ==1)
                                                                 <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">

@@ -31,7 +31,11 @@
                         <div class="col-md-9 p-lg-3 p-0">
                             <div class="d-md-flex text-center justify-content-between align-items-center mb-3">
                                 <p class="mb-md-0 mb-2 font-500">{{ strtoupper($childsubcategory->name) }} SUPPLIERS <span style="color: #999">({{ $viewCount}} PRODUCTS)</span></p>
-                                <a href="{{ route('products.create') }}" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif class="red-btn" >Post Your Regular Lead</a>
+                                @if(!Auth::check())
+                                    <a href="{{ url('log-in-pre') }}" class="red-btn">Post Your Regular Lead</a>
+                                @else
+                                    <a href="{{ route('products.create') }}" class="red-btn">Post Your Regular Lead</a>
+                                @endif
                             </div>
                             <div class="row m-0 search-container">
                                 <div class="col-md-8 p-1 text-md-left text-center">
@@ -49,12 +53,9 @@
                                     </form>
                                 </div>
                             </div>
-                            <?php $comp = DB::table('compares')->get();
-
-                            ?>
                             <div class="mt-4 compare-container">
                                 <div class="mb-2 compare-cancel-btns">
-                                    <a href="{{route('products-compare',['category'=>$category])}}" class="pt-1 pb-1 pl-2 pr-2 red-btn" id="compa" com_cnt="{{ count($comp) }}" >Compare</a>
+                                    <a class="pt-1 pb-1 pl-2 pr-2 red-btn" id="compa">Compare</a>
                                     <a class="pt-1 pb-1 pl-2 pr-2 red-btn cancel-btn" id="cancel" >Cancel</a>
                                 </div>
                             </div>
@@ -102,7 +103,7 @@
 
                                                     @foreach($prod->product_image as $j => $image)
                                                         @if(!empty($image))
-                                                            <img id="productImg1" src="{{$ASSETS}}/{{$image->image}}" class="w-100 product-img border-grey">
+                                                            <img id="productImg1" src="{{$image->image}}" class="w-100 product-img border-grey">
                                                             @if($j==0)
                                                                 @break
                                                             @endif
@@ -343,47 +344,31 @@
     <!--  /*add to compare model*/ -->
 
     <script type="text/javascript">
-        $(document).delegate('.add-product-to-compare', 'change', function(e) {
-            e.preventDefault();
-            if(this.checked) {
+        var ref = [];
+        $(".add-product-to-compare").click(function(){
+            // Initializing array with Checkbox checked values
+            if(ref.length > 2){
+                alert('you cannot select more then three products to compare');
+                this.checked = false;
+            }else{
+                ref.push(this.value);
+            }
+            console.log(ref);
+        });
 
-                var reference_no=$(this).attr("reference_no");
-
-                var id=$(this).attr("id");
-                var token='{{csrf_token()}}';
-
+        $("#compa").click(function(){
+            var token='{{csrf_token()}}';
+            if(ref != ''){
                 $.ajax({
                     type:'POST',
                     url: '{{ url('/compare-product-ajax') }}',
-                    data:{reference_no:reference_no,log_id:log_id,_token:token},
+                    data:{ref:ref,_token:token},
                     cache: false,
                     success: function(response) {
-                        console.log(response);
-
-
+                        window.location.href= "{{route('products-compare',['category'=>$category->slug,'subcategory'=>$sub_category->slug])}}";
                     }
                 });
-            } else if(!this.checked){
-
-                var reference_no=$(this).attr("reference_no");
-
-                var id=$(this).attr("id");
-                var token='{{csrf_token()}}';
-
-                $.ajax({
-                    type:'DELETE',
-                    url: '{{ url('/compare-product-deleted-ajax') }}' + '/' + reference_no,
-                    data:{reference_no:reference_no,_token:token},
-                    cache: false,
-                    success: function(response) {
-                        console.log(response);
-
-
-                    }
-                });
-
             }
-
         });
 
         $(document).delegate('#cancel', 'click', function(e) {

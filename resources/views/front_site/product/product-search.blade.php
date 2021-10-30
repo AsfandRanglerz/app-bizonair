@@ -30,7 +30,7 @@
 
                                                                         @foreach($prod->product_image as $j => $image)
                                                                             @if(!empty($image))
-                                                                                <img id="productImg1" src="{{$ASSETS}}/{{$image->image}}" class="w-100 product-img border-grey">
+                                                                                <img id="productImg1" src="{{$image->image}}" class="w-100 product-img border-grey">
                                                                                 @if($j==0)
                                                                                     @break
                                                                                 @endif
@@ -243,7 +243,7 @@
                                                                     <?php $img = \DB::table('buysell_images')->where('buy_sell_id',$prod->id)->get();?>
                                                                     @foreach($img as $i => $image)
                                                                         @if($loop->first)
-                                                                            <img id="productImg1" src="{{$ASSETS}}/{{$image->image}}" class="w-100 product-img border-grey">
+                                                                            <img id="productImg1" src="{{$image->image}}" class="w-100 product-img border-grey">
                                                                         @endif
                                                                     @endforeach
                                                                     <div class="position-absolute heart-icon-div">

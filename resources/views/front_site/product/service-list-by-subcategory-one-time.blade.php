@@ -53,7 +53,7 @@
                                                         @foreach($img as $i => $image)
                                                             @if($loop->first)
                                                                     <a href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
-                                                        <img id="productImg1" src="{{$ASSETS}}/{{$image->image}}" class="w-100 product-img">
+                                                        <img id="productImg1" src="{{$image->image}}" class="w-100 product-img">
                                                                     </a>
                                                                 @endif
                                                             @endforeach

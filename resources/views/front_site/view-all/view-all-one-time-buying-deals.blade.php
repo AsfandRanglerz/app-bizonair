@@ -62,7 +62,7 @@
                                                                 @foreach($img as $i => $image)
                                                                     @if($loop->first)
                                                                             <a href="{{ route('buysellDetail',$prod->slug) }}">
-                                                                        <img src="{{$ASSETS}}/{{$image->image}}"
+                                                                        <img src="{{$image->image}}"
                                                                              class="w-100 h-100 certified-suppliers-img">
                                                                             </a>
                                                                         <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">
@@ -124,7 +124,7 @@
                                                 @foreach($img as $i => $image)
                                                     @if($loop->first)
                                                             <a href="{{ route('buysellDetail',$prod->slug) }}">
-                                                        <img src="{{$ASSETS}}/{{$image->image}}"
+                                                        <img src="{{$image->image}}"
                                                              class="w-100 h-100 certified-suppliers-img">
                                                             </a>
                                                         <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">

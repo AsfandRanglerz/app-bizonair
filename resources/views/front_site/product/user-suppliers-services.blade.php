@@ -59,8 +59,8 @@
                             <ul class="products-slider">
                                 @foreach($prod->product_image as $j => $image)
 
-                                    <li class="listing" data-thumb="{{$ASSETS}}/{{$image->image}}" data-src="{{$ASSETS}}/{{$image->image}}">
-                                        <img class="w-100" src="{{$ASSETS}}/{{$image->image}}" class="img-fluid">
+                                    <li class="listing" data-thumb="{{$image->image}}" data-src="{{$image->image}}">
+                                        <img class="w-100" src="{{$image->image}}" class="img-fluid">
                                     </li>
 
                                 @endforeach

@@ -333,11 +333,11 @@ class HomeController extends Controller
 
     public function register_user()
     {
-        // dd(request()->all());
+        //dd(request()->all());
         $rules = [
             'password' => 'required|min:8', 'confirm_password' => 'required|same:password',
             'user_type' => 'required', 'first_name' => 'required',
-            'last_name' => 'required', 'registration_phone_no' => 'required', 'birthday' => 'required',
+            'last_name' => 'required', 'registration_phone_no' => 'required', 'gender' => 'required','birthday' => 'required',
         ];
         $messages = [
             'password.required' => 'Password is required', 'password.min' => 'Minimum 8 characters required',
@@ -346,6 +346,7 @@ class HomeController extends Controller
             'user_type.required' => 'Please select user type', 'first_name.required' => 'First name is required',
             'last_name.required' => 'Last name is required',
             'registration_phone_no.required' => 'Phone number is required',
+            'gender.required' => 'Please select gender',
             'birthday.required' => 'Please select date of birth',
         ];
         $validator = \Validator::make(request()->all(), $rules, $messages);
@@ -386,6 +387,12 @@ class HomeController extends Controller
         $user->password = Hash::make(request('password'));
         $user->company_name = request('company_name');
         $user->registration_phone_no = request('registration_phone_no');
+        if(request('gender') == 'Female'){
+            $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/82441633072560.png';
+        }else{
+            $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png';
+        }
+        $user->gender = request('gender');
         $user->birthday = date('Y-m-d H:i:s', strtotime(request('birthday')));
         if (request('industry_information_check'))
             $user->industry_information_check = 1;
@@ -446,9 +453,10 @@ class HomeController extends Controller
 
     public function save_my_account()
     {
+        //dd(request()->all());
 //         dd(request('sub_category'));
         $rules = [
-            'phone_no' => 'required','country' => 'required', 'state' => 'required', 'city' => 'required', // 'category' => 'required',
+            'phone_no' => 'required|min:11','country' => 'required', 'state' => 'required', 'city' => 'required', // 'category' => 'required',
             // 'sub_category' => 'required',
         ];
         $messages = [
@@ -471,8 +479,8 @@ class HomeController extends Controller
 //            $num = ($num == request('whatsapp_number_country_code')) ? '' : $num;
 //            $telephone_num = preg_replace('/^(?:\+?' . request('telephone_country_code') . '|0)?/', request('telephone_country_code'), request('telephone'));
 //            $telephone_num = ($num == request('telephone_country_code')) ? '' : $telephone_num;
-            $user->first_name = auth()->user()->first_name;
-            $user->last_name = auth()->user()->last_name;
+            $user->first_name = request('first_name');
+            $user->last_name = request('last_name');
             $user->website = request('website');
             // $user->phone_no = request('phone_no');
             $user->whatsapp_number = request('whatsapp_number');
@@ -486,12 +494,6 @@ class HomeController extends Controller
             $user->postcode = request('postcode');
             $user->designation = request('designation');
             $user->other_designation = request('other_designation');
-            $user->gender = request('gender');
-            if(request('gender') == 'Female'){
-                $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/82441633072560.png';
-            }else{
-                $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png';
-            }
             if (request('category')) {
                 foreach (request('category') as $key => $value) {
                     $new = new \App\UserInterest();
@@ -572,8 +574,8 @@ class HomeController extends Controller
         $user->last_name = $request->last_name;
         $user->gender = $request->gender;
         $user->registration_phone_no = request('mobileNumber');
-        $user->company_name = request('company_name');
         $user->street_address = $request->street_address;
+        $user->company_name = request('company_name');
         $user->city = $request->city;
         $user->state = $request->state;
         $user->country = $request->country;

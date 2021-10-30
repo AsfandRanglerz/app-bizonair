@@ -108,29 +108,7 @@
                                         </div>
 
                                     </div> --}}
-                                    <div class="w-100 pl-2 form-row user-type-section">
-                                        <h6 class="w-100 pl-0 mb-0">Gender <span class="required">*</span></h6>
-{{--                                        <div class="form-group user-type col-lg-6 pl-0">--}}
-                                        <div class="mt-1 d-flex flex-row form-group user-type col-lg-6 pl-0">
-                                            <div
-                                                class="form-check form-check-inline custom-control custom-radio d-sm-inline">
-                                                <input type="radio" required
-                                                       class="custom-control-input"
-                                                       value="Male" id="exampleRadios1"
-                                                       name="gender">
-                                                <label class="custom-control-label" for="exampleRadios1">Male</label>
-                                            </div>
-                                            <div
-                                                class="form-check form-check-inline custom-control custom-radio d-sm-inline">
-                                                <input type="radio" required
-                                                       class="custom-control-input"
-                                                       value="Female" id="exampleRadios2"
-                                                       name="gender">
-                                                <label class="custom-control-label" for="exampleRadios2">Female</label>
-                                            </div>
-                                            <small class="text-danger" id="gender_error"></small>
-                                        </div>
-                                    </div>
+
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <h6 class="w-100 p-0 d-none">Designation <small class="font-500">(Optional)</small>
@@ -393,9 +371,6 @@
                         required: true
                     },
                     state: {
-                        required: true
-                    },
-                    gender: {
                         required: true
                     },
                 },

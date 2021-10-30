@@ -91,7 +91,7 @@
                                                         <div class="mb-2 position-relative product-img-container">
                                                             @foreach($prod->product_image as $j => $image)
                                                                 @if(!empty($image))
-                                                                    <img id="productImg1" src="{{$ASSETS}}/{{$image->image}}" class="w-100 product-img border-grey">
+                                                                    <img id="productImg1" src="{{$image->image}}" class="w-100 product-img border-grey">
                                                                     @if($j==0)
                                                                         @break
                                                                     @endif

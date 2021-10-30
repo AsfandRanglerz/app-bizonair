@@ -131,6 +131,35 @@
                                         <div class="col-sm-8">
                                             <div class="row text">
                                                 <div class="col-sm-6 col-6">
+                                                    <span class="font-500">Company / Institute</span>
+                                                </div>
+                                                <div class="col-sm-6 col-6">
+                                                     <span>@if($user->company_name) {{ $user->company_name }} @else
+                                                             - @endif</span>
+                                                </div>
+                                            </div>
+                                            <div class="row text">
+                                                <div class="col-sm-6 col-6">
+                                                    <span class="font-500">Interested Categories</span>
+                                                </div>
+                                                <?php $userinterest = \App\UserInterest::where('user_id',auth()->id())->pluck('category_id');
+                                                $userint = \App\Category::whereIn('id',$userinterest)->pluck('name')->toArray();?>
+                                                <div class="col-sm-6 col-6">
+                                                    <span>@if($userinterest) {{ implode(', ',$userint) }} @else
+                                                            - @endif</span>
+                                                </div>
+                                            </div>
+                                            <div class="row text">
+                                                <div class="col-sm-6 col-6">
+                                                    <span class="font-500">Whatsapp Number</span>
+                                                </div>
+                                                <div class="col-sm-6 col-6">
+                                                    <span>@if($user->whatsapp_number && $user->whatsapp_number != '+92') {{ $user->whatsapp_number }} @else
+                                                            - @endif</span>
+                                                </div>
+                                            </div>
+                                            <div class="row text">
+                                                <div class="col-sm-6 col-6">
                                                     <span class="font-500">Whatsapp Number</span>
                                                 </div>
                                                 <div class="col-sm-6 col-6">
@@ -402,6 +431,49 @@
                                                    placeholder="Street Address (Optional)">
                                             <small class="text-danger" id="street_address_error"></small>
                                         </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <input type="text" class="form-control" placeholder="Input Business Company Name OR Institute Name for Students"
+                                                   value="{{$user->company_name}}" name="company_name">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <select name="category[]" class="form-control select2-multiple" id="category" multiple>
+                                                <?php $userinterest = \App\UserInterest::where('user_id',auth()->id())->pluck('category_id')->toArray();?>
+                                                <option value="5" @if(in_array("5",$userinterest)) selected @endif>Fibers & Materials</option>
+                                                <option value="6" @if(in_array("6",$userinterest)) selected @endif>
+                                                    Machinery & Parts
+                                                </option>
+                                                <option value="7" @if(in_array("7",$userinterest)) selected @endif>
+                                                    PPE & Institutional
+                                                </option>
+                                                <option value="8" @if(in_array("8",$userinterest)) selected @endif>Dyes & Chemicals
+                                                </option>
+                                                <option value="9" @if(in_array("9",$userinterest)) selected @endif>
+                                                    Garments & Accessories
+                                                </option>
+                                                <option value="10" @if(in_array("10",$userinterest)) selected @endif>
+                                                    Unstitched & Leftovers
+                                                </option>
+                                                <option value="11" @if(in_array("11",$userinterest)) selected @endif>HR & Admin
+                                                </option>
+                                                <option value="12" @if(in_array("12",$userinterest)) selected @endif>
+                                                    Accounts & IT
+                                                </option>
+                                                <option value="13" @if(in_array("13",$userinterest)) selected @endif>
+                                                    Erection & Commissioning
+                                                </option>
+                                                <option value="14" @if(in_array("14",$userinterest)) selected @endif>
+                                                    PD & Sourcing
+                                                </option>
+                                                <option value="15" @if(in_array("15",$userinterest)) selected @endif>
+                                                    Operations & Reporting
+                                                </option>
+                                                <option value="16" @if(in_array("16",$userinterest)) selected @endif>
+                                                    Quality & Consultation
+                                                </option>
+                                            </select>
+                                        </div>
 
                                     </div>
                                     <div class="form-row">
@@ -469,6 +541,10 @@
     <script>
         $(document).ready(function () {
             /*single select dropdown*/
+            $('#category').select2({
+                closeOnSelect: true,
+                placeholder: "I am interested in Categories"
+            });
             $('#country_id').select2({
                 closeOnSelect: true,
                 placeholder: "Select Country/Region *"
