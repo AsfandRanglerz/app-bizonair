@@ -22,12 +22,6 @@
             display: none;
         }
 
-        .info-content-inquiry {
-            border: 2px dashed #808080b3;
-            padding: 4px;
-            margin-bottom: 16px;
-        }
-
         .product-inquiry-content {
             font-size: 13px;
         }

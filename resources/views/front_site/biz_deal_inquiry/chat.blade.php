@@ -77,7 +77,7 @@
         </div>
         <p class="mb-0 description">{!! $list->message !!}</p>
         <div class="position-relative reply-input-field">
-            <textarea class="mt-3 form-control send-box"></textarea>
+            <textarea class="mt-2 form-control send-box"></textarea>
             {{-- <button class="position-absolute send-icon"><span class="fa fa-paper-plane"></span></button> --}}
             <div class="h-100 position-absolute d-flex align-items-center top-0 sent-attach-btn-send-icon">
                 <div class="input-group-prepend"><div class="input-group-text blue-btn p-0"><span id="upload_button" class="p-0" data-original-title="" title=""><label class="m-0"><input type="file" id="file" class="d-none upload-file"> <span class="fa fa-paperclip text-white p-2"></span></label></span></div></div>
@@ -100,7 +100,7 @@
         </div>
         <p class="mb-0 description">Ok good. Thanks for information</p>
         <div class="position-relative reply-input-field">
-            <textarea class="mt-3 form-control send-box"></textarea>
+            <textarea class="mt-2 form-control send-box"></textarea>
             <button class="position-absolute send-icon"><span class="fa fa-paper-plane"></span></button>
         </div>
     </div>
@@ -117,7 +117,7 @@
         </div>
         <p class="mb-0 description">Ok good. Thanks for information</p>
         <div class="position-relative reply-input-field">
-            <textarea class="mt-3 form-control send-box"></textarea>
+            <textarea class="mt-2 form-control send-box"></textarea>
             <button class="position-absolute send-icon"><span class="fa fa-paper-plane"></span></button>
         </div>
     </div> --}}

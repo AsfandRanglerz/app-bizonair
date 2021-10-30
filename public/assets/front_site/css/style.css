@@ -1087,6 +1087,10 @@ p.click {
     border-bottom: 1px dotted grey;
 }
 
+.mail-reply-box-outer .mail-reply-box:not(.msg-sender):last-child {
+    border-bottom: 0;
+}
+
 .msg-sender {
     background: rgba(128, 128, 128, 0.15);
     border-bottom: 1px dotted grey;
@@ -3579,6 +3583,12 @@ form .other-div {
 .mail-reply-box-outer .fa.fa-paperclip,
 .mail-reply-box-outer .fa.fa-paper-plane {
     font-size: 10px;
+}
+
+.info-content-inquiry {
+    border: 1px dashed #808080b3;
+    padding: 4px;
+    margin-bottom: 16px;
 }
 
 .mail-reply-box-outer .send-box {
