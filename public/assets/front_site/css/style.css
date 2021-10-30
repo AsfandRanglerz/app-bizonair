@@ -3903,7 +3903,7 @@ span.time {
 
 .chat-messages {
     border-top: 1px solid rgba(0, 0, 0, .05);
-    padding: 8px 12px;
+    padding: 8px 18px;
     overflow: auto;
     /*display: flex;*/
     /*flex-flow: row wrap;*/
@@ -4169,17 +4169,18 @@ span.time {
 
 .group-img-container > img {
     border-radius: 50px;
-    max-height: 40px;
-    min-height: 40px;
-    min-width: 40px;
-    max-width: 40px;
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    object-position: top;
 }
 
 .my-img-container > img {
     border-radius: 50px;
-    height: 40px;
-    width: 40px;
-    object-fit: contain;
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    object-position: top;
 }
 
 .msg-img-box,
@@ -9083,6 +9084,10 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 575px) {
+    .comp-name.form-control {
+        font-size: 8px;
+    }
+
     /*select category popup*/
     .sel-category-model .modal-content {
         top: 90px;
@@ -9356,7 +9361,7 @@ header .navbar .navbar-toggler {
     /*faqs*/
 
     .company-name-nav {
-        font-size: 16px;
+        font-size: 11px;
     }
 
     .header .navbar {
