@@ -3682,14 +3682,14 @@ span.time {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 8px 15px;
+    padding: 8px 8px;
     background: rgba(0, 0, 0, .05);
 }
 
 .chatbox-icons .fa {
-    padding: 3px 5px;
+    padding: 3px 0;
     margin: 0 0 0 3px;
-    font-size: 24px;
+    font-size: 12px;
     color: #A52C3E;
     border-radius: 0 5px 0 5px;
     transition: 0.3s;
@@ -3702,15 +3702,17 @@ span.time {
 
 .chat-partner-name, .chat-group-name {
     flex: 1;
-    font-size: 15px;
+    font-size: 10px;
     font-weight: bold;
     color: #A52C3E;
     transition: .1s ease-out;
 }
 
 .status {
-    width: 12px;
-    height: 12px;
+    position: relative;
+    top: 1px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     display: inline-block;
     box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.2);
@@ -3733,7 +3735,7 @@ span.time {
 
 .chat-messages {
     border-top: 1px solid rgba(0, 0, 0, .05);
-    padding: 15px;
+    padding: 8px 12px;
     overflow: auto;
     /*display: flex;*/
     /*flex-flow: row wrap;*/
@@ -3741,6 +3743,10 @@ span.time {
     /*flex: 1;*/
     height: calc(100vh - 193px);
     margin-bottom: 0;
+}
+
+.message-box-text {
+    margin: 0!important;
 }
 
 .users-chatboard .users-chatboard-content {
@@ -3802,7 +3808,7 @@ span.time {
 }
 
 .message-box {
-    padding: 5px;
+    padding: 4px 10px;
     border-radius: 6px 0 0 6px;
     position: relative;
     background: rgba(100, 170, 0, .1);
@@ -9149,8 +9155,10 @@ header .navbar .navbar-toggler {
     }
 
     .chat-messages {
-        min-height: calc(100vh - 203px);
-        max-height: calc(100vh - 203px);
+/*        min-height: calc(100vh - 203px);
+        max-height: calc(100vh - 203px);*/
+        min-height: calc(100vh - 245px);
+        max-height: calc(100vh - 245px);
     }
 
     .users-left-panel-inner {

@@ -351,7 +351,8 @@ $(document).ready(function () {
                 $('.quote-box .reply-txt').text(quoteMessage).show();
                 $('.reply-img-box').hide();
                 if($(window).width() <= 575) {
-                    $('.chat-messages').css('height', 'calc(100vh - 261px)');
+                    $('.chat-messages').css('min-height', 'calc(100vh - 303px)');
+                    $('.chat-messages').css('max-height', 'calc(100vh - 303px)');
                 }
                 else if($(window).width() <= 991) {
                     $('.chat-messages').css('height', 'calc(100vh - 263px)');
@@ -396,14 +397,18 @@ $(document).ready(function () {
             $(this).closest('.quote-box').removeClass('d-flex').addClass('d-none');
             $(this).closest('.quote-box').children('.reply-txt').text('');
             $('.quote-box .reply-img-box .reply-img').attr('src', quoteImg);
-            $('.chat-messages').css('height', 'calc(100vh - 193px)');
+            /*$('.chat-messages').css('height', 'calc(100vh - 193px)');*/
+            $('.chat-messages').css('min-height', 'calc(100vh - 245px)');
+            $('.chat-messages').css('max-height', 'calc(100vh - 245px)');
         });
     });
 
     $(document).on('click', '.message-send', function() {
         $('.quote-box').removeClass('d-flex').addClass('d-none');
         $('.quote-box .reply-txt').text('');
-        $('.chat-messages').css('height', 'calc(100vh - 193px)');
+        /*$('.chat-messages').css('height', 'calc(100vh - 193px)');*/
+        $('.chat-messages').css('min-height', 'calc(100vh - 245px)');
+        $('.chat-messages').css('max-height', 'calc(100vh - 245px)');
     });
 
     $('input.chat-input').keyup(function(event) {
