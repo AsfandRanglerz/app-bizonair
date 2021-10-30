@@ -79053,7 +79053,7 @@ var app = new Vue({
         // id: e.message.id,
         company_id: e.message.company_id,
         sender_id: e.message.sender_id,
-        file_path: _this.$baseUrl + '/public/storage/' + e.message.file_path,
+        file_path: e.message.file_path,
         file_ext: e.message.file_type,
         extension: e.message.extension,
         file_name: e.message.file_name,
@@ -79071,7 +79071,7 @@ var app = new Vue({
         quote: e.quoted_message ? {
           id: e.quoted_message.id,
           message: e.quoted_message.message,
-          file_path: _this.$baseUrl + '/public/storage/' + e.quoted_message.file_path,
+          file_path: e.quoted_message.file_path,
           file_type: e.quoted_message.file_type,
           extension: e.quoted_message.extention
         } : null

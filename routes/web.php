@@ -40,7 +40,6 @@ Route::post('/forget-password', 'HomeController@postEmail')->name('password');
 Route::get('/reset-password/{token}', 'HomeController@getPassword');
 Route::post('/reset-password', 'HomeController@updatePassword');
 
-Route::get('/login', 'HomeController@login');
 Route::get('logout', function () {
     Auth::logout();
     session()->flush();

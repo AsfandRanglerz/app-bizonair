@@ -162,6 +162,18 @@
 {{--                                        </div>--}}
 
 {{--                                    </div>--}}
+                                    <div class="mx-0 w-100 form-row user-type-section">
+                                        <h6 class="w-100 pl-0">Gender <span class="required">*</span></h6>
+                                        <div class="custom-control custom-radio custom-control-inline flex-column-reverse">
+                                            <input type="radio" id="exampleRadios1" name="gender" value="Male" class="custom-control-input" required>
+                                            <label class="custom-control-label" for="exampleRadios1">Male</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="exampleRadios2" name="gender" value="Female" class="custom-control-input" required>
+                                            <label class="custom-control-label" for="exampleRadios2">Female</label>
+                                        </div>
+                                        <small class="text-danger" id="gender_error"></small>
+                                    </div>
                                     <div class="w-100 form-row user-type-section">
                                         <h6 class="w-100 pl-0">User Type <span class="required">*</span></h6>
                                         <div class="form-group user-type col-xl-9 col-lg-12 pl-0">
@@ -310,6 +322,9 @@
                     //     required: true,
                     //     equalTo: '#password'
                     // },
+                    gender: {
+                        required: true
+                    },
                     birthday: {
                         required: true
                     }
@@ -325,6 +340,7 @@
                     //     equalTo: "Password does not match"
                     // },
                     email: "Please enter a valid email address",
+                    gender: "Please select gender",
                     birthday: "Please enter complete birthday"
                 },
                 errorClass: 'is-invalid error',

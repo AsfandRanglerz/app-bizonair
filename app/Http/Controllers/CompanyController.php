@@ -544,7 +544,7 @@ class CompanyController extends Controller
             // 'designation' => 'required',
             'first_name' => 'required', 'last_name' => 'required', 'registration_phone_no' => 'required',
             //            'office_code' => 'required',
-            'birthday' => 'required',
+            'gender' => 'required', 'birthday' => 'required',
         ];
         $messages = [
             'password.required' => 'Password is required', 'password.min' => 'Minimum 8 characters required',
@@ -556,7 +556,7 @@ class CompanyController extends Controller
             'registration_phone_no.required' => 'Phone number is required',
             // 'company_name.required' => 'Company name is required',
             //            'office_code.required' => 'Biz office code is required for members',
-            'birthday.required' => 'Please select date of birth'
+            'gender.required' => 'Please select gender', 'birthday.required' => 'Please select date of birth',
         ];
         $validator = \Validator::make(request()->all(), $rules, $messages);
         if ($validator->fails()) {
@@ -626,6 +626,12 @@ class CompanyController extends Controller
         $user->designation = request('designation');
         $user->company_name = request('company_name');
         $user->registration_phone_no = request('registration_phone_no');
+        if(request('gender') == 'Female'){
+            $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/82441633072560.png';
+        }else{
+            $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png';
+        }
+        $user->gender = request('gender');
         $user->birthday = \Carbon\Carbon::parse(request('birthday'))->startOfDay();
         $user->is_member = 1;
         $user->company_id = $invite->company_id;
@@ -823,7 +829,7 @@ class CompanyController extends Controller
                 'sender_id' => $value->sender_id,
                 'company_id' => $value->company_id,
                 'message' => $value->message,
-                'file_path' => url('public/storage/' . $value->file_path),
+                'file_path' => $value->file_path,
                 'file_ext' => $value->file_type,
                 'extension' => $value->extension,
                 'file_name' => $value->file_name,
@@ -836,7 +842,7 @@ class CompanyController extends Controller
                     'last_name' => $value->user->last_name,
                     'avatar' => ($value->user->avatar != 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png') ?  $value->user->avatar : 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png',
                 ],
-                'quote' => $qoute_msg? ['id' => $qoute_msg->id , 'message' => $qoute_msg->message, 'file_path' => url('public/storage/'.$qoute_msg->file_path) , 'file_type' => $qoute_msg->file_type , 'extension' => $qoute_msg->extension] : null
+                'quote' => $qoute_msg? ['id' => $qoute_msg->id , 'message' => $qoute_msg->message, 'file_path' => $qoute_msg->file_path , 'file_type' => $qoute_msg->file_type , 'extension' => $qoute_msg->extension] : null
             ]);
         }
         return $data;
@@ -854,13 +860,15 @@ class CompanyController extends Controller
         }
         if (request()->file('attachment')) {
             $file = request()->file('attachment');
-            $file_name = 'BIZ-' . date('dmY') . '-' . time() . '.' . $file->getClientOriginalExtension();
-            $destinationPath = 'public/storage/chat';
-            $file->move($destinationPath, $file_name);
-            $message->file_path = 'chat' . '/' . $file_name;
+            $file_name = rand(10000, 99999) . time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('chat/',$file_name,'s3');
+            $path = 'chat'.'/'.$file_name;
+            $url = Storage::disk('s3')->url($path);
+            $message->file_path = $url;
             $message->file_type = request('file_type');
             $message->extension = request('extension');
             $message->file_name = request('file_name');
+
         }
 
         $company = \App\UserCompany::where('user_id','!=',auth()->id())->where('company_id', session()->get('company_id'))->get();
@@ -889,8 +897,7 @@ class CompanyController extends Controller
     {
         $message = \App\Message::where('company_id', session()->get('company_id'))->where('id', request('id'))->first();
         if ($message) {
-            $headers = ['Content-Type: ' . $message->file_type . '/' . $message->extension];
-            return response()->download(public_path('storage/' . $message->file_path), $message->file_name, $headers);
+            return response()->download($message->file_path);
         }
     }
 

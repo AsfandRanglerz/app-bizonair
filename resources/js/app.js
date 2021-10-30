@@ -81,7 +81,7 @@ const app = new Vue({
                     // id: e.message.id,
                     company_id: e.message.company_id,
                     sender_id: e.message.sender_id,
-                    file_path: this.$baseUrl + '/public/storage/' + e.message.file_path,
+                    file_path: e.message.file_path,
                     file_ext: e.message.file_type,
                     extension: e.message.extension,
                     file_name: e.message.file_name,
@@ -99,7 +99,7 @@ const app = new Vue({
                     quote: e.quoted_message? {
                         id: e.quoted_message.id,
                         message: e.quoted_message.message,
-                        file_path: this.$baseUrl + '/public/storage/' + e.quoted_message.file_path,
+                        file_path: e.quoted_message.file_path,
                         file_type: e.quoted_message.file_type,
                         extension: e.quoted_message.extention,
                      }: null,
@@ -131,8 +131,8 @@ const app = new Vue({
             this.quote_file_type = id.file_type;
             this.quote_extension = id.extension;
 
-            
-            
+
+
         },
         emptyBox(source){
             console.log('bhai' , source);
@@ -143,7 +143,7 @@ const app = new Vue({
                 this.quote_file_type = '';
                 this.quote_extension = '';
             }
-            
+
         },
         addMessage(message, company_id) {
             console.log(message);
@@ -163,7 +163,7 @@ const app = new Vue({
                 }).then(response => {
                     message.id = response.data.id;
                     this.messages.push(message);
-                    
+
                 });
             }
             this.quote_msg_id = 0;
@@ -172,7 +172,7 @@ const app = new Vue({
             this.quote_file_type = '';
             this.quote_extension = '';
         },
-        
+
 
     }
 });

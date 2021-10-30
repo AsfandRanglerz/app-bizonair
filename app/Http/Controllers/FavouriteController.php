@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Database\Eloquent\Model;
 use Storage;
 use App\Notification;
 use Carbon\Carbon;
@@ -23,6 +22,11 @@ class FavouriteController extends Controller
 
         if(\DB::table('favourites')->where(['user_id'=>$loger_id,'reference_no'=>$reference_no])->exists()){
 // record already exist
+            $prdct = \App\Product::where('reference_no', $reference_no)->first();
+            $cpany = \App\UserCompany::where('company_id', $prdct->company_id)->get();
+            foreach($cpany as $cmp){
+                \App\Notification::where('user_id',$cmp->user_id)->where('table_name','favourites')->where('prod_id',$prdct->id)->delete();
+            }
             DB::delete('delete from favourites where reference_no = ?', [$reference_no]);
             $data['feedback'] = 'true';
             $data['msg'] = 'Product removed from favourite';
