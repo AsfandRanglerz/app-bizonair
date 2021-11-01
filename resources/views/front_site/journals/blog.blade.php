@@ -59,7 +59,7 @@
             @foreach($data as $article)
             <div class="product-box col-md-3 col-6 px-1 my-1 textile-box">
                 <a href="{{route('blog-detail',['id'=>$article->id])}}" class="text-decoration-none">
-                    <img src="{{ url('storage/app/public/'.$article->image) }}">
+                    <img src="{{ $article->image }}">
                     <div class="mb-0 textile-caption">
                         <span>Post | {{date("d-F-Y", strtotime($article->publish_date))}}</span>
                         <p class="overflow-text-dots">{{substr_replace($article->title, "...", 50) }}</p>

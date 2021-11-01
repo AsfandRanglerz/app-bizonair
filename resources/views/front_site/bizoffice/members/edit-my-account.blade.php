@@ -283,8 +283,7 @@
                                             <small class="text-danger" id="email_error"></small>
                                         </div>
                                         <div class="form-group col-md-6 mb-1">
-                                            <select id="designation" name='designation'
-                                                    class="form-control choose-country">
+                                            <select id="designation" name='designation' class="form-control single-select-dropdown">
                                                 <option selected disabled>--- Select Designation (Optional) ---</option>
                                                 <option value="Director"
                                                         @if($user->designation == "Director") selected @endif >Director
@@ -297,7 +296,7 @@
                                                     General Manager
                                                 </option>
                                                 <option value="Owner"
-                                                        @if($user->designation == "Owner") selected @endif >Owner
+                                                        @if(is_null($user->designation)) selected @elseif($user->designation == "Owner") selected @endif >Owner
                                                 </option>
                                                 <option value="Entrepreneur"
                                                         @if($user->designation == "Entrepreneur") selected @endif >
@@ -325,7 +324,6 @@
                                                 <option value="Others" id="otherUser"
                                                         @if($user->designation == "Other") selected @endif >Other</option>
                                             </select>
-                                            <small class="text-danger" id="designation_error"></small>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -369,7 +367,7 @@
                                     <div class="my-1 d-flex flex-row">
                                         <div class="form-check form-check-inline custom-control custom-radio d-sm-inline">
                                             <input type="radio" class="custom-control-input" name="gender" id="male"
-                                                   value="Male" @if($user->gender == "Male") checked @endif>
+                                                   value="Male" @if(is_null($user->gender)) checked @elseif($user->gender == "Male") checked @endif>
                                             <label class="custom-control-label" for="male">Male</label>
                                         </div>
                                         <div class="form-check form-check-inline custom-control custom-radio d-sm-inline">
@@ -379,21 +377,6 @@
                                         </div>
                                         <small class="text-danger" id="gender_error"></small>
                                     </div>
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="last_name" class="font-500">Gender <span--}}
-{{--                                                class="required">*</span></label>--}}
-{{--                                        <div class="form-check-inline">--}}
-{{--                                            <input class="form-check-input" type="radio" name="gender" id="male"--}}
-{{--                                                   value="Male" @if($user->gender == "Male") checked @endif >--}}
-{{--                                            <label class="form-check-label" for="male">Male</label>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-check-inline">--}}
-{{--                                            <input class="form-check-input" type="radio" name="gender" id="female"--}}
-{{--                                                   value="Female" @if($user->gender == "Female") checked @endif >--}}
-{{--                                            <label class="form-check-label" for="female">Female</label>--}}
-{{--                                        </div>--}}
-{{--                                        <small class="text-danger" id="gender_error"></small>--}}
-{{--                                    </div>--}}
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
                                             <select name="country" id="country_id" class="form-control single-select-dropdown"
@@ -611,6 +594,7 @@
                     country: "Please select country",
                     city: "Please select city",
                     state: "Please select state",
+                    gender: "Please select gender",
                 },
                 errorClass: 'is-invalid error',
                 validClass: 'is-valid',

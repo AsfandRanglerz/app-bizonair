@@ -176,6 +176,7 @@
                             @if(count($listing) > 0)
                         @foreach ($listing as $key => $list)
                         @if(check_deleted_by_me($list, 'fav_lead'))
+                                        @if($list->product)
                         <div class="content-box-email mail-reply-box">
                             <input type="hidden" class="main-convo" data-main-convo="{{encrypt($list->id)}}">
                             <div class="py-2 px-2 d-flex justify-content-between">
@@ -192,7 +193,7 @@
                                     <p class="mb-0 px-2"><span class=" @if(check_in_my_pin($list, 'fav_lead'))far @else fas @endif fa-flag add-to-pin"></span></p>
                                     <p class="mb-0 ml-2 click overflow-text-dots-one-line h-1-5-rm @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  ) font-weight-bold @endif"
                                         data-click-id="{{$list->id}}">
-                                        <span>{{$list->product->product_service_name}}</span> - <span
+                                        <span>@if($list->product){{$list->product->product_service_name}}@else @endif</span> - <span
                                             class="refer">Ref# {{$list->product->reference_no}}</span> -
                                         <span>{{mb_strimwidth((strip_tags($list->latestMessage->message)), 0, 50, "...")}}</span>
                                     </p>
@@ -223,6 +224,7 @@
                                 </div>
                             </div>
                         </div>
+                                         @endif
                         @endif
                         @endforeach
 
@@ -265,6 +267,7 @@
                         @if(count($sent_messages) > 0)
 
                     @foreach ($sent_messages as $key => $list)
+                                    @if($list->product)
                     <div class="content-box-email mail-reply-box">
                         <input type="hidden" class="main-convo" data-main-convo="{{encrypt($list->id)}}">
                         <div class="py-2 px-2 d-flex justify-content-between">
@@ -305,6 +308,7 @@
                             </div>
                         </div>
                     </div>
+                                    @endif
                     @endforeach
 
 
@@ -328,7 +332,7 @@
                 @if(count($deleted_messages) > 0)
 
                 @foreach ($deleted_messages as $list)
-
+                            @if($list->product)
                 <div class="content-box-email mail-reply-box">
                     <input type="hidden" class="main-convo" data-main-convo="{{encrypt($list->id)}}">
                     <div class="py-2 px-2 d-flex justify-content-between">
@@ -364,6 +368,7 @@
                         </div>
                     </div>
                 </div>
+                            @endif
                 @endforeach
 
 

@@ -59,10 +59,10 @@
             @foreach($articles as $article)
                 <div class="product-box col-md-3 col-6 px-1 my-1 textile-box">
                     <a href="{{route('journal-detail',['type'=>$article->journal_type_name,'id'=>$article->id])}}" class="text-decoration-none">
-                        @if(\File::exists('public/assets/front_site/blogs/'.$article->image))
-                        <img src="{{$ASSET}}/front_site/blogs/{{$article->image}}">
+                        @if(\File::exists($article->image))
+                        <img src="{{$article->image}}">
                         @else
-                        <img src="{{ url('storage/app/public/'.$article->image) }}">
+                        <img src="{{$article->image}}">
                         @endif
                         <div class="mb-0 textile-caption">
                             <span>{{$article->journal_type_name}} | {{date("d-F-Y", strtotime($article->created_at))}}</span>

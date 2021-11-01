@@ -63,22 +63,25 @@
                                     <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Weaving</a>
                                     <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Processing</a>
                                     <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Garments Manufacturing</a>
-                                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Other</a>
+                                    <a class="nav-link" id="v-pills-settings1-tab" data-toggle="pill" href="#v-pills-settings1" role="tab" aria-controls="v-pills-settings1" aria-selected="false">Other</a>
                                 </div>
                             </div>
-                            <div class="p-0 col-sm-9 overflow-auto calc-content" style="height: 80vh">
+                            <div class="p-0 col-sm-9 overflow-auto">
                                 <div class="tab-content" id="v-pills-tabContent">
                                     <div class="overflow-auto tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                        <img src="{{$ASSET}}/front_site/images/calculation-formulas.jpeg" style="width: 100%" />
+                                        <img src="{{$ASSET}}/front_site/images/Spinning.jpg" style="width: 100%" />
                                     </div>
                                     <div class="overflow-auto tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                        <img src="{{$ASSET}}/front_site/images/calculation-formulas.jpeg" style="width: 100%" />
+                                        <img src="{{$ASSET}}/front_site/images/Weaving.jpg" style="width: 100%" />
                                     </div>
                                     <div class="overflow-auto tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                        <img src="{{$ASSET}}/front_site/images/calculation-formulas.jpeg" style="width: 100%" />
+                                        <p><h1 style="margin-top: 121px; text-align: center">Comming Soon..</h1></p>
                                     </div>
                                     <div class="overflow-auto tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                                        <img src="{{$ASSET}}/front_site/images/calculation-formulas.jpeg" style="width: 100%" />
+                                        <p><h1 style="margin-top: 121px; text-align: center">Comming Soon..</h1></p>
+                                    </div>
+                                    <div class="overflow-auto tab-pane fade" id="v-pills-settings1" role="tabpanel" aria-labelledby="v-pills-settings1-tab">
+                                        <p><h1 style="margin-top: 121px; text-align: center">Comming Soon..</h1></p>
                                     </div>
                                 </div>
                             </div>

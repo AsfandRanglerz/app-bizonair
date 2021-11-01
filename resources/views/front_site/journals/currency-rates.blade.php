@@ -67,24 +67,43 @@
                 <div class="row mx-0">
                     <div class="col-sm-9 px-0 currency-rates-block">
                         <!--Currency Converter widget by FreeCurrencyRates.com -->
-                        <div id='gcw_mainFAGlYeDQz' class='gcw_mainFAGlYeDQz'></div>
-                        <script>function reloadFAGlYeDQz(){
-                                var sc = document.getElementById('scFAGlYeDQz');if (sc) sc.parentNode.removeChild(sc);sc = document.createElement('script');sc.type = 'text/javascript';sc.charset = 'UTF-8';sc.async = true;sc.id='scFAGlYeDQz';sc.src = 'https://freecurrencyrates.com/en/widget-vertical?iso=USD-EUR-GBP-JPY-CNY-RUB-PKR&df=2&p=FAGlYeDQz&v=fi&source=fcr&width=130&width_title=0&firstrowvalue=1&thm=aaaaaa,ffffff,FF6B7F,DB4865,FFFFFF,4297D7,ffffff,2C4359,000000&title=Currency%20Converter&tzo=-300';var div = document.getElementById('gcw_mainFAGlYeDQz');div.parentNode.insertBefore(sc, div);} reloadFAGlYeDQz();
-                        </script>
-                        <!--Currency Converter widget by FreeCurrencyRates.com -->
+                        <div id='gcw_mainFJegLMB4I' class='gcw_mainFJegLMB4I'></div>
+                        <a id='gcw_siteFJegLMB4I' href='https://freecurrencyrates.com/en/'>FreeCurrencyRates.com</a>
+                        <script>function reloadFJegLMB4I() {
+                                var sc = document.getElementById('scFJegLMB4I');
+                                if (sc) sc.parentNode.removeChild(sc);
+                                sc = document.createElement('script');
+                                sc.type = 'text/javascript';
+                                sc.charset = 'UTF-8';
+                                sc.async = true;
+                                sc.id = 'scFJegLMB4I';
+                                sc.src = 'https://freecurrencyrates.com/en/widget-table?iso=USD-EUR-GBP-RUB&df=1&p=FJegLMB4I&v=fi&source=fcr&width=900&width_title=0&firstrowvalue=1&thm=A6C9E2,FCFDFD,4297D7,5C9CCC,FFFFFF,C5DBEC,FCFDFD,2E6E9E,000000&title=Currency%20Rates&tzo=-300';
+                                var div = document.getElementById('gcw_mainFJegLMB4I');
+                                div.parentNode.insertBefore(sc, div);
+                            }
+
+                            reloadFJegLMB4I(); </script>
+                        <!-- put custom styles here: .gcw_mainFJegLMB4I{}, .gcw_headerFJegLMB4I{}, .gcw_ratesFJegLMB4I{}, .gcw_sourceFJegLMB4I{} -->
+                        <!--End of Currency Converter widget by FreeCurrencyRates.com -->
                     </div>
                     <div class="col-sm-3 px-0">
                         <div class="position-relative ads">
-                            <img src="{{$ASSET}}/front_site/images/ads/texpo-2021-digital.jpg" class="w-100 ads-img"
-                                 alt="">
+                            @foreach($ads as $ad)
+                                <a href="{{ $ad->link }}" class="text-decoration-none">
+                            <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
+                                </a>
                             <span class="fa fa-info position-absolute info-icon"></span>
                             <span class="img-info"></span>
+                            @endforeach
                         </div>
                         <div class="position-relative mt-3 ads">
-                            <img src="{{$ASSET}}/front_site/images/ads/texpo-2021-happening.jpg" class="w-100 ads-img"
-                                 alt="">
+                            @foreach($ads1 as $ad)
+                           <a href="{{ $ad->link }}" class="text-decoration-none">
+                            <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
+                           </a>
                             <span class="fa fa-info position-absolute info-icon"></span>
                             <span class="img-info"></span>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -93,3 +112,6 @@
     </main>
     </body>
 @endsection
+@push('js')
+    <script src="{{$ASSET}}/front_site/plugins/DataTables/datatables.js"></script>
+@endpush

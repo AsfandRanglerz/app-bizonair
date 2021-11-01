@@ -25,10 +25,10 @@
                                         @foreach($articles as $article)
                                         <a href="{{route('journal-detail',['type'=>$article->journal_type_name,'id'=>$article->id])}}" class="text-decoration-none text-reset">
                                             <div class="d-flex articles-block">
-                                                @if(\File::exists('public/assets/front_site/blogs/'.$article->image))
-                                                    <img src="{{$ASSET}}/front_site/blogs/{{$article->image}}" class="articles-img">
+                                                @if(\File::exists($article->image))
+                                                    <img src="{{$article->image}}" class="articles-img">
                                                 @else
-                                                    <img src="{{ url('storage/app/public/'.$article->image) }}" class="articles-img">
+                                                    <img src="{{$article->image }}" class="articles-img">
                                                 @endif
                                                 <div class="d-flex flex-column articles-info-inner">
                                                     <span class="pl-3 articles-date">{{date("d-F-Y", strtotime($article->publish_date))}}</span>
@@ -49,10 +49,10 @@
                                         @foreach($events as $article)
                                             <a href="{{route('journal-detail',['type'=>$article->journal_type_name,'id'=>$article->id])}}" class="text-decoration-none text-reset">
                                                 <div class="d-flex articles-block">
-                                                    @if(\File::exists('public/assets/front_site/blogs/'.$article->image))
-                                                        <img src="{{$ASSET}}/front_site/blogs/{{$article->image}}" class="articles-img">
+                                                    @if(\File::exists($article->image))
+                                                        <img src="{{$article->image}}" class="articles-img">
                                                     @else
-                                                        <img src="{{ url('storage/app/public/'.$article->image) }}" class="articles-img">
+                                                        <img src="{{ $article->image }}" class="articles-img">
                                                     @endif
                                                     <div class="d-flex flex-column articles-info-inner">
                                                         <span class="pl-3 articles-date">{{date("d-F-Y", strtotime($article->publish_date))}}</span>
@@ -75,10 +75,10 @@
                                         @foreach($sprojects as $article)
                                             <a href="{{route('journal-detail',['type'=>$article->journal_type_name,'id'=>$article->id])}}" class="text-decoration-none text-reset">
                                                 <div class="d-flex articles-block">
-                                                    @if(\File::exists('public/assets/front_site/blogs/'.$article->image))
-                                                        <img src="{{$ASSET}}/front_site/blogs/{{$article->image}}" class="articles-img">
+                                                    @if(\File::exists($article->image))
+                                                        <img src="{{$article->image}}" class="articles-img">
                                                     @else
-                                                        <img src="{{ url('storage/app/public/'.$article->image) }}" class="articles-img">
+                                                        <img src="{{ $article->image }}" class="articles-img">
                                                     @endif
                                                     <div class="d-flex flex-column articles-info-inner">
                                                         <span class="pl-3 articles-date">{{date("d-F-Y", strtotime($article->publish_date))}}</span>
@@ -100,10 +100,10 @@
                                         @foreach($news as $article)
                                             <a href="{{route('news-detail',['id'=>$article->id])}}" class="text-decoration-none text-reset">
                                                 <div class="d-flex articles-block">
-                                                    @if(\File::exists('public/assets/front_site/blogs/'.$article->image))
-                                                        <img src="{{$ASSET}}/front_site/blogs/{{$article->image}}" class="articles-img">
+                                                    @if(\File::exists($article->image))
+                                                        <img src="{{$article->image}}" class="articles-img">
                                                     @else
-                                                        <img src="{{ url('storage/app/public/'.$article->image) }}" class="articles-img">
+                                                        <img src="{{ $article->image }}" class="articles-img">
                                                     @endif
                                                     <div class="d-flex flex-column articles-info-inner">
                                                         <span class="pl-3 articles-date">{{date("d-F-Y", strtotime($article->publish_date))}}</span>
@@ -122,7 +122,7 @@
                                 <a href="{{ route('calculation-formula') }}" class="m-sm-0 m-1 text-center red-link pg-red-link">Textile Calculations</a>
                                 <a href="{{ route('currency-rates') }}" class="m-sm-0 m-1 text-center red-link pg-red-link">Currency Rates</a>
                                 <a href="{{route('cotton-rates')}}" class="m-sm-0 m-1 text-center red-link pg-red-link">Cotton Rates</a>
-                                <a href="{{route('bizonair-404')}}" class="m-sm-0 m-1 text-center red-link pg-red-link">Yarn Rates</a>
+                                <a href="{{route('yarn-rates')}}" class="m-sm-0 m-1 text-center red-link pg-red-link">Yarn Rates</a>
                             </div>
                         </div>
                     </div>

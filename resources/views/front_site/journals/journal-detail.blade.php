@@ -33,11 +33,11 @@
                     <div class="px-0 col-xl-9 col-md-8 overflow-auto article-details-outer scroll-bar">
                         <div class="row mx-0">
                             <div class="offset-sm-2 col-sm-8 px-0">
-                                @if(\File::exists('public/assets/front_site/blogs/'.$article->image))
-                                    <img src="{{$ASSET}}/front_site/blogs/{{$article->image}}" class="w-100 object-contain journal-banner-img">
-                                @else
-                                    <img src="{{ url('storage/app/public/'.$article->image) }}" class="w-100 object-contain journal-banner-img">
-                                @endif
+                                    @if(isset($article->image))
+                                        <img src="{{ $article->image }}" class="w-100 object-contain journal-banner-img">
+                                    @else
+                                        <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 object-contain journal-banner-img">
+                                    @endif
                                 <h4 class="my-2 px-2 heading">{{$article->title}}</h4>
                             </div>
                         </div>
@@ -58,14 +58,26 @@
                         </div>
                         @if($related->isNotEmpty())
                         <div class="my-1 d-flex justify-content-between">
-                            <span class="heading">Related Articles</span>
+                            @foreach($journal as $article)
+                                @if($article->journal_type_name == 'Upcomming Events')
+                                    <span class="heading">Related Events</span>
+                                @elseif($article->journal_type_name == 'Student Projects')
+                                    <span class="heading">Related Projects</span>
+                                @elseif($article->journal_type_name == 'Articles')
+                                    <span class="heading">Related Articles</span>
+                                @endif
+                            @endforeach
                             <a href="{{route('journal')}}" class="red-link view-all">View All</a>
                         </div>
                         <div class="articles-widget">
                             @foreach($related as $post)
                             <a href="{{route('journal-detail',['type'=>$post->journal_type_name,'id'=>$post->id])}}" class="text-decoration-none text-reset">
                                 <div class="d-flex articles-block">
-                                    <img src="{{$ASSET}}/front_site/blogs/{{$post->image}}" class="articles-img">
+                                    @if(isset($post->image))
+                                        <img src="{{$ASSET}}/front_site/blogs/{{$post->image}}" class="articles-img">
+                                    @else
+                                        <img src="{{$ASSET}}/front_site/images/noimage.png" class="articles-img">
+                                    @endif
                                     <div class="d-flex flex-column articles-info-inner">
                                         <span class="pl-3 articles-date">{{\Carbon\Carbon::parse($post->publish_date)->format('M d, Y')}}</span>
                                         <p class="pl-3 mb-0 title overflow-text-dots">{{ucwords($post->title)}}</p>
@@ -77,14 +89,26 @@
                         @endif
                         @if($latest->isNotEmpty())
                             <div class="my-1 d-flex justify-content-between">
-                                <span class="heading">Latest Articles</span>
+                                @foreach($journal as $article)
+                                    @if($article->journal_type_name == 'Upcomming Events')
+                                        <span class="heading">Latest Events</span>
+                                    @elseif($article->journal_type_name == 'Student Projects')
+                                        <span class="heading">Latest Projects</span>
+                                    @elseif($article->journal_type_name == 'Articles')
+                                        <span class="heading">Latest Articles</span>
+                                    @endif
+                                @endforeach
                                 <a href="{{route('journal')}}" class="red-link view-all">View All</a>
                             </div>
                             <div class="articles-widget">
                                 @foreach($latest as $post)
                                     <a href="{{route('journal-detail',['type'=>$post->journal_type_name,'id'=>$post->id])}}" class="text-decoration-none text-reset">
                                         <div class="d-flex articles-block">
-                                            <img src="{{$ASSET}}/front_site/blogs/{{$post->image}}" class="articles-img">
+                                            @if(isset($post->image))
+                                                <img src="{{$post->image}}" class="articles-img">
+                                            @else
+                                                <img src="{{$ASSET}}/front_site/images/noimage.png" class="articles-img">
+                                            @endif
                                             <div class="d-flex flex-column articles-info-inner">
 {{--                                                <span class="pl-3 articles-date">{{\Carbon\Carbon::parse($post->publish_date)->format('M d, Y')}}</span>--}}
                                                 <p class="pl-3 mb-0 title overflow-text-dots">{{ucwords($post->title)}}</p>
@@ -96,7 +120,9 @@
                         @endif
                         <div class="mt-3 position-relative ads">
                             @foreach($ads as $ad)
-                                <img src="{{ url('storage/app/public/'.$ad->image) }}" class="w-100 ads-img" alt="">
+                                <a href="{{ $ad->link }}" class="text-decoration-none">
+                                   <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
+                                </a>
                                 <span class="fa fa-info position-absolute info-icon"></span>
                                 <span class="img-info"></span>
                             @endforeach

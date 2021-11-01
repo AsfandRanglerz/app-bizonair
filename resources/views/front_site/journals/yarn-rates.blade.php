@@ -1,49 +1,46 @@
 @extends('front_site.master_layout')
 @section('content')
     <body class="product-main">
-    <style>
-        /*cotton rates css*/
-
-        /*cotton rates css*/
-    </style>
     <main id="maincontent" class="blogs-page">
-        @include('front_site.common.product-banner')
         <div class="main-container">
-            <nav aria-label="breadcrumb" class="px-2">
+            <nav aria-label="breadcrumb" class="px-3">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a
                             href="{{ url('journal') }}">Journal</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a
-                            href="{{Request::url()}}">Cotton Rates</a></li>
+                            href="{{Request::url()}}">Yarn Rates</a></li>
                 </ol>
             </nav>
-            <div class="container-fluid px-2">
-                <div class="row m-0">
-                    <div class="col-sm-9 px-0">
-                        <div class="table-responsive table-mt">
-                            <table class="table table-bordered table-striped" id="cottonRatesTable" style="width:100%">
+            <div class="container-fluid p-sm-4 pt-4 pb-4 pl-3 pr-3">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="table-responsive table-mt mt-3 mb-3 pl-4 pr-4">
+                            <table class="table table-bordered table-striped" id="yarnRatesTable" style="width:100%">
                                 <thead>
                                 <tr>
-                                    <th><span class="th-cotton-heading">Cotton Region</span></th>
-                                    <th><span class="th-cotton-heading">Price Per Maund (Rs.)</span></th>
-                                    <th><span class="th-cotton-heading">Last Updated</span></th>
+                                    <th class="text-center"><span class="font-18">Count</span></th>
+                                    <th class="text-center"><span class="font-18">Supplier</span></th>
+                                    <th class="text-center"><span class="font-18">Price Per Lbs (PKR)</span></th>
+                                    <th class="text-center"><span class="font-18">Last Updated</span></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($data as $dat)
+                                @foreach($data as $key=> $dat)
                                 <tr>
-                                    <td>{{$dat->cotton_region}}</td>
-                                    {{--                                    <td>{{number_format(intval($dat->price))}}</td>--}}
-                                    <td>{{$dat->price}}</td>
+                                    <td>{{$dat->count}}</td>
+                                    <td>{{$dat->supplier}}</td>
+                                    <td>{{$dat->price}} {{$dat->unit}}</td>
                                     <td>{{date("d-F-Y", strtotime($dat->publish_date))}}</td>
+
                                 </tr>
                                 @endforeach
                                 </tbody>
                             </table>
+                            <p class="mb-0"><b>Disclaimer:</b> Above prices are for reference only, contact supplier for exact prices.</p>
                         </div>
                     </div>
-                    <div class="col-sm-3 px-0 mt-2">
+                    <div class="col-sm-3">
                         <div class="position-relative ads">
                             @foreach($ads as $ad)
                                 <a href="{{ $ad->link }}" class="text-decoration-none">
@@ -74,7 +71,7 @@
     <script>
         $(document).ready(function (){
             /*datatable search*/
-            $('#cottonRatesTable').DataTable({
+            $('#yarnRatesTable').DataTable({
                 "pageLength": 100,
                 aaSorting: [[0, "asc"]],
                 "fnDrawCallback": function( oSettings ) {
