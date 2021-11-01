@@ -1095,8 +1095,8 @@
                                                     <span><b>Target Price Range : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->suitable_currencies){{ str_replace(',', ', ', $product->suitable_currencies) }}@endif {{ $product->target_price_from }}
-                                                        - {{ $product->target_price_to }}
+                                                    <p class="mb-0">@if($product->suitable_currencies){{ str_replace(',', ', ', $product->suitable_currencies) }}@endif {{ floor(number_format($product->target_price_from,2)) }}
+                                                        - {{ floor(number_format($product->target_price_to,2)) }}
                                                         Per {{ ($product->target_price_unit != 'Other') ? $product->target_price_unit : $product->other_target_price_unit }}</p>
                                                 </div>
                                             </div>
@@ -1107,8 +1107,8 @@
                                                     <span><b>Unit Price Range : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->suitable_currencies){{ str_replace(',', ', ', $product->suitable_currencies) }}@endif {{ $product->unit_price_from }}
-                                                        - {{ $product->unit_price_to }}
+                                                    <p class="mb-0">@if($product->suitable_currencies){{ str_replace(',', ', ', $product->suitable_currencies) }}@endif {{ floor(number_format($product->unit_price_from,2)) }}
+                                                        - {{ floor(number_format($product->unit_price_to,2)) }}
                                                         Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}</p>
                                                 </div>
                                             </div>
@@ -1119,8 +1119,8 @@
                                                     <span><b>Service Charges Range : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->suitable_currencies){{ str_replace(',', ', ', $product->suitable_currencies) }}@endif{{ $product->unit_price_from }}
-                                                        - {{ $product->unit_price_to }}
+                                                    <p class="mb-0">@if($product->suitable_currencies){{ str_replace(',', ', ', $product->suitable_currencies) }}@endif {{ floor(number_format($product->unit_price_from,2)) }}
+                                                        - {{ floor(number_format($product->unit_price_to,2)) }}
                                                         Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}</p>
                                                 </div>
                                             </div>
@@ -1283,11 +1283,24 @@
 
                         </div>
                         <div class="col-xl-3 col-lg-4 col-md-4 mt-sm-0 mt-3">
-                            @foreach($ads as $ad)
-                                <a href="{{ $ad->link }}" class="text-decoration-none">
-                                    <img src="{{ $ad->image }}" class="w-100 h-100 right-side-img">
-                                </a>
-                            @endforeach
+                                @foreach($ads as $ad)
+                                    <div class="position-relative ads">
+                                        <a href="{{ $ad->link }}" class="text-decoration-none">
+                                            <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
+                                        </a>
+                                        <span class="fa fa-info position-absolute info-icon"></span>
+                                        <span class="img-info"></span>
+                                    </div>
+                                @endforeach
+                                @foreach($ads1 as $ad)
+                                    <div class="position-relative mt-3 ads">
+                                        <a href="{{ $ad->link }}" class="text-decoration-none">
+                                            <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
+                                        </a>
+                                        <span class="fa fa-info position-absolute info-icon"></span>
+                                        <span class="img-info"></span>
+                                    </div>
+                                @endforeach
                         </div>
                     </div>
 

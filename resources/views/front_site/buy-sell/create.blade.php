@@ -1788,7 +1788,6 @@
                 // alert($('#proPaid').val());
                 if ($('#proPaid').prop("checked")) {
                     $('#paidField').removeClass('d-none');
-                    $('#paidSample').prop('required', true);
                 }
 
             });
@@ -1798,7 +1797,6 @@
                 // alert($('#proPaid').val());
                 if ($('#proFree').prop("checked")) {
                     $('#paidField').addClass('d-none');
-                    $('#paidSample').prop('required', false);
                 }
             });
 

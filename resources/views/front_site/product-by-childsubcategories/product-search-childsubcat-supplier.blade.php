@@ -99,43 +99,42 @@
                                         <div class="ml-1 mr-1 mt-3 row product-content-container">
                                             <div class="col-xl-3 col-lg-6 p-lg-2 p-0 product-img-container">
                                                 <a href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
-                                                <div class="position-relative product-img-container">
+                                                    <div class="mb-2 position-relative product-img-container">
 
-                                                    @foreach($prod->product_image as $j => $image)
-                                                        @if(!empty($image))
-                                                            <img id="productImg1" src="{{$image->image}}" class="w-100 product-img border-grey">
-                                                            @if($j==0)
-                                                                @break
+                                                        @foreach($prod->product_image as $j => $image)
+                                                            @if(!empty($image))
+                                                                <img id="productImg1" src="{{$image->image}}" class="w-100 product-img border-grey">
+                                                                @if($j==0)
+                                                                    @break
+                                                                @endif
+                                                            @else
+                                                                <img id="productImg1" src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 product-img border-grey">
                                                             @endif
-                                                        @else
-                                                            <img id="productImg1" src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 product-img border-grey">
-                                                        @endif
-                                                    @endforeach
-
+                                                        @endforeach
                                                         <div class="position-absolute heart-icon-div">
                                                             <a class="text-decoration-none text-reset" href="#add-fav-{{$prod->reference_no}}" data-toggle="modal">
-                                                   <span class="text-decoration-none add-to-fav">
-                                                      <span class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span>
-                                                   </span>
+                                                               <span class="text-decoration-none add-to-fav">
+                                                                  <span class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span>
+                                                               </span>
                                                             </a>
                                                         </div>
                                                         <div id="add-fav-{{$prod->reference_no}}" class="change-password-modal modal fade">
                                                             <div class="modal-dialog modal-dialog-centered modal-login">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                                @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
-                                                                                <span class="modal-title">REMOVE FROM FAVOURITE</span>
-                                                                                @else
-                                                                                <span class="modal-title">ADD TO FAVOURITE</span>
-                                                                                @endif
+                                                                        @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
+                                                                            <span class="modal-title">REMOVE FROM FAVOURITE</span>
+                                                                        @else
+                                                                            <span class="modal-title">ADD TO FAVOURITE</span>
+                                                                        @endif
                                                                         <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                                                                     </div>
                                                                     <div class="modal-body pt-3">
-                                                                                @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
-                                                                                    <p style="color: white">Are you sure your product will be removed from the favourite</p>
-                                                                                @else
-                                                                                    <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
-                                                                                @endif
+                                                                        @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
+                                                                            <p style="color: white">Are you sure your product will be removed from the favourite</p>
+                                                                        @else
+                                                                            <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
+                                                                        @endif
                                                                         <div class="form-group mt-4 mb-0">
                                                                             <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="red-btn" data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif type="submit">Yes</button>
                                                                             <button class="red-btn" data-dismiss="modal" aria-hidden="true">No</button>
@@ -145,42 +144,58 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                </div>
+                                                    </div>
                                                 </a>
+
                                                 <div class="mt-2 custom-control custom-checkbox">
                                                     <input type="checkbox" value="{{$prod->reference_no}}" class="custom-control-input add-product-to-compare"
-                                                           id="customCheck{{$i}}" reference_no="{{$prod->reference_no}}">
-                                                    <label class="custom-control-label font-500" for="customCheck{{$i}}">Add to
-                                                        Compare</label>
+                                                           id="customCheck{{$i}}" name="reference_no">
+                                                    <label class="custom-control-label font-500" for="customCheck{{$i}}">Add to Compare</label>
                                                 </div>
 
                                             </div>
-                                            <div class="col-xl-5 col-lg-5 p-lg-2 p-0  product-details">
+
+                                            <div class="col-6 px-1 product-details">
                                                 <a class="text-reset text-decoration-none" href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
-                                                <p class="title font-weight-bold overflow-text-dots-subject">{{$prod->product_service_name}}</p>
+                                                    <p class="title font-weight-bold overflow-text-dots-subject">{{$prod->product_service_name}}</p>
                                                 </a>
                                                 <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                                 <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
-                                                <p class="price font-500"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ moneyFormat($prod->unit_price_from) }} - {{ moneyFormat($prod->unit_price_to) }}   @else {{ moneyFormat($prod->target_price_from) }} - {{ moneyFormat($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                                <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pl-5">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                                <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ moneyFormat($prod->unit_price_from) }} - {{ moneyFormat($prod->unit_price_to) }}   @else {{ moneyFormat($prod->target_price_from) }} - {{ moneyFormat($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
+                                                <div class="mt-2 mb-0 text-uppercase place-day">
+                                                    <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
+                                                    <p>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</p>
+                                                </div>
                                             </div>
-                                            <div class="col-xl-4 col-lg-6 p-3 d-flex justify-content-center border-grey">
+                                            <div class="col-6 p-1 border-grey">
                                                 <div>
                                                     <div class="d-flex membersince">Member <span class="number">since</span><span class="years">{{get_product_created_at($prod->company_id)}}</span></div>
-                                                    <a href="{{route('about-us-suppliers',$prod->company_id)}}" class="text-reset" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif> <p class="text-uppercase font-500 font-24">{{get_product_company($prod->company_id)}}</p></a>
+                                                    @if(!Auth::check())
+                                                        <a href="{{url('log-in-pre')}}" class="text-reset"> <p class="text-uppercase font-500 font-24 overflow-text-dots-one-line">{{get_product_company($prod->company_id)}}</p></a>
+                                                    @else
+                                                        <a href="{{route('about-us-suppliers',['id'=>$prod->company_id,'company'=>getCompanyName($prod->company_id)])}}" class="text-reset"> <p class="mb-1 text-uppercase font-500">{{get_product_company($prod->company_id)}}</p></a>
+                                                    @endif
                                                     <small class="d-block mb-2 grey-text">{{get_product_city($prod->company_id)}}, {{get_product_country($prod->company_id)}}</small>
                                                     <div class="mb-2 membericon">
                                                         <a href="#">
                                                             <img alt="Premium Member" src="{{$ASSETS}}/assets/front_site/images/leads-membership.png"   title="We are working on this feature and will enable this soon" data-toggle="tooltip" data-placement="bottom">
                                                         </a>
                                                     </div>
-    {{--                                                <div class="my-2 d-inline-block font-500 add-inquiry-basket" required="false">--}}
-    {{--                                                    <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
-    {{--                                                </div>--}}
-                                                    <div class="d-sm-inline-block d-flex flex-column align-items-center">
-                                                        <a href="#" class="mb-md-0 mb-1 p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
-                                                        <a href="#" class="mb-md-0 mb-1 p-0 red-btn"  data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
-                                                        <!-- Modal -->
+                                                    {{--                                        <div class="my-2 d-inline-block font-500 add-inquiry-basket" required="false">--}}
+                                                    {{--                                            <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
+                                                    {{--                                        </div>--}}
+                                                    <div class="d-flex column-gap-4">
+                                                        @if(!Auth::check())
+                                                            <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                                        @else
+                                                            <a href="#" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                                        @endif
+                                                        @if(!Auth::check())
+                                                            <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
+                                                        @else
+                                                            <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
+                                                    @endif
+                                                    <!-- Modal -->
                                                         <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                             <div class="modal-dialog contact-form" role="document">
                                                                 <div class="modal-content">
@@ -238,16 +253,16 @@
                                                                             </div>
 
                                                                             <div id="totalCharLeft">1000 characters remaining</div>
-                                                                                 <textarea id="description" class="mb-4 textarea-box form-control" name="description" placeholder="Describe Your Requirement..." maxlength="1000"></textarea><div class="form-row">
-                                                      <div class="form-group col-md-12 career-img-drop-outer attachment-img-file">
-                                                      <label class="d-block text-left text-white mb-2 font-500">Attachment <small class="font-500">(Attach Reference or Image)</small></label>
-                                                          <div class="custom-file">
-                                                              <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
-                                                              <label class="custom-file-label" for="customFile"><span class="fa fa-download"></span></label>
-                                                              <small class="text-danger" id="image_error"></small>
-                                                          </div>
-                                                      </div>
-                                                  </div>
+                                                                            <textarea id="description" class="mb-4 textarea-box form-control" name="description" placeholder="Describe Your Requirement..." maxlength="1000"></textarea><div class="form-row">
+                                                                                <div class="form-group col-md-12 career-img-drop-outer attachment-img-file">
+                                                                                    <label class="d-block text-left text-white mb-2 font-500">Attachment <small class="font-500">(Attach Reference or Image)</small></label>
+                                                                                    <div class="custom-file">
+                                                                                        <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
+                                                                                        <label class="custom-file-label" for="customFile"><span class="fa fa-download"></span></label>
+                                                                                        <small class="text-danger" id="image_error"></small>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
 
                                                                             <div class="form-row">
                                                                                 <div class="form-group ticks-checkbox col-md-12 mt-0 mb-0">
@@ -282,15 +297,15 @@
                                                                                 <ul data-toggle="buttons" class="mb-0">
                                                                                     <li class="w-100 btn d-flex">
                                                                                         <input class="input fa fa-square-o" type="checkbox" id="termsCheckbox" name="terms_condition" value="Terms & Conditions">
-                                                                                        <div>Please refer our <a href="{{route('privacy-policy')}}" target="_blank" class="text-link">Privacy Policy</a> and <a href="{{route('terms-of-use')}}" target="_blank" class="text-link">Terms & Conditions</a> before submitting your information</div>
+                                                                                        <div>Please refer our <a href="{{route('privacy-policy')}}"  class="text-link">Privacy Policy</a> and <a href="{{route('terms-of-use')}}"  class="text-link">Terms & Conditions</a> before submitting your information</div>
                                                                                     </li>
                                                                                 </ul>
                                                                             </div>
 
                                                                             <button type="submit" class="btn submit-btn" id="inquiry_create_btn" disabled>Send Inquiry Now</button>
-                              <button type="submit" disabled class="btn submit-btn btn-proo d-none">
-                                   <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>Send Inquiry Now
-                              </button>
+                                                                            <button type="submit" disabled class="btn submit-btn btn-proo d-none">
+                                                                                <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>Send Inquiry Now
+                                                                            </button>
 
                                                                         </form>
 

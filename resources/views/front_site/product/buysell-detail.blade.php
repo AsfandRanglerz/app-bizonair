@@ -659,11 +659,24 @@
 
                    </div>
                    <div class="col-xl-3 col-lg-4 col-md-4 mt-sm-0 mt-3">
-                       @foreach($ads as $ad)
-                           <a href="{{ $ad->link }}" class="text-decoration-none">
-                               <img src="{{ $ad->image }}" class="w-100 h-100 right-side-img">
-                           </a>
-                       @endforeach
+                           @foreach($ads as $ad)
+                               <div class="position-relative ads">
+                                   <a href="{{ $ad->link }}" class="text-decoration-none">
+                                       <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
+                                   </a>
+                                   <span class="fa fa-info position-absolute info-icon"></span>
+                                   <span class="img-info"></span>
+                               </div>
+                           @endforeach
+                           @foreach($ads1 as $ad)
+                               <div class="position-relative mt-3 ads">
+                                   <a href="{{ $ad->link }}" class="text-decoration-none">
+                                       <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
+                                   </a>
+                                   <span class="fa fa-info position-absolute info-icon"></span>
+                                   <span class="img-info"></span>
+                               </div>
+                           @endforeach
                    </div>
                </div>
 
@@ -801,7 +814,14 @@
 
     <!--  /*add to compare model*/ -->
     <script type="text/javascript">
+        $(window).resize(function() {
+            var ads = $('.ads').parent().innerHeight();
+            $('.product-tab').innerHeight(ads - 60);
+        });
         $(document).ready(function () {
+            var ads = $('.ads').parent().innerHeight();
+            $('.product-tab').innerHeight(ads - 60);
+
             var options_inquiry = {
                 dataType: 'Json',
                 beforeSubmit: function (arr, $form) {

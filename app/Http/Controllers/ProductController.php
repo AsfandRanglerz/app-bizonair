@@ -828,8 +828,9 @@ class ProductController extends Controller
         $sdfc = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Sell')->where('subcategory_id',$product->subcategory_id)->where('origin', $product->origin)->with('product_image')->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
 
         $cats = \App\Category::where('type', 'Business')->orderBy('priority')->get();
-        $ads = \App\Banner::where('dimension', 'width 300 * height 477')->where('description','1st row right sidebar')->where('page','Textile Business Detail')->where('status', 1)->limit(1)->get();
-        return view('front_site.product.product-detail',$data, compact('category','subcategory','slug','cats', 'product', 'osdts', 'ssdos','sdfc','ads'));
+        $ads = \App\Banner::where('dimension', 'width 295 * height 295')->where('description','1st row right sidebar')->where('page','Textile Business Detail')->where('status', 1)->limit(1)->get();
+        $ads1 = \App\Banner::where('dimension', 'width 295 * height 295')->where('description','2nd row right sidebar')->where('page','Textile Business Detail')->where('status', 1)->limit(1)->get();
+        return view('front_site.product.product-detail',$data, compact('category','subcategory','slug','cats', 'product', 'osdts', 'ssdos','sdfc','ads','ads1'));
     }
 
     public function buysellDetail($category, $subcategory ,$slug)
@@ -858,8 +859,9 @@ class ProductController extends Controller
         $sdfc = \App\BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('product_service_types', 'Sell')->where('date_expire','>', now())->where('subcategory_id',$product->subcategory_id)->where('origin', $product->origin)->latest()->whereNull('deleted_at')->where('id','!=',$product->id)->paginate(15);
 
         $cats = \App\Category::where('type', 'Business')->orderBy('priority')->get();
-        $ads = \App\Banner::where('dimension', 'width 300 * height 477')->where('description','1st row right sidebar')->where('page','Textile Business Detail')->where('status', 1)->limit(1)->get();
-        return view('front_site.product.buysell-detail',$data, compact('category','subcategory','slug','cats', 'product', 'osdts', 'ssdos','sdfc','ads'));
+        $ads = \App\Banner::where('dimension', 'width 295 * height 295')->where('description','1st row right sidebar')->where('page','Textile Business Detail')->where('status', 1)->limit(1)->get();
+        $ads1 = \App\Banner::where('dimension', 'width 295 * height 295')->where('description','2nd row right sidebar')->where('page','Textile Business Detail')->where('status', 1)->limit(1)->get();
+        return view('front_site.product.buysell-detail',$data, compact('category','subcategory','slug','cats', 'product', 'osdts', 'ssdos','sdfc','ads','ads1'));
     }
 
 
