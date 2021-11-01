@@ -77,6 +77,8 @@
                 });
             });
             $(document).ready(function () {
+                $('.quote-box > div').prepend('<p class="mb-2 font-italic overflow-text-dots-one-line reply-txt"></p>');
+
                 $('.footer-support-icons').hide();
                 var closebtn = $('<span/>', {
                     type: "button",
