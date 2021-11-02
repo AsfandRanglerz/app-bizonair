@@ -31,26 +31,27 @@
                                 <div class="form-group col-md-12">
                                     <input type="text"
                                            name="title" id="title" class="form-control"
-                                           placeholder="Title - Enter meeting title" maxlength="100">
+                                           placeholder="Title - Enter meeting title (Optional)" maxlength="100">
                                     <small class="text-danger" id="title_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <input type="text" autocomplete="off"
                                            name="meeting_date" id="meeting_date"
                                            class="form-control meetingdatepicker"
-                                           placeholder="Date - Set Meeting Date">
+                                           placeholder="Date - Set Meeting Date (Optional)">
                                     <small class="text-danger" id="meeting_date_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <input type="text"
                                            name="meeting_time" id="meeting_time"
                                            class="form-control bs-timepicker"
-                                           placeholder="Time (24 hours Format) - Set Meeting Time">
+                                           placeholder="Time (24 hours Format) - Set Meeting Time (Optional)">
                                     <small class="text-danger" id="meeting_time_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <select name="reminde_before" id="reminde_before" class="form-control">
-                                        <option value="" selected disabled>Reminders</option>
+                                        <option value=""></option>
+                                        <option disabled>Reminders (Optional)</option>
                                         {{--                                                @if(\App\Helpers\MeetingHelper::CheckTodayMeeting())--}}
                                         <option value="0">Today</option>
                                         {{--                                                @endif--}}
@@ -65,7 +66,7 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <textarea name="detail" id="detail" class="form-control" rows="6"
-                                              placeholder="Detail - Enter Meeting Details"></textarea>
+                                              placeholder="Detail - Enter Meeting Details (Optional)"></textarea>
                                     <small class="text-danger" id="detail_error"></small>
                                 </div>
                                 <div class="form-group col-xl-12 col-lg-12">
@@ -93,12 +94,20 @@
 
     <script>
         $(document).ready(function () {
+            /*single select dropdown*/
+            $('#reminde_before').select2({
+                closeOnSelect: true,
+                placeholder: "Reminders (Optional)"
+            });
+            /*single select dropdown*/
+
             // console.log('ready')
             $('.meetingdatepicker').datepicker({
                 startDate: "0d",
                 autoclose: true,
                 format: 'dd-mm-yyyy',
                 // minDate:0,
+                orientation: "bottom left"
             })
             $('.bs-timepicker').timepicker();
 

@@ -786,7 +786,7 @@ select {
 }
 
 .tab-mob-header .biz-search {
-    padding-left: 6rem;
+    padding-left: 6rem!important;
     padding-right: 1.375rem;
     background: #FFF;
     color: #12253d;
@@ -5200,6 +5200,26 @@ hr.horizontal-line {
 
 /*popup or center div*/
 
+/*timepicker*/
+.timepicker {
+    width: 115px!important;
+}
+
+.timepicker .title {
+    padding: 4px 0!important;
+    font-size: 12px;
+}
+
+.timepicker .chose-all .text {
+    font-size: 11px!important;
+}
+
+.timepicker .icon-down, .timepicker .icon-up {
+    width: 25px!important;
+    height: 10px!important;
+}
+/*timepicker*/
+
 /*form input field*/
 .form-control:disabled, .form-control[readonly] {
     background-color: transparent !important;
@@ -5213,6 +5233,7 @@ select.form-control {
     border: 1px solid #344356;
     font-size: 10px;
     font-family: "Raleway";
+    padding-left: 0.75rem!important;
 }
 
 input.form-control:focus,
