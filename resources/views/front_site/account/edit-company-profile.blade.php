@@ -44,6 +44,10 @@
                             <div class="tab-content" id="myCompanyTab">
                                 <div class="py-2 tab-pane fade show active" id="tabProfile" role="tabpanel"
                                      aria-labelledby="linkProfile">
+                                    <div class="col-sm-12 px-0 mb-2 text-center">
+                                        <img src="{{ $company->logo }}" class="border-grey company-profile-logo">
+                                    </div>
+
                                     <div class="edit-about-us-section">
 
                                         <h6 class="heading">About<span @if($usercomp->is_admin==1)
@@ -53,10 +57,7 @@
 
                                     <hr>
 
-                                    <div class="col-sm-6 px-0">
-                                        <img src="{{ $company->logo }}" class="w-100">
-                                    </div>
-                                    <div class="col-sm-6 px-0">
+                                    <div class="col-sm-12 px-0">
                                         <div class="my-2 product-img-spec-container">
                                             <h6 class="my-2 px-2 heading pro-img-heading">Company Images And Sheets</h6>
                                             <div class="product-images-gallery">
@@ -1134,6 +1135,7 @@
                                                 {{--                                                       value=""--}}
                                                 {{--                                                       placeholder="Company Introduction">--}}
                                                 <small class="text-danger" id="company_introduction_error"></small>
+                                                <span class="d-block font-500">(Limit = 5000 Characters)</span>
                                                 <textarea class="form-control" name="company_introduction"
                                                           maxlength="5000"
                                                           placeholder="Company Introduction * - Introduce in 5000 characters"

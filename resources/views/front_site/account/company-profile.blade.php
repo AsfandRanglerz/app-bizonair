@@ -512,6 +512,7 @@
                                 </div>
                                 <div class="form-group mt-2">
                                     <label class="d-none label">Company Introduction <span class="required">*</span></label>
+                                    <span class="d-block font-500">(Limit = 5000 Characters)</span>
                                     <textarea class="form-control" name="company_introduction" maxlength="5000"
                                               placeholder="Company Introduction * - Introduce in 5000 characters"
                                               id="editor1"

@@ -40,7 +40,7 @@
                 <p class="mb-0"><span class="ml-2 fa fa-reply reply-msg"></span></p>
 
         </div>
-        <div class="pb-3 mx-3 position-relative reply-input-field">
+        <div class="mx-3 position-relative reply-input-field">
             <textarea class="form-control send-box"></textarea>
             <div class="position-absolute d-flex align-items-center top-0 sent-attach-btn-send-icon">
                 <div class="input-group-prepend">

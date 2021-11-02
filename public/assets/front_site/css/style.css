@@ -29,6 +29,8 @@ th {
 
 .company-profile-logo {
     width: 95px;
+    height: 95px;
+    object-fit: contain;
 }
 
 /*toastr*/
@@ -743,7 +745,7 @@ select {
     content: "\f054";
     font-family: fontAwesome;
     font-size: 11px;
-    line-height: 4;
+    line-height: 3;
     position: absolute;
     top: 0;
     right: 13px;
@@ -3088,7 +3090,8 @@ span.select2-selection.select2-selection--single {
 }
 
 .select2-container--default .select2-results>.select2-results__options {
-    max-height: 125px;
+    /*max-height: 125px;*/
+    max-height: 78px;
 }
 
 .select2-container--default .select2-results__option[aria-selected=true] {
@@ -3580,8 +3583,8 @@ form .other-div {
     margin-bottom: 8px;
 }
 
-.mail-reply-box-outer .fa.fa-paperclip,
-.mail-reply-box-outer .fa.fa-paper-plane {
+.sent-attach-btn-send-icon .fa.fa-paperclip,
+.sent-attach-btn-send-icon .fa.fa-paper-plane {
     font-size: 10px;
 }
 
@@ -3591,13 +3594,14 @@ form .other-div {
     margin-bottom: 16px;
 }
 
-.mail-reply-box-outer .send-box {
+.send-box {
     padding-right: 3.5rem;
-    height: calc(2em + .75rem + 2px);
+    height: calc(2em + .75rem + 2px)!important;
 }
 
-.mail-reply-box-outer .sent-attach-btn-send-icon {
+.sent-attach-btn-send-icon {
     right: 8px;
+    height: 100%;
 }
 
 .mail-reply-box-outer .day-date-time {

@@ -29,35 +29,36 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <input type="text" name="title" id="title" class="form-control"
-                                           placeholder="Job Title" required>
+                                           placeholder="Job Title *" required>
                                     <small class="text-danger" id="title_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <input type="text" name="designation" id="designation" class="form-control"
-                                           placeholder="Job Designation" required>
+                                           placeholder="Job Designation *" required>
                                     <small class="text-danger" id="designation_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <input type="email" name="email" id="email" class="form-control"
-                                           placeholder="Email Address To Apply" required>
+                                           placeholder="Email Address To Apply *" required>
                                     <small class="text-danger" id="email_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div for="job_description" class="form-group col-md-12">
-                                    <span class="pull-right font-500"><span class="counter-total-digits">0</span>/1200</span>
+                                    <span class="d-block font-500">(Limit = 1200 Characters)</span>
                                     <textarea name="job_description" id="editor1" class="form-control" maxlength = "1200" rows="6" placeholder="Job Description (Optional)" ></textarea>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-2">
                                     <input type="number" name="salary" id="salary" class="form-control"
-                                           placeholder="Salary Per Month" required>
+                                           placeholder="Salary Per Month *" required>
                                     <small class="text-danger" id="salary_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <select class="form-control single-select-dropdown" id="unit" name="unit" required>
-                                        <option value="" selected disabled>Select Unit</option>
+                                        <option value=""></option>
+                                        <option disabled>Select Unit *</option>
                                         <option value="PKR">PKR</option>
                                         <option value="USD">USD</option>
                                         <option value="Euro">Euro</option>
@@ -70,7 +71,8 @@
                                 <div class="form-group col-md-4">
                                     <select class="form-control single-select-dropdown"
                                             id="textile_sector" name="textile_sector" required>
-                                        <option value="" selected disabled>Select Job Sector</option>
+                                        <option value=""></option>
+                                        <option disabled>Select Job Sector *</option>
                                         <option value="Ginning">Ginning </option>
                                         <option value="Spinning">Spinning</option>
                                         <option value="Knitting">Knitting</option>
@@ -95,7 +97,8 @@
                                 <div class="form-group col-md-4">
                                     <select class="form-control single-select-dropdown"
                                             id="functional_area" name="functional_area" required>
-                                        <option value="" selected disabled>Select Functional Area</option>
+                                        <option value=""></option>
+                                        <option disabled>Select Functional Area *</option>
                                         <option value="Electrical">Electrical </option>
                                         <option value="Mechanical">Mechanical</option>
                                         <option value="Human Resources">Human Resources</option>
@@ -135,7 +138,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <select name="job_type" id="job_type" class="form-control single-select-dropdown" required>
-                                        <option value="" selected disabled>--- Select Job Type ---</option>
+                                        <option value=""></option>
+                                        <option disabled>Select Job Type *</option>
                                         <option value="Freelance">Freelance</option>
                                         <option value="Full Time">Full Time</option>
                                         <option value="Part Time">Part Time</option>
@@ -146,7 +150,8 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <select name="job_level" id="job_level" class="form-control single-select-dropdown" required>
-                                        <option value="" selected disabled>--- Select Career Level ---</option>
+                                        <option value=""></option>
+                                        <option disabled>Select Career Level *</option>
                                         <option value="Intern Level">Intern Level</option>
                                         <option value="Entry Level">Entry Level</option>
                                         <option value="Intermediate Level">Intermediate Level</option>
@@ -157,7 +162,8 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <select class="form-control single-select-dropdown" id="work_experience" name="work_experience" required>
-                                        <option value="" selected disabled>Select Experience </option>
+                                        <option value=""></option>
+                                        <option disabled>Select Experience *</option>
                                         <option value="Fresh / No Experience">Fresh / No Experience</option>
                                         <option value="01-03 Years">01-03 Years</option>
                                         <option value="03-05 Years">03-05 Years</option>
@@ -173,7 +179,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <select name="country" id="countryId" class="form-control single-select-dropdown" required>
-                                        <option value="" selected disabled>--- Select Country ---</option>
+                                        <option value=""></option>
+                                        <option disabled>Select Country *</option>
                                         @foreach ($countries as $item)
                                             <option value="{{$item->name->common}}">{{$item->name->common}}</option>
                                         @endforeach
@@ -182,21 +189,23 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <select name="city" id="cityId" class="form-control single-select-dropdown" required>
-                                        <option value="" selected disabled>--- Select City ---</option>
+                                        <option value=""></option>
+                                        <option disabled>Select City *</option>
                                     </select>
                                     <small class="text-danger" id="city_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <input type="text"
                                            name="address" id="address" class="form-control"
-                                           placeholder="Input Office Address" required>
+                                           placeholder="Input Office Address *" required>
                                     <small class="text-danger" id="address_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <select name="gender" id="gender" class="form-control single-select-dropdown" required>
-                                        <option value="" selected disabled>--- Select Gender ---</option>
+                                        <option value=""></option>
+                                        <option disabled>Select Gender *</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                         <option value="Any">Any</option>
@@ -211,7 +220,7 @@
                                 <div class="form-group col-md-4">
                                     <input type="text"
                                            name="qualification" id="qualification" class="form-control"
-                                           placeholder="Input Required Qualification" required>
+                                           placeholder="Input Required Qualification *" required>
                                     <small class="text-danger" id="qualification_error"></small>
                                 </div>
                             </div>
@@ -219,19 +228,19 @@
                                 <div class="form-group col-md-4">
                                     <input type="text"
                                            name="skills" id="skills" class="form-control"
-                                           placeholder="Input Required Job Skills" required>
+                                           placeholder="Input Required Job Skills *" required>
                                     <small class="text-danger" id="skills_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <input type="number"
                                            name="vacancies" id="vacancies" class="form-control"
-                                           placeholder="Input Number Of Job Vacancies" required>
+                                           placeholder="Input Number Of Job Vacancies *" required>
                                     <small class="text-danger" id="vacancies_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <input type="text" autocomplete="off"
                                            name="datePicker" class="form-control closingdatepicker"
-                                           placeholder="Set Closing Date" required>
+                                           placeholder="Set Closing Date *" required>
                                     <small class="text-danger" id="datePicker_error"></small>
                                 </div>
                             </div>
@@ -241,7 +250,8 @@
                                 @if(getCompanies(auth()->id())->isNotEmpty())
                                     <div class="form-group col-md-4">
                                         <select name="company" id="company" class="form-control single-select-dropdown" required>
-                                            <option value="" selected disabled>--- Select Company ---</option>
+                                            <option value=""></option>
+                                            <option disabled>Select Company *</option>
                                             @foreach(getCompanies(auth()->id()) as $company)
                                                 <option value="{{$company->company_name}}">{{ucwords($company->company_name)}}</option>
                                             @endforeach
@@ -268,7 +278,7 @@
                             </div>
 
 
-                            <div class="form-group col-12 mt-2">
+                            <div class="form-group">
                                 <button class="verify-btn red-btn" type="submit" id="job_create_btn">POST JOB
                                 </button>
                                 <button  disabled class="btn-pro d-none red-btn"><span
@@ -292,6 +302,54 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
+            /*select single dropdown*/
+            $("#unit").select2({
+                placeholder: "Select Unit *"
+            });
+
+            $("#textile_sector").select2({
+                placeholder: "Select Job Sector *"
+            });
+
+            $("#functional_area").select2({
+                placeholder: "Select Functional Area *"
+            });
+
+            $("#job_type").select2({
+                placeholder: "Select Job Type *"
+            });
+
+            $("#job_level").select2({
+                placeholder: "Select Career Level *"
+            });
+
+            $("#work_experience").select2({
+                placeholder: "Select Experience *"
+            });
+
+            $("#countryId").select2({
+                placeholder: "Select Country *"
+            });
+
+            $("#cityId").select2({
+                placeholder: "Select City *"
+            });
+
+            $("#gender").select2({
+                placeholder: "Select Gender *"
+            });
+
+            $("#company").select2({
+                placeholder: "Select Company *"
+            });
+            /*select single dropdown*/
+
+
+
+
+
+
+
             $('#company').change(function () {
                 if ($(this).val() == 'Other') {
                     $(this).closest('.form-group').siblings('.other-div').show();
