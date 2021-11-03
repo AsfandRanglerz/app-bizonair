@@ -48,6 +48,23 @@ $(".job-description-below").scroll(function () {
 });
 
 $(document).ready(function () {
+    /*progress-bar percentage*/
+    var delay = 500;
+    $(".tab-mob-header .progress-bar").each(function (i) {
+        $(this).delay(delay * i).animate({width: $(this).attr('aria-valuenow') + '%'}, delay);
+
+        $(this).prop('Counter', 0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: delay,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now) + '%');
+            }
+        });
+    });
+    /*progress-bar percentage*/
+
     /*inquiry checkboxes*/
     $(document).on('click', '#selectAll1', function() {
         if($(this).prop('checked')==true) {
@@ -540,10 +557,6 @@ $(document).ready(function () {
         $('body').css('overflow', 'auto');
     });
     /*sub categories block open on clicking category down arrow*/
-
-    /*empty-p-tags removed*/
-    $('p:empty').remove();
-    /*empty-p-tags removed*/
 
     /*premium suppliers and categories sliders*/
     $('.categories-slider').slick({

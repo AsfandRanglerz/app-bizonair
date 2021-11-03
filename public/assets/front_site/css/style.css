@@ -1543,6 +1543,11 @@ p.click {
     color: #FFF;
     text-shadow: 0px 2px 5px #00000080;
     font-weight: bold;
+    text-decoration: underline;
+    width: 108px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
 }
 
 .multiselect-native-select .fa-square-o:before {
@@ -2907,6 +2912,7 @@ ul li input[type=checkbox] {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
+    width: 33.333333%;
 }
 
 .short-job-description {
@@ -2954,7 +2960,7 @@ ul li input[type=checkbox] {
 }
 
 .job-directory-container .tag-line {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .job-directory-container .short-description {
@@ -2966,6 +2972,7 @@ ul li input[type=checkbox] {
 .job-directory-container .date-salery {
     font-size: 10px;
     font-weight: bold;
+    column-gap: 8px;
 }
 
 .job-directory-container .short-job-description {
@@ -4842,7 +4849,7 @@ span.time {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 500!important;
+    font-weight: bold!important;
 }
 
 .price {
@@ -5233,6 +5240,10 @@ select.form-control {
     border: 1px solid #344356;
     font-size: 10px;
     font-family: "Raleway";
+
+}
+
+#category {
     padding-left: 0.75rem!important;
 }
 
@@ -6003,6 +6014,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     box-shadow: 0px 4px 10px #00000033;
     padding: 0;
     margin-top: -70px;
+    border: 1px solid #a52c3e;
 }
 
 .product-main #maincontent .main-container .navbar .navbar-brand {
@@ -9111,6 +9123,7 @@ header .navbar .navbar-toggler {
 @media only screen and (max-width: 575px) {
     .comp-name.form-control {
         font-size: 8px;
+        width: 75px!important;
     }
 
     /*select category popup*/
@@ -9234,7 +9247,7 @@ header .navbar .navbar-toggler {
 
     .main-dashboard .cards .dashboard-board-icons {
         width: 12px;
-        height: 10px;
+        height: 12px;
     }
 
     .product-details .mini-content-container .contact-product-info .btns-block {
@@ -9243,13 +9256,19 @@ header .navbar .navbar-toggler {
 
     .heading {
         font-size: 10px;
+        font-weight: bold;
     }
 
     .place-day .place {
-        width: 50%;
+        width: 55%;
         white-space: nowrap;
         overflow: hidden !important;
         text-overflow: ellipsis;
+        font-size: 8px;
+    }
+
+    .place-day .place + span {
+        font-size: 8px;
     }
 
     .tab-mob-header .biz-search,
@@ -9386,7 +9405,7 @@ header .navbar .navbar-toggler {
     /*faqs*/
 
     .company-name-nav {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .header .navbar {

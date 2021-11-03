@@ -157,7 +157,7 @@
                                             <a href="{{ route('jobs-detail',$job->id) }}" class="text-reset text-decoration-none">
                                                 <h6 class="title overflow-text-dots-one-line">{{ $job->title }}</h6>
                                                 <span class="d-block tag-line">{{ $job->city }}</span>
-                                                <p class="short-description overflow-text-dots my-2">{{ $job->job_description }}</p>
+                                                <p class="short-description overflow-text-dots my-2">{!!strip_tags($job->job_description)!!}</p>
                                                 <div class="d-flex justify-content-between date-salery">
                                                     <span><span class="fa fa-calendar pr-2" aria-hidden="true"></span>{{ date("d-F-Y", strtotime($job->closing_date)) }}</span>
                                                     <span><span class="fa fa-file pr-2" aria-hidden="true"></span>{{ $job->work_experience }} Year</span>
@@ -165,12 +165,12 @@
                                                 </div>
                                             </a>
                                         </div>
+                                        <div class="my-2">
+                                            <hr class="horizontal-line">
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
-                        </div>
-                        <div class="my-2">
-                            <hr class="horizontal-line">
                         </div>
                     </div>
                 </div>

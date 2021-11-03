@@ -207,7 +207,8 @@
                                         @elseif($ext=="pdf")
                                             <img class="img-responsive product-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png">
                                         @else
-                                            <img class="object-contain header-profile-pic" src="{{ $info->image }}" width="135" height="135">
+{{--                                            <img class="object-contain header-profile-pic" src="{{ $info->image }}">--}}
+                                            <img class="border-grey company-profile-logo" src="{{ $info->image }}">
                                         @endif
                                     </div>
                                 </div>
@@ -250,18 +251,18 @@
                             <input type="hidden" name="id" value="{{ $info->id }}">
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <input type="text"
+                                    <input type="text" placeholder="Job Title *"
                                            name="title" id="title" value="{{ $info->title }}" class="form-control" required>
                                     <small class="text-danger" id="title_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text"
+                                    <input type="text" placeholder="Job Designation *"
                                            name="designation" id="designation" value="{{ $info->designation }}" class="form-control"
                                            required>
                                     <small class="text-danger" id="designation_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="email"
+                                    <input type="email" placeholder="Email Address To Apply *"
                                            name="email" id="email" value="{{ $info->email }}" class="form-control"
                                            required>
                                     <small class="text-danger" id="email_error"></small>
@@ -269,14 +270,13 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <span class="pull-right font-500"><span class="counter-total-digits">0</span>/1200</span>
-                                    <textarea class="form-control" id="editor1" name="job_description">{!! $info->job_description !!}</textarea>
-
+                                    <span class="d-block font-500">(Limit = 1200 Characters)</span>
+                                    <textarea class="form-control" id="editor1" name="job_description" placeholder="Job Description (Optional)">{!! $info->job_description !!}</textarea>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-2">
-                                    <input type="number"
+                                    <input type="number" placeholder="Salary Per Month *"
                                            name="salary" id="salary" value="{{ $info->salary }}" class="form-control"
                                            required>
                                     <small class="text-danger" id="salary_error"></small>
@@ -284,6 +284,8 @@
                                 <div class="form-group col-md-2">
                                     <select class="form-control single-select-dropdown"
                                             id="unit" name="unit" required>
+                                        <option value=""></option>
+                                        <option disabled>Select Unit *</option>
                                         <option value="PKR" @if($info->salary_unit == "PKR") selected @endif>
                                             PKR
                                         </option>
@@ -308,6 +310,8 @@
                                 <div class="form-group col-md-4">
                                     <select class="form-control single-select-dropdown"
                                             id="textile_sector" name="textile_sector" required>
+                                        <option value=""></option>
+                                        <option disabled>Select Job Sector *</option>
                                         <option value="Ginning" @if($info->textile_sector == "Ginning") selected @endif>Ginning </option>
                                         <option value="Spinning" @if($info->textile_sector == "Spinning") selected @endif>Spinning</option>
                                         <option value="Knitting" @if($info->textile_sector == "Knitting") selected @endif>Knitting</option>
@@ -332,6 +336,8 @@
                                 <div class="form-group col-md-4">
                                     <select class="form-control single-select-dropdown"
                                             id="functional_area" name="functional_area" required>
+                                        <option value=""></option>
+                                        <option disabled>Select Functional Area *</option>
                                         <option value="Electrical" @if($info->functional_area == "Electrical") selected @endif>Electrical </option>
                                         <option value="Mechanical" @if($info->functional_area == "Mechanical") selected @endif>Mechanical</option>
                                         <option value="Human Resources" @if($info->functional_area == "Human Resources") selected @endif>Human Resources</option>
@@ -371,6 +377,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <select name="job_type" id="job_type" class="form-control single-select-dropdown" required>
+                                        <option value=""></option>
+                                        <option disabled>Select Job Type *</option>
                                         <option value="{{ $info->job_type }}" selected>{{ $info->job_type }}</option>
                                         <option value="Freelance">Freelance</option>
                                         <option value="Full Time">Full Time</option>
@@ -382,6 +390,8 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <select name="job_level" id="job_level" class="form-control single-select-dropdown" required>
+                                        <option value=""></option>
+                                        <option disabled>Select Career Level *</option>
                                         <option value="{{ $info->job_level }}" selected>{{ $info->job_level }}</option>
                                         <option value="Intern Level">Intern Level</option>
                                         <option value="Entry Level">Entry Level</option>
@@ -394,6 +404,8 @@
                                 <div class="form-group col-md-4">
                                     <select class="form-control single-select-dropdown"
                                             id="work_experience" name="work_experience" required>
+                                        <option value=""></option>
+                                        <option disabled>Select Experience *</option>
                                         <option value="Fresh / No Experience" @if($info->work_experience == "Fresh / No Experience") selected @endif>
                                             Fresh / No Experience
                                         </option>
@@ -422,7 +434,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <select name="country" id="countryId" class="form-control single-select-dropdown" required>
-                                        <option value="" selected disabled>--- Select Country ---</option>
+                                        <option value=""></option>
+                                        <option disabled>Select Country *</option>
                                         @foreach ($countries as $item)
                                             <option value="{{$item->name->common}}" @if($info->country == $item->name->common) selected @endif >{{$item->name->common}}</option>
                                         @endforeach
@@ -431,12 +444,14 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <select name="city" id="cityId" class="form-control single-select-dropdown" required>
+                                        <option value=""></option>
+                                        <option disabled>Select City *</option>
                                         <option value="{{$info->city}}" selected>{{$info->city}}</option>
                                     </select>
                                     <small class="text-danger" id="city_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text"
+                                    <input type="text" placeholder="Input Office Address *"
                                            name="address" id="address"  value="{{ $info->address }}" class="form-control" required>
                                     <small class="text-danger" id="address_error"></small>
                                 </div>
@@ -444,6 +459,8 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <select name="gender" id="gender" class="form-control single-select-dropdown">
+                                        <option value=""></option>
+                                        <option disabled>Select Gender *</option>
                                         <option value="{{$info->gender}}" selected>{{ucfirst($info->gender)}}</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
@@ -452,30 +469,30 @@
                                     <small class="text-danger" id="gender_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="number"
+                                    <input type="number" placeholder="Input Job Work Hours (Optional)"
                                            name="work_hour" id="work_hour" value="{{ $info->work_hour }}" class="form-control"
                                     >
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text"
+                                    <input type="text" placeholder="Input Required Qualification *"
                                            name="qualification" id="qualification" value="{{ $info->qualification }}" class="form-control" required>
                                     <small class="text-danger" id="qualification_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <input type="text"
+                                    <input type="text" placeholder="Input Required Job Skills *"
                                            name="skills" id="skills" value="{{ $info->skills }}" class="form-control">
                                     <small class="text-danger" id="skills_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="number"
+                                    <input type="number" placeholder="Input Number Of Job Vacancies *"
                                            name="vacancies" id="vacancies" value="{{ $info->vacancies }}" class="form-control"
                                            required>
                                     <small class="text-danger" id="vacancies_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text" autocomplete="off"
+                                    <input type="text" autocomplete="off" placeholder="Set Closing Date *"
                                            name="datePicker" value="{{ $info->closing_date }}"
                                            class="form-control closingdatepicker"
                                            required>
@@ -485,8 +502,10 @@
                             <div class="form-row">
                                 @if(getCompanies(auth()->id())->isNotEmpty())
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Company <span class="required">*</span></label>
+                                        <label class="d-none font-500">Company <span class="required">*</span></label>
                                         <select name="company" id="company" class="form-control other-option-included single-select-dropdown" required>
+                                            <option value=""></option>
+                                            <option disabled>Select Company *</option>
                                             @foreach(getCompanies(auth()->id()) as $company)
                                                 <option value="{{$company->company_name}}" @if($info->company == $company->company_name) selected @endif>{{ucwords($company->company_name)}}</option>
                                             @endforeach
@@ -495,14 +514,14 @@
                                         <small class="text-danger" id="company_error"></small>
                                     </div>
                                     <div class="form-group other-div col-md-4" @if($info->company == "Other") style="display: block"; @endif>
-                                        <label class="font-500">Other Company Name <span class="required">*</span></label>
-                                        <input type="text" name="ocompany" id="ocompany" value="{{$info->other_company}}" class="form-control">
+                                        <label class="d-none font-500">Other Company Name <span class="required">*</span></label>
+                                        <input type="text" name="ocompany" id="ocompany" value="{{$info->other_company}}" class="form-control" placeholder="Input Other Company Name">
                                         <small class="text-danger" id="ocompany_error"></small>
                                     </div>
                                 @else
                                     <div class="form-group col-md-4">
-                                        <label class="font-500">Company <small class="font-500">(Optional)</small></label>
-                                        <input type="text" name="company" id="company" class="form-control" placeholder="Input Company Name"  value="{{$info->company}}">
+                                        <label class="d-none font-500">Company <small class="font-500">(Optional)</small></label>
+                                        <input type="text" name="company" placeholder="Input Company Name" id="company" class="form-control" placeholder="Input Company Name"  value="{{$info->company}}">
                                     </div>
                                 @endif
                                 <div class="form-group col-md-4 career-img-drop-outer attachment-img-file">
@@ -514,8 +533,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <div class="px-3 product-img-spec-container">
-                                        <h6 class="mt-3 px-2 heading pro-spec-heading">Attachment</h6>
+                                    <div class="px-2 product-img-spec-container">
+                                        <h6 class="mt-2 heading pro-spec-heading">Attachment</h6>
                                         <div class="product-images-gallery">
                                             <div class="row mx-0 my-2 product-gallery">
                                                 <?php $ext = strtolower(pathinfo($info->image, PATHINFO_EXTENSION)); ?>
@@ -526,7 +545,8 @@
                                                 @elseif($ext=="pdf")
                                                     <img class="img-responsive product-img attachment-img" src="{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png">
                                                 @else
-                                                    <img class="img-responsive product-img attachment-img" src="{{$info->image}}">
+<!--                                                    <img class="img-responsive product-img attachment-img" src="{{$info->image}}">-->
+                                                    <img class="border-grey company-profile-logo" src="{{$info->image}}">
                                                 @endif
                                             </div>
                                         </div>
@@ -567,6 +587,48 @@
                 console.error(error);
             });
         $(document).ready(function () {
+            /*select single dropdown*/
+            $("#unit").select2({
+                placeholder: "Select Unit *"
+            });
+
+            $("#textile_sector").select2({
+                placeholder: "Select Job Sector *"
+            });
+
+            $("#functional_area").select2({
+                placeholder: "Select Functional Area *"
+            });
+
+            $("#job_type").select2({
+                placeholder: "Select Job Type *"
+            });
+
+            $("#job_level").select2({
+                placeholder: "Select Career Level *"
+            });
+
+            $("#work_experience").select2({
+                placeholder: "Select Experience *"
+            });
+
+            $("#countryId").select2({
+                placeholder: "Select Country *"
+            });
+
+            $("#cityId").select2({
+                placeholder: "Select City *"
+            });
+
+            $("#gender").select2({
+                placeholder: "Select Gender *"
+            });
+
+            $("#company").select2({
+                placeholder: "Select Company *"
+            });
+            /*select single dropdown*/
+
             $('#company').change(function () {
                 if ($(this).val() == 'Other') {
                     $(this).closest('.form-group').siblings('.other-div').show();
@@ -579,7 +641,8 @@
             $('.closingdatepicker').datepicker({
                 startDate: "0d",
                 autoclose: true,
-                format: 'yyyy-mm-dd'
+                format: 'yyyy-mm-dd',
+                orientation: "bottom left"
             });
             $("textarea[name='job_description']").on('keyup',function() {
                 $(this).siblings('span').find('.counter-total-digits').text($(this).val().length);

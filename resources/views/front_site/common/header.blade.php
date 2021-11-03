@@ -245,7 +245,7 @@
     <div class="biz-nav">
         <div class="p-2 d-flex justify-content-between login-cross-btns">
             @if(\Auth::user())
-                <div class="d-flex">
+                <div class="d-flex" style="width: 90%">
                     <div class="d-flex justify-content-center align-items-center avatar-wrapper">
                         <div class="position-absolute spinner-border text-danger loader-spinner d-none" role="status" style="z-index: 1">
                             <span class="sr-only">Loading...</span>
@@ -256,7 +256,7 @@
                         </div>
                         <input class="file-upload" name="avatar" id="avatar" type="file" accept="image/*"/>
                     </div>
-                    <div class="ml-3">
+                    <div class="ml-2" style="width: 66%">
                         <p class="mb-0 biz-user">{{ auth()->user()->name }}</p>
                         <p class="mb-0 biz-country">{{ auth()->user()->country }}</p>
                         <div class="progress mt-2">

@@ -344,12 +344,6 @@
             });
             /*select single dropdown*/
 
-
-
-
-
-
-
             $('#company').change(function () {
                 if ($(this).val() == 'Other') {
                     $(this).closest('.form-group').siblings('.other-div').show();
@@ -371,6 +365,7 @@
                 startDate: "0d",
                 autoclose: true,
                 format: 'yyyy-mm-dd',
+                orientation: "bottom left"
             }).on('changeDate', function (selected) {
                 $('.closingdatepicker').addClass('is-valid');
                 $('.closingdatepicker').removeClass('is-invalid');

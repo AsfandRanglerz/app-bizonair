@@ -1,7 +1,7 @@
 @extends('front_site.master_layout')
 @section('content')
     <body>
-    <main id="maincontent" class="d-flex flex-column bg-grey job-details-container">
+    <main id="maincontent" class="d-flex flex-column job-details-container">
         <div class="banner-outer">
             <div class="banner">
                 <h3 class="text-white text-center heading">Hire Now – It only takes few seconds</h3>
@@ -16,8 +16,8 @@
                         href="{{Request::url()}}">CVs Detail</a></li>
             </ol>
         </nav>
-        <div class="container-fluid">
-            <div class="row m-0 pt-2 pb-5">
+        <div class="container-fluid px-2">
+            <div class="row m-0 pb-5">
                 @foreach($cvsdet as $job)
                 <div class="col-xl-3 col-lg-4 col-md-5 pl-md-2 pr-md-2 p-0">
                     <div class="h-100 side-details">
@@ -25,24 +25,24 @@
                             <div class="container-fluid">
 {{--                                <a href="#" class="w-100 mb-3 text-center red-btn">Apply</a>--}}
                                 <p class="font-weight-bold mb-0 heading">Location</p>
-                                <p>{{ $job->city }}, {{ $job->country }}</p>
+                                <p class="mb-1">{{ $job->city }}, {{ $job->country }}</p>
                                 <p class="font-weight-bold mb-0 heading">Functional Area</p>
-                                <p>{{ $job->functional_area }}</p>
+                                <p class="mb-1">{{ $job->functional_area }}</p>
                                 <p class="font-weight-bold mb-0 heading">Textile Sector</p>
-                                <p>{{ $job->textile_sector }}</p>
+                                <p class="mb-1">{{ $job->textile_sector }}</p>
                                 <p class="font-weight-bold mb-0 heading">Expected Salary</p>
-                                <p>{{ $job->sal_unit }} {{ number_format($job->exp_salary) }}  Per Month</p>
+                                <p class="mb-1">{{ $job->sal_unit }} {{ number_format($job->exp_salary) }}  Per Month</p>
                                 <p class="font-weight-bold mb-0 heading">Contact Number </p>
-                                <p>{{ $job->phone_no }}</p>
+                                <p class="mb-1">{{ $job->phone_no }}</p>
                                 <p class="font-weight-bold mb-0 heading">Contact Email </p>
-                                <p>{{ $job->email }}</p>
+                                <p class="mb-1">{{ $job->email }}</p>
 
                             </div>
                         </div>
 {{--                        <p class="font-weight-bold mb-0 heading">Created At</p>--}}
 {{--                        <p>{{ date("d-F-Y", strtotime($job->created_at)) }}</p>--}}
                         <p class="font-weight-bold mb-0 heading">Share This Job</p>
-                        <div class="d-flex justify-content-center mt-2">
+                        <div class="d-flex justify-content-center mt-1">
                             <a href="#" class="text-decoration-none share-btn"><span class="fa fa-facebook"></span></a>
                             <a href="#" class="text-decoration-none share-btn"><span class="fa fa-linkedin"></span></a>
                             <a href="#" class="text-decoration-none share-btn"><span class="fa fa-whatsapp"></span></a>
@@ -50,31 +50,31 @@
                     </div>
                 </div>
 
-                <div class="col-xl-9 col-lg-8 col-md-7 pl-lg-2 pr-md-2 p-0 mt-md-0 mt-3">
+                <div class="col-xl-9 col-lg-8 col-md-7 pl-lg-2 pr-md-2 p-0 mt-md-0 mt-2">
 
                     <div class="h-100 details-content">
                         <div>
                             <p class="font-weight-bold mb-0 heading">Name</p>
-                            <div class="pl-4">
-                                <p class="listing">{{ $job->fname }} {{ $job->lname }}</p>
+                            <div>
+                                <p class="mb-1 listing">{{ $job->fname }} {{ $job->lname }}</p>
                             </div>
 
                             <p class="font-weight-bold mb-0 heading">Key Skills</p>
-                            <div class="pl-4">
-                                <p class="listing">{{ $job->key_skills }}</p>
+                            <div>
+                                <p class="mb-1 listing">{{ $job->key_skills }}</p>
                             </div>
 
                             <p class="font-weight-bold mb-0 heading">Highest Education Level</p>
-                            <div class="pl-4">
-                                <p class="listing">{{ $job->edu_level }}</p>
+                            <div>
+                                <p class="mb-1 listing">{{ $job->edu_level }}</p>
                             </div>
                             <p class="font-weight-bold mb-0 heading">Total Experience (Years)</p>
-                            <div class="pl-4">
-                                <p class="listing">{{ $job->total_experience }}</p>
+                            <div>
+                                <p class="mb-1 listing">{{ $job->total_experience }}</p>
                             </div>
                             @if(!empty($job->image))
                             <p class="font-weight-bold mb-0 heading">Attachment </p>
-                            <div class="mt-4">
+                            <div class="mt-2">
                                 <?php $pathinfo = pathinfo($job->image);
                                 $supported_ext = array('docx', 'xlsx', 'pdf');
                                 $src_file_name = $job->image;
@@ -112,23 +112,23 @@
                                     </li>
                                         </a>
                             </div>
-                            <div class="mt-4" style="height: 335px">
                                 @else
-                                <img src="{{$ASSETS}}/{{ $job->image }}">
+                                <div class="mt-4" style="height: 335px">
+                                    <img src="{{$ASSETS}}/{{ $job->image }}">
+                                </div>
                                     @endif
-                            </div>
                                 @endif
                         </div>
                     </div>
 
                 </div>
 
-                <div class="px-2 col-12">
+                <div class="px-0 col-12">
                     <div class="job-suggestions">
-                        <h4 class="mt-3 heading">CV Suggestions</h4>
-                        <div class="form-row">
+                        <h4 class="my-1 heading">CV Suggestions</h4>
+                        <div class="form-row mx-0">
                             @foreach($suggestions as $cv)
-                                <div class="col-xl-4 col-lg-6 pt-3 p-md-1 p-0">
+                                <div class="col-xl-4 col-lg-6 p-md-1 p-0">
                                     <div class="description-container">
                                         <div class="short-job-description">
                                             <a href="{{ route('cvc-detail',$cv->id) }}" class="text-reset text-decoration-none">
@@ -145,12 +145,12 @@
                                                 </div>
                                             </a>
                                         </div>
+                                        <div class="my-2">
+                                            <hr class="horizontal-line">
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
-                        </div>
-                        <div class="my-1">
-                            <hr class="horizontal-line">
                         </div>
                     </div>
                 </div>

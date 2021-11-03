@@ -2,20 +2,26 @@
 @if(!$usercomp)
     <nav class="position-fixed w-100 px-2 bg-white navbar navbar-expand-lg navbar-light border-bottom justify-content-between dashboard-toggle-top-bar">
         <span class="company-name-nav"></span>
-        <select class="w-auto form-control comp-name" id="compani_id" name="compani_id" data-toggle="tooltip" title="Biz office not created!">
-            <option disabled selected value="">-- Biz office not created --</option>
-        </select>
+        <div class="d-flex align-items-center">
+            <span class="mr-2 text-white">Select Your Company :</span>
+            <select class="w-auto form-control comp-name" id="compani_id" name="compani_id" data-toggle="tooltip" title="Biz office not created!">
+                <option disabled selected value="">-- Biz office not created --</option>
+            </select>
+        </div>
 </nav>
 @else
     <nav class="position-fixed w-100 px-2 bg-white navbar navbar-expand-lg navbar-light border-bottom justify-content-between dashboard-toggle-top-bar">
     @if(session()->has('company_id'))
         <span class="company-name-nav">{{ company_name(session()->get('company_id'))??'' }}</span>
-        <select class="w-auto form-control comp-name" id="compani_id" name="compani_id" data-toggle="tooltip" title="Select your company!">
-            <option disabled selected value="">-- Select Your Company --</option>
-            @foreach(\App\UserCompany::where('user_id',\Auth::user()->id)->get() as $company)
-                <option value="{{ $company->company_id }}" {{(session()->has('company_id') && session()->get('company_id') == $company->company_id)?'selected':''}}>{{ $company->company->company_name }}</option>
-            @endforeach
-        </select>
+        <div class="d-flex align-items-center">
+            <span class="mr-2 text-white">Select Your Company :</span>
+            <select class="w-auto form-control comp-name" id="compani_id" name="compani_id" data-toggle="tooltip" title="Select your company!">
+                <option disabled selected value="">-- Select Your Company --</option>
+                @foreach(\App\UserCompany::where('user_id',\Auth::user()->id)->get() as $company)
+                    <option value="{{ $company->company_id }}" {{(session()->has('company_id') && session()->get('company_id') == $company->company_id)?'selected':''}}>{{ $company->company->company_name }}</option>
+                @endforeach
+            </select>
+        </div>
     @endif
  </nav>
 @endif
