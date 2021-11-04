@@ -514,12 +514,14 @@
                        @if(auth()->check())  <span class="biz-badge" id="notify"></span> @endif
                     </span>
                  </a>
+                @if(auth()->check())
                  <div class="overflow-auto mb-3 p-2 dropdown-menu animated-dropdown fadeIn notifications-scroll" aria-labelledby="navbarDropdownMenuLink">
                      <div class="row w-100 m-0 dropdown-container">
                          <ul id="isdiplay" class="mb-0">
                          </ul>
                      </div>
                  </div>
+                 @endif
             </div>
 
         </div>

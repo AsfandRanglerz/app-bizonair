@@ -30,18 +30,18 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'facebook' => [
-        'client_id' => '1084344805341566',
-        'client_secret' => '1d56d39a68cd3e0641ad6150d9ab0b89',
-        'redirect' => 'https://bizonair.com/facebook/callback/',
+        'client_id' => '175078028163894',
+        'client_secret' => '9af07d3463cddb8812e069b9d8c82e60',
+        'redirect' => 'https://app.bizonair.com/facebook/callback/',
     ],
     'google' => [
-        'client_id' => '935726213696-8btf06od878funsdjjd80qh2s1ohin17.apps.googleusercontent.com',
-        'client_secret' => 'ogQIr6-6k4bykG7KhgWmzOPQ',
-        'redirect' => 'https://bizonair.com//google/callback/',
+        'client_id' => '279024755487-cb1smkf9iaqar5nupcugi1pfatfd9913.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'https://www.app.bizonair.com/google/callback/',
     ],
     'linkedin' => [
-        'client_id' => '78e9i6agogcb04',
-        'client_secret' => 'PjWnD71mlzToDhI3',
-        'redirect' => 'https://bizonair.com/linkedin/callback/',
+        'client_id' => '78zhkpbtuisl1o',
+        'client_secret' => 'NAfSLhxnDdueebmF',
+        'redirect' => 'https://app.bizonair.com/linkedin/callback/',
     ],
 ];
