@@ -78,6 +78,8 @@ Route::get('email-confirmation', 'HomeController@email_confirmation')
     ->name('email-confirmation');
 Route::post('get-email-verification-code', 'HomeController@get_email_verification_code')
     ->name('get-email-verification-code');
+Route::post('resend-otp-code', 'HomeController@resend_otp_code')
+    ->name('resend-otp-code');
 Route::get('verify-otp/{code}', 'HomeController@verify_otp')
     ->name('verify-otp');
 Route::post('verify-email', 'HomeController@check_verification_code')

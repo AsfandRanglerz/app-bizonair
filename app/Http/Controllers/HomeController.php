@@ -184,11 +184,30 @@ class HomeController extends Controller
             Session::put("expire_time", $time);
             $data['feedback'] = 'true';
             $data['msg'] = 'OTP has been sent to your email address successfully. Please confirm authenticity of your email address.' . '<br>' . 'If you are unable to find email, please;' . '<ol style="margin-left: 2em;">' . '<li>Recheck provided email address</li>' . '<li>Check the Spam/Junk folder in your emails</li>' . '<li>Get intouch with us at info@bizonair.com</li>' . '</ol>';
-            $data['url'] = url('verify-otp/'.$verification_code);
+            $data['url'] = url('verify-otp/'.$verification_code.'?email='.request('email'));
         } else {
             $data['feedback'] = 'invalid';
             $data['msg'] = 'Provided Email Address is already Registered with Bizonair';
         }
+        return json_encode($data);
+    }
+
+    public function resend_otp_code(){
+        $email = request('email');
+        do {
+            $verification_code = mt_rand(399999, 799999);
+            $user_code = \App\EmailVerification::where('verification_code', $verification_code)->first();
+        } while (!empty($user_code));
+        $email_verification = new \App\EmailVerification();
+        $email_verification->email = request('email');
+        $email_verification->verification_code = $verification_code;
+        $email_verification->save();
+        \Mail::to(request('email'))->send(new EmailConfirmation($verification_code));
+        $time = strtotime('+5 minutes');
+        Session::put("expire_time", $time);
+        $data['feedback'] = 'true';
+        $data['msg'] = 'OTP has been sent to your email address successfully. Please confirm authenticity of your email address.' . '<br>' . 'If you are unable to find email, please;' . '<ol style="margin-left: 2em;">' . '<li>Recheck provided email address</li>' . '<li>Check the Spam/Junk folder in your emails</li>' . '<li>Get intouch with us at info@bizonair.com</li>' . '</ol>';
+        $data['url'] = url('verify-otp/'.$verification_code.'?email='.request('email'));
         return json_encode($data);
     }
 

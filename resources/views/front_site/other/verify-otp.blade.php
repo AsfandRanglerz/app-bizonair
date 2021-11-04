@@ -37,10 +37,34 @@
 
                     <div class="mt-4 text-center">
                         <button class="btn red-btn" id="otp-create" type="submit">Verify</button>
-                        <p class="mt-3 mb-0">Didn't receive the code?</p>
-                        <p class="mb-0"><a href="{{route('email-confirmation')}}" class="red-link">Send code again</a></p>
-{{--                        <p class="mb-0"><a href="#" class="red-link">Change phone number</a></p>--}}
                     </div>
+                    </form>
+                    <div class="alert alert-success m-0 mb-2" id='alert-success-otp'
+                         @if(!isset($_GET['from']))
+                         style="display:none;"
+                         @endif
+                         role="alert">
+                        @if(isset($_GET['from']) && $_GET['from'] == 'home')
+                            Email has been sent successfully. Please confirm authenticity of your email address.
+                            <br>If you are unable to find email, please;
+                            <ol style="margin-left: 2em;">
+                                <li>Recheck provided email address</li>
+                                <li>Check the Spam/Junk folder in your emails</li>
+                                <li>Get intouch with us at info@bizonair.com</li>
+                            </ol>
+                        @endif
+                    </div>
+                    <div class="alert alert-danger g m-0 mb-2 text-center" id='alert-error-otp'
+                         style="display:none;"
+                         role="alert">
+                    </div>
+                    <p class="mt-3 mb-0">Didn't receive the code?</p>
+                    <form id="resendotp" method="POST" action="{{route('get-email-verification-code')}}">
+                        @csrf
+                        <input type="hidden" name="email" value="{{request()->email}}">
+
+                        <p class="mb-0"><input type="submit" value="Send code again" class="red-link"></p>
+                        {{--                        <p class="mb-0"><a href="#" class="red-link">Change phone number</a></p>--}}
                     </form>
                 </div>
         </main>
@@ -157,5 +181,73 @@
             $('#verify-otp').ajaxForm(options);
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            var options_resendotp = {
+                dataType: 'Json',
+                beforeSubmit: function (arr, $form) {
+                    $('#alert-success-otp').hide();
+                    $('#alert-error-otp').hide();
+                    $('#code').addClass('d-none');
+                    // $('#verifyCodeForm').addClass('d-none');
+                    $('.btn-pro').removeClass('d-none');
+                },
+                success: function (data) {
+                    $('#alert-success-otp').hide();
+                    $('#alert-error-otp').hide();
+                    response = data;
+                    $('.btn-pro').addClass('d-none')
+                    $('#code').removeClass('d-none');
+                    if (response.feedback == 'false') {
 
+                    } else if (response.feedback == 'invalid') {
+                        $('#alert-error-otp').html(response.msg);
+                        $('#alert-error-otp').show();
+                        // setTimeout(() => {
+                        // 	window.location.reload();
+                        // }, 1000);
+                    } else if (response.feedback == 'true') {
+                        // $('#code').attr('disabled');
+                        // $('#verifyCodeForm').removeClass('d-none')
+                        $('#alert-success-otp').html(response.msg);
+                        $('#alert-success-otp').show();
+                        let email = $('#email').val();
+                        $('#verifyemail').val(email);
+                        setTimeout(() => {
+                            window.location.href = response.url;
+                        }, 1000);
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    $('#alert-success-otp').hide();
+                    $('#alert-error-otp').hide();
+                    $('.btn-pro').addClass('d-none').removeClass('d-flex');
+                    $('#code').removeClass('d-none');
+                    // form.find('button[type=submit]').html('<i aria-hidden="true" class="fa fa-check"></i> {{ __('Save') }}');
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not Connected.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error, Please try again later';
+                    }
+                    $('#alert-error-otp').html(msg);
+                    $('#alert-error-otp').show();
+                },
+
+            };
+
+            $('#resendotp').ajaxForm(options_resendotp);
+
+        });
+    </script>
 @endpush
