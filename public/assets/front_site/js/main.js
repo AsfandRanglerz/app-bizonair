@@ -298,20 +298,6 @@ $(document).ready(function () {
     });
     /*header mybiz buttons*/
 
-    /*garments navbar categories dropdown hover effect*/
-    $("#garmentsNav .nav-item").hover(function() {
-        $(this).addClass("show");
-        $(this).find(".dropdown-menu").addClass("show");
-        $('.product-main #maincontent .main-container .navbar #garmentsNav .navbar-nav .nav-item:first-child').css('border-bottom-left-radius', '0');
-        $('.product-main #maincontent .main-container .navbar #garmentsNav .navbar-nav .nav-item:last-child').css('border-bottom-right-radius', '0');
-    }, function () {
-        $(this).removeClass("show");
-        $(this).find(".dropdown-menu").removeClass("show");
-        $('.product-main #maincontent .main-container .navbar #garmentsNav .navbar-nav .nav-item:first-child').css('border-bottom-left-radius', '10px');
-        $('.product-main #maincontent .main-container .navbar #garmentsNav .navbar-nav .nav-item:last-child').css('border-bottom-right-radius', '10px');
-    });
-    /*garments navbar categories dropdown hover effect*/
-
     /*categories links tabs*/
     $(".categories-section .nav-link").hover(function(e) {
         e.preventDefault();
@@ -893,10 +879,10 @@ $(document).ready(function () {
     /*nav link active onclick*/
     $(".nav-link").each(function () {
         var currentUrl = window.location.href.split('/');
-        var currentUrlBase = currentUrl[4];
+        var currentUrlBase = currentUrl[5];
 
         var activeUrl = $(this).attr("href").split('/');
-        var activeUrlBase = activeUrl[4];
+        var activeUrlBase = activeUrl[5];
 
         if (currentUrlBase == activeUrlBase && currentUrlBase!=undefined && activeUrlBase!=undefined) {
             $(this).addClass("nav-underline-pg");

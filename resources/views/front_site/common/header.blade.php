@@ -507,19 +507,20 @@
                 </div>
             @endif
 
-             <a class="nav-link p-0" href="#" id="navbarDropdownMenuLink" data-hover="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-            <span class="position-relative fa fa-bell notification-bell-icon">
-               @if(auth()->check())  <span class="biz-badge" id="notify"></span> @endif
-            </span>
-             </a>
-             <div class="overflow-auto mb-3 p-2 dropdown-menu animated-dropdown slideIn notifications-scroll" aria-labelledby="navbarDropdownMenuLink">
-                 <div class="row w-100 m-0 dropdown-container">
-                     <ul id="isdiplay">
-
-                     </ul>
+            <div class="dropdown">
+                 <a class="nav-link p-0" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="position-relative fa fa-bell notification-bell-icon">
+                       @if(auth()->check())  <span class="biz-badge" id="notify"></span> @endif
+                    </span>
+                 </a>
+                 <div class="overflow-auto mb-3 p-2 dropdown-menu animated-dropdown fadeIn notifications-scroll" aria-labelledby="navbarDropdownMenuLink">
+                     <div class="row w-100 m-0 dropdown-container">
+                         <ul id="isdiplay" class="mb-0">
+                         </ul>
+                     </div>
                  </div>
-             </div>
+            </div>
 
         </div>
     </div>

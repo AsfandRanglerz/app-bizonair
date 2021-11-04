@@ -42,7 +42,7 @@
 
         <div class="container-fluid mb-1 px-2">
             <div class="m-0 row job-explore-post">
-                <div class="col-sm-6 px-sm-1 px-0">
+                <div class="col-6 px-sm-1 px-0">
                     <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center job-explore-sec">
                         <p class="paragraph">Your Next Hire Is Here</p>
                         <a @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @else href="{{route('view-form-job-management')}}" @endif class="text-center red-btn link">POST JOB</a>
@@ -295,13 +295,19 @@
                 {{--                    </div>--}}
                 <!-- Post a job form -->
                 </div>
-                <div class="col-sm-6 px-sm-1 px-0">
+                <div class="col-6 px-sm-1 px-0">
                     <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center job-post-sec">
                         <p class="paragraph">Find Your Next Job</p>
                         <a href="{{ route('jobs-directory') }}" class="text-center red-btn link">EXPLORE JOBS</a>
                     </div>
                 </div>
-                <div class="col-sm-6 px-sm-1 my-1 px-0">
+                <div class="col-6 px-sm-1 px-0">
+                    <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center job-post-sec">
+                        <p class="paragraph">Find Best Human Talent</p>
+                        <a href="{{ route('cv-directory') }}" class="text-center red-btn link">EXPLORE All CVs</a>
+                    </div>
+                </div>
+                <div class="col-6 px-sm-1 px-0">
                     <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center job-explore-sec">
                         <p class="paragraph">It Only Takes A Few Seconds</p>
                         <a @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @else href="{{route('post-ur-cv')}}" @endif class="text-center red-btn link">POST CV</a>
@@ -481,12 +487,6 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
                     <!-- Post a cv form -->
-                </div>
-                <div class="col-sm-6 px-sm-1 my-1 px-0">
-                    <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center job-post-sec">
-                        <p class="paragraph">Find Best Human Talent</p>
-                        <a href="{{ route('cv-directory') }}" class="text-center red-btn link">EXPLORE All CVs</a>
-                    </div>
                 </div>
             </div>
         </div>

@@ -921,17 +921,27 @@ select {
     border-bottom: 2px solid #a52c3e;
     box-shadow: 0px 4px 14px 5px #00000033;
     border-radius: 8px 8px 0 0;
+    background: #344256;
+}
+
+.pro-categories-tab .nav-link:hover, pro-categories-tab .nav-link:focus, pro-categories-tab .nav-link:active {
+    background: #12253d;
 }
 
 .pro-categories-tab .nav-item {
     width: 25%;
 }
 
+.pro-categories-tab .main-cat-link {
+    width: -webkit-fill-available;
+    width: -moz-available;
+    font-weight: 500;
+}
+
 .pro-categories-tab .nav-link {
     height: 100%;
     padding: 4px;
-    background: #FFF;
-    color: #12253d;
+    color: #FFF;
     border: none;
     border-radius: 0;
     text-align: center;
@@ -949,17 +959,21 @@ select {
     font-weight: 500;
 }
 
+.pro-categories-tab .nav-link.active + .main-cat-link {
+    background: #12253d;
+}
+
 .pro-tab-content .tab-pane.active {
     background: #FFF;
     border-radius: 0 0 8px 8px;
     box-shadow: 0px 4px 10px #00000033;
 }
 
-.pro-categories-tab .nav-item:first-child .nav-link {
+.pro-categories-tab .nav-item:first-child .nav-link:last-child {
     border-radius: 8px 0 0 0;
 }
 
-.pro-categories-tab .nav-item:last-child .nav-link {
+.pro-categories-tab .nav-item:last-child .nav-link:first-child {
     border-radius: 0 8px 0 0;
 }
 
@@ -1656,8 +1670,10 @@ p.click {
 /*notifications scroll bar css*/
 .notifications-scroll {
     width: 255px;
-    margin-right: 65px!important;
-    max-height: 19.8rem;
+    max-height: 16.8rem;
+    background-color: #344256;
+    border: none;
+    border-radius: 8px;
 }
 
 .notifications-scroll::-webkit-scrollbar {
@@ -1668,6 +1684,11 @@ p.click {
     border-radius: 35px;
     background-color: #12253d;
     /*border: 3px solid #344356;*/
+}
+
+.notifications-scroll::-webkit-scrollbar-track {
+    background: #344356;
+    border-radius: 0 8px 8px 0;
 }
 /*notifications scroll bar css*/
 
@@ -2203,8 +2224,12 @@ p.click {
     padding: 15px!important;
 }
 
+.links-container .is-read {
+    color: #FFF;
+}
+
 .links-container:hover {
-    background: #04020214;
+    background: #12253d;
     box-shadow: 0 1px 1px rgb(0 0 0 / 11%), 0 2px 2px rgb(0 0 0 / 11%), 0 4px 4px rgb(0 0 0 / 11%), 0 6px 8px rgb(0 0 0 / 11%), 0 8px 16px rgb(0 0 0 / 11%);
     transition: .3s ease;
     cursor: pointer;
@@ -2809,9 +2834,6 @@ ul li input[type=checkbox] {
 
 .job-explore-sec, .job-post-sec {
     padding: 25px 0;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
-    border: 2px solid #12253d;
-    border-radius: 15px;
 }
 
 .job-explore-sec {
@@ -2850,14 +2872,14 @@ ul li input[type=checkbox] {
 
 .job-explore-sec .link {
     background: transparent;
-    border: 1px solid #fff;
+    border: 1px solid #12253d;
     width: 155px;
     padding: 8px;
 }
 
 .job-post-sec .link {
     background: transparent;
-    border: 1px solid #fff;
+    border: 1px solid #FFF;
     width: 155px;
     padding: 8px;
 }
@@ -9165,9 +9187,10 @@ header .navbar .navbar-toggler {
     }
 
     .job-explore-post {
-        display: grid;
-        grid-template-columns: 49.5% 49.5%;
-        column-gap: 1%;
+        /*display: grid;*/
+        /*grid-template-columns: 49.5% 49.5%;*/
+        /*column-gap: 1%;*/
+        border: 1px solid #12253d;
     }
 
     .job-explore-sec, .job-post-sec {
@@ -9175,8 +9198,9 @@ header .navbar .navbar-toggler {
     }
 
     .job-explore-sec .link, .job-post-sec .link {
-        width: 105px;
+        width: 95px;
         padding: 4px;
+        border-radius: 50px;
     }
 
     .job-explore-sec .paragraph, .job-post-sec .paragraph {
