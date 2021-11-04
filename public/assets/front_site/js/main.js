@@ -527,7 +527,8 @@ $(document).ready(function () {
 
     setTimeout(() => {
         /*category name changed on basis of selected category*/
-        let catName = $('#garmentsNav .nav-underline-pg span').text();
+        // let catName = $('#garmentsNav .nav-underline-pg span').text();
+        let catName = $('#garmentsNav .nav-item.active span').text();
         $('#catNameSec').text(catName);
         /*category name changed on basis of selected category*/
     }, 10);
@@ -686,6 +687,25 @@ $(document).ready(function () {
         }
     });
     /*down arrow button, click show more tab links*/
+
+    /*add more product item avatar on clicking add more button*/
+    $(".specification-sheets .product-item-avatar:hidden").slice(0, 4).show();
+    $(".product-images .product-item-avatar:hidden").slice(0, 4).show();
+
+    $(document).on('click', '#addSpecImgAvatar', function() {
+        $(".specification-sheets .product-item-avatar:hidden").slice(0, 4).slideDown();
+        if($(".specification-sheets .product-item-avatar:hidden").length==0) {
+            $('#addSpecImgAvatar').fadeOut(500);
+        }
+    });
+
+    $(document).on('click', '#addProdImgAvatar', function() {
+        $(".product-images .product-item-avatar:hidden").slice(0, 4).slideDown();
+        if($(".product-images .product-item-avatar:hidden").length==0) {
+            $('#addProdImgAvatar').fadeOut(500);
+        }
+    });
+    /*add more product item avatar on clicking add more button*/
 
     /*load more content on clicking load more button*/
     setTimeout(() => {
@@ -1154,6 +1174,7 @@ $(document).ready(function () {
     // }
     /*text editor*/
     $(document).on("change", '.select2-multiple', function () {
+        $('.select2-multiple').trigger('click');
         if ($(this).siblings("span").find("li[title='Other']").length) {
             $(this).closest(".form-group").next(".form-group.other-div").first().show().find('input').prop('required', true);
         } else {

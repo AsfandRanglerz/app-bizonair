@@ -916,16 +916,18 @@ select {
 }
 /*overlay background, when sidebar open*/
 
+/*product item avatar*/
+.specification-sheets .product-item-avatar, .product-images .product-item-avatar {
+    display: none;
+}
+/*product item avatar*/
+
 /*product categories navigation tab pills view for mobile app*/
 .pro-categories-tab {
     border-bottom: 2px solid #a52c3e;
     box-shadow: 0px 4px 14px 5px #00000033;
     border-radius: 8px 8px 0 0;
     background: #344256;
-}
-
-.pro-categories-tab .nav-link:hover, pro-categories-tab .nav-link:focus, pro-categories-tab .nav-link:active {
-    background: #12253d;
 }
 
 .pro-categories-tab .nav-item {
@@ -960,7 +962,7 @@ select {
 }
 
 .pro-categories-tab .nav-link.active + .main-cat-link {
-    background: #12253d;
+    background: #a52c3e;
 }
 
 .pro-tab-content .tab-pane.active {
@@ -10395,6 +10397,7 @@ form label {
 
 .select2-container .select2-search--inline .select2-search__field {
     margin-top: 0;
+    width: 100%!important;
 }
 
 .select2-container--default .select2-selection.is-valid {

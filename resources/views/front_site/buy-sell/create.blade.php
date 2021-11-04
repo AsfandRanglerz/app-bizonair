@@ -231,8 +231,8 @@
                                                     | JPG, PNG, Word, Excel & PDF files only | Upto 10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
-                                                    <div class="mx-0 row product-img-sheet">
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                    <div class="mx-0 row product-img-sheet specification-sheets">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image16" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -247,7 +247,7 @@
                                                                 <input name="bsheet16_url" type="hidden" value="" id="bsheet16_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image17" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -262,7 +262,7 @@
                                                                 <input name="bsheet17_url" type="hidden" value="" id="bsheet17_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image18" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -277,7 +277,7 @@
                                                                 <input name="bsheet18_url" type="hidden" value="" id="bsheet18_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image19" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -292,7 +292,7 @@
                                                                 <input name="bsheet19_url" type="hidden" value="" id="bsheet19_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image20" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -307,7 +307,7 @@
                                                                 <input name="bsheet20_url" type="hidden" value="" id="bsheet20_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image21" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -322,7 +322,7 @@
                                                                 <input name="bsheet21_url" type="hidden" value="" id="bsheet21_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image22" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -337,7 +337,7 @@
                                                                 <input name="bsheet22_url" type="hidden" value="" id="bsheet22_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image23" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -352,7 +352,7 @@
                                                                 <input name="bsheet23_url" type="hidden" value="" id="bsheet23_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image24" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -367,7 +367,7 @@
                                                                 <input name="bsheet24_url" type="hidden" value="" id="bsheet24_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image25" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -382,7 +382,7 @@
                                                                 <input name="bsheet25_url" type="hidden" value="" id="bsheet25_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image26" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -397,7 +397,7 @@
                                                                 <input name="bsheet26_url" type="hidden" value="" id="bsheet26_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image27" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -412,7 +412,7 @@
                                                                 <input name="bsheet27_url" type="hidden" value="" id="bsheet27_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image28" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -427,7 +427,7 @@
                                                                 <input name="bsheet28_url" type="hidden" value="" id="bsheet28_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image29" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -442,7 +442,7 @@
                                                                 <input name="bsheet29_url" type="hidden" value="" id="bsheet29_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image30" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -459,6 +459,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="px-1 pb-1 text-right">
+                                                    <a role="button" class="red-btn" id="addSpecImgAvatar"><span class="fa fa-plus mr-1 position-static" style="font-size: 8px;opacity: 1"></span>Add More</a>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
@@ -466,8 +469,8 @@
                                                     10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
-                                                    <div class="mx-0 row product-img-sheet">
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                    <div class="mx-0 row product-img-sheet product-images">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image1" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -482,7 +485,7 @@
                                                                 <input name="bavatar1_url" type="hidden" value="" id="bavatar1_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image2" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -497,7 +500,7 @@
                                                                 <input name="bavatar2_url" type="hidden" value="" id="bavatar2_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image3" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -512,7 +515,7 @@
                                                                 <input name="bavatar3_url" type="hidden" value="" id="bavatar3_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image4" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -527,7 +530,7 @@
                                                                 <input name="bavatar4_url" type="hidden" value="" id="bavatar4_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image5" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -542,7 +545,7 @@
                                                                 <input name="bavatar5_url" type="hidden" value="" id="bavatar5_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image6" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -557,7 +560,7 @@
                                                                 <input name="bavatar6_url" type="hidden" value="" id="bavatar6_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image7" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -572,7 +575,7 @@
                                                                 <input name="bavatar7_url" type="hidden" value="" id="bavatar7_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image8" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -587,7 +590,7 @@
                                                                 <input name="bavatar8_url" type="hidden" value="" id="bavatar8_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image9" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -602,7 +605,7 @@
                                                                 <input name="bavatar9_url" type="hidden" value="" id="bavatar9_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image10" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -617,7 +620,7 @@
                                                                 <input name="bavatar10_url" type="hidden" value="" id="bavatar10_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image11" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -632,7 +635,7 @@
                                                                 <input name="bavatar11_url" type="hidden" value="" id="bavatar11_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image12" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -647,7 +650,7 @@
                                                                 <input name="bavatar12_url" type="hidden" value="" id="bavatar12_url" />
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image13" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -662,7 +665,7 @@
                                                                 <input name="bavatar13_url" type="hidden" value="" id="bavatar13_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image14" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -677,7 +680,7 @@
                                                                 <input name="bavatar14_url" type="hidden" value="" id="bavatar14_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="buploaded_image15" src="{{$ASSET}}/front_site/images/preview.svg"/>
                                                                 <span class="position-absolute del-btn fa fa-trash"></span>
@@ -693,6 +696,9 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="px-1 pb-1 text-right">
+                                                    <a role="button" class="red-btn" id="addProdImgAvatar"><span class="fa fa-plus mr-1 position-static" style="font-size: 8px;opacity: 1"></span>Add More</a>
                                                 </div>
                                             </div>
                                             <small class="text-danger" id="file_error"></small>
