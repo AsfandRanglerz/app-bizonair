@@ -63,7 +63,7 @@
                         <input type="text" class="form-control" id="companyName" name="company_name" placeholder="Company Name (Optional) - My Textile">
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Phone - 123-4567-890" @if(auth()->check()) value="{{\Auth::user()->registration_phone_no}}" @endif required>
+                        <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Phone - 123-4567-890" @if(auth()->check()) value="{{\Auth::user()->registration_phone_no}}" @endif required>
                         <small class="text-danger" id="phoneNumber_error"></small>
                     </div>
                 </div>
@@ -81,12 +81,7 @@
                         <small class="text-danger" id="country_error"></small>
                     </div>
                 </div>
-                <div class="form-group check-stats">
-                    <div class="custom-control custom-checkbox d-flex flex-column-reverse">
-                        <input type="checkbox" class="custom-control-input" name="terms" id="terms" required>
-                        <label class="custom-control-label" for="terms">I Agree to the <a href="{{url('terms-of-use')}}" class="text-link">Terms of Services</a> and <a href="{{url('privacy')}}" class="text-link">Privacy Policy</a></label>
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <textarea class="form-control" name="description" id="description" placeholder="Message" style="height: 115px" required></textarea>
                     <small class="text-danger" id="description_error"></small>
@@ -100,7 +95,12 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="form-group check-stats">
+                    <div class="custom-control custom-checkbox d-flex flex-column-reverse">
+                        <input type="checkbox" class="custom-control-input" name="terms" id="terms" required>
+                        <label class="custom-control-label" for="terms">I Agree to the <a href="{{url('terms-of-use')}}" class="text-link">Terms of Services</a> and <a href="{{url('privacy')}}" class="text-link">Privacy Policy</a></label>
+                    </div>
+                </div>
                 <h3 class="mt-2 mb-0">Contact Details</h3>
                 <div class="mb-1 mx-0 form-row d-flex justify-content-between">
                     <div class="form-group mb-0 font-18">
@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="submit" class="rounded px-4 red-btn submit-btn" id="contact-create" value="Submit" disabled>
+                    <input type="submit" class="rounded px-4 red-btn submit-btn" id="contact-create" value="Submit" disabled="true">
                 </div>
             </form>
         </div>
@@ -128,13 +128,13 @@
             var validator = $("form[name='contactUs']").validate({
                 onfocusout: function (element) {
                     var $element = $(element);
-                        if ($element.prop('required')) {
-                            this.element(element)
-                        } else if ($element.val() != '') {
-                            this.element($element)
-                        } else {
-                            $element.removeClass('is-valid');
-                        }
+                    if ($element.prop('required')) {
+                        this.element(element)
+                    } else if ($element.val() != '') {
+                        this.element($element)
+                    } else {
+                        $element.removeClass('is-valid');
+                    }
                 },
                 rules: {
                     'inquiryFor': {
@@ -150,6 +150,9 @@
                         required: true,
                     },
                     'country':{
+                        required: true,
+                    },
+                    'terms':{
                         required: true,
                     },
                     'description':{
@@ -176,6 +179,9 @@
                     'country': {
                         required: "Contact country is required"
                     },
+                    'terms': {
+                        required: "Agree to proceed further"
+                    },
                     'description': {
                         required: "Contact description is required"
                     },
@@ -184,13 +190,13 @@
                 validClass: 'is-valid',
                 highlight: function (element, errorClass, validClass) {
                     var elem = $(element);
-                        elem.addClass(errorClass);
-                        elem.removeClass(validClass);
+                    elem.addClass(errorClass);
+                    elem.removeClass(validClass);
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
-                        elem.removeClass(errorClass);
-                        elem.addClass(validClass);
+                    elem.removeClass(errorClass);
+                    elem.addClass(validClass);
                     if (elem.siblings('small.text-danger')) {
                         elem.siblings('small.text-danger').html('');
                     } else if (elem.closest('.form-group').find('small.text-danger')) {
@@ -201,7 +207,7 @@
                 },
                 errorPlacement: function (error, element) {
                     var elem = $(element);
-                        error.insertAfter(element);
+                    error.insertAfter(element);
                 }
             });
             var options = {

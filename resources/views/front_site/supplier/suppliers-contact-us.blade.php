@@ -57,7 +57,7 @@
                                 <input type="text" class="form-control" id="companyName" name="company_name" placeholder="Company Name (Optional) - My Textile" value="{{ company_name(session()->get('company_id'))??'' }}" required>
                             </div>
                             <div class="form-group col-sm-6">
-                                <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone - 123-4567-8901" value="{{\Auth::user()->registration_phone_no}}" required>
+                                <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone - 123-4567-8901" value="{{\Auth::user()->registration_phone_no}}" required>
                                 <small class="text-danger" id="phoneNumber_error"></small>
                             </div>
                         </div>
@@ -75,12 +75,6 @@
                                 <small class="text-danger" id="country_error"></small>
                             </div>
                         </div>
-                        <div class="form-group check-stats">
-                            <div class="custom-control custom-checkbox d-flex flex-column-reverse">
-                                <input type="checkbox" class="custom-control-input" name="terms" id="terms" required>
-                                <label class="custom-control-label" for="terms">I Agree to the <a href="{{url('terms-of-use')}}" class="text-link">Terms of Services</a> and <a href="{{url('privacy')}}" class="text-link">Privacy Policy</a></label>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <textarea class="form-control" name="description" id="description" placeholder="Message" style="height: 115px"></textarea>
                             <small class="text-danger" id="description_error"></small>
@@ -94,8 +88,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group check-stats">
+                            <div class="custom-control custom-checkbox d-flex flex-column-reverse">
+                                <input type="checkbox" class="custom-control-input" name="terms" id="terms" required>
+                                <label class="custom-control-label" for="terms">I Agree to the <a href="{{url('terms-of-use')}}" class="text-link">Terms of Services</a> and <a href="{{url('privacy')}}" class="text-link">Privacy Policy</a></label>
+                            </div>
+                        </div>
                         <div>
-                            <input type="submit" class="red-btn submit-btn" id="contact-create-supplier" value="Submit">
+                            <input type="submit" class="red-btn submit-btn" id="contact-create-supplier" value="Submit" disabled="true">
                         </div>
                     </form>
                 </div>
@@ -108,6 +108,91 @@
 
     <script>
         $(document).ready(function () {
+            var validator = $("form[name='contactUsSupplier']").validate({
+                onfocusout: function (element) {
+                    var $element = $(element);
+                    if ($element.prop('required')) {
+                        this.element(element)
+                    } else if ($element.val() != '') {
+                        this.element($element)
+                    } else {
+                        $element.removeClass('is-valid');
+                    }
+                },
+                rules: {
+                    'inquiryFor': {
+                        required: true,
+                    },
+                    'userName':{
+                        required: true,
+                    },
+                    'emailAddress':{
+                        required: true,
+                    },
+                    'phoneNumber':{
+                        required: true,
+                    },
+                    'country':{
+                        required: true,
+                    },
+                    'terms':{
+                        required: true,
+                    },
+                    'description':{
+                        required: true,
+                    },
+                    onkeyup: function (element) {
+                        var $element = $(element);
+                        $element.valid();
+                    },
+                },
+                messages: {
+                    'inquiryFor': {
+                        required: "Contact inquiry is required"
+                    },
+                    'userName': {
+                        required: "Contact name is required"
+                    },
+                    'emailAddress': {
+                        required: "Contact email is required"
+                    },
+                    'phoneNumber': {
+                        required: "Contact phone is required"
+                    },
+                    'country': {
+                        required: "Contact country is required"
+                    },
+                    'terms': {
+                        required: "Agree to proceed further"
+                    },
+                    'description': {
+                        required: "Contact description is required"
+                    },
+                },
+                errorClass: 'is-invalid error',
+                validClass: 'is-valid',
+                highlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.addClass(errorClass);
+                    elem.removeClass(validClass);
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    var elem = $(element);
+                    elem.removeClass(errorClass);
+                    elem.addClass(validClass);
+                    if (elem.siblings('small.text-danger')) {
+                        elem.siblings('small.text-danger').html('');
+                    } else if (elem.closest('.form-group').find('small.text-danger')) {
+                        elem.closest('.form-group').find('small.text-danger').html('');
+                    } else if (elem.closest('.form-group').closest('.form-group').find('small.text-danger')) {
+                        elem.closest('.form-group').closest('.form-group').find('small.text-danger').html('');
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    var elem = $(element);
+                    error.insertAfter(element);
+                }
+            });
             var options = {
                 dataType: 'Json',
                 beforeSubmit: function (arr, $form) {

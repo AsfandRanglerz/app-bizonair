@@ -44,7 +44,7 @@
                  role="alert">
             </div>
                     <div class="m-auto contact-us-form">
-                        <form id="contactUsUserSupplier" name="contactUsSupplier" method="POST" action="{{route('save-contact-us-supplier')}}">
+                        <form id="contactUsSupplier" name="contactUsSupplier" method="POST" action="{{route('save-contact-us-supplier')}}">
                             @csrf
                             <input type="hidden" class="form-control" name="type" value="supplier">
                             <input type="hidden" class="form-control" name="userId" value="{{$about_us['user_id']}}">
@@ -67,7 +67,7 @@
                                     <input type="text" class="form-control" id="companyName" name="company_name" placeholder="Company Name (Optional) - My Textile" value="@if(session()->get('company_id')){{ company_name(session()->get('company_id')) }}@endif" required>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone - 123-4567-8901" value="@if(\Auth::user()){{\Auth::user()->registration_phone_no}}@endif" required>
+                                    <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone - 123-4567-8901" value="@if(\Auth::user()){{\Auth::user()->registration_phone_no}}@endif" required>
                                     <small class="text-danger" id="phoneNumber_error"></small>
                                 </div>
                             </div>
@@ -85,12 +85,7 @@
                                     <small class="text-danger" id="country_error"></small>
                                 </div>
                             </div>
-                            <div class="form-group check-stats">
-                                <div class="custom-control custom-checkbox d-flex flex-column-reverse">
-                                    <input type="checkbox" class="custom-control-input" name="terms" id="terms" required>
-                                    <label class="custom-control-label" for="terms">I Agree to the <a href="{{url('terms-of-use')}}" class="text-link">Terms of Services</a> and <a href="{{url('privacy')}}" class="text-link">Privacy Policy</a></label>
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <textarea class="form-control" name="description" id="description" placeholder="Message" style="height: 115px"></textarea>
                                 <small class="text-danger" id="description_error"></small>
@@ -104,8 +99,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group check-stats">
+                                <div class="custom-control custom-checkbox d-flex flex-column-reverse">
+                                    <input type="checkbox" class="custom-control-input" name="terms" id="terms" required>
+                                    <label class="custom-control-label" for="terms">I Agree to the <a href="{{url('terms-of-use')}}" class="text-link">Terms of Services</a> and <a href="{{url('privacy')}}" class="text-link">Privacy Policy</a></label>
+                                </div>
+                            </div>
                             <div>
-                                <input type="submit" class="red-btn submit-btn" id="contact-create-user-supplier" value="Submit" disabled>
+                                <input type="submit" class="red-btn submit-btn" id="contact-create-user-supplier" value="Submit" disabled="true">
                             </div>
                         </form>
                     </div>
@@ -145,6 +146,9 @@
                     'country':{
                         required: true,
                     },
+                    'terms':{
+                        required: true,
+                    },
                     'description':{
                         required: true,
                     },
@@ -168,6 +172,9 @@
                     },
                     'country': {
                         required: "Contact country is required"
+                    },
+                    'terms': {
+                        required: "Agree to proceed further"
                     },
                     'description': {
                         required: "Contact description is required"
@@ -276,7 +283,7 @@
                 },
 
             };
-            $('#contactUsUserSupplier').ajaxForm(options);
+            $('#contactUsSupplier').ajaxForm(options);
         });
     </script>
 
