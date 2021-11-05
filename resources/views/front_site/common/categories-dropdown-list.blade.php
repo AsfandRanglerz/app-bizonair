@@ -77,13 +77,13 @@
                     <a href="{{route('calculation-formula')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/Calculations.png" class="mb-1 banner-below-adds" width="15" height="15">Textile Calculations</a>
                 </div>
                 <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="{{ route('currency-rates') }}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/ppe-institutional.png" class="mb-1 banner-below-adds" width="15" height="15">Currency Rates</a>
+                    <a href="{{ route('currency-rates') }}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/Our services icon/currency_rates.png" class="mb-1 banner-below-adds" width="15" height="15">Currency Rates</a>
                 </div>
                 <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="{{route('cotton-rates')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/ppe-institutional.png" class="mb-1 banner-below-adds" width="15" height="15">Cotton Rates</a>
+                    <a href="{{route('cotton-rates')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/Our services icon/cotton_rates.png" class="mb-1 banner-below-adds" width="15" height="15">Cotton Rates</a>
                 </div>
                 <div class="col-4 px-1 pro-categories-tab-links">
-                    <a href="{{route('yarn-rates')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/ppe-institutional.png" class="mb-1 banner-below-adds" width="15" height="15">Yarn Rates</a>
+                    <a href="{{route('yarn-rates')}}" class="py-1 px-2 text-center d-flex flex-column red-btn red-btn"><img src="{{$ASSET}}/front_site/images/Our services icon/yarn_rates.png" class="mb-1 banner-below-adds" width="15" height="15">Yarn Rates</a>
                 </div>
                 <button class="m-auto rounded-circle down-arrow-show">
                     <span class="font-weight-bold fa fa-angle-down" aria-hidden="true"></span>
