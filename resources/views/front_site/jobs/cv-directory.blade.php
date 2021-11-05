@@ -59,19 +59,81 @@
                                 <input type="hidden" name="max-value" id="max-salary">
                             </div>
                             <div class="my-1">
-                                <input class="form-control" type="text" id="customControl1" name="functional_area" placeholder="Functional Area">
+                                <select class="form-control" id="customControl1" name="functional_area">
+                                    <option value="" selected disabled>Functional Area</option>
+                                    <option value="Electrical" @if(Request::query('functional_area') == 'Electrical') selected @endif>Electrical </option>
+                                    <option value="Mechanical" @if(Request::query('functional_area') == 'Mechanical') selected @endif>Mechanical</option>
+                                    <option value="Human Resources" @if(Request::query('functional_area') == 'Human Resources') selected @endif>Human Resources</option>
+                                    <option value="Admin" @if(Request::query('functional_area') == 'Admin') selected @endif>Admin</option>
+                                    <option value="Engineering" @if(Request::query('functional_area') == 'Engineering') selected @endif>Engineering</option>
+                                    <option value="Commissioning" @if(Request::query('functional_area') == 'Commissioning') selected @endif>Commissioning</option>
+                                    <option value="Product Development" @if(Request::query('functional_area') == 'Product Development') selected @endif>Product Development</option>
+                                    <option value="Sourcing" @if(Request::query('functional_area') == 'Sourcing') selected @endif>Sourcing</option>
+                                    <option value="Quality Control" @if(Request::query('functional_area') == 'Quality Control') selected @endif>Quality Control</option>
+                                    <option value="Testing & Inspection" @if(Request::query('functional_area') == 'Testing & Inspection') selected @endif>Testing & Inspection</option>
+                                    <option value="Consultation" @if(Request::query('functional_area') == 'Consultation') selected @endif>Consultation</option>
+                                    <option value="Production" @if(Request::query('functional_area') == 'Production') selected @endif>Production</option>
+                                    <option value="Operation" @if(Request::query('functional_area') == 'Operation') selected @endif>Operation</option>
+                                    <option value="MIS" @if(Request::query('functional_area') == 'MIS') selected @endif>MIS</option>
+                                    <option value="Designing" @if(Request::query('functional_area') == 'Designing') selected @endif>Designing</option>
+                                    <option value="Supply Chain" @if(Request::query('functional_area') == 'Supply Chain') selected @endif>Supply Chain</option>
+                                    <option value="Accounts" @if(Request::query('functional_area') == 'Accounts') selected @endif>Accounts</option>
+                                    <option value="Information Technology" @if(Request::query('functional_area') == 'Information Technology') selected @endif>Information Technology</option>
+                                    <option value="Sales & Merchandizing" @if(Request::query('functional_area') == 'Sales & Merchandizing') selected @endif>Sales & Merchandizing</option>
+                                    <option value="Marketing" @if(Request::query('functional_area') == 'Marketing') selected @endif>Marketing</option>
+                                    <option value="Procurement" @if(Request::query('functional_area') == 'Procurement') selected @endif>Procurement</option>
+                                    <option value="PPC" @if(Request::query('functional_area') == 'PPC') selected @endif>PPC</option>
+                                    <option value="Imports & Exports" @if(Request::query('functional_area') == 'Imports & Exports') selected @endif>Imports & Exports</option>
+                                    <option value="Quality Audit" @if(Request::query('functional_area') == 'Quality Audit') selected @endif>Quality Audit</option>
+                                    <option value="Utilities" @if(Request::query('functional_area') == 'Utilities') selected @endif>Utilities</option>
+                                    <option value="ERP" @if(Request::query('functional_area') == 'ERP') selected @endif>ERP</option>
+                                    <option value="Branding" @if(Request::query('functional_area') == 'Branding') selected @endif>Branding</option>
+                                    <option value="Warehouse" @if(Request::query('functional_area') == 'Warehouse') selected @endif>Warehouse</option>
+                                    <option value="Transportation" @if(Request::query('functional_area') == 'Transportation') selected @endif>Transportation</option>
+                                    <option value="Finance" @if(Request::query('functional_area') == 'Finance') selected @endif>Finance</option>
+                                    <option value="Financial Audit" @if(Request::query('functional_area') == 'Financial Audit') selected @endif>Financial Audit</option>
+                                </select>
                             </div>
                             <div class="my-1">
-                                <input class="form-control" type="text" id="customControl1" name="job_sector" placeholder="Job Sector">
+                                <select class="form-control" id="customControl1" name="job_sector">
+                                    <option value="" selected disabled>Job Sector</option>
+                                    <option value="Ginning" @if(Request::query('job_sector') == 'Ginning') selected @endif>Ginning </option>
+                                    <option value="Spinning" @if(Request::query('job_sector') == 'Spinning') selected @endif>Spinning</option>
+                                    <option value="Knitting" @if(Request::query('job_sector') == 'Knitting') selected @endif>Knitting</option>
+                                    <option value="Weaving" @if(Request::query('job_sector') == 'Weaving') selected @endif>Weaving</option>
+                                    <option value="Non-Woven" @if(Request::query('job_sector') == 'Non-Woven') selected @endif>Non-Woven</option>
+                                    <option value="Wet Processing" @if(Request::query('job_sector') == 'Wet Processing') selected @endif>Wet Processing</option>
+                                    <option value="Embroidery" @if(Request::query('job_sector') == 'Embroidery') selected @endif>Embroidery</option>
+                                    <option value="Garments" @if(Request::query('job_sector') == 'Garments') selected @endif>Garments</option>
+                                    <option value="Accessories" @if(Request::query('job_sector') == 'Accessories') selected @endif>Accessories</option>
+                                    <option value="Dyes & Chemicals" @if(Request::query('job_sector') == 'Dyes & Chemicals') selected @endif>Dyes & Chemicals</option>
+                                    <option value="Retail" @if(Request::query('title') == 'job_sector') selected @endif>Retail</option>
+                                    <option value="Personal Protective Equipment" @if(Request::query('job_sector') == 'Personal Protective Equipment') selected @endif>Personal Protective Equipment</option>
+                                    <option value="Institutional" @if(Request::query('job_sector') == 'Institutional') selected @endif>Institutional </option>
+                                    <option value="Leather" @if(Request::query('job_sector') == 'Leather') selected @endif>Leather</option>
+                                    <option value="Footwear & Bags" @if(Request::query('job_sector') == 'Footwear & Bags') selected @endif>Footwear & Bags</option>
+                                    <option value="Home Textiles" @if(Request::query('job_sector') == 'Home Textiles') selected @endif>Home Textiles</option>
+                                    <option value="Technical Textiles" @if(Request::query('job_sector') == 'Technical Textiles') selected @endif>Technical Textiles</option>
+                                </select>
                             </div>
                             <div class="my-1">
-                                <input class="form-control" type="text" id="customControl1" name="experience" placeholder="Experience">
+                                <select class="form-control" id="customControl1" name="experience">
+                                    <option value="" selected disabled>Experience </option>
+                                    <option value="Fresh / No Experience" @if(Request::query('experience') == 'Fresh / No Experience') selected @endif>Fresh / No Experience</option>
+                                    <option value="01-03 Years" @if(Request::query('experience') == '01-03 Years') selected @endif>01-03 Years</option>
+                                    <option value="03-05 Years" @if(Request::query('experience') == '03-05 Years') selected @endif>03-05 Years</option>
+                                    <option value="05-07 Years" @if(Request::query('experience') == '05-07 Years') selected @endif>05-07 Years</option>
+                                    <option value="07-10 Years" @if(Request::query('experience') == '07-10 Years') selected @endif>07-10 Years</option>
+                                    <option value="10-15 Years" @if(Request::query('experience') == '10-15 Years') selected @endif>10-15 Years</option>
+                                    <option value="15-20 Years" @if(Request::query('experience') == '15-20 Years') selected @endif>15-20 Years</option>
+                                    <option value="20+ Years" @if(Request::query('experience') == '20+ Years') selected @endif>20+ Years</option>
+                                </select>
                             </div>
                             <div class="my-1">
-                                <input class="form-control" type="text" id="customControl1" name="skills" placeholder="Skills">
+                                <input class="form-control" type="text" id="customControl1" name="skills" placeholder="Skills" value="{{ Request::query('skills') }}">
                             </div>
                             <div class="my-1">
-                                <input class="form-control" type="text" id="customControl1" name="edu_level" placeholder="Education Level">
+                                <input class="form-control" type="text" id="customControl1" name="edu_level" placeholder="Education Level" value="{{ Request::query('edu_level') }}">
                             </div>
                             <div align="right" class="mt-md-3 mt-1">
                                 <button type="submit" class="red-btn">Search</button>
@@ -81,6 +143,7 @@
                 </div>
                 <div class="col-md-9 col-sm-8 px-0 mt-md-3 mt-2">
                     <div class="form-row mx-0">
+                        @if(count($cvs) > 0)
                         @foreach($cvs as $cv)
                             <div class="col-md-6 px-md-2 px-0 product-box">
                                 <div class="description-container">
@@ -97,7 +160,7 @@
                                         $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
 
                                         @if($ext=="docx")
-                                            <a class="text-decoration-none text-reset" href="{{url('public/'.$cv->image)}}">
+                                            <a class="text-decoration-none text-reset" href="{{$cv->image}}">
                                                 <div class="position-absolute dir-download-img">
                                                     <div class="position-relative d-flex justify-content-center align-items-center">
                                                         <img class="img-responsive product-img"
@@ -108,7 +171,7 @@
                                                 </div>
                                             </a>
                                         @elseif($ext=="xlsx")
-                                            <a class="text-decoration-none text-reset" href="{{url('public/'.$cv->image)}}">
+                                            <a class="text-decoration-none text-reset" href="{{$cv->image}}">
                                                 <div class="position-absolute dir-download-img">
                                                     <div class="position-relative d-flex justify-content-center align-items-center">
                                                         <img class="img-responsive product-img"
@@ -119,7 +182,7 @@
                                                 </div>
                                             </a>
                                         @elseif($ext=="pdf")
-                                            <a class="text-decoration-none text-reset" href="{{url('public/'.$cv->image)}}">
+                                            <a class="text-decoration-none text-reset" href="{{$cv->image}}">
                                                 <div class="position-absolute dir-download-img">
                                                     <div class="position-relative d-flex justify-content-center align-items-center">
                                                         <img class="img-responsive product-img"
@@ -130,12 +193,12 @@
                                                 </div>
                                             </a>
                                         @else
-                                            <img src="{{$ASSETS}}/{{ $cv->image }}" style="width: 50px;height: 50px;" class="position-absolute dir-download-img">
+                                            <img src="{{ $cv->image }}" style="width: 50px;height: 50px;" class="position-absolute dir-download-img">
                                         @endif
                                         <div class="d-flex justify-content-between date-salery">
                                             <span><span class="fa fa-calendar pr-2" aria-hidden="true"></span>{{ date("d-F-Y", strtotime($cv->created_at)) }}</span>
-                                            <span><span class="fa fa-file pr-2" aria-hidden="true"></span>{{ $cv->total_experience }} Year Experience</span>
-                                            <span><span class="fa fa-money pr-2" aria-hidden="true"></span>{{ number_format($cv->exp_salary) }} {{$cv->sal_unit}} Expected</span>
+                                            <span><span class="fa fa-file pr-2" aria-hidden="true"></span>{{ $cv->total_experience }} Experience</span>
+                                            <span><span class="fa fa-money pr-2" aria-hidden="true"></span>{{$cv->sal_unit}} {{ number_format($cv->exp_salary) }}  Expected</span>
                                         </div>
                                     </div>
                                     <div class="my-2">
@@ -144,6 +207,19 @@
                                 </div>
                             </div>
                         @endforeach
+                        @else
+                            <div class="col-md-6 px-md-2 px-0 product-box">
+                                <div class="description-container">
+                                    <div class="short-job-description position-relative">
+                                        Showing Result For @if(!empty(Request::query('min-value'))) min-salary {{Request::query('min-value')}}, @endif @if(!empty(Request::query('max-value'))) max-salary {{Request::query('max-value')}}, @endif @if(!empty(Request::query('job_sector'))) {{Request::query('job_sector')}}, @endif @if(!empty(Request::query('functional_area'))) {{Request::query('functional_area')}}, @endif  @if(!empty(Request::query('experience'))) {{Request::query('experience')}}, @endif @if(!empty(Request::query('skills'))) {{Request::query('skills')}}, @endif  @if(!empty(Request::query('edu_level'))) {{Request::query('edu_level')}}, @endif
+                                        </br>
+                                        <hr>
+                                        <p>No Results Matched</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     <div align="center" class="my-2">
                         <a href="#" class="load-more red-btn">Load More<span class="ml-2 fa fa-spinner" aria-hidden="true"></span></a>
@@ -154,3 +230,6 @@
     </main>
     </body>
 @endsection
+@push('js')
+    <script src="{{$ASSET}}/front_site/js/range-selector.js"></script>
+@endpush

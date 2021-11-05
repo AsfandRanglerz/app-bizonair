@@ -45,7 +45,7 @@
                 <div class="col-6 px-sm-1 px-0">
                     <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center job-explore-sec">
                         <p class="paragraph">Your Next Hire Is Here</p>
-                        <a @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @else href="{{route('view-form-job-management')}}" @endif class="text-center red-btn link">POST JOB</a>
+                        <a @if(!Auth::check()) href="{{url('log-in-pre')}}" @else href="{{route('view-form-job-management')}}" @endif class="text-center red-btn link">POST JOB</a>
                     </div>
                     <!-- Post a job form -->
                 {{--                    <div id="postJobForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="postJobForm" aria-hidden="true">--}}
@@ -310,7 +310,7 @@
                 <div class="col-6 px-sm-1 px-0">
                     <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center job-explore-sec">
                         <p class="paragraph">It Only Takes A Few Seconds</p>
-                        <a @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @else href="{{route('post-ur-cv')}}" @endif class="text-center red-btn link">POST CV</a>
+                        <a @if(!Auth::check()) href="{{url('log-in-pre')}}" @else href="{{route('post-ur-cv')}}" @endif class="text-center red-btn link">POST CV</a>
                     </div>
                     <!-- Post a cv form -->
 {{--                    <div id="postcvForm"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="postcvForm" aria-hidden="true">--}}
@@ -498,7 +498,12 @@
                         <h3 class="text-center my-2 heading">Jobs by Functional Area</h3>
                         <div class="area-loc-section">
                             @foreach($bfarea as $funarea)
-                            <a href="{{ route('jobs-directory').'?byfunction='.$funarea->functional_area }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$funarea->functional_area}}</p>" data-toggle="tooltip">{{$funarea->functional_area}}</a>
+                                <?php $jobsbyfarea = \App\JobManagement::where('functional_area',$funarea->functional_area)->count();?>
+                                <a href="{{ route('jobs-directory').'?byfunction='.$funarea->functional_area }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$funarea->functional_area}}</p>" data-toggle="tooltip">{{$funarea->functional_area}}  ({{$jobsbyfarea}})</a>
+                            @endforeach
+                            @foreach($bfareaa as $funarea)
+                                <?php $jobsbyfarea = \App\JobManagement::where('functional_area',$funarea->functional_area)->count();?>
+                               <a href="{{ route('jobs-directory').'?byfunction='.$funarea->functional_area }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$funarea->functional_area}}</p>" data-toggle="tooltip">{{$funarea->functional_area}}  ({{$jobsbyfarea}})</a>
                             @endforeach
                         </div>
                     </div>
@@ -506,7 +511,12 @@
                         <h3 class="text-center mt-xl-0 my-2 heading">Jobs by Sector</h3>
                         <div class="area-loc-section">
                             @foreach($bsector as $tsector)
-                                <a href="{{ route('jobs-directory').'?bysector='.$tsector->textile_sector }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$tsector->textile_sector}}</p>" data-toggle="tooltip">{{$tsector->textile_sector}}</a>
+                                <?php $jobsbysctr = \App\JobManagement::where('textile_sector',$tsector->textile_sector)->count();?>
+                                <a href="{{ route('jobs-directory').'?bysector='.$tsector->textile_sector }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$tsector->textile_sector}}</p>" data-toggle="tooltip">{{$tsector->textile_sector}}  ({{$jobsbysctr}})</a>
+                            @endforeach
+                            @foreach($bsectorr as $tsector)
+                                <?php $jobsbysctr = \App\JobManagement::where('textile_sector',$tsector->textile_sector)->count();?>
+                                <a href="{{ route('jobs-directory').'?bysector='.$tsector->textile_sector }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$tsector->textile_sector}}</p>" data-toggle="tooltip">{{$tsector->textile_sector}}  ({{$jobsbysctr}})</a>
                             @endforeach
                         </div>
                     </div>
@@ -514,7 +524,12 @@
                         <h3 class="text-center mt-sm-0 my-2 heading">Jobs by Location</h3>
                         <div class="area-loc-section">
                             @foreach($bcity as $bycity)
-                            <a href="{{ route('jobs-directory').'?bylocation='.$bycity->city }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$bycity->city}}</p>" data-toggle="tooltip">{{$bycity->city}}</a>
+                                <?php $jobsbycity = \App\JobManagement::where('city',$bycity->city)->count();?>
+                               <a href="{{ route('jobs-directory').'?bylocation='.$bycity->city }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$bycity->city}}</p>" data-toggle="tooltip">{{$bycity->city}}  ({{$jobsbycity}})</a>
+                            @endforeach
+                            @foreach($bcityy as $bycity)
+                                <?php $jobsbycity = \App\JobManagement::where('city',$bycity->city)->count();?>
+                                <a href="{{ route('jobs-directory').'?bylocation='.$bycity->city }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$bycity->city}}</p>" data-toggle="tooltip">{{$bycity->city}}  ({{$jobsbycity}})</a>
                             @endforeach
                         </div>
                     </div>
@@ -534,12 +549,12 @@
                                 <div class="short-job-description">
                                 <a href="{{ route('jobs-detail',$job->id) }}" class="text-reset text-decoration-none">
                                <h6 class="title">{{ $job->title }}</h6>
-                                <span class="d-block tag-line">{{ $job->city }}</span>
-                               <p class="short-description mb-2 overflow-text-dots" id="$job->id">{{ $job->job_description }}</p>
+                                <span class="d-block tag-line">{{ $job->city }}, {{ $job->country }}</span>
+                               <p class="short-description mb-2 overflow-text-dots" id="$job->id">{!!  strip_tags(\Illuminate\Support\Str::limit($job->job_description, 100))  !!}</p>
                                 <div class="d-flex justify-content-between date-salery">
                                     <span><span class="fa fa-calendar pr-2" aria-hidden="true"></span>{{ date("d-F-Y", strtotime($job->closing_date)) }}</span>
-                                    <span><span class="fa fa-file pr-2" aria-hidden="true"></span>{{ $job->work_experience }} Year</span>
-                                    <span><span class="fa fa-money pr-2" aria-hidden="true"></span>{{ number_format($job->salary) }}</span>
+                                    <span><span class="fa fa-file pr-2" aria-hidden="true"></span>{{ $job->work_experience }} Experience</span>
+                                    <span><span class="fa fa-money pr-2" aria-hidden="true"></span>{{$job->salary_unit}} {{ number_format($job->salary) }}</span>
                                 </div>
                                 </a>
                             </div>
@@ -567,12 +582,12 @@
                         <div class="short-job-description">
                             <a href="{{ route('jobs-detail',$job->id) }}" class="text-reset text-decoration-none">
                             <h6 class="title">{{ $job->title }}</h6>
-                            <span class="d-block tag-line">{{ $job->city }}</span>
-                            <p class="short-description mt-2 overflow-text-dots" id="$job->id">{!!strip_tags($job->job_description)!!}</p>
+                            <span class="d-block tag-line">{{ $job->city }}, {{ $job->country }}</span>
+                            <p class="short-description mt-2 overflow-text-dots" id="$job->id">{!!  strip_tags(\Illuminate\Support\Str::limit($job->job_description, 100))  !!}</p>
                             <div class="d-flex justify-content-between date-salery">
                                 <span><span class="fa fa-calendar pr-2" aria-hidden="true"></span>{{ date("d-F-Y", strtotime($job->closing_date)) }}</span>
-                                <span><span class="fa fa-file pr-2" aria-hidden="true"></span>{{ $job->work_experience }} Year</span>
-                                <span><span class="fa fa-money pr-2" aria-hidden="true"></span>{{ number_format($job->salary) }}</span>
+                                <span><span class="fa fa-file pr-2" aria-hidden="true"></span>{{ $job->work_experience }} Experience</span>
+                                <span><span class="fa fa-money pr-2" aria-hidden="true"></span>{{$job->salary_unit}} {{ number_format($job->salary) }}</span>
                             </div>
                             </a>
                         </div>
@@ -700,8 +715,8 @@
                 },
                 unhighlight: function (element, errorClass, validClass) {
                     var elem = $(element);
-                        elem.removeClass(errorClass);
-                        elem.addClass(validClass);
+                    elem.removeClass(errorClass);
+                    elem.addClass(validClass);
 
                     if (elem.siblings('small.text-danger')) {
                         elem.siblings('small.text-danger').html('');
@@ -712,8 +727,8 @@
                     }
                 },
                 errorPlacement: function (error, element) {
-                        var elem = $(element);
-                        error.insertAfter(element);
+                    var elem = $(element);
+                    error.insertAfter(element);
                 }
             });
 

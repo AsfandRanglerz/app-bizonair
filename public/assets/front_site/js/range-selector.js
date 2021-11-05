@@ -12,10 +12,10 @@ $(document).ready(function() {
     prefix: ''
   });
   noUiSlider.create(rangeSlider, {
-    start: [500000, 700000],
+    start: [10, 1000000],
     step: 1,
     range: {
-      'min': [100000],
+      'min': [10],
       'max': [1000000]
     },
     format: moneyFormat,
@@ -24,12 +24,11 @@ $(document).ready(function() {
 
   // Set visual min and max values and also update value hidden form inputs
   rangeSlider.noUiSlider.on('update', function(values, handle) {
+      console.log('hello bhai kider ho');
     document.getElementById('slider-range-value1').innerHTML = values[0];
     document.getElementById('slider-range-value2').innerHTML = values[1];
-    document.getElementsByName('min-value').value = moneyFormat.from(
-      values[0]);
-    document.getElementsByName('max-value').value = moneyFormat.from(
-      values[1]);
+    document.getElementById('min-salary').value = moneyFormat.from(values[0]);
+    document.getElementById('max-salary').value = moneyFormat.from(values[1]);
   });
 });
 

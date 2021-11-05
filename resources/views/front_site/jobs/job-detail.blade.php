@@ -21,11 +21,11 @@
                 @foreach($jobsdet as $job)
                 <div class="col-xl-3 col-lg-4 col-md-5 pl-md-2 pr-md-2 p-0">
                     <div class="h-100 side-details">
-                        <a href="#" class="w-100 mb-sm-3 mb-2 text-center red-btn">Apply</a>
+                        <a href="mailto:{{$job->email}}" class="w-100 mb-sm-3 mb-2 text-center red-btn">Apply</a>
                         <div class="row m-0">
                             <div class="col-6 px-sm-3 px-0">
                                 <p class="font-weight-bold mb-0 heading">Company </p>
-                                <p class="mb-sm-3 mb-1">{{ $job->company }}</p>
+                                <p class="mb-sm-3 mb-1">@if($job->company =='Other'){{ $job->other_company }} @else {{ $job->company }} @endif</p>
 {{--                                <p class="d-flex font-weight-bold mb-3 heading" style="color: #A52C3E">@if($compLogo->logo !=null){{ $job->company }} <img class="ml-2" src="{{$ASSET.'/front_site/images/company-images/'.$compLogo->logo }}" height="25" width="25"  data-placement="top"> @else - @endif</p>--}}
                                 <p class="font-weight-bold mb-0 heading">Designation </p>
                                 <p class="mb-sm-3 mb-1">{{ $job->designation }}</p>
@@ -90,7 +90,7 @@
 
                                 @if(!empty($job->job_description))
                                 <p class="font-weight-bold mb-0 heading">Job Description</p>
-                                <p class="mb-sm-3 mb-1 listing">{{ $job->job_description }}</p>
+                                <p class="mb-sm-3 mb-1 listing">{!! $job->job_description  !!}</p>
                                 @endif
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                                 $ext = strtolower(pathinfo($src_file_name, PATHINFO_EXTENSION)); ?>
 
                                 @if($ext=="docx")
-                                    <a class="text-decoration-none text-reset" href="{{url('public/'.$job->image)}}">
+                                    <a class="text-decoration-none text-reset" href="{{$job->image}}">
                                         <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center">
                                             <img class="img-responsive product-img"
                                                  src="{{$ASSETS}}/assets/front_site/images/file_icons/wordicon.png"
@@ -117,7 +117,7 @@
                                         </li>
                                     </a>
                                 @elseif($ext=="xlsx")
-                                    <a class="text-decoration-none text-reset" href="{{url('public/'.$job->image)}}">
+                                    <a class="text-decoration-none text-reset" href="{{$job->image}}">
                                         <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center">
                                             <img class="img-responsive product-img"
                                                  src="{{$ASSETS}}/assets/front_site/images/file_icons/excelicon.png"
@@ -127,7 +127,7 @@
                                         </li>
                                     </a>
                                 @elseif($ext=="pdf")
-                                    <a class="text-decoration-none text-reset" href="{{url('public/'.$job->image)}}">
+                                    <a class="text-decoration-none text-reset" href="{{$job->image}}">
                                         <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center">
                                             <img class="img-responsive product-img"
                                                  src="{{$ASSETS}}/assets/front_site/images/file_icons/pdficon.png"
@@ -137,7 +137,7 @@
                                         </li>
                                     </a>
                                 @else
-                                    <img src="{{$ASSETS}}/{{ $job->image }}" class="job-detail-img">
+                                    <img src="{{ $job->image }}" class="job-detail-img">
                                 @endif
                             </div>
                             @endif
@@ -156,12 +156,12 @@
                                         <div class="short-job-description">
                                             <a href="{{ route('jobs-detail',$job->id) }}" class="text-reset text-decoration-none">
                                                 <h6 class="title overflow-text-dots-one-line">{{ $job->title }}</h6>
-                                                <span class="d-block tag-line">{{ $job->city }}</span>
-                                                <p class="short-description overflow-text-dots my-2">{!!strip_tags($job->job_description)!!}</p>
+                                                <span class="d-block tag-line">{{ $job->city }}, {{ $job->country }}</span>
+                                                <p class="short-description overflow-text-dots my-2">{!!  strip_tags(\Illuminate\Support\Str::limit($job->job_description, 100))  !!}</p>
                                                 <div class="d-flex justify-content-between date-salery">
                                                     <span><span class="fa fa-calendar pr-2" aria-hidden="true"></span>{{ date("d-F-Y", strtotime($job->closing_date)) }}</span>
-                                                    <span><span class="fa fa-file pr-2" aria-hidden="true"></span>{{ $job->work_experience }} Year</span>
-                                                    <span><span class="fa fa-money pr-2" aria-hidden="true"></span>{{ number_format($job->salary) }}</span>
+                                                    <span><span class="fa fa-file pr-2" aria-hidden="true"></span>{{ $job->work_experience }} Experience</span>
+                                                    <span><span class="fa fa-money pr-2" aria-hidden="true"></span>{{$job->salary_unit}} {{ number_format($job->salary) }}</span>
                                                 </div>
                                             </a>
                                         </div>

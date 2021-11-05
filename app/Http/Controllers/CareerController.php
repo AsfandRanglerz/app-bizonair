@@ -14,28 +14,30 @@ class CareerController extends Controller
     {
 
         if ($request->has('byfunction') && !empty($request->query('byfunction'))){
-            $jobs = JobManagement::where('functional_area','Like','%'.$request->query('byfunction').'%')->get();
+            $jobs = JobManagement::where('functional_area','Like','%'.$request->query('byfunction').'%')->where('status',1)->get();
         }elseif ($request->has('bylocation') && !empty($request->query('bylocation'))){
-            $jobs = JobManagement::where('city','Like','%'.$request->query('bylocation').'%')->get();
+            $jobs = JobManagement::where('city','Like','%'.$request->query('bylocation').'%')->where('status',1)->get();
         }elseif ($request->has('bysector') && !empty($request->query('bysector'))){
-            $jobs = JobManagement::where('textile_sector','Like','%'.$request->query('bysector').'%')->get();
+            $jobs = JobManagement::where('textile_sector','Like','%'.$request->query('bysector').'%')->where('status',1)->get();
         }elseif ($request->has('job-title') && !empty($request->query('job-title')) && $request->has('job-location') && !empty($request->query('job-location'))){
             $title = $request->query('job-title');
             $location =$request->query('job-location');
-                $jobs = JobManagement::where(function ($q)use($title){
-                    $q->where('title','Like','%'.$title.'%');
-                    $q->orwhere('skills','Like','%'.$title.'%');
-                    $q->orwhere('company','Like','%'.$title.'%');
-                    $q->orwhere('other_company','Like','%'.$title.'%');
-                })->where(function ($q)use($location){
-                    $q->where('address','Like','%'.$location.'%');
-                    $q->orwhere('city','Like','%'.$location.'%');
-                    $q->orwhere('country','Like','%'.$location.'%');
-                })->get();
+            $jobs = JobManagement::where(function ($q)use($title){
+                $q->where('title','Like','%'.$title.'%');
+                $q->orwhere('skills','Like','%'.$title.'%');
+                $q->orwhere('company','Like','%'.$title.'%');
+                $q->orwhere('other_company','Like','%'.$title.'%');
+            })->where(function ($q)use($location){
+                $q->where('address','Like','%'.$location.'%');
+                $q->orwhere('city','Like','%'.$location.'%');
+                $q->orwhere('country','Like','%'.$location.'%');
+            })->where('status',1)->get();
         }else{
             $jobs = \App\JobManagement::all();
         }
         $data['jobs'] = $jobs;
+        $data['ads'] =  \App\Banner::where('dimension', 'width 311 * height 311')->where('description','1st row left sidebar')->where('page','Career')->where('status', 1)->limit(1)->get();
+        $data['ads1'] =  \App\Banner::where('dimension', 'width 311 * height 311')->where('description','2nd row left sidebar')->where('page','Career')->where('status', 1)->limit(1)->get();
         $data['page'] = 'jobs.job-directory';
         return view('front_site.' . $data['page'])->with($data);
     }
@@ -59,23 +61,31 @@ class CareerController extends Controller
         }
 
         $data['cvs'] = $cvs;
+        $data['ads'] =  \App\Banner::where('dimension', 'width 311 * height 311')->where('description','1st row left sidebar')->where('page','Career')->where('status', 1)->limit(1)->get();
+        $data['ads1'] =  \App\Banner::where('dimension', 'width 311 * height 311')->where('description','2nd row left sidebar')->where('page','Career')->where('status', 1)->limit(1)->get();
         $data['page'] = 'jobs.cv-directory';
         return view('front_site.' . $data['page'])->with($data);
     }
 
     public function jobs_portal()
     {
-        $data['latest_jobs'] = \App\JobManagement::latest()->take(6)->get();
-        $data['jobs'] = JobManagement::all();
+        $data['latest_jobs'] = \App\JobManagement::latest()->take(6)->where('status',1)->get();
+        $data['jobs'] = JobManagement::where('status',1)->get();
         $data['page'] = 'jobs.job-portal';
         $country = new Countries();
         $data['countries'] = $country->all();
         $data['bfarea'] = \App\JobManagement::select('functional_area', DB::raw('count(*) as total'))
-            ->groupBy('functional_area')->orderBy('total','desc')->limit(10)->get();
+            ->groupBy('functional_area')->orderBy('total','desc')->limit(5)->where('status',1)->get();
+        $data['bfareaa'] = \App\JobManagement::select('functional_area', DB::raw('count(*) as total'))
+            ->groupBy('functional_area')->orderBy('total','desc')->skip(5)->limit(5)->where('status',1)->get();
         $data['bcity'] = \App\JobManagement::select('city', DB::raw('count(*) as total'))
-            ->groupBy('city')->orderBy('total','desc')->limit(10)->get();
+            ->groupBy('city')->orderBy('total','desc')->limit(5)->where('status',1)->get();
+        $data['bcityy'] = \App\JobManagement::select('city', DB::raw('count(*) as total'))
+            ->groupBy('city')->orderBy('total','desc')->skip(5)->limit(5)->where('status',1)->get();
         $data['bsector'] = \App\JobManagement::select('textile_sector', DB::raw('count(*) as total'))
-            ->groupBy('textile_sector')->orderBy('total','desc')->limit(10)->get();
+            ->groupBy('textile_sector')->orderBy('total','desc')->limit(5)->where('status',1)->get();
+        $data['bsectorr'] = \App\JobManagement::select('textile_sector', DB::raw('count(*) as total'))
+            ->groupBy('textile_sector')->orderBy('total','desc')->skip(5)->limit(5)->where('status',1)->get();
         return view('front_site.' . $data['page'])->with($data);
 
 
@@ -84,7 +94,7 @@ class CareerController extends Controller
     public function jobs_detail($id)
     {
         $data['jobsdet'] = \App\JobManagement::where('id',$id)->get();
-        $data['suggestions'] = JobManagement::where('functional_area','Like','%'.$data['jobsdet'][0]->functional_area.'%')->take(6)->get();
+        $data['suggestions'] = JobManagement::where('functional_area','Like','%'.$data['jobsdet'][0]->functional_area.'%')->take(6)->where('status',1)->get();
         $data['page'] = 'jobs.job-detail';
         return view('front_site.' . $data['page'])->with($data);
     }
@@ -103,24 +113,24 @@ class CareerController extends Controller
         $min = $request->query('min-value');
         $max = $request->query('max-value');
         $data['jobs'] = JobManagement::whereBetween('salary',[intval($min),intval($max)])
-                                ->when($request->title,function ($q)use($request){
-                                    $q->where('title','Like','%'.$request->title.'%');
-                                })
-                                ->when($request->functional_area,function ($q)use($request){
-                                    $q->where('functional_area',$request->functional_area);
-                                })
-                                ->when($request->textile_sector,function ($q)use($request){
-                                    $q->where('textile_sector',$request->textile_sector);
-                                })
-                                ->when($request->experience,function ($q)use($request){
-                                    $q->where('work_experience',$request->experience);
-                                })
-                                ->when($request->experience,function ($q)use($request){
-                                    $q->where('skills','Like','%'.$request->skills.'%');
-                                })
-                                ->when($request->job_type,function ($q)use($request){
-                                    $q->whereIn('job_type',$request->job_type);
-                                })->get();
+            ->when($request->title,function ($q)use($request){
+                $q->where('title','Like','%'.$request->title.'%');
+            })
+            ->when($request->functional_area,function ($q)use($request){
+                $q->where('functional_area',$request->functional_area);
+            })
+            ->when($request->textile_sector,function ($q)use($request){
+                $q->where('textile_sector',$request->textile_sector);
+            })
+            ->when($request->experience,function ($q)use($request){
+                $q->where('work_experience',$request->experience);
+            })
+            ->when($request->experience,function ($q)use($request){
+                $q->where('skills','Like','%'.$request->skills.'%');
+            })
+            ->when($request->job_type,function ($q)use($request){
+                $q->whereIn('job_type',$request->job_type);
+            })->where('status',1)->get();
 
         $data['page'] = 'jobs.job-directory';
         return view('front_site.' . $data['page'])->with($data);
