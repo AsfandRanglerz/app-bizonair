@@ -279,12 +279,13 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
                                             <input type="email" id="email" class="form-control" name="email"
-                                                   value="{{ old('email', $user->email) }}" placeholder="Email - example@gmail.com">
+                                                   value="{{ old('email', $user->email) }}" placeholder="Email * - example@gmail.com *">
                                             <small class="text-danger" id="email_error"></small>
                                         </div>
                                         <div class="form-group col-md-6 mb-1">
                                             <select id="designation" name='designation' class="form-control single-select-dropdown">
-                                                <option selected disabled>--- Select Designation (Optional) ---</option>
+                                                <option value=""></option>
+                                                <option disabled>Select Designation (Optional)</option>
                                                 <option value="Director"
                                                         @if($user->designation == "Director") selected @endif >Director
                                                 </option>
@@ -330,13 +331,13 @@
                                         <div class="form-group col-md-6 mb-1">
                                             <input type="text" class="form-control"
                                                    value="{{ old('first_name', $user->first_name) }}"
-                                                   placeholder="First Name" name="first_name" id="first_name">
+                                                   placeholder="First Name *" name="first_name" id="first_name">
                                             <small class="text-danger" id="first_name_error"></small>
                                         </div>
                                         <div class="form-group col-md-6 mb-1">
                                             <input type="text" name="last_name" class="form-control"
                                                    value="{{ old('last_name', $user->last_name) }}"
-                                                   placeholder="Last Name" id="last_name">
+                                                   placeholder="Last Name *" id="last_name">
                                             <small class="text-danger" id="last_name_error"></small>
                                         </div>
                                     </div>
@@ -422,6 +423,8 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <select name="category[]" class="form-control select2-multiple" id="category" multiple>
+                                                <option value=""></option>
+                                                <option disabled>Categories (Optional)</option>
                                                 <?php $userinterest = \App\UserInterest::where('user_id',auth()->id())->pluck('category_id')->toArray();?>
                                                 <option value="5" @if(in_array("5",$userinterest)) selected @endif>Fibers & Materials</option>
                                                 <option value="6" @if(in_array("6",$userinterest)) selected @endif>
@@ -526,8 +529,14 @@
             /*single select dropdown*/
             $('#category').select2({
                 closeOnSelect: true,
-                placeholder: "I am interested in Categories"
+                placeholder: "I am interested in Categories (Optional)"
             });
+
+            $('select[name=designation]').select2({
+                closeOnSelect: true,
+                placeholder: "Select Designation (Optional)"
+            });
+
             $('#country_id').select2({
                 closeOnSelect: true,
                 placeholder: "Select Country/Region *"

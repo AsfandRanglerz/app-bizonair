@@ -238,8 +238,8 @@
                                                     10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
-                                                    <div class="mx-0 row product-img-sheet">
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                    <div class="mx-0 row product-img-sheet specification-sheets">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image16"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -259,7 +259,7 @@
                                                                        id="sheet16_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image17"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -279,7 +279,7 @@
                                                                        id="sheet17_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image18"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -299,7 +299,7 @@
                                                                        id="sheet18_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image19"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -319,7 +319,7 @@
                                                                        id="sheet19_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image20"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -339,7 +339,7 @@
                                                                        id="sheet20_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image21"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -359,7 +359,7 @@
                                                                        id="sheet21_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image22"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -379,7 +379,7 @@
                                                                        id="sheet22_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image23"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -399,7 +399,7 @@
                                                                        id="sheet23_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image24"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -419,7 +419,7 @@
                                                                        id="sheet24_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image25"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -439,7 +439,7 @@
                                                                        id="sheet25_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image26"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -459,7 +459,7 @@
                                                                        id="sheet26_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image27"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -479,7 +479,7 @@
                                                                        id="sheet27_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image28"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -499,7 +499,7 @@
                                                                        id="sheet28_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image29"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -519,7 +519,7 @@
                                                                        id="sheet29_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image30"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -541,6 +541,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="px-1 pb-1 text-right">
+                                                    <a role="button" class="red-btn" id="addSpecImgAvatar"><span class="fa fa-plus mr-1 position-static" style="font-size: 8px;opacity: 1"></span>Add More</a>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
@@ -552,8 +555,8 @@
                                                     10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
-                                                    <div class="mx-0 row product-img-sheet">
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                    <div class="mx-0 row product-img-sheet product-images">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image1"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -572,7 +575,7 @@
                                                                        id="avatar1_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image2"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -591,7 +594,7 @@
                                                                        id="avatar2_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image3"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -610,7 +613,7 @@
                                                                        id="avatar3_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image4"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -629,7 +632,7 @@
                                                                        id="avatar4_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image5"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -648,7 +651,7 @@
                                                                        id="avatar5_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image6"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -667,7 +670,7 @@
                                                                        id="avatar6_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image7"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -686,7 +689,7 @@
                                                                        id="avatar7_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image8"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -705,7 +708,7 @@
                                                                        id="avatar8_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image9"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -724,7 +727,7 @@
                                                                        id="avatar9_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image10"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -743,7 +746,7 @@
                                                                        id="avatar10_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image11"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -762,7 +765,7 @@
                                                                        id="avatar11_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image12"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -781,7 +784,7 @@
                                                                        id="avatar12_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image13"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -800,7 +803,7 @@
                                                                        id="avatar13_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image14"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -819,7 +822,7 @@
                                                                        id="avatar14_url"/>
                                                             </div>
                                                         </div>
-                                                        <div class="my-1 px-1 col-md-2 col-3">
+                                                        <div class="my-1 px-1 col-md-2 col-3 product-item-avatar">
                                                             <div class="w-100 avatar-wrapper">
                                                                 <img class="product-pic" id="uploaded_image15"
                                                                      src="{{$ASSET}}/front_site/images/preview.svg"/>
@@ -839,7 +842,9 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                </div>
+                                                <div class="px-1 pb-1 text-right">
+                                                    <a role="button" class="red-btn" id="addProdImgAvatar"><span class="fa fa-plus mr-1 position-static" style="font-size: 8px;opacity: 1"></span>Add More</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -3535,17 +3540,16 @@
             /*for select single place holders*/
 
             /*for select multiple place holders*/
-
             $('#service_durations').select2({
                 placeholder: "Service Duration *"
             });
 
             $('.select-suitable-type').select2({
-                placeholder: "Select Dealing As"
+                placeholder: "Select Dealing As *"
             });
 
             $('.select-target-country').select2({
-                placeholder: "Select Target Country"
+                placeholder: "Select Target Country *"
             });
 
             $('.select-suitable-currency').select2({
