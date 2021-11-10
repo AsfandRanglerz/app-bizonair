@@ -16,22 +16,22 @@
                         <input type="hidden" class="form-control" name="verifyOtp" value="{{$code}}">
                     <div class="row mx-0">
                         <div class="col-2 px-1">
-                            <input type="text" maxLength="1" name="digit-1" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
+                            <input type="text" maxLength="1" name="digit_1" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
                         </div>
                         <div class="col-2 px-1">
-                            <input type="text" maxLength="1" name="digit-2" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
+                            <input type="text" maxLength="1" name="digit_2" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
                         </div>
                         <div class="col-2 px-1">
-                            <input type="text" maxLength="1" name="digit-3" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
+                            <input type="text" maxLength="1" name="digit_3" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
                         </div>
                         <div class="col-2 px-1">
-                            <input type="text" maxLength="1" name="digit-4" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
+                            <input type="text" maxLength="1" name="digit_4" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
                         </div>
                         <div class="col-2 px-1">
-                            <input type="text" maxLength="1" name="digit-5" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
+                            <input type="text" maxLength="1" name="digit_5" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
                         </div>
                         <div class="col-2 px-1">
-                            <input type="text" maxLength="1" name="digit-6" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
+                            <input type="text" maxLength="1" name="digit_6" size="1" min="0" max="9" pattern="[0-9]{1}" class="form-control verify-field" />
                         </div>
                     </div>
 
@@ -58,13 +58,13 @@
                          style="display:none;"
                          role="alert">
                     </div>
-                    <p class="mt-3 mb-0">Didn't receive the code?</p>
+                    <p class="mt-3 mb-0 text-center">Didn't receive the code?</p>
                     <form id="resendotp" method="POST" action="{{route('get-email-verification-code')}}">
                         @csrf
                         <input type="hidden" name="email" value="{{request()->email}}">
-
-                        <p class="mb-0"><input type="submit" value="Send code again" class="red-link"></p>
-                        {{--                        <p class="mb-0"><a href="#" class="red-link">Change phone number</a></p>--}}
+                        <div align="center">
+                            <button type="submit" class="red-btn">Send code again</button>
+                        </div>
                     </form>
                 </div>
         </main>

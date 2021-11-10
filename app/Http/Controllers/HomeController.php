@@ -110,7 +110,7 @@ class HomeController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $userinpcode = $request->get('digit-1').$request->get('digit-2').$request->get('digit-3').$request->get('digit-4').$request->get('digit-5').$request->get('digit-6');
+        $userinpcode = $request->get('digit_1').$request->get('digit_2').$request->get('digit_3').$request->get('digit_4').$request->get('digit_5').$request->get('digit_6');
         if($request->get('token') == $userinpcode) {
             $rules = [
                 'email' => 'required|email|exists:users',
@@ -219,7 +219,7 @@ class HomeController extends Controller
 
     public function check_verification_code(Request $request)
     {
-        $userinpcode = $request->get('digit-1').$request->get('digit-2').$request->get('digit-3').$request->get('digit-4').$request->get('digit-5').$request->get('digit-6');
+        $userinpcode = $request->get('digit_1').$request->get('digit_2').$request->get('digit_3').$request->get('digit_4').$request->get('digit_5').$request->get('digit_6');
         if($request->get('verifyOtp') == $userinpcode)
         {
             if (Session::has('verified_email')) {

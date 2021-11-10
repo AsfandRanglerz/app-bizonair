@@ -114,9 +114,9 @@
                                                 <small class="text-danger" id="birthday_error"></small>
                                             </div>
                                         </div>
-                                        <div class="mx-0 w-100 form-row user-type-section">
-                                            <h6 class="w-100 pl-0">Gender <span class="required">*</span></h6>
-                                            <div class="custom-control custom-radio custom-control-inline flex-column-reverse">
+                                        <div class="mx-0 mb-1 w-100 user-type-section">
+                                            <h6 class="w-100 pl-0 mb-0">Gender <span class="required">*</span></h6>
+                                            <div class="custom-control custom-radio custom-control-inline">
                                                 <input type="radio" id="exampleRadios1" name="gender" value="Male" class="custom-control-input" required>
                                                 <label class="custom-control-label" for="exampleRadios1">Male</label>
                                             </div>
@@ -409,6 +409,9 @@
                     if (elem.hasClass("select2-hidden-accessible")) {
                         element = elem.closest('.form-row').find('.select2-container--default');
                         error.insertAfter(element);
+                    } else if (elem.attr('name') == 'gender') {
+                        element2 = $('#gender_error');
+                        error.insertAfter(element2);
                     } else if (elem.hasClass('birthday')) {
                         element = elem.closest('.form-group').find('.date-dropdowns');
                         error.insertAfter(element);

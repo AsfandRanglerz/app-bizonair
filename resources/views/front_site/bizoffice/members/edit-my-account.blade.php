@@ -365,21 +365,23 @@
                                         </div>
                                     @endif
                                     <label class="font-500">Gender <span class="required">*</span></label>
-                                    <div class="my-1 d-flex flex-row">
-                                        <div class="form-check form-check-inline custom-control custom-radio d-sm-inline">
-                                            <input type="radio" class="custom-control-input" name="gender" id="male"
-                                                   value="Male" @if(is_null($user->gender)) checked @elseif($user->gender == "Male") checked @endif>
-                                            <label class="custom-control-label" for="male">Male</label>
-                                        </div>
-                                        <div class="form-check form-check-inline custom-control custom-radio d-sm-inline">
-                                            <input type="radio" class="custom-control-input" name="gender" id="female"
-                                                   value="Female" @if($user->gender == "Female") checked @endif>
-                                            <label class="custom-control-label" for="female">Female</label>
+                                    <div class="my-1">
+                                        <div class="d-flex">
+                                            <div class="form-check form-check-inline custom-control custom-radio d-sm-inline">
+                                                <input type="radio" class="custom-control-input" name="gender" id="male"
+                                                       value="Male" @if(is_null($user->gender)) checked @elseif($user->gender == "Male") checked @endif>
+                                                <label class="custom-control-label" for="male">Male</label>
+                                            </div>
+                                            <div class="form-check form-check-inline custom-control custom-radio d-sm-inline">
+                                                <input type="radio" class="custom-control-input" name="gender" id="female"
+                                                       value="Female" @if($user->gender == "Female") checked @endif>
+                                                <label class="custom-control-label" for="female">Female</label>
+                                            </div>
                                         </div>
                                         <small class="text-danger" id="gender_error"></small>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 mb-1">
+                                        <div class="form-group col-md-6 mb-1 d-flex flex-column-reverse">
                                             <select name="country" id="country_id" class="form-control single-select-dropdown"
                                                     required="required">
                                                 <option value=""></option>
@@ -390,7 +392,7 @@
                                             </select>
                                             <small class="text-danger" id="country_error"></small>
                                         </div>
-                                        <div class="form-group col-md-6 mb-1">
+                                        <div class="form-group col-md-6 mb-1 d-flex flex-column-reverse">
                                             <select name="state" id="state" required
                                                     class="form-control single-select-dropdown">
                                                 <option value=""></option>
@@ -401,7 +403,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 mb-1">
+                                        <div class="form-group col-md-6 mb-1 d-flex flex-column-reverse">
                                             <select name="city" id="city" required class="form-control single-select-dropdown">
                                                 <option value=""></option>
                                                 <option disabled>City *</option>
@@ -612,7 +614,12 @@
                     if (elem.hasClass('form-check-input')) {
                         var element2 = elem.closest('.form-group').find('.form-check-inline:last');
                         error.insertAfter(element2);
-                    } else if (elem.hasClass('inteltel')) {
+                    }
+                    else if (elem.attr('name') == 'gender') {
+                        element2 = $('#gender_error');
+                        error.insertAfter(element2);
+                    }
+                    else if (elem.hasClass('inteltel')) {
                         var element2 = elem.closest('.iti');
                         error.insertAfter(element2);
                     } else {

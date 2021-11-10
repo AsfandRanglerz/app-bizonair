@@ -35,13 +35,18 @@
                 <input type="email" class="form-control" name="email" id="email" placeholder="Email-example@gmail.com">
                 <small class="text-white" id="email_error"></small>
             </div>
-            <div class="form-group">
-                <div class="position-relative d-flex align-items-center">
-                    <input type="password" name="password" id="password" class="form-control pr-4" placeholder="Password">
-                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                </div>
+            <div class="form-group position-relative login-password">
+                <input type="password" name="password" id="password" class="form-control d-inline-block" placeholder="Password" value="@if(isset($_COOKIE["member_password"])){{$_COOKIE["member_password"]}}@endif">
+                <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 <small class="text-white" id="password_error"></small>
             </div>
+{{--            <div class="form-group">--}}
+{{--                <div class="position-relative d-flex align-items-center">--}}
+{{--                    <input type="password" name="password" id="password" class="form-control pr-4" placeholder="Password">--}}
+{{--                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>--}}
+{{--                </div>--}}
+{{--                <small class="text-white" id="password_error"></small>--}}
+{{--            </div>--}}
             <div class="form-group text-center mb-0">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="remember" name="remember">
@@ -60,7 +65,7 @@
 @push('js')
     <script>
         $(document).ready(function () {
-            var validator = $("form[name='loginForm']").validate({
+            var validator = $("form[name='Login']").validate({
                 onfocusout: function (element) {
                     var $element = $(element);
                     if ($element.prop('required')) {

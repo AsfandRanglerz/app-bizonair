@@ -69,7 +69,7 @@
                                                            value="{{ old('email') }}"
                                                            @endif
                                                            name="email"
-                                                           id="email" class="form-control h-100"
+                                                           id="email" class="form-control"
                                                            placeholder="example@email.com" required>
                                                 </div>
                                                 <div class="form-group col-xl-3 col-lg-4 mb-md-3 mb-0" align="center">
@@ -121,6 +121,25 @@
 
     <script>
         $(document).ready(function () {
+            $("#emailConfirmationForm").validate({
+                onkeyup: function (element) {
+                    var $element = $(element);
+                    $element.valid();
+                },
+                rules: {
+                    email: {
+                        required: true
+                    },
+                },
+                messages: {
+                    email: {
+                        required: "Email is required",
+                        email: "Please enter a valid email"
+                    },
+                },
+                errorClass: 'is-invalid error',
+                validClass: 'is-valid'
+            });
             //     $(document).on("click","#code",function() {
             //         var email = $('#email').val();
             //         // alert(email);

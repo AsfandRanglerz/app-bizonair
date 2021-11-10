@@ -35,6 +35,26 @@
 
     <script>
         $(document).ready(function () {
+            $("#sendEmail").validate({
+                onkeyup: function (element) {
+                    var $element = $(element);
+                    $element.valid();
+                },
+                rules: {
+                    email: {
+                        required: true
+                    },
+                },
+                messages: {
+                    email: {
+                        required: "Email is required",
+                        email: "Please enter a valid email"
+                    },
+                },
+                errorClass: 'is-invalid error',
+                validClass: 'is-valid'
+            });
+
             var options = {
                 dataType: 'Json',
                 beforeSubmit: function (arr, $form) {
