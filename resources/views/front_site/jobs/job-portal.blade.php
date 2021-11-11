@@ -497,40 +497,58 @@
                     <div class="col-xl-4 col-sm-6 order-xl-1 order-1 job-func-loc">
                         <h3 class="text-center my-2 heading">Jobs by Functional Area</h3>
                         <div class="area-loc-section">
-                            @foreach($bfarea as $funarea)
-                                <?php $jobsbyfarea = \App\JobManagement::where('functional_area',$funarea->functional_area)->count();?>
-                                <a href="{{ route('jobs-directory').'?byfunction='.$funarea->functional_area }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$funarea->functional_area}}</p>" data-toggle="tooltip">{{$funarea->functional_area}}  ({{$jobsbyfarea}})</a>
-                            @endforeach
-                            @foreach($bfareaa as $funarea)
-                                <?php $jobsbyfarea = \App\JobManagement::where('functional_area',$funarea->functional_area)->count();?>
-                               <a href="{{ route('jobs-directory').'?byfunction='.$funarea->functional_area }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$funarea->functional_area}}</p>" data-toggle="tooltip">{{$funarea->functional_area}}  ({{$jobsbyfarea}})</a>
-                            @endforeach
+                            <div class="m-0 row">
+                                <div class="col-6">
+                                    @foreach($bfarea as $funarea)
+                                        <?php $jobsbyfarea = \App\JobManagement::where('functional_area',$funarea->functional_area)->count();?>
+                                        <div><a href="{{ route('jobs-directory').'?byfunction='.$funarea->functional_area }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$funarea->functional_area}}</p>" data-toggle="tooltip">{{$funarea->functional_area}}  ({{$jobsbyfarea}})</a></div>
+                                    @endforeach
+                                </div>
+                                <div class="col-6">
+                                    @foreach($bfareaa as $funarea)
+                                        <?php $jobsbyfarea = \App\JobManagement::where('functional_area',$funarea->functional_area)->count();?>
+                                       <div><a href="{{ route('jobs-directory').'?byfunction='.$funarea->functional_area }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$funarea->functional_area}}</p>" data-toggle="tooltip">{{$funarea->functional_area}}  ({{$jobsbyfarea}})</a></div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-xl-4 col-sm-12 order-xl-2 order-3 job-func-loc">
                         <h3 class="text-center mt-xl-0 my-2 heading">Jobs by Sector</h3>
                         <div class="area-loc-section">
-                            @foreach($bsector as $tsector)
-                                <?php $jobsbysctr = \App\JobManagement::where('textile_sector',$tsector->textile_sector)->count();?>
-                                <a href="{{ route('jobs-directory').'?bysector='.$tsector->textile_sector }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$tsector->textile_sector}}</p>" data-toggle="tooltip">{{$tsector->textile_sector}}  ({{$jobsbysctr}})</a>
-                            @endforeach
-                            @foreach($bsectorr as $tsector)
-                                <?php $jobsbysctr = \App\JobManagement::where('textile_sector',$tsector->textile_sector)->count();?>
-                                <a href="{{ route('jobs-directory').'?bysector='.$tsector->textile_sector }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$tsector->textile_sector}}</p>" data-toggle="tooltip">{{$tsector->textile_sector}}  ({{$jobsbysctr}})</a>
-                            @endforeach
+                            <div class="m-0 row">
+                                <div class="col-6">
+                                    @foreach($bsector as $tsector)
+                                        <?php $jobsbysctr = \App\JobManagement::where('textile_sector',$tsector->textile_sector)->count();?>
+                                        <div><a href="{{ route('jobs-directory').'?bysector='.$tsector->textile_sector }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$tsector->textile_sector}}</p>" data-toggle="tooltip">{{$tsector->textile_sector}}  ({{$jobsbysctr}})</a></div>
+                                    @endforeach
+                                </div>
+                                <div class="col-6">
+                                    @foreach($bsectorr as $tsector)
+                                        <?php $jobsbysctr = \App\JobManagement::where('textile_sector',$tsector->textile_sector)->count();?>
+                                        <div><a href="{{ route('jobs-directory').'?bysector='.$tsector->textile_sector }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$tsector->textile_sector}}</p>" data-toggle="tooltip">{{$tsector->textile_sector}}  ({{$jobsbysctr}})</a></div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-xl-4 col-sm-6 order-xl-3 order-1 job-func-loc">
                         <h3 class="text-center mt-sm-0 my-2 heading">Jobs by Location</h3>
                         <div class="area-loc-section">
-                            @foreach($bcity as $bycity)
-                                <?php $jobsbycity = \App\JobManagement::where('city',$bycity->city)->count();?>
-                               <a href="{{ route('jobs-directory').'?bylocation='.$bycity->city }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$bycity->city}}</p>" data-toggle="tooltip">{{$bycity->city}}  ({{$jobsbycity}})</a>
-                            @endforeach
-                            @foreach($bcityy as $bycity)
-                                <?php $jobsbycity = \App\JobManagement::where('city',$bycity->city)->count();?>
-                                <a href="{{ route('jobs-directory').'?bylocation='.$bycity->city }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$bycity->city}}</p>" data-toggle="tooltip">{{$bycity->city}}  ({{$jobsbycity}})</a>
-                            @endforeach
+                            <div class="m-0 row">
+                                <div class="col-6">
+                                    @foreach($bcity as $bycity)
+                                        <?php $jobsbycity = \App\JobManagement::where('city',$bycity->city)->count();?>
+                                       <div><a href="{{ route('jobs-directory').'?bylocation='.$bycity->city }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$bycity->city}}</p>" data-toggle="tooltip">{{$bycity->city}}  ({{$jobsbycity}})</a></div>
+                                    @endforeach
+                                </div>
+                                <div class="col-6">
+                                    @foreach($bcityy as $bycity)
+                                        <?php $jobsbycity = \App\JobManagement::where('city',$bycity->city)->count();?>
+                                        <div><a href="{{ route('jobs-directory').'?bylocation='.$bycity->city }}" class="link text-capitalize biz-btn-tooltip" data-placement="bottom" title="<p class='mb-1'>{{$bycity->city}}</p>" data-toggle="tooltip">{{$bycity->city}}  ({{$jobsbycity}})</a></div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

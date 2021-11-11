@@ -2820,8 +2820,6 @@ ul li input[type=checkbox] {
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
     border-radius: 5px;
     padding: 20px;
-    display: grid;
-    grid-template-columns: 50% 50%;
     background: #FFF;
 }
 
@@ -9473,7 +9471,7 @@ header .navbar .navbar-toggler {
     }
 
     .area-loc-section {
-        grid-template-columns: 50% 50%;
+
         padding: 4px;
     }
 

@@ -65,7 +65,7 @@
                         <img src="{{ $article->image }}">
                         @endif
                         <div class="mb-0 textile-caption">
-                            <span>{{$article->journal_type_name}} | {{date("d-F-Y", strtotime($article->created_at))}}</span>
+                            <span>{{$article->journal_type_name}} | {{date("d-F-Y", strtotime($article->publish_date))}}</span>
                             <p class="overflow-text-dots">{{substr_replace($article->title, "...", 50) }}</p>
                         </div>
                     </a>

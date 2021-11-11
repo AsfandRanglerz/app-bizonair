@@ -56,7 +56,7 @@
                                                     <img src="{{$ASSET}}/front_site/images/noimage.png" class="articles-img">
                                                 @endif
                                                 <div class="d-flex flex-column articles-info-inner">
-                                                    <span class="pl-3 articles-date">{{\Carbon\Carbon::parse($post->publish_date)->format('M d, Y')}}</span>
+                                                    <span class="pl-3 articles-date">{{date("d-F-Y", strtotime($post->publish_date))}}</span>
                                                     <p class="pl-3 mb-0 title overflow-text-dots">{{ucwords($post->title)}}</p>
                                                 </div>
                                             </div>
@@ -79,7 +79,7 @@
                                                     <img src="{{$ASSET}}/front_site/images/noimage.png" class="articles-img">
                                                 @endif
                                                 <div class="d-flex flex-column articles-info-inner">
-                                                    <span class="pl-3 articles-date">{{\Carbon\Carbon::parse($post->publish_date)->format('M d, Y')}}</span>
+                                                    <span class="pl-3 articles-date">{{date("d-F-Y", strtotime($post->publish_date))}}</span>
                                                     <p class="pl-3 mb-0 title overflow-text-dots">{{ucwords($post->title)}}</p>
                                                 </div>
                                             </div>

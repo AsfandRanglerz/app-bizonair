@@ -74,12 +74,12 @@
                             <a href="{{route('journal-detail',['type'=>$post->journal_type_name,'id'=>$post->id])}}" class="text-decoration-none text-reset">
                                 <div class="d-flex articles-block">
                                     @if(isset($post->image))
-                                        <img src="{{$ASSET}}/front_site/blogs/{{$post->image}}" class="articles-img">
+                                        <img src="{{$post->image}}" class="articles-img">
                                     @else
                                         <img src="{{$ASSET}}/front_site/images/noimage.png" class="articles-img">
                                     @endif
                                     <div class="d-flex flex-column articles-info-inner">
-                                        <span class="pl-3 articles-date">{{\Carbon\Carbon::parse($post->publish_date)->format('M d, Y')}}</span>
+                                        <span class="pl-3 articles-date">{{date("d-F-Y", strtotime($post->publish_date))}}</span>
                                         <p class="pl-3 mb-0 title overflow-text-dots">{{ucwords($post->title)}}</p>
                                     </div>
                                 </div>
@@ -110,7 +110,7 @@
                                                 <img src="{{$ASSET}}/front_site/images/noimage.png" class="articles-img">
                                             @endif
                                             <div class="d-flex flex-column articles-info-inner">
-{{--                                                <span class="pl-3 articles-date">{{\Carbon\Carbon::parse($post->publish_date)->format('M d, Y')}}</span>--}}
+                                                <span class="pl-3 articles-date">{{date("d-F-Y", strtotime($post->publish_date))}}</span>
                                                 <p class="pl-3 mb-0 title overflow-text-dots">{{ucwords($post->title)}}</p>
                                             </div>
                                         </div>
