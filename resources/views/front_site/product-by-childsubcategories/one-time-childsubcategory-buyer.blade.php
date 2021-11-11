@@ -18,6 +18,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{URL::to('/')}}">Home</a></li>
                         <li class="breadcrumb-item"><a href="{{ url('business-products/fibers-and-materials') }}">Textile Business</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('business-products/'.$category->slug) }}">{{ucfirst($category->name)}}</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><a href="{{ url('business-products/'.$category->slug.'/'.$sub_category->slug.'/one-time-buyers') }}">{{ucfirst($sub_category->name)}}</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><a href="{{Request::url()}}">{{ucfirst($childsubcategory->name)}}</a></li>
                     </ol>

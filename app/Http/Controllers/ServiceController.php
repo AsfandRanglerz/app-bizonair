@@ -6,13 +6,12 @@ use App\Product;
 use App\Category;
 use App\Subcategory;
 use App\View;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use PragmaRX\Countries\Package\Countries;
 
 class ServiceController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -29,7 +28,7 @@ class ServiceController extends Controller
         $this->_subcategory = $subcategory;
     }
 
-     public function service_list_by_category($slug)
+    public function service_list_by_category($slug)
     {
         $cat = \App\Category::where('slug', $slug)->where('type', 'Services')->first();
         $subcategories = \App\Subcategory::where('category_id',$cat->id)->get();
@@ -50,9 +49,9 @@ class ServiceController extends Controller
 
 //        $company_ids = Product::where('product_service_types', 'Service')->where('category_id', $cat->id)->distinct('company_id')->get()->pluck('company_id');
 //        $companies = \App\CompanyProfile::whereIn('id',$company_ids)->get();
-         $companies = \App\CompanyProfile::whereHas('industry',function ($q) use($cat){
-             $q->where('categories.id',$cat->id);
-         })->get();
+        $companies = \App\CompanyProfile::whereHas('industry',function ($q) use($cat){
+            $q->where('categories.id',$cat->id);
+        })->get();
 
         $ads = \App\Banner::where('dimension', 'width 1146 * height 161')->where('description','1st image')->where('page','Textile Service')->where('status', 1)->limit(1)->get();
         $textile_partners = \App\TextilePartner::all();
@@ -86,8 +85,10 @@ class ServiceController extends Controller
 
             $sdfc = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Service')->where('subcategory_id',$product->subcategory_id)->where('origin', $product->origin)->with('product_image')->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
             $cats = \App\Category::where('type', 'Services')->get();
-            $ads = \App\Banner::where('dimension', 'width 300 * height 477')->where('description','1st row right sidebar')->where('page','Textile Services Detail')->where('status', 1)->limit(1)->get();
-            return view('front_site.product.service-regular-detail', $data, compact('category','subcategory','slug','cats', 'product', 'osdts', 'ssdos','sdfc','ads'));
+
+            $ads = \App\Banner::where('dimension', 'width 295 * height 295')->where('description','1st row right sidebar')->where('page','Textile Services Detail')->where('status', 1)->limit(1)->get();
+            $ads1 = \App\Banner::where('dimension', 'width 295 * height 295')->where('description','2nd row right sidebar')->where('page','Textile Services Detail')->where('status', 1)->limit(1)->get();
+            return view('front_site.product.service-regular-detail', $data, compact('category','subcategory','slug','cats', 'product', 'osdts', 'ssdos','sdfc','ads','ads1'));
 
         }else{
             $product = \DB::table('buy_sells')->where('slug', $slug)->first();
@@ -107,8 +108,9 @@ class ServiceController extends Controller
 
             $sdfc = \DB::table('buy_sells')->select('buy_sells.*', 'buy_sells.created_at as creation_date')->where('date_expire','>', now())->where('product_service_types', 'Service')->where('subcategory_id',$product->subcategory_id)->where('origin', $product->origin)->whereNull('deleted_at')->where('id','!=',$product->id)->latest()->paginate(15);
             $cats = \App\Category::where('type', 'Services')->get();
-            $ads = \App\Banner::where('dimension', 'width 300 * height 477')->where('description','1st row right sidebar')->where('page','Textile Services Detail')->where('status', 1)->limit(1)->get();
-            return view('front_site.product.service-onetime-detail', $data, compact('category','subcategory','slug','cats', 'product', 'osdts', 'ssdos','sdfc','ads'));
+            $ads = \App\Banner::where('dimension', 'width 295 * height 295')->where('description','1st row right sidebar')->where('page','Textile Services Detail')->where('status', 1)->limit(1)->get();
+            $ads1 = \App\Banner::where('dimension', 'width 295 * height 295')->where('description','2nd row right sidebar')->where('page','Textile Services Detail')->where('status', 1)->limit(1)->get();
+            return view('front_site.product.service-onetime-detail', $data, compact('category','subcategory','slug','cats', 'product', 'osdts', 'ssdos','sdfc','ads','ads1'));
 
         }
 
@@ -172,10 +174,15 @@ class ServiceController extends Controller
         $categories = $this->_category->getAllCompanies();
         $cats = \App\Category::where('type', 'Services')->orderBy('priority')->get();
 
-        $toptensellproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->where('category_id', $cat->id)->where('product_service_types', 'Service')->with('product_image')->whereNull('deleted_at')->orderBy('is_featured','DESC')->latest()->limit(6)->get();
-        $top_6 = array_unique(\Arr::pluck($toptensellproduct,'id'));
-        $topsellproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->where('category_id', $cat->id)->whereNotIn('id',$top_6)->where('product_service_types', 'Service')->with('product_image')->whereNull('deleted_at')->get();
-
+        if(str_contains(url()->full(), '?status=all')){
+            $toptensellproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->where('product_service_types', 'Service')->with('product_image')->whereNull('deleted_at')->orderBy('is_featured','DESC')->latest()->limit(6)->get();
+            $top_6 = array_unique(\Arr::pluck($toptensellproduct,'id'));
+            $topsellproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->whereNotIn('id',$top_6)->where('product_service_types', 'Service')->with('product_image')->whereNull('deleted_at')->get();
+        }else{
+            $toptensellproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->where('category_id', $cat->id)->where('product_service_types', 'Service')->with('product_image')->whereNull('deleted_at')->orderBy('is_featured','DESC')->latest()->limit(6)->get();
+            $top_6 = array_unique(\Arr::pluck($toptensellproduct,'id'));
+            $topsellproduct = \App\Product::select('products.*', 'products.created_at as creation_date')->where('category_id', $cat->id)->whereNotIn('id',$top_6)->where('product_service_types', 'Service')->with('product_image')->whereNull('deleted_at')->get();
+        }
         $topcompanies = \App\CompanyProfile::whereHas('industry',function ($q) use($cat){
             $q->where('categories.id',$cat->id);
         })->limit(2)->latest()->get();
@@ -217,9 +224,12 @@ class ServiceController extends Controller
         return view('front_site.view-all.view-all-service-deals', compact('textile_partners','topcompanies','companies','cats','buyselltopten_selling', 'buysell_selling', 'subcategories', 'urlslug', 'categories'));
     }
 
-    public function view_all_companies()
+    public function view_all_companies($slug)
     {
-        $allcompanies = \App\CompanyProfile::all();
+        $cat = \App\Category::where('slug', $slug)->first();
+        $allcompanies = \App\CompanyProfile::whereHas('industry',function ($q) use($cat){
+            $q->where('categories.id',$cat->id);
+        })->latest()->get();
         return view('front_site.view-all.view-all-companies', compact('allcompanies'));
     }
 

@@ -60,7 +60,7 @@
                                               <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
                                           @endif
                                           <div class="form-group mt-4 mb-0">
-                                              <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$product->id}}" product_service_name="{{$product->product_service_name}}" product_service_types="{{$product->product_service_types}}" reference_no="{{$product->reference_no}}"  @else class="red-btn" data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif type="submit">Yes</button>
+                                              <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$product->id}}" product_service_name="{{$product->product_service_name}}" product_service_types="{{$product->product_service_types}}" reference_no="{{$product->reference_no}}"  @else class="red-btn" onclick="location.href='{{ route('log-in-pre') }}'" @endif type="submit">Yes</button>
                                               <button class="red-btn" data-dismiss="modal" aria-hidden="true">No</button>
 
                                           </div>
@@ -204,7 +204,7 @@
                   </div>
                   <div class="col-xl-3 col-lg-12 p-0">
                       <div class="d-flex justify-content-end text-right mb-1 px-1">
-                          <a href="{{ route('products.create') }}" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif class="red-btn py-1 px-2 text-uppercase">Post Your Service Lead</a>
+                          <a @if(!Auth::check()) href="{{ route('log-in-pre') }}" @else href="{{ route('products.create') }}" @endif class="red-btn py-1 px-2 text-uppercase">Post Your Service Lead</a>
                       </div>
                       @if(auth()->user())
                           <div class="supplier-info">
@@ -216,14 +216,17 @@
                                       </a>
                                   </div>
                               </div>
-                              <small class="overflow-text-dots-one-line"><span class="font-500">Supplier Name:</span><span><a href="{{route('about-us-suppliers',$product->company_id)}}" class="text-reset"> {{get_product_company($product->company_id)}}</a></span></small>
+                              <small class="overflow-text-dots-one-line"><span class="font-500">Supplier Name:</span><span><a href="{{route('about-us-suppliers',['id'=>$product->company_id,'company'=>getCompanyName($product->company_id)])}}" class="text-reset"> {{get_product_company($product->company_id)}}</a></span></small>
                               <small class="d-block grey-text font-500">{{get_product_city($product->company_id)}}, {{get_product_country($product->company_id)}}</small>
+                              <?php $contact = \App\CompanyProfile::where('id',$product->company_id)->first();  ?>
+                              @if($contact)
                               <small class="d-flex mb-1 grey-text number-content">
                                   <span class="font-500">Contact:</span>
                                   <span class="d-inline-block mx-1 show">***********</span>
-                                  <span class="d-none mx-1 hidden">{{ $product->phone??'' }}</span>
+                                  <span class="d-none mx-1 hidden">@if($contact->alternate_contact) {{$contact->alternate_contact}} @else {{get_product_contact_no($product->company_id)}} @endif</span>
                                   <span class="cursor-pointer blue-color font-500 hide-show-number" style="border-bottom: 1px dashed">Show</span>
                               </small>
+                              @endif
                               <p class="add-connect"><span class="fa fa-address-book" aria-hidden="true"></span><a class="text-decoration-none text-reset" title="We are working on this feature and will enable this soon" data-toggle="tooltip" data-placement="bottom">Add To My Connection</a></p>
                               <div id="add-connection" class="change-password-modal modal fade">
                                   <div class="modal-dialog modal-dialog-centered modal-login">
@@ -244,7 +247,7 @@
                               <div class="login-info">
                                   <span class="fa fa-exclamation"></span>
                                   <div class="login-info-inner">
-                                      <p><a href="" data-toggle="modal" data-target="#login-form" class="font-500 register-text">Log in</a> To View More Information.
+                                      <p><a href="{{route('log-in-pre')}}" data-toggle="modal" data-target="#login-form" class="font-500 register-text">Log in</a> To View More Information.
                                       <span class="font-500" style="color: #000">Not a member? </span><a href="{{route('email-confirmation')}}" target="_blank" class="font-500 register-text">Register Now!</a></p>
                                   </div>
                               </div>
@@ -300,23 +303,29 @@
                                           <p class="mb-0">{{ $product->subject }}</p>
                                       </div>
                                   </div>
-                                  @if($product->keywords != "")
                                       <div class="row text mx-0">
                                           <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                               <span><b>Additional Keyword :</b></span>
                                           </div>
                                           <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                              <p class="mb-0">{{rtrim($product->keywords,',') }}</p>
+                                              @if(!empty($product->keyword1 && $product->keyword2 && $product->keyword3))
+                                                  <p class="mb-0"> {{ $product->keyword1.' , '.$product->keyword2.' , '.$product->keyword3 }}</p>
+                                              @elseif(!empty($product->keyword1 && $product->keyword2))
+                                                  <p class="mb-0"> {{ $product->keyword1.' , '.$product->keyword2 }}</p>
+                                              @elseif(!empty($product->keyword1))
+                                                  <p class="mb-0"> {{ $product->keyword1 }}</p>
+                                              @else
+                                                  <p class="mb-0"> - </p>
+                                              @endif
                                           </div>
                                       </div>
-                                  @endif
                                   <div class="row text mx-0">
                                       <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                           <span><b>Additional Info : </b></span>
                                       </div>
                                       <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                           @if ($product->details)
-                                              <p class="mb-0">{{ $product->details }}</p>
+                                              <p class="mb-0">{!! $product->details !!}</p>
                                           @else
                                               <p class="mb-0">-</p>
                                           @endif
@@ -334,7 +343,7 @@
                                               <p class="mb-0">
                                                   @if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }}
                                                   @else {{$product->suitable_currencies }} @endif
-                                                  {{ moneyFormat($product->unit_price_from) }} - {{ moneyFormat($product->unit_price_to) }} Per {{ $product->other_unit_price_unit }}
+                                                  {{ floor(number_format($product->unit_price_from,2)) }} - {{ floor(number_format($product->unit_price_to,2)) }} Per {{ $product->other_unit_price_unit }}
                                               </p>
                                           </div>
                                       </div>
@@ -493,6 +502,11 @@
                   </div>
                   <div class="col-xl-3 col-lg-4 col-md-4 mt-sm-0 mt-3">
                       @foreach($ads as $ad)
+                          <a href="{{ $ad->link }}" class="text-decoration-none">
+                              <img src="{{ $ad->image }}" class="w-100 h-100 right-side-img">
+                          </a>
+                      @endforeach
+                      @foreach($ads1 as $ad)
                           <a href="{{ $ad->link }}" class="text-decoration-none">
                               <img src="{{ $ad->image }}" class="w-100 h-100 right-side-img">
                           </a>

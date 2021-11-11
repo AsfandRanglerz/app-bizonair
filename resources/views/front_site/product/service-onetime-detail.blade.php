@@ -62,7 +62,7 @@
                                                <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
                                            @endif
                                            <div class="form-group mt-4 mb-0">
-                                               <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$product->id}}" product_service_name="{{$product->product_service_name}}" product_service_types="{{$product->product_service_types}}" reference_no="{{$product->reference_no}}"  @else class="red-btn" data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif type="submit">Yes</button>
+                                               <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$product->id}}" product_service_name="{{$product->product_service_name}}" product_service_types="{{$product->product_service_types}}" reference_no="{{$product->reference_no}}"  @else class="red-btn" onclick="location.href='{{ route('log-in-pre') }}'" @endif type="submit">Yes</button>
                                                <button class="red-btn" data-dismiss="modal" aria-hidden="true">No</button>
 
                                            </div>
@@ -248,7 +248,7 @@
                                <div class="login-info">
                                    <span class="fa fa-exclamation"></span>
                                    <div class="login-info-inner">
-                                       <p><a href="" data-toggle="modal" data-target="#login-form" class="font-500 register-text">Log in</a> To View More Information.
+                                       <p><a href="{{route('log-in-pre')}}" class="font-500 register-text">Log in</a> To View More Information.
                                        <span class="font-500" style="color: #000">Not a member? </span><a href="{{route('email-confirmation')}}" target="_blank" class="font-500 register-text">Register Now!</a></p>
                                    </div>
                                </div>
@@ -309,23 +309,29 @@
                                            <p class="mb-0">{{ $product->expiry_data }} Days</p>
                                        </div>
                                    </div>
-                                   @if($product->keywords != "")
                                        <div class="row text mx-0">
                                            <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Additional Keyword :</b></span>
                                            </div>
                                            <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                               <p class="mb-0">{{rtrim($product->keywords,',') }}</p>
+                                               @if(!empty($product->keyword1 && $product->keyword2 && $product->keyword3))
+                                                   <p class="mb-0"> {{ $product->keyword1.' , '.$product->keyword2.' , '.$product->keyword3 }}</p>
+                                               @elseif(!empty($product->keyword1 && $product->keyword2))
+                                                   <p class="mb-0"> {{ $product->keyword1.' , '.$product->keyword2 }}</p>
+                                               @elseif(!empty($product->keyword1))
+                                                   <p class="mb-0"> {{ $product->keyword1 }}</p>
+                                               @else
+                                                   <p class="mb-0"> - </p>
+                                               @endif
                                            </div>
                                        </div>
-                                   @endif
                                    <div class="row text mx-0">
                                        <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                            <span><b>Additional Info : </b></span>
                                        </div>
                                        <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                            @if ($product->details)
-                                               <p class="mb-0">{{ $product->details }}</p>
+                                               <p class="mb-0">{!! $product->details !!}</p>
                                            @else
                                                <p class="mb-0">-</p>
                                            @endif
@@ -343,7 +349,7 @@
                                                <p class="mb-0">
                                                    @if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }}
                                                    @else {{$product->suitable_currencies }} @endif
-                                                   {{ moneyFormat($product->unit_price_from) }} Per {{ $product->unit_price_unit }}
+                                                   {{ floor(number_format($product->unit_price_from,2)) }} Per {{ $product->unit_price_unit }}
                                                </p>
                                            </div>
                                        </div>
@@ -523,6 +529,11 @@
                                <img src="{{ $ad->image }}" class="w-100 h-100 right-side-img">
                            </a>
                        @endforeach
+                           @foreach($ads1 as $ad)
+                               <a href="{{ $ad->link }}" class="text-decoration-none">
+                                   <img src="{{ $ad->image }}" class="w-100 h-100 right-side-img">
+                               </a>
+                           @endforeach
                    </div>
                </div>
 

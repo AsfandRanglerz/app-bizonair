@@ -222,27 +222,20 @@
                         <div class="h-auto col-xl-2 col-lg-3 col-md-4 pl-sm-3 px-0 half-side-content">
                             <h3 class="text-center main-heading">TOP COMPANIES</h3>
                             <div class="h-auto position-relative top-companies">
-                                <div class="top-companies-card">
-                                    <img class="w-100" alt="100x100" src="{{$ASSET}}/front_site/images/ad-1.png"
-                                         data-holder-rendered="true">
-                                    <div class="companies-card-content">
-                                        <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
-                                        <span class="company-nm">Company Name</span>
-                                        <p class="company-content">Description sample text sample text sample</p>
-                                        <p class="company-content">Description sample text sample text sample</p>
+                                @foreach($topcompanies as $comp)
+                                    <div class="top-companies-card">
+                                        <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',['id'=>$comp->id,'company'=>$comp->company_name])}}">
+                                            <img class="w-100" alt="100x100" src="{{$comp->logo }}"
+                                                 data-holder-rendered="true">
+                                            <div class="companies-card-content">
+                                                <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
+                                                <span class="company-nm">{{$comp->company_name}}</span>
+                                                <p class="company-content overflow-text-dots-three-line">{!!strip_tags($comp->company_introduction)!!}</p>
+                                            </div>
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="top-companies-card">
-                                    <img class="w-100" alt="100x100" src="{{$ASSET}}/front_site/images/ad-1.png"
-                                         data-holder-rendered="true">
-                                    <div class="companies-card-content">
-                                        <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
-                                        <span class="company-nm">Company Name</span>
-                                        <p class="company-content">Description sample text sample text sample</p>
-                                        <p class="company-content">Description sample text sample text sample</p>
-                                    </div>
-                                </div>
-                                <a href="#" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
+                                @endforeach
+                                <a href="{{route('view-all-companies',['category'=>$category->slug])}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
                             </div>
                         </div>
                     </div>
@@ -263,36 +256,69 @@
 
     <!--  /*add to compare model*/ -->
     <script type="text/javascript">
-        $(document).on('click','.pre-login',function(){
-            window.location.href = "{{ route('log-in-pre')}}";
+        var ref = [];
+        $(".add-product-to-compare").click(function(){
+            // Initializing array with Checkbox checked values
+            if(ref.length > 2){
+                alert('you cannot select more then three products to compare');
+                this.checked = false;
+            }else{
+                ref.push(this.value);
+            }
+            console.log(ref);
+        });
+
+        $("#compa").click(function(){
+            var token='{{csrf_token()}}';
+            if(ref != ''){
+                $.ajax({
+                    type:'POST',
+                    url: '{{ url('/compare-product-ajax') }}',
+                    data:{ref:ref,_token:token},
+                    cache: false,
+                    success: function(response) {
+                        window.location.href= "{{route('products-compare',['category'=>$category->slug,'subcategory'=>$sub_category->slug])}}";
+                    }
+                });
+            }
         });
         $(document).delegate('.add-to-favourite', 'click', function(e) {
             e.preventDefault();
+            $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
             var reference_no=$(this).attr("reference_no");
             var prod_id = $(this).attr("prod_id");
             var product_service_name=$(this).attr("product_service_name");
             var product_service_types=$(this).attr("product_service_types");
             var token='{{csrf_token()}}';
-            $("#ajax-preloader").show();
+            var thisVariable = $(this);
+            // console.log($(this).text());
             $.ajax({
                 type:'POST',
                 url: '{{ url('/favourite-product-ajax') }}',
                 data:{reference_no:reference_no,prod_id:prod_id,product_service_types:product_service_types,product_service_name:product_service_name,_token:token},
                 cache: false,
                 success: function(data) {
-                    $("#ajax-preloader").hide();
+
                     response = $.parseJSON(data);
                     if (response.feedback === "false") {
-                        $('html, body').animate({scrollTop: ($('#' + Object.keys(response.errors)[0]).offset().top)}, 'slow');
-                        $.each(response.errors, function (key, value) {
-                            $('#' + key + '_error').html(value[0]);
-                        });
+                        toastr.error(response.msg).fadeOut(2500);
                     } else if (response.feedback === 'true') {
-                        toastr.success(response.msg);
+                        $("#loader").hide();
+                        toastr.success(response.msg).fadeOut(2500);
 
-                        setTimeout(() => {
-                            window.location.href = response.close();
-                        }, 1000);
+                        let heart_btn = $(thisVariable).closest('.change-password-modal').siblings('.heart-icon-div').find('.check-heart');
+                        console.log(heart_btn);
+                        if($(heart_btn).hasClass('fa-heart-o'))
+                        {
+                            console.log(heart_btn);
+                            $(heart_btn).removeClass('fa-heart-o').addClass('fa-heart');
+                        }
+                        else if($(heart_btn).hasClass('fa-heart')){
+                            $(heart_btn).removeClass('fa-heart').addClass('fa-heart-o');
+                        }
+                        // setTimeout(() => {
+                        //     window.location.href = response.close();
+                        // }, 500);
                     }
                 }
             });
@@ -300,8 +326,16 @@
         $(document).ready(function () {
             var options_inquiry = {
                 dataType: 'Json',
+                beforeSubmit: function (arr, $form) {
+                    $('#alert-success-inquiry').hide();
+                    $('#alert-error-inquiry').hide();
+                    $('#inquiry_create_btn').addClass('d-none');
+                    $('.btn-proo').removeClass('d-none');
+                },
                 success: function (data) {
-                    $('html, body').animate({scrollTop: 0}, 'slow');
+                    $('.btn-proo').addClass('d-none');
+                    $('#inquiry_create_btn').removeClass('d-none');
+                    $('html, .modal').animate({scrollTop: 0}, 'slow');
                     $('#alert-success-inquiry').hide();
                     $('#alert-error-inquiry').hide();
                     response = data;
@@ -353,6 +387,26 @@
             };
 
             $('#postInquiry').ajaxForm(options_inquiry);
+
+            $('#country').on('change', function() {
+                var country_id = this.value;
+                $("#citydwn").html('');
+                $.ajax({
+                    url:"{{url('/get-state-list')}}",
+                    type: "POST",
+                    data: {
+                        country_id: country_id,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType : 'json',
+                    success: function(result){
+                        $('#citydwn').html('<option value="" selected disabled>Select City</option>');
+                        $.each(result.cities,function(key,value){
+                            $("#citydwn").append('<option value="'+value+'">'+value+'</option>');
+                        });
+                    }
+                });
+            });
 
         });
 

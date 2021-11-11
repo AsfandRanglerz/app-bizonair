@@ -41,10 +41,10 @@
                                                 <div class="position-absolute heart-icon-div">
                                                     <a class="text-decoration-none text-reset"
                                                        href="#add-fav-{{$product->reference_no}}" data-toggle="modal">
-                           <span class="text-decoration-none add-to-fav">
-                                    <span
-                                        class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$product->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span>
-                           </span>
+                                                       <span class="text-decoration-none add-to-fav">
+                                                                <span
+                                                                    class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$product->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span>
+                                                       </span>
                                                     </a>
                                                 </div>
                                             </li>
@@ -77,9 +77,7 @@
                                                             product_service_name="{{$product->product_service_name}}"
                                                             product_service_types="{{$product->product_service_types}}"
                                                             reference_no="{{$product->reference_no}}"
-                                                            @else class="red-btn" data-dismiss="modal"
-                                                            data-toggle="modal" data-target="#login-form"
-                                                            @endif type="submit">Yes
+                                                            @else class="red-btn" onclick="location.href='{{ route('log-in-pre') }}'" @endif type="submit">Yes
                                                     </button>
                                                     <button class="red-btn" data-dismiss="modal" aria-hidden="true">No
                                                     </button>
@@ -94,21 +92,19 @@
                                     <span class="product-title heading">{{$product->product_service_name}}</span>
                                     <p><span class="font-500"
                                              style="color: #000">Reference No: </span>{{$product->reference_no}}</p>
-                                    <p style="margin-bottom: 4px"><span class="font-500" style="color: #000">Regular Business Lead: </span> {{$product->product_service_types}}
+                                    <p style="margin-bottom: 4px"><span class="font-500" style="color: #000">Regular Business Lead: </span> @if($product->product_service_types =='Sell')
+                                            Selling Offer @elseif($product->product_service_types =='Buy') Buying
+                                            Offer @endif
                                     </p>
                                     <p class="product-details">{{$product->details}}</p>
                                     <div class="d-flex justify-content-sm-start justify-content-center btns-block">
-                                        <a href="#" class="p-0 btns" @if(!Auth::check()) data-toggle="modal"
-                                           data-target="#login-form" @endif data-toggle="modal"
-                                           data-target="#contactFormPDP"><span class="red-btn d-inline-block py-1 px-2"
+                                        <a  class="p-0 btns" @if(!Auth::check()) href="{{route('log-in-pre')}}" @endif><span class="red-btn d-inline-block py-1 px-2"
                                                                                data-placement="bottom"
                                                                                title="Send an Inquiry to company on Bizonair portal"
                                                                                data-toggle="tooltip">MESSAGE</span></a>
                                         <a href="#productInfoSection" class="p-0 btns product-info-btn"><span
                                                 class="red-btn d-inline-block py-1 px-2">PRODUCT INFO</span></a>
-                                        <a href="{{route('contact-us-suppliers',$product->company_id)}}"
-                                           class="p-0 btns" @if(!Auth::check()) data-toggle="modal"
-                                           data-target="#login-form" @endif><span
+                                        <a class="p-0 btns" @if(!Auth::check()) href="{{route('log-in-pre')}}" @else href="{{route('contact-us-suppliers',$product->company_id)}}" @endif><span
                                                 class="red-btn d-inline-block py-1 px-2" data-placement="bottom"
                                                 title="Send an Email to company"
                                                 data-toggle="tooltip">CONTACT</span></a>
@@ -349,17 +345,20 @@
                                     </div>
                                     <small class="overflow-text-dots-one-line"><span
                                             class="font-500">Supplier Name: </span><span> <a
-                                                href="{{route('about-us-suppliers',$product->company_id)}}"
+                                                href="{{route('about-us-suppliers',['id'=>$product->company_id,'company'=>getCompanyName($product->company_id)])}}"
                                                 class="text-reset"> {{get_product_company($product->company_id)}}</a></span></small>
                                     <small class="d-block grey-text font-500">{{get_product_city($product->company_id)}}
                                         , {{get_product_country($product->company_id)}}</small>
+                                    <?php $contact = \App\CompanyProfile::where('id', $product->company_id)->first();  ?>
+                                    @if($contact)
                                     <small class="d-flex mb-1 grey-text number-content">
                                         <span class="font-500">Contact:</span>
                                         <span class="d-inline-block mx-1 show">***********</span>
-                                        <span class="d-none mx-1 hidden">{{ $product->phone??''}}</span>
+                                        <span class="d-none mx-1 hidden">@if($contact->alternate_contact) {{$contact->alternate_contact}} @else {{ get_product_contact_no($product->company_id) }} @endif</span>
                                         <span class="cursor-pointer blue-color font-500 hide-show-number"
                                               style="border-bottom: 1px dashed">Show</span>
                                     </small>
+                                    @endif
                                     <p class="add-connect"><span class="fa fa-address-book" aria-hidden="true"></span><a
                                             class="text-decoration-none text-reset"
                                             title="We are working on this feature and will enable this soon"
@@ -384,11 +383,9 @@
                                     <div class="login-info">
                                         <span class="fa fa-exclamation"></span>
                                         <div class="login-info-inner">
-                                            <p><a href="" data-toggle="modal" data-target="#login-form"
-                                                  class="font-500 register-text">Log in</a> To View More Information.
-                                                <span class="font-500" style="color: #000">Not a member? </span><a
-                                                    href="{{route('email-confirmation')}}" target="_blank"
-                                                    class="font-500 register-text">Register Now!</a></p>
+                                            <p><a href="{{route('log-in-pre')}}" class="font-500 register-text">Log in</a> To View More Information.
+                                                <span class="font-500" style="color: #000">Not a member? </span>
+                                                <a href="{{route('email-confirmation')}}" class="font-500 register-text">Register Now!</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -416,15 +413,6 @@
                                     <div id="productInfo" class="tab-pane product-tab active">
                                         <div class="row text mx-0">
                                             <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                <span><b>Lead Type : </b></span>
-                                            </div>
-                                            <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                <p class="mb-0">@if($product->product_service_types == 'Service')Service
-                                                    Provider @else {{ $product->product_service_types }} @endif</p>
-                                            </div>
-                                        </div>
-                                        <div class="row text mx-0">
-                                            <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                 <span><b>Main Category : </b></span>
                                             </div>
                                             <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
@@ -439,37 +427,29 @@
                                                 <p class="mb-0">{{ $product->subcategory->name }}</p>
                                             </div>
                                         </div>
-                                        @if($product->childsubcategory)
+                                        @if($product->add_sub_sub_category!=null)
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                     <span><b>Product Type : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{ $product->childsubcategory->name }}</p>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        @if(!empty($product->add_sub_sub_category))
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Other Product Type : </b></span>
-                                                </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                                     <p class="mb-0">{{ $product->add_sub_sub_category }}</p>
                                                 </div>
                                             </div>
-                                        @endif
-                                        @if(!empty($product->add_sub_sub_category))
+                                        @else
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Reference Number : </b></span>
+                                                    <span><b>Product Type : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{ $product->reference_no }}</p>
+                                                    @if (strpos($product->childsubcategory->name, 'Other'))
+                                                        <p class="mb-0">{{ substr($product->childsubcategory->name,6) }}</p>
+                                                    @else
+                                                        <p class="mb-0">{{ $product->childsubcategory->name }}</p>
+                                                    @endif
                                                 </div>
                                             </div>
                                         @endif
-                                        @if(!empty($product->add_sub_sub_category))
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                     <span><b>Subject : </b></span>
@@ -478,28 +458,22 @@
                                                     <p class="mb-0">{{ $product->subject }}</p>
                                                 </div>
                                             </div>
-                                        @endif
-                                        @if(!empty($product->add_sub_sub_category))
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Product Name : </b></span>
+                                                    <span><b>Additional Keyword : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{ $product->product_service_name }}</p>
+                                                    @if(!empty($product->keyword1 && $product->keyword2 && $product->keyword3))
+                                                        <p class="mb-0"> {{ $product->keyword1.' , '.$product->keyword2.' , '.$product->keyword3 }}</p>
+                                                    @elseif(!empty($product->keyword1 && $product->keyword2))
+                                                        <p class="mb-0"> {{ $product->keyword1.' , '.$product->keyword2 }}</p>
+                                                    @elseif(!empty($product->keyword1))
+                                                        <p class="mb-0"> {{ $product->keyword1 }}</p>
+                                                    @else
+                                                        <p class="mb-0"> - </p>
+                                                    @endif
                                                 </div>
                                             </div>
-                                        @endif
-                                        @if(!empty($product->add_sub_sub_category))
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Keyword For Search : </b></span>
-                                                </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{ $product->keywords }}</p>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        @if(!empty($product->add_sub_sub_category))
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                     <span><b>Product Availability : </b></span>
@@ -507,23 +481,20 @@
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                                     <p class="mb-0">@if($product->product_availability =='Both')
                                                             In-Stock/Made to
-                                                            order @else {{$product->product_availability ?: ''}}@endif</p>
+                                                            order @else {{$product->product_availability ?: '-'}}@endif</p>
                                                 </div>
                                             </div>
-                                        @endif
-                                        @if(!empty($product->add_sub_sub_category))
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                     <span><b>Manufacturer Name : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$manu->company_name ?: ''}}</p>
+                                                    <p class="mb-0">{{get_product_manufacturer_company($product->id) ?: '-'}}</p>
                                                 </div>
                                             </div>
-                                        @endif
                                         <div class="row text mx-0">
                                             <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                <span><b>Origin : </b></span>
+                                                <span><b>Product Origin : </b></span>
                                             </div>
                                             <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                                 <p class="mb-0">{{ $product->origin }}</p>
@@ -534,7 +505,11 @@
                                                 <span><b>Additional Info : </b></span>
                                             </div>
                                             <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                <p class="mb-0">{{ $product->details }}</p>
+                                                @if ($product->details)
+                                                    {!! $product->details !!}
+                                                @else
+                                                    <p class="mb-0">-</p>
+                                                @endif
                                             </div>
                                         </div>
 
@@ -545,7 +520,7 @@
                                                     <span><b>Fibre Type : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->fiber_product_info->fiber_type == 'Other') {{$product->fiber_product_info->other_fiber_type ?: ''}} @else  {{$product->fiber_product_info->fiber_type ?: ''}} @endif</p>
+                                                    <p class="mb-0">@if($product->fiber_product_info->fiber_type == 'Other') {{$product->fiber_product_info->other_fiber_type ?: '-'}} @else  {{$product->fiber_product_info->fiber_type ?: '-'}} @endif</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -553,7 +528,7 @@
                                                     <span><b>Fibre Size : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->fiber_product_info->size ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->fiber_product_info->size ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -561,7 +536,7 @@
                                                     <span><b>Fibre Strength : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->fiber_product_info->strength ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->fiber_product_info->strength ? $product->fiber_product_info->strength: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -569,7 +544,7 @@
                                                     <span><b>End Use : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->fiber_product_info->end_use ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->fiber_product_info->end_use ?: '-'}}</p>
                                                 </div>
                                             </div>
                                         @endif
@@ -579,23 +554,25 @@
                                                     <span><b>Fabric Type : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->fabric_product_info->fabric_types =='Other') {{$product->fabric_product_info->other_fabric_type ?: ''}} @else {{$product->fabric_product_info->fabric_types ?: ''}} @endif</p>
+                                                    <p class="mb-0">@if($product->fabric_product_info->fabric_types =='Other') {{$product->fabric_product_info->other_fabric_type ?: '-'}} @else {{$product->fabric_product_info->fabric_types ?: '-'}} @endif</p>
                                                 </div>
                                             </div>
+                                            @if($product->fabric_product_info->knitting_type)
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                     <span><b>Knitting Type : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->fabric_product_info->knitting_type =='Other') {{$product->fabric_product_info->other_knitting_type ?: ''}} @else {{$product->fabric_product_info->knitting_type ?: ''}} @endif</p>
+                                                    <p class="mb-0">@if($product->fabric_product_info->knitting_type =='Other') {{$product->fabric_product_info->other_knitting_type ?: '-'}} @else {{$product->fabric_product_info->knitting_type ?: '-'}} @endif</p>
                                                 </div>
                                             </div>
+                                            @endif
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                     <span><b>Fabric Construction : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->fabric_product_info->fabric_construction ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->fabric_product_info->fabric_construction ? $product->fabric_product_info->fabric_construction : '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -603,7 +580,7 @@
                                                     <span><b>GSM/Thickness : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->fabric_product_info->gsm_thickness ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->fabric_product_info->gsm_thickness ? $product->fabric_product_info->gsm_thickness: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -611,7 +588,7 @@
                                                     <span><b>Fabric Composition : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->fabric_product_info->fabric_composition ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->fabric_product_info->fabric_composition ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -619,8 +596,8 @@
                                                     <span><b>Width Range : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->fabric_product_info->width_from ?: ''}}
-                                                        To {{$product->fabric_product_info->width_to ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->fabric_product_info->width_from ?: '-'}}
+                                                        To {{$product->fabric_product_info->width_to ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -628,7 +605,7 @@
                                                     <span><b>Manufacturing Technique : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->fabric_product_info->manufacturing_technique =='Other') {{$product->fabric_product_info->other_manufacturing_technique ?: ''}} @else {{$product->fabric_product_info->manufacturing_technique ?: ''}} @endif</p>
+                                                    <p class="mb-0">@if($product->fabric_product_info->manufacturing_technique =='Other') {{$product->fabric_product_info->other_manufacturing_technique ?: '-'}} @else {{$product->fabric_product_info->manufacturing_technique ?: '-'}} @endif</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -636,7 +613,7 @@
                                                     <span><b>Yarn Type : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->fabric_product_info->yarn_type =='Other') {{$product->fabric_product_info->other_yarn_type ?: ''}} @else {{$product->fabric_product_info->yarn_type ?: ''}} @endif</p>
+                                                    <p class="mb-0">@if($product->fabric_product_info->yarn_type =='Other') {{$product->fabric_product_info->other_yarn_type ?: '-'}} @else {{$product->fabric_product_info->yarn_type ?: '-'}} @endif</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -644,7 +621,7 @@
                                                     <span><b>Features : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->fabric_product_info->features =='Other') {{$product->fabric_product_info->other_feature ?: ''}} @else {{$product->fabric_product_info->features ?: ''}} @endif</p>
+                                                    <p class="mb-0">@if($product->fabric_product_info->features =='Other') {{$product->fabric_product_info->other_feature ?: '-'}} @else {{$product->fabric_product_info->features ?: '-'}} @endif</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -652,7 +629,7 @@
                                                     <span><b>End Use/Application : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->fabric_product_info->uses =='Other') {{$product->fabric_product_info->other_use ?: ''}} @else {{$product->fabric_product_info->uses ?: ''}} @endif</p>
+                                                    <p class="mb-0">@if($product->fabric_product_info->uses =='Other') {{$product->fabric_product_info->other_use ?: '-'}} @else {{$product->fabric_product_info->uses ?: '-'}} @endif</p>
                                                 </div>
                                             </div>
                                         @endif
@@ -662,7 +639,7 @@
                                                     <span><b>Yarn Count : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->yarn_product_info->count ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->yarn_product_info->count ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -670,7 +647,7 @@
                                                     <span><b>Yarn Count Unit : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->yarn_product_info->count_unit =='Other') {{$product->yarn_product_info->other_count_unit ?: ''}} @else {{$product->yarn_product_info->count_unit ?: ''}} @endif</p>
+                                                    <p class="mb-0">@if($product->yarn_product_info->count_unit =='Other') {{$product->yarn_product_info->other_count_unit ?: '-'}} @else {{$product->yarn_product_info->count_unit ?: '-'}} @endif</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -678,7 +655,7 @@
                                                     <span><b>Yarn Attribute : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->yarn_product_info->attribute=='Other') {{$product->yarn_product_info->other_attribute ?: ''}} @else{{$product->yarn_product_info->attribute ?: ''}}@endif</p>
+                                                    <p class="mb-0">@if($product->yarn_product_info->attribute=='Other') {{$product->yarn_product_info->other_attribute ?: '-'}} @else{{$product->yarn_product_info->attribute ?: '-'}}@endif</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -686,7 +663,7 @@
                                                     <span><b>Technology : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->yarn_product_info->technology=='Other') {{$product->yarn_product_info->other_technology ?: ''}} @else{{$product->yarn_product_info->technology ?: ''}}@endif</p>
+                                                    <p class="mb-0">@if($product->yarn_product_info->technology=='Other') {{$product->yarn_product_info->other_technology ?: '-'}} @else{{$product->yarn_product_info->technology ?: '-'}}@endif</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -694,7 +671,7 @@
                                                     <span><b>Yarn Grade : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->yarn_product_info->grade ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->yarn_product_info->grade ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -702,7 +679,7 @@
                                                     <span><b>TPI : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->yarn_product_info->tpi ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->yarn_product_info->tpi ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -710,7 +687,7 @@
                                                     <span><b>Tenacity  : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->yarn_product_info->tenacity ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->yarn_product_info->tenacity ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -718,7 +695,7 @@
                                                     <span><b>Count Type : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->yarn_product_info->count_type=='Other') {{$product->yarn_product_info->other_count_type ?: ''}} @else{{$product->yarn_product_info->count_type ?: ''}}@endif</p>
+                                                    <p class="mb-0">@if($product->yarn_product_info->count_type=='Other') {{$product->yarn_product_info->other_count_type ?: '-'}} @else{{$product->yarn_product_info->count_type ?: '-'}}@endif</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -726,7 +703,7 @@
                                                     <span><b>Yarn Speciality : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->yarn_product_info->yarn_specialty=='Other') {{$product->yarn_product_info->other_speciality ?: ''}} @else {{$product->yarn_product_info->yarn_specialty ?: ''}}@endif</p>
+                                                    <p class="mb-0">@if($product->yarn_product_info->yarn_specialty=='Other') {{$product->yarn_product_info->other_speciality ?: '-'}} @else {{$product->yarn_product_info->yarn_specialty ?: '-'}}@endif</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -734,7 +711,7 @@
                                                     <span><b>End Use/Application : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->yarn_product_info->end_use=='Other') {{$product->yarn_product_info->other_end_use ?: ''}} @else {{$product->yarn_product_info->end_use ?: ''}}@endif</p>
+                                                    <p class="mb-0">@if($product->yarn_product_info->end_use=='Other') {{$product->yarn_product_info->other_end_use ?: '-'}} @else {{$product->yarn_product_info->end_use ?: '-'}}@endif</p>
                                                 </div>
                                             </div>
                                         @endif
@@ -744,7 +721,7 @@
                                                     <span><b>Machinery Type : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->machinery_product_info->product_type ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->machinery_product_info->product_type ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -752,7 +729,7 @@
                                                     <span><b>Condition  : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->machinery_product_info->machinery_condition ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->machinery_product_info->machinery_condition ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -760,7 +737,7 @@
                                                     <span><b>After Sales Service : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->machinery_product_info->after_sales_service=='Yes') {{$product->machinery_product_info->service_type ?: ''}} @else{{$product->machinery_product_info->after_sales_service ?: ''}}@endif</p>
+                                                    <p class="mb-0">@if($product->machinery_product_info->after_sales_service=='Yes') {{$product->machinery_product_info->service_type ?: '-'}} @else{{$product->machinery_product_info->after_sales_service ?: '-'}}@endif</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -768,7 +745,7 @@
                                                     <span><b>Warranty  : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->machinery_product_info->warranty=='Yes') {{$product->machinery_product_info->warranty_period ?: ''}} @else{{$product->machinery_product_info->warranty ?: ''}}@endif</p>
+                                                    <p class="mb-0">@if($product->machinery_product_info->warranty=='Yes') {{$product->machinery_product_info->warranty_period ?: '-'}} @else{{$product->machinery_product_info->warranty ?: '-'}}@endif</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -776,7 +753,7 @@
                                                     <span><b>Product Certification : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->machinery_product_info->certification =='Yes'){{$product->machinery_product_info->certification_details ?: ''}} @else {{$product->machinery_product_info->certification ?: ''}}@endif</p>
+                                                    <p class="mb-0">@if($product->machinery_product_info->certification =='Yes'){{$product->machinery_product_info->certification_details ?: '-'}} @else {{$product->machinery_product_info->certification ?: '-'}}@endif</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -784,7 +761,7 @@
                                                     <span><b>Additional Trade notes : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->machinery_product_info->additional_trade_notes ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->machinery_product_info->additional_trade_notes ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -792,7 +769,7 @@
                                                     <span><b>Company Certification  : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->machinery_product_info->product_related_certifications ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->machinery_product_info->product_related_certifications ?: '-'}}</p>
                                                 </div>
                                             </div>
                                         @endif
@@ -802,7 +779,7 @@
                                                     <span><b>Material Type : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->institutional_product_info->material ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->institutional_product_info->material ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -810,7 +787,7 @@
                                                     <span><b>Composition/Construction : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->institutional_product_info->composition ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->institutional_product_info->composition ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -818,7 +795,7 @@
                                                     <span><b>Size/Age Group : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->institutional_product_info->size_age ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->institutional_product_info->size_age ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -826,7 +803,7 @@
                                                     <span><b>Color  : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->institutional_product_info->color ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->institutional_product_info->color ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -834,7 +811,7 @@
                                                     <span><b>Gender : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->institutional_product_info->gender ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->institutional_product_info->gender ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -842,7 +819,7 @@
                                                     <span><b>Thickness/GSM/Width : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->institutional_product_info->thickness ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->institutional_product_info->thickness ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -850,7 +827,7 @@
                                                     <span><b>Brand  : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->institutional_product_info->brand ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->institutional_product_info->brand ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -858,7 +835,7 @@
                                                     <span><b>Design/Style : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->institutional_product_info->design ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->institutional_product_info->design ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -866,7 +843,7 @@
                                                     <span><b>Season : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->institutional_product_info->season ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->institutional_product_info->season ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -874,7 +851,7 @@
                                                     <span><b>End Use/Application : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->institutional_product_info->end_use ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->institutional_product_info->end_use ?: '-'}}</p>
                                                 </div>
                                             </div>
                                         @endif
@@ -885,7 +862,7 @@
                                                         <span><b>Manufacturer Company {{$key+1}}: </b></span>
                                                     </div>
                                                     <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                        <p class="mb-0">{{$object->manufacturer_company_name ?: ''}}</p>
+                                                        <p class="mb-0">{{$object->manufacturer_company_name ?: '-'}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row text mx-0">
@@ -893,7 +870,7 @@
                                                         <span><b>Origin  : </b></span>
                                                     </div>
                                                     <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                        <p class="mb-0">{{$object->origin ?: ''}}</p>
+                                                        <p class="mb-0">{{$object->origin ?: '-'}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row text mx-0">
@@ -901,7 +878,7 @@
                                                         <span><b>Chemicals listed : </b></span>
                                                     </div>
                                                     <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                        <p class="mb-0">{{$object->chemicals_listed ?: ''}}</p>
+                                                        <p class="mb-0">{{$object->chemicals_listed ?: '-'}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row text mx-0">
@@ -909,7 +886,7 @@
                                                         <span><b>Additional Information  : </b></span>
                                                     </div>
                                                     <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                        <p class="mb-0">{{$object->company_additional_info ?: ''}}</p>
+                                                        <p class="mb-0">{{$object->company_additional_info ?: '-'}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row text mx-0">
@@ -917,7 +894,7 @@
                                                         <span><b>Supply type : </b></span>
                                                     </div>
                                                     <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                        <p class="mb-0">{{$object->supply_type ?: ''}}</p>
+                                                        <p class="mb-0">{{$object->supply_type ?: '-'}}</p>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -928,7 +905,7 @@
                                                     <span><b>Material Type : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->garments_product_info->material ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->garments_product_info->material ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -936,7 +913,7 @@
                                                     <span><b>Composition/Construction : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->garments_product_info->composition ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->garments_product_info->composition ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -944,7 +921,7 @@
                                                     <span><b>Size/Age Group : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->garments_product_info->size_age ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->garments_product_info->size_age ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -952,7 +929,7 @@
                                                     <span><b>Color  : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->garments_product_info->color ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->garments_product_info->color ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -960,7 +937,7 @@
                                                     <span><b>Gender : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->garments_product_info->gender ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->garments_product_info->gender ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -968,7 +945,7 @@
                                                     <span><b>Thickness/GSM/Width : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->garments_product_info->thickness ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->garments_product_info->thickness ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -976,7 +953,7 @@
                                                     <span><b>Brand  : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->garments_product_info->brand ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->garments_product_info->brand ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -984,7 +961,7 @@
                                                     <span><b>Design/Style : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->garments_product_info->design ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->garments_product_info->design ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -992,7 +969,7 @@
                                                     <span><b>Season : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->garments_product_info->season ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->garments_product_info->season ?: '-'}}</p>
                                                 </div>
                                             </div>
                                             <div class="row text mx-0">
@@ -1000,11 +977,11 @@
                                                     <span><b>End Use/Application : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->garments_product_info->end_use ?: ''}}</p>
+                                                    <p class="mb-0">{{$product->garments_product_info->end_use ?: '-'}}</p>
                                                 </div>
                                             </div>
                                         @endif
-
+                                    @if($product->product_service_types =='Sell')
                                         <span class="heading">TRADE INFO</span>
                                         @if($product->dealing_as)
                                             <div class="row text mx-0">
@@ -1012,7 +989,7 @@
                                                     <span><b>Dealing Product As : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{$product->dealing_as ?: ''}}</p>
+                                                    <p class="mb-0">@if($product->dealing_as =='Other'){{$product->other_dealing_as ?: '-'}} @else {{ str_replace(',', ', ', $product->dealing_as) }} @endif</p>
                                                 </div>
                                             </div>
                                         @endif
@@ -1056,7 +1033,7 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        @if($product->is_sampling)
+
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                     <span><b>Sampling : </b></span>
@@ -1066,27 +1043,42 @@
                                                             Yes @elseif(!$product->is_sampling) No @endif</p>
                                                 </div>
                                             </div>
-                                        @endif
-                                        @if($product->is_sampling)
+
+                                         @if($product->sampling_type == null)
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                     <span><b>Sampling Cost : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{ $product->sampling_type }}</p>
+                                                    <p class="mb-0"> - </p>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if($product->sampling_type == 'Free')
+                                            <div class="row text mx-0">
+                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                    <span><b>Sampling Cost : </b></span>
+                                                </div>
+                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                    @if($product->sampling_type)
+                                                        <p class="mb-0">{{ $product->sampling_type }}</p>
+                                                    @else
+                                                        <p class="mb-0"> - </p>
+                                                    @endif
                                                 </div>
                                             </div>
                                         @endif
                                         @if($product->sampling_type == 'Paid')
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Sampling Price : </b></span>
+                                                    <span><b>Sampling Cost : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                                     <p class="mb-0">{{ $product->paid_sampling_price }}</p>
                                                 </div>
                                             </div>
                                         @endif
+                                    @endif
 
                                         <span class="heading">Payment & Delivery Info</span>
                                         @if($product->product_service_types == "Buy")
@@ -1095,7 +1087,7 @@
                                                     <span><b>Target Price Range : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->suitable_currencies){{ str_replace(',', ', ', $product->suitable_currencies) }}@endif {{ floor(number_format($product->target_price_from,2)) }}
+                                                    <p class="mb-0">@if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }} @else {{$product->suitable_currencies }} @endif {{ floor(number_format($product->target_price_from,2)) }}
                                                         - {{ floor(number_format($product->target_price_to,2)) }}
                                                         Per {{ ($product->target_price_unit != 'Other') ? $product->target_price_unit : $product->other_target_price_unit }}</p>
                                                 </div>
@@ -1107,7 +1099,7 @@
                                                     <span><b>Unit Price Range : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->suitable_currencies){{ str_replace(',', ', ', $product->suitable_currencies) }}@endif {{ floor(number_format($product->unit_price_from,2)) }}
+                                                    <p class="mb-0">@if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }} @else {{$product->suitable_currencies }} @endif {{ floor(number_format($product->unit_price_from,2)) }}
                                                         - {{ floor(number_format($product->unit_price_to,2)) }}
                                                         Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}</p>
                                                 </div>
@@ -1119,7 +1111,7 @@
                                                     <span><b>Service Charges Range : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->suitable_currencies){{ str_replace(',', ', ', $product->suitable_currencies) }}@endif {{ floor(number_format($product->unit_price_from,2)) }}
+                                                    <p class="mb-0">@if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }} @else {{$product->suitable_currencies }} @endif {{ floor(number_format($product->unit_price_from,2)) }}
                                                         - {{ floor(number_format($product->unit_price_to,2)) }}
                                                         Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}</p>
                                                 </div>
@@ -1183,21 +1175,23 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        <div class="row text mx-0">
-                                            <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                <span><b>Payment Terms : </b></span>
-                                            </div>
-                                            <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                <p class="mb-0">{{ str_replace(',', ', ', $product->payment_terms) }}</p>
-                                            </div>
-                                        </div>
+
                                         @if(in_array("Other", explode(",", $product->payment_terms)))
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Other Payment Terms : </b></span>
+                                                    <span><b>Payment Terms : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                                     <p class="mb-0">{{ $product->other_payment_term }}</p>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="row text mx-0">
+                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                    <span><b>Payment Terms : </b></span>
+                                                </div>
+                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                    <p class="mb-0">{{ str_replace(',', ', ', $product->payment_terms) }}</p>
                                                 </div>
                                             </div>
                                         @endif

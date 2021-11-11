@@ -62,7 +62,7 @@
                                                <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
                                            @endif
                                            <div class="form-group mt-4 mb-0">
-                                               <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$product->id}}" product_service_name="{{$product->product_service_name}}" product_service_types="{{$product->product_service_types}}" reference_no="{{$product->reference_no}}"  @else class="red-btn" data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif type="submit">Yes</button>
+                                               <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$product->id}}" product_service_name="{{$product->product_service_name}}" product_service_types="{{$product->product_service_types}}" reference_no="{{$product->reference_no}}"  @else class="red-btn" onclick="location.href='{{ route('log-in-pre') }}'" @endif type="submit">Yes</button>
                                                <button class="red-btn" data-dismiss="modal" aria-hidden="true">No</button>
 
                                            </div>
@@ -76,7 +76,7 @@
                                <p style="margin-bottom: 8px"><span class="font-500" style="color: #000">One-Time Deals: </span> @if($product->product_service_types =='Sell') Selling Offer @elseif($product->product_service_types =='Buy') Buying Offer @endif</p>
                                {{--                            <p><span class="font-500" style="color: #000">Product Detail: </span>{{$product->details}}</p>--}}
                                <div class="btns-block">
-                                   <a href="#" class="p-0 btns red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
+                                   <a class="p-0 btns red-btn"  @if(!Auth::check()) href="{{route('log-in-pre')}}" @else data-toggle="modal" data-target="#contactFormPDP" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
                                    <!-- Modal -->
                                    <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                        <div class="modal-dialog contact-form" role="document">
@@ -245,12 +245,11 @@
                                <div class="login-info">
                                    <span class="fa fa-exclamation"></span>
                                    <div class="login-info-inner">
-                                       <p><a href="" data-toggle="modal" data-target="#login-form" class="font-500 register-text">Log in</a> To View More Information.
+                                       <p><a href="{{route('log-in-pre')}}"  class="font-500 register-text">Log in</a> To View More Information.
                                        <span class="font-500" style="color: #000">Not a member? </span><a href="{{route('email-confirmation')}}" target="_blank" class="font-500 register-text">Register Now!</a></p>
                                    </div>
                                </div>
                            </div>
-
                        @endif
                    </div>
                </div>
@@ -335,7 +334,15 @@
                                                <span><b>Additional Keyword :</b></span>
                                            </div>
                                            <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                               <p class="mb-0">{{rtrim($product->keywords,',') }}</p>
+                                               @if(!empty($product->keyword1 && $product->keyword2 && $product->keyword3))
+                                                   <p class="mb-0"> {{ $product->keyword1.' , '.$product->keyword2.' , '.$product->keyword3 }}</p>
+                                               @elseif(!empty($product->keyword1 && $product->keyword2))
+                                                   <p class="mb-0"> {{ $product->keyword1.' , '.$product->keyword2 }}</p>
+                                               @elseif(!empty($product->keyword1))
+                                                   <p class="mb-0"> {{ $product->keyword1 }}</p>
+                                               @else
+                                                   <p class="mb-0"> - </p>
+                                               @endif
                                            </div>
                                        </div>
                                    @endif
@@ -344,7 +351,7 @@
                                            <span><b>Available Quantity : </b></span>
                                        </div>
                                        <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                           <p class="mb-0">{{$product->product_availability}}</p>
+                                           <p class="mb-0">{{ number_format($product->product_availability) }}</p>
                                        </div>
                                    </div>
                                    <div class="row text mx-0">
@@ -377,7 +384,7 @@
                                        </div>
                                        <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                            @if ($product->details)
-                                               <p class="mb-0">{{ $product->details }}</p>
+                                               <p class="mb-0">{!! $product->details !!}</p>
                                            @else
                                                <p class="mb-0">-</p>
                                            @endif
@@ -454,7 +461,7 @@
                                                <p class="mb-0">
                                                    @if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }}
                                                    @else {{$product->suitable_currencies }} @endif
-                                                   {{ moneyFormat($product->target_price_from) }}  Per {{ ($product->target_price_unit != 'Other') ? $product->target_price_unit : $product->other_target_price_unit }}
+                                                   {{ floor(number_format($product->target_price_from,2)) }}  Per {{ ($product->target_price_unit != 'Other') ? $product->target_price_unit : $product->other_target_price_unit }}
                                                </p>
                                            </div>
                                        </div>
@@ -469,7 +476,7 @@
                                                <p class="mb-0">
                                                    @if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }}
                                                    @else {{$product->suitable_currencies }} @endif
-                                                   {{ $product->unit_price_from }} Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}
+                                                   {{ floor(number_format($product->unit_price_from,2)) }} Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}
                                                </p>
                                            </div>
                                        </div>
@@ -484,7 +491,7 @@
                                                <p class="mb-0">
                                                    @if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }}
                                                    @else {{$product->suitable_currencies }} @endif
-                                                   {{ $product->unit_price_from }} Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}
+                                                   {{ floor(number_format($product->unit_price_from,2)) }} Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}
                                                </p>
                                            </div>
                                        </div>

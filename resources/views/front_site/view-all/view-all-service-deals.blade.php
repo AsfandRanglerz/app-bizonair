@@ -75,23 +75,26 @@
                                                             <div class="modal-dialog modal-dialog-centered modal-login">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                                @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
-                                                                                <span class="modal-title">REMOVE FROM FAVOURITE</span>
-                                                                                @else
-                                                                                <span class="modal-title">ADD TO FAVOURITE</span>
-                                                                                @endif
+                                                                        @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
+                                                                            <span class="modal-title">REMOVE FROM FAVOURITE</span>
+                                                                        @else
+                                                                            <span class="modal-title">ADD TO FAVOURITE</span>
+                                                                        @endif
                                                                         <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                                                                     </div>
                                                                     <div class="modal-body pt-3">
-                                                                                @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
-                                                                                    <p style="color: white">Are you sure your product will be removed from the favourite</p>
-                                                                                @else
-                                                                                    <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
-                                                                                @endif
+                                                                        @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
+                                                                            <p style="color: white">Are you sure your product will be removed from the favourite</p>
+                                                                        @else
+                                                                            <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
+                                                                        @endif
                                                                         <div class="form-group mt-4 mb-0">
-                                                                            <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="red-btn" data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif type="submit">Yes</button>
+                                                                            @if(!Auth::check())
+                                                                                <a href="{{url('log-in-pre')}}" class="red-btn">Yes</a>
+                                                                            @else
+                                                                                <button class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}" type="submit">Yes</button>
+                                                                            @endif
                                                                             <button class="red-btn" data-dismiss="modal" aria-hidden="true">No</button>
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -102,7 +105,7 @@
                                                             <p class="heading overflow-text-dots-subject">{{$prod->product_service_name}}</p>
                                                             <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                                             <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
-                                                            <p class="price font-500 overflow-text-dots-subject"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ moneyFormat($prod->unit_price_from) }} - {{ moneyFormat($prod->unit_price_to) }}   @else {{ moneyFormat($prod->target_price_from) }} - {{ moneyFormat($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
+                                                            <p class="price font-500 overflow-text-dots-subject"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }}   @else {{ number_format($prod->target_price_from) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
                                                             <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
                                                         </div>
                                                         </a>
@@ -121,18 +124,18 @@
                             <div class="position-relative top-companies">
                                 @foreach($topcompanies as $comp)
                                     <div class="top-companies-card">
-                                        <img alt="100x100" src="{{$ASSET.'/front_site/images/company-images/'.$comp->logo }}"
+                                        <img alt="100x100" src="{{$comp->logo }}"
                                              data-holder-rendered="true" height="145" class="w-100 object-contain border-grey">
                                         <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$comp->id)}}">
                                             <div class="companies-card-content">
                                                 <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
                                                 <span class="company-nm">{{$comp->company_name}}</span>
-                                                <p class="company-content">{{substr_replace($comp->company_introduction, "...", 100) }}</p>
+                                                <p class="company-content overflow-text-dots-three-line">{!!strip_tags($comp->company_introduction)!!}</p>
                                             </div>
                                         </a>
                                     </div>
                                 @endforeach
-                                    <a href="{{route('view-all-companies')}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
+                                    <a href="{{route('view-all-companies',['category'=>$subcategory->category->slug])}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
                             </div>
                         </div>
                     </div>
@@ -169,23 +172,26 @@
                                             <div class="modal-dialog modal-dialog-centered modal-login">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                                                @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
-                                                                                <span class="modal-title">REMOVE FROM FAVOURITE</span>
-                                                                                @else
-                                                                                <span class="modal-title">ADD TO FAVOURITE</span>
-                                                                                @endif
+                                                        @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
+                                                            <span class="modal-title">REMOVE FROM FAVOURITE</span>
+                                                        @else
+                                                            <span class="modal-title">ADD TO FAVOURITE</span>
+                                                        @endif
                                                         <a class="close red-btn" data-dismiss="modal" aria-hidden="true">&times;</a>
                                                     </div>
                                                     <div class="modal-body pt-3">
-                                                                                @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
-                                                                                    <p style="color: white">Are you sure your product will be removed from the favourite</p>
-                                                                                @else
-                                                                                    <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
-                                                                                @endif
+                                                        @if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists())
+                                                            <p style="color: white">Are you sure your product will be removed from the favourite</p>
+                                                        @else
+                                                            <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
+                                                        @endif
                                                         <div class="form-group mt-4 mb-0">
-                                                            <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="red-btn" data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif type="submit">Yes</button>
+                                                            @if(!Auth::check())
+                                                                <a href="{{url('log-in-pre')}}" class="red-btn">Yes</a>
+                                                            @else
+                                                                <button class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}" type="submit">Yes</button>
+                                                            @endif
                                                             <button class="red-btn" data-dismiss="modal" aria-hidden="true">No</button>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -196,7 +202,7 @@
                                             <p class="heading overflow-text-dots-subject">{{$prod->product_service_name}}</p>
                                             <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                             <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
-                                            <p class="price font-500 overflow-text-dots-subject"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ moneyFormat($prod->unit_price_from) }} - {{ moneyFormat($prod->unit_price_to) }}   @else {{ moneyFormat($prod->target_price_from) }} - {{ moneyFormat($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
+                                            <p class="price font-500 overflow-text-dots-subject"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }}   @else {{ number_format($prod->target_price_from) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
                                             <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
                                         </div>
                                         </a>
@@ -212,140 +218,35 @@
                     </div>
                     <div class="my-1 position-relative">
                         <h3 class="main-heading">PREMIUM SUPPLIERS</h3>
-                        <a href="{{route('view-all-companies')}}" class="position-absolute red-link view-all">VIEW ALL</a>
+                        <a href="{{route('view-all-companies',['category'=>$subcategory->category->slug])}}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
-                    <div class="premium-suppliers-outer">
-                        <div class="premium-suppliers">
-                            @foreach($companies as $comp)
-                                <div class="content-column text-center">
-                                    <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',$comp->id)}}">
-                                        <p class="mb-0 font-500 text-uppercase company-name overflow-text-dots-one-line">{{$comp->company_name}}</p>
-                                    </a>
-                                </div>
-                            @endforeach
+                    @if(count($companies) > 0)
+                        <div class="premium-suppliers-outer">
+                            <div class="premium-suppliers">
+                                @foreach($companies as $comp)
+                                    <div class="content-column text-center">
+                                        <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',['id'=>$comp->id,'company'=>$comp->company_name])}}">
+                                            <p class="mb-0 font-500 company-name overflow-text-dots-one-line text-uppercase">{{$comp->company_name}}</p>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        <p>No Related Companies to Show at Present</p>
+                    @endif
                     <div class="my-1 position-relative">
                         <h3 class="main-heading text-center">TEXTILE PARTNERS</h3>
                     </div>
                     <div class="container-fluid logo-slider">
                         <div class="slider slider-nav w-100">
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/4-box.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/act.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100"></a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/adm.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/alkaram.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100"></a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/apparel-textile-logo.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/archroma.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100"></a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/azgard.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/cotton-web.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100"></a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/cresent.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/feroze.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/gadoon.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100"></a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/gohar.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/interlop.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/kohinoor.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100"></a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/mtm.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/naveena.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/nishat.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100"></a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/rajby.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/sapphire.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/sarena.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100"></a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/sgs.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/sockoye.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/style-textile.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/y-txt.jpeg"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100"></a>
-                            <a href="#" class="logo-container"><img
-                                    src="{{$ASSET}}/front_site/images/our-clients-logos/zsk.png"
-                                    alt="100x100" data-holder-rendered="true"
-                                    class="w-100 h-100">
-                            </a>
+                            @foreach($textile_partners as $text_partners)
+                                <a href="{{ $text_partners->link }}" class="logo-container"><img
+                                        src="{{ $text_partners->image }}"
+                                        alt="100x100" data-holder-rendered="true"
+                                        class="w-100 h-100">
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>

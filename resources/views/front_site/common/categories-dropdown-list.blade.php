@@ -43,16 +43,16 @@
         <div class="tab-pane fade" id="careersTab" role="tabpanel">
             <div class="row m-0 py-1">
                 <div class="col-3 px-1 pro-categories-tab-links pro-cat-careers">
-                    <a href="{{ route('view-form-job-management') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/Post a Job.png" class="mb-1 banner-below-adds" width="15" height="15">Post A Job</a>
+                    <a href="@if(auth()->check()){{ route('view-form-job-management') }}@else {{ route('log-in-pre') }} @endif" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/Post a Job.png" class="mb-1 banner-below-adds" width="15" height="15">Post A Job</a>
                 </div>
                 <div class="col-3 px-1 pro-categories-tab-links pro-cat-careers">
-                    <a href="#" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/red-themed-icons/garments-accessories.png" class="mb-1 banner-below-adds" width="15" height="15">Post Your CV</a>
+                    <a href="@if(auth()->check()){{ route('post-ur-cv') }}@else {{ route('log-in-pre') }} @endif" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/Post Your CV.png" class="mb-1 banner-below-adds" width="15" height="15">Post Your CV</a>
                 </div>
                 <div class="col-3 px-1 pro-categories-tab-links pro-cat-careers">
                     <a href="{{ route('jobs-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/Explore All Jobs.png" class="mb-1 banner-below-adds" width="15" height="15">Explore All Jobs</a>
                 </div>
                 <div class="col-3 px-1 pro-categories-tab-links pro-cat-careers">
-                    <a href="{{ route('cv-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/Post Your CV.png" class="mb-1 banner-below-adds" width="15" height="15">Explore All CV's</a>
+                    <a href="{{ route('cv-directory') }}" class="py-1 px-2 text-center d-flex flex-column red-btn"><img src="{{$ASSET}}/front_site/images/Explore all cvs.png" class="mb-1 banner-below-adds" width="15" height="15">Explore All CV's</a>
                 </div>
             </div>
         </div>
