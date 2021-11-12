@@ -18,7 +18,7 @@
                         <li class="breadcrumb-item active" aria-current="page"><a href="{{Request::url()}}">{{ucfirst($sub_category->name)}}</a></li>
                     </ol>
                 </nav>
-
+                <div id="prodError"></div>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-9 p-lg-3 p-0">
@@ -46,14 +46,13 @@
                                         <button class="btn my-sm-0 search-btn" type="submit"><span class="fa fa-search" aria-hidden="true"></span></button>
                                     </form>
                                 </div>
-                                <div class="mt-4 compare-container">
-                                    <div class="mb-2 compare-cancel-btns">
-                                        <a class="pt-1 pb-1 pl-2 pr-2 red-btn" id="compa">Compare</a>
-                                        <a class="pt-1 pb-1 pl-2 pr-2 red-btn cancel-btn" id="cancel">Cancel</a>
-                                    </div>
+                            </div>
+                            <div class="mt-4 compare-container">
+                                <div class="mb-2 compare-cancel-btns">
+                                    <a class="pt-1 pb-1 pl-2 pr-2 red-btn" id="compa">Compare</a>
+                                    <a class="pt-1 pb-1 pl-2 pr-2 red-btn cancel-btn" id="cancel">Cancel</a>
                                 </div>
                             </div>
-
                             <div class="mt-2 product-main-container">
                                 <ul class="ml-1 mr-1 nav nav-tabs">
                                     <li class="list">
@@ -170,7 +169,7 @@
         {{--                                                    <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
         {{--                                                </div>--}}
                                                         <div class="d-flex column-gap-4">
-                                                        <a href="#" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
+                                                        <a class="p-0 red-btn" @if(!Auth::check()) href="{{url('log-in-pre')}}" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                             <div class="modal-dialog contact-form" role="document">

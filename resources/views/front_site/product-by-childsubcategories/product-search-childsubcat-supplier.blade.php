@@ -188,7 +188,7 @@
                                                         @if(!Auth::check())
                                                             <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
                                                         @else
-                                                            <a href="#" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                                            <a class="p-0 red-btn"  @if(!Auth::check()) href="{{url('log-in-pre')}}" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
                                                         @endif
                                                         @if(!Auth::check())
                                                             <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>

@@ -985,7 +985,7 @@
                         }
                     }
                 });
-            }, 1000);//time in milliseconds
+            }, 1000000000);//time in milliseconds
             // }else{
             //     $(".notifications-scroll").css("display", "none");
             //     $(".biz-notifications").hover(function() {

@@ -139,7 +139,7 @@
                                         </a>
                                     </div>
                                 @endforeach
-                                <a href="{{route('view-all-companies',['category'=>$subcategory->category->slug])}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
+                                <a href="{{route('view-all-companies',['category'=>$category->slug])}}" class="position-absolute red-link view-all" style="right: 15px;bottom: 5px">VIEW ALL</a>
                             </div>
                         </div>
                     </div>
@@ -217,7 +217,7 @@
                     </div>
                     <div class="my-1 position-relative">
                         <h3 class="main-heading">PREMIUM SUPPLIERS</h3>
-                        <a href="{{route('view-all-companies',['category'=>$subcategory->category->slug])}}" class="position-absolute red-link view-all">VIEW ALL</a>
+                        <a href="{{route('view-all-companies',['category'=>$category->slug])}}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
                     @if(count($companies) > 0)
                         <div class="premium-suppliers-outer">

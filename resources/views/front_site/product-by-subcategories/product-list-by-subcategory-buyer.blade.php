@@ -167,7 +167,7 @@
                                                 <div class="col-6 p-1 border-grey">
                                                     <div>
                                                         <div class="d-flex membersince">Member <span class="number">since</span><span class="years">{{get_product_created_at($prod->company_id)}}</span></div>
-                                                        <a href="{{route('about-us-suppliers',$prod->company_id)}}" class="text-reset" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif> <p class="mb-1 text-uppercase font-500">{{get_product_company($prod->company_id)}}</p></a>
+                                                        <a class="text-reset" @if(!Auth::check()) href="{{url('log-in-pre')}}" @else href="{{route('about-us-suppliers',$prod->company_id)}}" @endif> <p class="mb-1 text-uppercase font-500">{{get_product_company($prod->company_id)}}</p></a>
                                                         <small class="d-block mb-2 grey-text">{{get_product_city($prod->company_id)}}, {{get_product_country($prod->company_id)}}</small>
                                                         <div class="mb-2 membericon">
                                                             <a href="#">
@@ -178,8 +178,8 @@
                                                         {{--                                                    <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                         {{--                                                </div>--}}
                                                         <div class="d-flex column-gap-4">
-                                                            <a href="#" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
-                                                            <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
+                                                            <a class="p-0 red-btn"  @if(!Auth::check()) href="{{url('log-in-pre')}}" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
+                                                            <a class="p-0 red-btn"  @if(!Auth::check()) href="{{url('log-in-pre')}}" @else href="{{route('contact-us-suppliers',$prod->company_id)}}" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                                 <div class="modal-dialog contact-form" role="document">
@@ -303,7 +303,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-100 mt-1 d-flex justify-content-between other-product-link-sections">
-                                                    <a href="{{route('products-suppliers',$prod->company_id)}}" class="red-link text-decoration-none" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif>Other products from this Buyer</a>
+                                                    <a class="red-link text-decoration-none" @if(!Auth::check()) href="{{url('log-in-pre')}}" @else href="{{route('products-suppliers',$prod->company_id)}}" @endif>Other products from this Buyer</a>
                                                     <a href="{{route('similar-product-buyer-this-supplier',['category'=>$category->slug,'subcategory'=>$subcategory,'comp_id'=>$prod->company_id])}}" class="text-decoration-none red-link">Similar product from this
                                                         Buyer</a>
                                                 </div>

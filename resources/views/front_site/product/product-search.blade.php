@@ -87,7 +87,7 @@
                                                 <div class="col-xl-4 col-lg-6 p-3 d-flex justify-content-center border-grey">
                                                     <div>
                                                         <div class="d-flex membersince">Member <span class="number">since</span><span class="years">{{get_product_created_at($prod->company_id)}}</span></div>
-                                                        <a href="{{route('about-us-suppliers',$prod->company_id)}}" class="text-reset" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif> <p class="text-uppercase font-500 font-24">{{get_product_company($prod->company_id)}}</p></a>
+                                                        <a class="text-reset" @if(!Auth::check()) href="{{url('log-in-pre')}}" @else href="{{route('about-us-suppliers',$prod->company_id)}}" @endif> <p class="text-uppercase font-500 font-24">{{get_product_company($prod->company_id)}}</p></a>
                                                         <small class="d-block mb-2 grey-text">{{get_product_city($prod->company_id)}}, {{get_product_country($prod->company_id)}}</small>
                                                         <div class="mb-2 membericon">
                                                             <a href="#">
@@ -98,8 +98,8 @@
                                                         {{--                                            <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                         {{--                                        </div>--}}
                                                         <div class="d-sm-inline-block d-flex flex-column align-items-center">
-                                                            <a href="#" class="mb-md-0 mb-1 p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
-                                                            <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
+                                                            <a class="mb-md-0 mb-1 p-0 red-btn"  @if(!Auth::check()) href="{{url('log-in-pre')}}" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
+                                                            <a class="p-0 red-btn"  @if(!Auth::check()) href="{{url('log-in-pre')}}" @else href="{{route('contact-us-suppliers',$prod->company_id)}}" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                                 <div class="modal-dialog contact-form" role="document">
@@ -313,7 +313,7 @@
                                                     {{--                                            <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                     {{--                                        </div>--}}
                                                     <div class="d-sm-inline-block d-flex flex-column align-items-center">
-                                                        <a href="#" class="mb-md-0 mb-1 p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
+                                                        <a class="mb-md-0 mb-1 p-0 red-btn"  @if(!Auth::check()) href="{{url('log-in-pre')}}" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                             <div class="modal-dialog contact-form" role="document">

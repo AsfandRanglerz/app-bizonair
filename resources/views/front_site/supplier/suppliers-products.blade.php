@@ -36,7 +36,7 @@
                                             </div>
                                         </div>
 
-                                        <button class="red-btn" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP">MESSAGE</button>
+                                        <button class="red-btn" @if(!Auth::check()) onclick="location.href='{{ route('log-in-pre') }}'" @else data-toggle="modal" data-target="#contactFormPDP" @endif>MESSAGE</button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                             <div class="modal-dialog contact-form" role="document">

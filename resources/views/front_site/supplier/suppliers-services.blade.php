@@ -35,7 +35,7 @@
                                         <p class="mt-1 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
                                     </div>
                                 </div>
-                                <button class="red-btn" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP">MESSAGE</button>
+                                <button class="red-btn" @if(!Auth::check()) onclick="location.href='{{ route('log-in-pre') }}'" @else data-toggle="modal" data-target="#contactFormPDP" @endif>MESSAGE</button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                     <div class="modal-dialog contact-form" role="document">
