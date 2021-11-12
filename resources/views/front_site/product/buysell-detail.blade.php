@@ -392,7 +392,7 @@
                                    </div>
 
                                    @if(!empty($product->machinery_buysell_info->product_type))
-                                       <span class="heading">ADDITIONAL PRODUCT INFO</span>
+                                       <span class="heading">PRODUCT SPECIFICATIONS</span>
                                        <div class="row text mx-0">
                                            <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                <span><b>Machinery Type : </b></span>

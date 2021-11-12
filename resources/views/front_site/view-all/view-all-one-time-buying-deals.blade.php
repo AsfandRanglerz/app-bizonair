@@ -27,7 +27,7 @@
                                 <h3 class="main-heading">ALL ONE TIME BUYING DEALS</h3>
                             </div>
                             <div class="row deals-inner-half" id="sellingDeals">
-                                <nav class="w-100 my-1 navbar navbar-expand-lg navbar-light">
+                                <nav class="my-1 navbar navbar-expand-lg navbar-light">
                                     <a class="navbar-brand" href="#">SUB-CATEGORIES</a>
                                     <button class="navbar-toggler"  data-toggle="collapse" data-target="#subCatPanel" aria-controls="subCatPanel" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="fa fa-angle-down"></span>
@@ -36,15 +36,27 @@
                                         <div class="row mx-0 categories-side-section">
                                             <div class="col-6 p-0 categories-side-section-inner scroll-cat">
                                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                    <a class="d-flex justify-content-between align-items-center column-gap-10 nav-link active" id="v-pills-cats-tab" data-toggle="pill" href="#v-pills-cats" role="tab" aria-controls="v-pills-cats" aria-selected="true"><span class="overflow-text-dots-one-line" onclick="location.href='#'">asad</span><span class="fa fa-angle-double-right"></span></a>
+                                                    @php
+                                                        $sub_id_arr = [];
+                                                    @endphp
+                                                    @foreach(\App\Subcategory::where('category_id', $category->id)->get() as $i =>  $subcategory)
+                                                        @php
+                                                            array_push($sub_id_arr, $subcategory->id);
+                                                        @endphp
+                                                        <a class="d-flex justify-content-between align-items-center column-gap-10 nav-link @if($i == 0) active @endif" id="v-pills-cats-tab" data-toggle="pill" href="#v-pills-cats{{$subcategory->id}}" role="tab" aria-controls="v-pills-cats" aria-selected="true"><span class="overflow-text-dots-one-line" onclick="location.href='{{route('suppliers-subcategory-products',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}'">{{$subcategory->name}}</span><span class="fa fa-angle-double-right"></span></a>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                             <div class="col-6 p-0 categories-side-section-inner scroll-cat">
                                                 <span class="sub-sub-cat-heading">SUB SUB-Categories</span>
                                                 <div class="tab-content" id="v-pills-tabContent">
-                                                    <div class="tab-pane fade active show" id="v-pills-cats" role="tabpanel" aria-labelledby="v-pills-cats-tab">
-                                                        <a href="#" class="nav-link red-link overflow-text-dots-one-line">asad</a>
-                                                    </div>
+                                                    @foreach( $sub_id_arr as $key =>  $value)
+                                                        <div class="tab-pane fade" id="v-pills-cats{{$value}}" role="tabpanel" aria-labelledby="v-pills-cats-tab">
+                                                            @foreach(\App\Childsubcategory::where('subcategory_id',$value)->orderby('subcategory_id','asc')->get() as $key =>  $childsubcat)
+                                                                <a href="{{route('suppliers-products',['category'=>$subcategory->category->slug,'subcategory'=>$childsubcat->subcategory->slug,'childsubcategory'=>$childsubcat->slug])}}" class="nav-link red-link overflow-text-dots-one-line">{{$childsubcat->name}}</a>
+                                                            @endforeach
+                                                        </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
