@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         <label class="d-none">Email</label>
-                        <input id="email" type="email" class="form-control" placeholder="example@gmail.com *" name="email" readonly>
+                        <input id="email" type="email" class="form-control" value="{{request()->email}}" placeholder="example@gmail.com *" name="email" readonly>
                     </div>
                     <div class="form-group position-relative">
                         <label class="d-none">Password</label>

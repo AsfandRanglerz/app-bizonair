@@ -150,7 +150,7 @@
             });
         });
         $(document).on('click','.searchmega',function() {
-            var verified1 = $('#serchfltr').val();
+            var verified1 = $('#selCatInput').val();
             var verified2 = $('#searchKeyword').val();
             console.log(verified1);
             console.log(verified2);

@@ -137,7 +137,7 @@
                                                                                     <p style="color: white">A notification will be sent to supplier/buyer to contact you back</p>
                                                                                 @endif
                                                                             <div class="form-group mt-4 mb-0">
-                                                                                <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="red-btn" data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif type="submit">Yes</button>
+                                                                                <button @if(Auth::check()) class="red-btn add-to-favourite" data-dismiss="modal" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="red-btn" data-dismiss="modal" onclick="location.href='{{ url('log-in-pre') }}'" @endif type="submit">Yes</button>
                                                                                 <button class="red-btn" data-dismiss="modal" aria-hidden="true">No</button>
 
                                                                             </div>

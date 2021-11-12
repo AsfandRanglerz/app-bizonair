@@ -97,7 +97,7 @@ class HomeController extends Controller
         if($data['savereset']){
             $data['msg'] = 'We have e-mailed your password reset link please check';
             $data['feedback'] = 'true';
-            $data['url'] = url('reset-password/'.$token);
+            $data['url'] = url('reset-password/'.$token.'?email='.$request->email);
             $data['verification_code'] = $token;
         }
         return json_encode($data);
