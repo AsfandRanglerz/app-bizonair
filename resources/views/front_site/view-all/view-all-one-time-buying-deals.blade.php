@@ -118,7 +118,7 @@
                                                         <div class="product-info clearfix">
                                                             <p class="heading overflow-text-dots-subject">{{$prod->product_service_name}}</p>
                                                             <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
-                                                            <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
+                                                            <p class="mb-0">Quantity : @if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif @if($prod->available_unit == "Other") {{$prod->other_available_unit}} @else {{$prod->available_unit}} @endif</p>
                                                             <p class="price font-500 overflow-text-dots-subject"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }}  @else {{ number_format($prod->target_price_from) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
                                                             <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
                                                                 <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
@@ -211,7 +211,7 @@
                                         <div class="product-info clearfix">
                                             <p class="heading overflow-text-dots-subject">{{$prod->product_service_name}}</p>
                                             <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
-                                            <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
+                                            <p class="mb-0">Quantity : @if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif @if($prod->available_unit == "Other") {{$prod->other_available_unit}} @else {{$prod->available_unit}} @endif</p>
                                             <p class="price font-500 overflow-text-dots-subject"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }}  @else {{ number_format($prod->target_price_from) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
                                             <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
                                                 <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>

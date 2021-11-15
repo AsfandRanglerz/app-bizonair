@@ -123,7 +123,7 @@
                                         <span><b>Annual Turnover(In USD Million)</b></span>
                                     </div>
                                     <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">{{$about_us->annual_turnover ?:'-'}}</p>
+                                        <p class="mb-sm-0">{{number_format($about_us->annual_turnover) ?:'-'}}</p>
                                     </div>
                                 </div>
                                 <div class="row text">

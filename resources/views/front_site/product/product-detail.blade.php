@@ -96,7 +96,7 @@
                                             Selling Offer @elseif($product->product_service_types =='Buy') Buying
                                             Offer @endif
                                     </p>
-                                    <p class="product-details">{{$product->details}}</p>
+                                    <p class="product-details">{!! $product->details !!}</p>
                                     <div class="d-flex justify-content-sm-start justify-content-center btns-block">
                                         <a  class="p-0 btns" @if(!Auth::check()) href="{{route('log-in-pre')}}" @endif><span class="red-btn d-inline-block py-1 px-2"
                                                                                data-placement="bottom"

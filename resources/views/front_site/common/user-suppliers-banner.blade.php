@@ -24,7 +24,7 @@
     </div>
 </div>
 <nav class="suppliers-nav">
-    <a href="{{route('about-us-suppliers',$about_us->id)}}" class="d-inline-block text-decoration-none link">ABOUT US</a>
+    <a href="{{route('about-us-suppliers',['id'=>$about_us->id,'company'=>getCompanyName($about_us->id)])}}" class="d-inline-block text-decoration-none link">ABOUT US</a>
     <a href="{{route('products-suppliers',$about_us->id)}}" class="d-inline-block text-decoration-none link">PRODUCTS</a>
     <a href="{{route('services-suppliers',$about_us->id)}}" class="d-inline-block text-decoration-none link">SERVICES</a>
     <a href="{{route('contact-us-suppliers',$about_us->id)}}" class="d-inline-block text-decoration-none link">CONTACT US</a>
