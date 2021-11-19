@@ -9117,6 +9117,19 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 575px) {
+    .contact-form .ticks-checkbox .input {
+        text-overflow: unset;
+        font-size: 10px;
+    }
+
+    .contact-form ul[data-toggle='buttons'] {
+        display: unset;
+    }
+
+    .contact-form .ticks-checkbox > ul > li {
+        font-size: 10px;
+    }
+
     .comp-name.form-control {
         font-size: 8px;
         width: 75px!important;
