@@ -474,9 +474,9 @@
                                            </div>
                                            <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                                <p class="mb-0">
-                                                   @if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }}
-                                                   @else {{$product->suitable_currencies }} @endif
-                                                   {{ floor(number_format($product->unit_price_from,2)) }} Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}
+                                                   @if($product->suitable_currencies == "Other") {{ $product->other_suitable_currency }} @else {{ $product->suitable_currencies }} @endif
+                                                   @if(!empty($product->unit_price_from)){{ number_format($product->unit_price_from) }}  @else {{ number_format($product->target_price_from) }} @endif Per @if($product->unit_price_unit =="Other") {{$product->other_unit_price_unit}} @else  {{$product->unit_price_unit}} @endif
+                                                   @if($product->target_price_unit =="Other") {{$product->other_target_price_unit}} @else {{$product->target_price_unit}} @endif
                                                </p>
                                            </div>
                                        </div>
@@ -491,7 +491,7 @@
                                                <p class="mb-0">
                                                    @if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }}
                                                    @else {{$product->suitable_currencies }} @endif
-                                                   {{ floor(number_format($product->unit_price_from,2)) }} Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}
+                                                   {{ number_format($product->unit_price_from) }} Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}
                                                </p>
                                            </div>
                                        </div>

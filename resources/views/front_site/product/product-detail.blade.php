@@ -1095,8 +1095,8 @@
                                                     <span><b>Target Price Range : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }} @else {{$product->suitable_currencies }} @endif {{ floor(number_format($product->target_price_from,2)) }}
-                                                        - {{ floor(number_format($product->target_price_to,2)) }}
+                                                    <p class="mb-0">@if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }} @else {{$product->suitable_currencies }} @endif {{ number_format($product->target_price_from) }}
+                                                        - {{ number_format($product->target_price_to) }}
                                                         Per {{ ($product->target_price_unit != 'Other') ? $product->target_price_unit : $product->other_target_price_unit }}</p>
                                                 </div>
                                             </div>
@@ -1107,8 +1107,8 @@
                                                     <span><b>Unit Price Range : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }} @else {{$product->suitable_currencies }} @endif {{ floor(number_format($product->unit_price_from,2)) }}
-                                                        - {{ floor(number_format($product->unit_price_to,2)) }}
+                                                    <p class="mb-0">@if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }} @else {{$product->suitable_currencies }} @endif {{ number_format($product->unit_price_from) }}
+                                                        - {{ number_format($product->unit_price_to) }}
                                                         Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}</p>
                                                 </div>
                                             </div>
@@ -1119,8 +1119,8 @@
                                                     <span><b>Service Charges Range : </b></span>
                                                 </div>
                                                 <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }} @else {{$product->suitable_currencies }} @endif {{ floor(number_format($product->unit_price_from,2)) }}
-                                                        - {{ floor(number_format($product->unit_price_to,2)) }}
+                                                    <p class="mb-0">@if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }} @else {{$product->suitable_currencies }} @endif {{ number_format($product->unit_price_from) }}
+                                                        - {{ number_format($product->unit_price_to) }}
                                                         Per {{ ($product->unit_price_unit != 'Other') ? $product->unit_price_unit : $product->other_unit_price_unit }}</p>
                                                 </div>
                                             </div>
