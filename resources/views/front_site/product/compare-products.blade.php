@@ -1,5 +1,15 @@
 @extends('front_site.master_layout')
 
+@push('css')
+    <style>
+        @media (max-width: 575px) {
+            .place-day .place, .place-day .place + span {
+                font-size: 10px;
+            }
+        }
+    </style>
+@endpush
+
 @section('content')
 
 
@@ -31,20 +41,20 @@
                       <tbody>
                       <tr>
                           <td width="175" valign="top" class="name-product-heading">
-                              <table class="table table-borderless" width="100%" border="0" cellspacing="0" cellpadding="0" class="mb-0 table">
+                              <table class="table table-borderless mb-0" width="100%" border="0" cellspacing="0" cellpadding="0" class="mb-0 table">
                                   <tbody>
                                   <tr>
-                                      <td width="75" height="315" valign="top"><h4 class="product-info-headings text-left"><strong>Name
-                                                  of Products</strong></h4></td>
+                                      <td width="75" height="241" valign="top"><b class="product-info-headings text-left"><strong>Name
+                                                  of Products</strong></b></td>
                                   </tr>
                                   <tr>
-                                      <td><h4 class="product-info-headings text-left">Price</h4></td>
+                                      <td><b class="product-info-headings text-left">Price</b></td>
                                   </tr>
                                   <tr>
-                                      <td><h4 class="product-info-headings text-left">Product Availability</h4></td>
+                                      <td><b class="product-info-headings text-left">Product Availability</b></td>
                                   </tr>
                                   <tr>
-                                      <td><h4 class="product-info-headings text-left">Location</h4></td>
+                                      <td><b class="product-info-headings text-left">Location</b></td>
                                   </tr>
                                   </tbody>
                               </table>
@@ -52,12 +62,12 @@
                           @if((isset($viewproduct) && count($viewproduct)) > 0)
                               @foreach($viewproduct as $key=> $prod)
                                   <td width="170" class="product-info-container" valign="top" data-productleadvalue="20175873">
-                                      <table class="table table-borderless" width="100%" cellspacing="2" cellpadding="0" class="mb-0 table">
+                                      <table class="table table-borderless mb-0" width="100%" cellspacing="2" cellpadding="0" class="mb-0 table">
                                           <tbody>
                                           <tr>
-                                              <td width="100" height="315" bgcolor="#fff" align="center">
+                                              <td width="100" height="241" bgcolor="#fff" align="center">
                                                   <div align="right">
-                                                      <span class="fa fa-times cross-icon" aria-hidden="true" id="cross" reference_no="{{$prod->reference_no}}"></span>
+                                                      <span class="mb-2 fa fa-times cross-icon" aria-hidden="true" id="cross" reference_no="{{$prod->reference_no}}"></span>
                                                   </div>
                                                   <div class="productsweek-img">
 
@@ -231,7 +241,10 @@
                                           </tr>
                                           <tr>
                                               <td bgcolor="#fff">
-                                                  <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pl-5">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                                  <div class="d-flex justify-content-between text-uppercase place-day">
+                                                      <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
+                                                      <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                                  </div>
                                               </td>
                                           </tr>
 
@@ -243,12 +256,12 @@
                           @elseif((isset($viewbuysell) && count($viewbuysell)) > 0)
                               @foreach($viewbuysell as $key=> $prod)
                                   <td width="170" class="product-info-container" valign="top" data-productleadvalue="20175874">
-                                      <table class="table table-borderless" width="100%" cellspacing="2" cellpadding="0" class="mb-0 table">
+                                      <table class="table table-borderless mb-0" width="100%" cellspacing="2" cellpadding="0" class="mb-0 table">
                                           <tbody>
                                           <tr>
-                                              <td width="100" height="315" bgcolor="#fff" align="center">
+                                              <td width="100" height="241" bgcolor="#fff" align="center">
                                                   <div align="right">
-                                                      <span class="fa fa-times cross-icon" aria-hidden="true" id="cross" reference_no="{{$prod->reference_no}}"></span>
+                                                      <span class="mb-2 fa fa-times cross-icon" aria-hidden="true" id="cross" reference_no="{{$prod->reference_no}}"></span>
                                                   </div>
                                                   <div class="productsweek-img">
 
@@ -422,7 +435,10 @@
                                           </tr>
                                           <tr>
                                               <td bgcolor="#fff">
-                                                  <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pl-5">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                                  <div class="d-flex justify-content-between text-uppercase place-day">
+                                                      <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
+                                                      <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                                  </div>
                                               </td>
                                           </tr>
 
@@ -433,10 +449,10 @@
                               @endforeach
                           @else
                               <td width="170" class="product-info-container" valign="top" data-productleadvalue="20175873">
-                                  <table class="table table-borderless" width="100%" cellspacing="2" cellpadding="0" class="mb-0 table">
+                                  <table class="table table-borderless mb-0" width="100%" cellspacing="2" cellpadding="0" class="mb-0 table">
                                       <tbody>
                                       <tr>
-                                          <td width="100" height="315" bgcolor="#fff" align="center"><p>No Product Found To Compare...</p></td>
+                                          <td width="100" height="241" bgcolor="#fff" align="center"><p>No Product Found To Compare...</p></td>
                                       </tr>
                                       </tbody>
                                   </table>

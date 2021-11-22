@@ -830,14 +830,7 @@
 
     <!--  /*add to compare model*/ -->
     <script type="text/javascript">
-        $(window).resize(function() {
-            var ads = $('.ads').parent().innerHeight();
-            $('.product-tab').innerHeight(ads - 60);
-        });
         $(document).ready(function () {
-            var ads = $('.ads').parent().innerHeight();
-            $('.product-tab').innerHeight(ads - 60);
-
             var options_inquiry = {
                 dataType: 'Json',
                 beforeSubmit: function (arr, $form) {

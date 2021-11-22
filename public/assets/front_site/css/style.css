@@ -271,7 +271,7 @@ div.dataTables_wrapper div.dataTables_filter label {
 
 .suppliers-products .products-slider img {
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .suppliers-products .lSSlideOuter .lSPager.lSGallery img {
@@ -301,7 +301,7 @@ div.dataTables_wrapper div.dataTables_filter label {
 .suppliers-products .product-info {
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 0%), 0 6px 20px 0 rgb(0 0 0 / 18%);
     border-radius: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .suppliers-products .product-info:last-child {
@@ -9128,6 +9128,12 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 575px) {
+    .details-comparison .product-info-headings {
+        line-height: normal;
+        font-size: 10px;
+        display: inline-block;
+    }
+
     .product-listing .top-companies {
         height: unset;
     }
