@@ -3,7 +3,7 @@
     <body class="product-main">
     <main id="maincontent" class="blogs-page">
         <div class="main-container">
-            <nav aria-label="breadcrumb" class="px-3">
+            <nav aria-label="breadcrumb" class="px-2">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a
@@ -12,10 +12,10 @@
                             href="{{Request::url()}}">Yarn Rates</a></li>
                 </ol>
             </nav>
-            <div class="container-fluid p-sm-4 pt-4 pb-4 pl-3 pr-3">
-                <div class="row">
-                    <div class="col-sm-9">
-                        <div class="table-responsive table-mt mt-3 mb-3 pl-4 pr-4">
+            <div class="container-fluid pb-4 px-0">
+                <div class="row mx-0">
+                    <div class="col-sm-9 px-2">
+                        <div class="table-responsive table-mt">
                             <table class="table table-bordered table-striped" id="yarnRatesTable" style="width:100%">
                                 <thead>
                                 <tr>
@@ -40,7 +40,7 @@
                             <p class="mb-0"><b>Disclaimer:</b> Above prices are for reference only, contact supplier for exact prices.</p>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-3 px-2">
                         <div class="position-relative ads">
                             @foreach($ads as $ad)
                                 <a href="{{ $ad->link }}" class="text-decoration-none">

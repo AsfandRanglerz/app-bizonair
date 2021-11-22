@@ -3,51 +3,37 @@
     <body>
     <style>
         /*currency rates css*/
+        .currency-rates-block {
+            overflow-x: auto;
+        }
+
+        .currency-rates-block #gcw_mainFJegLMB4I .gcw_headerFJegLMB4I {
+            border: 1px solid #A52C3E !important;
+            background-color: #A52C3E !important;
+        }
+
+        .currency-rates-block .gcw_headerFJegLMB4I a {
+            font-weight: 100 !important;
+            font-size: 12px!important;
+        }
+
+        .currency-rates-block .gcw_mainFJegLMB4I * {
+            font-size: 10px!important;
+        }
+
+        .currency-rates-block #gcw_siteFJegLMB4I {
+            text-align: left;
+            width: inherit;
+            margin: 4px 0;
+        }
+
         .currency-rates-block .gcw_mainFAGlYeDQz {
             max-width: unset!important;
             margin-bottom: 15px!important
         }
 
-        .gcw_mainFAGlYeDQz .gcw_valblockFAGlYeDQz {
-            width: 25%;
-            font-size: 10px!important;
-        }
-
-        .gcw_mainFAGlYeDQz .gcw_ttlFAGlYeDQz {
-            font-size: 10px!important;
-        }
-
-        .gcw_mainFAGlYeDQz .gcw_flagFAGlYeDQz {
-            width: 15px!important;
-            max-width: 15px!important;
-        }
-
-        .gcw_mainFAGlYeDQz .gcw_headerFAGlYeDQz {
-            padding: 3px!important;
-            text-align: center!important;
-            border: 1px solid #A52C3E!important;
-            background-color: #A52C3E!important;
-            font-size: 12px!important;
-            margin-bottom: 4px!important;
-        }
-
-        .gcw_mainFAGlYeDQz .gcw_sourceFAGlYeDQz {
-            padding-top: 0!important;
-        }
-
-        .gcw_infoFAGlYeDQz {
-            display: none;
-        }
-
-        .gcw_mainFAGlYeDQz .gcw_inputFAGlYeDQz {
-            border: 1px solid #A52C3E!important;
-        }
-
-        #gcw_refreshFAGlYeDQz {
-            margin-right: 0!important;
-            display: block;
-            text-align: center;
-            font-weight: bold!important;
+        .currency-rates-block .gcw_value-revFJegLMB4I, .currency-rates-block td.gcw_value-dirFJegLMB4I {
+            padding: 0px 6px !important;
         }
         /*currency rates css*/
     </style>
