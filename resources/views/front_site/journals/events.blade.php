@@ -2,6 +2,11 @@
 @section('content')
 <body>
 <style type="text/css" media="screen">
+    .textile-news-inner > div img {
+        object-fit: contain;
+        object-position: center;
+    }
+
     /*view all page*/
     .view-all-pg .banner .banner-content {
         top: 0;

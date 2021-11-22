@@ -619,9 +619,11 @@ $(document).ready(function () {
     /*header open nav, close nav for tablets and mobile view*/
 
     /*for companies sidebar*/
-    var CompaniesHeadingHeight = $('.top-companies').siblings('.main-heading').height() + 8;
-    var companiesCeilHeight = Math.ceil(CompaniesHeadingHeight);
-    $('.top-companies').css( { height: `calc(100% - ${companiesCeilHeight}px)` } );
+    if ($(window).width() >= 576) {
+        var CompaniesHeadingHeight = $('.top-companies').siblings('.main-heading').height() + 8;
+        var companiesCeilHeight = Math.ceil(CompaniesHeadingHeight);
+        $('.top-companies').css({height: `calc(100% - ${companiesCeilHeight}px)`});
+    }
     /*for companies sidebar*/
 
     /*Add smooth scrolling to all links*/
@@ -3153,12 +3155,6 @@ $(function () {
         var headerVal = Math.ceil(header);
         $('#dashboardSidebar').css( { height: `calc(100% - ${headerVal}px)` } );
         /*dashboard sidebar height - header height*/
-
-        /*for companies sidebar*/
-        var CompaniesHeadingHeight = $('.top-companies').siblings('.main-heading').height() + 8;
-        var companiesCeilHeight = Math.ceil(CompaniesHeadingHeight);
-        $('.top-companies').css( { height: `calc(100% - ${companiesCeilHeight}px)` } );
-        /*for companies sidebar*/
 
         if ($(window).width() <= 575) {
             /*dashboard toggle content*/

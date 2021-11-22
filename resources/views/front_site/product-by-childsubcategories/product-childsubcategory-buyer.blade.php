@@ -52,7 +52,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="mt-4 compare-container">
+                            <div class="mt-2 compare-container">
                                 <div class="mb-2 compare-cancel-btns">
                                     <a class="pt-1 pb-1 pl-2 pr-2 red-btn" id="compa">Compare</a>
                                     <a class="pt-1 pb-1 pl-2 pr-2 red-btn cancel-btn" id="cancel" >Cancel</a>
