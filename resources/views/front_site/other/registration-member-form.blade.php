@@ -66,7 +66,7 @@
                                     @csrf
                                     <div class="form-row">
                                         <h6 class="w-100">Create Member Account</h6>
-                                        <div class="form-group col-md-12">
+                                        <div class="form-group col-md-6 mb-1">
                                             <label>Account Email <span class="required">*</span></label>
                                             <input type="hidden" name="reciever" value="{{$reciever_mail}}"
                                                    id="reciever">
@@ -76,6 +76,22 @@
                                                    placeholder="example@email.com" disabled="disabled">
                                             <small class="text-danger" id="email_error"></small>
                                         </div>
+                                        <div class="form-group col-md-6 mb-1">
+                                            <label class="mb-2 w-100 text-center font-500">Profile Picture (Optional)</label>
+                                            <div class="mx-auto d-flex justify-content-center align-items-center avatar-wrapper rounded create-account-avatar">
+                                                {{--<img class="profile-pic" id="uploaded_image" src="{{ get_user_image(Auth::user()) }}"/>--}}
+                                                <div class="position-absolute spinner-border text-danger loader-spinner d-none" role="status" style="z-index: 1">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                                <img class="w-100 h-100 object-cover rounded header-profile-pic" id="uploaded_image1" src="{{$ASSET}}/front_site/images/preview.svg">
+                                                <div class="upload-button rounded">
+                                                    <span class="fa fa-plus"></span>
+                                                </div>
+                                                <input class="file-upload d-none" name="avatar" id="avatar1" type="file" accept="image/*"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
                                             <label>First Name <span class="required">*</span></label>
                                             <input type="text" class="form-control" placeholder="First Name"

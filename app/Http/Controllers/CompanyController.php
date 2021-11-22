@@ -626,10 +626,20 @@ class CompanyController extends Controller
         $user->designation = request('designation');
         $user->company_name = request('company_name');
         $user->registration_phone_no = request('registration_phone_no');
-        if(request('gender') == 'Female'){
-            $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/82441633072560.png';
+        if(request()->hasFile('avatar')){
+            $image = request()->file('avatar');
+            $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('users/',$image_name,'s3');
+            $path = 'users'.'/'.$image_name;
+            $url = Storage::disk('s3')->url($path);
+            $user->avatar = $url;
+
         }else{
-            $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png';
+            if(request('gender') == 'Female'){
+                $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/82441633072560.png';
+            }else{
+                $user->avatar = 'https://bizonairfiles.s3.ap-south-1.amazonaws.com/users/85581631173146.png';
+            }
         }
         $user->gender = request('gender');
         $user->birthday = \Carbon\Carbon::parse(request('birthday'))->startOfDay();
