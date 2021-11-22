@@ -72,10 +72,7 @@
                                                         <div class="position-relative suppliers-buyers">
                                                             @foreach($prod->product_image as $j => $image)
                                                                 @if($loop->first)
-                                                                    <a href="{{ route('productDetail',$prod->slug) }}">
-                                                                    <img src="{{$image->image}}"
-                                                                         class="w-100 h-100 certified-suppliers-img">
-                                                                    </a>
+                                                                    <img src="{{$image->image}}" class="w-100 h-100 certified-suppliers-img">
                                                                     <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">
                                                                     <div class="position-absolute heart-icon-div">
                                                                         <span  @if(Auth::check()) class="text-decoration-none add-to-fav" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="text-decoration-none pre-login" @endif><span class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span></span>
@@ -113,7 +110,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <a href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
+                                                        <a href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}" class="text-reset text-decoration-none">
                                                         <div class="product-info clearfix">
                                                             <p class="heading overflow-text-dots-subject">{{$prod->product_service_name}}</p>
                                                             <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
@@ -164,10 +161,7 @@
                                             <div class="position-relative suppliers-buyers" style="height: 65%">
                                                 @foreach($prod->product_image as $i => $image)
                                                     @if($loop->first)
-                                                        <a href="{{ route('productDetail',$prod->slug) }}">
-                                                        <img src="{{$image->image}}"
-                                                             class="w-100 h-100 certified-suppliers-img">
-                                                        </a>
+                                                        <img src="{{$image->image}}" class="w-100 h-100 certified-suppliers-img">
                                                         <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">
                                                         <div class="position-absolute heart-icon-div">
                                                             <span  @if(Auth::check()) class="text-decoration-none add-to-fav" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="text-decoration-none pre-login" @endif><span class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span></span>
@@ -205,7 +199,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
+                                        <a href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}" class="text-reset text-decoration-none">
                                         <div class="product-info clearfix">
                                             <p class="heading overflow-text-dots-subject">{{$prod->product_service_name}}</p>
                                             <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
