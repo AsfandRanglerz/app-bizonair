@@ -46,7 +46,7 @@
                                 <h3 class="py-1 heading">Student Projects</h3>
                                 <div class="mb-1 journal-content">
                                     <div class="journal-content-inner">
-                                        @foreach($events as $article)
+                                        @foreach($sprojects as $article)
                                             <a href="{{route('journal-detail',['type'=>$article->journal_type_name,'id'=>$article->id])}}" class="text-decoration-none text-reset">
                                                 <div class="d-flex articles-block">
                                                     @if(\File::exists($article->image))
@@ -61,6 +61,7 @@
                                                 </div>
                                             </a>
                                         @endforeach
+
                                     </div>
                                     <div class="pr-2 pb-1 text-right">
                                         <a href="{{route('projects')}}" class="red-link view-all-link">View All</a>
@@ -72,7 +73,7 @@
                                 <h3 class="py-1 heading">Upcoming Events</h3>
                                 <div class="mb-1 journal-content">
                                     <div class="journal-content-inner">
-                                        @foreach($sprojects as $article)
+                                        @foreach($events as $article)
                                             <a href="{{route('journal-detail',['type'=>$article->journal_type_name,'id'=>$article->id])}}" class="text-decoration-none text-reset">
                                                 <div class="d-flex articles-block">
                                                     @if(\File::exists($article->image))

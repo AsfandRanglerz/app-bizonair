@@ -101,7 +101,7 @@
                                     <p class="product-details">{!! $product->details !!}</p>
                                     <div class="d-flex justify-content-sm-start justify-content-center btns-block">
                                         <a class="p-0 btns"
-                                           @if(!Auth::check()) href="{{route('log-in-pre')}}" @endif><span
+                                           @if(!Auth::check()) href="{{route('log-in-pre')}}" @else data-toggle="modal" data-target="#contactFormPDP" @endif><span
                                                 class="red-btn d-inline-block py-1 px-2"
                                                 data-placement="bottom"
                                                 title="Send an Inquiry to company on Bizonair portal"
@@ -309,7 +309,7 @@
                                                                 </ul>
                                                             </div>
                                                             <button type="submit" class="btn submit-btn"
-                                                                    id="inquiry_create_btn" disabled>Send Inquiry Now
+                                                                    id="inquiry_create_btn">Send Inquiry Now
                                                             </button>
                                                             <button type="submit" disabled
                                                                     class="btn submit-btn btn-proo d-none">
