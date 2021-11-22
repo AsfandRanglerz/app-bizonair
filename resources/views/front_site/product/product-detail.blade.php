@@ -1284,7 +1284,7 @@
                             </div>
 
                         </div>
-                        <div class="col-xl-3 col-lg-4 col-md-4 mt-sm-0 mt-3">
+                        <div class="col-xl-3 col-lg-4 col-md-4 mt-sm-0 mt-3 px-0">
                             @foreach($ads as $ad)
                                 <div class="position-relative ads">
                                     <a href="{{ $ad->link }}" class="text-decoration-none">

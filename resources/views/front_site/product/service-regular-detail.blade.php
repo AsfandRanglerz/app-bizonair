@@ -500,7 +500,7 @@
                       </div>
 
                   </div>
-                  <div class="col-xl-3 col-lg-4 col-md-4 mt-sm-0 mt-3">
+                  <div class="col-xl-3 col-lg-4 col-md-4 mt-sm-0 mt-3 px-0">
                       @foreach($ads as $ad)
                           <a href="{{ $ad->link }}" class="text-decoration-none">
                               <img src="{{ $ad->image }}" class="w-100 h-100 right-side-img">
