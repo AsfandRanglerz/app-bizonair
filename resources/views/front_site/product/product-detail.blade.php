@@ -77,7 +77,9 @@
                                                             product_service_name="{{$product->product_service_name}}"
                                                             product_service_types="{{$product->product_service_types}}"
                                                             reference_no="{{$product->reference_no}}"
-                                                            @else class="red-btn" onclick="location.href='{{ route('log-in-pre') }}'" @endif type="submit">Yes
+                                                            @else class="red-btn"
+                                                            onclick="location.href='{{ route('log-in-pre') }}'"
+                                                            @endif type="submit">Yes
                                                     </button>
                                                     <button class="red-btn" data-dismiss="modal" aria-hidden="true">No
                                                     </button>
@@ -98,13 +100,16 @@
                                     </p>
                                     <p class="product-details">{!! $product->details !!}</p>
                                     <div class="d-flex justify-content-sm-start justify-content-center btns-block">
-                                        <a  class="p-0 btns" @if(!Auth::check()) href="{{route('log-in-pre')}}" @endif><span class="red-btn d-inline-block py-1 px-2"
-                                                                               data-placement="bottom"
-                                                                               title="Send an Inquiry to company on Bizonair portal"
-                                                                               data-toggle="tooltip">MESSAGE</span></a>
+                                        <a class="p-0 btns"
+                                           @if(!Auth::check()) href="{{route('log-in-pre')}}" @endif><span
+                                                class="red-btn d-inline-block py-1 px-2"
+                                                data-placement="bottom"
+                                                title="Send an Inquiry to company on Bizonair portal"
+                                                data-toggle="tooltip">MESSAGE</span></a>
                                         <a href="#productInfoSection" class="p-0 btns product-info-btn"><span
                                                 class="red-btn d-inline-block py-1 px-2">PRODUCT INFO</span></a>
-                                        <a class="p-0 btns" @if(!Auth::check()) href="{{route('log-in-pre')}}" @else href="{{route('contact-us-suppliers',$product->company_id)}}" @endif><span
+                                        <a class="p-0 btns" @if(!Auth::check()) href="{{route('log-in-pre')}}"
+                                           @else href="{{route('contact-us-suppliers',$product->company_id)}}" @endif><span
                                                 class="red-btn d-inline-block py-1 px-2" data-placement="bottom"
                                                 title="Send an Email to company"
                                                 data-toggle="tooltip">CONTACT</span></a>
@@ -351,13 +356,14 @@
                                         , {{get_product_country($product->company_id)}}</small>
                                     <?php $contact = \App\CompanyProfile::where('id', $product->company_id)->first();  ?>
                                     @if($contact)
-                                    <small class="d-flex mb-1 grey-text number-content">
-                                        <span class="font-500">Contact:</span>
-                                        <span class="d-inline-block mx-1 show">***********</span>
-                                        <span class="d-none mx-1 hidden">@if($contact->alternate_contact) {{$contact->alternate_contact}} @else {{ get_product_contact_no($product->company_id) }} @endif</span>
-                                        <span class="cursor-pointer blue-color font-500 hide-show-number"
-                                              style="border-bottom: 1px dashed">Show</span>
-                                    </small>
+                                        <small class="d-flex mb-1 grey-text number-content">
+                                            <span class="font-500">Contact:</span>
+                                            <span class="d-inline-block mx-1 show">***********</span>
+                                            <span
+                                                class="d-none mx-1 hidden">@if($contact->alternate_contact) {{$contact->alternate_contact}} @else {{ get_product_contact_no($product->company_id) }} @endif</span>
+                                            <span class="cursor-pointer blue-color font-500 hide-show-number"
+                                                  style="border-bottom: 1px dashed">Show</span>
+                                        </small>
                                     @endif
                                     <p class="add-connect"><span class="fa fa-address-book" aria-hidden="true"></span><a
                                             class="text-decoration-none text-reset"
@@ -383,9 +389,11 @@
                                     <div class="login-info">
                                         <span class="fa fa-exclamation"></span>
                                         <div class="login-info-inner">
-                                            <p><a href="{{route('log-in-pre')}}" class="font-500 register-text">Log in</a> To View More Information.
+                                            <p><a href="{{route('log-in-pre')}}" class="font-500 register-text">Log
+                                                    in</a> To View More Information.
                                                 <span class="font-500" style="color: #000">Not a member? </span>
-                                                <a href="{{route('email-confirmation')}}" class="font-500 register-text">Register Now!</a></p>
+                                                <a href="{{route('email-confirmation')}}"
+                                                   class="font-500 register-text">Register Now!</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -450,48 +458,48 @@
                                                 </div>
                                             </div>
                                         @endif
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Subject : </b></span>
-                                                </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{ $product->subject }}</p>
-                                                </div>
+                                        <div class="row text mx-0">
+                                            <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                <span><b>Subject : </b></span>
                                             </div>
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Additional Keyword : </b></span>
-                                                </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    @if(!empty($product->keyword1 && $product->keyword2 && $product->keyword3))
-                                                        <p class="mb-0"> {{ $product->keyword1.' , '.$product->keyword2.' , '.$product->keyword3 }}</p>
-                                                    @elseif(!empty($product->keyword1 && $product->keyword2))
-                                                        <p class="mb-0"> {{ $product->keyword1.' , '.$product->keyword2 }}</p>
-                                                    @elseif(!empty($product->keyword1))
-                                                        <p class="mb-0"> {{ $product->keyword1 }}</p>
-                                                    @else
-                                                        <p class="mb-0"> - </p>
-                                                    @endif
-                                                </div>
+                                            <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                <p class="mb-0">{{ $product->subject }}</p>
                                             </div>
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Product Availability : </b></span>
-                                                </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->product_availability =='Both')
-                                                            In-Stock/Made to
-                                                            order @else {{$product->product_availability ?: '-'}}@endif</p>
-                                                </div>
+                                        </div>
+                                        <div class="row text mx-0">
+                                            <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                <span><b>Additional Keyword : </b></span>
                                             </div>
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Manufacturer Name : </b></span>
-                                                </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{get_product_manufacturer_company($product->id) ?: '-'}}</p>
-                                                </div>
+                                            <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                @if(!empty($product->keyword1 && $product->keyword2 && $product->keyword3))
+                                                    <p class="mb-0"> {{ $product->keyword1.' , '.$product->keyword2.' , '.$product->keyword3 }}</p>
+                                                @elseif(!empty($product->keyword1 && $product->keyword2))
+                                                    <p class="mb-0"> {{ $product->keyword1.' , '.$product->keyword2 }}</p>
+                                                @elseif(!empty($product->keyword1))
+                                                    <p class="mb-0"> {{ $product->keyword1 }}</p>
+                                                @else
+                                                    <p class="mb-0"> - </p>
+                                                @endif
                                             </div>
+                                        </div>
+                                        <div class="row text mx-0">
+                                            <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                <span><b>Product Availability : </b></span>
+                                            </div>
+                                            <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                <p class="mb-0">@if($product->product_availability =='Both')
+                                                        In-Stock/Made to
+                                                        order @else {{$product->product_availability ?: '-'}}@endif</p>
+                                            </div>
+                                        </div>
+                                        <div class="row text mx-0">
+                                            <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                <span><b>Manufacturer Name : </b></span>
+                                            </div>
+                                            <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                <p class="mb-0">{{get_product_manufacturer_company($product->id) ?: '-'}}</p>
+                                            </div>
+                                        </div>
                                         <div class="row text mx-0">
                                             <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
                                                 <span><b>Product Origin : </b></span>
@@ -558,14 +566,14 @@
                                                 </div>
                                             </div>
                                             @if($product->fabric_product_info->knitting_type)
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Knitting Type : </b></span>
+                                                <div class="row text mx-0">
+                                                    <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                        <span><b>Knitting Type : </b></span>
+                                                    </div>
+                                                    <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                        <p class="mb-0">@if($product->fabric_product_info->knitting_type =='Other') {{$product->fabric_product_info->other_knitting_type ?: '-'}} @else {{$product->fabric_product_info->knitting_type ?: '-'}} @endif</p>
+                                                    </div>
                                                 </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->fabric_product_info->knitting_type =='Other') {{$product->fabric_product_info->other_knitting_type ?: '-'}} @else {{$product->fabric_product_info->knitting_type ?: '-'}} @endif</p>
-                                                </div>
-                                            </div>
                                             @endif
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
@@ -981,58 +989,58 @@
                                                 </div>
                                             </div>
                                         @endif
-                                    @if($product->product_service_types =='Sell')
-                                        <span class="heading">TRADE INFO</span>
-                                        @if($product->dealing_as)
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Dealing Product As : </b></span>
+                                        @if($product->product_service_types =='Sell')
+                                            <span class="heading">TRADE INFO</span>
+                                            @if($product->dealing_as)
+                                                <div class="row text mx-0">
+                                                    <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                        <span><b>Dealing Product As : </b></span>
+                                                    </div>
+                                                    <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                        <p class="mb-0">@if($product->dealing_as =='Other'){{$product->other_dealing_as ?: '-'}} @else {{ str_replace(',', ', ', $product->dealing_as) }} @endif</p>
+                                                    </div>
                                                 </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">@if($product->dealing_as =='Other'){{$product->other_dealing_as ?: '-'}} @else {{ str_replace(',', ', ', $product->dealing_as) }} @endif</p>
+                                            @endif
+                                            @if($product->focused_selling_region)
+                                                <div class="row text mx-0">
+                                                    <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                        <span><b>Target Selling Region : </b></span>
+                                                    </div>
+                                                    <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                        <p class="mb-0">{{ $product->focused_selling_region }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @endif
-                                        @if($product->focused_selling_region)
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Target Selling Region : </b></span>
+                                            @endif
+                                            @if($product->focused_selling_countries)
+                                                <div class="row text mx-0">
+                                                    <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                        <span><b>Target Selling Country : </b></span>
+                                                    </div>
+                                                    <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                        <p class="mb-0">{{ str_replace(',', ', ', $product->focused_selling_countries) }}</p>
+                                                    </div>
                                                 </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{ $product->focused_selling_region }}</p>
+                                            @endif
+                                            @if($product->production_capacity)
+                                                <div class="row text mx-0">
+                                                    <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                        <span><b>Production Capacity : </b></span>
+                                                    </div>
+                                                    <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                        <p class="mb-0">{{ $product->production_capacity }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @endif
-                                        @if($product->focused_selling_countries)
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Target Selling Country : </b></span>
+                                            @endif
+                                            @if($product->min_order_quantity)
+                                                <div class="row text mx-0">
+                                                    <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                        <span><b>Min Order Quantity : </b></span>
+                                                    </div>
+                                                    <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                        <p class="mb-0">{{ $product->min_order_quantity }}</p>
+                                                    </div>
                                                 </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{ str_replace(',', ', ', $product->focused_selling_countries) }}</p>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        @if($product->production_capacity)
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Production Capacity : </b></span>
-                                                </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{ $product->production_capacity }}</p>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        @if($product->min_order_quantity)
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Min Order Quantity : </b></span>
-                                                </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{ $product->min_order_quantity }}</p>
-                                                </div>
-                                            </div>
-                                        @endif
+                                            @endif
 
                                             <div class="row text mx-0">
                                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
@@ -1044,41 +1052,41 @@
                                                 </div>
                                             </div>
 
-                                         @if($product->sampling_type == null)
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Sampling Cost : </b></span>
-                                                </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0"> - </p>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        @if($product->sampling_type == 'Free')
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Sampling Cost : </b></span>
-                                                </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    @if($product->sampling_type)
-                                                        <p class="mb-0">{{ $product->sampling_type }}</p>
-                                                    @else
+                                            @if($product->sampling_type == null)
+                                                <div class="row text mx-0">
+                                                    <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                        <span><b>Sampling Cost : </b></span>
+                                                    </div>
+                                                    <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                                         <p class="mb-0"> - </p>
-                                                    @endif
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @endif
+                                            @if($product->sampling_type == 'Free')
+                                                <div class="row text mx-0">
+                                                    <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                        <span><b>Sampling Cost : </b></span>
+                                                    </div>
+                                                    <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                        @if($product->sampling_type)
+                                                            <p class="mb-0">{{ $product->sampling_type }}</p>
+                                                        @else
+                                                            <p class="mb-0"> - </p>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            @if($product->sampling_type == 'Paid')
+                                                <div class="row text mx-0">
+                                                    <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
+                                                        <span><b>Sampling Cost : </b></span>
+                                                    </div>
+                                                    <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
+                                                        <p class="mb-0">{{ $product->paid_sampling_price }}</p>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         @endif
-                                        @if($product->sampling_type == 'Paid')
-                                            <div class="row text mx-0">
-                                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 pl-0 pr-1">
-                                                    <span><b>Sampling Cost : </b></span>
-                                                </div>
-                                                <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
-                                                    <p class="mb-0">{{ $product->paid_sampling_price }}</p>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endif
 
                                         <span class="heading">Payment & Delivery Info</span>
                                         @if($product->product_service_types == "Buy")
@@ -1277,31 +1285,31 @@
 
                         </div>
                         <div class="col-xl-3 col-lg-4 col-md-4 mt-sm-0 mt-3">
-                                @foreach($ads as $ad)
-                                    <div class="position-relative ads">
-                                        <a href="{{ $ad->link }}" class="text-decoration-none">
-                                            <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
-                                        </a>
-                                        <span class="fa fa-info position-absolute info-icon"></span>
-                                        <span class="img-info"></span>
-                                    </div>
-                                @endforeach
-                                @foreach($ads1 as $ad)
-                                    <div class="position-relative mt-3 ads">
-                                        <a href="{{ $ad->link }}" class="text-decoration-none">
-                                            <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
-                                        </a>
-                                        <span class="fa fa-info position-absolute info-icon"></span>
-                                        <span class="img-info"></span>
-                                    </div>
-                                @endforeach
+                            @foreach($ads as $ad)
+                                <div class="position-relative ads">
+                                    <a href="{{ $ad->link }}" class="text-decoration-none">
+                                        <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
+                                    </a>
+                                    <span class="fa fa-info position-absolute info-icon"></span>
+                                    <span class="img-info"></span>
+                                </div>
+                            @endforeach
+                            @foreach($ads1 as $ad)
+                                <div class="position-relative mt-3 ads">
+                                    <a href="{{ $ad->link }}" class="text-decoration-none">
+                                        <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
+                                    </a>
+                                    <span class="fa fa-info position-absolute info-icon"></span>
+                                    <span class="img-info"></span>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
                     <span class="heading">Other Selling Deals from this Supplier</span>
 
                     @if(count($osdts) > 0)
-                        <div class="row products-deals-slider">
+                        <div class="products-deals-slider">
                             @foreach($osdts as $i => $prod)
                                 <div class="content-column">
                                     <div class="content-column-inner">
@@ -1309,66 +1317,17 @@
                                             @if($prod->product_image->isNotEmpty())
                                                 @foreach($prod->product_image as $j => $image)
                                                     <img src="{{$image->image}}"
-                                                         class="w-100 h-100 certified-suppliers-img">
+                                                         class="w-100 h-100 certified-suppliers-img border-grey">
                                                     @if($j==0)
                                                         @break
                                                     @endif
                                                 @endforeach
                                             @else
                                                 <img src="{{$ASSET}}/front_site/images/noimage.png"
-                                                     class="w-100 h-100 certified-suppliers-img">
+                                                     class="w-100 h-100 certified-suppliers-img border-grey">
                                             @endif
                                         </a>
-                                        <div class="product-info">
-                                            <div class="product-info-inner">
-                                                <p class="heading overflow-text-dots-one-line">{{$prod->product_service_name}}</p>
-                                                <p class="mb-0 overflow-text-dots-one-line">{{$prod->subject}}</p>
-                                                <p class="mb-0 overflow-text-dots-one-line">@if($prod->product_availability == "Both")
-                                                        In-Stock/Made to
-                                                        order @else {{$prod->product_availability}} @endif</p>
-                                                <p class="price font-500 overflow-text-dots-one-line">
-                                                    <span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }}
-                                                        - {{ number_format($prod->unit_price_to) }}  @else {{ number_format($prod->target_price_from) }}
-                                                        - {{ number_format($prod->target_price_to) }} @endif</span>
-                                                    Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif
-                                                </p>
-                                                <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}
-                                                    , {{ $prod->country }} <span
-                                                        class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            @endforeach
-                        </div>
-                    @else
-                        <p>There are no products to show at this moment</p>
-                    @endif
-
-
-                    <span class="heading">Similar Selling Deals from Other Suppliers</span>
-                        @if(count($ssdos) > 0)
-                        <div class="row products-deals-slider">
-                            @foreach($ssdos as $i => $prod)
-                                <div class="content-column">
-                                    <div class="content-column-inner">
-                                        <a href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
-                                            @if($prod->product_image->isNotEmpty())
-                                                @foreach($prod->product_image as $j => $image)
-                                                    <img src="{{$image->image}}"
-                                                         class="w-100 h-100 certified-suppliers-img">
-                                                    @if($j==0)
-                                                        @break
-                                                    @endif
-                                                @endforeach
-                                            @else
-                                                <img src="{{$ASSET}}/front_site/images/noimage.png"
-                                                     class="w-100 h-100 certified-suppliers-img">
-                                            @endif
-                                        </a>
-                                        <a href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
+                                        <a class="text-decoration-none text-reset" href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                             <div class="product-info">
                                                 <div class="product-info-inner">
                                                     <p class="heading overflow-text-dots-one-line">{{$prod->product_service_name}}</p>
@@ -1382,10 +1341,62 @@
                                                         - {{ number_format($prod->target_price_to) }} @endif</span>
                                                         Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif
                                                     </p>
-                                                    <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}
-                                                        , {{ $prod->country }} <span
-                                                            class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                                    <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
+                                                        <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
+                                                        <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <p>There are no products to show at this moment</p>
+                    @endif
+
+
+                    <span class="heading">Similar Selling Deals from Other Suppliers</span>
+                    @if(count($ssdos) > 0)
+                        <div class="products-deals-slider">
+                            @foreach($ssdos as $i => $prod)
+                                <div class="content-column">
+                                    <div class="content-column-inner">
+                                        <a href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
+                                            @if($prod->product_image->isNotEmpty())
+                                                @foreach($prod->product_image as $j => $image)
+                                                    <img src="{{$image->image}}"
+                                                         class="w-100 h-100 certified-suppliers-img border-grey">
+                                                    @if($j==0)
+                                                        @break
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                <img src="{{$ASSET}}/front_site/images/noimage.png"
+                                                     class="w-100 h-100 certified-suppliers-img border-grey">
+                                            @endif
+                                        </a>
+                                        <a class="text-decoration-none text-reset"
+                                           href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
+                                            <div class="product-info">
+                                                <div class="product-info-inner">
+                                                    <p class="heading overflow-text-dots-one-line">{{$prod->product_service_name}}</p>
+                                                    <p class="mb-0 overflow-text-dots-one-line">{{$prod->subject}}</p>
+                                                    <p class="mb-0 overflow-text-dots-one-line">@if($prod->product_availability == "Both")
+                                                            In-Stock/Made to
+                                                            order @else {{$prod->product_availability}} @endif</p>
+                                                    <p class="price font-500 overflow-text-dots-one-line">
+                                                    <span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }}
+                                                        - {{ number_format($prod->unit_price_to) }}  @else {{ number_format($prod->target_price_from) }}
+                                                        - {{ number_format($prod->target_price_to) }} @endif</span>
+                                                        Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif
                                                     </p>
+                                                    <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
+                                                        <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
+                                                        <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </a>
@@ -1393,15 +1404,15 @@
                                 </div>
                             @endforeach
                         </div>
-                        @else
-                            <p>There are no products to show at this moment</p>
-                        @endif
+                    @else
+                        <p>There are no products to show at this moment</p>
+                    @endif
 
 
                     <span class="heading">Similar Deals from Country</span>
 
-                        @if(count($sdfc) > 0)
-                        <div class="row products-deals-slider">
+                    @if(count($sdfc) > 0)
+                        <div class="products-deals-slider">
                             @foreach($sdfc as $i => $prod)
                                 <div class="content-column">
                                     <div class="content-column-inner">
@@ -1409,7 +1420,7 @@
                                             @if($prod->product_image->isNotEmpty())
                                                 @foreach($prod->product_image as $j => $image)
                                                     <img src="{{$image->image}}"
-                                                         class="w-100 h-100 certified-suppliers-img">
+                                                         class="w-100 h-100 certified-suppliers-img border-grey">
                                                     @if($j==0)
                                                         @break
                                                     @endif
@@ -1420,10 +1431,11 @@
                                                 @endforeach
                                             @else
                                                 <img src="{{$ASSET}}/front_site/images/noimage.png"
-                                                     class="w-100 h-100 certified-suppliers-img">
+                                                     class="w-100 h-100 certified-suppliers-img border-grey">
                                             @endif
                                         </a>
-                                        <a href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
+                                        <a class="text-decoration-none text-reset"
+                                           href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                             <div class="product-info">
                                                 <div class="product-info-inner">
                                                     <p class="heading overflow-text-dots-one-line">{{$prod->product_service_name}}</p>
@@ -1437,10 +1449,10 @@
                                                             - {{ number_format($prod->target_price_to) }} @endif</span>
                                                         Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif
                                                     </p>
-                                                    <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}
-                                                        , {{ $prod->country }} <span
-                                                            class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
-                                                    </p>
+                                                    <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
+                                                        <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
+                                                        <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </a>
@@ -1448,9 +1460,9 @@
                                 </div>
                             @endforeach
                         </div>
-                        @else
-                            <p>There are no products to show at this moment</p>
-                        @endif
+                    @else
+                        <p>There are no products to show at this moment</p>
+                    @endif
 
                 </div>
             </div>

@@ -539,7 +539,7 @@
 
                <span class="heading">Other Selling Deals from this Supplier</span>
                    @if(count($osdts) > 0)
-                   <div class="row products-deals-slider">
+                   <div class="products-deals-slider">
                        @foreach($osdts as $i => $prod)
                            <div class="content-column">
                                <div class="content-column-inner">
@@ -567,7 +567,10 @@
                                            <p class="mb-0 overflow-text-dots-one-line">{{$prod->subject}}</p>
                                            <p class="mb-0 overflow-text-dots-one-line">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
                                            <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }}  @else {{ number_format($prod->target_price_from) }} - {{ number_format($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                           <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                           <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
+                                               <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
+                                               <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                           </div>
                                        </div>
                                    </a>
                                </div>
@@ -583,7 +586,7 @@
                <span class="heading">Similar Selling Deals from Other Suppliers</span>
 
                   @if(count($ssdos) > 0)
-                   <div class="row products-deals-slider">
+                   <div class="products-deals-slider">
                        @foreach($ssdos as $i => $prod)
                            <div class="content-column">
                                <div class="content-column-inner">
@@ -608,7 +611,10 @@
                                            <p class="mb-0 overflow-text-dots-one-line">{{$prod->subject}}</p>
                                            <p class="mb-0 overflow-text-dots-one-line">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
                                            <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }}  @else {{ number_format($prod->target_price_from) }} - {{ number_format($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                           <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                           <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
+                                               <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
+                                               <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                           </div>
                                        </div>
                                    </a>
                                </div>
@@ -622,7 +628,7 @@
 
                <span class="heading">Similar Deals from Country</span>
                    @if(count($sdfc) > 0)
-                   <div class="row products-deals-slider">
+                   <div class="products-deals-slider">
                        @foreach($sdfc as $i => $prod)
                            <div class="content-column">
                                <div class="content-column-inner">
@@ -650,7 +656,10 @@
                                            <p class="mb-0 overflow-text-dots-one-line">{{$prod->subject}}</p>
                                            <p class="mb-0 overflow-text-dots-one-line">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
                                            <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }}  @else {{ number_format($prod->target_price_from) }} - {{ number_format($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                           <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                           <div class="d-flex justify-content-between mt-2 mb-0 text-uppercase place-day">
+                                               <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
+                                               <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                           </div>
                                        </div>
                                    </a>
                                </div>

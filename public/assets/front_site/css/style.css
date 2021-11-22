@@ -5808,12 +5808,8 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     padding: 0 15px;
 }
 
-.product-details .products-deals-slider .content-column .content-column-inner {
-    border: 1px solid #E3E3E3;
-}
-
 .product-details .products-deals-slider .content-column .content-column-inner:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0px 4px 10px #00000055;
     cursor: pointer;
 }
 
@@ -8367,6 +8363,11 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 991px) {
+    .product-details .products-deals-slider .content-column .content-column-inner {
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0px 4px 10px #00000033;
+    }
+
     .user-type ul li input[type=checkbox],
     .check-stats ul li input[type=checkbox] {
         font-size: unset;
@@ -9775,7 +9776,14 @@ header .navbar .navbar-toggler {
     /*product banner container*/
     /*product details*/
     .product-details .products-deals-slider {
-        margin: 0 -4px;
+        margin: 0 -8px;
+    }
+
+    .product-details .products-deals-slider .slick-list.draggable {
+        padding: 8px 2px 8px 2px;
+        box-shadow: 0px 4px 10px #00000033;
+        margin: 6px 8px;
+        border-radius: 8px;
     }
 
     .product-details .products-deals-slider .content-column {
