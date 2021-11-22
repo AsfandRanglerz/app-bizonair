@@ -187,14 +187,14 @@
                                                         {{--                                        </div>--}}
                                                         <div class="d-flex column-gap-4">
                                                             @if(!Auth::check())
-                                                                <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                                                <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND</span></a>
                                                             @else
-                                                                <a class="p-0 red-btn"  @if(!Auth::check()) href="{{url('log-in-pre')}}" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                                                <a class="p-0 red-btn"  @if(!Auth::check()) href="{{url('log-in-pre')}}" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND</span></a>
                                                             @endif
                                                             @if(!Auth::check())
-                                                                <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
+                                                                <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
                                                             @else
-                                                                <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
+                                                                <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
                                                             @endif
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">

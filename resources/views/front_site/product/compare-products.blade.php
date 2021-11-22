@@ -83,7 +83,7 @@
                                                       <br>
 
 
-                                                      <a @if(!Auth::check()) href="{{url('login')}}" @else data-toggle="modal" data-target="#contactFormPDP" @endif class="d-inline-block red-btn"  class="btns">SEND A MESSAGE</a>
+                                                      <a @if(!Auth::check()) href="{{url('login')}}" @else data-toggle="modal" data-target="#contactFormPDP" @endif class="d-inline-block red-btn"  class="btns">SEND</a>
                                                       <!-- Modal -->
                                                       <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                           <div class="modal-dialog contact-form" role="document">
@@ -274,7 +274,7 @@
                                                       <br>
 
 
-                                                      <a @if(!Auth::check()) href="{{url('login')}}" @else data-toggle="modal" data-target="#contactFormPDP" @endif class="d-inline-block red-btn"  class="btns">SEND A MESSAGE</a>
+                                                      <a @if(!Auth::check()) href="{{url('login')}}" @else data-toggle="modal" data-target="#contactFormPDP" @endif class="d-inline-block red-btn"  class="btns">SEND</a>
                                                       <!-- Modal -->
                                                       <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                                           <div class="modal-dialog contact-form" role="document">
