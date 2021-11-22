@@ -2016,10 +2016,10 @@ p.click {
 .modal .modal-body .form-control {
     color: #344256;
     background: #dee2e6;
-    min-height: 38px;
+/*    min-height: 38px;
     border: 1px solid #4b555f;
     font-size: 16px;
-    font-weight: 100;
+    font-weight: 100;*/
 }
 
 .modal .modal-body .form-control::placeholder {
@@ -5628,11 +5628,6 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     border-radius: 0 0 5px 5px;
 }
 
-.product-details .contact-form input.form-control {
-    font-size: 16px;
-    font-weight: 100;
-}
-
 .product-details .contact-form .modal-content .modal-body > form > textarea {
     width: 100%;
     min-height: 125px;
@@ -9117,18 +9112,59 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 575px) {
-    .contact-form .ticks-checkbox .input {
+    /*Product Inquiry*/
+    .product-details .contact-form .modal-content .modal-body > form .submit-btn {
+        font-size: 10px;
+        margin: 4px 0;
+    }
+
+    .product-details .contact-form .modal-content .modal-header .modal-title {
+        font-size: 10px;
+    }
+
+    .product-details .contact-form .modal-body .attachment-img-file .fa-download {
+        font-size: 10px;
+        border-width: 1px;
+    }
+
+    .product-details .contact-form .modal-body .attachment-img-file .custom-file-label {
+        border-width: 1px;
+    }
+
+    .product-details .contact-form .modal-body #totalCharLeft {
+        font-size: 10px;
+    }
+
+    .product-details .contact-form .modal-content .modal-body > form > textarea {
+        font-size: 10px;
+        min-height: 95px;
+        margin-bottom: 0.3rem!important;
+    }
+
+    .product-details .contact-form .modal-body .attachment-img-file .custom-file,
+    .product-details .contact-form .modal-body .attachment-img-file .custom-file-label,
+    .product-details .contact-form .modal-body .attachment-img-file .custom-file-input {
+        height: calc(0em + 2.75rem + 2px);
+        margin-bottom: 0.3rem;
+    }
+
+    .product-details .contact-form .modal-body {
+        padding: 10px!important;
+    }
+
+    .product-details .contact-form .ticks-checkbox .input {
         text-overflow: unset;
         font-size: 10px;
     }
 
-    .contact-form ul[data-toggle='buttons'] {
+    .product-details .contact-form ul[data-toggle='buttons'] {
         display: unset;
     }
 
-    .contact-form .ticks-checkbox > ul > li {
+    .product-details .contact-form .ticks-checkbox > ul > li {
         font-size: 10px;
     }
+    /*Product Inquiry*/
 
     .comp-name.form-control {
         font-size: 8px;
@@ -10266,12 +10302,7 @@ header .navbar .navbar-toggler {
     }
 
     /*home page*/
-    /*product details*/
-    .product-details .contact-form .modal-content .modal-header .modal-title {
-        font-size: 18px;
-    }
 
-    /*product details*/
     /*dashboard page content*/
     .dashboard .cards {
         flex-direction: column;
