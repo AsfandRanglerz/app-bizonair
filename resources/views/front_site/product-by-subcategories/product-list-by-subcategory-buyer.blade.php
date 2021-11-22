@@ -287,7 +287,7 @@
                                                                                     </ul>
                                                                                 </div>
 
-                                                                                <button type="submit" class="btn submit-btn" id="inquiry_create_btn" disabled>Send Inquiry Now</button>
+                                                                                <button type="submit" class="btn submit-btn" id="inquiry_create_btn">Send Inquiry Now</button>
                                                                                   <button type="submit" disabled class="btn submit-btn btn-proo d-none">
                                                                                        <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>Send Inquiry Now
                                                                                   </button>

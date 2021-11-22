@@ -6,6 +6,8 @@ use App\Mail\sendInquiryEmail;
 use App\Mail\sendInquiryQCISEmail;
 use App\Inquiry;
 use App\Notification;
+use Illuminate\Database\Eloquent\Model;
+use Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -119,7 +121,7 @@ class InquiryController extends Controller
 
     public function create()
     {
-       //
+        //
     }
 
 
@@ -170,8 +172,16 @@ class InquiryController extends Controller
 
     public function store(Request $request)
     {
-        // dd(request()->all());
+//         dd(request()->all());
+        $url = null;
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('contact-us/',$image_name,'s3');
+            $path = 'contact-us'.'/'.$image_name;
+            $url = Storage::disk('s3')->url($path);
 
+        }
         //bizdeal inquiry message creation and email notification.
         if(request('prodType') == 'Deal'){
             $inq = new \App\BizdealInquiryConversation();
@@ -282,15 +292,7 @@ class InquiryController extends Controller
         $data['inquiry']->production_capacity= request('production_capacity');
         $data['inquiry']->qcis= request('qcis');
         $data['inquiry']->terms_condition= request('terms_condition');
-        // if($request->hasFile('image')){
-        //     $image = $request->file('image');
-        //     $image_name = rand(1000, 9999) . time() . '.' . $image->getClientOriginalExtension();
-        //     $file = 'assets/front_site/inquiries/';
-        //     // $image->move(public_path($file), $image_name);
-        //     $path = $file . $image_name;
-        //     $data['inquiry']->image = $path;
-        // }
-
+        $data['inquiry']->image = $url;
         $data['inquiry']->save();
 
         if(request('prodId'))
@@ -304,11 +306,11 @@ class InquiryController extends Controller
             $email=$user->email;
             $phone=$user->registration_phone_no;
             $prod_name=$product->product_service_name;
-
+            $reference_no=$product->reference_no;
             $userId= \App\UserCompany::where('company_id',$product->company_id)->pluck('user_id');
             $getUser = \App\User::whereIn('id',$userId)->get();
             foreach ($getUser as $userEmail){
-                \Mail::to($userEmail->email)->send(new sendInquiryEmail($data, $userEmail->name, $prod_name));
+                \Mail::to($userEmail->email)->send(new sendInquiryEmail($data, $userEmail->name, $prod_name,$reference_no));
             }
             if(!empty(request('qcis'))){
                 \Mail::to('info@bizonair.com')->send(new sendInquiryQCISEmail($data, $name, $prod_name,$email,$phone));
@@ -335,10 +337,11 @@ class InquiryController extends Controller
             $email=$user->email;
             $phone=$user->registration_phone_no;
             $prod_name=$buysell->product_service_name;
+            $reference_no=$buysell->reference_no;
             if(!empty(request('qcis'))){
                 \Mail::to('info@bizonair.com')->send(new sendInquiryQCISEmail($data, $name, $prod_name,$email,$phone));
             }
-            \Mail::to($user->email)->send(new sendInquiryEmail($data, $name, $prod_name));
+            \Mail::to($user->email)->send(new sendInquiryEmail($data, $name, $prod_name,$reference_no));
 
             $notification = new Notification();
             $notification->user_id= $user->id;
@@ -366,6 +369,7 @@ class InquiryController extends Controller
     public function buysell_index(Request $request)
     {
         // dd(\Auth::user());
+        if(auth()->user()){
             $data['active'] = 'Inquiries';
             $data['title'] = 'One-Time Active Inquiries';
             $data['user'] = \Auth::user();
@@ -389,13 +393,16 @@ class InquiryController extends Controller
             // dd($data);
             $data['page'] = 'biz_deal_inquiry.listing';
 
-        DB::table('notifications')
-            ->where('user_id', auth()->id())
-            ->where('table_name','inquiries')
-            ->where('table_data','Deal')
-            ->update(['is_display' => 1,'is_read'=>1]);
+            DB::table('notifications')
+                ->where('user_id', auth()->id())
+                ->where('table_name','inquiries')
+                ->where('table_data','Deal')
+                ->update(['is_display' => 1,'is_read'=>1]);
 
             return view('front_site.' . $data['page'])->with($data);
+        }else{
+            return view('front_site.other.login');
+        }
     }
 
     public function get_inbox_refresh(){
@@ -405,122 +412,122 @@ class InquiryController extends Controller
             return json_encode(['feedback' => 'encrypt_issue' , 'msg' => 'Something Went Wrong']);
         }
         if($user_id)
+        {
+            $d['user'] = \App\User::find($user_id);
+            $d['listing'] = \App\BizdealInquiryConversation::with('product.user','messages','latestMessage','my_latest_message')->where(function($q1) use($user_id){
+                $q1->whereHas('product', function($query) use($user_id){
+                    $query->whereHas('user', function($q) use($user_id){
+                        $q->where('users.id', $user_id);
+                    });
+                })->orWhere('created_by',$user_id);
+            })->get()->sortByDesc('latestMessage.created_at');
+            if($d['user'] && $d['listing'])
             {
-                $d['user'] = \App\User::find($user_id);
-                $d['listing'] = \App\BizdealInquiryConversation::with('product.user','messages','latestMessage','my_latest_message')->where(function($q1) use($user_id){
-                    $q1->whereHas('product', function($query) use($user_id){
-                        $query->whereHas('user', function($q) use($user_id){
-                            $q->where('users.id', $user_id);
-                        });
-                    })->orWhere('created_by',$user_id);
-                })->get()->sortByDesc('latestMessage.created_at');
-                if($d['user'] && $d['listing'])
-                {
-                    $data['data'] = view('front_site.biz_deal_inquiry.inbox' , $d)->render();
-                    $data['feedback'] = 'true';
-                }
-                else
-                {
-                    $data['feedback'] = 'false';
-                    $data['msg'] = 'Something went Wrong';
-                }
+                $data['data'] = view('front_site.biz_deal_inquiry.inbox' , $d)->render();
+                $data['feedback'] = 'true';
             }
             else
             {
                 $data['feedback'] = 'false';
                 $data['msg'] = 'Something went Wrong';
             }
-            return json_encode($data);
+        }
+        else
+        {
+            $data['feedback'] = 'false';
+            $data['msg'] = 'Something went Wrong';
+        }
+        return json_encode($data);
     }
 
     public function get_sent_box_refresh(){
 
 
-            try {
-                $user_id = decrypt(request('user_id'));
-            } catch (\RuntimeException $e) {
-                return json_encode(['feedback' => 'encrypt_issue' , 'msg' => 'Something Went Wrong']);
-            }
-            if($user_id)
-                {
-                    $d['user'] = \App\User::find($user_id);
-                    $d['listing'] = \App\BizdealInquiryConversation::with('product.user','messages','latestMessage','my_latest_message')->has('my_latest_message')->get();
-                    if($d['user'] && $d['listing'])
-                    {
-                        $data['data'] = view('front_site.biz_deal_inquiry.sent-box' , $d)->render();
-                        $data['feedback'] = 'true';
-                    }
-                    else
-                    {
-                        $data['feedback'] = 'false';
-                        $data['msg'] = 'Something went Wrong';
-                    }
-                }
-                else
-                {
-                    $data['feedback'] = 'false';
-                    $data['msg'] = 'Something went Wrong';
-                }
-                return json_encode($data);
-    }
-
-    public function get_delete_refresh(){
-
-            try {
-                $user_id = decrypt(request('user_id'));
-            } catch (\RuntimeException $e) {
-                return json_encode(['feedback' => 'encrypt_issue' , 'msg' => 'Something Went Wrong']);
-            }
-            if($user_id)
-                {
-                    $d['user'] = \App\User::find($user_id);
-                    $d['listing'] = \App\BizdealInquiryConversation::with('product.user','messages','latestMessage','my_latest_message')->whereHas('delete_convos', function($q){
-                        $q->where('created_by',\Auth::id());
-                    })->get();
-                    if($d['user'] && $d['listing'])
-                    {
-                        $data['data'] = view('front_site.biz_deal_inquiry.delete-box' , $d)->render();
-                        $data['feedback'] = 'true';
-                    }
-                    else
-                    {
-                        $data['feedback'] = 'false';
-                        $data['msg'] = 'Something went Wrong';
-                    }
-                }
-                else
-                {
-                    $data['feedback'] = 'false';
-                    $data['msg'] = 'Something went Wrong';
-                }
-                return json_encode($data);
-    }
-
-    public function get_bizdeal_inquiry_messages(){
-        if(request('conversation_id'))
+        try {
+            $user_id = decrypt(request('user_id'));
+        } catch (\RuntimeException $e) {
+            return json_encode(['feedback' => 'encrypt_issue' , 'msg' => 'Something Went Wrong']);
+        }
+        if($user_id)
+        {
+            $d['user'] = \App\User::find($user_id);
+            $d['listing'] = \App\BizdealInquiryConversation::with('product.user','messages','latestMessage','my_latest_message')->has('my_latest_message')->get();
+            if($d['user'] && $d['listing'])
             {
-                $d['convo'] = \App\BizdealInquiryConversation::with(['messages' => function($q){
-                    $q->orderBy('created_at','desc');
-                }])->find(request('conversation_id'));
-                // dd($d['convo']);
-                if($d['convo'])
-                {
-                    $data['data'] = view('front_site.biz_deal_inquiry.chat' , $d)->render();
-                    $data['feedback'] = 'true';
-                    \App\bizdealInqueryConversationMessage::where([['conversation_id',request('conversation_id')], ['created_by','<>',\Auth::id()]])->update(['is_read'=> 1]);
-                }
-                else
-                {
-                    $data['feedback'] = 'false';
-                    $data['msg'] = 'Something went Wrong';
-                }
+                $data['data'] = view('front_site.biz_deal_inquiry.sent-box' , $d)->render();
+                $data['feedback'] = 'true';
             }
             else
             {
                 $data['feedback'] = 'false';
                 $data['msg'] = 'Something went Wrong';
             }
-            return json_encode($data);
+        }
+        else
+        {
+            $data['feedback'] = 'false';
+            $data['msg'] = 'Something went Wrong';
+        }
+        return json_encode($data);
+    }
+
+    public function get_delete_refresh(){
+
+        try {
+            $user_id = decrypt(request('user_id'));
+        } catch (\RuntimeException $e) {
+            return json_encode(['feedback' => 'encrypt_issue' , 'msg' => 'Something Went Wrong']);
+        }
+        if($user_id)
+        {
+            $d['user'] = \App\User::find($user_id);
+            $d['listing'] = \App\BizdealInquiryConversation::with('product.user','messages','latestMessage','my_latest_message')->whereHas('delete_convos', function($q){
+                $q->where('created_by',\Auth::id());
+            })->get();
+            if($d['user'] && $d['listing'])
+            {
+                $data['data'] = view('front_site.biz_deal_inquiry.delete-box' , $d)->render();
+                $data['feedback'] = 'true';
+            }
+            else
+            {
+                $data['feedback'] = 'false';
+                $data['msg'] = 'Something went Wrong';
+            }
+        }
+        else
+        {
+            $data['feedback'] = 'false';
+            $data['msg'] = 'Something went Wrong';
+        }
+        return json_encode($data);
+    }
+
+    public function get_bizdeal_inquiry_messages(){
+        if(request('conversation_id'))
+        {
+            $d['convo'] = \App\BizdealInquiryConversation::with(['messages' => function($q){
+                $q->orderBy('created_at','desc');
+            }])->find(request('conversation_id'));
+            // dd($d['convo']);
+            if($d['convo'])
+            {
+                $data['data'] = view('front_site.biz_deal_inquiry.chat' , $d)->render();
+                $data['feedback'] = 'true';
+                \App\bizdealInqueryConversationMessage::where([['conversation_id',request('conversation_id')], ['created_by','<>',\Auth::id()]])->update(['is_read'=> 1]);
+            }
+            else
+            {
+                $data['feedback'] = 'false';
+                $data['msg'] = 'Something went Wrong';
+            }
+        }
+        else
+        {
+            $data['feedback'] = 'false';
+            $data['msg'] = 'Something went Wrong';
+        }
+        return json_encode($data);
     }
 
     public function reply_bizdeal_inquiry_convo(){
@@ -554,7 +561,7 @@ class InquiryController extends Controller
 
 
             if(\App\BizdealInquiryConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->first())
-            \App\BizdealInquiryConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->delete();
+                \App\BizdealInquiryConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->delete();
             $data['feedback'] = "true";
             $data['msg'] = "Message has been sent successfully";
             $product = $message->convertsation->product;
@@ -565,11 +572,11 @@ class InquiryController extends Controller
             $data['sent_to'] = \Auth::id() == $message->convertsation->created_by ? get_name($message->convertsation->product->user) : get_name($message->convertsation->created_by_user);
             $data['message_created_at']= $message->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a');
             if($message->file_path)
-            $data['message_file_path'] = "<a href=".url($message->file_path)." download='download'>
+                $data['message_file_path'] = "<a href=".url($message->file_path)." download='download'>
             <span class='d-inline fa fa-paperclip attached-icon'></span>
             </a>";
             else
-            $data['message_file_path'] = '';
+                $data['message_file_path'] = '';
         }
         else{
             $data['feedback'] = "false";
@@ -659,20 +666,20 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizdealInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
-                if($exist > 0){
-                    \App\BizdealInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
-                }
-                foreach ($conversation_ids as $key => $value) {
-                    $fav_convo = new \App\BizdealInquiryConvoFav();
-                    $fav_convo->conversation_id = $value;
-                    $fav_convo->created_by = \Auth::id();
-                    $fav_convo->save();
-                }
+            $exist = \App\BizdealInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
+            if($exist > 0){
+                \App\BizdealInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
+            }
+            foreach ($conversation_ids as $key => $value) {
+                $fav_convo = new \App\BizdealInquiryConvoFav();
+                $fav_convo->conversation_id = $value;
+                $fav_convo->created_by = \Auth::id();
+                $fav_convo->save();
+            }
 
 
-                $data['feedback'] = 'true';
-                $data['msg'] = 'Inquiry has been added to favorite successfully';
+            $data['feedback'] = 'true';
+            $data['msg'] = 'Inquiry has been added to favorite successfully';
 
 
 
@@ -694,22 +701,22 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizdealInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
-                if($exist > 0){
-                    \App\BizdealInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'Inquiry has been removed favorite successfully';
-                }
-                else{
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'No favorite inquiry found';
-                }
-                // foreach ($conversation_ids as $key => $value) {
-                //     $fav_convo = new \App\BizdealInquiryConvoFav();
-                //     $fav_convo->conversation_id = $value;
-                //     $fav_convo->created_by = \Auth::id();
-                //     $fav_convo->save();
-                // }
+            $exist = \App\BizdealInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
+            if($exist > 0){
+                \App\BizdealInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
+                $data['feedback'] = 'true';
+                $data['msg'] = 'Inquiry has been removed favorite successfully';
+            }
+            else{
+                $data['feedback'] = 'true';
+                $data['msg'] = 'No favorite inquiry found';
+            }
+            // foreach ($conversation_ids as $key => $value) {
+            //     $fav_convo = new \App\BizdealInquiryConvoFav();
+            //     $fav_convo->conversation_id = $value;
+            //     $fav_convo->created_by = \Auth::id();
+            //     $fav_convo->save();
+            // }
 
 
 
@@ -775,20 +782,20 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizdealInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
-                if($exist > 0){
-                    \App\BizdealInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
-                }
-                foreach ($conversation_ids as $key => $value) {
-                    $fav_convo = new \App\BizdealInquiryConvoPin();
-                    $fav_convo->conversation_id = $value;
-                    $fav_convo->created_by = \Auth::id();
-                    $fav_convo->save();
-                }
+            $exist = \App\BizdealInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
+            if($exist > 0){
+                \App\BizdealInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
+            }
+            foreach ($conversation_ids as $key => $value) {
+                $fav_convo = new \App\BizdealInquiryConvoPin();
+                $fav_convo->conversation_id = $value;
+                $fav_convo->created_by = \Auth::id();
+                $fav_convo->save();
+            }
 
 
-                $data['feedback'] = 'true';
-                $data['msg'] = 'Inquiry has been added to Pined inquires successfully';
+            $data['feedback'] = 'true';
+            $data['msg'] = 'Inquiry has been added to Pined inquires successfully';
 
 
 
@@ -810,22 +817,22 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizdealInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
-                if($exist > 0){
-                    \App\BizdealInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'Inquiry has been removed from Pined inquires successfully';
-                }
-                else{
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'No pined inquiry found';
-                }
-                // foreach ($conversation_ids as $key => $value) {
-                //     $fav_convo = new \App\BizdealInquiryConvoFav();
-                //     $fav_convo->conversation_id = $value;
-                //     $fav_convo->created_by = \Auth::id();
-                //     $fav_convo->save();
-                // }
+            $exist = \App\BizdealInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
+            if($exist > 0){
+                \App\BizdealInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
+                $data['feedback'] = 'true';
+                $data['msg'] = 'Inquiry has been removed from Pined inquires successfully';
+            }
+            else{
+                $data['feedback'] = 'true';
+                $data['msg'] = 'No pined inquiry found';
+            }
+            // foreach ($conversation_ids as $key => $value) {
+            //     $fav_convo = new \App\BizdealInquiryConvoFav();
+            //     $fav_convo->conversation_id = $value;
+            //     $fav_convo->created_by = \Auth::id();
+            //     $fav_convo->save();
+            // }
 
 
 
@@ -850,22 +857,22 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\bizdealInqueryConversationMessage::whereIn('conversation_id',$conversation_ids)->where('created_by','<>', \Auth::id())->where('is_read', 1)->count();
-                if($exist > 0){
-                    \App\bizdealInqueryConversationMessage::whereIn('conversation_id',$conversation_ids)->where('created_by','<>', \Auth::id())->where('is_read', 0)->update(['is_read'=>1]);
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'Inquiry has been marked as read successfully';
-                }
-                else{
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'No unread inquiry found';
-                }
-                // foreach ($conversation_ids as $key => $value) {
-                //     $fav_convo = new \App\BizdealInquiryConvoFav();
-                //     $fav_convo->conversation_id = $value;
-                //     $fav_convo->created_by = \Auth::id();
+            $exist = \App\bizdealInqueryConversationMessage::whereIn('conversation_id',$conversation_ids)->where('created_by','<>', \Auth::id())->where('is_read', 1)->count();
+            if($exist > 0){
+                \App\bizdealInqueryConversationMessage::whereIn('conversation_id',$conversation_ids)->where('created_by','<>', \Auth::id())->where('is_read', 0)->update(['is_read'=>1]);
+                $data['feedback'] = 'true';
+                $data['msg'] = 'Inquiry has been marked as read successfully';
+            }
+            else{
+                $data['feedback'] = 'true';
+                $data['msg'] = 'No unread inquiry found';
+            }
+            // foreach ($conversation_ids as $key => $value) {
+            //     $fav_convo = new \App\BizdealInquiryConvoFav();
+            //     $fav_convo->conversation_id = $value;
+            //     $fav_convo->created_by = \Auth::id();
             //     $fav_convo->save();
-                // }
+            // }
 
 
 
@@ -891,25 +898,25 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizdealInquiryConversation::whereIn('id',$conversation_ids)->with('latestMessageNotMine')->has('latestMessageNotMine')->get();
-                if(count($exist) > 0){
-                    foreach ($exist as $key => $value) {
-                        $value->latestMessageNotMine->is_read = 0;
-                        $value->latestMessageNotMine->save();
-                    }
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'Inquiry has been marked as unread successfully';
+            $exist = \App\BizdealInquiryConversation::whereIn('id',$conversation_ids)->with('latestMessageNotMine')->has('latestMessageNotMine')->get();
+            if(count($exist) > 0){
+                foreach ($exist as $key => $value) {
+                    $value->latestMessageNotMine->is_read = 0;
+                    $value->latestMessageNotMine->save();
                 }
-                else{
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'No read inquiry found';
-                }
-                // foreach ($conversation_ids as $key => $value) {
-                //     $fav_convo = new \App\BizdealInquiryConvoFav();
-                //     $fav_convo->conversation_id = $value;
-                //     $fav_convo->created_by = \Auth::id();
-                //     $fav_convo->save();
-                // }
+                $data['feedback'] = 'true';
+                $data['msg'] = 'Inquiry has been marked as unread successfully';
+            }
+            else{
+                $data['feedback'] = 'true';
+                $data['msg'] = 'No read inquiry found';
+            }
+            // foreach ($conversation_ids as $key => $value) {
+            //     $fav_convo = new \App\BizdealInquiryConvoFav();
+            //     $fav_convo->conversation_id = $value;
+            //     $fav_convo->created_by = \Auth::id();
+            //     $fav_convo->save();
+            // }
 
 
 
@@ -934,20 +941,20 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizdealInquiryConvoDelete::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
-                if($exist > 0){
-                    \App\BizdealInquiryConvoDelete::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
-                }
-                foreach ($conversation_ids as $key => $value) {
-                    $fav_convo = new \App\BizdealInquiryConvoDelete();
-                    $fav_convo->conversation_id = $value;
-                    $fav_convo->created_by = \Auth::id();
-                    $fav_convo->save();
-                }
+            $exist = \App\BizdealInquiryConvoDelete::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
+            if($exist > 0){
+                \App\BizdealInquiryConvoDelete::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
+            }
+            foreach ($conversation_ids as $key => $value) {
+                $fav_convo = new \App\BizdealInquiryConvoDelete();
+                $fav_convo->conversation_id = $value;
+                $fav_convo->created_by = \Auth::id();
+                $fav_convo->save();
+            }
 
 
-                $data['feedback'] = 'true';
-                $data['msg'] = 'Inquiry has been deleted successfully';
+            $data['feedback'] = 'true';
+            $data['msg'] = 'Inquiry has been deleted successfully';
 
 
 
@@ -1188,7 +1195,7 @@ class InquiryController extends Controller
     ////////////////////Lead Inquiry////////////////////
     public function product_index(Request $request)
     {
-
+        if(auth()->user()){
             $data['active'] = 'Inquiries';
             $data['title'] = 'MyBiz Active Inquiries';
             $data['user'] = \App\User::find(\auth()->id());
@@ -1203,7 +1210,7 @@ class InquiryController extends Controller
             $data['listing'] = \App\BizLeadInquiryConversation::with('product.company','messages','latestMessage','my_latest_message')->where(function($q1){
                 $q1->whereHas('product', function($query){
                     $query->whereHas('company', function($q){
-                        $q->where('company_profiles.id', \Session::get('company_id'));
+                        $q->where('company_profiles.id', \session()->get('company_id'));
                     });
                 })->orWhere('created_by',\Auth::id());
             })->get()->sortByDesc('latestMessage.created_at');
@@ -1218,36 +1225,33 @@ class InquiryController extends Controller
                 ->where('table_data','Lead')
                 ->update(['is_display' => 1,'is_read'=>1]);
             return view('front_site.' . $data['page'])->with($data);
+        }else{
+            return view('front_site.other.login');
+        }
 
     }
 
     public function get_bizLead_inquiry_messages(){
         if(request('conversation_id'))
+        {
+            $d['convo'] = \App\BizLeadInquiryConversation::with('other_user_messages')->with(['messages' => function($q){
+                $q->orderBy('created_at','desc');
+            }])->find(request('conversation_id'));
+            // dd($d['convo']);
+            if($d['convo'])
             {
-                $d['convo'] = \App\BizLeadInquiryConversation::with('other_user_messages')->with(['messages' => function($q){
-                    $q->orderBy('created_at','desc');
-                }])->find(request('conversation_id'));
-                // dd($d['convo']);
-                if($d['convo'])
-                {
-                    $data['data'] = view('front_site.biz_lead_inquiry.chat' , $d)->render();
-                    $data['feedback'] = 'true';
-                    // \App\BizLeadInquiryConversationMessage::where([['conversation_id',request('conversation_id')], ['created_by','<>',\Auth::id()]])->update(['is_read'=> 1]);
-                    if(\App\BizLeadInquiryConvoRead::whereIn('message_id', array_unique(\Arr::pluck($d['convo']->other_user_messages, 'id')))->where('conversation_id', request('conversation_id'))->where('created_by',\Auth::id())->count() > 0){
-                        \App\BizLeadInquiryConvoRead::whereIn('message_id', array_unique(\Arr::pluck($d['convo']->other_user_messages, 'id')))->where('conversation_id', request('conversation_id'))->where('created_by',\Auth::id())->delete();
-                    }
-                    foreach (array_unique(\Arr::pluck($d['convo']->other_user_messages, 'id')) as $key => $value) {
-                        $read = new \App\BizLeadInquiryConvoRead();
-                        $read->conversation_id = request('conversation_id');
-                        $read->message_id = $value;
-                        $read->created_by = \Auth::id();
-                        $read->save();
-                    }
+                $data['data'] = view('front_site.biz_lead_inquiry.chat' , $d)->render();
+                $data['feedback'] = 'true';
+                // \App\BizLeadInquiryConversationMessage::where([['conversation_id',request('conversation_id')], ['created_by','<>',\Auth::id()]])->update(['is_read'=> 1]);
+                if(\App\BizLeadInquiryConvoRead::whereIn('message_id', array_unique(\Arr::pluck($d['convo']->other_user_messages, 'id')))->where('conversation_id', request('conversation_id'))->where('created_by',\Auth::id())->count() > 0){
+                    \App\BizLeadInquiryConvoRead::whereIn('message_id', array_unique(\Arr::pluck($d['convo']->other_user_messages, 'id')))->where('conversation_id', request('conversation_id'))->where('created_by',\Auth::id())->delete();
                 }
-                else
-                {
-                    $data['feedback'] = 'false';
-                    $data['msg'] = 'Something went Wrong';
+                foreach (array_unique(\Arr::pluck($d['convo']->other_user_messages, 'id')) as $key => $value) {
+                    $read = new \App\BizLeadInquiryConvoRead();
+                    $read->conversation_id = request('conversation_id');
+                    $read->message_id = $value;
+                    $read->created_by = \Auth::id();
+                    $read->save();
                 }
             }
             else
@@ -1255,7 +1259,13 @@ class InquiryController extends Controller
                 $data['feedback'] = 'false';
                 $data['msg'] = 'Something went Wrong';
             }
-            return json_encode($data);
+        }
+        else
+        {
+            $data['feedback'] = 'false';
+            $data['msg'] = 'Something went Wrong';
+        }
+        return json_encode($data);
     }
 
     public function reply_bizLead_inquiry_convo(){
@@ -1303,7 +1313,7 @@ class InquiryController extends Controller
 
 
             if(\App\BizLeadInquiryConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->first())
-            \App\BizLeadInquiryConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->delete();
+                \App\BizLeadInquiryConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->delete();
             $data['feedback'] = "true";
             $data['msg'] = "Message has been sent successfully";
             $product = $message->convertsation->product;
@@ -1315,11 +1325,11 @@ class InquiryController extends Controller
             $data['sent_to'] = \Auth::id() == $message->convertsation->created_by ? $message->convertsation->product->company->company_name : get_name($message->convertsation->created_by_user);
             $data['message_created_at']= $message->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a');
             if($message->file_path)
-            $data['message_file_path'] = "<a href=".url($message->file_path)." download='download'>
+                $data['message_file_path'] = "<a href=".url($message->file_path)." download='download'>
             <span class='d-inline fa fa-paperclip attached-icon'></span>
             </a>";
             else
-            $data['message_file_path'] = '';
+                $data['message_file_path'] = '';
         }
         else{
             $data['feedback'] = "false";
@@ -1409,20 +1419,20 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizLeadInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
-                if($exist > 0){
-                    \App\BizLeadInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
-                }
-                foreach ($conversation_ids as $key => $value) {
-                    $fav_convo = new \App\BizLeadInquiryConvoFav();
-                    $fav_convo->conversation_id = $value;
-                    $fav_convo->created_by = \Auth::id();
-                    $fav_convo->save();
-                }
+            $exist = \App\BizLeadInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
+            if($exist > 0){
+                \App\BizLeadInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
+            }
+            foreach ($conversation_ids as $key => $value) {
+                $fav_convo = new \App\BizLeadInquiryConvoFav();
+                $fav_convo->conversation_id = $value;
+                $fav_convo->created_by = \Auth::id();
+                $fav_convo->save();
+            }
 
 
-                $data['feedback'] = 'true';
-                $data['msg'] = 'Inquiry has been added to favorite successfully';
+            $data['feedback'] = 'true';
+            $data['msg'] = 'Inquiry has been added to favorite successfully';
 
 
 
@@ -1444,22 +1454,22 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizLeadInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
-                if($exist > 0){
-                    \App\BizLeadInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'Inquiry has been removed favorite successfully';
-                }
-                else{
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'No favorite inquiry found';
-                }
-                // foreach ($conversation_ids as $key => $value) {
-                //     $fav_convo = new \App\BizdealInquiryConvoFav();
-                //     $fav_convo->conversation_id = $value;
-                //     $fav_convo->created_by = \Auth::id();
-                //     $fav_convo->save();
-                // }
+            $exist = \App\BizLeadInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
+            if($exist > 0){
+                \App\BizLeadInquiryConvoFav::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
+                $data['feedback'] = 'true';
+                $data['msg'] = 'Inquiry has been removed favorite successfully';
+            }
+            else{
+                $data['feedback'] = 'true';
+                $data['msg'] = 'No favorite inquiry found';
+            }
+            // foreach ($conversation_ids as $key => $value) {
+            //     $fav_convo = new \App\BizdealInquiryConvoFav();
+            //     $fav_convo->conversation_id = $value;
+            //     $fav_convo->created_by = \Auth::id();
+            //     $fav_convo->save();
+            // }
 
 
 
@@ -1525,20 +1535,20 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizLeadInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
-                if($exist > 0){
-                    \App\BizLeadInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
-                }
-                foreach ($conversation_ids as $key => $value) {
-                    $fav_convo = new \App\BizLeadInquiryConvoPin();
-                    $fav_convo->conversation_id = $value;
-                    $fav_convo->created_by = \Auth::id();
-                    $fav_convo->save();
-                }
+            $exist = \App\BizLeadInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
+            if($exist > 0){
+                \App\BizLeadInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
+            }
+            foreach ($conversation_ids as $key => $value) {
+                $fav_convo = new \App\BizLeadInquiryConvoPin();
+                $fav_convo->conversation_id = $value;
+                $fav_convo->created_by = \Auth::id();
+                $fav_convo->save();
+            }
 
 
-                $data['feedback'] = 'true';
-                $data['msg'] = 'Inquiry has been added to Pined inquires successfully';
+            $data['feedback'] = 'true';
+            $data['msg'] = 'Inquiry has been added to Pined inquires successfully';
 
 
 
@@ -1560,22 +1570,22 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizLeadInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
-                if($exist > 0){
-                    \App\BizLeadInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'Inquiry has been removed from Pined inquires successfully';
-                }
-                else{
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'No pined inquiry found';
-                }
-                // foreach ($conversation_ids as $key => $value) {
-                //     $fav_convo = new \App\BizdealInquiryConvoFav();
-                //     $fav_convo->conversation_id = $value;
-                //     $fav_convo->created_by = \Auth::id();
-                //     $fav_convo->save();
-                // }
+            $exist = \App\BizLeadInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
+            if($exist > 0){
+                \App\BizLeadInquiryConvoPin::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
+                $data['feedback'] = 'true';
+                $data['msg'] = 'Inquiry has been removed from Pined inquires successfully';
+            }
+            else{
+                $data['feedback'] = 'true';
+                $data['msg'] = 'No pined inquiry found';
+            }
+            // foreach ($conversation_ids as $key => $value) {
+            //     $fav_convo = new \App\BizdealInquiryConvoFav();
+            //     $fav_convo->conversation_id = $value;
+            //     $fav_convo->created_by = \Auth::id();
+            //     $fav_convo->save();
+            // }
 
 
 
@@ -1600,31 +1610,31 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizLeadInquiryConversationMessage::whereIn('conversation_id',$conversation_ids)->where('created_by','<>', \Auth::id())->doesntHave('my_read_messages')->get();
-                if(count($exist) > 0){
-                    // \App\BizLeadInquiryConversationMessage::whereIn('conversation_id',$conversation_ids)->where('created_by','<>', \Auth::id())->where('is_read', 0)->update(['is_read'=>1]);
+            $exist = \App\BizLeadInquiryConversationMessage::whereIn('conversation_id',$conversation_ids)->where('created_by','<>', \Auth::id())->doesntHave('my_read_messages')->get();
+            if(count($exist) > 0){
+                // \App\BizLeadInquiryConversationMessage::whereIn('conversation_id',$conversation_ids)->where('created_by','<>', \Auth::id())->where('is_read', 0)->update(['is_read'=>1]);
 
-                    foreach ($exist as $key => $value) {
-                        $read = new \App\BizLeadInquiryConvoRead();
-                        $read->conversation_id = $value->conversation_id;
-                        $read->message_id = $value->id;
-                        $read->created_by = \Auth::id();
-                        $read->save();
-                    }
+                foreach ($exist as $key => $value) {
+                    $read = new \App\BizLeadInquiryConvoRead();
+                    $read->conversation_id = $value->conversation_id;
+                    $read->message_id = $value->id;
+                    $read->created_by = \Auth::id();
+                    $read->save();
+                }
 
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'Inquiry has been marked as read successfully';
-                }
-                else{
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'No unread inquiry found';
-                }
-                // foreach ($conversation_ids as $key => $value) {
-                //     $fav_convo = new \App\BizdealInquiryConvoFav();
-                //     $fav_convo->conversation_id = $value;
-                //     $fav_convo->created_by = \Auth::id();
+                $data['feedback'] = 'true';
+                $data['msg'] = 'Inquiry has been marked as read successfully';
+            }
+            else{
+                $data['feedback'] = 'true';
+                $data['msg'] = 'No unread inquiry found';
+            }
+            // foreach ($conversation_ids as $key => $value) {
+            //     $fav_convo = new \App\BizdealInquiryConvoFav();
+            //     $fav_convo->conversation_id = $value;
+            //     $fav_convo->created_by = \Auth::id();
             //     $fav_convo->save();
-                // }
+            // }
 
 
 
@@ -1650,26 +1660,26 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizLeadInquiryConvoRead::whereIn('conversation_id',$conversation_ids)->where('created_by',\Auth::id())->count();
-                if($exist > 0){
-                    // foreach ($exist as $key => $value) {
-                    //     $value->latestMessageNotMine->is_read = 0;
-                    //     $value->latestMessageNotMine->save();
-                    // }
-                    \App\BizLeadInquiryConvoRead::whereIn('conversation_id',$conversation_ids)->where('created_by',\Auth::id())->delete();
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'Inquiry has been marked as unread successfully';
-                }
-                else{
-                    $data['feedback'] = 'true';
-                    $data['msg'] = 'No read inquiry found';
-                }
-                // foreach ($conversation_ids as $key => $value) {
-                //     $fav_convo = new \App\BizdealInquiryConvoFav();
-                //     $fav_convo->conversation_id = $value;
-                //     $fav_convo->created_by = \Auth::id();
-                //     $fav_convo->save();
+            $exist = \App\BizLeadInquiryConvoRead::whereIn('conversation_id',$conversation_ids)->where('created_by',\Auth::id())->count();
+            if($exist > 0){
+                // foreach ($exist as $key => $value) {
+                //     $value->latestMessageNotMine->is_read = 0;
+                //     $value->latestMessageNotMine->save();
                 // }
+                \App\BizLeadInquiryConvoRead::whereIn('conversation_id',$conversation_ids)->where('created_by',\Auth::id())->delete();
+                $data['feedback'] = 'true';
+                $data['msg'] = 'Inquiry has been marked as unread successfully';
+            }
+            else{
+                $data['feedback'] = 'true';
+                $data['msg'] = 'No read inquiry found';
+            }
+            // foreach ($conversation_ids as $key => $value) {
+            //     $fav_convo = new \App\BizdealInquiryConvoFav();
+            //     $fav_convo->conversation_id = $value;
+            //     $fav_convo->created_by = \Auth::id();
+            //     $fav_convo->save();
+            // }
 
 
 
@@ -1694,20 +1704,20 @@ class InquiryController extends Controller
 
 
 
-                $exist = \App\BizLeadInquiryConvoDelete::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
-                if($exist > 0){
-                    \App\BizLeadInquiryConvoDelete::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
-                }
-                foreach ($conversation_ids as $key => $value) {
-                    $fav_convo = new \App\BizLeadInquiryConvoDelete();
-                    $fav_convo->conversation_id = $value;
-                    $fav_convo->created_by = \Auth::id();
-                    $fav_convo->save();
-                }
+            $exist = \App\BizLeadInquiryConvoDelete::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->count();
+            if($exist > 0){
+                \App\BizLeadInquiryConvoDelete::where('created_by',\Auth::id())->whereIn('conversation_id',$conversation_ids)->delete();
+            }
+            foreach ($conversation_ids as $key => $value) {
+                $fav_convo = new \App\BizLeadInquiryConvoDelete();
+                $fav_convo->conversation_id = $value;
+                $fav_convo->created_by = \Auth::id();
+                $fav_convo->save();
+            }
 
 
-                $data['feedback'] = 'true';
-                $data['msg'] = 'Inquiry has been deleted successfully';
+            $data['feedback'] = 'true';
+            $data['msg'] = 'Inquiry has been deleted successfully';
 
 
 
@@ -1728,27 +1738,27 @@ class InquiryController extends Controller
             return json_encode(['feedback' => 'encrypt_issue' , 'msg' => 'Something Went Wrong']);
         }
         if($user_id)
+        {
+            $d['user'] = \App\User::find($user_id);
+            $d['listing'] = \App\BizLeadInquiryConversation::with('product.company','messages','latestMessage','my_latest_message')->has('my_latest_message')->get();
+            if($d['user'] && $d['listing'])
             {
-                $d['user'] = \App\User::find($user_id);
-                $d['listing'] = \App\BizLeadInquiryConversation::with('product.company','messages','latestMessage','my_latest_message')->has('my_latest_message')->get();
-                if($d['user'] && $d['listing'])
-                {
-                    $data['data'] = view('front_site.biz_lead_inquiry.sent-box' , $d)->render();
-                    $data['feedback'] = 'true';
-                }
-                else
-                {
-                    $data['feedback'] = 'false';
-                    $data['msg'] = 'Something went Wrong';
-                }
+                $data['data'] = view('front_site.biz_lead_inquiry.sent-box' , $d)->render();
+                $data['feedback'] = 'true';
             }
             else
             {
                 $data['feedback'] = 'false';
                 $data['msg'] = 'Something went Wrong';
             }
-            return json_encode($data);
-}
+        }
+        else
+        {
+            $data['feedback'] = 'false';
+            $data['msg'] = 'Something went Wrong';
+        }
+        return json_encode($data);
+    }
 
     public function get_inbox_refresh_bizLead(){
         try {
@@ -1757,65 +1767,65 @@ class InquiryController extends Controller
             return json_encode(['feedback' => 'encrypt_issue' , 'msg' => 'Something Went Wrong']);
         }
         if($user_id)
+        {
+            $d['user'] = \App\User::find($user_id);
+            $d['listing'] = \App\BizLeadInquiryConversation::with('product.company','messages','latestMessage','my_latest_message')->where(function($q1) use($user_id){
+                $q1->whereHas('product', function($query) use($user_id){
+                    $query->whereHas('company', function($q) use($user_id){
+                        $q->where('company_profiles.id', \Session::get('company_id'));
+                    });
+                })->orWhere('created_by',$user_id);
+            })->get()->sortByDesc('latestMessage.created_at');
+            if($d['user'] && $d['listing'])
             {
-                $d['user'] = \App\User::find($user_id);
-                $d['listing'] = \App\BizLeadInquiryConversation::with('product.company','messages','latestMessage','my_latest_message')->where(function($q1) use($user_id){
-                    $q1->whereHas('product', function($query) use($user_id){
-                        $query->whereHas('company', function($q) use($user_id){
-                            $q->where('company_profiles.id', \Session::get('company_id'));
-                        });
-                    })->orWhere('created_by',$user_id);
-                })->get()->sortByDesc('latestMessage.created_at');
-                if($d['user'] && $d['listing'])
-                {
-                    $data['data'] = view('front_site.biz_lead_inquiry.inbox' , $d)->render();
-                    $data['feedback'] = 'true';
-                }
-                else
-                {
-                    $data['feedback'] = 'false';
-                    $data['msg'] = 'Something went Wrong';
-                }
+                $data['data'] = view('front_site.biz_lead_inquiry.inbox' , $d)->render();
+                $data['feedback'] = 'true';
             }
             else
             {
                 $data['feedback'] = 'false';
                 $data['msg'] = 'Something went Wrong';
             }
-            return json_encode($data);
+        }
+        else
+        {
+            $data['feedback'] = 'false';
+            $data['msg'] = 'Something went Wrong';
+        }
+        return json_encode($data);
     }
 
     public function get_delete_refresh_bizLead(){
 
-            try {
-                $user_id = decrypt(request('user_id'));
-            } catch (\RuntimeException $e) {
-                return json_encode(['feedback' => 'encrypt_issue' , 'msg' => 'Something Went Wrong']);
+        try {
+            $user_id = decrypt(request('user_id'));
+        } catch (\RuntimeException $e) {
+            return json_encode(['feedback' => 'encrypt_issue' , 'msg' => 'Something Went Wrong']);
+        }
+        if($user_id)
+        {
+            $d['user'] = \App\User::find($user_id);
+            $d['listing'] = \App\BizLeadInquiryConversation::with('product.company','messages','latestMessage','my_latest_message')->whereHas('delete_convos', function($q){
+                $q->where('created_by',\Auth::id());
+            })->get();
+            if($d['user'] && $d['listing'])
+            {
+                // dd($d['listing']);;
+                $data['data'] = view('front_site.biz_lead_inquiry.delete-box' , $d)->render();
+                $data['feedback'] = 'true';
             }
-            if($user_id)
-                {
-                    $d['user'] = \App\User::find($user_id);
-                    $d['listing'] = \App\BizLeadInquiryConversation::with('product.company','messages','latestMessage','my_latest_message')->whereHas('delete_convos', function($q){
-                        $q->where('created_by',\Auth::id());
-                    })->get();
-                    if($d['user'] && $d['listing'])
-                    {
-                        // dd($d['listing']);;
-                        $data['data'] = view('front_site.biz_lead_inquiry.delete-box' , $d)->render();
-                        $data['feedback'] = 'true';
-                    }
-                    else
-                    {
-                        $data['feedback'] = 'false';
-                        $data['msg'] = 'Something went Wrong';
-                    }
-                }
-                else
-                {
-                    $data['feedback'] = 'false';
-                    $data['msg'] = 'Something went Wrong';
-                }
-                return json_encode($data);
+            else
+            {
+                $data['feedback'] = 'false';
+                $data['msg'] = 'Something went Wrong';
+            }
+        }
+        else
+        {
+            $data['feedback'] = 'false';
+            $data['msg'] = 'Something went Wrong';
+        }
+        return json_encode($data);
     }
 
     public function get_filtered_inqueries_bizLead(){
