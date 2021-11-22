@@ -59,15 +59,8 @@
                                         <div class="form-row">
                                             <h6 class="w-100">Create Account</h6>
                                             <div class="form-group col-md-6 mb-1">
-                                                <label class="d-none">Account Email <span class="required">*</span></label>
-                                                <input type="hidden" name="email" value="{{$email}}">
-                                                <input type="email" value="{{$email}}" class="form-control is-valid"
-                                                       placeholder="Account Email - example@email.com" disabled="disabled">
-                                                <small class="text-danger" id="email_error"></small>
-                                            </div>
-                                            <div class="form-group col-md-6 mb-1">
-                                                <label class="mb-2 w-100 text-center font-500">Profile Picture (Optional)</label>
-                                                <div class="mx-auto d-flex justify-content-center align-items-center avatar-wrapper rounded create-account-avatar">
+                                                <label class="mb-1 w-100 font-500">Profile Picture (Optional)</label>
+                                                <div class="d-flex justify-content-center align-items-center avatar-wrapper rounded create-account-avatar">
                                                     {{--<img class="profile-pic" id="uploaded_image" src="{{ get_user_image(Auth::user()) }}"/>--}}
                                                     <div class="position-absolute spinner-border text-danger loader-spinner d-none" role="status" style="z-index: 1">
                                                         <span class="sr-only">Loading...</span>
@@ -78,6 +71,13 @@
                                                     </div>
                                                     <input class="file-upload d-none" name="avatar" id="avatar1" type="file" accept="image/*"/>
                                                 </div>
+                                            </div>
+                                            <div class="form-group col-md-6 mb-1">
+                                                <label class="d-none">Account Email <span class="required">*</span></label>
+                                                <input type="hidden" name="email" value="{{$email}}">
+                                                <input type="email" value="{{$email}}" class="form-control is-valid"
+                                                       placeholder="Account Email - example@email.com" disabled="disabled">
+                                                <small class="text-danger" id="email_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
