@@ -166,7 +166,6 @@
                         <div align="center">
                             <a href="#" class="load-more red-btn">Load More<span class="ml-2 fa fa-spinner" aria-hidden="true"></span></a>
                         </div>
-                </div>
         </div>
     </main>
     </body>

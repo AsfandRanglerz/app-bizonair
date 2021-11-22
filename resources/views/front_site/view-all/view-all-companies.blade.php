@@ -11,6 +11,7 @@
     </nav>
     <div class="container-fluid px-1">
         <div class="row m-0">
+            @if(count($allcompanies) > 0)
                 @foreach($allcompanies as $company)
                     <div class="product-box col-md-3 col-6 px-0 textile-box">
                         <div class="border-0 p-0 d-block top-companies">
@@ -28,6 +29,9 @@
                         </div>
                     </div>
                 @endforeach
+            @else
+            <p>No Companies Found</p>
+            @endif
         </div>
         <div align="center" class="my-2">
             <a href="#" class="load-more red-btn">Load More<span class="ml-2 fa fa-spinner" aria-hidden="true"></span></a>
