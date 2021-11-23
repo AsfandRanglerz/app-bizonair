@@ -542,7 +542,7 @@ class CompanyController extends Controller
             'user_type' => 'required',
             // 'company_name' => 'required',
             // 'designation' => 'required',
-            'first_name' => 'required', 'last_name' => 'required', 'registration_phone_no' => 'required',
+            'registration_phone_no' => 'required',
             //            'office_code' => 'required',
             'gender' => 'required', 'birthday' => 'required',
         ];
@@ -552,7 +552,6 @@ class CompanyController extends Controller
             'confirm_password.same' => 'Password did not matched',
             // 'designation.required' => 'Please select your designation',
             'user_type.required' => 'Please select user type',
-            'first_name.required' => 'First name is required', 'last_name.required' => 'Last name is required',
             'registration_phone_no.required' => 'Phone number is required',
             // 'company_name.required' => 'Company name is required',
             //            'office_code.required' => 'Biz office code is required for members',
@@ -617,9 +616,6 @@ class CompanyController extends Controller
         }
 
 
-        $user->first_name = request('first_name');
-        $user->last_name = request('last_name');
-        $user->name = request('first_name') . ' ' . request('last_name');
         $user->enc_password = encrypt(request('password'));
         $user->password = Hash::make(request('password'));
         $user->country_id = request('country_id');

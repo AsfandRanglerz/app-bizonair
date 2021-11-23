@@ -57,57 +57,6 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{$user->id}}">
                                     <h5 class="w-100">My Account</h5>
-{{--                                    <div class="form-group mb-1">--}}
-{{--                                        <label class="d-none">Account Email<span class="required">*</span></label>--}}
-{{--                                        <input type="email" value="{{$user->email}}" class="form-control is-valid"--}}
-{{--                                               placeholder="Account Email - example@email.com" disabled="disabled">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-row">--}}
-{{--                                        <h6 class="w-100">Contact Person</h6>--}}
-{{--                                        <div class="form-group col-md-6 mb-1">--}}
-{{--                                            <label class="d-none">First Name <span class="required">*</span></label>--}}
-{{--                                            <input type="text" name="first_name" value="{{$user->first_name}}"--}}
-{{--                                                   class="form-control is-valid" required placeholder="First Name - First Name">--}}
-{{--                                            <small class="text-danger" id="last_name_error"></small>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-group col-md-6 mb-1">--}}
-{{--                                            <label class="d-none">Last Name <span class="required">*</span></label>--}}
-{{--                                            <input type="text" name="last_name" class="form-control is-valid"--}}
-{{--                                                   value="{{$user->last_name}}" required placeholder="Last Name">--}}
-{{--                                            <small class="text-danger" id="last_name_error"></small>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-                                    {{-- <div class="w-100 form-row user-type-section">
-
-                                        <h6 class="w-100 pl-0">Member Type <span class="required">*</span></h6>
-
-                                        <div class="form-group user-type col-lg-8 pl-0">
-
-                                            <ul data-toggle="buttons">
-
-                                                <li class="btn">
-
-                                                <input class="input fa fa-square-o" type="checkbox" id="userCheckbox">General User
-
-                                                </li>
-
-                                                <li class="btn active">
-
-                                                <input class="input fa fa-square-o" type="checkbox" id="buyerCheckbox">Buyer
-
-                                                </li>
-
-                                                <li class="btn">
-
-                                                <input class="input fa fa-square-o" type="checkbox" id="sellerCheckbox">Seller
-
-                                                </li>
-
-                                            </ul>
-
-                                        </div>
-
-                                    </div> --}}
 
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
@@ -358,8 +307,7 @@
                     $element.valid();
                 },
                 rules: {
-                    first_name: "required",
-                    last_name: "required",
+
                     email: {
                         required: true,
                         email: true
@@ -375,8 +323,7 @@
                     },
                 },
                 messages: {
-                    first_name: "Please enter your firstname",
-                    last_name: "Please enter your lastname",
+
                     email: "Please enter a valid email address",
                     website: "Please enter a valid URL starts from https",
                     country: "Please select country",
