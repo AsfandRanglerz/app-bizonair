@@ -5568,11 +5568,11 @@
                                                         class="form-row  @if($product->sampling_type == "Paid") d-block @else d-none  @endif trade-info-container position-relative"
                                                         id="paidField">
                                                         <div class="mt-1 col-12">
-                                                            <label class="d-none font-500 pt-3">Add Price <span
-                                                                    class="required">*</span></label>
-                                                            <input type="text" id="paidSample" placeholder="Add Price *"
+                                                            <label class="d-none font-500 pt-3">Add Price <small
+                                                                    class="font-500"> (Optional)</small></label>
+                                                            <input type="text" id="paidSample" placeholder="Add Price (Optional)"
                                                                    name="paid_sampling_price" class="form-control"
-                                                                   @if($product->sampling_type == "Paid") required
+                                                                   @if($product->sampling_type == "Paid")
                                                                    @endif
                                                                    value="{{ $product->paid_sampling_price }}">
                                                         </div>
@@ -6798,7 +6798,7 @@
 // alert($('#proPaid').val());
                 if ($('#proPaid').prop("checked")) {
                     $('#paidField').removeClass('d-none');
-                    $('#paidSample').prop('required', true);
+
                 }
 
             });
@@ -6808,7 +6808,6 @@
 // alert($('#proPaid').val());
                 if ($('#proFree').prop("checked")) {
                     $('#paidField').addClass('d-none');
-                    $('#paidSample').prop('required', false);
                 }
             });
 

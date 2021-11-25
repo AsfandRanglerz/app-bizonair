@@ -3077,11 +3077,11 @@
                                                     <div class="form-row d-none trade-info-container position-relative"
                                                          id="paidField">
                                                         <div class="mt-1 col-12">
-                                                            <label class="d-none font-500 pt-3">Add Price <span
-                                                                    class="required">*</span></label>
+                                                            <label class="d-none font-500 pt-3">Add Price <small
+                                                                    class="font-500"> (Optional)</small></label>
                                                             <input type="text" id="paidSample"
                                                                    name="paid_sampling_price"
-                                                                   class="form-control" placeholder="Add Price *">
+                                                                   class="form-control" placeholder="Add Price (Optional)">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -4098,7 +4098,7 @@
                 // alert($('#proPaid').val());
                 if ($('#proPaid').prop("checked")) {
                     $('#paidField').removeClass('d-none');
-                    $('#paidSample').prop('required', true);
+
                 }
 
             });
@@ -4108,7 +4108,7 @@
                 // alert($('#proPaid').val());
                 if ($('#proFree').prop("checked")) {
                     $('#paidField').addClass('d-none');
-                    $('#paidSample').prop('required', false);
+
                 }
             });
 

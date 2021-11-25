@@ -509,8 +509,6 @@ class HomeController extends Controller
 //            $num = ($num == request('whatsapp_number_country_code')) ? '' : $num;
 //            $telephone_num = preg_replace('/^(?:\+?' . request('telephone_country_code') . '|0)?/', request('telephone_country_code'), request('telephone'));
 //            $telephone_num = ($num == request('telephone_country_code')) ? '' : $telephone_num;
-            $user->first_name = request('first_name');
-            $user->last_name = request('last_name');
             $user->website = request('website');
             // $user->phone_no = request('phone_no');
             $user->whatsapp_number = request('whatsapp_number');
