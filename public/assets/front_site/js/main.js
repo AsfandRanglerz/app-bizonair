@@ -48,6 +48,30 @@ $(".job-description-below").scroll(function () {
 });
 
 $(document).ready(function () {
+    /*helping model videos play off*/
+    $('.helping-model').on('hide.bs.modal', function () {
+        $('.helping-model').find('video').get(0).pause();
+    });
+    $('.helping-model').on('show.bs.modal', function () {
+        $('.helping-model').find('video').get(0).play();
+    });
+    /*helping model videos play off*/
+
+    $(document).on('click', '.product-categories, .product-subcategories', function () {
+        $(document).on('change', '.product-categories, .product-subcategories', function () {
+            // form data will get empty on change
+            $('.additional-product-info input').val("");
+            $('.additional-product-info input:radio').prop('checked', false);
+            $('.additional-product-info input:checkbox').prop('checked', false);
+            // form data will get empty on change
+
+            /*Add Product Type field*/
+            $('.add-sub-sub-cat').hide().find('input').val("");
+            $('.add-sub-sub-cat').find('input').removeClass("is-valid");
+            /*Add Product Type field*/
+        });
+    });
+
     /*progress-bar percentage*/
     var delay = 500;
     $(".tab-mob-header .progress-bar").each(function (i) {

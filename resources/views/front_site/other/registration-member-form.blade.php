@@ -193,21 +193,16 @@
                                     <div class="w-100 form-row user-type-section">
                                         <h6 class="w-100 pl-0">User Type <span class="required">*</span></h6>
                                         <div class="form-group user-type col-xl-9 col-lg-12 pl-0">
-                                            <div>
-                                                <ul data-toggle="buttons">
-                                                    @foreach (\App\UType::all() as $item)
-                                                        <li class="btn @if($item->id == 4) service-provider @endif">
-                                                            <input class="input fa fa-square-o required-control" type="checkbox"
-                                                                   value="{{$item->id}}" data-id="{{$item->id}}"
-                                                                   name="user_type[]">{{$item->title}}
-                                                            <span class="fa fa-question-circle" data-toggle="tooltip"
-                                                                  data-placement="top" title="{{ $item->tooltip }}"
-                                                                  aria-hidden="true"></span>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                                <small class="text-danger" id="user_type_error"></small>
-                                            </div>
+                                            @foreach (\App\UType::all() as $item)
+                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input @if($item->id == 4) service-provider @endif" id="{{$item->id}}" value="{{$item->id}}" data-id="{{$item->id}}" name="user_type[]">
+                                                    <label class="custom-control-label" for="{{$item->id}}">{{$item->title}}</label>
+                                                    <span class="ml-1 fa fa-question-circle d-flex align-items-center" data-toggle="tooltip"
+                                                          data-placement="top" title="{{ $item->tooltip }}"
+                                                          aria-hidden="true"></span>
+                                                </div>
+                                            @endforeach
+                                            <small class="text-danger" id="user_type_error"></small>
                                         </div>
                                         <select class="form-control choose-services col-xl-3 col-lg-12 select2-multiple-services " multiple name="userservices[]">
                                             @foreach (\App\Subservice::all() as $item)

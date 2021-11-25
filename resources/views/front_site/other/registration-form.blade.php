@@ -150,7 +150,7 @@
                                                     <input type="checkbox" class="custom-control-input @if($item->id == 4) service-provider @endif" id="{{$item->id}}" value="{{$item->id}}" data-id="{{$item->id}}" name="user_type[]">
                                                     <label class="custom-control-label" for="{{$item->id}}">{{$item->title}}</label>
                                                     <span class="ml-1 fa fa-question-circle d-flex align-items-center" data-toggle="tooltip"
-                                                          data-placement="top" title="{{ $item->title }}"
+                                                          data-placement="top" title="{{ $item->tooltip }}"
                                                           aria-hidden="true"></span>
                                                 </div>
                                                 @endforeach

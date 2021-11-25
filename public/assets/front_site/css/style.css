@@ -83,6 +83,38 @@ th {
 }
 /*ck editor*/
 
+/*helping-video-close*/
+.helping-video-close {
+    color: #FFF;
+    opacity: 1;
+    background-color: #a52c3e!important;
+    border-radius: 0 4px 0 0;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    padding-bottom: 5px!important;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 4px #a52c3ef2;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.helping-video-close:hover, .helping-video-close:focus, .helping-video-close:active {
+    background-color: #12253d!important;
+    box-shadow: 0 0 4px #12253d;
+    opacity: 1!important;
+    text-shadow: none;
+    color: #FFF;
+    outline: none;
+}
+/*helping-video-close*/
+
 /*edit-comp-prof-imgs*/
 .edit-comp-prof-imgs {
     display: inline-flex;
@@ -4989,8 +5021,8 @@ select.custom-select {
 }
 
 .red-link {
-    color: #A52C3E;
-    font-size: 10px;
+    color: #A52C3E!important;
+    font-size: 10px!important;
 }
 
 .red-link:hover {
@@ -9128,6 +9160,13 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 575px) {
+    /*helping-video-close*/
+    .helping-video-close {
+        width: 20px;
+        height: 20px;
+    }
+    /*helping-video-close*/
+
     .details-comparison .product-info-headings {
         line-height: normal;
         font-size: 10px;

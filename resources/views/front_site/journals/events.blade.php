@@ -71,7 +71,7 @@
                         @endif
                         <div class="mb-0 textile-caption">
                             <span>{{$article->journal_type_name}} | {{date("d-F-Y", strtotime($article->created_at))}}</span>
-                            <p class="overflow-text-dots">{{substr_replace($article->title, "...", 50) }}</p>
+                            <p class="overflow-text-dots">{{$article->title}}</p>
                         </div>
                     </a>
                 </div>

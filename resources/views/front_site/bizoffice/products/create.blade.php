@@ -52,10 +52,34 @@
                                             <label class="font-500">Post Your Lead As
                                                 <span class="required"> *</span>
                                             </label>
-                                            <a href="#"
-                                               class="pull-right text-decoration-none red-link font-500 help-txt">Help<span
-                                                    class="ml-1 fa fa-question-circle"
-                                                    aria-hidden="true"></span></a>
+
+                                            <!-- helping video -->
+                                            <div class="clearfix d-inline">
+                                                <!-- Modal Button -->
+                                                <a role="button" data-toggle="modal" data-target="#helpingModelVideo"
+                                                   class="pull-right text-decoration-none red-link font-500 help-txt">Help<span
+                                                        class="ml-1 fa fa-question-circle"
+                                                        aria-hidden="true"></span></a>
+                                                <!-- Modal Button -->
+
+                                                <!-- Modal -->
+                                                <div class="modal fade helping-model" id="helpingModelVideo" tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                        <div class="modal-content border-0 rounded">
+                                                            <button type="button" class="close helping-video-close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                            <?php $dataa = \App\Vcast::first();?>
+                                                            <video class="embed-responsive embed-responsive-16by9 rounded" controls>
+                                                                <source src="{{$dataa->link}}" type="video/mp4">
+                                                            </video>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal -->
+                                            </div>
+                                            <!-- helping video -->
+
                                             <div class="d-flex flex-row">
                                                 <div
                                                     class="form-check form-check-inline custom-control custom-radio d-sm-inline">
@@ -141,9 +165,9 @@
                                             <small class="text-danger" id="sub_sub_category_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 add-sub-sub-cat">
-                                            <label class="font-500">Add Product Type <span
+                                            <label class="d-none font-500">Add Product Type <span
                                                     class="required"> *</span></label>
-                                            <input type="text" name="add_sub_sub_category" class="form-control"
+                                            <input type="text" name="add_sub_sub_category" class="form-control" placeholder="Add Product Type *"
                                                    required>
                                         </div>
                                     </div>
