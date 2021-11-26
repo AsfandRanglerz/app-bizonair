@@ -116,7 +116,6 @@
                                             <div class="position-relative">
                                                 <select class="form-control product-categories" id="category"
                                                         name="category" required>
-                                                    <option value=""></option>
                                                     <option disabled selected>Please select category *</option>
                                                     @foreach(\App\Category::all() as $category)
                                                         <option value="{{ $category->id }}" cat-val="{{ $category->name }}"

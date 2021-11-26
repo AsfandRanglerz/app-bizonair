@@ -4247,6 +4247,16 @@ span.time {
     font-size: 24px;
 }
 
+.mail-reply-box-outer a[download="download"] {
+    text-decoration: none;
+}
+
+.mail-reply-box-outer .fa.fa-paperclip {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+}
+
 /*group chat dashboard*/
 
 /*dashboard table*/
