@@ -393,13 +393,30 @@
                                     <a class="nav-link active" id="linkCom" data-toggle="tab" href="#tabCom" role="tab"
                                        aria-controls="tabCom" aria-selected="false">COMPANY DETAILS</a>
                                 </li>
-                                <li class="nav-item ml-auto">
-                                    <button class="red-btn close-form">Close</button>
+                                <li class="w-unset d-sm-flex d-inline-block justify-content-end ml-auto nav-item">
+                                    <button type="submit" class="red-btn updt-btn" form="updateCompany">UPDATE</button>
                                 </li>
-                                {{--                                <li class="nav-item">--}}
-                                {{--                                    <a class="nav-link" id="linkInfo" data-toggle="tab" href="#tabInfo" role="tab"--}}
-                                {{--                                       aria-controls="tabInfo" aria-selected="false">ADDITIONAL INFO</a>--}}
-                                {{--                                </li>--}}
+                                <li class="w-unset ml-2 d-sm-flex d-inline-block justify-content-end nav-item">
+                                    <button class="red-btn close-form" href="#add-cancil" data-toggle="modal">CLOSE</button>
+                                </li>
+                                <div id="add-cancil" class="change-password-modal modal fade">
+                                    <div class="modal-dialog modal-dialog-centered modal-login">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <span class="modal-title">Close Form</span>
+                                                <button  class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            </div>
+                                            <div class="modal-body pt-3">
+                                                <p style="color: white">The changes will not be saved – Do you want to continue?</p>
+                                                <div class="form-group mt-4 mb-0">
+                                                    <button class="red-btn add-cancil-form" type="submit">Proceed</button>
+                                                    <button class="red-btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </ul>
                             <form id="updateCompany" method="post" name="companyForm"
                                   action="{{ route('update-company-profile') }}"
