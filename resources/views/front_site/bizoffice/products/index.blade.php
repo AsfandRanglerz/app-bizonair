@@ -135,7 +135,7 @@
                                                 </a>
                                                 <a href="{{ route('products.edit', $product).'#companyTab2' }}">
                                                         <li class="font-500">
-                                                            <span class="fa fa-edit view-btn mr-3" aria-hidden="true"></span>Edit
+                                                            <span class="fa fa-edit view-btn mr-2" aria-hidden="true"></span>Edit
                                                         </li>
                                                     </a>
                                                     <a href="javascript:;" class="delete-product">
