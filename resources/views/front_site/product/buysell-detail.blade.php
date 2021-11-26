@@ -461,7 +461,7 @@
                                                <p class="mb-0">
                                                    @if(in_array("Other", explode(",", $product->suitable_currencies))) {{ $product->other_suitable_currency }}
                                                    @else {{$product->suitable_currencies }} @endif
-                                                   {{ floor(number_format($product->target_price_from,2)) }}  Per {{ ($product->target_price_unit != 'Other') ? $product->target_price_unit : $product->other_target_price_unit }}
+                                                   {{ number_format($product->target_price_from) }}  Per {{ ($product->target_price_unit != 'Other') ? $product->target_price_unit : $product->other_target_price_unit }}
                                                </p>
                                            </div>
                                        </div>

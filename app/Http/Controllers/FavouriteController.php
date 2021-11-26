@@ -190,7 +190,7 @@ class FavouriteController extends Controller
         $data['title'] = 'News & Articles';
         $data['user'] = \App\User::find(\auth()->id());
         $data['order'] = 'desc';
-        $data['journal'] = \App\Journal::where('user_name','=',auth()->user()->name);
+        $data['journal'] = \App\Journal::where('user_id','=',auth()->id());
         $data['count'] = $data['journal']->count();
         $data['journal'] = $data['journal']->get();
         $data['page'] = 'bizoffice.news-articles.news-article';
@@ -239,6 +239,7 @@ class FavouriteController extends Controller
             }
             $post->description= request('description');
             $post->journal_type_name= request('journal_type');
+            $post->user_id= auth()->user()->id;
             $post->user_name= auth()->user()->name;
 
             $post->save();
@@ -298,7 +299,7 @@ class FavouriteController extends Controller
         $messages = [
             'title.required' => 'post title is required',
 //            'image.nullable' => 'post image is required',
-            // 'description.required' => 'post description is required',
+           // 'description.required' => 'post description is required',
 //            'journal_type.required' => 'post journal type is required',
 
         ];
@@ -321,6 +322,7 @@ class FavouriteController extends Controller
             }
             //$publish_date = request('date');
             $journal_type_name = request('journal_type');
+            $user_id = auth()->id();
             $user_name = auth()->user()->name;
             if($request->hasFile('image')){
                 $image = $request->file('image');
@@ -331,9 +333,9 @@ class FavouriteController extends Controller
                 $post = $url;
                 \App\Journal::where('id', request('id'))->update(['image'=>$post]);
             }
-            DB::update('update journals set title="'.$title.'",description="'.$description.'",journal_type_name="'.$journal_type_name.'",user_name="'.$user_name.'" where id = ?', [$id]);
+            DB::update('update journals set title="'.$title.'",description="'.$description.'",journal_type_name="'.$journal_type_name.'",user_id="'.$user_id.'",user_name="'.$user_name.'" where id = ?', [$id]);
 
-            if (1 == 1) {
+             if (1 == 1) {
 
                 $data['feedback'] = "true";
                 $data['msg'] = 'News or Article has been Updated successfully';
@@ -344,7 +346,8 @@ class FavouriteController extends Controller
                 $data['feedback'] = "other";
                 $data['custom_msg'] = 'Something went wrong';
             }
-            return json_encode($data);
+            
+            return response()->json(['data'=>$data]);
         }
     }
 

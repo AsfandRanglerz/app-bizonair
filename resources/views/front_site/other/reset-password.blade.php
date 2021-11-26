@@ -16,7 +16,7 @@
                     @csrf
                     <input type="hidden" name="token" value="{{ $token }}">
                     <div class="form-group">
-                        <h3 class="mb-0 text-center">Please enter the 6-digit verification code we sent via SMS:</h3>
+                        <h3 class="mb-0 text-center">Please enter the 6-digit verification code we sent via Email:</h3>
                         <p class="mt-0 mb-2 text-center">(we want to make sure it's you before we contact our movers) *</p>
                         <label class="d-none">OTP</label>
                         <div class="mb-2">

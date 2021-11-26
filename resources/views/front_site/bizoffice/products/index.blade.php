@@ -63,10 +63,18 @@
                                         <th>{{ $i++ }}</th>
                                         <td>{{ $product->product_service_types }}</td>
                                         <td>{{ $product->reference_no }}</td>
-                                        @if($product->product_service_types =='Service')
-                                            <td><a href="{{ route('serviceDetail',['category'=>get_category_slug($product->category_id),'subcategory'=>get_sub_category_slug($product->subcategory_id),'prod_slug'=>$product->slug]) }}">{{ $product->product_service_name }}</a></td>
+                                        @if(!($request->case && $request->case == 'archive'))
+                                            @if($product->product_service_types =='Service')
+                                                <td><a href="{{ route('serviceDetail',['category'=>get_category_slug($product->category_id),'subcategory'=>get_sub_category_slug($product->subcategory_id),'prod_slug'=>$product->slug]) }}">{{ $product->product_service_name }}</a></td>
+                                            @else
+                                                <td><a href="{{ route('productDetail',['category'=>get_category_slug($product->category_id),'subcategory'=>get_sub_category_slug($product->subcategory_id),'prod_slug'=>$product->slug]) }}">{{ $product->product_service_name }}</a></td>
+                                            @endif
                                         @else
-                                            <td><a href="{{ route('productDetail',['category'=>get_category_slug($product->category_id),'subcategory'=>get_sub_category_slug($product->subcategory_id),'prod_slug'=>$product->slug]) }}">{{ $product->product_service_name }}</a></td>
+                                            @if($product->product_service_types =='Service')
+                                                <td><a href="#">{{ $product->product_service_name }}</a></td>
+                                            @else
+                                                <td><a href="#">{{ $product->product_service_name }}</a></td>
+                                            @endif
                                         @endif
                                         <td>{{ $product->subject }}</td>
                                         <td class="img-td-outer">  @if(sizeof($product->product_image) > 0)
@@ -105,11 +113,7 @@
                                             <input type="hidden" name='url'
                                                    value="{{ route('products.destroy', $product) }}">
                                             <ul class="dropdown-menu actionMenu p-10" role="menu">
-                                                <a href="{{ route('products.edit', $product) }}">
-                                                    <li class="font-500">
-                                                        <span class="fa fa-eye view-btn mr-2" aria-hidden="true"></span>View
-                                                    </li>
-                                                </a>
+                                               
                                                 @if($request->case && $request->case == 'archive')
                                                     <a href="javascript:;" class="restore-product">
                                                         <li class="font-500">
@@ -124,6 +128,16 @@
                                                         </li>
                                                     </a>
                                                 @else
+                                                <a href="{{ route('products.edit', $product) }}">
+                                                    <li class="font-500">
+                                                        <span class="fa fa-eye view-btn mr-2" aria-hidden="true"></span>View
+                                                    </li>
+                                                </a>
+                                                <a href="{{ route('products.edit', $product).'#companyTab2' }}">
+                                                        <li class="font-500">
+                                                            <span class="fa fa-edit view-btn mr-3" aria-hidden="true"></span>Edit
+                                                        </li>
+                                                    </a>
                                                     <a href="javascript:;" class="delete-product">
                                                         <li class="font-500">
                                                         <span class="fa fa-trash delete-btn mr-2"

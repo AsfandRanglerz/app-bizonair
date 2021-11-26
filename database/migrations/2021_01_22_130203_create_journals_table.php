@@ -19,6 +19,7 @@ class CreateJournalsTable extends Migration
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->date('publish_date')->nullable();
+            $table->integer('user_id')->nullable();
             $table->string('user_name')->nullable();
             $table->string('journal_type_name')->nullable();
 

@@ -65,7 +65,7 @@
                                         <th>{{ $key+1 }}</th>
                                         <td>{{ $buysell->product_service_types }}</td>
                                         <td>{{ $buysell->reference_no }}</td>
-{{--                                        @if(!($request->case && $request->case == 'archive'))--}}
+                                        @if(!($request->case && $request->case == 'archive'))
                                             @if($buysell->product_service_types == 'Service')
                                                 <td>  <a href="{{ route('serviceDetail',['category'=>get_category_slug($buysell->category_id),'subcategory'=>get_sub_category_slug($buysell->subcategory_id),'prod_slug'=>$buysell->slug]) }}">
                                                         {{ $buysell->product_service_name }}</a></td>
@@ -73,10 +73,20 @@
                                                 <td>  <a href="{{ route('buysellDetail',['category'=>get_category_slug($buysell->category_id),'subcategory'=>get_sub_category_slug($buysell->subcategory_id),'prod_slug'=>$buysell->slug]) }}">
                                                         {{ $buysell->product_service_name }}</a></td>
                                             @endif
-{{--                                        @endif--}}
+                                        @else
+                                            @if($buysell->product_service_types == 'Service')
+                                                <td>  <a href="#">
+                                                        {{ $buysell->product_service_name }}</a></td>
+                                            @else
+                                                <td>  <a href="#">
+                                                        {{ $buysell->product_service_name }}</a></td>
+                                            @endif
+
+                                        @endif
                                         <td>{{ $buysell->subject }}</td>
                                         <td>{{ $buysell->category->name }}</td>
-                                        <td class="img-td-outer"><a href="{{ route('buy-sell.edit', $buysell->id) }}">
+                                        <td class="img-td-outer">
+                                            <a href="{{ route('buy-sell.edit', $buysell->id) }}">
                                                 @foreach(App\Helpers\BuysellHelper::getImages($buysell->id) as $i => $image)
                                                     @if(!empty($image))
                                                         <span>

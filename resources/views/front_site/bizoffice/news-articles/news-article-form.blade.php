@@ -40,7 +40,7 @@
 
                                     <select name="journal_type" id="journal_type" class="form-control">
                                         <option value=""></option>
-                                        <option disabled>Type *</option>
+                                        <option disabled>Journal Type *</option>
                                         @foreach(\App\JournalType::all() as $type)
                                             <option value="{{$type->name}}">{{$type->name}}</option>
                                         @endforeach
@@ -51,18 +51,10 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="d-none font-500">Description</label>
-                                    <textarea name="description" id="description" placeholder="Description (Optional)" class="form-control ckeditor" style="min-height:105px"></textarea>
+                                    <textarea name="description" id="editor1" placeholder="Description (Optional)" class="form-control ckeditor" style="min-height:105px"></textarea>
 
                                 </div>
 
-                                {{--                                <div class="form-group col-md-4">--}}
-                                {{--                                    <label>Date <span class="required">*</span></label>--}}
-                                {{--                                    <input type="text" autocomplete="off"--}}
-                                {{--                                           name="date" id="date"--}}
-                                {{--                                           class="form-control closingdatepicker"--}}
-                                {{--                                           placeholder="Publish Date">--}}
-                                {{--                                    <small class="text-danger" id="date_error"></small>--}}
-                                {{--                                </div>--}}
 
                                 <div class="mb-0 form-group col-md-6 career-img-drop-outer attachment-img-file">
                                     <label class="font-500">Image <span class="required">*</span></label>
@@ -93,7 +85,6 @@
 @endsection
 
 @push('js')
-    <script src="{{$ASSET}}/front_site/js/timepicker.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -101,14 +92,11 @@
                 closeOnSelect: true,
                 placeholder: "Type *"
             });
-
-            // // // console.log('ready')
-            // $('.closingdatepicker').datepicker({
-            //     startDate: "0d",
-            //     autoclose: true,
-            //     format: 'yyyy-mm-dd',
-            //     // minDate:0,
-            // })
+            ClassicEditor
+                .create(document.querySelector('#editor1'))
+                .catch(error => {
+                    console.error(error);
+                });
 
             var options = {
                 dataType: 'Json',

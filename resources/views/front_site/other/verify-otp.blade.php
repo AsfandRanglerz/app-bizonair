@@ -3,7 +3,7 @@
     <body>
         <main class="py-2 page-main">
                 <div class="bg-white popup-center verification-code">
-                    <h3 class="mb-0 text-center">Please enter the 6-digit verification code we sent via SMS:</h3>
+                    <h3 class="mb-0 text-center">Please enter the 6-digit verification code we sent via Email:</h3>
                     <p class="text-center">(we want to make sure it's you before we contact our movers)</p>
                     <div class="alert alert-success text-center" id='alert-success-verify' style="display: none"
                          role="alert">
