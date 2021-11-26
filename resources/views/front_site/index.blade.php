@@ -13,7 +13,7 @@
                 @foreach($bnr_row1 as $row)
                 <div class="ad-slide px-1">
                     <a href="{{ $row->link }}" class="text-decoration-none">
-                    <img src="{{ $row->image }}" class="w-100 banner-below-adds">
+                    <img src="{{ $row->image }}" class="w-100 banner-below-adds border-grey">
                     </a>
                 </div>
                 @endforeach
@@ -118,7 +118,7 @@
                 <div class="pb-1 text-right">
                     <a href="{{route('contact-us')}}" class="red-link view-all">ADVERTISE WITH US</a>
                 </div>
-                <div class="ad-slider-content2">
+                <div class="ad-slider-content2 rounded border-grey">
                     <div id="ad-slider" class="carousel slide" data-ride="carousel" data-interval="5000">
                         <div class="carousel-inner">
                             @foreach($bnr_slider as $i => $row)

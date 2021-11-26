@@ -1706,8 +1706,32 @@
             var options = {
                 dataType: 'JSON',
                 beforeSubmit: function (arr, $form) {
-                    $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
+                    $("#loader").addClass('d-flex justify-content-center align-items-center');
+                    $("#loader").css({'background-color': 'rgb(255, 255, 255, 0.5)', 'background-image':'none'}).show();
+                    $('.progress-bar-ajax').parent().removeClass('d-none');
+                    $('#avatar1').val('');
                     $form.find('button[type=submit]').prop('disabled', true);
+
+                    var timerId = 0;
+                    var ctr=0;
+                    var max=10;
+
+                    var progressBarPercent = $(".progress-bar-ajax").width() / $(".progress").width() * 100;
+                    var progressBarPercentRoundOff = Math.ceil(progressBarPercent);
+
+                    if(progressBarPercentRoundOff <= 70) {
+                        timerId = setInterval(function () {
+                            // interval function
+                            ctr++;
+                            $('.progress-bar-ajax').attr("style","width:" + ctr*max + "%");
+                            $('.progress-bar-ajax').text(ctr*max + "%");
+                            // max reached?
+                            if (ctr=='7'){
+                                clearInterval(timerId);
+                            }
+
+                        }, 500);
+                    }
                 },
                 success: function (data, statusText, xhr, $form) {
                     $("#loader").hide();
@@ -1722,8 +1746,31 @@
                         $(window).off('beforeunload');
                         $("#loader").css('background-color', 'rgb(255, 255, 255, 0.5)').show();
                         $("#loader").hide();
-                        toastr.success("New product added successfully.");
-                        window.location.href = response.url;
+
+                        var timerId = 0;
+                        var ctr=0;
+                        var max=10;
+                        var progressBarPercent = $(".progress-bar-ajax").width() / $(".progress").width() * 100;
+                        var progressBarPercentRoundOff = Math.ceil(progressBarPercent);
+
+                        if(ctr < 10) {
+                            timerId = setInterval(function () {
+                                // interval function
+                                ctr++;
+
+                                // max reached?
+                                if (ctr==max){
+                                    // var progressBarPercent = $(".progress-bar-ajax").width() / $(".progress").width() * 100;
+                                    // var progressBarPercentRoundOff = Math.ceil(progressBarPercent);
+                                    $(".progress-bar-ajax").width(70  + 30 + "%");
+                                    $('.progress-bar-ajax').text(70  + 30 + "%");
+
+                                    clearInterval(timerId);
+                                    toastr.success("Buy sell added successfully.");
+                                    window.location.href = response.url;
+                                }
+                            }, 500);
+                        }
                     } else if (response.feedback == "validation_error") {
                         toastr.error("Please enter the required fields.");
                         $form.find('button[type=submit]').prop('disabled', false);

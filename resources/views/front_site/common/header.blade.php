@@ -532,6 +532,11 @@
 
 <div id="loader">
     <span id="loaderGif"></span>
+    <div class="w-50 mb-3 progress d-none">
+        <div class="progress-bar progress-bar-ajax" role="progressbar"
+             aria-valuenow="0"
+             aria-valuemin="0" aria-valuemax="100">0%</div>
+    </div>
 </div>
 <!-- login-form -->
 <div id="login-form" class="modal fade">

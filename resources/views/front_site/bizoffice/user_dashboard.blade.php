@@ -269,12 +269,14 @@
 
                             @endif
                     </div>
-                    @if($userComp)
-                    <div class="position-relative chart-container">
+                    <div class="position-relative">
                         <select class="position-absolute mx-auto w-auto form-control" id="filterselector">
                             <option value="asc">Newest To Oldest </option>
                             <option value="desc">Oldest To Newest </option>
                         </select>
+                    </div>
+                    @if($userComp)
+                    <div class="chart-container">
                         <canvas id="myChart" width="400" height="200"></canvas>
                         <canvas id="myChartt" width="400" height="200"></canvas>
                     </div>

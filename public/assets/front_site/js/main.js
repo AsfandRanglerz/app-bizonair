@@ -2533,61 +2533,6 @@ $(function () {
     /*my account multiselect element*/
 
     /*dasboard*/
-    if ($('div').hasClass('chart-container')) {
-        var ctx = $('#myChart');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: 'Data-1',
-                    data: [30, 29, 5, 5, 20, 3, 10],
-                    backgroundColor: '#344256',
-                }, {
-                    label: 'Data-2',
-                    data: [12, 19, 3, 17, 28, 24, 7],
-                    backgroundColor: '#A52C3E',
-                }]
-            },
-            options: {
-                scales: {
-                    xAxes: [{
-                        barPercentage: 0.4,
-                        stacked: true,
-                        ticks: {
-                            fontSize: 10
-                        },
-                        gridLines: {
-                            display: false,
-                        }
-                    }],
-                    yAxes: [{
-                        stacked: true,
-                        ticks: {
-                            beginAtZero: true,
-                            fontSize: 10
-                        },
-                        type: 'linear',
-                    }]
-                },
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'MyBiz Leads',
-                    fontSize: 10
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false,
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                }
-            }
-        });
-    }
-
     $("#dashboardWrapper #menu-toggle").click(function (e) {
         e.preventDefault();
         $("#dashboardWrapper").toggleClass("toggled");

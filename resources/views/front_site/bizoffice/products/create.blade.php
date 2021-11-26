@@ -4009,10 +4009,10 @@
 
                                 // max reached?
                                 if (ctr==max){
-                                    var progressBarPercent = $(".progress-bar-ajax").width() / $(".progress").width() * 100;
-                                    var progressBarPercentRoundOff = Math.ceil(progressBarPercent);
-                                    $(".progress-bar-ajax").width(progressBarPercentRoundOff  + 30 + "%");
-                                    $('.progress-bar-ajax').text(progressBarPercentRoundOff  + 30 + "%");
+                                    // var progressBarPercent = $(".progress-bar-ajax").width() / $(".progress").width() * 100;
+                                    // var progressBarPercentRoundOff = Math.ceil(progressBarPercent);
+                                    $(".progress-bar-ajax").width(70  + 30 + "%");
+                                    $('.progress-bar-ajax').text(70  + 30 + "%");
 
                                     clearInterval(timerId);
                                     toastr.success("New product added successfully.");
