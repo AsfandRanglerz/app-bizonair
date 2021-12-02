@@ -257,7 +257,9 @@
                         <input class="file-upload" name="avatar" id="avatar" type="file" accept="image/*"/>
                     </div>
                     <div class="ml-2" style="width: 66%">
-                        <p class="mb-0 biz-user">{{ auth()->user()->name }}</p>
+                        <p class="mb-0 biz-user">{{ company_name(session()->get('company_id'))??'' }}</p>
+                        <p class="mb-0 biz-user"><b>{{ auth()->user()->name }}</b></p>
+                        <p class="mb-0 biz-country">Basic Member <a href="#" class="text-decoration-none text-reset">(Upgrade)</a></p>
                         <p class="mb-0 biz-country">{{ auth()->user()->country }}</p>
                         <div class="progress mt-2">
                             <div class="progress-bar" role="progressbar"
@@ -422,9 +424,9 @@
                             <li data-toggle="tooltip" data-placement="bottom" title="Your Favourite Deals">
                                 <a href="{{route('view-deal-favourites')}}" class="sidebar-links">Your Favourite Deals <span class="biz-badge blue-badge">{{ getBuysellFavCount() }}</span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="{{route('buysell-inquiries')}}" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq"></span></a></li>
+                                <a href="{{route('buysell-inquiries')}}" class="sidebar-links">Deal Inquiries <span class="biz-badge" id="dealinq">0</span></a></li>
                             <li data-toggle="tooltip" data-placement="bottom" title="Deal Inquiries">
-                                <a href="{{route('get-one-time-fav')}}" class="sidebar-links">Deal Favorites <span class="biz-badge" id="fdealinq"></span></a></li>
+                                <a href="{{route('get-one-time-fav')}}" class="sidebar-links">Deal Favorites <span class="biz-badge" id="fdealinq">0</span></a></li>
                         </ul>
                     </li>
 
@@ -990,7 +992,7 @@
                         }
                     }
                 });
-            }, 1000000000);//time in milliseconds
+            }, 1000000);//time in milliseconds
             // }else{
             //     $(".notifications-scroll").css("display", "none");
             //     $(".biz-notifications").hover(function() {
