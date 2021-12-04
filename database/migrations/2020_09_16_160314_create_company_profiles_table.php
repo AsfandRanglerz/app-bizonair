@@ -46,6 +46,7 @@ class CreateCompanyProfilesTable extends Migration
      */
     public function down()
     {
+        Schema::dropForeign('company_profiles_user_id_foreign');
         Schema::dropIfExists('company_profiles');
     }
 }

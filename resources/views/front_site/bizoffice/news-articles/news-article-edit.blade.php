@@ -87,7 +87,7 @@
 @endsection
 
 @push('js')
-
+<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
             $('#journal_type').select2({

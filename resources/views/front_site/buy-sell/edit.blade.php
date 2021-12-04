@@ -714,7 +714,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="companyTab2">
+                    <div id="companyTab2" style="display: none">
                         <div class="alert alert-success m-0 mb-2 text-center" id='alert-success'
                              style="display:none;"
                              role="alert"></div>
@@ -2496,6 +2496,18 @@
             $( ".updt-button" ).click(function() {
                 $( "#updateBuysell" ).submit();
             });
+
+            $('.buysell-edit-btn').click(function () {
+                $('#companyTab1').hide();
+                $('#companyTab2').show();
+
+            });
+            if(window.location.href.includes('companyTab2'))
+            {
+                $('#companyTab1').hide();
+                $('#companyTab2').show();
+                $('.close-form').hide();
+            }
             
             $( ".updt-button" ).click(function() {
                 var serviceProduct = $('#productService').prop('checked');

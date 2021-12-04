@@ -33,6 +33,9 @@ class CreateUserCompaniesTable extends Migration
      */
     public function down()
     {
+        Schema::dropForeign('user_companies_user_id_foreign');
+        Schema::dropForeign('user_companies_company_id_foreign');
         Schema::dropIfExists('user_companies');
+
     }
 }

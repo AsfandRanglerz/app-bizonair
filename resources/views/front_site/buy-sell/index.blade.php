@@ -129,11 +129,7 @@
                                             </button>
                                             <input type="hidden" name='url' value="{{ route('buy-sell.destroy', $buysell->id) }}">
                                             <ul class="dropdown-menu actionMenu p-10" role="menu">
-                                                <a href="{{ route('buy-sell.edit', $buysell->id) }}">
-                                                    <li class="font-500">
-                                                        <span class="fa fa-eye view-btn mr-2" aria-hidden="true"></span>View
-                                                    </li>
-                                                </a>
+                                               
                                                 @if($request->case && $request->case == 'archive')
                                                     <a href="javascript:;" class="restore-buysell">
                                                         <li class="font-500">
@@ -148,6 +144,16 @@
                                                         </li>
                                                     </a>
                                                 @else
+                                                <a href="{{ route('buy-sell.edit', $buysell->id) }}">
+                                                    <li class="font-500">
+                                                        <span class="fa fa-eye view-btn mr-2" aria-hidden="true"></span>View
+                                                    </li>
+                                                </a>
+                                                <a href="{{ route('buy-sell.edit', $buysell->id.'#companyTab2') }}">
+                                                        <li class="font-500">
+                                                            <span class="fa fa-edit view-btn mr-2" aria-hidden="true"></span>Edit
+                                                        </li>
+                                                    </a>
                                                     <a href="javascript:;" class="delete-buysell">
                                                         <li class="font-500">
                                                         <span class="fa fa-trash delete-btn mr-2"
