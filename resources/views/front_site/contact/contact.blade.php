@@ -39,7 +39,8 @@
                 <input type="hidden" class="form-control" name="type" value="admin">
                 <div class="form-group">
                     <select class="form-control" id="inquiryFor" name="inquiryFor" required>
-                        <option value="" selected="selected" disabled="disabled">Select Contact For</option>
+                        <option value=""></option>
+                        <option disabled>Select Contact For *</option>
                         <option value="Advertising/Marketing">Advertising/Marketing</option>
                         <option value="Customer Care">Customer Care</option>
                         <option value="Site/Technical Problem">Site/Technical Problem</option>
@@ -50,11 +51,11 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <input type="text" class="form-control" name="userName" id="userName"  placeholder="Name" @if(auth()->check()) value="{{\Auth::user()->name}}" @endif required>
+                        <input type="text" class="form-control" name="userName" id="userName"  placeholder="Name *" @if(auth()->check()) value="{{\Auth::user()->name}}" @endif required>
                         <small class="text-danger" id="userName_error"></small>
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="email" class="form-control" name="emailAddress" id="emailAddress" placeholder="Email - example@gmail.com" @if(auth()->check()) value="{{\Auth::user()->email}}" @endif required>
+                        <input type="email" class="form-control" name="emailAddress" id="emailAddress" placeholder="Email * - example@gmail.com" @if(auth()->check()) value="{{\Auth::user()->email}}" @endif required>
                         <small class="text-danger" id="emailAddress_error"></small>
                     </div>
                 </div>
@@ -63,7 +64,7 @@
                         <input type="text" class="form-control" id="companyName" name="company_name" placeholder="Company Name (Optional) - My Textile">
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Phone - 123-4567-890" @if(auth()->check()) value="{{\Auth::user()->registration_phone_no}}" @endif required>
+                        <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Phone * - 123-4567-890" @if(auth()->check()) value="{{\Auth::user()->registration_phone_no}}" @endif required>
                         <small class="text-danger" id="phoneNumber_error"></small>
                     </div>
                 </div>
@@ -72,8 +73,9 @@
                         <input type="text" value="" class="form-control" id="designationUser" name="designation" placeholder="Designation (Optional)">
                     </div>
                     <div class="form-group col-sm-6">
-                        <select name="country" class="form-control" id="countries" required="required">
-                            <option value="" selected="selected" disabled="disabled">Choose Country</option>
+                        <select name="country" class="form-control" id="countries" required>
+                            <option value=""></option>
+                            <option disabled>Choose Country *</option>
                             @foreach($countries as $country)
                                 <option value="{{ $country->name->common }}" @if(auth()->check()) {{(\Auth::user()->country == $country->name->common)?'selected':''}} @endif>{{ $country->name->common }}</option>
                             @endforeach
@@ -83,7 +85,7 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea class="form-control" name="description" id="description" placeholder="Message" style="height: 115px" required></textarea>
+                    <textarea class="form-control" name="description" id="description" placeholder="Message *" style="height: 115px" required></textarea>
                     <small class="text-danger" id="description_error"></small>
                 </div>
                 <div class="form-group mb-0">
@@ -125,6 +127,16 @@
 
     <script>
         $(document).ready(function () {
+            /*for select single place holders*/
+            $("#inquiryFor").select2({
+                placeholder: "Select Contact For *"
+            });
+
+            $("#countries").select2({
+                placeholder: "Choose Country *"
+            });
+            /*for select single place holders*/
+
             var validator = $("form[name='contactUs']").validate({
                 onfocusout: function (element) {
                     var $element = $(element);
