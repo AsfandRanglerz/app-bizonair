@@ -1,7 +1,7 @@
 <form action="{{route('search_product')}}" class="position-relative form-inline mt-2">
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary position-absolute h-100 px-1 py-1 select-cat" data-toggle="modal" data-target="#selCategoryModel">
-        <span class="sel-cat-default-text">Select Category</span><span class="fa fa-angle-down"></span>
+        <span class="sel-cat-default-text">Categories</span><span class="fa fa-angle-down"></span>
     </button>
     <input type="hidden" value="" name="category" id="selCatInput" />
 

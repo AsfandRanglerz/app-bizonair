@@ -11,13 +11,16 @@
         <div class="px-2 container-fluid">
             <div class="my-2 ads-slider">
                 @foreach($bnr_row1 as $row)
-                <div class="ad-slide px-1">
-                    <a href="{{ $row->link }}" class="text-decoration-none">
-                    <img src="{{ $row->image }}" class="w-100 banner-below-adds border-grey">
-                    </a>
-                </div>
+                    <div class="px-1">
+                        <div class="position-relative ad-slide">
+                            <a href="{{ $row->link }}" class="text-decoration-none">
+                                <img src="{{ $row->image }}" class="w-100 banner-below-adds border-grey">
+                            </a>
+                            <span class="fa fa-info position-absolute info-icon"></span>
+                            <span class="img-info"></span>
+                        </div>
+                    </div>
                 @endforeach
-
             </div>
         </div>
         <div class="container-fluid px-2 overflow-hidden">
@@ -226,6 +229,18 @@
 
     <script>
         $(document).ready(function () {
+            /*ads info*/
+            $('.info-icon').hover(function() {
+                var adWidth = $(this).parent().width();
+                var adWidthRoundOff = Math.ceil(adWidth);
+                var adHeight = $(this).parent().height();
+                var adHeightRoundOff = Math.ceil(adHeight);
+                $(this).siblings('.img-info').show().append("W : " + adWidthRoundOff + " x " + "L : " + adHeightRoundOff);
+            }, function(){
+                $('.img-info').hide().empty();
+            });
+            /*ads info*/
+
             /*index partners slider*/
             $('.index-partners-slider').slick({
                 autoplay: true,
