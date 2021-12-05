@@ -3,7 +3,10 @@
     <body class="product-main">
     <style>
         /*cotton rates css*/
-
+        .table th {
+            white-space: normal;
+            font-weight: 700;
+        }
         /*cotton rates css*/
     </style>
     <main id="maincontent" class="blogs-page">

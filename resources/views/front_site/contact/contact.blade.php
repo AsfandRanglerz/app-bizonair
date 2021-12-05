@@ -37,7 +37,7 @@
             <form id="contactUs" name="contactUs" method="POST" action="{{route('create-contact-us')}}">
                 @csrf
                 <input type="hidden" class="form-control" name="type" value="admin">
-                <div class="form-group">
+                <div class="form-group d-flex flex-column-reverse">
                     <select class="form-control" id="inquiryFor" name="inquiryFor" required>
                         <option value=""></option>
                         <option disabled>Select Contact For *</option>
@@ -72,7 +72,7 @@
                     <div class="form-group col-sm-6">
                         <input type="text" value="" class="form-control" id="designationUser" name="designation" placeholder="Designation (Optional)">
                     </div>
-                    <div class="form-group col-sm-6">
+                    <div class="form-group col-sm-6 d-flex flex-column-reverse">
                         <select name="country" class="form-control" id="countries" required>
                             <option value=""></option>
                             <option disabled>Choose Country *</option>

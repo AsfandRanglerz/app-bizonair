@@ -2847,6 +2847,7 @@ ul li input[type=checkbox] {
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
+    display: block;
     padding: 4px;
 }
 
@@ -2945,6 +2946,7 @@ ul li input[type=checkbox] {
 .date-salery {
     font-size: 10px;
     font-weight: bold;
+    column-gap: 8px;
 }
 
 .date-salery > span {
@@ -9270,7 +9272,7 @@ header .navbar .navbar-toggler {
     }
 
     .article-details-outer {
-        height: 275px!important;
+        height: 70vh!important;
     }
 
     .journal-banner-img {
@@ -9327,6 +9329,7 @@ header .navbar .navbar-toggler {
 
     .area-loc-section .link {
         font-size: 10px;
+        padding: 1px;
     }
 
     /*articles details banner*/

@@ -1,6 +1,14 @@
 @extends('front_site.master_layout')
 @section('content')
     <body class="product-main">
+    <style>
+        /*yarn rates css*/
+        .table th {
+            white-space: normal;
+            font-weight: 700;
+        }
+        /*yarn rates css*/
+    </style>
     <main id="maincontent" class="blogs-page">
         <div class="main-container">
             <nav aria-label="breadcrumb" class="px-2">
@@ -19,10 +27,10 @@
                             <table class="table table-bordered table-striped" id="yarnRatesTable" style="width:100%">
                                 <thead>
                                 <tr>
-                                    <th class="text-center"><span class="font-18">Count</span></th>
-                                    <th class="text-center"><span class="font-18">Supplier</span></th>
-                                    <th class="text-center"><span class="font-18">Price Per Lbs (PKR)</span></th>
-                                    <th class="text-center"><span class="font-18">Last Updated</span></th>
+                                    <th class="text-center"><span>Count</span></th>
+                                    <th class="text-center"><span>Supplier</span></th>
+                                    <th class="text-center"><span>Price Per Lbs (PKR)</span></th>
+                                    <th class="text-center"><span>Last Updated</span></th>
                                 </tr>
                                 </thead>
                                 <tbody>

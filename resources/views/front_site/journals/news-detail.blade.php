@@ -34,13 +34,6 @@
                 @endforeach
                     <div class="col-xl-3 col-md-4 px-md-3 p-0 mt-md-0 mt-2">
                         <div class="p-2 articles-sidebar">
-                            <div class="quick-links">
-                                <span class="d-block heading">Quick Links</span>
-                                <a href="{{ route('articles') }}" class="text-decoration-none red-link d-block">Articles</a>
-                                <a href="{{route('blogs')}}" class="text-decoration-none red-link d-block">Blogs</a>
-                                <a href="{{ route('events') }}" class="text-decoration-none red-link d-block">Events</a>
-                                <a href="{{ route('projects') }}" class="text-decoration-none red-link d-block">Project</a>
-                            </div>
                             @if($related->isNotEmpty())
                                 <div class="my-1 d-flex justify-content-between">
                                     <span class="heading">Related Articles</span>
@@ -65,7 +58,7 @@
                                 </div>
                             @endif
                             @if($latest->isNotEmpty())
-                                <div class="my-1 d-flex justify-content-between">
+                                <div class="mb-1 d-flex justify-content-between">
                                     <span class="heading">Latest Articles</span>
                                     <a href="{{route('journal')}}" class="red-link view-all">View All</a>
                                 </div>
