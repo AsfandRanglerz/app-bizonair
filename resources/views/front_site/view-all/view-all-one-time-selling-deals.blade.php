@@ -32,7 +32,7 @@
                             <div class="row deals-inner-half" id="sellingDeals">
 
                                 <nav class="my-1 navbar navbar-expand-lg navbar-light">
-                                    <a class="navbar-brand" href="#">SUB-CATEGORIES</a>
+                                    <a class="navbar-brand" href="#">Sub-Categories</a>
                                     <button class="navbar-toggler"  data-toggle="collapse" data-target="#subCatPanel" aria-controls="subCatPanel" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="fa fa-angle-down"></span>
                                     </button>

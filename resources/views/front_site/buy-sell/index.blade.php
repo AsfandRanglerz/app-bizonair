@@ -17,7 +17,7 @@
                             class="heading biz-product-heading">One-Time Deals {{ ($request->case && $request->case == 'archive') ? ' - Archived' : '' }}</span>
                         @if($request->case && $request->case == 'archive')
                             <div>
-                                <a href="{{ route('buy-sell.index') }}" class="blue-btn">Active Deals</a>
+                                <a href="{{ route('buy-sell.index') }}" class="mb-2 blue-btn">Active Deals</a>
                             </div>
                         @else
                             <div class="mt-0 mb-2 text-sm-left text-center">
@@ -129,7 +129,7 @@
                                             </button>
                                             <input type="hidden" name='url' value="{{ route('buy-sell.destroy', $buysell->id) }}">
                                             <ul class="dropdown-menu actionMenu p-10" role="menu">
-                                               
+
                                                 @if($request->case && $request->case == 'archive')
                                                     <a href="javascript:;" class="restore-buysell">
                                                         <li class="font-500">

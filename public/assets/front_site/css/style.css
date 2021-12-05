@@ -400,8 +400,9 @@ div.dataTables_wrapper div.dataTables_filter label {
 
 .categories-side-section-inner .nav-pills .nav-link.active,
 .categories-side-section-inner .nav-pills .show>.nav-link {
-    color: #fff;
+    color: #FFF;
     background-color: #a52c3e;
+    font-weight: bold;
 }
 /*categories-side-section*/
 
@@ -2226,7 +2227,7 @@ p.click {
 
 /*suppliers nav*/
 .suppliers-nav {
-    background: #12253d;
+    background: #344356;
     background-size: 200% auto;
     text-align: center;
 }
@@ -2243,7 +2244,7 @@ p.click {
 
 .suppliers-nav .link:hover,
 .suppliers-nav .link:focus {
-    background: #6b2929;
+    background: #a52c3e;
 }
 /*suppliers nav*/
 
@@ -2457,9 +2458,10 @@ ul li input[type=checkbox] {
 
 .suppliers-buyers .list {
     width: 25%;
+    padding: 0 10px;
     text-align: center;
     margin-bottom: 5px;
-    border-left: 1px #12253D solid !important;
+    border-left: 1px #12253D dashed!important;
 }
 
 .suppliers-buyers .list a:before {
@@ -2481,7 +2483,7 @@ ul li input[type=checkbox] {
 }
 
 .suppliers-buyers .list.active a {
-    border-bottom: 1px #12253D solid !important;
+    border-bottom: 1px #12253D dashed!important;
 }
 
 .suppliers-buyers .compare-div {
@@ -2856,8 +2858,8 @@ ul li input[type=checkbox] {
 }
 
 .job-explore-sec {
-    background: #A52C3E;
-    color: #fff;
+    background: #FFF;
+    color: #000;
 }
 
 .job-post-sec .link:hover,
@@ -2875,7 +2877,7 @@ ul li input[type=checkbox] {
 }
 
 .job-post-sec .paragraph {
-    color: #fff;
+    color: #000;
     font-size: 24px;
     font-weight: bold;
     letter-spacing: -0.75px;
@@ -2890,15 +2892,11 @@ ul li input[type=checkbox] {
 }
 
 .job-explore-sec .link {
-    background: transparent;
-    border: 1px solid #12253d;
     width: 155px;
     padding: 8px;
 }
 
 .job-post-sec .link {
-    background: transparent;
-    border: 1px solid #FFF;
     width: 155px;
     padding: 8px;
 }
@@ -2909,8 +2907,8 @@ ul li input[type=checkbox] {
 }
 
 .job-post-sec {
-    background: #12253D;
-    color: #FFF;
+    background: #FFF;
+    color: #000;
 }
 
 .job-portal-container .has-search {
@@ -5161,7 +5159,8 @@ hr.horizontal-line {
 
 /*blue btn*/
 .blue-btn {
-    background: linear-gradient(to right, #a52c3e 0%, #12253d 51%, #a52c3e 100%);
+    background: #a52c3e;
+    text-transform: uppercase;
     transition: 0.5s;
     background-size: 200% auto;
     color: #FFF;
@@ -5175,7 +5174,8 @@ hr.horizontal-line {
 
 .blue-btn:hover,
 .blue-btn:focus {
-    background-position: right center;
+    /*background-position: right center;*/
+    background: #12253d;
     color: #fff;
     text-decoration: none;
     outline: none;
@@ -7826,12 +7826,12 @@ header .navbar .navbar-toggler {
 }
 
 /*homepage ad slider css*/
-#ad-slider {
+.ad-slider {
     height: 100%;
     position: relative;
 }
 
-#ad-slider .ad-slider-arrows {
+.ad-slider .ad-slider-arrows {
     position: absolute;
     width: 100%;
     bottom: 5px;
@@ -7839,13 +7839,13 @@ header .navbar .navbar-toggler {
     justify-content: center;
 }
 
-#ad-slider .ad-slider-arrows .carousel-control-next,
-#ad-slider .ad-slider-arrows .carousel-control-prev {
+.ad-slider .ad-slider-arrows .carousel-control-next,
+.ad-slider .ad-slider-arrows .carousel-control-prev {
     position: unset;
     width: 5%;
 }
 
-#ad-slider .ad-slider-arrows a {
+.ad-slider .ad-slider-arrows a {
     border: 1px solid #12253D;
     color: #12253D;
     font-size: 24px;
@@ -7860,29 +7860,29 @@ header .navbar .navbar-toggler {
     transition: .3s;
 }
 
-#ad-slider .carousel-inner {
+.ad-slider .carousel-inner {
     width: 100%;
     height: 100%;
     border-radius: 5px;
 }
 
-#ad-slider .carousel-inner .carousel-item {
+.ad-slider .carousel-inner .carousel-item {
     height: 100%;
 }
 
-#ad-slider .carousel-inner .carousel-item .carousel-caption h3 {
+.ad-slider .carousel-inner .carousel-item .carousel-caption h3 {
     font-size: 58px;
     color: #FFFFFF;
     text-transform: uppercase;
     font-weight: 100;
 }
 
-#ad-slider .carousel-inner .carousel-item img {
+.ad-slider .carousel-inner .carousel-item img {
     width: 100%;
     height: 100%;
 }
 
-#ad-slider .carousel-inner .carousel-item .carousel-caption {
+.ad-slider .carousel-inner .carousel-item .carousel-caption {
     padding: 0;
     bottom: 40%;
 }
@@ -8882,6 +8882,7 @@ header .navbar .navbar-toggler {
     .product-main #maincontent .main-container .navbar #garmentsNav .navbar-nav .nav-item {
         width: 100%;
         height: fit-content;
+        border-radius: 8px;
     }
 
     .product-main #maincontent .main-container .navbar #garmentsNav .navbar-nav .nav-item .nav-link {
@@ -9171,7 +9172,28 @@ header .navbar .navbar-toggler {
     padding: 0;
 }
 
+.product-main #maincontent .main-container .navbar #garmentsNav .navbar-nav .nav-item:hover {
+    background: #a52c3e;
+    box-shadow: 0px 4px 10px #0000006b;
+}
+
+.product-main #maincontent .main-container .navbar #garmentsNav .navbar-nav .nav-item:hover .nav-link > span {
+    color: #FFF;
+}
+
+.product-main #maincontent .main-container .navbar #garmentsNav .navbar-nav .nav-item:hover .nav-link > img {
+    filter: brightness(0) invert(1);
+}
+
 @media only screen and (max-width: 575px) {
+    .product-main #maincontent .main-container .navbar #garmentsNav .navbar-nav .nav-item .nav-link > span {
+        font-size: 9px;
+    }
+
+    .Featured-txt {
+        font-size: 9px;
+    }
+
     .info-icon {
         width: 12px;
         height: 12px;
@@ -9303,17 +9325,19 @@ header .navbar .navbar-toggler {
         /*display: grid;*/
         /*grid-template-columns: 49.5% 49.5%;*/
         /*column-gap: 1%;*/
-        border: 1px solid #12253d;
+        box-shadow: 0 0 5px 0 rgb(0 0 0 / 25%);
+        border-radius: 8px;
+        padding: 4px;
     }
 
     .job-explore-sec, .job-post-sec {
-        padding: 8px 0;
+        padding: 6px 0;
+        box-shadow: 0 1px 4px #00000054;
     }
 
     .job-explore-sec .link, .job-post-sec .link {
         width: 95px;
         padding: 4px;
-        border-radius: 50px;
     }
 
     .job-explore-sec .paragraph, .job-post-sec .paragraph {
@@ -9398,7 +9422,7 @@ header .navbar .navbar-toggler {
     }
 
     .place-day .place {
-        width: 55%;
+        width: 60%;
         white-space: nowrap;
         overflow: hidden !important;
         text-overflow: ellipsis;
@@ -9406,6 +9430,10 @@ header .navbar .navbar-toggler {
     }
 
     .place-day .place + span {
+        width: 40%;
+        white-space: nowrap;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
         font-size: 8px;
     }
 
@@ -10185,16 +10213,16 @@ header .navbar .navbar-toggler {
         font-size: 24px;
     }
 
-    .homepage #maincontent .container-fluid .ad-slider-content .ad-slider-content2 #ad-slider .carousel-inner .carousel-item .carousel-caption h3 {
+    .homepage #maincontent .container-fluid .ad-slider-content .ad-slider-content2 .ad-slider .carousel-inner .carousel-item .carousel-caption h3 {
         font-size: 36px;
     }
 
-    .homepage #maincontent .container-fluid .ad-slider-content .ad-slider-content2 #ad-slider .ad-slider-arrows a span {
+    .homepage #maincontent .container-fluid .ad-slider-content .ad-slider-content2 .ad-slider .ad-slider-arrows a span {
         font-weight: bold;
         font-size: 14px;
     }
 
-    #ad-slider .ad-slider-arrows a {
+    .ad-slider .ad-slider-arrows a {
         width: 15px;
         height: 15px;
     }
@@ -10511,7 +10539,7 @@ form label {
 
 .select2-container .select2-search--inline .select2-search__field {
     margin-top: 0;
-    width: 100%!important;
+    /*width: 100%!important;*/
 }
 
 .select2-container--default .select2-selection.is-valid {
@@ -10552,11 +10580,14 @@ form label {
     margin-bottom: 0.3rem;
 }
 
-@media only screen and (max-width: 280px) {
-    .place-day .place {
-        width: 37%;
-    }
+.Featured-txt {
+    background: #A52C3E;
+    padding: 2px 4px;
+    color: #FFF;
+    font-weight: 500;
+}
 
+@media only screen and (max-width: 280px) {
     .floating-wpp .floating-wpp-popup.active {
         font-size: 10px;
         width: 235px!important;

@@ -41,7 +41,7 @@
         </div>
 
         <div class="container-fluid mb-1 px-2">
-            <div class="m-0 row job-explore-post">
+            <div class="mx-0 mb-1 row job-explore-post">
                 <div class="col-6 px-sm-1 px-0">
                     <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center job-explore-sec">
                         <p class="paragraph">Your Next Hire Is Here</p>

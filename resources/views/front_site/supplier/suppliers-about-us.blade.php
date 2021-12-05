@@ -44,116 +44,116 @@
                             <div id="productInfo" class="h-100 mt-0 tab-pane product-tab active" style="overflow: unset;max-height: unset">
                                 <span class="mt-0 text-center font-weight-bold heading">COMPANY INFO</span>
                                 <span class="mt-0 heading">Business Information</span>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>Company Name</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">{{$about_us->company_name}}</p>
+                                    <div class="col-sm-6 col-6">
+                                        <p class="mb-0">{{$about_us->company_name}}</p>
                                     </div>
                                 </div>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>Business Type</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
+                                    <div class="col-sm-6 col-6">
                                         @if(str_contains($about_us->business_type, 'Other'))
-                                            <p class="mb-sm-0">{{str_replace('Others', ' '.$about_us->other_business_type, $about_us->business_type)}}</p>
+                                            <p class="mb-0">{{str_replace('Others', ' '.$about_us->other_business_type, $about_us->business_type)}}</p>
                                         @else
-                                            <p class="mb-sm-0">{{str_replace(',', '  ,  ', $about_us->business_type)}}</p>
+                                            <p class="mb-0">{{str_replace(',', '  ,  ', $about_us->business_type)}}</p>
                                         @endif
 
                                     </div>
                                 </div>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>Nature of Business</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">{{$about_us->business_nature ?:'-'}}</p>
+                                    <div class="col-sm-6 col-6">
+                                        <p class="mb-0">{{$about_us->business_nature ?:'-'}}</p>
                                     </div>
                                 </div>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>Export Market</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">{{$about_us->export_market ?:'-'}}</p>
+                                    <div class="col-sm-6 col-6">
+                                        <p class="mb-0">{{$about_us->export_market ?:'-'}}</p>
                                     </div>
                                 </div>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>Year of Establishment</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">{{$about_us->year_established ?:'-'}}</p>
+                                    <div class="col-sm-6 col-6">
+                                        <p class="mb-0">{{$about_us->year_established ?:'-'}}</p>
                                     </div>
                                 </div>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>No of Employees</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">{{$about_us->no_of_employees ?:'-'}}</p>
+                                    <div class="col-sm-6 col-6">
+                                        <p class="mb-0">{{$about_us->no_of_employees ?:'-'}}</p>
                                     </div>
                                 </div>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>Certification</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">{{$about_us->certifications ?:'-'}}</p>
+                                    <div class="col-sm-6 col-6">
+                                        <p class="mb-0">{{$about_us->certifications ?:'-'}}</p>
                                     </div>
                                 </div>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>Annual Turnover(In USD Million)</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">@if($about_us->annual_turnover) {{ $about_us->annual_turnover}} @else
+                                    <div class="col-sm-6 col-6">
+                                        <p class="mb-0">@if($about_us->annual_turnover) {{ $about_us->annual_turnover}} @else
                                                 - @endif</p>
                                     </div>
                                 </div>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>Licence No/ Reg No</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">{{$about_us->registeration_no ?:'-'}}</p>
+                                    <div class="col-sm-6 col-6">
+                                        <p class="mb-0">{{$about_us->registeration_no ?:'-'}}</p>
                                     </div>
                                 </div>
 
                                 <span class="heading">Additional Information</span>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>Business Owner</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">{{$about_us->business_owner ?:'-'}}</p>
+                                    <div class="col-sm-6 col-6">
+                                        <p class="mb-0">{{$about_us->business_owner ?:'-'}}</p>
                                     </div>
                                 </div>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>Alternate Contact Number</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">@if($about_us->alternate_contact){{$about_us->alternate_contact}}@else - @endif</p>
+                                    <div class="col-sm-6 col-6">
+                                        <p class="mb-0">@if($about_us->alternate_contact){{$about_us->alternate_contact}}@else - @endif</p>
                                     </div>
                                 </div>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>Alternate Email</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">{{$about_us->alternate_email ?:'-'}}</p>
+                                    <div class="col-sm-6 col-6">
+                                        <p class="mb-0">{{$about_us->alternate_email ?:'-'}}</p>
                                     </div>
                                 </div>
-                                <div class="row text">
-                                    <div class="col-lg-4 col-sm-6">
+                                <div class="row mb-1 text">
+                                    <div class="col-sm-6 col-6">
                                         <span><b>Alternate Office Address</b></span>
                                     </div>
-                                    <div class="col-lg-8 col-sm-6">
-                                        <p class="mb-sm-0">{{$about_us->alternate_address ?:'-'}}</p>
+                                    <div class="col-sm-6 col-6">
+                                        <p class="mb-0">{{$about_us->alternate_address ?:'-'}}</p>
                                     </div>
                                 </div>
 

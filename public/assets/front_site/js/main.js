@@ -1962,7 +1962,7 @@ $(document).ready(function () {
         // activeValue = activeUrl.pop()+'/'+activeValue;
 
         if (currentValue == activeValue) {
-            $(this).css('background', '#6b2929');
+            $(this).css('background', '#a52c3e');
         }
     });
     /*suppliers active links*/

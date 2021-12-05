@@ -122,7 +122,35 @@
                     <a href="{{route('contact-us')}}" class="red-link view-all">ADVERTISE WITH US</a>
                 </div>
                 <div class="ad-slider-content2 rounded border-grey">
-                    <div id="ad-slider" class="carousel slide" data-ride="carousel" data-interval="5000">
+                    <div id="adSlider1" class="carousel slide ad-slider" data-ride="carousel" data-interval="5000">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="{{ $bnrlupr->link }}" class="text-decoration-none">
+                                    <img src="{{ $bnrlupr->image }}" class="w-100 h-100"/>
+                                </a>
+                                <span class="fa fa-info position-absolute info-icon"></span>
+                                <span class="img-info"></span>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="{{ $bnrwr->link }}" class="text-decoration-none">
+                                    <img src="{{ $bnrwr->image }}" class="w-100 h-100"/>
+                                </a>
+                                <span class="fa fa-info position-absolute info-icon"></span>
+                                <span class="img-info"></span>
+                            </div>
+                        </div>
+                        <div class="ad-slider-arrows">
+                            <a href="#adSlider1" data-slide="prev">
+                                <span class="fa fa-angle-left" aria-hidden="true"></span>
+                            </a>
+                            <a href="#adSlider1" data-slide="next">
+                                <span class="fa fa-angle-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-2 ad-slider-content2 rounded border-grey">
+                    <div id="adSlider2" class="carousel slide ad-slider" data-ride="carousel" data-interval="5000">
                         <div class="carousel-inner">
                             @foreach($bnr_slider as $i => $row)
                             <div class="carousel-item @if($i==0) active @endif">
@@ -135,10 +163,38 @@
                             @endforeach
                         </div>
                         <div class="ad-slider-arrows">
-                            <a href="#ad-slider" data-slide="prev">
+                            <a href="#adSlider2" data-slide="prev">
                                 <span class="fa fa-angle-left" aria-hidden="true"></span>
                             </a>
-                            <a href="#ad-slider" data-slide="next">
+                            <a href="#adSlider2" data-slide="next">
+                                <span class="fa fa-angle-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ad-slider-content2 rounded border-grey">
+                    <div id="adSlider3" class="carousel slide ad-slider" data-ride="carousel" data-interval="5000">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="{{ $bnrlwr->link }}" class="text-decoration-none">
+                                    <img src="{{ $bnrlwr->image }}" class="w-100 h-100"/>
+                                </a>
+                                <span class="fa fa-info position-absolute info-icon"></span>
+                                <span class="img-info"></span>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="{{ $bnrupr->link }}" class="text-decoration-none h-100">
+                                    <img src="{{ $bnrupr->image }}" class="w-100 h-100"/>
+                                </a>
+                                <span class="fa fa-info position-absolute info-icon"></span>
+                                <span class="img-info"></span>
+                            </div>
+                        </div>
+                        <div class="ad-slider-arrows">
+                            <a href="#adSlider3" data-slide="prev">
+                                <span class="fa fa-angle-left" aria-hidden="true"></span>
+                            </a>
+                            <a href="#adSlider3" data-slide="next">
                                 <span class="fa fa-angle-right"></span>
                             </a>
                         </div>

@@ -127,97 +127,97 @@
                                     <div class="edit-company-section">
                                         <h6 class="heading">Business Information<span @if($usercomp->is_admin==1)
                                                                                       class="fa fa-edit edit-btn com-edit-btn" @endif></span></h6>
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>Name</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">Name</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>{{ $company->company_name }}</span>
                                             </div>
                                         </div>
-                                    <!-- <div class="row text">
-										<div class="col-sm-3">
-											<span>Designation</span>
+                                    <!-- <div class="row mb-1 text">
+										<div class="col-sm-6 col-6">
+											<span class="font-500">Designation</span>
 										</div>
-										<div class="col-sm-9">
+										<div class="col-sm-6 col-6">
 											<span>@if($user->designation) {{ $user->designation}} @else - @endif</span>
 										</div>
 									</div> -->
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>Business Type</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">Business Type</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>{{ $company->business_type}}</span>
                                             </div>
                                         </div>
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>Nature of Business</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">Nature of Business</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>@if($company->business_nature) {{ $company->business_nature}} @else
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>Export Market</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">Export Market</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>@if($company->export_market) {{ $company->export_market}} @else
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>Year of Establishment</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">Year of Establishment</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>@if($company->year_established) {{ $company->year_established}} @else
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>No of Employees</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">No of Employees</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>@if($company->no_of_employees) {{ $company->no_of_employees}} @else
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>Certification</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">Certification</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>@if($company->certifications) {{ $company->certifications}} @else
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>Annual Turnover(In USD Million)</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">Annual Turnover(In USD Million)</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>@if($company->annual_turnover) {{ $company->annual_turnover}} @else
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <!-- <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>IE Code</span>
+                                        <!-- <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">IE Code</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>-</span>
                                             </div>
                                         </div> -->
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>Licence No/ Reg No</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">Licence No/ Reg No</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>@if($company->registeration_no) {{ $company->registeration_no}} @else
                                                         - @endif</span>
                                             </div>
@@ -228,71 +228,71 @@
 
                                             <h6 class="heading">Additional Information<span @if($usercomp->is_admin==1)
                                                                                             class="fa fa-edit edit-btn com-edit-btn" @endif></span></h6>
-                                            <div class="row text">
-                                                <div class="col-sm-3">
-                                                    <span>Business Owner</span>
+                                            <div class="row mb-1 text">
+                                                <div class="col-sm-6 col-6">
+                                                    <span class="font-500">Business Owner</span>
                                                 </div>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-6 col-6">
                                                     <span>@if($company->business_owner) {{ $company->business_owner}} @else
                                                             - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row text">
-                                                <div class="col-sm-3">
-                                                    <span>Alternate Contact Number</span>
+                                            <div class="row mb-1 text">
+                                                <div class="col-sm-6 col-6">
+                                                    <span class="font-500">Alternate Contact Number</span>
                                                 </div>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-6 col-6">
                                                     <span>@if($company->alternate_contact) {{ $company->alternate_contact}} @else
                                                             - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row text">
-                                                <div class="col-sm-3">
-                                                    <span>Alternate Email</span>
+                                            <div class="row mb-1 text">
+                                                <div class="col-sm-6 col-6">
+                                                    <span class="font-500">Alternate Email</span>
                                                 </div>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-6 col-6">
                                                     <span>@if($company->alternate_email) {{ $company->alternate_email}} @else
                                                             - @endif</span>
                                                 </div>
                                             </div>
-                                            <div class="row text">
-                                                <div class="col-sm-3">
-                                                    <span>Alternate Office Address</span>
+                                            <div class="row mb-1 text">
+                                                <div class="col-sm-6 col-6">
+                                                    <span class="font-500">Alternate Office Address</span>
                                                 </div>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-6 col-6">
                                                     <span>@if($company->alternate_address) {{ $company->alternate_address}} @else
                                                             - @endif</span>
                                                 </div>
                                             </div>
-                                        <!-- <div class="row text">
-										<div class="col-sm-3">
-											<span>State</span>
+                                        <!-- <div class="row mb-1 text">
+										<div class="col-sm-6 col-6">
+											<span class="font-500">State</span>
 										</div>
-										<div class="col-sm-9">
+										<div class="col-sm-6 col-6">
 											<span>{{ $user->state}}</span>
 										</div>
 									</div>
-									<div class="row text">
-										<div class="col-sm-3">
-											<span>Country</span>
+									<div class="row mb-1 text">
+										<div class="col-sm-6 col-6">
+											<span class="font-500">Country</span>
 										</div>
-										<div class="col-sm-9">
+										<div class="col-sm-6 col-6">
 											<span>{{ $user->country}}</span>
 										</div>
 									</div>
-									<div class="row text">
-										<div class="col-sm-3">
-											<span>Mobile</span>
+									<div class="row mb-1 text">
+										<div class="col-sm-6 col-6">
+											<span class="font-500">Mobile</span>
 										</div>
-										<div class="col-sm-9">
+										<div class="col-sm-6 col-6">
 											<span>{{ $user->phone_no}}</span>
 										</div>
 									</div>
-									<div class="row text">
-										<div class="col-sm-3">
-											<span>Email</span>
+									<div class="row mb-1 text">
+										<div class="col-sm-6 col-6">
+											<span class="font-500">Email</span>
 										</div>
-										<div class="col-sm-9">
+										<div class="col-sm-6 col-6">
 											<span>{{ $user->email}}</span>
 										</div>
 									</div> -->
@@ -307,71 +307,71 @@
                                     <div class="edit-location-section">
                                         <h6 class="heading">Additional Information<span
                                                 class="fa fa-edit edit-btn extra-edit-btn"></span></h6>
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>Business Owner</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">Business Owner</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>@if($company->business_owner) {{ $company->business_owner}} @else
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>Alternate Contact Number</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">Alternate Contact Number</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>@if($company->alternate_contact) +{{ $company->alternate_contact}} @else
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>Alternate Email</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">Alternate Email</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>@if($company->alternate_email) {{ $company->alternate_email}} @else
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                        <div class="row text">
-                                            <div class="col-sm-3">
-                                                <span>Alternate Office Address</span>
+                                        <div class="row mb-1 text">
+                                            <div class="col-sm-6 col-6">
+                                                <span class="font-500">Alternate Office Address</span>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6 col-6">
                                                 <span>@if($company->alternate_address) {{ $company->alternate_address}} @else
                                                         - @endif</span>
                                             </div>
                                         </div>
-                                    <!-- <div class="row text">
-										<div class="col-sm-3">
-											<span>State</span>
+                                    <!-- <div class="row mb-1 text">
+										<div class="col-sm-6 col-6">
+											<span class="font-500">State</span>
 										</div>
-										<div class="col-sm-9">
+										<div class="col-sm-6 col-6">
 											<span>{{ $user->state}}</span>
 										</div>
 									</div>
-									<div class="row text">
-										<div class="col-sm-3">
-											<span>Country</span>
+									<div class="row mb-1 text">
+										<div class="col-sm-6 col-6">
+											<span class="font-500">Country</span>
 										</div>
-										<div class="col-sm-9">
+										<div class="col-sm-6 col-6">
 											<span>{{ $user->country}}</span>
 										</div>
 									</div>
-									<div class="row text">
-										<div class="col-sm-3">
-											<span>Mobile</span>
+									<div class="row mb-1 text">
+										<div class="col-sm-6 col-6">
+											<span class="font-500">Mobile</span>
 										</div>
-										<div class="col-sm-9">
+										<div class="col-sm-6 col-6">
 											<span>{{ $user->phone_no}}</span>
 										</div>
 									</div>
-									<div class="row text">
-										<div class="col-sm-3">
-											<span>Email</span>
+									<div class="row mb-1 text">
+										<div class="col-sm-6 col-6">
+											<span class="font-500">Email</span>
 										</div>
-										<div class="col-sm-9">
+										<div class="col-sm-6 col-6">
 											<span>{{ $user->email}}</span>
 										</div>
 									</div> -->

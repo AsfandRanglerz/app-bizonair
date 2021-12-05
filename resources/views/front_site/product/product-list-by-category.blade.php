@@ -19,7 +19,7 @@
                     <div class="row deals">
                         <div class="col-xl-10 col-lg-9 col-md-8 half-side-content">
                             <div class="mb-1 d-flex justify-content-between column-gap-4">
-                                <h3 class="mb-0 main-heading">REGULAR SUPPLIERS FROM MYBIZ OFFICE</h3>
+                                <h3 class="mb-0 main-heading">REGULAR SUPPLIERS</h3>
                                 <div class="d-flex flex-column-reverse flex-end align-items-end">
                                     @if(!Auth::check())
                                         <a href="{{ url('log-in-pre') }}" class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your Regular Lead</a>
@@ -33,7 +33,7 @@
 {{--                                <h3 class="main-heading">SUB-CATEGORIES</h3>--}}
 {{--                            </div>--}}
                             <nav class="my-1 navbar navbar-expand-lg navbar-light">
-                                <a class="navbar-brand" href="#">SUB-CATEGORIES</a>
+                                <a class="navbar-brand" href="#">Sub-Categories</a>
                                 <button class="navbar-toggler"  data-toggle="collapse" data-target="#subCatPanel" aria-controls="subCatPanel" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="fa fa-angle-down"></span>
                                 </button>
@@ -204,7 +204,7 @@
                     </div>
                     <div class="row my-1 deals product-section-outer" id="buyingDeals">
                         <div class="col-12 my-1 px-1 d-flex justify-content-between">
-                            <h3 class="mb-0 main-heading">REGULAR BUYERS FROM MYBIZ OFFICE</h3>
+                            <h3 class="mb-0 main-heading">REGULAR BUYERS</h3>
                             <div class="d-flex flex-column-reverse align-items-end">
                                 @if(!Auth::check())
                                     <a href="{{ url('log-in-pre') }}" class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your Regular Lead</a>

@@ -19,7 +19,7 @@
                             class="heading biz-product-heading">MyBiz Active Leads {{ ($request->case && $request->case == 'archive') ? ' - Archived' : '' }}</span>
                         @if($request->case && $request->case == 'archive')
                             <div>
-                                <a href="{{ route('products.index') }}" class="red-btn">Active Products</a>
+                                <a href="{{ route('products.index') }}" class="mb-2 red-btn">Active Products</a>
                             </div>
                         @else
                             <div class="mt-0 mb-2 text-sm-left text-center">
@@ -113,7 +113,7 @@
                                             <input type="hidden" name='url'
                                                    value="{{ route('products.destroy', $product) }}">
                                             <ul class="dropdown-menu actionMenu p-10" role="menu">
-                                               
+
                                                 @if($request->case && $request->case == 'archive')
                                                     <a href="javascript:;" class="restore-product">
                                                         <li class="font-500">
