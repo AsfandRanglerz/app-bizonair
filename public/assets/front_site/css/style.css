@@ -82,6 +82,12 @@ th {
 }
 /*ck editor*/
 
+/*required fields border highlighted*/
+input[required], select[required], select[required] + .select2 span.select2-selection.select2-selection--single {
+    border-color: red!important;
+}
+/*required fields border highlighted*/
+
 /*helping-video-close*/
 .helping-video-close {
     color: #FFF;
@@ -5184,7 +5190,7 @@ hr.horizontal-line {
 
 /*font-weight-500*/
 .font-500 {
-    font-weight: 500!important;
+    font-weight: 700!important;
 }
 
 /*font-weight-500*/
