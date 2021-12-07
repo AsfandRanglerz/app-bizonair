@@ -961,6 +961,9 @@
                         $('#isdiplay').html(data.output);
                         $("#meeti").text(data.meetnoti);
                         $("#chati").text(data.chatnoti);
+                        if($('#isdiplay li').length==0) {
+                            $('.notifications-scroll').hide();
+                        }
                         if(data.leadinq ==0){
                             $("#leadinq").text(0);
                         }else{
@@ -992,7 +995,7 @@
                         }
                     }
                 });
-            }, 1000000);//time in milliseconds
+            }, 1000);//time in milliseconds
             // }else{
             //     $(".notifications-scroll").css("display", "none");
             //     $(".biz-notifications").hover(function() {

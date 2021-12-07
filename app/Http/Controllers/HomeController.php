@@ -780,6 +780,12 @@ class HomeController extends Controller
         }else {
         $term = $request->get('inpdata');
         $results= [];
+        $company = \App\CompanyProfile::where('company_name','LIKE','%'.$term.'%')->get();
+        if($company) {
+            foreach ($company as $companies) {
+                $results[] = ['value' => $companies->company_name, 'link' => url('/search-product?category=Companies&keywords=' . $companies->company_name), 'category' => 'Companies'];
+            }
+        }
         $productsells = DB::table('products')
             ->where('product_service_types','sell')
             ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->get();
@@ -832,29 +838,23 @@ class HomeController extends Controller
                 $results[] = ['value' => $buysellserv->product_service_name, 'link' => url('/search-product?category=One-Time+Services&keywords=' . $buysellserv->product_service_name), 'category' => 'Service Seekers'];
             }
         }
-        $company = \App\CompanyProfile::where("company_name","Like","%$term%")->get();
-        if($company) {
-            foreach ($company as $companies) {
-                $results[] = ['value' => $companies->company_name, 'link' => url('/search-product?category=Companies&keywords=' . $companies->company_name), 'category' => 'Companies'];
-            }
-        }
 
-        $article = Journal::where('title','Like','%'.$term.'%')->where('journal_type_name','articles')->get();
+        $article = Journal::where('title','LIKE','%'.$term.'%')->where('journal_type_name','articles')->get();
         if($article) {
             foreach ($article as $articles) {
-                $results[] = ['value' => substr_replace($articles->title, "...", 80), 'link' => url('/search-product?category=articles&keywords=' . $articles->title), 'category' => 'Articles'];
+                $results[] = ['value' => substr_replace($articles->title, "...", 60), 'link' => url('/search-product?category=articles&keywords=' . $articles->title), 'category' => 'Articles'];
             }
         }
-        $new = NewsManagement::where('title','Like','%'.$term.'%')->get();
+        $new = NewsManagement::where('title','LIKE','%'.$term.'%')->get();
         if($new) {
             foreach ($new as $news) {
-                $results[] = ['value' => substr_replace($news->title, "...", 80), 'link' => url('/search-product?category=news&keywords=' . $news->title), 'category' => 'News'];
+                $results[] = ['value' => substr_replace($news->title, "...", 60), 'link' => url('/search-product?category=news&keywords=' . $news->title), 'category' => 'News'];
             }
         }
-        $event = Journal::where('title','Like','%'.$term.'%')->where('journal_type_name','Upcomming Events')->get();
+        $event = Journal::where('title','LIKE','%'.$term.'%')->where('journal_type_name','Upcomming Events')->get();
         if($event) {
             foreach ($event as $events) {
-                $results[] = ['value' => substr_replace($events->title, "...", 80), 'link' => url('/search-product?category=events&keywords=' . $events->title), 'category' => 'Events'];
+                $results[] = ['value' => substr_replace($events->title, "...", 60), 'link' => url('/search-product?category=events&keywords=' . $events->title), 'category' => 'Events'];
             }
         }
         return json_encode($results);
