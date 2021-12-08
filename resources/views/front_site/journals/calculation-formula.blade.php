@@ -69,10 +69,10 @@
                             <div class="p-0 col-sm-9 overflow-auto">
                                 <div class="tab-content" id="v-pills-tabContent">
                                     <div class="overflow-auto tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                        <img src="{{$ASSET}}/front_site/images/Spinning.jpg" style="width: 100%" />
+                                        <img src="{{$ASSET}}/front_site/images/Spinning1.jpg" style="width: 100%" />
                                     </div>
                                     <div class="overflow-auto tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                        <img src="{{$ASSET}}/front_site/images/Weaving.jpg" style="width: 100%" />
+                                        <img src="{{$ASSET}}/front_site/images/Weaving1.jpg" style="width: 100%" />
                                     </div>
                                     <div class="overflow-auto tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                         <p><h1 style="margin-top: 121px; text-align: center">Comming Soon..</h1></p>
