@@ -63,7 +63,7 @@ class ProductController extends Controller
             $userCompany = \App\UserCompany::where('user_id',$user->id)->where('company_id',session()->get('company_id'))->first();
             return view('front_site.bizoffice.products.create', compact('user','userCompany'));
         }else{
-            return view('front_site.other.login');
+            return \redirect()->route('log-in-pre');
         }
     }
 

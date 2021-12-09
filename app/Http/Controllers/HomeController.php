@@ -259,10 +259,11 @@ class HomeController extends Controller
 
     public function log_in_pre()
     {
-        if(auth()->guest())
-        return view('front_site.other.login_pre');
+        $user = auth()->user();
+        if(isset($user))
+        return redirect()->action([HomeController::class, 'index']);
         else
-         return redirect()->action([HomeController::class, 'index']);
+        return view('front_site.other.login_pre');
     }
 
     public function do_login_pre()
@@ -675,8 +676,8 @@ class HomeController extends Controller
     public function dashboard()
     {
         if(auth()->user()){
-        $data['title'] = 'Dashboard';
-        $data['user'] = \App\User::find(\Auth::id());
+            $data['title'] = 'Dashboard';
+            $data['user'] = \App\User::find(\Auth::id());
 
         return view('front_site.bizoffice.user_dashboard', $data);
         }else{

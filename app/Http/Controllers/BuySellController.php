@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\BuySell;
+use App\Http\Middleware\User;
 use Illuminate\Support\Facades\Storage;
 use App\Category;
 use App\Subcategory;
@@ -53,13 +54,13 @@ class BuySellController extends Controller
      */
     public function create()
     {
-        if(auth()->user()) {
+        if(auth()->user()){
             $user = Auth()->user();
             $country = new Countries();
             $countries = $country->all();
             return view('front_site.buy-sell.create', compact('user', 'countries'));
         }else{
-            return view('front_site.other.login');
+            return \redirect()->route('log-in-pre');
         }
     }
 
