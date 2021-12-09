@@ -30,7 +30,7 @@
                                 <h3 class="main-heading">REGULAR SUPPLIERS</h3>
                             </div>
                             <div class="row deals-inner-half" id="sellingDeals">
-                                <nav class="my-1 navbar navbar-expand-lg navbar-light">
+                                <nav class="w-100 my-1 navbar navbar-expand-lg navbar-light">
                                     <a class="navbar-brand" href="#">Sub-Categories</a>
                                     <button class="navbar-toggler"  data-toggle="collapse" data-target="#subCatPanel" aria-controls="subCatPanel" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="fa fa-angle-down"></span>
@@ -73,15 +73,29 @@
                                                     <div class="product-section">
                                                         <a href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                                             <div class="position-relative suppliers-buyers">
+                                                                @if($prod->product_image->isNotEmpty())
                                                                 @foreach($prod->product_image as $j => $image)
                                                                     @if($loop->first)
-                                                                        <img src="{{$image->image}}" class="w-100 h-100 certified-suppliers-img">
-                                                                        <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">
+                                                                        <img src="{{$image->image}}"
+                                                                             class="w-100 h-100 certified-suppliers-img border-grey">
+                                                                        @if($prod->is_certified ==1)
+                                                                            <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">
+                                                                        @endif
+                                                                        @if($prod->is_featured ==1)
+                                                                            <span class="position-absolute left-0 Featured-txt">Featured</span>
+                                                                        @endif
                                                                         <div class="position-absolute heart-icon-div">
-                                                                            <span  @if(Auth::check()) class="text-decoration-none add-to-fav" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="text-decoration-none pre-login" @endif><span class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span></span>
+                                                                            <a class="text-decoration-none text-reset" href="#add-fav-{{$prod->reference_no}}" data-toggle="modal">
+                                                                           <span class="text-decoration-none add-to-fav">
+                                                                                    <span class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span>
+                                                                           </span>
+                                                                            </a>
                                                                         </div>
                                                                     @endif
                                                                 @endforeach
+                                                                @else
+                                                                    <img src="{{$ASSET}}/front_site/images/noimage.png" class="w-100 h-100 certified-suppliers-img border-grey">
+                                                                @endif
                                                             </div>
                                                         </a>
                                                         <div id="add-fav-{{$prod->reference_no}}" class="change-password-modal modal fade">
@@ -164,7 +178,7 @@
                                             <div class="position-relative suppliers-buyers" style="height: 65%">
                                                 @foreach($prod->product_image as $i => $image)
                                                     @if($loop->first)
-                                                        <img src="{{$image->image}}" class="w-100 h-100 certified-suppliers-img">
+                                                        <img src="{{$image->image}}" class="w-100 h-100 border-grey certified-suppliers-img">
                                                         <img src="{{$ASSET}}/front_site/images/certified_company.png" width="50" height="50" class="position-absolute certified-logo">
                                                         <div class="position-absolute heart-icon-div">
                                                             <span  @if(Auth::check()) class="text-decoration-none add-to-fav" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="text-decoration-none pre-login" @endif><span class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span></span>

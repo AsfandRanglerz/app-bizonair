@@ -6,7 +6,7 @@
             <a href="{{route('blog-detail',['id'=>$ads->id])}}" class="text-reset text-decoration-none">
                 <div class="mb-1 hover-scale journal-content">
                     <img src="@if(isset($ads1->image)) {{ $ads->image }} @else {{$ASSET}}/front_site/images/noimage.png @endif" class="journal-sidebar-img">
-                    <p class="px-2 py-1 mb-0 overflow-text-dots">{{$ads->title}}</p>
+                    <p class="px-2 py-1 mb-0 overflow-text-dots" style="height: 2.3rem">{{$ads->title}}</p>
                 </div>
             </a>
         </div>
@@ -15,7 +15,7 @@
             <a href="{{route('blog-detail',['id'=>$ads1->id])}}" class="text-reset text-decoration-none">
                 <div class="mb-1 hover-scale journal-content">
                     <img src="@if(isset($ads1->image)) {{ $ads1->image }} @else {{$ASSET}}/front_site/images/noimage.png @endif" class="journal-sidebar-img">
-                    <p class="px-2 py-1 mb-0 overflow-text-dots">{{$ads1->title}}</p>
+                    <p class="px-2 py-1 mb-0 overflow-text-dots" style="height: 2.3rem">{{$ads1->title}}</p>
                 </div>
             </a>
         </div>

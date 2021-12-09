@@ -136,7 +136,7 @@
                                             <label for="sub_category" class="d-none font-500">Sub-Category
                                                 <span class="required"> *</span>
                                             </label>
-                                            <div class="position-relative">
+                                            <div class="position-relative d-flex flex-column-reverse">
                                                 <select class="form-control product-subcategories" id="sub_category"
                                                         name="sub_category" required>
                                                     <option value=""></option>

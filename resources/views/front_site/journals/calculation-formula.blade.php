@@ -50,7 +50,7 @@
                     <li class="breadcrumb-item active" aria-current="page"><a
                             href="{{ url('journal') }}">Journal</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a
-                            href="{{Request::url()}}">Calculation Calculations</a></li>
+                            href="{{Request::url()}}">Textile Calculations</a></li>
                 </ol>
             </nav>
             <div class="container-fluid px-sm-3 px-2">
