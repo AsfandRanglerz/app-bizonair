@@ -483,9 +483,10 @@ select, input.form-control {
     -webkit-appearance: none;
 }
 
+#searchWord b,
 .highlight {
-    /*background-color: #A52C3E;*/
-    /*color: #FFF;*/
+    background-color: #A52C3E;
+    color: #FFF;
     font-weight: bold;
 }
 
