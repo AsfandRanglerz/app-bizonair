@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,6 +35,10 @@ class AppServiceProvider extends ServiceProvider
             Schema::defaultStringLength(191);
             \Blade::directive('var' , function($param){
                 return "<?php $param ?>";
-            });
+        });
+        Validator::extend(
+            'recaptcha',
+            'App\\Validators\\ReCaptcha@validate'
+        );
     }
 }

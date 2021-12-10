@@ -22,7 +22,7 @@ class ContactUsController extends Controller
         $rules = [
             'inquiryFor' => 'required', 'userName' => 'required',  'emailAddress' => 'required',
             'phoneNumber' => 'required',
-            'country' => 'required','description' => 'required',
+            'country' => 'required','description' => 'required','g-recaptcha-response' => 'required|recaptcha'
         ];
         $messages = [
             'inquiryFor.required' => 'contact inquiry is required',
@@ -31,12 +31,14 @@ class ContactUsController extends Controller
             'phoneNumber.required' => 'contact phone is required',
             'country.required' => 'contact country is required',
             'description.required' => 'contact description is required',
+            'g-recaptcha-response.recaptcha' => 'Captcha verification failed',
+            'g-recaptcha-response.required' => 'Please complete the captcha'
         ];
         $validator = \Validator::make(request()->all(), $rules, $messages);
         if ($validator->fails()) {
             $data['feedback'] = 'false';
             $data['errors'] = $validator->errors()->getMessages();
-            $data['msg'] = '';
+            $data['msg'] = 'Please complete the captcha';
             return json_encode($data);
         } else {
             $data['$contact'] = new \App\ContactUs();

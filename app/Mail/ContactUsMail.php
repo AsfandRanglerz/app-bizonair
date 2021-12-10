@@ -18,6 +18,7 @@ class ContactUsMail extends Mailable
      */
 
     protected $data;
+
     public function __construct($data)
     {
         $this->data = $data;
@@ -30,9 +31,13 @@ class ContactUsMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact_bizonair')
-                                ->attach($this->data['$contact']->image)
-                                ->with('data',$this->data)
-                                ->subject('Contact Bizonair');
+        $mail = $this->markdown('emails.contact_bizonair')
+            ->with('data',$this->data)
+            ->subject('Contact Bizonair');
+
+        if($this->data['$contact']->image)
+         $mail->attach($this->data['$contact']->image);
+
+        return $mail;
     }
 }

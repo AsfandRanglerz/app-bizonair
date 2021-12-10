@@ -13,6 +13,15 @@
                         {{ session()->get('message') }}
                     </div>
                 @endif
+                @if(session()->has('error'))
+                    <div class="alert alert-danger mb-2 text-center"
+                         role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @if(session()->has('error') == true)
+                    {{ session()->forget('error') }}
+                @endif
                 @if(session()->has('invalid'))
                     <div class="alert alert-danger mb-2 text-center"
                          role="alert">
@@ -40,13 +49,9 @@
                 <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 <small class="text-white" id="password_error"></small>
             </div>
-{{--            <div class="form-group">--}}
-{{--                <div class="position-relative d-flex align-items-center">--}}
-{{--                    <input type="password" name="password" id="password" class="form-control pr-4" placeholder="Password">--}}
-{{--                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>--}}
-{{--                </div>--}}
-{{--                <small class="text-white" id="password_error"></small>--}}
-{{--            </div>--}}
+            <div class="g-recaptcha desktop-captcha"
+                 data-sitekey="6LeWfJEdAAAAAPqRcSPifzpGsJumuKzbQ9MBpFpu"></div>
+            <small class="text-danger" id="g-recaptcha-response_error"></small>
             <div class="form-group text-center mb-0">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="remember" name="remember">
@@ -63,6 +68,7 @@
 </body>
 @endsection
 @push('js')
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         $(document).ready(function () {
             var validator = $("form[name='Login']").validate({
@@ -139,12 +145,10 @@
                     $('.btn-pro').addClass('d-none')
                     $('#login-create').removeClass('d-none');
                     if (response.feedback === "false") {
-                        $form.find('button[type=submit]').prop('disabled', false);
-                        $('html, body').animate({scrollTop: ($('#' + Object.keys(response.errors)[0]).offset().top)}, 'slow');
-                        $.each(response.errors, function (key, value) {
-                            $('#' + key + '_error').html(value[0]);
-                            $(":input[name=" + key + "]").addClass('is-invalid');
-                        });
+                        $form.find('input[type=submit]').prop('disabled', false);
+                        $('html, body').animate({scrollTop: 0}, 'slow');
+                        $('#alert-error-login').html(response.msg);
+                        $('#alert-error-login').show().fadeOut(8000);
                     } else if (response.feedback === "other_error") {
                         $form.find('button[type=submit]').prop('disabled', false);
                         $('html, body').animate({scrollTop: 0}, 'slow');

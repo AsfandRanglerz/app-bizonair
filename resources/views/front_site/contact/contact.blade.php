@@ -114,6 +114,9 @@
                         <p class="mb-0 paragraph">+92 3213222254</p>
                     </div>
                 </div>
+                <div class="g-recaptcha desktop-captcha"
+                     data-sitekey="6LeWfJEdAAAAAPqRcSPifzpGsJumuKzbQ9MBpFpu"></div>
+                <small class="text-danger" id="g-recaptcha-response_error"></small>
                 <div>
                     <input type="submit" class="rounded px-4 red-btn submit-btn" id="contact-create" value="Submit" disabled="true">
                 </div>
@@ -124,7 +127,7 @@
 
 @endsection
 @push('js')
-
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         $(document).ready(function () {
             /*for select single place holders*/
@@ -241,12 +244,9 @@
                     $('.btn-pro').addClass('d-none')
                     $('#contact-create').removeClass('d-none');
                     if (response.feedback === "false") {
-                        $form.find('button[type=submit]').prop('disabled', false);
-                        $('html, body').animate({scrollTop: ($('#' + Object.keys(response.errors)[0]).offset().top)}, 'slow');
-                        $.each(response.errors, function (key, value) {
-                            $('#' + key + '_error').html(value[0]);
-                            $(":input[name=" + key + "]").addClass('is-invalid');
-                        });
+                        $('html, body').animate({scrollTop: 0}, 'slow');
+                        $('#alert-error-contact').html(response.msg);
+                        $('#alert-error-contact').show().fadeOut(8000);
                     } else if (response.feedback === "other_error") {
                         $form.find('button[type=submit]').prop('disabled', false);
                         $('html, body').animate({scrollTop: 0}, 'slow');

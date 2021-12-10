@@ -72,39 +72,26 @@
                                                            id="email" class="form-control"
                                                            placeholder="example@email.com" required>
                                                 </div>
-                                                <div class="form-group col-xl-3 col-lg-4 mb-md-3 mb-0" align="center">
-                                                    <button class="verify-btn " id="code" type="submit">Verify Email
-                                                    </button>
-                                                    <button  disabled class="btn-pro d-none verify-btn">
-                                                        <span class="spinner-border spinner-border-sm mr-1"
-                                                              role="status" aria-hidden="true"></span>Processing
-                                                    </button>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="g-recaptcha desktop-captcha"
+                                         data-sitekey="6LeWfJEdAAAAAPqRcSPifzpGsJumuKzbQ9MBpFpu"></div>
+                                    <small class="text-danger" id="g-recaptcha-response_error"></small>
+                                    <div class="form-row">
+                                        <div class="form-group col-xl-3 col-lg-4 mb-md-3 mb-0" align="center">
+                                            <button class="verify-btn " id="code" type="submit">Verify Email
+                                            </button>
+                                            <button  disabled class="btn-pro d-none verify-btn">
+                                                        <span class="spinner-border spinner-border-sm mr-1"
+                                                              role="status" aria-hidden="true"></span>Processing
+                                            </button>
+                                        </div>
+                                    </div>
                                 </form>
-                                {{--                                <form class="d-none" method="POST" action="{{route('check-verification-code')}}"--}}
-                                {{--                                      id="verifyCodeForm">--}}
-                                {{--                                    @csrf--}}
-                                {{--                                    <input type="hidden" name="email" id="verifyemail">--}}
-                                {{--                                    <label>Verification Code</label>--}}
-                                {{--                                    <div class="form-row">--}}
-                                {{--                                        <div class="form-group col-xl-9 col-lg-8">--}}
-                                {{--                                            <input type="text" maxlength="6" name="verification_code"--}}
-                                {{--                                                   class="form-control"--}}
-                                {{--                                                   placeholder="Please enter the verification code you recieved">--}}
-                                {{--                                        </div>--}}
-                                {{--                                        <div class="form-group col-sm-12" align="center">--}}
-                                {{--                                            <button class="next-btn" type="submit">Next</button>--}}
-                                {{--                                        </div>--}}
-                                {{--                                    </div>--}}
-                                {{--                                </form>--}}
                             </div>
                         </div>
-                        {{--                        <div id="section2" class="container tab-pane fade"><br>--}}
-                        {{--                            --}}{{--              <p>sample text sample text sample text</p>--}}
-                        {{--                        </div>--}}
+
                     </div>
                 </div>
             </div>
@@ -118,7 +105,7 @@
 
 @endsection
 @push('js')
-
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         $(document).ready(function () {
             $("#emailConfirmationForm").validate({
@@ -140,73 +127,7 @@
                 errorClass: 'is-invalid error',
                 validClass: 'is-valid'
             });
-            //     $(document).on("click","#code",function() {
-            //         var email = $('#email').val();
-            //         // alert(email);
-            //         $.ajax({
-            //             url:"getlink",
-            //             method:'post',
-            //             data:{email:email,"_token": "{{ csrf_token() }}"},
-            //             success:function(data)
-            //             {
-            //                 $('#message').text(data.message);
-            //                 $('#message').css('display','block');
-            //                 $('#message').addClass(data.class);
-            //             }
-            //         });
-            //     });
-            // });
-            {{--var options_verifycode = {--}}
-            {{--    dataType: 'Json',--}}
-            {{--    beforeSubmit: function (arr, $form) {--}}
-            {{--    },--}}
-            {{--    success: function (data) {--}}
-            {{--        // alert(data);--}}
-            {{--        $('#alert-success').hide();--}}
-            {{--        $('#alert-error').hide();--}}
-            {{--        response = data;--}}
-            {{--        if (response.feedback == 'false') {--}}
 
-            {{--        } else if (response.feedback == 'invalid') {--}}
-            {{--            $('#alert-error').html(response.msg);--}}
-            {{--            $('#alert-error').show();--}}
-            {{--            // setTimeout(() => {--}}
-            {{--            // 	window.location.reload();--}}
-            {{--            // }, 1000);--}}
-            {{--        } else if (response.feedback == 'true') {--}}
-            {{--            // $('#code').attr('disabled');--}}
-            {{--            $('#alert-success').html(response.msg);--}}
-            {{--            $('#alert-success').show();--}}
-            {{--            setTimeout(() => {--}}
-            {{--                window.location.href = response.url;--}}
-            {{--            }, 1500);--}}
-            {{--        }--}}
-            {{--    },--}}
-            {{--    error: function (jqXHR, exception) {--}}
-            {{--        $('#alert-success').hide();--}}
-            {{--        $('#alert-error').hide();--}}
-            {{--        // form.find('button[type=submit]').html('<i aria-hidden="true" class="fa fa-check"></i> {{ __('Save') }}');--}}
-            {{--        var msg = '';--}}
-            {{--        if (jqXHR.status === 0) {--}}
-            {{--            msg = 'Not Connected.\n Verify Network.';--}}
-            {{--        } else if (jqXHR.status == 404) {--}}
-            {{--            msg = 'Requested page not found. [404]';--}}
-            {{--        } else if (jqXHR.status == 500) {--}}
-            {{--            msg = 'Internal Server Error [500].';--}}
-            {{--        } else if (exception === 'parsererror') {--}}
-            {{--            msg = 'Requested JSON parse failed.';--}}
-            {{--        } else if (exception === 'timeout') {--}}
-            {{--            msg = 'Time out error.';--}}
-            {{--        } else if (exception === 'abort') {--}}
-            {{--            msg = 'Ajax request aborted.';--}}
-            {{--        } else {--}}
-            {{--            msg = 'Uncaught Error, Please try again later';--}}
-            {{--        }--}}
-            {{--        $('#alert-error').html(msg);--}}
-            {{--        $('#alert-error').show();--}}
-            {{--    },--}}
-
-            {{--};--}}
 
             var options_emailconfirmation = {
                 dataType: 'Json',
@@ -224,7 +145,8 @@
                     $('.btn-pro').addClass('d-none')
                     $('#code').removeClass('d-none');
                     if (response.feedback == 'false') {
-
+                        $('#alert-error').html(response.msg);
+                        $('#alert-error').show().fadeOut(10000);
                     } else if (response.feedback == 'invalid') {
                         $('#alert-error').html(response.msg);
                         $('#alert-error').show();

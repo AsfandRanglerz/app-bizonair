@@ -166,31 +166,46 @@ class HomeController extends Controller
         return view('front_site.other.email-confirmation', $data);
     }
 
-    public function get_email_verification_code()
+    public function get_email_verification_code(Request $request)
     {
-        $email = request('email');
-        $exst = \App\User::where('email', $email)->first();
-
-        if (!$exst) {
-            do {
-                $verification_code = mt_rand(399999, 799999);
-                $user_code = \App\EmailVerification::where('verification_code', $verification_code)->first();
-            } while (!empty($user_code));
-            $email_verification = new \App\EmailVerification();
-            $email_verification->email = request('email');
-            $email_verification->verification_code = $verification_code;
-            $email_verification->save();
-            \Mail::to(request('email'))->send(new EmailConfirmation($verification_code));
-            $time = strtotime('+5 minutes');
-            Session::put("expire_time", $time);
-            $data['feedback'] = 'true';
-            $data['msg'] = 'OTP has been sent to your email address successfully. Please confirm authenticity of your email address.' . '<br>' . 'If you are unable to find email, please;' . '<ol style="margin-left: 2em;">' . '<li>Recheck provided email address</li>' . '<li>Check the Spam/Junk folder in your emails</li>' . '<li>Get intouch with us at info@bizonair.com</li>' . '</ol>';
-            $data['url'] = url('verify-otp/'.$verification_code.'?email='.request('email'));
+        $rules = [
+            'g-recaptcha-response' => 'required|recaptcha'
+        ];
+        $messages = [
+            'g-recaptcha-response.recaptcha' => 'Captcha verification failed',
+            'g-recaptcha-response.required' => 'Please complete the captcha'
+        ];
+        $validator = \Validator::make(request()->all(), $rules, $messages);
+        if ($validator->fails()) {
+            $data['feedback'] = 'false';
+            $data['errors'] = $validator->errors()->getMessages();
+            $data['msg'] = 'Please complete the captcha';
+            return json_encode($data);
         } else {
-            $data['feedback'] = 'invalid';
-            $data['msg'] = 'Provided Email Address is already Registered with Bizonair';
+            $email = request('email');
+            $exst = \App\User::where('email', $email)->first();
+
+            if (!$exst) {
+                do {
+                    $verification_code = mt_rand(399999, 799999);
+                    $user_code = \App\EmailVerification::where('verification_code', $verification_code)->first();
+                } while (!empty($user_code));
+                $email_verification = new \App\EmailVerification();
+                $email_verification->email = request('email');
+                $email_verification->verification_code = $verification_code;
+                $email_verification->save();
+                \Mail::to(request('email'))->send(new EmailConfirmation($verification_code));
+                $time = strtotime('+5 minutes');
+                Session::put("expire_time", $time);
+                $data['feedback'] = 'true';
+                $data['msg'] = 'OTP has been sent to your email address successfully. Please confirm authenticity of your email address.' . '<br>' . 'If you are unable to find email, please;' . '<ol style="margin-left: 2em;">' . '<li>Recheck provided email address</li>' . '<li>Check the Spam/Junk folder in your emails</li>' . '<li>Get intouch with us at info@bizonair.com</li>' . '</ol>';
+                $data['url'] = url('verify-otp/' . $verification_code . '?email=' . request('email'));
+            } else {
+                $data['feedback'] = 'invalid';
+                $data['msg'] = 'Provided Email Address is already Registered with Bizonair';
+            }
+            return json_encode($data);
         }
-        return json_encode($data);
     }
 
     public function resend_otp_code(){
@@ -268,16 +283,16 @@ class HomeController extends Controller
 
     public function do_login_pre()
     {
-        $rules = ['email' => 'required', 'password' => 'required'];
+        $rules = ['email' => 'required', 'password' => 'required','g-recaptcha-response' => 'required|recaptcha'];
         $messages = [
-            'email.required' => 'Email is required', 'password.required' => 'Password is required'
+            'email.required' => 'Email is required', 'password.required' => 'Password is required',
+            'g-recaptcha-response.recaptcha' => 'Captcha verification failed',
+            'g-recaptcha-response.required' => 'Please complete the captcha'
         ];
         $validator = \Validator::make(request()->all(), $rules);
         if ($validator->fails()) {
-            // return redirect()->back()->withErrors($validator);
-            $data['errors'] = $validator->errors()->getMessages();
-            $data['feedback'] = 'false';
-            return json_encode($data);
+            \Session::put('error', 'Please complete the captcha');
+            return redirect()->back();
         }
         $remember = request()->has('remember') ? true : false;
         if (Auth::attempt([
