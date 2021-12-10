@@ -6809,6 +6809,12 @@ a.nav-link.btnsEmial.disabled {
     line-height: 1;
 }
 
+/*recaptcha*/
+.g-recaptcha {
+    transform: scale(0.90);
+}
+/*recaptcha*/
+
 /*login form*/
 .login-form {
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 0%), 0 6px 20px 0 rgb(0 0 0 / 18%);

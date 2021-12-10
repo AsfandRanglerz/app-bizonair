@@ -75,8 +75,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="g-recaptcha desktop-captcha"
-                                         data-sitekey="6LeWfJEdAAAAAPqRcSPifzpGsJumuKzbQ9MBpFpu"></div>
+                                    <div class="my-1 d-flex justify-content-center">
+                                        <div class="g-recaptcha desktop-captcha"
+                                             data-sitekey="6LeWfJEdAAAAAPqRcSPifzpGsJumuKzbQ9MBpFpu"></div>
+                                    </div>
                                     <small class="text-danger" id="g-recaptcha-response_error"></small>
                                     <div class="form-row">
                                         <div class="form-group col-xl-3 col-lg-4 mb-md-3 mb-0" align="center">

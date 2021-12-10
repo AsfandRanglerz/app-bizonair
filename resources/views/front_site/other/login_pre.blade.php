@@ -49,8 +49,10 @@
                 <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 <small class="text-white" id="password_error"></small>
             </div>
-            <div class="g-recaptcha desktop-captcha"
+            <div class="my-1 d-flex justify-content-center">
+                <div class="g-recaptcha desktop-captcha"
                  data-sitekey="6LeWfJEdAAAAAPqRcSPifzpGsJumuKzbQ9MBpFpu"></div>
+            </div>
             <small class="text-danger" id="g-recaptcha-response_error"></small>
             <div class="form-group text-center mb-0">
                 <div class="custom-control custom-checkbox">

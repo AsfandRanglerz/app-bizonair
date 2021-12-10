@@ -114,8 +114,10 @@
                         <p class="mb-0 paragraph">+92 3213222254</p>
                     </div>
                 </div>
-                <div class="g-recaptcha desktop-captcha"
-                     data-sitekey="6LeWfJEdAAAAAPqRcSPifzpGsJumuKzbQ9MBpFpu"></div>
+                <div class="my-1 d-flex justify-content-center">
+                    <div class="g-recaptcha desktop-captcha"
+                         data-sitekey="6LeWfJEdAAAAAPqRcSPifzpGsJumuKzbQ9MBpFpu"></div>
+                </div>
                 <small class="text-danger" id="g-recaptcha-response_error"></small>
                 <div>
                     <input type="submit" class="rounded px-4 red-btn submit-btn" id="contact-create" value="Submit" disabled="true">
