@@ -264,13 +264,11 @@
                 <h4 class="text-white text-center mt-2 text-shadow">404 Page</h4>
             </div>
             <div class="p-2">
-                <p class="content text-center text-shadow mb-3">Pakistan's #1 Textile Portal</p>
-                <p class="content-small">Our website will be ready soon.<br class="break-mob-scr"> Want to get first access to our platform?</p>
-                <p class="content-small">Write to us and we will add you to the list!</p>
+                <p class="content text-center text-shadow mb-3">Look like you're lost</p>
+                <p class="content-small">the page you are looking for not available!</p>
                 <p class="content-small font-500">
-                    <a href="mailto:info@bizonair.com" class="mail">
-                        <span class="fa fa-envelope" aria-hidden="true"></span>
-                        info@bizonair.com
+                    <a href="{{route('home')}}" class="mail">
+                        Go To Home
                     </a>
                 </p>
             </div>

@@ -979,6 +979,8 @@ class HomeController extends Controller
         }elseif ($category =='events'){
             $events = Journal::where('title','Like','%'.$search.'%')->where('journal_type_name','Upcomming Events')->get();
             return view('front_site.journals.events')->with(['articles'=>$events,'category'=>$category,'search'=>$search]);
+        }else{
+            return redirect()->route('bizonair-404');
         }
 
     }
