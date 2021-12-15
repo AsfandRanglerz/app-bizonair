@@ -221,7 +221,7 @@ $(document).ready(function () {
     /*banner search keyword*/
     $('#searchKeyword').focus(function() {
         var search_term = $('#searchKeyword').val();
-        $('.search_results_links').removeHighlight().highlight(" " + search_term);
+        $('.search_results_links').removeHighlight().highlight(search_term);
     });
     /*banner search keyword*/
 

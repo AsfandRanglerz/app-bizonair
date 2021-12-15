@@ -979,6 +979,15 @@ select {
     font-weight: 500;
 }
 
+.pro-categories-tab .nav-link:first-child {
+    padding: 6px;
+    font-size: 16px;
+}
+
+.pro-categories-tab .nav-link:first-child .fa {
+    font-weight: 900;
+}
+
 .pro-categories-tab .nav-link {
     height: 100%;
     padding: 4px;
@@ -8410,6 +8419,16 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 991px) {
+    /*search field text*/
+    .search-text-block {
+        display: inline-block;
+        width: 85%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    /*search field text*/
+
     .suppliers-buyers .cities-btn {
         display: flex;
         flex-wrap: wrap;
@@ -9126,6 +9145,12 @@ header .navbar .navbar-toggler {
 }
 
 @media (max-width: 767px) {
+    /*search field text*/
+    .search-text-block {
+        width: 80%;
+    }
+    /*search field text*/
+
     .job-detail-img {
         width: 105px;
     }
@@ -9199,6 +9224,12 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 575px) {
+    /*search field text*/
+    .search-text-block {
+        width: 70%;
+    }
+    /*search field text*/
+
     .product-main #maincontent .main-container .navbar #garmentsNav .navbar-nav .nav-item .nav-link > span {
         font-size: 9px;
     }
@@ -10413,6 +10444,12 @@ header .navbar .navbar-toggler {
 }
 
 @media (max-width: 355px) {
+    /*search field text*/
+    .search-text-block {
+        width: 65%;
+    }
+    /*search field text*/
+
     .place-day {
         font-size: 8px!important;
     }

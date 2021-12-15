@@ -112,11 +112,10 @@
                         var output = '';
                         if(response.length > 0){
                             response.forEach(function(item){
-                                output += "<li id='searchWord'><a href="+item.link+" class='clearfix link' id='schWord'>"+item.value.replace(inpdata, '<b>' + inpdata + '</b>')+"<span class='float-right'>"+item.category+"</span></a></li>";
+                                output += "<li id='searchWord'><a href="+item.link+" class='clearfix link' id='schWord'>" + "<span class='search-text-block'>" + item.value.replace(inpdata, '<b>' + inpdata + '</b>') + "</span>" + "<span class='float-right'>"+item.category+"</span></a></li>";
                             });
                         }
                         else{
-
                             output += "<li id='searchWord'><a href='#' class='clearfix link' id='schWord'><span class='float-right d-none'></span></a></li>";
                         }
 
@@ -154,11 +153,10 @@
                         var output = '';
                         if(response.length > 0){
                             response.forEach(function(item){
-                                output += "<li id='searchWord'><a href="+item.link+" class='clearfix link' id='schWord'>"+item.value.replace(inpdata, '<b>' + inpdata + '</b>')+"<span class='float-right'>"+item.category+"</span></a></li>";
+                                output += "<li id='searchWord'><a href="+item.link+" class='clearfix link' id='schWord'>" + "<span class='search-text-block'>" + item.value.replace(inpdata, '<b>' + inpdata + '</b>') + "</span>" + "<span class='float-right'>"+item.category+"</span></a></li>";
                             });
                         }
                         else{
-
                             output += "<li id='searchWord'><a href='#' class='clearfix link' id='schWord'><span class='float-right d-none'></span></a></li>";
                         }
 
