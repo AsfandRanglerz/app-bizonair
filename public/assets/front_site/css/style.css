@@ -4990,7 +4990,7 @@ h1, h2, h3, h4, h5, h6 {
     right: 5px;
     background: #ffffff55;
     color: #A52C3E;
-    border: 2px solid #A52C3E;
+    border: 1px solid #A52C3E;
     width: 15px;
     height: 15px;
     display: flex!important;
@@ -5015,7 +5015,6 @@ h1, h2, h3, h4, h5, h6 {
     background: #ffffff55;
     color: #A52C3E;
     border: 1px solid #A52C3E;
-    font-weight: bold;
     display: none;
 }
 
@@ -9615,7 +9614,7 @@ header .navbar .navbar-toggler {
     /*faqs*/
 
     .company-name-nav {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .header .navbar {
