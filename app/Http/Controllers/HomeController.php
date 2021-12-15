@@ -773,21 +773,21 @@ class HomeController extends Controller
                 $article = Journal::where('title','Like','%'.$term.'%')->where('journal_type_name','articles')->get();
                 if($article) {
                     foreach ($article as $articles) {
-                        $results[] = ['value' => substr_replace($articles->title, "...", 80), 'link' => url('/search-product?category=articles&keywords=' . $articles->title), 'category' => 'Articles'];
+                        $results[] = ['value' => $articles->title, 'link' => url('/search-product?category=articles&keywords=' . $articles->title), 'category' => 'Articles'];
                     }
                 }
             }elseif($category=='news') {
                 $new = NewsManagement::where('title','Like','%'.$term.'%')->get();
                 if($new) {
                     foreach ($new as $news) {
-                        $results[] = ['value' => substr_replace($news->title, "...", 80), 'link' => url('/search-product?category=news&keywords=' . $news->title), 'category' => 'News'];
+                        $results[] = ['value' => $news->title, 'link' => url('/search-product?category=news&keywords=' . $news->title), 'category' => 'News'];
                     }
                 }
             }elseif($category=='events') {
                 $event = Journal::where('title', 'Like', '%' . $term . '%')->where('journal_type_name', 'Upcomming Events')->get();
                 if ($event) {
                     foreach ($event as $events) {
-                        $results[] = ['value' => substr_replace($events->title, "...", 80), 'link' => url('/search-product?category=events&keywords=' . $events->title), 'category' => 'Events'];
+                        $results[] = ['value' => $events->title, 'link' => url('/search-product?category=events&keywords=' . $events->title), 'category' => 'Events'];
                     }
                 }
             }
@@ -858,19 +858,19 @@ class HomeController extends Controller
         $article = Journal::where('title','LIKE','%'.$term.'%')->where('journal_type_name','articles')->get();
         if($article) {
             foreach ($article as $articles) {
-                $results[] = ['value' => substr_replace($articles->title, "...", 60), 'link' => url('/search-product?category=articles&keywords=' . $articles->title), 'category' => 'Articles'];
+                $results[] = ['value' => $articles->title, 'link' => url('/search-product?category=articles&keywords=' . $articles->title), 'category' => 'Articles'];
             }
         }
         $new = NewsManagement::where('title','LIKE','%'.$term.'%')->get();
         if($new) {
             foreach ($new as $news) {
-                $results[] = ['value' => substr_replace($news->title, "...", 60), 'link' => url('/search-product?category=news&keywords=' . $news->title), 'category' => 'News'];
+                $results[] = ['value' => $news->title, 'link' => url('/search-product?category=news&keywords=' . $news->title), 'category' => 'News'];
             }
         }
         $event = Journal::where('title','LIKE','%'.$term.'%')->where('journal_type_name','Upcomming Events')->get();
         if($event) {
             foreach ($event as $events) {
-                $results[] = ['value' => substr_replace($events->title, "...", 60), 'link' => url('/search-product?category=events&keywords=' . $events->title), 'category' => 'Events'];
+                $results[] = ['value' => $events->title, 'link' => url('/search-product?category=events&keywords=' . $events->title), 'category' => 'Events'];
             }
         }
         return json_encode($results);
