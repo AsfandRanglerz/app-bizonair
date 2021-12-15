@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light" data-toggle="collapse" data-target="#garmentsNav">
     <a class="navbar-brand" href="#" id="catNameSec">CATEGORIES</a>
-    <button class="navbar-toggler"  data-toggle="collapse" data-target="#garmentsNav" aria-controls="garmentsNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#garmentsNav" aria-controls="garmentsNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="fa fa-angle-down"></span>
     </button>
     <div class="py-1 collapse navbar-collapse" id="garmentsNav">

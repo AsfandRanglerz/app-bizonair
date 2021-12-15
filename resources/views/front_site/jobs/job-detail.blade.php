@@ -19,11 +19,13 @@
         <div class="container-fluid px-2">
             <div class="row m-0 pt-1">
                 @foreach($jobsdet as $job)
-                <div class="col-xl-3 col-lg-4 col-md-5 pl-md-2 pr-md-2 p-0">
+                <div class="col-xl-3 col-lg-4 col-md-5 col-6 pl-md-2 pl-0 pr-2">
+{{--                <div class="col-xl-3 col-lg-4 col-md-5 pl-md-2 pr-md-2 p-0">--}}
                     <div class="h-100 side-details">
                         <a href="mailto:{{$job->email}}" class="w-100 mb-sm-3 mb-2 text-center red-btn">Apply</a>
                         <div class="row m-0">
-                            <div class="col-6 px-sm-3 px-0">
+                            <div class="col-lg-6 px-0">
+<!--                            <div class="col-6 px-sm-3 px-0">-->
                                 <p class="font-weight-bold mb-0 heading">Company </p>
                                 <p class="mb-sm-3 mb-1">@if($job->company =='Other'){{ $job->other_company }} @else {{ $job->company }} @endif</p>
 {{--                                <p class="d-flex font-weight-bold mb-3 heading" style="color: #A52C3E">@if($compLogo->logo !=null){{ $job->company }} <img class="ml-2" src="{{$ASSET.'/front_site/images/company-images/'.$compLogo->logo }}" height="25" width="25"  data-placement="top"> @else - @endif</p>--}}
@@ -38,7 +40,8 @@
                                 <p class="font-weight-bold mb-0 heading">Work Experience</p>
                                 <p class="mb-sm-3 mb-1">{{ $job->work_experience }} Years</p>
                             </div>
-                            <div class="col-6 px-sm-3 px-0">
+                            <div class="col-lg-6 px-0">
+{{--                            <div class="col-6 px-sm-3 px-0">--}}
                                 @if(!empty($job->work_hour))
                                     <p class="font-weight-bold mb-0 heading">Work Hours</p>
                                     <p class="mb-sm-3 mb-1">{{ $job->work_hour }}</p>
@@ -64,11 +67,12 @@
                     </div>
                 </div>
 
-                <div class="col-xl-9 col-lg-8 col-md-7 pl-lg-2 pr-md-2 p-0 mt-md-0 mt-2">
-
+                <div class="col-xl-9 col-lg-8 col-md-7 col-6 pl-lg-2 pr-md-2 p-0">
+{{--                <div class="col-xl-9 col-lg-8 col-md-7 pl-lg-2 pr-md-2 p-0 mt-md-0 mt-2">--}}
                     <div class="h-100 details-content">
-                        <div class="row">
-                            <div class="col-6">
+                        <div class="row mx-0">
+                            <div class="col-lg-6 px-0">
+{{--                            <div class="col-6">--}}
                                 <p class="font-weight-bold mb-0 heading">Job Title</p>
                                 <p class="mb-sm-3 mb-1 listing">{{ $job->title }}</p>
                                 <p class="font-weight-bold mb-0 heading">Job Sector</p>
@@ -80,7 +84,8 @@
                                 <p class="font-weight-bold mb-0 heading">Career Level</p>
                                 <p class="mb-sm-3 mb-1 listing">{{ $job->job_level }}</p>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 px-0">
+{{--                            <div class="col-6">--}}
                                 <p class="font-weight-bold mb-0 heading">Qualification</p>
                                 <p class="mb-sm-3 mb-1 listing">{{ $job->qualification }}</p>
 

@@ -9,7 +9,7 @@
             background: #A52C3E;
             border-radius: 0;
             transition: .5s background-color;
-            font-weight: 500;
+            font-weight: bold;
         }
 
         .calc-content-container .nav-pills .nav-link.active {

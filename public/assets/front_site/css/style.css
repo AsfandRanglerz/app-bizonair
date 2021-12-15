@@ -8461,7 +8461,7 @@ header .navbar .navbar-toggler {
 
     /*calculation formula*/
     .calc-content-container .nav-pills .nav-link {
-        font-size: 9px;
+        font-size: 10px;
         padding: 4px 6px;
     }
     /*calculation formula*/
@@ -9360,7 +9360,8 @@ header .navbar .navbar-toggler {
         padding: 8px;
     }
 
-    .job-details-container .side-details {
+    .job-details-container .side-details,
+    .job-details-container .details-content {
         padding: 8px;
     }
 
@@ -10459,6 +10460,11 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 320px) {
+    .calc-content-container .nav-pills .nav-link {
+        font-size: 9px;
+        padding: 4px 4px;
+    }
+
     .header .navbar .navbar-toggler {
         font-size: 20px;
     }

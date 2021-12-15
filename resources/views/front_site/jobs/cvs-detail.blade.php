@@ -19,7 +19,8 @@
         <div class="container-fluid px-2">
             <div class="row m-0 pb-5">
                 @foreach($cvsdet as $job)
-                <div class="col-xl-3 col-lg-4 col-md-5 pl-md-2 pr-md-2 p-0">
+                <div class="col-xl-3 col-lg-4 col-md-5 col-6 pl-md-2 pl-0 pr-2">
+{{--                <div class="col-xl-3 col-lg-4 col-md-5 pl-md-2 pr-md-2 p-0">--}}
                     <div class="h-100 side-details">
                         <div class="row">
                             <div class="container-fluid">
@@ -50,8 +51,8 @@
                     </div>
                 </div>
 
-                <div class="col-xl-9 col-lg-8 col-md-7 pl-lg-2 pr-md-2 p-0 mt-md-0 mt-2">
-
+                    <div class="col-xl-9 col-lg-8 col-md-7 col-6 pl-lg-2 pr-md-2 p-0">
+{{--                <div class="col-xl-9 col-lg-8 col-md-7 pl-lg-2 pr-md-2 p-0 mt-md-0 mt-2">--}}
                     <div class="h-100 details-content">
                         <div>
                             <p class="font-weight-bold mb-0 heading">Name</p>
