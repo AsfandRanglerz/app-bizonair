@@ -112,7 +112,7 @@
                         @endif
                         <div class="mt-3 position-relative ads">
                             @foreach($ads as $ad)
-                                <a href="{{ $ad->link }}" class="text-decoration-none">
+                                <a href="{{ $ad->link }}" class="text-decoration-none" target="_blank">
                                    <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
                                 </a>
                                 <span class="fa fa-info position-absolute info-icon"></span>

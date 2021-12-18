@@ -13,7 +13,7 @@
                 @foreach($bnr_row1 as $row)
                     <div class="px-1">
                         <div class="position-relative ad-slide">
-                            <a href="{{ $row->link }}" class="text-decoration-none">
+                            <a href="{{ $row->link }}" class="text-decoration-none" target="_blank">
                                 <img src="{{ $row->image }}" class="w-100 banner-below-adds border-grey">
                             </a>
                             <span class="fa fa-info position-absolute info-icon"></span>
@@ -68,8 +68,8 @@
                 </div>
             </div>
             <div class="row ad">
-                <a href="{{$bnrbig2nd->link}}" class="w-100 text-decoration-none">
-                <img src="{{ $bnrbig2nd->image }}" alt="" class="w-100">
+                <a href="{{$bnrbig2nd->link}}" class="w-100 text-decoration-none" target="_blank">
+                    <img src="{{ $bnrbig2nd->image }}" alt="" class="w-100">
                 </a>
                 <span class="fa fa-info position-absolute info-icon"></span>
                 <span class="img-info"></span>
@@ -117,7 +117,7 @@
             </div>
 
 
-            <div class="pb-2 ad-slider-content">
+            <div class="ad-slider-content">
                 <div class="pb-1 text-right">
                     <a href="{{route('contact-us')}}" class="red-link view-all">ADVERTISE WITH US</a>
                 </div>
@@ -125,14 +125,14 @@
                     <div id="adSlider1" class="carousel slide ad-slider" data-ride="carousel" data-interval="5000">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <a href="{{ $bnrlupr->link }}" class="text-decoration-none">
+                                <a href="{{ $bnrlupr->link }}" class="text-decoration-none" target="_blank">
                                     <img src="{{ $bnrlupr->image }}" class="w-100 h-100"/>
                                 </a>
                                 <span class="fa fa-info position-absolute info-icon"></span>
                                 <span class="img-info"></span>
                             </div>
                             <div class="carousel-item">
-                                <a href="{{ $bnrwr->link }}" class="text-decoration-none">
+                                <a href="{{ $bnrwr->link }}" class="text-decoration-none" target="_blank">
                                     <img src="{{ $bnrwr->image }}" class="w-100 h-100"/>
                                 </a>
                                 <span class="fa fa-info position-absolute info-icon"></span>
@@ -154,7 +154,7 @@
                         <div class="carousel-inner">
                             @foreach($bnr_slider as $i => $row)
                             <div class="carousel-item @if($i==0) active @endif">
-                                <a href="{{ $row->link }}" class="text-decoration-none">
+                                <a href="{{ $row->link }}" class="text-decoration-none" target="_blank">
                                     <img src="{{ $row->image }}">
                                 </a>
                                 <span class="fa fa-info position-absolute info-icon"></span>
@@ -167,34 +167,6 @@
                                 <span class="fa fa-angle-left" aria-hidden="true"></span>
                             </a>
                             <a href="#adSlider2" data-slide="next">
-                                <span class="fa fa-angle-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="ad-slider-content2 rounded border-grey">
-                    <div id="adSlider3" class="carousel slide ad-slider" data-ride="carousel" data-interval="5000">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <a href="{{ $bnrlwr->link }}" class="text-decoration-none">
-                                    <img src="{{ $bnrlwr->image }}" class="w-100 h-100"/>
-                                </a>
-                                <span class="fa fa-info position-absolute info-icon"></span>
-                                <span class="img-info"></span>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="{{ $bnrupr->link }}" class="text-decoration-none h-100">
-                                    <img src="{{ $bnrupr->image }}" class="w-100 h-100"/>
-                                </a>
-                                <span class="fa fa-info position-absolute info-icon"></span>
-                                <span class="img-info"></span>
-                            </div>
-                        </div>
-                        <div class="ad-slider-arrows">
-                            <a href="#adSlider3" data-slide="prev">
-                                <span class="fa fa-angle-left" aria-hidden="true"></span>
-                            </a>
-                            <a href="#adSlider3" data-slide="next">
                                 <span class="fa fa-angle-right"></span>
                             </a>
                         </div>
@@ -239,6 +211,35 @@
                 </div>
             </div>
 
+            <div class="mt-2 ad-slider-content2 rounded border-grey">
+                <div id="adSlider3" class="carousel slide ad-slider" data-ride="carousel" data-interval="5000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="{{ $bnrlwr->link }}" class="text-decoration-none" target="_blank">
+                                <img src="{{ $bnrlwr->image }}" class="w-100 h-100"/>
+                            </a>
+                            <span class="fa fa-info position-absolute info-icon"></span>
+                            <span class="img-info"></span>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{{ $bnrupr->link }}" class="text-decoration-none h-100" target="_blank">
+                                <img src="{{ $bnrupr->image }}" class="w-100 h-100"/>
+                            </a>
+                            <span class="fa fa-info position-absolute info-icon"></span>
+                            <span class="img-info"></span>
+                        </div>
+                    </div>
+                    <div class="ad-slider-arrows">
+                        <a href="#adSlider3" data-slide="prev">
+                            <span class="fa fa-angle-left" aria-hidden="true"></span>
+                        </a>
+                        <a href="#adSlider3" data-slide="next">
+                            <span class="fa fa-angle-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div class="mt-1 textile-news">
                 <div class="text-center position-relative">
                     <h3 class="main-heading">Textile News</h3>
@@ -267,7 +268,7 @@
             <div class="px-0 container-fluid logo-slider">
                 <div class="mb-0 slider slider-nav w-100">
                     @foreach($textile_partners as $text_partners)
-                    <a href="{{ $text_partners->link }}" class="logo-container"><img
+                    <a href="{{ $text_partners->link }}" class="logo-container" target="_blank"><img
                             src="{{ $text_partners->image }}"
                             alt="100x100" data-holder-rendered="true"
                             class="w-100 h-100">
@@ -286,14 +287,14 @@
     <script>
         $(document).ready(function () {
             /*ads info*/
-            $('.info-icon').hover(function() {
+            $('.ads-slider .info-icon').hover(function() {
                 var adWidth = $(this).parent().width();
                 var adWidthRoundOff = Math.ceil(adWidth);
                 var adHeight = $(this).parent().height();
                 var adHeightRoundOff = Math.ceil(adHeight);
                 $(this).siblings('.img-info').show().append("W : " + adWidthRoundOff + " x " + "L : " + adHeightRoundOff);
             }, function(){
-                $('.img-info').hide().empty();
+                $('.ads-slider .img-info').hide().empty();
             });
             /*ads info*/
 

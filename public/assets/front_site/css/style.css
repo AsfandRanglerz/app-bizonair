@@ -2878,10 +2878,12 @@ ul li input[type=checkbox] {
     color: #000;
 }
 
-.job-post-sec .link:hover,
-.job-post-sec .link:focus {
+.job-post-sec .link {
+    background-color: #12253d;
+}
+
+.job-post-sec .link:hover, .job-post-sec .link:focus, .job-post-sec .link:active {
     background: #A52C3E;
-    border: 1px solid #A52C3E;
 }
 
 .job-explore-sec .paragraph {
@@ -2917,9 +2919,8 @@ ul li input[type=checkbox] {
     padding: 8px;
 }
 
-.job-explore-sec .link:hover {
+.job-explore-sec .link:hover, .job-explore-sec .link:focus, .job-explore-sec .link:active {
     background: #12253D;
-    border: 1px solid #12253D;
 }
 
 .job-post-sec {

@@ -502,12 +502,12 @@
                   </div>
                   <div class="col-xl-3 col-lg-4 col-md-4 mt-sm-0 mt-3 px-0">
                       @foreach($ads as $ad)
-                          <a href="{{ $ad->link }}" class="text-decoration-none">
+                          <a href="{{ $ad->link }}" class="text-decoration-none" target="_blank">
                               <img src="{{ $ad->image }}" class="w-100 h-100 right-side-img">
                           </a>
                       @endforeach
                       @foreach($ads1 as $ad)
-                          <a href="{{ $ad->link }}" class="text-decoration-none">
+                          <a href="{{ $ad->link }}" class="text-decoration-none" target="_blank">
                               <img src="{{ $ad->image }}" class="w-100 h-100 right-side-img">
                           </a>
                       @endforeach

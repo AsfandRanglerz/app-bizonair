@@ -23,7 +23,7 @@
                     <div class="row deals">
                         <div class="col-xl-10 col-lg-9 col-md-8 half-side-content">
                             <div class="col-12 my-1 px-1 d-flex justify-content-between">
-                                <h3 class="mb-0 main-heading">REGULAR SERVICE PROVIDERS</h3>
+                                <h3 class="mb-0 main-heading">REGULAR SERVICE PROVIDERS LEADS</h3>
                                 <div class="d-flex flex-column-reverse align-items-end">
                                     <a href="{{ route('products.create') }}" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif class="mr-sm-2 mr-0 red-btn post-btn px-2">Post Your Service Lead</a>
                                     <a href="{{route('regular-service',$urlslug)}}" class="red-link view-all">VIEW ALL</a>

@@ -296,6 +296,187 @@
                 <!-- Post a job form -->
                 </div>
                 <div class="col-6 px-sm-1 px-0">
+                    <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center job-explore-sec">
+                        <p class="paragraph">It Only Takes A Few Seconds</p>
+                        <a @if(!Auth::check()) href="{{url('log-in-pre')}}" @else href="{{route('post-ur-cv')}}" @endif class="text-center red-btn link">POST CV</a>
+                    </div>
+                    <!-- Post a cv form -->
+                {{--                    <div id="postcvForm"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="postcvForm" aria-hidden="true">--}}
+                {{--                        <div class="modal-dialog contact-form modal-lg" role="document">--}}
+                {{--                            <div class="modal-content">--}}
+                {{--                                <div class="modal-header">--}}
+                {{--                                    <span class="modal-title">Post Your CV</span>--}}
+                {{--                                    <button  class="close" data-dismiss="modal" aria-hidden="true">&times;</button>--}}
+                {{--                                </div>--}}
+                {{--                                <div class="modal-body">--}}
+                {{--                                    <div class="alert alert-success mb-2 text-center" id='alert-success-post-cv' style="display: none"--}}
+                {{--                                         role="alert">--}}
+                {{--                                    </div>--}}
+                {{--                                    <div class="alert alert-danger mb-2 text-center" id='alert-error-post-cv' style="display: none"--}}
+                {{--                                         role="alert">--}}
+                {{--                                    </div>--}}
+                {{--                                    <form id="addcv" name="addcv" method="POST" action="{{route('upload-cv')}}">--}}
+                {{--                                        @csrf--}}
+                {{--                                        <div class="form-row">--}}
+                {{--                                            <div class="form-group col-md-4">--}}
+                {{--                                                <input type="text" class="form-control" name="fname" id="fname" placeholder="Input First Name" required="required">--}}
+                {{--                                                <small class="text-danger" id="fname_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                            <div class="form-group col-md-4">--}}
+                {{--                                                <input type="text" class="form-control" name="lname" id="lname"  placeholder="Input Last Name" required="required">--}}
+                {{--                                                <small class="text-danger" id="lname_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                            <div class="form-group col-md-4">--}}
+                {{--                                                <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Input Phone Number" required="required">--}}
+                {{--                                                <small class="text-danger" id="phone_no_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                        </div>--}}
+
+                {{--                                        <div class="form-row">--}}
+                {{--                                            <div class="form-group col-md-4">--}}
+                {{--                                                <input type="email" class="form-control" name="email" id="email" placeholder="Input Email Address" required="required">--}}
+                {{--                                                <small class="text-danger" id="email_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                            <div class="form-group col-md-4">--}}
+                {{--                                                <input type="number" class="form-control" name="total_experience" id="total_experience" placeholder="Input Total Experience (Years)" required="required">--}}
+                {{--                                                <small class="text-danger" id="total_experience_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                            <div class="form-group col-md-4">--}}
+                {{--                                                <input type="text" class="form-control" name="edu_level" id="edu_level" placeholder="Input Highest Education Level" required>--}}
+                {{--                                                <small class="text-danger" id="edu_level_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                        </div>--}}
+                {{--                                        <div class="form-row">--}}
+                {{--                                            <div class="form-group col-md-4">--}}
+                {{--                                                <select class="form-control"--}}
+                {{--                                                        id="functional_area" name="functional_area" required>--}}
+                {{--                                                    <option value="" selected disabled>Functional Area</option>--}}
+                {{--                                                    <option value="Electrical">Electrical </option>--}}
+                {{--                                                    <option value="Mechanical">Mechanical</option>--}}
+                {{--                                                    <option value="Human Resources">Human Resources</option>--}}
+                {{--                                                    <option value="Admin">Admin</option>--}}
+                {{--                                                    <option value="Engineering">Engineering</option>--}}
+                {{--                                                    <option value="Commissioning">Commissioning</option>--}}
+                {{--                                                    <option value="Product Development">Product Development</option>--}}
+                {{--                                                    <option value="Sourcing">Sourcing</option>--}}
+                {{--                                                    <option value="Quality Control">Quality Control</option>--}}
+                {{--                                                    <option value="Testing & Inspection">Testing & Inspection</option>--}}
+                {{--                                                    <option value="Consultation">Consultation</option>--}}
+                {{--                                                    <option value="Production">Production</option>--}}
+                {{--                                                    <option value="Operation">Operation</option>--}}
+                {{--                                                    <option value="MIS">MIS</option>--}}
+                {{--                                                    <option value="Designing">Designing</option>--}}
+                {{--                                                    <option value="Supply Chain">Supply Chain</option>--}}
+                {{--                                                    <option value="Accounts">Accounts</option>--}}
+                {{--                                                    <option value="Information Technology">Information Technology</option>--}}
+                {{--                                                    <option value="Sales & Merchandizing">Sales & Merchandizing</option>--}}
+                {{--                                                    <option value="Marketing">Marketing</option>--}}
+                {{--                                                    <option value="Procurement">Procurement</option>--}}
+                {{--                                                    <option value="PPC">PPC</option>--}}
+                {{--                                                    <option value="Imports & Exports">Imports & Exports</option>--}}
+                {{--                                                    <option value="Audit">Audit</option>--}}
+                {{--                                                    <option value="Utilities">Utilities</option>--}}
+                {{--                                                    <option value="ERP">ERP</option>--}}
+                {{--                                                    <option value="Branding">Branding</option>--}}
+                {{--                                                    <option value="Warehouse">Warehouse</option>--}}
+                {{--                                                    <option value="Transportation">Transportation</option>--}}
+                {{--                                                    <option value="Other">Other</option>--}}
+                {{--                                                </select>--}}
+                {{--                                                <small class="text-danger" id="functional_area_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                            <div class="form-group col-md-4">--}}
+                {{--                                                <select class="form-control"--}}
+                {{--                                                        id="textile_sector" name="textile_sector" required>--}}
+                {{--                                                    <option value="" selected disabled>Jobs Sector</option>--}}
+                {{--                                                    <option value="Ginning">Ginning </option>--}}
+                {{--                                                    <option value="Spinning">Spinning</option>--}}
+                {{--                                                    <option value="Knitting">Knitting</option>--}}
+                {{--                                                    <option value="Weaving">Weaving</option>--}}
+                {{--                                                    <option value="Non-Woven">Non-Woven</option>--}}
+                {{--                                                    <option value="Wet Processing">Wet Processing</option>--}}
+                {{--                                                    <option value="Embroidery">Embroidery</option>--}}
+                {{--                                                    <option value="Garments">Garments</option>--}}
+                {{--                                                    <option value="Accessories">Accessories</option>--}}
+                {{--                                                    <option value="Dyes & Chemicals">Dyes & Chemicals</option>--}}
+                {{--                                                    <option value="Retail">Retail</option>--}}
+                {{--                                                    <option value="Personal Protective Equipment">Personal Protective Equipment</option>--}}
+                {{--                                                    <option value="Institutional">Institutional</option>--}}
+                {{--                                                    <option value="Leather">Leather</option>--}}
+                {{--                                                    <option value="Footwear & Bags">Footwear & Bags</option>--}}
+                {{--                                                    <option value="Home Textiles">Home Textiles</option>--}}
+                {{--                                                    <option value="Technical Textiles">Technical Textiles</option>--}}
+                {{--                                                    <option value="Other">Other</option>--}}
+                {{--                                                </select>--}}
+                {{--                                                <small class="text-danger" id="textile_sector_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                            <div class="form-group col-md-2">--}}
+                {{--                                                <input type="number" class="form-control" name="exp_salary" id="exp_salary" placeholder="Expected Salary" required="required">--}}
+                {{--                                                <small class="text-danger" id="exp_salary_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                            <div class="form-group col-md-2">--}}
+                {{--                                                <select class="form-control"--}}
+                {{--                                                        id="unit" name="unit" required>--}}
+                {{--                                                    <option value="" selected disabled>Currency</option>--}}
+                {{--                                                    <option value="PKR">PKR</option>--}}
+                {{--                                                    <option value="USD">USD</option>--}}
+                {{--                                                    <option value="Euro">Euro</option>--}}
+                {{--                                                    <option value="Yuan">Yuan</option>--}}
+                {{--                                                    <option value="Swiss Franc">Swiss Franc</option>--}}
+                {{--                                                    <option value="JPY">JPY</option>--}}
+                {{--                                                </select>--}}
+                {{--                                                <small class="text-danger" id="unit_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                        </div>--}}
+
+                {{--                                        <div class="form-row">--}}
+                {{--                                            <div class="form-group col-md-4">--}}
+                {{--                                                <select name="country" id="countryIdd" class="form-control" required>--}}
+                {{--                                                    <option value="" selected disabled>--- Select Country ---</option>--}}
+                {{--                                                    @foreach ($countries as $item)--}}
+                {{--                                                        <option value="{{$item->name->common}}">{{$item->name->common}}</option>--}}
+                {{--                                                    @endforeach--}}
+                {{--                                                </select>--}}
+                {{--                                                <small class="text-danger" id="country_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                            <div class="form-group col-md-4">--}}
+                {{--                                                <select name="city" id="cityId" class="form-control" required>--}}
+                {{--                                                    <option value="" selected disabled>--- Select City ---</option>--}}
+                {{--                                                </select>--}}
+                {{--                                                <small class="text-danger" id="city_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                            <div class="form-group col-md-4">--}}
+                {{--                                                <input type="text" class="form-control" name="key_skills" id="key_skill" placeholder="Input Key Skills" required="required">--}}
+                {{--                                                <small class="text-danger" id="key_skills_error"></small>--}}
+                {{--                                            </div>--}}
+                {{--                                        </div>--}}
+                {{--                                        <div class="form-row">--}}
+                {{--                                            <div class="mt-3 form-group col-md-12 career-img-drop-outer attachment-img-file">--}}
+                {{--                                                <label class="d-block text-left text-white mb-2 font-500">Attachment <small class="font-500">(Attach CV)</small></label>--}}
+                {{--                                                <div class="custom-file">--}}
+                {{--                                                    <input type="file" name="image" id="image" class="custom-file-input" id="customFile">--}}
+                {{--                                                    <label class="custom-file-label" for="customFile"><span class="fa fa-download"></span></label>--}}
+                {{--                                                    <small class="text-danger" id="image_error"></small>--}}
+                {{--                                                </div>--}}
+                {{--                                            </div>--}}
+                {{--                                        </div>--}}
+
+                {{--                                        <div class="form-group mt-4 mb-0 text-md-right text-center">--}}
+                {{--                                            <button type="submit" class="red-btn" id="cv_create_btnnn">POST YOUR CV</button>--}}
+                {{--                                            <button  disabled class="btn-pro d-none red-btn"><span--}}
+                {{--                                                    class="spinner-border  spinner-border-sm mr-1" role="status"--}}
+                {{--                                                    aria-hidden="true"></span>Processing--}}
+                {{--                                            </button>--}}
+                {{--                                        </div>--}}
+
+                {{--                                    </form>--}}
+
+                {{--                                </div>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                <!-- Post a cv form -->
+                </div>
+                <div class="col-6 px-sm-1 px-0">
                     <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center job-post-sec">
                         <p class="paragraph">Find Your Next Job</p>
                         <a href="{{ route('jobs-directory') }}" class="text-center red-btn link">EXPLORE JOBS</a>
@@ -306,187 +487,6 @@
                         <p class="paragraph">Find Best Human Talent</p>
                         <a href="{{ route('cv-directory') }}" class="text-center red-btn link">EXPLORE All CVs</a>
                     </div>
-                </div>
-                <div class="col-6 px-sm-1 px-0">
-                    <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center job-explore-sec">
-                        <p class="paragraph">It Only Takes A Few Seconds</p>
-                        <a @if(!Auth::check()) href="{{url('log-in-pre')}}" @else href="{{route('post-ur-cv')}}" @endif class="text-center red-btn link">POST CV</a>
-                    </div>
-                    <!-- Post a cv form -->
-{{--                    <div id="postcvForm"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="postcvForm" aria-hidden="true">--}}
-{{--                        <div class="modal-dialog contact-form modal-lg" role="document">--}}
-{{--                            <div class="modal-content">--}}
-{{--                                <div class="modal-header">--}}
-{{--                                    <span class="modal-title">Post Your CV</span>--}}
-{{--                                    <button  class="close" data-dismiss="modal" aria-hidden="true">&times;</button>--}}
-{{--                                </div>--}}
-{{--                                <div class="modal-body">--}}
-{{--                                    <div class="alert alert-success mb-2 text-center" id='alert-success-post-cv' style="display: none"--}}
-{{--                                         role="alert">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="alert alert-danger mb-2 text-center" id='alert-error-post-cv' style="display: none"--}}
-{{--                                         role="alert">--}}
-{{--                                    </div>--}}
-{{--                                    <form id="addcv" name="addcv" method="POST" action="{{route('upload-cv')}}">--}}
-{{--                                        @csrf--}}
-{{--                                        <div class="form-row">--}}
-{{--                                            <div class="form-group col-md-4">--}}
-{{--                                                <input type="text" class="form-control" name="fname" id="fname" placeholder="Input First Name" required="required">--}}
-{{--                                                <small class="text-danger" id="fname_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="form-group col-md-4">--}}
-{{--                                                <input type="text" class="form-control" name="lname" id="lname"  placeholder="Input Last Name" required="required">--}}
-{{--                                                <small class="text-danger" id="lname_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="form-group col-md-4">--}}
-{{--                                                <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Input Phone Number" required="required">--}}
-{{--                                                <small class="text-danger" id="phone_no_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                        <div class="form-row">--}}
-{{--                                            <div class="form-group col-md-4">--}}
-{{--                                                <input type="email" class="form-control" name="email" id="email" placeholder="Input Email Address" required="required">--}}
-{{--                                                <small class="text-danger" id="email_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="form-group col-md-4">--}}
-{{--                                                <input type="number" class="form-control" name="total_experience" id="total_experience" placeholder="Input Total Experience (Years)" required="required">--}}
-{{--                                                <small class="text-danger" id="total_experience_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="form-group col-md-4">--}}
-{{--                                                <input type="text" class="form-control" name="edu_level" id="edu_level" placeholder="Input Highest Education Level" required>--}}
-{{--                                                <small class="text-danger" id="edu_level_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-row">--}}
-{{--                                            <div class="form-group col-md-4">--}}
-{{--                                                <select class="form-control"--}}
-{{--                                                        id="functional_area" name="functional_area" required>--}}
-{{--                                                    <option value="" selected disabled>Functional Area</option>--}}
-{{--                                                    <option value="Electrical">Electrical </option>--}}
-{{--                                                    <option value="Mechanical">Mechanical</option>--}}
-{{--                                                    <option value="Human Resources">Human Resources</option>--}}
-{{--                                                    <option value="Admin">Admin</option>--}}
-{{--                                                    <option value="Engineering">Engineering</option>--}}
-{{--                                                    <option value="Commissioning">Commissioning</option>--}}
-{{--                                                    <option value="Product Development">Product Development</option>--}}
-{{--                                                    <option value="Sourcing">Sourcing</option>--}}
-{{--                                                    <option value="Quality Control">Quality Control</option>--}}
-{{--                                                    <option value="Testing & Inspection">Testing & Inspection</option>--}}
-{{--                                                    <option value="Consultation">Consultation</option>--}}
-{{--                                                    <option value="Production">Production</option>--}}
-{{--                                                    <option value="Operation">Operation</option>--}}
-{{--                                                    <option value="MIS">MIS</option>--}}
-{{--                                                    <option value="Designing">Designing</option>--}}
-{{--                                                    <option value="Supply Chain">Supply Chain</option>--}}
-{{--                                                    <option value="Accounts">Accounts</option>--}}
-{{--                                                    <option value="Information Technology">Information Technology</option>--}}
-{{--                                                    <option value="Sales & Merchandizing">Sales & Merchandizing</option>--}}
-{{--                                                    <option value="Marketing">Marketing</option>--}}
-{{--                                                    <option value="Procurement">Procurement</option>--}}
-{{--                                                    <option value="PPC">PPC</option>--}}
-{{--                                                    <option value="Imports & Exports">Imports & Exports</option>--}}
-{{--                                                    <option value="Audit">Audit</option>--}}
-{{--                                                    <option value="Utilities">Utilities</option>--}}
-{{--                                                    <option value="ERP">ERP</option>--}}
-{{--                                                    <option value="Branding">Branding</option>--}}
-{{--                                                    <option value="Warehouse">Warehouse</option>--}}
-{{--                                                    <option value="Transportation">Transportation</option>--}}
-{{--                                                    <option value="Other">Other</option>--}}
-{{--                                                </select>--}}
-{{--                                                <small class="text-danger" id="functional_area_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="form-group col-md-4">--}}
-{{--                                                <select class="form-control"--}}
-{{--                                                        id="textile_sector" name="textile_sector" required>--}}
-{{--                                                    <option value="" selected disabled>Jobs Sector</option>--}}
-{{--                                                    <option value="Ginning">Ginning </option>--}}
-{{--                                                    <option value="Spinning">Spinning</option>--}}
-{{--                                                    <option value="Knitting">Knitting</option>--}}
-{{--                                                    <option value="Weaving">Weaving</option>--}}
-{{--                                                    <option value="Non-Woven">Non-Woven</option>--}}
-{{--                                                    <option value="Wet Processing">Wet Processing</option>--}}
-{{--                                                    <option value="Embroidery">Embroidery</option>--}}
-{{--                                                    <option value="Garments">Garments</option>--}}
-{{--                                                    <option value="Accessories">Accessories</option>--}}
-{{--                                                    <option value="Dyes & Chemicals">Dyes & Chemicals</option>--}}
-{{--                                                    <option value="Retail">Retail</option>--}}
-{{--                                                    <option value="Personal Protective Equipment">Personal Protective Equipment</option>--}}
-{{--                                                    <option value="Institutional">Institutional</option>--}}
-{{--                                                    <option value="Leather">Leather</option>--}}
-{{--                                                    <option value="Footwear & Bags">Footwear & Bags</option>--}}
-{{--                                                    <option value="Home Textiles">Home Textiles</option>--}}
-{{--                                                    <option value="Technical Textiles">Technical Textiles</option>--}}
-{{--                                                    <option value="Other">Other</option>--}}
-{{--                                                </select>--}}
-{{--                                                <small class="text-danger" id="textile_sector_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="form-group col-md-2">--}}
-{{--                                                <input type="number" class="form-control" name="exp_salary" id="exp_salary" placeholder="Expected Salary" required="required">--}}
-{{--                                                <small class="text-danger" id="exp_salary_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="form-group col-md-2">--}}
-{{--                                                <select class="form-control"--}}
-{{--                                                        id="unit" name="unit" required>--}}
-{{--                                                    <option value="" selected disabled>Currency</option>--}}
-{{--                                                    <option value="PKR">PKR</option>--}}
-{{--                                                    <option value="USD">USD</option>--}}
-{{--                                                    <option value="Euro">Euro</option>--}}
-{{--                                                    <option value="Yuan">Yuan</option>--}}
-{{--                                                    <option value="Swiss Franc">Swiss Franc</option>--}}
-{{--                                                    <option value="JPY">JPY</option>--}}
-{{--                                                </select>--}}
-{{--                                                <small class="text-danger" id="unit_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                        <div class="form-row">--}}
-{{--                                            <div class="form-group col-md-4">--}}
-{{--                                                <select name="country" id="countryIdd" class="form-control" required>--}}
-{{--                                                    <option value="" selected disabled>--- Select Country ---</option>--}}
-{{--                                                    @foreach ($countries as $item)--}}
-{{--                                                        <option value="{{$item->name->common}}">{{$item->name->common}}</option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </select>--}}
-{{--                                                <small class="text-danger" id="country_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="form-group col-md-4">--}}
-{{--                                                <select name="city" id="cityId" class="form-control" required>--}}
-{{--                                                    <option value="" selected disabled>--- Select City ---</option>--}}
-{{--                                                </select>--}}
-{{--                                                <small class="text-danger" id="city_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="form-group col-md-4">--}}
-{{--                                                <input type="text" class="form-control" name="key_skills" id="key_skill" placeholder="Input Key Skills" required="required">--}}
-{{--                                                <small class="text-danger" id="key_skills_error"></small>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-row">--}}
-{{--                                            <div class="mt-3 form-group col-md-12 career-img-drop-outer attachment-img-file">--}}
-{{--                                                <label class="d-block text-left text-white mb-2 font-500">Attachment <small class="font-500">(Attach CV)</small></label>--}}
-{{--                                                <div class="custom-file">--}}
-{{--                                                    <input type="file" name="image" id="image" class="custom-file-input" id="customFile">--}}
-{{--                                                    <label class="custom-file-label" for="customFile"><span class="fa fa-download"></span></label>--}}
-{{--                                                    <small class="text-danger" id="image_error"></small>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                        <div class="form-group mt-4 mb-0 text-md-right text-center">--}}
-{{--                                            <button type="submit" class="red-btn" id="cv_create_btnnn">POST YOUR CV</button>--}}
-{{--                                            <button  disabled class="btn-pro d-none red-btn"><span--}}
-{{--                                                    class="spinner-border  spinner-border-sm mr-1" role="status"--}}
-{{--                                                    aria-hidden="true"></span>Processing--}}
-{{--                                            </button>--}}
-{{--                                        </div>--}}
-
-{{--                                    </form>--}}
-
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-                    <!-- Post a cv form -->
                 </div>
             </div>
         </div>

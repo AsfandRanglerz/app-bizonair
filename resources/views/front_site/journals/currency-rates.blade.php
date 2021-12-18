@@ -120,17 +120,17 @@
                     <div class="col-sm-3 px-0">
                         <div class="position-relative ads">
                             @foreach($ads as $ad)
-                                <a href="{{ $ad->link }}" class="text-decoration-none">
-                            <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
-                                </a>
+                            <a href="{{ $ad->link }}" class="text-decoration-none" target="_blank">
+                                <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
+                            </a>
                             <span class="fa fa-info position-absolute info-icon"></span>
                             <span class="img-info"></span>
                             @endforeach
                         </div>
                         <div class="position-relative mt-3 ads">
                             @foreach($ads1 as $ad)
-                           <a href="{{ $ad->link }}" class="text-decoration-none">
-                            <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
+                           <a href="{{ $ad->link }}" class="text-decoration-none" target="_blank">
+                               <img src="{{ $ad->image }}" class="w-100 ads-img" alt="">
                            </a>
                             <span class="fa fa-info position-absolute info-icon"></span>
                             <span class="img-info"></span>
