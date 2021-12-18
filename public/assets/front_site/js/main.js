@@ -923,7 +923,7 @@ $(document).ready(function () {
     /*fibers-and-materials text exist or not*/
 
     /*nav link active onclick*/
-    $(".nav-link").each(function () {
+    $("#garmentsNav .nav-link").each(function () {
         var currentUrl = window.location.href.split('/');
         var currentUrlBase = currentUrl[5];
 

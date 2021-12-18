@@ -170,10 +170,10 @@
                                     </div>
                                 </div>
 
-                                <span class="text-center font-weight-bold heading">COMPANY IMAGES</span>
+                                <span class="mt-2 text-center font-weight-bold heading">COMPANY IMAGES</span>
                                 <div>
                                     <div class="product-images-gallery">
-                                        <ul class="mx-0 my-2 product-gallery edit-comp-prof-imgs">
+                                        <ul class="mx-0 mb-2 product-gallery edit-comp-prof-imgs">
                                             @if(\App\CompanyImage::where('company_id',$about_us->id)->count() > 0)
                                                 @foreach(\App\CompanyImage::where('company_id',$about_us->id)->get() as $file)
                                                     <?php $pathinfo = pathinfo($file->image);

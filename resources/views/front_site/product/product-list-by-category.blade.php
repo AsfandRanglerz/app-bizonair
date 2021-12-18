@@ -32,7 +32,7 @@
 {{--                            <div class="my-1 position-relative">--}}
 {{--                                <h3 class="main-heading">SUB-CATEGORIES</h3>--}}
 {{--                            </div>--}}
-                            <nav class="my-1 navbar navbar-expand-lg navbar-light">
+                            <nav class="my-1 navbar navbar-expand-lg navbar-light" data-toggle="collapse" data-target="#subCatPanel">
                                 <a class="navbar-brand" href="#">Sub-Categories</a>
                                 <button class="navbar-toggler"  data-toggle="collapse" data-target="#subCatPanel" aria-controls="subCatPanel" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="fa fa-angle-down"></span>
@@ -56,7 +56,7 @@
                                         <span class="sub-sub-cat-heading">SUB SUB-Categories</span>
                                         <div class="tab-content" id="v-pills-tabContent">
                                             @foreach( $sub_id_arr as $key =>  $value)
-                                                <div class="tab-pane fade" id="v-pills-cats{{$value}}" role="tabpanel" aria-labelledby="v-pills-cats-tab">
+                                                <div class="tab-pane fade @if ($key == 0) active show @endif" id="v-pills-cats{{$value}}" role="tabpanel" aria-labelledby="v-pills-cats-tab">
                                                     @foreach(\App\Childsubcategory::where('subcategory_id',$value)->orderby('subcategory_id','asc')->get() as $key =>  $childsubcat)
                                                         <a href="{{route('suppliers-products',['category'=>$subcategory->category->slug,'subcategory'=>$childsubcat->subcategory->slug,'childsubcategory'=>$childsubcat->slug])}}" class="nav-link red-link overflow-text-dots-one-line">{{$childsubcat->name}}</a>
                                                     @endforeach
