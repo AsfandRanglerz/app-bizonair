@@ -222,6 +222,11 @@ $(document).ready(function () {
     $('#searchKeyword').focus(function() {
         var search_term = $('#searchKeyword').val();
         $('.search_results_links').removeHighlight().highlight(search_term);
+        setInterval(function(){
+            if($('#searchKeyword').val().length=="") {
+                $('.search-suggestions').hide();
+            }
+        }, 100);
     });
     /*banner search keyword*/
 
