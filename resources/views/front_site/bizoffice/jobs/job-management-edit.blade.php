@@ -251,18 +251,18 @@
                             <input type="hidden" name="id" value="{{ $info->id }}">
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <input type="text" placeholder="Job Title *"
+                                    <input type="text" placeholder="Job Title (Mandatory)"
                                            name="title" id="title" value="{{ $info->title }}" class="form-control" required>
                                     <small class="text-danger" id="title_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text" placeholder="Job Designation *"
+                                    <input type="text" placeholder="Job Designation (Mandatory)"
                                            name="designation" id="designation" value="{{ $info->designation }}" class="form-control"
                                            required>
                                     <small class="text-danger" id="designation_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="email" placeholder="Email Address To Apply *"
+                                    <input type="email" placeholder="Email Address To Apply (Mandatory)"
                                            name="email" id="email" value="{{ $info->email }}" class="form-control"
                                            required>
                                     <small class="text-danger" id="email_error"></small>
@@ -279,7 +279,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-2">
-                                    <input type="number" placeholder="Salary Per Month *"
+                                    <input type="number" placeholder="Salary Per Month (Mandatory)"
                                            name="salary" id="salary" value="{{ $info->salary }}" class="form-control"
                                            required>
                                     <small class="text-danger" id="salary_error"></small>
@@ -288,7 +288,7 @@
                                     <select class="form-control single-select-dropdown"
                                             id="unit" name="unit" required>
                                         <option value=""></option>
-                                        <option disabled>Select Unit *</option>
+                                        <option disabled>Select Unit (Mandatory)</option>
                                         <option value="PKR" @if($info->salary_unit == "PKR") selected @endif>
                                             PKR
                                         </option>
@@ -314,7 +314,7 @@
                                     <select class="form-control single-select-dropdown"
                                             id="textile_sector" name="textile_sector" required>
                                         <option value=""></option>
-                                        <option disabled>Select Job Sector *</option>
+                                        <option disabled>Select Job Sector (Mandatory)</option>
                                         <option value="Ginning" @if($info->textile_sector == "Ginning") selected @endif>Ginning </option>
                                         <option value="Spinning" @if($info->textile_sector == "Spinning") selected @endif>Spinning</option>
                                         <option value="Knitting" @if($info->textile_sector == "Knitting") selected @endif>Knitting</option>
@@ -340,7 +340,7 @@
                                     <select class="form-control single-select-dropdown"
                                             id="functional_area" name="functional_area" required>
                                         <option value=""></option>
-                                        <option disabled>Select Functional Area *</option>
+                                        <option disabled>Select Functional Area (Mandatory)</option>
                                         <option value="Electrical" @if($info->functional_area == "Electrical") selected @endif>Electrical </option>
                                         <option value="Mechanical" @if($info->functional_area == "Mechanical") selected @endif>Mechanical</option>
                                         <option value="Human Resources" @if($info->functional_area == "Human Resources") selected @endif>Human Resources</option>
@@ -381,7 +381,7 @@
                                 <div class="form-group col-md-4">
                                     <select name="job_type" id="job_type" class="form-control single-select-dropdown" required>
                                         <option value=""></option>
-                                        <option disabled>Select Job Type *</option>
+                                        <option disabled>Select Job Type (Mandatory)</option>
                                         <option value="{{ $info->job_type }}" selected>{{ $info->job_type }}</option>
                                         <option value="Freelance">Freelance</option>
                                         <option value="Full Time">Full Time</option>
@@ -394,7 +394,7 @@
                                 <div class="form-group col-md-4">
                                     <select name="job_level" id="job_level" class="form-control single-select-dropdown" required>
                                         <option value=""></option>
-                                        <option disabled>Select Career Level *</option>
+                                        <option disabled>Select Career Level (Mandatory)</option>
                                         <option value="{{ $info->job_level }}" selected>{{ $info->job_level }}</option>
                                         <option value="Intern Level">Intern Level</option>
                                         <option value="Entry Level">Entry Level</option>
@@ -408,7 +408,7 @@
                                     <select class="form-control single-select-dropdown"
                                             id="work_experience" name="work_experience" required>
                                         <option value=""></option>
-                                        <option disabled>Select Experience *</option>
+                                        <option disabled>Select Experience (Mandatory)</option>
                                         <option value="Fresh / No Experience" @if($info->work_experience == "Fresh / No Experience") selected @endif>
                                             Fresh / No Experience
                                         </option>
@@ -438,7 +438,7 @@
                                 <div class="form-group col-md-4">
                                     <select name="country" id="countryId" class="form-control single-select-dropdown" required>
                                         <option value=""></option>
-                                        <option disabled>Select Country *</option>
+                                        <option disabled>Select Country (Mandatory)</option>
                                         @foreach ($countries as $item)
                                             <option value="{{$item->name->common}}" @if($info->country == $item->name->common) selected @endif >{{$item->name->common}}</option>
                                         @endforeach
@@ -448,13 +448,13 @@
                                 <div class="form-group col-md-4">
                                     <select name="city" id="cityId" class="form-control single-select-dropdown" required>
                                         <option value=""></option>
-                                        <option disabled>Select City *</option>
+                                        <option disabled>Select City (Mandatory)</option>
                                         <option value="{{$info->city}}" selected>{{$info->city}}</option>
                                     </select>
                                     <small class="text-danger" id="city_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text" placeholder="Input Office Address *"
+                                    <input type="text" placeholder="Input Office Address (Mandatory)"
                                            name="address" id="address"  value="{{ $info->address }}" class="form-control" required>
                                     <small class="text-danger" id="address_error"></small>
                                 </div>
@@ -463,7 +463,7 @@
                                 <div class="form-group col-md-4">
                                     <select name="gender" id="gender" class="form-control single-select-dropdown">
                                         <option value=""></option>
-                                        <option disabled>Select Gender *</option>
+                                        <option disabled>Select Gender (Mandatory)</option>
                                         <option value="{{$info->gender}}" selected>{{ucfirst($info->gender)}}</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
@@ -477,25 +477,25 @@
                                     >
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text" placeholder="Input Required Qualification *"
+                                    <input type="text" placeholder="Input Required Qualification (Mandatory)"
                                            name="qualification" id="qualification" value="{{ $info->qualification }}" class="form-control" required>
                                     <small class="text-danger" id="qualification_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <input type="text" placeholder="Input Required Job Skills *"
+                                    <input type="text" placeholder="Input Required Job Skills (Mandatory)"
                                            name="skills" id="skills" value="{{ $info->skills }}" class="form-control">
                                     <small class="text-danger" id="skills_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="number" placeholder="Input Number Of Job Vacancies *"
+                                    <input type="number" placeholder="Input Number Of Job Vacancies (Mandatory)"
                                            name="vacancies" id="vacancies" value="{{ $info->vacancies }}" class="form-control"
                                            required>
                                     <small class="text-danger" id="vacancies_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text" autocomplete="off" placeholder="Set Closing Date *"
+                                    <input type="text" autocomplete="off" placeholder="Set Closing Date (Mandatory)"
                                            name="datePicker" value="{{ $info->closing_date }}"
                                            class="form-control closingdatepicker"
                                            required>
@@ -508,7 +508,7 @@
                                         <label class="d-none font-500">Company <span class="required">*</span></label>
                                         <select name="company" id="company" class="form-control other-option-included single-select-dropdown" required>
                                             <option value=""></option>
-                                            <option disabled>Select Company *</option>
+                                            <option disabled>Select Company (Mandatory)</option>
                                             @foreach(getCompanies(auth()->id()) as $company)
                                                 <option value="{{$company->company_name}}" @if($info->company == $company->company_name) selected @endif>{{ucwords($company->company_name)}}</option>
                                             @endforeach
@@ -592,43 +592,43 @@
         $(document).ready(function () {
             /*select single dropdown*/
             $("#unit").select2({
-                placeholder: "Select Unit *"
+                placeholder: "Select Unit (Mandatory)"
             });
 
             $("#textile_sector").select2({
-                placeholder: "Select Job Sector *"
+                placeholder: "Select Job Sector (Mandatory)"
             });
 
             $("#functional_area").select2({
-                placeholder: "Select Functional Area *"
+                placeholder: "Select Functional Area (Mandatory)"
             });
 
             $("#job_type").select2({
-                placeholder: "Select Job Type *"
+                placeholder: "Select Job Type (Mandatory)"
             });
 
             $("#job_level").select2({
-                placeholder: "Select Career Level *"
+                placeholder: "Select Career Level (Mandatory)"
             });
 
             $("#work_experience").select2({
-                placeholder: "Select Experience *"
+                placeholder: "Select Experience (Mandatory)"
             });
 
             $("#countryId").select2({
-                placeholder: "Select Country *"
+                placeholder: "Select Country (Mandatory)"
             });
 
             $("#cityId").select2({
-                placeholder: "Select City *"
+                placeholder: "Select City (Mandatory)"
             });
 
             $("#gender").select2({
-                placeholder: "Select Gender *"
+                placeholder: "Select Gender (Mandatory)"
             });
 
             $("#company").select2({
-                placeholder: "Select Company *"
+                placeholder: "Select Company (Mandatory)"
             });
             /*select single dropdown*/
 

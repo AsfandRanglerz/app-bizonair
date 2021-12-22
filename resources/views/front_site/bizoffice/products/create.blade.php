@@ -50,7 +50,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label class="font-500">Post Your Lead As
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
 
                                             <!-- helping video -->
@@ -112,12 +112,12 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
                                             <label for="category" class="d-none font-500">Main Category
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="position-relative">
                                                 <select class="form-control product-categories" id="category"
                                                         name="category" required>
-                                                    <option disabled selected>Please select category *</option>
+                                                    <option disabled selected>Please select category (Mandatory)</option>
                                                     @foreach(\App\Category::all() as $category)
                                                         <option value="{{ $category->id }}"
                                                                 cat-val="{{ $category->name }}"
@@ -134,13 +134,13 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="sub_category" class="d-none font-500">Sub-Category
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="position-relative d-flex flex-column-reverse">
                                                 <select class="form-control product-subcategories" id="sub_category"
                                                         name="sub_category" required>
                                                     <option value=""></option>
-                                                    <option disabled>Please select category first *</option>
+                                                    <option disabled>Please select category first (Mandatory)</option>
                                                 </select>
                                                 <div
                                                     class="d-none position-absolute spinner-border text-danger loading-icon">
@@ -153,27 +153,27 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 d-flex flex-column subCat-Sec">
                                             <label for="sub_sub_category" class="d-none font-500">Product Type
-                                                <span class="required"> *</span></label>
+                                                <span class="required"> (Mandatory)</span></label>
                                             <select class="form-control single-select-dropdown" id="sub_sub_category"
                                                     name="sub_sub_category"
                                                     required>
                                                 <option value=""></option>
-                                                <option disabled>Please select category first *</option>
+                                                <option disabled>Please select category first (Mandatory)</option>
                                             </select>
 
                                             <small class="text-danger" id="sub_sub_category_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 add-sub-sub-cat">
                                             <label class="d-none font-500">Add Product Type <span
-                                                    class="required"> *</span></label>
-                                            <input type="text" name="add_sub_sub_category" class="form-control" placeholder="Add Product Type *"
+                                                    class="required"> (Mandatory)</span></label>
+                                            <input type="text" name="add_sub_sub_category" class="form-control" placeholder="Add Product Type (Mandatory)"
                                                    required>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
                                             <label for="subject" class="d-none font-500">Subject
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="input-group">
                                                 <input type="text" id="subject" class="h-auto form-control" maxlength = "80" name="subject"
@@ -186,11 +186,11 @@
                                         </div>
                                         <div class="form-group col-lg-6 product-name">
                                             <label for="product_service_name" class="d-none font-500">Product Name
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="input-group">
                                                 <input type="text" id="product_service_name" class="h-auto form-control" maxlength = "50"
-                                                       name="product_service_name" placeholder="Product Name *" required>
+                                                       name="product_service_name" placeholder="Product Name (Mandatory)" required>
                                                 <div class="input-group-append counter-span">
                                                     <span class="text-danger font-500"><span class="counter-total-digits">0</span>/50</span>
                                                 </div>
@@ -571,7 +571,7 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="product_images" class="font-500">Product Images <span
-                                                    class="required"> *</span><small class="font-500"> (Note: First
+                                                    class="required"> (Mandatory)</span><small class="font-500"> (Note: First
                                                     image will be displayed as Ad Cover Photo)</small><br><small
                                                     class="font-500">(Atleast one product image |
                                                     Upto
@@ -883,10 +883,10 @@
                                                    placeholder="Manufacturer Name (Optional) - Manufacture spelling must be correct to be visible in the search.">
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <label for="origin" class="d-none font-500">Product Origin <span class="required"> *</span></label>
+                                            <label for="origin" class="d-none font-500">Product Origin <span class="required"> (Mandatory)</span></label>
                                             <select class="form-control origin" id="origin" name="origin" required>
                                                 <option value=""></option>
-                                                <option disabled>Product Origin *</option>
+                                                <option disabled>Product Origin (Mandatory)</option>
                                                 <option value="Any">Any</option>
                                                 @foreach(\DB::table('countries')->get() as $country)
                                                     <option
@@ -903,7 +903,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">Fibre Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="d-flex">
                                                     <div class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio"
@@ -934,15 +934,15 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
                                                 <label class="d-none font-500">Other Fibre Type <span
-                                                        class="required"> *</span></label>
-                                                <input type="text" name="other_purpose" class="form-control" placeholder="Other Fibre Type *"
+                                                        class="required"> (Mandatory)</span></label>
+                                                <input type="text" name="other_purpose" class="form-control" placeholder="Other Fibre Type (Mandatory)"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="size" class="d-none font-500">Fibre Size/Length <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="size" class="form-control"
                                                        name="size" placeholder="Fibre Size/Length (Mandatory) - e.g. 1-2 cm,2-3 cm,3-4 cm,4+ cm, Other"
                                                        required>
@@ -973,7 +973,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-none font-500">Yarn Count <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input name="yarn_count" class="form-control"
                                                        placeholder="Yarn Count (Mandatory) - i.e 20 Ne,80 Ne, 50 Dtex, 150 Danier, Other"
                                                        required>
@@ -982,7 +982,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label class="d-none font-500">Yarn Count Unit <span class="required"> *</span></label>
+                                                <label class="d-none font-500">Yarn Count Unit <span class="required"> (Mandatory)</span></label>
                                                 <select id="yarn_count_unit" name="yarn_count_unit"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
@@ -1002,20 +1002,20 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
                                                 <label class="d-none font-500">Other Count Unit <span
-                                                        class="required"> *</span></label>
-                                                <input type="text" name="other_yarn_count_unit" class="form-control" placeholder="Other Count Unit *"
+                                                        class="required"> (Mandatory)</span></label>
+                                                <input type="text" name="other_yarn_count_unit" class="form-control" placeholder="Other Count Unit (Mandatory)"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-none font-500">Yarn Attribute<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <select id="yarn_attribute" name="yarn_attribute"
                                                         class="form-control single-select-dropdown"
                                                         required>
                                                     <option value=""></option>
-                                                    <option disabled>Select Yarn Attribute *</option>
+                                                    <option disabled>Select Yarn Attribute (Mandatory)</option>
                                                     <option value="Greige">Greige</option>
                                                     <option value="RFD">RFD</option>
                                                     <option value="Dyed">Dyed</option>
@@ -1030,20 +1030,20 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
                                                 <label class="d-none font-500">Other Yarn Attribute <span
-                                                        class="required"> *</span></label>
-                                                <input type="text" name="other_yarn_attribute" class="form-control" placeholder="Other Yarn Attribute *"
+                                                        class="required"> (Mandatory)</span></label>
+                                                <input type="text" name="other_yarn_attribute" class="form-control" placeholder="Other Yarn Attribute (Mandatory)"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-none font-500">Technology<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <select id="yarn_technology" name="yarn_technology"
                                                         class="form-control single-select-dropdown"
                                                         required>
                                                     <option value=""></option>
-                                                    <option disabled>Select Yarn Technology *</option>
+                                                    <option disabled>Select Yarn Technology (Mandatory)</option>
                                                     <option value="Ring">Ring</option>
                                                     <option value="Rotor">Rotor</option>
                                                     <option value="Jet/MJS">Jet/MJS</option>
@@ -1059,15 +1059,15 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
                                                 <label class="d-none font-500">Other Technology <span
-                                                        class="required"> *</span></label>
-                                                <input type="text" name="other_yarn_technology" class="form-control" placeholder="Other Technology *"
+                                                        class="required"> (Mandatory)</span></label>
+                                                <input type="text" name="other_yarn_technology" class="form-control" placeholder="Other Technology (Mandatory)"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-none font-500">Yarn Grade <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input name="yarn_grade" class="form-control"
                                                        placeholder="Yarn Grade (Mandatory) - i.e A-Grade, B-Grade, Other"
                                                        required>
@@ -1095,7 +1095,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500" for="count_type">Count Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" class="custom-control-input radio-btn"
                                                            id="countSingle" value="Single" name="count_type"
@@ -1139,15 +1139,15 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
                                                 <label class="d-none font-500">Other Count Type <span
-                                                        class="required"> *</span></label>
-                                                <input type="text" name="other_count_type" class="form-control" placeholder="Other Count Type *"
+                                                        class="required"> (Mandatory)</span></label>
+                                                <input type="text" name="other_count_type" class="form-control" placeholder="Other Count Type (Mandatory)"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">Yarn Speciality <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" class="custom-control-input radio-btn"
                                                            id="yarnRegular" value="Regular"
@@ -1194,15 +1194,15 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
                                                 <label class="d-none font-500">Other Yarn Speciality <span
-                                                        class="required"> *</span></label>
-                                                <input type="text" name="other_yarn_speciality" class="form-control" placeholder="Other Yarn Speciality *"
+                                                        class="required"> (Mandatory)</span></label>
+                                                <input type="text" name="other_yarn_speciality" class="form-control" placeholder="Other Yarn Speciality (Mandatory)"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">End Use/Application <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" class="custom-control-input radio-btn"
                                                            id="usageWrap"
@@ -1277,8 +1277,8 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
                                                 <label class="d-none font-500">Other End Use/Application <span
-                                                        class="required"> *</span></label>
-                                                <input type="text" name="other_usage_type" class="form-control" placeholder="Other End Use/Application *"
+                                                        class="required"> (Mandatory)</span></label>
+                                                <input type="text" name="other_usage_type" class="form-control" placeholder="Other End Use/Application (Mandatory)"
                                                        required>
                                             </div>
                                         </div>
@@ -1292,7 +1292,7 @@
                                                 <select id="knitted_fabric_types" name="knitted_fabric_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
-                                                    <option disabled>Select Fabric Type *</option>
+                                                    <option disabled>Select Fabric Type (Mandatory)</option>
                                                     <option value="Greige">Greige</option>
                                                     <option value="Dyed">Dyed</option>
                                                     <option value="Yarn Dyed">Yarn Dyed</option>
@@ -1307,9 +1307,9 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
                                                 <label class="d-none font-500">Other Fabric Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_knitted_fabric_type"
-                                                       class="form-control" placeholder="Other Fabric Type *">
+                                                       class="form-control" placeholder="Other Fabric Type (Mandatory)">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -1319,7 +1319,7 @@
                                                 <select name="knitted_knitting_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
-                                                    <option disabled>Select Knitting Type *</option>
+                                                    <option disabled>Select Knitting Type (Mandatory)</option>
                                                     <option value="Warp">Warp</option>
                                                     <option value="Weft">Weft</option>
                                                     <option value="Circular">Circular</option>
@@ -1331,16 +1331,16 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
                                                 <label class="d-none font-500">Other Knitting Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_knitted_knitting_type"
-                                                       class="form-control" placeholder="Other Knitting Type *"
+                                                       class="form-control" placeholder="Other Knitting Type (Mandatory)"
                                                        required>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="knitted_fabric_construction" class="d-none font-500">Fabric
-                                                    Construction <span class="required"> *</span></label>
+                                                    Construction <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="knitted_fabric_construction" class="form-control"
                                                        name="knitted_fabric_construction"
                                                        placeholder="Fabric Construction (Mandatory) - e.g. 80*80/100*80, Other" required>
@@ -1351,7 +1351,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="knitted_gsm_thickness" class="d-none font-500">GSM/Thickness <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="knitted_gsm_thickness" class="form-control"
                                                        name="knitted_gsm_thickness"
                                                        placeholder="GSM/Thickness (Mandatory) - e.g. 75 GSM,150 GSM, Other"
@@ -1390,7 +1390,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">Manufacturing Technique<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" class="custom-control-input radio-btn"
                                                            id="knittedHandLoom" name="knitted_manufact"
@@ -1459,16 +1459,16 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
                                                 <label class="d-none font-500">Other Manufacturing Technique <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="other_knitted_manufact"
                                                        name="other_knitted_manufact"
-                                                       class="form-control" placeholder="Other Manufacturing Technique *">
+                                                       class="form-control" placeholder="Other Manufacturing Technique (Mandatory)">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group weaving-checkbox col-lg-6">
                                                 <label class="font-500">Yarn Type<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio" class="custom-control-input radio-btn"
@@ -1504,16 +1504,16 @@
                                                 <small class="text-danger" id="knitted_yarn_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="d-none font-500">Other Yarn Type <span class="required"> *</span></label>
+                                                <label class="d-none font-500">Other Yarn Type <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="other_knitted_yarn_type"
                                                        name="other_knitted_yarn_type"
-                                                       class="form-control" placeholder="Other Yarn Type *">
+                                                       class="form-control" placeholder="Other Yarn Type (Mandatory)">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Features <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="form-check form-check-inline custom-control custom-checkbox custom-control-inline">
@@ -1607,14 +1607,14 @@
                                                         class="required">*</span></label>
                                                 <input name="other_knitted_features" id="knittedFeaturesOther"
                                                        type="text"
-                                                       class="form-control" placeholder="Other Features *" required>
+                                                       class="form-control" placeholder="Other Features (Mandatory)" required>
                                                 <small class="text-danger" id="knittedFeaturesOther_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">End Use/Application <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div
                                                     class="form-check form-check-inline custom-control custom-checkbox custom-control-inline">
                                                     <input type="checkbox" class="custom-control-input Use-check"
@@ -1696,7 +1696,7 @@
                                                 <label class="d-none font-500">Other End Use Application <span
                                                         class="required">*</span></label>
                                                 <input name="other_knitted_use" id="otherKnittedUse" type="text"
-                                                       class="form-control" placeholder="Other End Use Application *"
+                                                       class="form-control" placeholder="Other End Use Application (Mandatory)"
                                                        required>
                                                 <small class="text-danger" id="otherKnittedUse_error"></small>
                                             </div>
@@ -1707,11 +1707,11 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 fabric-type">
                                                 <label class="font-500">Fabric Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <select id="woven_fabric_types" name="woven_fabric_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
-                                                    <option disabled>Select Fabric Type *</option>
+                                                    <option disabled>Select Fabric Type (Mandatory)</option>
                                                     <option value="Greige">Greige</option>
                                                     <option value="Dyed">Dyed</option>
                                                     <option value="Yarn Dyed">Yarn Dyed</option>
@@ -1725,19 +1725,19 @@
                                                 <small class="text-danger" id="woven_fabric_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
-                                                <label class="d-none font-500">Other Woven Fabric Type <span class="required"> *</span></label>
-                                                <input type="text" name="other_woven_fabric_type" class="form-control" placeholder="Other Woven Fabric Type *">
+                                                <label class="d-none font-500">Other Woven Fabric Type <span class="required"> (Mandatory)</span></label>
+                                                <input type="text" name="other_woven_fabric_type" class="form-control" placeholder="Other Woven Fabric Type (Mandatory)">
                                                 <small class="text-danger" id="other_woven_fabric_type_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 weave-type">
                                                 <label class="d-none font-500">Weave Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <select id="woven_weave_types" name="woven_weave_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
-                                                    <option disabled>Select Weave Type *</option>
+                                                    <option disabled>Select Weave Type (Mandatory)</option>
                                                     <option value="Plain">Plain</option>
                                                     <option value="Twill">Twill</option>
                                                     <option value="Satin">Satin</option>
@@ -1757,14 +1757,14 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div">
                                                 <label class="d-none font-500">Other Woven Weave Type <span
-                                                        class="required"> *</span></label>
-                                                <input type="text" name="other_woven_weave_type" class="form-control" placeholder="Other Woven Weave Type *">
+                                                        class="required"> (Mandatory)</span></label>
+                                                <input type="text" name="other_woven_weave_type" class="form-control" placeholder="Other Woven Weave Type (Mandatory)">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="woven_fabric_construction" class="d-none font-500">Fabric
-                                                    Construction <span class="required"> *</span></label>
+                                                    Construction <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="woven_fabric_construction" class="form-control"
                                                        name="woven_fabric_construction"
                                                        placeholder="Fabric Construction (Mandatory) - e.g. 80*80/100*80, Other"
@@ -1775,7 +1775,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="woven_gsm_thickness" class="d-none font-500">GSM/Thickness <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="woven_gsm_thickness" class="form-control"
                                                        name="woven_gsm_thickness"
                                                        placeholder="GSM/Thickness (Mandatory) - e.g. 75 GSM,150 GSM, Other"
@@ -1815,7 +1815,7 @@
                                         <div class="form-row">
                                             <div class="form-group weaving-checkbox col-lg-6">
                                                 <label class="font-500">Manufacturing Technique<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio" class="custom-control-input radio-btn"
@@ -1888,15 +1888,15 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div" id="addWovenOtherWeaving">
                                                 <label class="d-none font-500">Other Manufacturing Technique<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="other_woven_manufact" name="other_woven_manufact"
-                                                       class="form-control" placeholder="Other Manufacturing Technique *">
+                                                       class="form-control" placeholder="Other Manufacturing Technique (Mandatory)">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group weaving-checkbox col-lg-6">
                                                 <label class="font-500">Yarn Type<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio" class="custom-control-input radio-btn"
@@ -1931,15 +1931,15 @@
                                                 <small class="text-danger" id="woven_yarn_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div" id="otherWovenWeaving">
-                                                <label class="d-none font-500">Other Yarn Type <span class="required"> *</span></label>
+                                                <label class="d-none font-500">Other Yarn Type <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="other_woven_yarn" name="other_woven_yarn"
-                                                       class="form-control" placeholder="Other Yarn Type *">
+                                                       class="form-control" placeholder="Other Yarn Type (Mandatory)">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Features <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="form-check form-check-inline custom-control custom-checkbox custom-control-inline">
@@ -2035,14 +2035,14 @@
                                                 <label class="d-none font-500">Other Features <span
                                                         class="required">*</span></label>
                                                 <input id="other_woven_features" name="other_woven_features" type="text"
-                                                       class="form-control" placeholder="Other Features *" required>
+                                                       class="form-control" placeholder="Other Features (Mandatory)" required>
                                                 <small class="text-danger" id="other_woven_features_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">End Use/Application <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div
                                                     class="form-check form-check-inline custom-control custom-checkbox custom-control-inline">
                                                     <input type="checkbox" class="custom-control-input Use-check"
@@ -2123,7 +2123,7 @@
                                                 <label class="d-none font-500">Other End Use/Application <span
                                                         class="required">*</span></label>
                                                 <input id="other_woven_use" name="other_woven_use" type="text"
-                                                       class="form-control" placeholder="Other End Use/Application *"
+                                                       class="form-control" placeholder="Other End Use/Application (Mandatory)"
                                                        required>
                                                 <small class="text-danger" id="other_woven_use_error"></small>
                                             </div>
@@ -2138,7 +2138,7 @@
                                                 <select id="non_woven_fabric_types" name="non_woven_fabric_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
-                                                    <option disabled>Select Fabric Type *</option>
+                                                    <option disabled>Select Fabric Type (Mandatory)</option>
                                                     <option value="Greige">Greige</option>
                                                     <option value="Dyed">Dyed</option>
                                                     <option value="Yarn Dyed">Yarn Dyed</option>
@@ -2153,9 +2153,9 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div add-fabric-type">
                                                 <label class="d-none font-500">Other Fabric Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_non_woven_fabric_type"
-                                                       class="form-control" placeholder="Other Fabric Type *">
+                                                       class="form-control" placeholder="Other Fabric Type (Mandatory)">
                                             </div>
                                         </div>
                                         <div class="form-row">
@@ -2165,7 +2165,7 @@
                                                 <select id="non_woven_types" name="non_woven_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
-                                                    <option disabled>Select Non Woven Type *</option>
+                                                    <option disabled>Select Non Woven Type (Mandatory)</option>
                                                     <option value="Spun Lace">Spun Lace</option>
                                                     <option value="Composite">Composite</option>
                                                     <option value="PP Needle Felt">PP Needle Felt</option>
@@ -2180,14 +2180,14 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div add-fabric-type">
                                                 <label class="d-none font-500">Other Type <span
-                                                        class="required"> *</span></label>
-                                                <input type="text" name="other_non_woven_type" class="form-control" placeholder="Other Type *">
+                                                        class="required"> (Mandatory)</span></label>
+                                                <input type="text" name="other_non_woven_type" class="form-control" placeholder="Other Type (Mandatory)">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="non_woven_fabric_construction" class="d-none font-500">Fabric
-                                                    Construction <span class="required"> *</span></label>
+                                                    Construction <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="non_woven_fabric_construction"
                                                        class="form-control"
                                                        name="non_woven_fabric_construction"
@@ -2198,7 +2198,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="non_woven_gsm_thickness" class="d-none font-500">GSM/Thickness
-                                                    <span class="required"> *</span></label>
+                                                    <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="non_woven_gsm_thickness" class="form-control"
                                                        name="non_woven_gsm_thickness"
                                                        placeholder="GSM/Thickness (Mandatory) - e.g. 75 GSM,150 GSM, Other"
@@ -2242,7 +2242,7 @@
                                         <div class="form-row">
                                             <div class="form-group weaving-checkbox col-lg-6">
                                                 <label class="d-block font-500">Manufacturing Technique<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" class="custom-control-input radio-btn"
                                                            value="Hand Loom" id="non_wovenHandLoom"
@@ -2314,16 +2314,16 @@
                                             </div>
                                             <div class="form-group col-lg-6 other-div" id="addNonWovenOtherWeaving">
                                                 <label class="d-none font-500">Other Manufacturing Technique <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="other_non_woven_manufact"
                                                        name="other_non_woven_manufact"
-                                                       class="form-control" placeholder="Other Manufacturing Technique *">
+                                                       class="form-control" placeholder="Other Manufacturing Technique (Mandatory)">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group weaving-checkbox col-lg-6">
                                                 <label class="font-500">Yarn Type<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio" class="custom-control-input radio-btn"
@@ -2359,15 +2359,15 @@
                                                 <small class="text-danger" id="non_woven_yarn_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div" id="addOtherNonWovenWeaving">
-                                                <label class="d-none font-500">Other Yarn Type <span class="required"> *</span></label>
+                                                <label class="d-none font-500">Other Yarn Type <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="other_non_woven_yarn" name="other_non_woven_yarn"
-                                                       class="form-control" placeholder="Other Yarn Type *">
+                                                       class="form-control" placeholder="Other Yarn Type (Mandatory)">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Features <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="form-check form-check-inline custom-control custom-checkbox custom-control-inline">
@@ -2471,14 +2471,14 @@
                                                         class="required">*</span></label>
                                                 <input id="other_non_woven_features" name="other_non_woven_features"
                                                        type="text"
-                                                       class="form-control" placeholder="Other Features *" required>
+                                                       class="form-control" placeholder="Other Features (Mandatory)" required>
                                                 <small class="text-danger" id="other_non_woven_features_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">End Use/Application <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="form-check form-check-inline custom-control custom-checkbox custom-control-inline">
@@ -2563,7 +2563,7 @@
                                                 <label class="d-none font-500">Other End Use/Application <span
                                                         class="required">*</span></label>
                                                 <input id="other_non_woven_use" name="other_non_woven_use" type="text"
-                                                       class="form-control" placeholder="Other End Use/Application *"
+                                                       class="form-control" placeholder="Other End Use/Application (Mandatory)"
                                                        required>
                                                 <small class="text-danger" id="other_non_woven_use_error"></small>
                                             </div>
@@ -2655,14 +2655,14 @@
                                                 <label for="service_type" class="d-none font-500">Type of Service <span
                                                         class="required">*</span></label>
                                                 <input type="text" id="service_type" class="form-control"
-                                                       name="service_type" placeholder="Type of Service *" required>
+                                                       name="service_type" placeholder="Type of Service (Mandatory)" required>
                                                 <small class="text-danger" id="service_type_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Warranty <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="custom-control custom-radio custom-control-inline w-unset">
@@ -2692,7 +2692,7 @@
                                                 <label for="warranty_period" class="d-none font-500">Warranty Period <span
                                                         class="required">*</span></label>
                                                 <input type="text" id="warranty_period" class="form-control"
-                                                       name="warranty_period" placeholder="Warranty Period *" required>
+                                                       name="warranty_period" placeholder="Warranty Period (Mandatory)" required>
                                                 <small class="text-danger" id="warranty_period_error"></small>
                                             </div>
                                         </div>
@@ -2726,9 +2726,9 @@
                                             </div>
                                             <div class="form-group col-lg-6 certify-services">
                                                 <label for="certification_details" class="d-none font-500">Certification
-                                                    Details <span class="required"> *</span></label>
+                                                    Details <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="certification_details" class="form-control"
-                                                       name="certification_details" placeholder="Certification Details *"
+                                                       name="certification_details" placeholder="Certification Details (Mandatory)"
                                                        required>
                                                 <small class="text-danger" id="certification_details_error"></small>
                                             </div>
@@ -2757,14 +2757,14 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="material" class="d-none font-500">Material Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="material" class="form-control" name="material"
                                                        placeholder="Material Type (Mandatory) - i.e Cotton, Polyester, Nylon, Blend, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="composition" class="d-none font-500">Composition/Construction <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="composition" class="form-control"
                                                        name="composition"
                                                        placeholder="Composition/Construction (Mandatory) - e.g. 60% Cotton, 40% Polyester, 80*80/100*80, 2 ply, Other"
@@ -2772,7 +2772,7 @@
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="size_age_group" class="d-none font-500">Size/Age Group <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="size_age_group" class="form-control"
                                                        name="size_age_group"
                                                        placeholder="Size/Age Group (Mandatory) - e.g. i.e XS-S-M-L-XL, 5-10 Years, King Size, Queen Size, Other"
@@ -2781,7 +2781,7 @@
 
                                             <div class="form-group col-lg-6">
                                                 <label for="colour" class="d-none font-500">Color <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="colour" class="form-control" name="colour"
                                                        placeholder="Color (Mandatory) - e.g. Blue, Black, Grey, Green, Red, Multi, Other"
                                                        required>
@@ -2856,7 +2856,7 @@
                                                             class="font-500"> (Optional)</small></label>
                                                     <select class="form-control" id="origin1" name="origin1">
                                                         <option value=""></option>
-                                                        <option disabled>Product Origin *</option>
+                                                        <option disabled>Product Origin (Mandatory)</option>
                                                         @foreach(\App\Country::all() as $country)
                                                             <option
                                                                 @if($user->my_office->creator->country_id == $country->id) selected
@@ -2869,7 +2869,7 @@
                                                             class="required">*</span></label>
                                                     <input type="text" id="chemicals_listed1"
                                                            name="chemicals_listed1"
-                                                           class="form-control" placeholder="Chemicals Listed *"
+                                                           class="form-control" placeholder="Chemicals Listed (Mandatory)"
                                                            required>
                                                     <small class="text-danger" id="chemicals_listed1_error"></small>
                                                 </div>
@@ -2881,7 +2881,7 @@
                                                            placeholder="Additional Info (Optional)">
                                                 </div>
                                                 <div class="form-group col-sm-6">
-                                                    <label class="font-500">Supply Type <span class="required"> *</span></label>
+                                                    <label class="font-500">Supply Type <span class="required"> (Mandatory)</span></label>
                                                     <div class="d-flex">
                                                         <div
                                                             class="w-unset custom-control custom-radio manufacturer-supply-type custom-control-inline">
@@ -2921,7 +2921,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="material_type" class="d-none font-500">Material Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="material_type" class="form-control"
                                                        name="material_type"
                                                        placeholder="Material Type (Mandatory) - e.g. Cotton, Polyester, Sheep Leather, Metal, Other"
@@ -2929,7 +2929,7 @@
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="construction" class="d-none font-500">Composition/Construction
-                                                    <span class="required"> *</span></label>
+                                                    <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="construction" class="form-control"
                                                        name="construction"
                                                        placeholder="Composition/Construction (Mandatory) - e.g. 60% Cotton, 40% Polyester, 80*80/100*80, Bronze, Other"
@@ -2937,14 +2937,14 @@
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="size_age" class="d-none font-500">Size/Age Group <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="size_age" class="form-control" name="size_age"
                                                        placeholder="Size/Age Group (Mandatory) - e.g. XS-S-M-L-XL, 1-2 Years, 5-10 Years, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="color" class="d-none font-500">Color <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="color" class="form-control" name="color"
                                                        placeholder="Color (Mandatory) - e.g. Blue, Black, Grey, Green, Red, Multi, Other"
                                                        required>
@@ -3121,7 +3121,7 @@
                                                     class="select2-multiple select-suitable-type form-control required-control"
                                                     multiple="multiple" required>
                                                 <option value=""></option>
-                                                <option disabled>Dealing Product As *</option>
+                                                <option disabled>Dealing Product As (Mandatory)</option>
                                                 <option value="Manufacturer">Manufacturer</option>
                                                 <option value="Sole Agent">Sole Agent</option>
                                                 <option value="Stockist">Stockist</option>
@@ -3136,7 +3136,7 @@
                                                     class="required">*</span></label>
                                             <input type="text" id="other_dealing_as" maxlength="50"
                                                    name="other_dealing_as"
-                                                   class="form-control" placeholder="Add Other Details *" required>
+                                                   class="form-control" placeholder="Add Other Details (Mandatory)" required>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -3147,7 +3147,7 @@
                                                     class="select2-multiple select-target-country form-control required-control"
                                                     multiple="multiple" id="focused_selling_countries" required>
                                                 <option value=""></option>
-                                                <option disabled>Target Selling Country *</option>
+                                                <option disabled>Target Selling Country (Mandatory)</option>
                                                 @foreach(\DB::table('countriyes')->get() as $country)
                                                     <option
                                                         value="{{ $country->country_name }}">{{ $country->country_name }}</option>
@@ -3198,7 +3198,7 @@
                                                     <select class="form-control other-option-included"
                                                             id="unit_price_unit" name="unit_price_unit" required>
                                                         <option value=""></option>
-                                                        <option disabled>Per Unit *</option>
+                                                        <option disabled>Per Unit (Mandatory)</option>
                                                         <option value="20' Container">20' Container</option>
                                                         <option value="40' Container">40' Container</option>
                                                         <option value="Bale">Bale</option>
@@ -3237,7 +3237,7 @@
                                                         <span
                                                             class="required">*</span></label>
                                                     <input type="text" name="other_unit_price_unitt"
-                                                           class="form-control" placeholder="Per Unit *" required>
+                                                           class="form-control" placeholder="Per Unit (Mandatory)" required>
                                                     <small class="text-danger"
                                                            id="other_unit_price_unitt_error"></small>
                                                 </div>
@@ -3269,7 +3269,7 @@
                                                     <select class="form-control other-option-included"
                                                             id="target_price_unit" name="target_price_unit" required>
                                                         <option value=""></option>
-                                                        <option disabled>Per Unit *</option>
+                                                        <option disabled>Per Unit (Mandatory)</option>
                                                         <option value="20' Container">20' Container</option>
                                                         <option value="40' Container">40' Container</option>
                                                         <option value="Bale">Bale</option>
@@ -3320,7 +3320,7 @@
                                             <select class="form-control single-select-dropdown"
                                                     id="suitable_currencies" name="suitable_currencies" required>
                                                 <option value=""></option>
-                                                <option disabled>Select Suitable Currency *</option>
+                                                <option disabled>Select Suitable Currency (Mandatory)</option>
                                                 <option value="PKR">PKR</option>
                                                 <option value="USD">USD</option>
                                                 <option value="Euro">Euro</option>
@@ -3333,8 +3333,8 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-suitable-currency">
                                             <label class="d-none font-500">Add Your Suitable Currency <span
-                                                    class="required"> *</span></label>
-                                            <input type="text" name="other_suitable_currency" class="form-control" placeholder="Add Your Suitable Currency *"
+                                                    class="required"> (Mandatory)</span></label>
+                                            <input type="text" name="other_suitable_currency" class="form-control" placeholder="Add Your Suitable Currency (Mandatory)"
                                                    required>
                                         </div>
                                     </div>
@@ -3374,7 +3374,7 @@
                                             <select id="service_durations" name="service_durations[]"
                                                     class="select2-multiple form-control" multiple="multiple">
                                                 <option value=""></option>
-                                                <option disabled>Service Duration *</option>
+                                                <option disabled>Service Duration (Mandatory)</option>
                                                 <option value="One Time">One Time</option>
                                                 <option value="On Call">On Call</option>
                                                 <option value="Regular">Regular</option>
@@ -3392,7 +3392,7 @@
                                                     class="required">*</span></label>
                                             <input id="other_service_duration" name="other_service_duration"
                                                    type="text"
-                                                   class="form-control" placeholder="Add Your Service Duration *">
+                                                   class="form-control" placeholder="Add Your Service Duration (Mandatory)">
                                         </div>
 
                                     </div>
@@ -3400,12 +3400,12 @@
                                         <div class="form-group col-lg-6">
                                             <label for="payment_terms" class="d-none font-500" class="font-500">Payment
                                                 Terms
-                                                <span class="required"> *</span></label>
+                                                <span class="required"> (Mandatory)</span></label>
                                             <select
                                                 class="single-select-dropdown select-suitable-payment form-control other-option-included payment-terms"
                                                 id="payment_terms" name="payment_terms" required>
                                                 <option value=""></option>
-                                                <option disabled>Select Payment Terms *</option>
+                                                <option disabled>Select Payment Terms (Mandatory)</option>
                                                 <option value="L/C">L/C</option>
                                                 <option value="D/A">D/A</option>
                                                 <option value="D/P">D/P</option>
@@ -3424,9 +3424,9 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-payment-terms">
                                             <label class="d-none font-500">Add Your Payment Terms <span
-                                                    class="required"> *</span></label>
+                                                    class="required"> (Mandatory)</span></label>
                                             <input type="text" id="other_payment_term" name="other_payment_term"
-                                                   class="form-control" placeholder="Add Your Payment Terms *">
+                                                   class="form-control" placeholder="Add Your Payment Terms (Mandatory)">
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
@@ -3496,85 +3496,85 @@
 
             /*for select single place holders*/
             $("#woven_weave_types").select2({
-                placeholder: "Select Weave Type *"
+                placeholder: "Select Weave Type (Mandatory)"
             });
 
             $("#non_woven_types").select2({
-                placeholder: "Select Woven Type *"
+                placeholder: "Select Woven Type (Mandatory)"
             });
 
             $("#non_woven_fabric_types").select2({
-                placeholder: "Select Fabric Type *"
+                placeholder: "Select Fabric Type (Mandatory)"
             });
 
             $("#knitted_fabric_types").select2({
-                placeholder: "Select Fabric Type *"
+                placeholder: "Select Fabric Type (Mandatory)"
             });
 
             $("#woven_fabric_types").select2({
-                placeholder: "Select Fabric Type *"
+                placeholder: "Select Fabric Type (Mandatory)"
             });
 
             $("select[name=knitted_knitting_types]").select2({
-                placeholder: "Select Knitting Type *"
+                placeholder: "Select Knitting Type (Mandatory)"
             });
 
             $("#yarn_technology").select2({
-                placeholder: "Select Yarn Technology *"
+                placeholder: "Select Yarn Technology (Mandatory)"
             });
 
             $("#yarn_attribute").select2({
-                placeholder: "Select Yarn Attribute *"
+                placeholder: "Select Yarn Attribute (Mandatory)"
             });
 
             $("#yarn_count_unit").select2({
-                placeholder: "Select Yarn Count Unit *"
+                placeholder: "Select Yarn Count Unit (Mandatory)"
             });
 
             /*$("#category").select2({
-                placeholder: "Main Category *"
+                placeholder: "Main Category (Mandatory)"
             });*/
 
             $("#sub_category").select2({
-                placeholder: "Sub-Category *"
+                placeholder: "Sub-Category (Mandatory)"
             });
 
             $("#sub_sub_category").select2({
-                placeholder: "Product Type *"
+                placeholder: "Product Type (Mandatory)"
             });
 
             $("#origin, #origin1").select2({
-                placeholder: "Product Origin *"
+                placeholder: "Product Origin (Mandatory)"
             });
 
             $('select[name=suitable_currencies]').select2({
-                placeholder: "Select Suitable Currency *"
+                placeholder: "Select Suitable Currency (Mandatory)"
             });
 
             $("#payment_terms").select2({
-                placeholder: "Payment Terms *"
+                placeholder: "Payment Terms (Mandatory)"
             });
 
             $("#target_price_unit").select2({
-                placeholder: "Per Unit *"
+                placeholder: "Per Unit (Mandatory)"
             });
 
             $("#unit_price_unit").select2({
-                placeholder: "Per Unit *"
+                placeholder: "Per Unit (Mandatory)"
             });
             /*for select single place holders*/
 
             /*for select multiple place holders*/
             $('#service_durations').select2({
-                placeholder: "Service Duration *"
+                placeholder: "Service Duration (Mandatory)"
             });
 
             $('.select-suitable-type').select2({
-                placeholder: "Select Dealing As *"
+                placeholder: "Select Dealing As (Mandatory)"
             });
 
             $('.select-target-country').select2({
-                placeholder: "Select Target Country *"
+                placeholder: "Select Target Country (Mandatory)"
             });
 
             $('.select-suitable-currency').select2({

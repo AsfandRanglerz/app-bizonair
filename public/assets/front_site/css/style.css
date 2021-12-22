@@ -1002,6 +1002,11 @@ select {
     font-size: 10px;
     font-weight: 700;
     cursor: pointer;
+    transition: .3s ease;
+}
+
+.pro-categories-tab .nav-link:hover, .pro-categories-tab .nav-link:focus, .pro-categories-tab .nav-link:active {
+    background: #a52c3e;
 }
 
 .pro-categories-tab .nav-link.active {

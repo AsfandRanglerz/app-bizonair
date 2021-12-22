@@ -50,18 +50,18 @@
                     </div>
                     <div class="form-group">
                         <label class="d-none">Email</label>
-                        <input id="email" type="email" class="form-control" value="{{request()->email}}" placeholder="example@gmail.com *" name="email" readonly>
+                        <input id="email" type="email" class="form-control" value="{{request()->email}}" placeholder="example@gmail.com (Mandatory)" name="email" readonly>
                     </div>
                     <div class="form-group position-relative">
                         <label class="d-none">Password</label>
-                        <input type="password" id="password" class="form-control" placeholder="New Password *"
+                        <input type="password" id="password" class="form-control" placeholder="New Password (Mandatory)"
                                name="password" required="required">
                         <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     </div>
                     <div class="form-group position-relative">
                         <label class="d-none">Confirm Password</label>
                         <input id="password_confirmation" type="password" class="form-control"
-                               name="password_confirmation" placeholder="confirm password *">
+                               name="password_confirmation" placeholder="confirm password (Mandatory)">
                         <span toggle="#password_confirmation" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     </div>
                     <div align="center">

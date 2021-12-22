@@ -784,7 +784,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label class="font-500">Update Your Deal As
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="d-flex flex-row">
                                                 <div
@@ -826,12 +826,12 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
                                             <label for="category" class="d-none font-500">Main Category
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="position-relative">
                                                 <select class="form-control product-categories" id="category"
                                                         name="category" required val="{{ $buysell->category_id }}">
-                                                    <option value="Main Category *" disabled> Main Category *</option>
+                                                    <option value="Main Category (Mandatory)" disabled> Main Category (Mandatory)</option>
                                                     @foreach(\App\Category::all() as $category)
                                                         <option value="{{ $category->id }}"
                                                                 cat-val="{{ $category->name }}"
@@ -852,13 +852,13 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="sub_category" class="d-none font-500">Sub-Category
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="position-relative">
                                                 <select class="form-control product-subcategories" id="sub_category"
                                                         name="sub_category" required
                                                         val="{{ $buysell->subcategory_id }}">
-                                                    <option value="Sub-Category *" disabled>Sub-Category *</option>
+                                                    <option value="Sub-Category (Mandatory)" disabled>Sub-Category (Mandatory)</option>
                                                     @foreach(\App\Subcategory::where('category_id', \App\Category::where('id', $buysell->category_id)->first()->id)->get() as $sub_category)
                                                         <option value="{{ $sub_category->id }}"
                                                                 cat-val="{{ $sub_category->name }}"
@@ -875,9 +875,9 @@
                                     @if(!in_array("Service", explode(",", $buysell->product_service_types)))
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 d-flex flex-column subCat-Sec">
-                                                <label for="sub_sub_category" class="d-none font-500">Product Type<span class="required"> *</span></label>
+                                                <label for="sub_sub_category" class="d-none font-500">Product Type<span class="required"> (Mandatory)</span></label>
                                                 <select class="form-control single-select-dropdown" id="sub_sub_category" name="sub_sub_category" required val="{{ $buysell->childsubcategory_id }}">
-                                                    <option value="Product Type *" disabled>Product Type *</option>
+                                                    <option value="Product Type (Mandatory)" disabled>Product Type (Mandatory)</option>
                                                     @foreach (\App\Childsubcategory::where('subcategory_id', \App\Subcategory::where('id', $buysell->subcategory_id)->first()->id)->get() as $sub_sub_category)
                                                         <option value="{{ $sub_sub_category->id }}" cat-val="{{ $sub_sub_category->name }}"
                                                                 @if($buysell->childsubcategory_id == $sub_sub_category->id) selected @endif >{{ $sub_sub_category->name }}</option>
@@ -894,7 +894,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 clearfix">
                                             <label for="subject" class="d-none font-500">Subject
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="input-group">
                                                 <input type="text" id="subject" class="h-auto form-control" maxlength = "80" name="subject"
@@ -909,7 +909,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 clearfix product-name">
                                             <label for="product_service_name" class="d-none font-500">Product Name
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="input-group">
                                                 <input type="text" id="product_service_name"
@@ -925,7 +925,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-3">
                                             <label class="d-none font-500">Ad Expiry Days <span
-                                                    class="required"> *</span></label>
+                                                    class="required"> (Mandatory)</span></label>
                                             <select name="expiry_date" id="expiry_date" class="form-control add-date" required>
                                                 <option value="10" @if($buysell->expiry_data == "10") selected @endif>10 Days</option>
                                                 <option value="20" @if($buysell->expiry_data == "20") selected @endif>20 Days</option>
@@ -1204,7 +1204,7 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="product_images" class="font-500">Product Images <span
-                                                    class="required"> *</span>
+                                                    class="required"> (Mandatory)</span>
                                                 <small class="font-500">(Note: First image will be displayed as Ad Cover Photo)</small>
                                                 <br><small class="font-500">(Atleast one product image | Upto
                                                     10MB)</small></label>
@@ -1548,22 +1548,22 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 product-available">
                                                 <label class="d-none font-500 avail-quantity">Available Quantity <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="number" min="0" id="product_availability"
                                                        value="{{ $buysell->product_availability }}" class="form-control"
                                                        name="product_availability" placeholder="Available Quantity (Mandatory) - e.g 50, 100" required>
                                                 <small class="text-danger" id="product_availability_error"></small>
                                             </div>
                                             {{--                                        <div class="form-group col-lg-6">--}}
-                                            {{--                                            <label class="font-500">Price <span class="required"> *</span></label>--}}
+                                            {{--                                            <label class="font-500">Price <span class="required"> (Mandatory)</span></label>--}}
                                             {{--                                            <input type="text" class="form-control" id="price"--}}
                                             {{--                                                   value="{{ $buysell->price }}" name="price" placeholder="Price"--}}
                                             {{--                                                   required>--}}
                                             {{--                                        </div>--}}
                                             <div class="form-group col-lg-6 product-available">
-                                                <label for="available_unit" class="d-none font-500">Unit <span class="required"> *</span></label>
+                                                <label for="available_unit" class="d-none font-500">Unit <span class="required"> (Mandatory)</span></label>
                                                 <select class="form-control other-option-included" id="available_unit" name="available_unit">
-                                                    <option value="Unit *" disabled>Unit *</option>
+                                                    <option value="Unit (Mandatory)" disabled>Unit (Mandatory)</option>
                                                     <option value="20' Container"
                                                             @if($buysell->available_unit == "20' Container") selected @endif>
                                                         20' Container
@@ -1694,7 +1694,7 @@
                                                 @endif>
                                                 <label class="d-none font-500">Other Unit <span
                                                         class="required">*</span></label>
-                                                <input type="text" name="other_available_unit" placeholder="Other Unit *" value="{{ $buysell->other_available_unit }}" class="form-control">
+                                                <input type="text" name="other_available_unit" placeholder="Other Unit (Mandatory)" value="{{ $buysell->other_available_unit }}" class="form-control">
                                             </div>
                                         </div>
                                     @endif
@@ -1714,9 +1714,9 @@
                                         <div class="form-group col-lg-6"
                                              @if(in_array("Service", explode(",", $buysell->product_service_types))) style="display: none;" @endif>
                                             <label for="origin" class="d-none font-500">Product Origin <span
-                                                    class="required"> *</span></label>
+                                                    class="required"> (Mandatory)</span></label>
                                             <select class="form-control origin" id="origin" name="origin" required>
-                                                <option value="Product Origin *" disabled>Product Origin *</option>
+                                                <option value="Product Origin (Mandatory)" disabled>Product Origin (Mandatory)</option>
                                                 <option value="Any"
                                                         @if($buysell->origin == 'Any') selected @endif >Any</option>
                                                 @foreach(\DB::table('countries')->get() as $country)
@@ -1803,7 +1803,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Warranty <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="Yes"
@@ -1877,7 +1877,7 @@
                                             <div
                                                 class="form-group col-lg-6 certify-services other-div" {{ ($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->certification== "Yes") ? 'style=display:block;' : '' }}>
                                                 <label for="certification_details" class="font-500">Certification
-                                                    Details <span class="required"> *</span></label>
+                                                    Details <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="certification_details" class="form-control"
                                                        name="certification_details" placeholder="Certification Details"
                                                        @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->certification_details) value="{{ $buysell->machineryBuySellInfo->certification_details }}"
@@ -2119,7 +2119,7 @@
                                                     <select class="form-control other-option-included"
                                                             id="target_price_unit"
                                                             name="target_price_unit" required>
-                                                        <option value="Per Unit *" disabled>Per Unit *</option>
+                                                        <option value="Per Unit (Mandatory)" disabled>Per Unit (Mandatory)</option>
                                                         <option value="20' Container"
                                                                 @if($buysell->target_price_unit == "20' Container") selected @endif>
                                                             20' Container
@@ -2255,7 +2255,7 @@
                                                     class="required">*</span></label>
                                             <input type="text" name="other_target_price_unit"
                                                    value="{{ $buysell->other_target_price_unit }}"
-                                                   class="form-control" placeholder="Add Your Price Unit *" required>
+                                                   class="form-control" placeholder="Add Your Price Unit (Mandatory)" required>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -2264,7 +2264,7 @@
                                                     class="required">*</span></label>
                                             <select class="form-control single-select-dropdown"
                                                     id="suitable_currencies" name="suitable_currencies" required>
-                                                <option value="Suitable Currency *" disabled>Suitable Currency *</option>
+                                                <option value="Suitable Currency (Mandatory)" disabled>Suitable Currency (Mandatory)</option>
                                                 <option value="PKR" @if($buysell->suitable_currencies == "PKR") selected @endif>
                                                     PKR
                                                 </option>
@@ -2296,7 +2296,7 @@
                                             <input type="text"
                                                    @if($buysell->other_suitable_currency) value="{{ $buysell->other_suitable_currency }}"
                                                    required
-                                                   @endif name="other_suitable_currency" class="form-control"  placeholder="Add Your Suitable Currency *">
+                                                   @endif name="other_suitable_currency" class="form-control"  placeholder="Add Your Suitable Currency (Mandatory)">
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -2339,7 +2339,7 @@
                                                     class="required">*</span></label>
                                             <select id="service_durations" name="service_durations[]"
                                                     class="select2-multiple form-control select-service-duration" multiple="multiple">
-                                                <option value="Suitable Currency *" disabled>Service Duration *</option>
+                                                <option value="Suitable Currency (Mandatory)" disabled>Service Duration (Mandatory)</option>
                                                 <option value="One Time"
                                                         @if(in_array("One Time", explode(",", $buysell->service_durations))) selected @endif >
                                                     One Time
@@ -2385,7 +2385,7 @@
                                                    @if($buysell->other_service_duration) value="{{ $buysell->other_service_duration }}"
                                                    required
                                                    @endif
-                                                   class="form-control" placeholder="Add Your Service Duration *">
+                                                   class="form-control" placeholder="Add Your Service Duration (Mandatory)">
                                         </div>
 
                                     </div>
@@ -2393,10 +2393,10 @@
                                         <div class="form-group col-lg-6">
                                             <label for="payment_terms" class="d-none font-500">Payment
                                                 Terms
-                                                <span class="required"> *</span></label>
+                                                <span class="required"> (Mandatory)</span></label>
                                             <select class="single-select-dropdown select-suitable-payment other-option-included form-control payment-terms"
                                                     id="payment_terms" name="payment_terms" required>
-                                                <option value="Payment Terms *" selected disabled>Payment Terms *</option>
+                                                <option value="Payment Terms (Mandatory)" selected disabled>Payment Terms (Mandatory)</option>
                                                 <option value="L/C" @if($buysell->payment_terms == "L/C") selected @endif>
                                                     L/C
                                                 </option>
@@ -2446,7 +2446,7 @@
                                             <input
                                                 @if($buysell->other_payment_term) value="{{ $buysell->other_payment_term }}"
                                                 required @endif type="text" id="other_payment_term"
-                                                name="other_payment_term" class="form-control" placeholder="Add Your Payment Terms *">
+                                                name="other_payment_term" class="form-control" placeholder="Add Your Payment Terms (Mandatory)">
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
@@ -2537,45 +2537,45 @@
 
             /*for select single place holders*/
             $("#target_price_unit").select2({
-                placeholder: "Per Unit *"
+                placeholder: "Per Unit (Mandatory)"
             });
 
             $("#unit_price_unit").select2({
-                placeholder: "Per Unit *"
+                placeholder: "Per Unit (Mandatory)"
             });
 
             $("#origin").select2({
-                placeholder: "Product Origin *"
+                placeholder: "Product Origin (Mandatory)"
             });
 
             $("#available_unit").select2({
-                placeholder: "Unit *"
+                placeholder: "Unit (Mandatory)"
             });
 
             $("#expiry_date").select2({
-                placeholder: "An Expiry Days *"
+                placeholder: "An Expiry Days (Mandatory)"
             });
 
             // $("#category").select2({
-            //     placeholder: "Main Category *"
+            //     placeholder: "Main Category (Mandatory)"
             // });
 
             $("#sub_category").select2({
-                placeholder: "Sub-Category *"
+                placeholder: "Sub-Category (Mandatory)"
             });
 
             $("#sub_sub_category").select2({
-                placeholder: "Product Type *"
+                placeholder: "Product Type (Mandatory)"
             });
 
             $('select[name=suitable_currencies]').select2({
-                placeholder: "Select Suitable Currency *"
+                placeholder: "Select Suitable Currency (Mandatory)"
             });
             /*for select single place holders*/
 
             /*for select multiple place holders*/
             $('.select-suitable-payment').select2({
-                placeholder: "Select Payment Terms *"
+                placeholder: "Select Payment Terms (Mandatory)"
             });
 
             $('.select-suitable-type').select2({
@@ -2591,7 +2591,7 @@
             });
 
             $('.select-service-duration').select2({
-                placeholder: "Select Service Duration *"
+                placeholder: "Select Service Duration (Mandatory)"
             });
             /*for select multiple place holders*/
 

@@ -453,7 +453,7 @@
                                                         name="industry[]"
                                                         multiple="multiple">
                                                     <option value=""></option>
-                                                    <option disabled>Business Category *</option>
+                                                    <option disabled>Business Category (Mandatory)</option>
                                                     @foreach (\App\Category::all() as $item)
                                                         <option value="{{$item->id}}"
                                                                 @if($company->industry->where('id', $item->id)->first() != null) selected @endif >{{$item->name}}</option>
@@ -469,7 +469,7 @@
                                                 <select class="form-control select2-multiple2" name="business_type[]"
                                                         multiple="multiple">
                                                     <option value=""></option>
-                                                    <option disabled>Business Type *</option>
+                                                    <option disabled>Business Type (Mandatory)</option>
                                                     <?php $business_types = explode(",", $company->business_type); ?>
                                                     <option value="Manufacturer"
                                                             @if(in_array('Manufacturer', $business_types)) selected @endif >
@@ -1326,11 +1326,11 @@
             });
             $('.select2-multiple1').select2({
                 closeOnSelect: true,
-                placeholder: "Choose Business Category *",
+                placeholder: "Choose Business Category (Mandatory)",
             });
             $('.select2-multiple2').select2({
                 closeOnSelect: true,
-                placeholder: "Choose Business Type *",
+                placeholder: "Choose Business Type (Mandatory)",
             });
             $('.select2-multiple3').select2({
                 closeOnSelect: true,

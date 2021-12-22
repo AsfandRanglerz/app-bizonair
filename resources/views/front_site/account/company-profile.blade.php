@@ -46,7 +46,7 @@
                                         <select class="form-control select2-multiple1" required id="industry" name="industry[]"
                                                 multiple>
                                             <option value=""></option>
-                                            <option disabled>Business Category *</option>
+                                            <option disabled>Business Category (Mandatory)</option>
                                             @foreach (\App\Category::all() as $item)
                                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                             @endforeach
@@ -60,7 +60,7 @@
                                         <select class="form-control select2-multiple2" required name="business_type[]"
                                                 multiple="multiple">
                                             <option value=""></option>
-                                            <option disabled>Business Type *</option>
+                                            <option disabled>Business Type (Mandatory)</option>
                                             <option value="Manufacturer">Manufacturer</option>
                                             <option value="Trading Company">Trading Company</option>
                                             <option value="Supplier">Supplier</option>
@@ -627,11 +627,11 @@
             });
             $('.select2-multiple1').select2({
                 closeOnSelect: true,
-                placeholder: "Choose Business Category *",
+                placeholder: "Choose Business Category (Mandatory)",
             });
             $('.select2-multiple2').select2({
                 closeOnSelect: true,
-                placeholder: "Choose Business Type *",
+                placeholder: "Choose Business Type (Mandatory)",
             });
             $('.select2-multiple3').select2({
                 closeOnSelect: true,

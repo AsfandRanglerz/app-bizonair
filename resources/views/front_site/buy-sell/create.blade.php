@@ -49,7 +49,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label class="font-500">Post Your Deal As
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
 
                                             <!-- helping video -->
@@ -111,12 +111,12 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
                                             <label for="category" class="d-none font-500">Main Category
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="position-relative">
                                                 <select class="form-control product-categories" id="category"
                                                         name="category" required>
-                                                    <option disabled selected>Please select category *</option>
+                                                    <option disabled selected>Please select category (Mandatory)</option>
                                                     @foreach(\App\Category::all() as $category)
                                                         <option value="{{ $category->id }}" cat-val="{{ $category->name }}"
                                                                 class="d-none"
@@ -131,13 +131,13 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="sub_category" class="d-none font-500">Sub-Category
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="position-relative">
                                                 <select class="form-control single-select-dropdown product-subcategories" id="sub_category"
                                                         name="sub_category" required>
                                                     <option value=""></option>
-                                                    <option disabled>Please select category first *</option>
+                                                    <option disabled>Please select category first (Mandatory)</option>
                                                 </select>
                                                 <div class="d-none position-absolute spinner-border text-danger loading-icon">
                                                     <span class="sr-only">Loading...</span>
@@ -149,25 +149,25 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 d-flex flex-column subCat-Sec">
                                             <label for="sub_sub_category" class="d-none font-500">Product Type
-                                                <span class="required"> *</span></label>
+                                                <span class="required"> (Mandatory)</span></label>
                                             <select class="form-control single-select-dropdown" id="sub_sub_category" name="sub_sub_category"
                                                     required>
                                                 <option value=""></option>
-                                                <option disabled>Please select category first *</option>
+                                                <option disabled>Please select category first (Mandatory)</option>
                                             </select>
 
                                             <small class="text-danger" id="sub_sub_category_error"></small>
                                         </div>
                                         <div class="form-group col-lg-6 add-sub-sub-cat">
-                                            <label class="d-none font-500">Add Product Type <span class="required"> *</span></label>
-                                            <input type="text" name="add_sub_sub_category" class="form-control" placeholder="Add Product Type *"
+                                            <label class="d-none font-500">Add Product Type <span class="required"> (Mandatory)</span></label>
+                                            <input type="text" name="add_sub_sub_category" class="form-control" placeholder="Add Product Type (Mandatory)"
                                                    required>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
                                             <label for="subject" class="d-none font-500">Subject
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="input-group">
                                                 <input type="text" id="subject" class="h-auto form-control" maxlength = "80" name="subject"
@@ -181,7 +181,7 @@
 
 <!--                                        <div class="form-group col-lg-6 clearfix">
                                             <label for="subject" class="d-none font-500">Subject
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/80</span>
                                             <input type="text" id="subject" class="form-control" maxlength = "80"name="subject"
@@ -191,11 +191,11 @@
 
                                         <div class="form-group col-lg-6 clearfix product-name">
                                             <label for="product_service_name" class="d-none font-500">Product Name
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="input-group">
                                                 <input type="text" id="product_service_name" class="h-auto form-control" maxlength = "50"
-                                                       name="product_service_name" placeholder="Product Name *" required>
+                                                       name="product_service_name" placeholder="Product Name (Mandatory)" required>
                                                 <div class="input-group-append counter-span">
                                                     <span class="text-danger font-500"><span class="counter-total-digits">0</span>/50</span>
                                                 </div>
@@ -204,17 +204,17 @@
 
 
 <!--                                            <label for="product_service_name" class="d-none font-500">Product Name
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/50</span>
                                             <input type="text" id="product_service_name" class="form-control" maxlength = "50"
-                                                   name="product_service_name" placeholder="Product Name *" required>
+                                                   name="product_service_name" placeholder="Product Name (Mandatory)" required>
                                             <small class="text-danger" id="product_service_name_error"></small>-->
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-3">
-                                            <label class="d-none font-500">Ad Expiry Days <span class="required"> *</span></label>
+                                            <label class="d-none font-500">Ad Expiry Days <span class="required"> (Mandatory)</span></label>
                                             <select name="expiry_date" id="expiry_date" class="form-control single-select-dropdown add-date" required>
                                                 <option value="" selected disabled>-&#45;&#45; Expiry Days -&#45;&#45;</option>
                                                 <option value="10">10 Days</option>
@@ -491,7 +491,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <label for="product_images" class="font-500">Product Images <span class="required"> *</span><small class="font-500">            (Note: First image will be displayed as Ad Cover Photo)</small><br><small class="font-500">(Atleast one product image | Upto
+                                            <label for="product_images" class="font-500">Product Images <span class="required"> (Mandatory)</span><small class="font-500">            (Note: First image will be displayed as Ad Cover Photo)</small><br><small class="font-500">(Atleast one product image | Upto
                                                     10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
@@ -732,17 +732,17 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 product-available">
-                                            <label class="d-none font-500 avail-quantity">Available Quantity <span class="required"> *</span></label>
+                                            <label class="d-none font-500 avail-quantity">Available Quantity <span class="required"> (Mandatory)</span></label>
                                             <input type="number" min="0" id="product_availability" class="form-control"
                                                    name="product_availability" placeholder="Available Quantity (Mandatory) - e.g 50,100" required>
                                             <small class="text-danger" id="product_availability_error"></small>
                                         </div>
                                         {{--                                        <div class="form-group col-lg-6">--}}
-                                        {{--                                            <label class="font-500">Price <span class="required"> *</span></label>--}}
+                                        {{--                                            <label class="font-500">Price <span class="required"> (Mandatory)</span></label>--}}
                                         {{--                                            <input type="text" class="form-control" id="price" name="price" placeholder="Price" required>--}}
                                         {{--                                        </div>--}}
                                         <div class="form-group col-lg-6 product-available">
-                                            <label for="available_unit" class="d-none font-500">Unit <span class="required"> *</span></label>
+                                            <label for="available_unit" class="d-none font-500">Unit <span class="required"> (Mandatory)</span></label>
                                             <select class="form-control single-select-dropdown other-option-included" id="available_unit" name="available_unit" required>
                                                 <option value="" selected disabled>-- Select Suitable Unit --</option>
                                                 <option value="20' Container">20' Container</option>
@@ -782,7 +782,7 @@
                                         <div class="form-group col-lg-6 other-div">
                                             <label class="d-none font-500">Other Unit <span
                                                     class="required">*</span></label>
-                                            <input type="text" name="other_available_unit" placeholder="Other Unit *" class="form-control">
+                                            <input type="text" name="other_available_unit" placeholder="Other Unit (Mandatory)" class="form-control">
                                         </div>
                                     </div>
 
@@ -798,10 +798,10 @@
                                                    placeholder="Manufacturer Name (Optional) - Manufacture spelling must be correct to be visible in the search.">
                                         </div>
                                         <div class="form-group col-lg-6">
-                                            <label for="origin" class="d-none font-500">Product Origin <span class="required"> *</span></label>
+                                            <label for="origin" class="d-none font-500">Product Origin <span class="required"> (Mandatory)</span></label>
                                             <select class="form-control origin" id="origin" name="origin" required>
                                                 <option value=""></option>
-                                                <option disabled>Product Origin *</option>
+                                                <option disabled>Product Origin (Mandatory)</option>
                                                 <option value="Any">Any</option>
                                                 @foreach(\DB::table('countries')->get() as $country)
                                                     <option
@@ -873,7 +873,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Warranty <span class="required"> *</span></label>
+                                                <label class="font-500">Warranty <span class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="Yes"
@@ -931,7 +931,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 certify-services">
                                                 <label for="certification_details" class="font-500">Certification
-                                                    Details <span class="required"> *</span></label>
+                                                    Details <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="certification_details" class="form-control"
                                                        name="certification_details" placeholder="Certification Details"
                                                        required>
@@ -1129,7 +1129,7 @@
                                                             class="required">*</span></label>
                                                     <select class="form-control other-option-included" id="unit_price_unit" name="unit_price_unit" required>
                                                         <option value=""></option>
-                                                        <option disabled>Per Unit *</option>
+                                                        <option disabled>Per Unit (Mandatory)</option>
                                                         <option value="20' Container">20' Container</option>
                                                         <option value="40' Container">40' Container</option>
                                                         <option value="Bale">Bale</option>
@@ -1166,7 +1166,7 @@
                                                 <div class="col-md-6 service-unit">
                                                     <label for="price_unit" class="d-none font-500 service_charges_range_unit_label">Per Unit <span
                                                             class="required">*</span></label>
-                                                    <input type="text" name="price_unit" id="price_unit" placeholder="Per Unit *" class="form-control" required>
+                                                    <input type="text" name="price_unit" id="price_unit" placeholder="Per Unit (Mandatory)" class="form-control" required>
                                                     <small class="text-danger" id="price_unit_error"></small>
                                                 </div>
                                             </div>
@@ -1195,7 +1195,7 @@
                                                             id="target_price_unit"
                                                             name="target_price_unit" required>
                                                         <option value=""></option>
-                                                        <option disabled>Per Unit *</option>
+                                                        <option disabled>Per Unit (Mandatory)</option>
                                                         <option value="20' Container">20' Container</option>
                                                         <option value="40' Container">40' Container</option>
                                                         <option value="Bale">Bale</option>
@@ -1258,7 +1258,7 @@
                                         <div class="form-group col-lg-6 other-div add-suitable-currency">
                                             <label class="d-none font-500">Add Your Suitable Currency <span
                                                     class="required">*</span></label>
-                                            <input type="text" name="other_suitable_currency" placeholder="Add Your Suitable Currency *" class="form-control">
+                                            <input type="text" name="other_suitable_currency" placeholder="Add Your Suitable Currency (Mandatory)" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -1313,7 +1313,7 @@
                                                     class="required">*</span></label>
                                             <input id="other_service_duration" name="other_service_duration"
                                                    type="text"
-                                                   class="form-control" placeholder="Add Your Service Duration *">
+                                                   class="form-control" placeholder="Add Your Service Duration (Mandatory)">
                                         </div>
 
                                     </div>
@@ -1321,7 +1321,7 @@
                                         <div class="form-group col-lg-6">
                                             <label for="payment_terms" class="d-none font-500">Payment
                                                 Terms
-                                                <span class="required"> *</span></label>
+                                                <span class="required"> (Mandatory)</span></label>
                                             <select class="single-select-dropdown select-suitable-payment other-option-included form-control payment-terms" id="payment_terms" name="payment_terms" required>
                                                 <option value="" selected disabled>Select Payment Terms</option>
                                                 <option value="L/C">L/C</option>
@@ -1344,7 +1344,7 @@
                                             <label class="d-none font-500">Add Your Payment Terms <span
                                                     class="required">*</span></label>
                                             <input type="text" id="other_payment_term" name="other_payment_term"
-                                                   class="form-control" placeholder="Add Your Payment Terms *">
+                                                   class="form-control" placeholder="Add Your Payment Terms (Mandatory)">
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
@@ -1422,45 +1422,45 @@
 
             /*for select single place holders*/
             $("#target_price_unit").select2({
-                placeholder: "Per Unit *"
+                placeholder: "Per Unit (Mandatory)"
             });
 
             $("#unit_price_unit").select2({
-                placeholder: "Per Unit *"
+                placeholder: "Per Unit (Mandatory)"
             });
 
             $("#origin").select2({
-                placeholder: "Product Origin *"
+                placeholder: "Product Origin (Mandatory)"
             });
 
             $("#available_unit").select2({
-                placeholder: "Unit *"
+                placeholder: "Unit (Mandatory)"
             });
 
             $("#expiry_date").select2({
-                placeholder: "An Expiry Days *"
+                placeholder: "An Expiry Days (Mandatory)"
             });
 
             /*$("#category").select2({
-                placeholder: "Main Category *"
+                placeholder: "Main Category (Mandatory)"
             });*/
 
             $("#sub_category").select2({
-                placeholder: "Sub-Category *"
+                placeholder: "Sub-Category (Mandatory)"
             });
 
             $("#sub_sub_category").select2({
-                placeholder: "Product Type *"
+                placeholder: "Product Type (Mandatory)"
             });
 
             $('select[name=suitable_currencies]').select2({
-                placeholder: "Select Suitable Currency *"
+                placeholder: "Select Suitable Currency (Mandatory)"
             });
             /*for select single place holders*/
 
             /*for select multiple place holders*/
             $('.select-suitable-payment').select2({
-                placeholder: "Select Payment Terms *"
+                placeholder: "Select Payment Terms (Mandatory)"
             });
 
             $('.select-suitable-type').select2({
@@ -1476,7 +1476,7 @@
             });
 
             $('.select-service-duration').select2({
-                placeholder: "Select Service Duration *"
+                placeholder: "Select Service Duration (Mandatory)"
             });
 
             /*for select multiple place holders*/

@@ -280,7 +280,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
                                             <input type="email" id="email" class="form-control" name="email"
-                                                   value="{{ old('email', $user->email) }}" placeholder="Email (Mandatory) - example@gmail.com *">
+                                                   value="{{ old('email', $user->email) }}" placeholder="Email (Mandatory) - example@gmail.com (Mandatory)">
                                             <small class="text-danger" id="email_error"></small>
                                         </div>
                                         <div class="form-group col-md-6 mb-1">
@@ -332,13 +332,13 @@
                                         <div class="form-group col-md-6 mb-1">
                                             <input type="text" class="form-control"
                                                    value="{{ old('first_name', $user->first_name) }}"
-                                                   placeholder="First Name *" name="first_name" id="first_name">
+                                                   placeholder="First Name (Mandatory)" name="first_name" id="first_name">
                                             <small class="text-danger" id="first_name_error"></small>
                                         </div>
                                         <div class="form-group col-md-6 mb-1">
                                             <input type="text" name="last_name" class="form-control"
                                                    value="{{ old('last_name', $user->last_name) }}"
-                                                   placeholder="Last Name *" id="last_name">
+                                                   placeholder="Last Name (Mandatory)" id="last_name">
                                             <small class="text-danger" id="last_name_error"></small>
                                         </div>
                                     </div>
@@ -386,7 +386,7 @@
                                             <select name="country" id="country_id" class="form-control single-select-dropdown"
                                                     required="required">
                                                 <option value=""></option>
-                                                <option disabled>Select Country/Region *</option>
+                                                <option disabled>Select Country/Region (Mandatory)</option>
                                                 @foreach($countries as $country)
                                                         <option value="{{ $country->name->common }}" {{($user->country == $country->name->common)?'selected':''}}>{{ $country->name->common }}</option>
                                                 @endforeach
@@ -397,7 +397,7 @@
                                             <select name="state" id="state" required
                                                     class="form-control single-select-dropdown">
                                                 <option value=""></option>
-                                                <option disabled>State/Province *</option>
+                                                <option disabled>State/Province (Mandatory)</option>
                                                 <option value="{{$user->state}}" selected>{{$user->state}}</option>
                                             </select>
                                             <small class="text-danger" id="state_error"></small>
@@ -407,7 +407,7 @@
                                         <div class="form-group col-md-6 mb-1 d-flex flex-column-reverse">
                                             <select name="city" id="city" required class="form-control single-select-dropdown">
                                                 <option value=""></option>
-                                                <option disabled>City *</option>
+                                                <option disabled>City (Mandatory)</option>
                                                 <option value="{{$user->city}}" selected>{{$user->city}}</option>
                                             </select>
                                             <small class="text-danger" id="city_error"></small>
@@ -542,17 +542,17 @@
 
             $('#country_id').select2({
                 closeOnSelect: true,
-                placeholder: "Select Country/Region *"
+                placeholder: "Select Country/Region (Mandatory)"
             });
 
             $('#state').select2({
                 closeOnSelect: true,
-                placeholder: "State/Province *"
+                placeholder: "State/Province (Mandatory)"
             });
 
             $('#city').select2({
                 closeOnSelect: true,
-                placeholder: "city *"
+                placeholder: "city (Mandatory)"
             });
             /*single select dropdown*/
 

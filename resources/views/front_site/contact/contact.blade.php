@@ -40,7 +40,7 @@
                 <div class="form-group d-flex flex-column-reverse">
                     <select class="form-control" id="inquiryFor" name="inquiryFor" required>
                         <option value=""></option>
-                        <option disabled>Select Contact For *</option>
+                        <option disabled>Contact For (Mandatory)</option>
                         <option value="Advertising/Marketing">Advertising/Marketing</option>
                         <option value="Customer Care">Customer Care</option>
                         <option value="Site/Technical Problem">Site/Technical Problem</option>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <input type="text" class="form-control" name="userName" id="userName"  placeholder="Name *" @if(auth()->check()) value="{{\Auth::user()->name}}" @endif required>
+                        <input type="text" class="form-control" name="userName" id="userName"  placeholder="Name (Mandatory)" @if(auth()->check()) value="{{\Auth::user()->name}}" @endif required>
                         <small class="text-danger" id="userName_error"></small>
                     </div>
                     <div class="form-group col-sm-6">
@@ -75,7 +75,7 @@
                     <div class="form-group col-sm-6 d-flex flex-column-reverse">
                         <select name="country" class="form-control" id="countries" required>
                             <option value=""></option>
-                            <option disabled>Choose Country *</option>
+                            <option disabled>Choose Country (Mandatory)</option>
                             @foreach($countries as $country)
                                 <option value="{{ $country->name->common }}" @if(auth()->check()) {{(\Auth::user()->country == $country->name->common)?'selected':''}} @endif>{{ $country->name->common }}</option>
                             @endforeach
@@ -85,12 +85,12 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea class="form-control" name="description" id="description" placeholder="Message *" style="height: 115px" required></textarea>
+                    <textarea class="form-control" name="description" id="description" placeholder="Message (Mandatory)" style="height: 115px" required></textarea>
                     <small class="text-danger" id="description_error"></small>
                 </div>
                 <div class="form-group mb-0">
                     <div class="mt-1 mb-0 form-group col-md-12 px-0 career-img-drop-outer attachment-img-file">
-                        <label class="label" for="image">Attachment <small class="font-500"> (Optional |</small> <small class="font-500">Attach Reference or Image)</small></label>
+                        <label class="font-500 label" for="image">Attachment <small class="font-500"> (Optional |</small> <small class="font-500">Attach Reference or Image)</small></label>
                         <div class="custom-file">
                             <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
                             <label class="custom-file-label" for="customFile" style="color: #A52C3E;"><span class="fa fa-upload"></span></label>
@@ -134,11 +134,11 @@
         $(document).ready(function () {
             /*for select single place holders*/
             $("#inquiryFor").select2({
-                placeholder: "Select Contact For *"
+                placeholder: "Contact For (Mandatory)"
             });
 
             $("#countries").select2({
-                placeholder: "Choose Country *"
+                placeholder: "Choose Country (Mandatory)"
             });
             /*for select single place holders*/
 

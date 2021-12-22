@@ -40,7 +40,7 @@
 
                                     <select name="journal_type" id="journal_type" class="form-control">
                                         <option value=""></option>
-                                        <option disabled>Journal Type *</option>
+                                        <option disabled>Journal Type (Mandatory)</option>
                                         @foreach(\App\JournalType::all() as $type)
                                             <option value="{{$type->name}}">{{$type->name}}</option>
                                         @endforeach
@@ -89,7 +89,7 @@
         $(document).ready(function () {
             $('#journal_type').select2({
                 closeOnSelect: true,
-                placeholder: "Type *"
+                placeholder: "Type (Mandatory)"
             });
             ClassicEditor
                 .create(document.querySelector('#editor1'))

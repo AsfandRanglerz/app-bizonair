@@ -79,7 +79,7 @@
                                         </div>
                                         <div class="form-group col-md-6 other-div">
                                             <h6 class="w-100 p-0 d-none">Add Designation <span class="required">*</span></h6>
-                                            <input type="text" name="other_designation" class="form-control" placeholder="Add Designation *">
+                                            <input type="text" name="other_designation" class="form-control" placeholder="Add Designation (Mandatory)">
                                         </div>
                                     </div>
                                     {{-- <div class="form-row">
@@ -134,7 +134,7 @@
                                             <label class="d-none">Country/Region <span class="required">*</span></label>
                                             <select name="country" id="country_id" required class="form-control single-select-dropdown">
                                                 <option value=""></option>
-                                                <option disabled>Select Country/Region *</option>
+                                                <option disabled>Select Country/Region (Mandatory)</option>
                                                 @foreach ($countries as $item)
                                                     <option value="{{$item->name->common}}">{{$item->name->common}}</option>
                                                 @endforeach
@@ -147,7 +147,7 @@
                                             <select name="state" id="state" required
                                                     class="form-control single-select-dropdown">
                                                 <option value=""></option>
-                                                <option disabled>State/Province *</option>
+                                                <option disabled>State/Province (Mandatory)</option>
                                             </select>
                                             <small class="text-danger" id="state_error"></small>
                                         </div>
@@ -158,7 +158,7 @@
                                             <select name="city" id="city" required
                                                     class="form-control single-select-dropdown">
                                                 <option value=""></option>
-                                                <option disabled>City *</option>
+                                                <option disabled>City (Mandatory)</option>
                                             </select>
                                             <small class="text-danger" id="city_error"></small>
                                         </div>
@@ -268,17 +268,17 @@
 
             $('#country_id').select2({
                 closeOnSelect: true,
-                placeholder: "Select Country/Region *"
+                placeholder: "Select Country/Region (Mandatory)"
             });
 
             $('#state').select2({
                 closeOnSelect: true,
-                placeholder: "State/Province *"
+                placeholder: "State/Province (Mandatory)"
             });
 
             $('#city').select2({
                 closeOnSelect: true,
-                placeholder: "city *"
+                placeholder: "city (Mandatory)"
             });
             /*single select dropdown*/
 
