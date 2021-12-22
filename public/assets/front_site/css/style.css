@@ -5309,8 +5309,7 @@ select.form-control {
     color: #12253d;
     border: 1px solid #344356;
     font-size: 10px;
-    font-family: "Raleway";
-
+    /*font-family: "Raleway";*/
 }
 
 #category {
@@ -5326,8 +5325,19 @@ select.form-control:focus {
     box-shadow: 0 4px 10px 0 rgb(227 4 4 / 13%), 0 4px 20px 0 rgb(227 4 4 / 13%);
 }
 
-input.form-control::placeholder {
-    color: #767676;
+/*input.form-control::placeholder {*/
+/*    color: #767676;*/
+/*}*/
+
+.select2-container--default .select2-selection--single .select2-selection__placeholder,
+input::placeholder {
+    color: #999!important;
+    font-size: 10px!important;
+}
+
+input.select2-search__field::placeholder {
+    color: #999!important;
+    opacity: 1;
 }
 
 /*form input field*/
@@ -9868,7 +9878,7 @@ header .navbar .navbar-toggler {
 
     input.form-control,
     select.form-control {
-        font-size: 9px;
+        font-size: 10px;
     }
 
     input.form-control::placeholder {

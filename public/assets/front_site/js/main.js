@@ -48,6 +48,18 @@ $(".job-description-below").scroll(function () {
 });
 
 $(document).ready(function () {
+    /*select tag color will be grey, if selected option is disabled*/
+    $('select').each(function(){
+        if($('select option:selected').prop('disabled') == true) {
+            $(this).css('color', '#999');
+        }
+    });
+
+    $('select').on('change', function() {
+        $(this).css('color', '#000');
+    });
+    /*select tag color will be grey, if selected option is disabled*/
+
     /*helping model videos play off*/
     $('.helping-model').on('hide.bs.modal', function () {
         $('.helping-model').find('video').get(0).pause();
