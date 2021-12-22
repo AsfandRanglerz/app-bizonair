@@ -433,7 +433,7 @@
                                                         class="required">*</span></label>
                                                 <input type="text" id="company" class="form-control" name="company_name"
                                                        value="{{$company->company_name}}"
-                                                       placeholder="Company Name * - My Textile">
+                                                       placeholder="Company Name (Mandatory) - My Textile">
                                                 <small class="text-danger" id="company_error"></small>
                                             </div>
                                         <!-- <div class="form-group col-md-6">
@@ -504,7 +504,7 @@
                                                 <h6 class="d-none w-100 p-0">Add Business Type <span class="required">*</span>
                                                 </h6>
                                                 <input type="text" name="other_business_type"
-                                                       placeholder="Add Business Type * - Input Other Business Type"
+                                                       placeholder="Add Business Type (Mandatory) - Input Other Business Type"
                                                        class="form-control">
                                             </div>
                                             <div class="form-group col-md-6">
@@ -1155,7 +1155,7 @@
                                                 </div>
                                                 <textarea class="form-control" name="company_introduction"
                                                           maxlength="5000"
-                                                          placeholder="Company Introduction * - Introduce in 5000 characters"
+                                                          placeholder="Company Introduction (Mandatory) - Introduce in 5000 characters"
                                                           id="editor1"
                                                           rows="5" required>{!! $company->company_introduction  !!} </textarea>
                                                 <small class="text-danger" id="company_introduction_error"></small>

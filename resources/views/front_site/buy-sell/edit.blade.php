@@ -1551,7 +1551,7 @@
                                                         class="required"> *</span></label>
                                                 <input type="number" min="0" id="product_availability"
                                                        value="{{ $buysell->product_availability }}" class="form-control"
-                                                       name="product_availability" placeholder="Available Quantity * - e.g 50, 100" required>
+                                                       name="product_availability" placeholder="Available Quantity (Mandatory) - e.g 50, 100" required>
                                                 <small class="text-danger" id="product_availability_error"></small>
                                             </div>
                                             {{--                                        <div class="form-group col-lg-6">--}}
@@ -2111,7 +2111,7 @@
                                                     <input type="number" min="0" id="target_price_from"
                                                            @if($buysell->target_price_from) value="{{ $buysell->target_price_from }}"
                                                            @endif class="form-control"
-                                                           name="target_price_from" placeholder="Target Price * - e.g. 1000" required>
+                                                           name="target_price_from" placeholder="Target Price (Mandatory) - e.g. 1000" required>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="target_price_unit" class="d-none font-500">Per Unit <span

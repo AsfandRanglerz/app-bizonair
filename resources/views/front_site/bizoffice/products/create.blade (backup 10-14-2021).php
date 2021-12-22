@@ -154,7 +154,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <input type="text" id="subject" class="h-auto form-control" maxlength = "80" name="subject"
-                                                       placeholder="Subject * - It will appear as title" required>
+                                                       placeholder="Subject (Mandatory) - It will appear as title" required>
                                                 <div class="input-group-append counter-span">
                                                     <span class="text-danger font-500"><span class="counter-total-digits">0</span>/80</span>
                                                 </div>
@@ -3219,12 +3219,12 @@
                                                         Range<span
                                                             class="required">*</span></label>
                                                     <input type="number" id="target_price_from" class="form-control"
-                                                           name="target_price_from" placeholder="Target Price From * - e.g. 1000" required>
+                                                           name="target_price_from" placeholder="Target Price From (Mandatory) - e.g. 1000" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="target_price_to" class="d-none font-500"></label>
                                                     <input type="number" id="target_price_to" class="form-control"
-                                                           name="target_price_to" placeholder="Target Price To * - e.g. 200" required>
+                                                           name="target_price_to" placeholder="Target Price To (Mandatory) - e.g. 200" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="target_price_unit" class="d-none font-500">Per Unit <span

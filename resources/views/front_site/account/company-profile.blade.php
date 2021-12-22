@@ -26,7 +26,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="companyName" class="d-none label">Company Name <span class="required">*</span></label>
-                                        <input type="text" class="form-control" id="companyName" name="company_name" placeholder="Company Name * - My Textile" required>
+                                        <input type="text" class="form-control" id="companyName" name="company_name" placeholder="Company Name (Mandatory) - My Textile" required>
                                         <small class="text-danger" id="company_name_error"></small>
                                     </div>
                                 <!-- <div class="form-group col-md-6">
@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="form-group col-md-6 other-div">
                                         <h6 class="d-none w-100 p-0">Add Business Type <span class="required">*</span></h6>
-                                        <input type="text" name="other_business_type" placeholder="Add Business Type * - Input Other Business Type"
+                                        <input type="text" name="other_business_type" placeholder="Add Business Type (Mandatory) - Input Other Business Type"
                                                class="form-control">
                                     </div>
                                     <div class="form-group col-md-6">
@@ -93,7 +93,7 @@
                                     </div>
                                     <div class="form-group col-md-6 other-nature-div" style="display: none;">
                                         <h6 class="d-none w-100 p-0">Add Nature of Business <span class="required">*</span></h6>
-                                        <input type="text" name="other_business_nature" placeholder="Add Nature of Business * - Input Other Nature of Business"
+                                        <input type="text" name="other_business_nature" placeholder="Add Nature of Business (Mandatory) - Input Other Nature of Business"
                                                class="form-control">
                                     </div>
                                 </div>

@@ -55,7 +55,7 @@
                         <small class="text-danger" id="userName_error"></small>
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="email" class="form-control" name="emailAddress" id="emailAddress" placeholder="Email * - example@gmail.com" @if(auth()->check()) value="{{\Auth::user()->email}}" @endif required>
+                        <input type="email" class="form-control" name="emailAddress" id="emailAddress" placeholder="Email (Mandatory) - example@gmail.com" @if(auth()->check()) value="{{\Auth::user()->email}}" @endif required>
                         <small class="text-danger" id="emailAddress_error"></small>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                         <input type="text" class="form-control" id="companyName" name="company_name" placeholder="Company Name (Optional) - My Textile">
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Phone * - 123-4567-890" @if(auth()->check()) value="{{\Auth::user()->registration_phone_no}}" @endif required>
+                        <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Phone (Mandatory) - 123-4567-890" @if(auth()->check()) value="{{\Auth::user()->registration_phone_no}}" @endif required>
                         <small class="text-danger" id="phoneNumber_error"></small>
                     </div>
                 </div>

@@ -30,7 +30,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label  class="d-none font-500">Title <span class="required">*</span></label>
-                                        <input type="text" placeholder="Title * - Enter title"
+                                        <input type="text" placeholder="Title (Mandatory) - Enter title"
                                                name="title" id="title" value="{{ $info->title }}" class="form-control"
                                         >
                                         <small class="text-danger" id="title_error"></small>

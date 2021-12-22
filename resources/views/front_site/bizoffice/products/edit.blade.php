@@ -2864,7 +2864,7 @@
                                                 <input type="text" id="size" class="form-control"
                                                        @if($product->fiber_product_info && $product->fiber_product_info->size) value="{{ $product->fiber_product_info->size }}"
                                                        @endif
-                                                       name="size" placeholder="Fibre Size/Length * - e.g. 1-2 cm,2-3 cm,3-4 cm,4+ cm, Other"
+                                                       name="size" placeholder="Fibre Size/Length (Mandatory) - e.g. 1-2 cm,2-3 cm,3-4 cm,4+ cm, Other"
                                                        required>
                                                 <small class="text-danger" id="size_error"></small>
                                             </div>
@@ -3153,14 +3153,14 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="woven_fabric_construction" class="d-none font-500">Fabric
                                                     Construction <span class="required"> *</span></label>
-                                                <input type="text" placeholder="Fabric Construction * - e.g. 80*80/100*80, Other" id="woven_fabric_construction" class="form-control" @if($product->fabric_product_info && $product->fabric_product_info->fabric_construction) value="{{ $product->fabric_product_info->fabric_construction }}" @endif name="woven_fabric_construction" placeholder="e.g. 80*80/100*80, Other" required>
+                                                <input type="text" placeholder="Fabric Construction (Mandatory) - e.g. 80*80/100*80, Other" id="woven_fabric_construction" class="form-control" @if($product->fabric_product_info && $product->fabric_product_info->fabric_construction) value="{{ $product->fabric_product_info->fabric_construction }}" @endif name="woven_fabric_construction" placeholder="e.g. 80*80/100*80, Other" required>
                                                 <small class="text-danger" id="woven_fabric_construction_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="woven_gsm_thickness" class="d-none font-500">GSM/Thickness <span class="required"> *</span></label>
-                                                <input type="text" placeholder="GSM/Thickness * - e.g. 75 GSM,150 GSM, Other" id="woven_gsm_thickness" @if($product->fabric_product_info && $product->fabric_product_info->gsm_thickness) value="{{ $product->fabric_product_info->gsm_thickness }}" @endif class="form-control" name="woven_gsm_thickness" placeholder="e.g. 75 GSM,150 GSM, Other" required>
+                                                <input type="text" placeholder="GSM/Thickness (Mandatory) - e.g. 75 GSM,150 GSM, Other" id="woven_gsm_thickness" @if($product->fabric_product_info && $product->fabric_product_info->gsm_thickness) value="{{ $product->fabric_product_info->gsm_thickness }}" @endif class="form-control" name="woven_gsm_thickness" placeholder="e.g. 75 GSM,150 GSM, Other" required>
                                                 <small class="text-danger" id="woven_gsm_thickness"></small>
                                             </div>
                                         </div>
@@ -3176,10 +3176,10 @@
                                                         class="required">*</span></label>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
-                                                        <input type="text" placeholder="Woven Width Range From * - e.g. 75 Inches" id="woven_width_from" @if($product->fabric_product_info && $product->fabric_product_info->width_from) value="{{ $product->fabric_product_info->width_from }}" @endif class="form-control" name="woven_width_from" placeholder="e.g. 75 Inches" required>
+                                                        <input type="text" placeholder="Woven Width Range From (Mandatory) - e.g. 75 Inches" id="woven_width_from" @if($product->fabric_product_info && $product->fabric_product_info->width_from) value="{{ $product->fabric_product_info->width_from }}" @endif class="form-control" name="woven_width_from" placeholder="e.g. 75 Inches" required>
                                                     </div>
                                                     <div class="form-group col-md-6">
-                                                        <input type="text" placeholder="Woven Width Range To * - e.g. 105 Inches" id="woven_width_to" @if($product->fabric_product_info && $product->fabric_product_info->width_to) value="{{ $product->fabric_product_info->width_to }}" @endif class="form-control" name="woven_width_to" placeholder="e.g. 105 Inches" required>
+                                                        <input type="text" placeholder="Woven Width Range To (Mandatory) - e.g. 105 Inches" id="woven_width_to" @if($product->fabric_product_info && $product->fabric_product_info->width_to) value="{{ $product->fabric_product_info->width_to }}" @endif class="form-control" name="woven_width_to" placeholder="e.g. 105 Inches" required>
                                                     </div>
                                                 </div>
                                                 <small class="text-danger" id="woven_width_error"></small>
@@ -3656,7 +3656,7 @@
                                                        @if($product->fabric_product_info && $product->fabric_product_info->fabric_construction) value="{{ $product->fabric_product_info->fabric_construction }}"
                                                        @endif
                                                        name="knitted_fabric_construction"
-                                                       placeholder="Fabric Construction * - e.g. 80*80/100*80, Other">
+                                                       placeholder="Fabric Construction (Mandatory) - e.g. 80*80/100*80, Other">
                                                 <small class="text-danger"
                                                        id="knitted_fabric_construction_error"></small>
                                             </div>
@@ -3669,7 +3669,7 @@
                                                        @if($product->fabric_product_info && $product->fabric_product_info->gsm_thickness) value="{{ $product->fabric_product_info->gsm_thickness }}"
                                                        @endif class="form-control"
                                                        name="knitted_gsm_thickness"
-                                                       placeholder="GSM/Thickness * - e.g. 75 GSM,150 GSM, Other"
+                                                       placeholder="GSM/Thickness (Mandatory) - e.g. 75 GSM,150 GSM, Other"
                                                        required>
                                             </div>
                                         </div>
@@ -3693,14 +3693,14 @@
                                                         <input type="text" id="knitted_width_from" class="form-control"
                                                                @if($product->fabric_product_info && $product->fabric_product_info->width_from) value="{{ $product->fabric_product_info->width_from }}"
                                                                @endif
-                                                               name="knitted_width_from" placeholder="Knitted Width Range From * - e.g. 75 Inches"
+                                                               name="knitted_width_from" placeholder="Knitted Width Range From (Mandatory) - e.g. 75 Inches"
                                                                required>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="knitted_width_to" class="form-control"
                                                                @if($product->fabric_product_info && $product->fabric_product_info->width_to) value="{{ $product->fabric_product_info->width_to }}"
                                                                @endif
-                                                               name="knitted_width_to" placeholder="Knitted Width Range From * - e.g. 105 Inches"
+                                                               name="knitted_width_to" placeholder="Knitted Width Range From (Mandatory) - e.g. 105 Inches"
                                                                required>
                                                     </div>
                                                 </div>
@@ -4180,7 +4180,7 @@
                                                        @if($product->fabric_product_info && $product->fabric_product_info->fabric_construction) value="{{ $product->fabric_product_info->fabric_construction }}"
                                                        @endif class="form-control"
                                                        name="non_woven_fabric_construction"
-                                                       placeholder="Fabric Construction * - e.g. 80*80/100*80, Other"
+                                                       placeholder="Fabric Construction (Mandatory) - e.g. 80*80/100*80, Other"
                                                        required>
                                             </div>
                                         </div>
@@ -4192,7 +4192,7 @@
                                                        @if($product->fabric_product_info && $product->fabric_product_info->gsm_thickness) value="{{ $product->fabric_product_info->gsm_thickness }}"
                                                        @endif class="form-control"
                                                        name="non_woven_gsm_thickness"
-                                                       placeholder="GSM/Thickness * - e.g. 75 GSM,150 GSM, Other"
+                                                       placeholder="GSM/Thickness (Mandatory) - e.g. 75 GSM,150 GSM, Other"
                                                        required>
                                             </div>
                                         </div>
@@ -4221,14 +4221,14 @@
                                                                class="form-control"
                                                                @if($product->fabric_product_info && $product->fabric_product_info->width_from) value="{{ $product->fabric_product_info->width_from }}"
                                                                @endif
-                                                               name="non_woven_width_from" placeholder="Non Woven Width Range From * - e.g. 75 Inches"
+                                                               name="non_woven_width_from" placeholder="Non Woven Width Range From (Mandatory) - e.g. 75 Inches"
                                                                required>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="non_woven_width_to" class="form-control"
                                                                @if($product->fabric_product_info && $product->fabric_product_info->width_to) value="{{ $product->fabric_product_info->width_to }}"
                                                                @endif
-                                                               name="non_woven_width_to" placeholder="Non Woven Width Range To * - e.g. 105 Inches"
+                                                               name="non_woven_width_to" placeholder="Non Woven Width Range To (Mandatory) - e.g. 105 Inches"
                                                                required>
                                                     </div>
                                                 </div>
@@ -4647,7 +4647,7 @@
                                                         class="required"> *</span></label>
                                                 <input name="yarn_count" class="form-control"
                                                        @if($product->yarn_product_info && $product->yarn_product_info->count) value="{{ $product->yarn_product_info->count }}"
-                                                       @endif placeholder="Yarn Count * - i.e 20 Ne,80 Ne, 50 Dtex, 150 Danier, Other"
+                                                       @endif placeholder="Yarn Count (Mandatory) - i.e 20 Ne,80 Ne, 50 Dtex, 150 Danier, Other"
                                                        required>
                                                 <small class="text-danger" id="yarn_count_error"></small>
                                             </div>
@@ -4821,7 +4821,7 @@
                                                         class="required">*</span></label>
                                                 <input name="yarn_grade" class="form-control"
                                                        @if($product->yarn_product_info && $product->yarn_product_info->grade) value="{{ $product->yarn_product_info->grade }}"
-                                                       @endif placeholder="Yarn Grade * - i.e A-Grade, B-Grade, Other"
+                                                       @endif placeholder="Yarn Grade (Mandatory) - i.e A-Grade, B-Grade, Other"
                                                        required>
                                                 <small class="text-danger" id="yarn_grade_error"></small>
                                             </div>
@@ -5096,7 +5096,7 @@
                                                 <input type="text" id="material" class="form-control"
                                                        @if($product->institutional_product_info && $product->institutional_product_info->material) value="{{ $product->institutional_product_info->material }}"
                                                        @endif name="material"
-                                                       placeholder="Material Type * - i.e Cotton, Polyester, Nylon, Blend, Other"
+                                                       placeholder="Material Type (Mandatory) - i.e Cotton, Polyester, Nylon, Blend, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -5105,7 +5105,7 @@
                                                 <input type="text" id="composition" class="form-control"
                                                        @if($product->institutional_product_info && $product->institutional_product_info->composition) value="{{ $product->institutional_product_info->composition }}"
                                                        @endif name="composition"
-                                                       placeholder="Composition/Construction * - e.g. 60% Cotton, 40% Polyester, 80*80/100*80, 2 ply, Other"
+                                                       placeholder="Composition/Construction (Mandatory) - e.g. 60% Cotton, 40% Polyester, 80*80/100*80, 2 ply, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -5114,7 +5114,7 @@
                                                 <input type="text" id="size_age_group" class="form-control"
                                                        @if($product->institutional_product_info && $product->institutional_product_info->size_age) value="{{ $product->institutional_product_info->size_age }}"
                                                        @endif name="size_age_group"
-                                                       placeholder="Size/Age Group * - e.g. i.e XS-S-M-L-XL, 5-10 Years, King Size, Queen Size, Other"
+                                                       placeholder="Size/Age Group (Mandatory) - e.g. i.e XS-S-M-L-XL, 5-10 Years, King Size, Queen Size, Other"
                                                        required>
                                             </div>
 
@@ -5124,7 +5124,7 @@
                                                 <input type="text" id="colour" class="form-control"
                                                        @if($product->institutional_product_info && $product->institutional_product_info->color) value="{{ $product->institutional_product_info->color }}"
                                                        @endif name="colour"
-                                                       placeholder="Color * - e.g. Blue, Black, Grey, Green, Red, Multi, Other"
+                                                       placeholder="Color (Mandatory) - e.g. Blue, Black, Grey, Green, Red, Multi, Other"
                                                        required>
                                             </div>
 
@@ -5193,7 +5193,7 @@
                                                 <input type="text" id="material_type" class="form-control"
                                                        @if($product->garments_product_info && $product->garments_product_info->material) value="{{ $product->garments_product_info->material }}"
                                                        @endif name="material_type"
-                                                       placeholder="Material Type * - e.g. Cotton, Polyester, Sheep Leather, Metal, Other"
+                                                       placeholder="Material Type (Mandatory) - e.g. Cotton, Polyester, Sheep Leather, Metal, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -5202,7 +5202,7 @@
                                                 <input type="text" id="construction" class="form-control"
                                                        @if($product->garments_product_info && $product->garments_product_info->composition) value="{{ $product->garments_product_info->composition }}"
                                                        @endif name="construction"
-                                                       placeholder="Composition/Construction * - e.g. 60% Cotton, 40% Polyester, 80*80/100*80, Bronze, Other"
+                                                       placeholder="Composition/Construction (Mandatory) - e.g. 60% Cotton, 40% Polyester, 80*80/100*80, Bronze, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -5211,7 +5211,7 @@
                                                 <input type="text" id="size_age" class="form-control"
                                                        @if($product->garments_product_info && $product->garments_product_info->size_age) value="{{ $product->garments_product_info->size_age }}"
                                                        @endif name="size_age"
-                                                       placeholder="Size/Age Group * - e.g. XS-S-M-L-XL, 1-2 Years, 5-10 Years, Other"
+                                                       placeholder="Size/Age Group (Mandatory) - e.g. XS-S-M-L-XL, 1-2 Years, 5-10 Years, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -5220,7 +5220,7 @@
                                                 <input type="text" id="color" class="form-control"
                                                        @if($product->garments_product_info && $product->garments_product_info->color) value="{{ $product->garments_product_info->color }}"
                                                        @endif name="color"
-                                                       placeholder="Color * - e.g. Blue, Black, Grey, Green, Red, Multi, Other"
+                                                       placeholder="Color (Mandatory) - e.g. Blue, Black, Grey, Green, Red, Multi, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -5392,7 +5392,7 @@
                                                                 class="required">*</span></label>
                                                         <input type="text" id="manufacturer_company_name1"
                                                                name="manufacturer_company_name1" class="form-control"
-                                                               placeholder="Manufacturer Company Name * - Company Name" required>
+                                                               placeholder="Manufacturer Company Name (Mandatory) - Company Name" required>
                                                         <small class="text-danger"
                                                                id="manufacturer_company_name1_error"></small>
                                                     </div>
@@ -5667,7 +5667,7 @@
                                                     <input type="number" id="unit_price_from" class="form-control"
                                                            name="unit_price_from"
                                                            @if($product->unit_price_from) value="{{ $product->unit_price_from }}"
-                                                           @endif placeholder="Service Charges * - e.g. 1000-2000" required>
+                                                           @endif placeholder="Service Charges (Mandatory) - e.g. 1000-2000" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="unit_price_to" class="font-500 unit_price_range_label"></label>
@@ -5677,7 +5677,7 @@
                                                     <input type="number" id="unit_price_to" class="form-control"
                                                            name="unit_price_to"
                                                            @if($product->unit_price_to) value="{{ $product->unit_price_to }}"
-                                                           @endif placeholder="Charges Range * - e.g. 200" required>
+                                                           @endif placeholder="Charges Range (Mandatory) - e.g. 200" required>
                                                 </div>
                                                 @if(in_array("Sell", explode(",", $product->product_service_types)))
                                                     <div class="form-group col-md-4">
@@ -5841,14 +5841,14 @@
                                                     <input type="number" id="target_price_from"
                                                            @if($product->target_price_from) value="{{ $product->target_price_from }}"
                                                            @endif class="form-control"
-                                                           name="target_price_from" placeholder="Target Price From * - e.g. 1000" required>
+                                                           name="target_price_from" placeholder="Target Price From (Mandatory) - e.g. 1000" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="target_price_to" class="d-none font-500"></label>
                                                     <input type="number" id="target_price_to" class="form-control"
                                                            name="target_price_to"
                                                            @if($product->target_price_to) value="{{ $product->target_price_to }}"
-                                                           @endif placeholder="Target Price To * - e.g. 200" required>
+                                                           @endif placeholder="Target Price To (Mandatory) - e.g. 200" required>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label for="target_price_unit" class="d-none font-500">Per Unit <span

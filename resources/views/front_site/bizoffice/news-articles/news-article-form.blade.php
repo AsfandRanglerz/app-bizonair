@@ -32,7 +32,7 @@
                                     <label class="d-none font-500">Title <span class="required">*</span></label>
                                     <input type="text"
                                            name="title" id="title" class="form-control"
-                                           placeholder="Title * - Enter title">
+                                           placeholder="Title (Mandatory) - Enter title">
                                     <small class="text-danger" id="title_error"></small>
                                 </div>
                                 <div class="form-group col-md-6">

@@ -177,7 +177,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <input type="text" id="subject" class="h-auto form-control" maxlength = "80" name="subject"
-                                                       placeholder="Subject * - It will appear as title" required>
+                                                       placeholder="Subject (Mandatory) - It will appear as title" required>
                                                 <div class="input-group-append counter-span">
                                                     <span class="text-danger font-500"><span class="counter-total-digits">0</span>/80</span>
                                                 </div>
@@ -944,7 +944,7 @@
                                                 <label for="size" class="d-none font-500">Fibre Size/Length <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="size" class="form-control"
-                                                       name="size" placeholder="Fibre Size/Length * - e.g. 1-2 cm,2-3 cm,3-4 cm,4+ cm, Other"
+                                                       name="size" placeholder="Fibre Size/Length (Mandatory) - e.g. 1-2 cm,2-3 cm,3-4 cm,4+ cm, Other"
                                                        required>
                                                 <small class="text-danger" id="size_error"></small>
                                             </div>
@@ -975,7 +975,7 @@
                                                 <label class="d-none font-500">Yarn Count <span
                                                         class="required"> *</span></label>
                                                 <input name="yarn_count" class="form-control"
-                                                       placeholder="Yarn Count * - i.e 20 Ne,80 Ne, 50 Dtex, 150 Danier, Other"
+                                                       placeholder="Yarn Count (Mandatory) - i.e 20 Ne,80 Ne, 50 Dtex, 150 Danier, Other"
                                                        required>
                                                 <small class="text-danger" id="yarn_count_error"></small>
                                             </div>
@@ -1069,7 +1069,7 @@
                                                 <label class="d-none font-500">Yarn Grade <span
                                                         class="required"> *</span></label>
                                                 <input name="yarn_grade" class="form-control"
-                                                       placeholder="Yarn Grade * - i.e A-Grade, B-Grade, Other"
+                                                       placeholder="Yarn Grade (Mandatory) - i.e A-Grade, B-Grade, Other"
                                                        required>
                                                 <small class="text-danger" id="yarn_grade_error"></small>
                                             </div>
@@ -1343,7 +1343,7 @@
                                                     Construction <span class="required"> *</span></label>
                                                 <input type="text" id="knitted_fabric_construction" class="form-control"
                                                        name="knitted_fabric_construction"
-                                                       placeholder="Fabric Construction * - e.g. 80*80/100*80, Other" required>
+                                                       placeholder="Fabric Construction (Mandatory) - e.g. 80*80/100*80, Other" required>
                                                 <small class="text-danger"
                                                        id="knitted_fabric_construction_error"></small>
                                             </div>
@@ -1354,7 +1354,7 @@
                                                         class="required"> *</span></label>
                                                 <input type="text" id="knitted_gsm_thickness" class="form-control"
                                                        name="knitted_gsm_thickness"
-                                                       placeholder="GSM/Thickness * - e.g. 75 GSM,150 GSM, Other"
+                                                       placeholder="GSM/Thickness (Mandatory) - e.g. 75 GSM,150 GSM, Other"
                                                        required>
                                             </div>
                                         </div>
@@ -1375,12 +1375,12 @@
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="knitted_width_from" class="form-control"
-                                                               name="knitted_width_from" placeholder="Knitted Width Range From * - e.g. 75 Inches"
+                                                               name="knitted_width_from" placeholder="Knitted Width Range From (Mandatory) - e.g. 75 Inches"
                                                                required>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="knitted_width_to" class="form-control"
-                                                               name="knitted_width_to" placeholder="Knitted Width Range From * - e.g. 105 Inches"
+                                                               name="knitted_width_to" placeholder="Knitted Width Range From (Mandatory) - e.g. 105 Inches"
                                                                required>
                                                     </div>
                                                 </div>
@@ -1767,7 +1767,7 @@
                                                     Construction <span class="required"> *</span></label>
                                                 <input type="text" id="woven_fabric_construction" class="form-control"
                                                        name="woven_fabric_construction"
-                                                       placeholder="Fabric Construction * - e.g. 80*80/100*80, Other"
+                                                       placeholder="Fabric Construction (Mandatory) - e.g. 80*80/100*80, Other"
                                                        required>
                                                 <small class="text-danger" id="woven_fabric_construction_error"></small>
                                             </div>
@@ -1778,7 +1778,7 @@
                                                         class="required"> *</span></label>
                                                 <input type="text" id="woven_gsm_thickness" class="form-control"
                                                        name="woven_gsm_thickness"
-                                                       placeholder="GSM/Thickness * - e.g. 75 GSM,150 GSM, Other"
+                                                       placeholder="GSM/Thickness (Mandatory) - e.g. 75 GSM,150 GSM, Other"
                                                        required>
                                                 <small class="text-danger" id="woven_gsm_thickness"></small>
                                             </div>
@@ -1800,12 +1800,12 @@
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="woven_width_from" class="form-control"
-                                                               name="woven_width_from" placeholder="Woven Width Range From * - e.g. 75 Inches"
+                                                               name="woven_width_from" placeholder="Woven Width Range From (Mandatory) - e.g. 75 Inches"
                                                                required>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="woven_width_to" class="form-control"
-                                                               name="woven_width_to" placeholder="Woven Width Range To * - e.g. 105 Inches"
+                                                               name="woven_width_to" placeholder="Woven Width Range To (Mandatory) - e.g. 105 Inches"
                                                                required>
                                                     </div>
                                                 </div>
@@ -2191,7 +2191,7 @@
                                                 <input type="text" id="non_woven_fabric_construction"
                                                        class="form-control"
                                                        name="non_woven_fabric_construction"
-                                                       placeholder="Fabric Construction * - e.g. 80*80/100*80, Other"
+                                                       placeholder="Fabric Construction (Mandatory) - e.g. 80*80/100*80, Other"
                                                        required>
                                             </div>
                                         </div>
@@ -2201,7 +2201,7 @@
                                                     <span class="required"> *</span></label>
                                                 <input type="text" id="non_woven_gsm_thickness" class="form-control"
                                                        name="non_woven_gsm_thickness"
-                                                       placeholder="GSM/Thickness * - e.g. 75 GSM,150 GSM, Other"
+                                                       placeholder="GSM/Thickness (Mandatory) - e.g. 75 GSM,150 GSM, Other"
                                                        required>
                                             </div>
                                         </div>
@@ -2227,12 +2227,12 @@
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="non_woven_width_from"
                                                                class="form-control"
-                                                               name="non_woven_width_from" placeholder="Non Woven Width Range From * - e.g. 75 Inches"
+                                                               name="non_woven_width_from" placeholder="Non Woven Width Range From (Mandatory) - e.g. 75 Inches"
                                                                required>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="non_woven_width_to" class="form-control"
-                                                               name="non_woven_width_to" placeholder="Non Woven Width Range To * - e.g. 105 Inches"
+                                                               name="non_woven_width_to" placeholder="Non Woven Width Range To (Mandatory) - e.g. 105 Inches"
                                                                required>
                                                     </div>
                                                 </div>
@@ -2759,7 +2759,7 @@
                                                 <label for="material" class="d-none font-500">Material Type <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="material" class="form-control" name="material"
-                                                       placeholder="Material Type * - i.e Cotton, Polyester, Nylon, Blend, Other"
+                                                       placeholder="Material Type (Mandatory) - i.e Cotton, Polyester, Nylon, Blend, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -2767,7 +2767,7 @@
                                                         class="required"> *</span></label>
                                                 <input type="text" id="composition" class="form-control"
                                                        name="composition"
-                                                       placeholder="Composition/Construction * - e.g. 60% Cotton, 40% Polyester, 80*80/100*80, 2 ply, Other"
+                                                       placeholder="Composition/Construction (Mandatory) - e.g. 60% Cotton, 40% Polyester, 80*80/100*80, 2 ply, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -2775,7 +2775,7 @@
                                                         class="required"> *</span></label>
                                                 <input type="text" id="size_age_group" class="form-control"
                                                        name="size_age_group"
-                                                       placeholder="Size/Age Group * - e.g. i.e XS-S-M-L-XL, 5-10 Years, King Size, Queen Size, Other"
+                                                       placeholder="Size/Age Group (Mandatory) - e.g. i.e XS-S-M-L-XL, 5-10 Years, King Size, Queen Size, Other"
                                                        required>
                                             </div>
 
@@ -2783,7 +2783,7 @@
                                                 <label for="colour" class="d-none font-500">Color <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="colour" class="form-control" name="colour"
-                                                       placeholder="Color * - e.g. Blue, Black, Grey, Green, Red, Multi, Other"
+                                                       placeholder="Color (Mandatory) - e.g. Blue, Black, Grey, Green, Red, Multi, Other"
                                                        required>
                                             </div>
 
@@ -2924,7 +2924,7 @@
                                                         class="required"> *</span></label>
                                                 <input type="text" id="material_type" class="form-control"
                                                        name="material_type"
-                                                       placeholder="Material Type * - e.g. Cotton, Polyester, Sheep Leather, Metal, Other"
+                                                       placeholder="Material Type (Mandatory) - e.g. Cotton, Polyester, Sheep Leather, Metal, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -2932,21 +2932,21 @@
                                                     <span class="required"> *</span></label>
                                                 <input type="text" id="construction" class="form-control"
                                                        name="construction"
-                                                       placeholder="Composition/Construction * - e.g. 60% Cotton, 40% Polyester, 80*80/100*80, Bronze, Other"
+                                                       placeholder="Composition/Construction (Mandatory) - e.g. 60% Cotton, 40% Polyester, 80*80/100*80, Bronze, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="size_age" class="d-none font-500">Size/Age Group <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="size_age" class="form-control" name="size_age"
-                                                       placeholder="Size/Age Group * - e.g. XS-S-M-L-XL, 1-2 Years, 5-10 Years, Other"
+                                                       placeholder="Size/Age Group (Mandatory) - e.g. XS-S-M-L-XL, 1-2 Years, 5-10 Years, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="color" class="d-none font-500">Color <span
                                                         class="required"> *</span></label>
                                                 <input type="text" id="color" class="form-control" name="color"
-                                                       placeholder="Color * - e.g. Blue, Black, Grey, Green, Red, Multi, Other"
+                                                       placeholder="Color (Mandatory) - e.g. Blue, Black, Grey, Green, Red, Multi, Other"
                                                        required>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -3256,12 +3256,12 @@
                                                         Range<span
                                                             class="required">*</span></label>
                                                     <input type="number" id="target_price_from" class="form-control"
-                                                           name="target_price_from" placeholder="Target Price From * - e.g. 1000" required>
+                                                           name="target_price_from" placeholder="Target Price From (Mandatory) - e.g. 1000" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="target_price_to" class="d-none font-500"></label>
                                                     <input type="number" id="target_price_to" class="form-control"
-                                                           name="target_price_to" placeholder="Target Price To * - e.g. 200" required>
+                                                           name="target_price_to" placeholder="Target Price To (Mandatory) - e.g. 200" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="target_price_unit" class="d-none font-500">Per Unit <span

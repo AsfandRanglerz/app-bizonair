@@ -171,7 +171,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <input type="text" id="subject" class="h-auto form-control" maxlength = "80" name="subject"
-                                                       placeholder="Subject * - It will appear as title" required>
+                                                       placeholder="Subject (Mandatory) - It will appear as title" required>
                                                 <div class="input-group-append counter-span">
                                                     <span class="text-danger font-500"><span class="counter-total-digits">0</span>/80</span>
                                                 </div>
@@ -185,7 +185,7 @@
                                             </label>
                                             <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/80</span>
                                             <input type="text" id="subject" class="form-control" maxlength = "80"name="subject"
-                                                   placeholder="Subject * - It will appear as title" required>
+                                                   placeholder="Subject (Mandatory) - It will appear as title" required>
                                             <small class="text-danger" id="subject_error"></small>
                                         </div>-->
 
@@ -734,7 +734,7 @@
                                         <div class="form-group col-lg-6 product-available">
                                             <label class="d-none font-500 avail-quantity">Available Quantity <span class="required"> *</span></label>
                                             <input type="number" min="0" id="product_availability" class="form-control"
-                                                   name="product_availability" placeholder="Available Quantity * - e.g 50,100" required>
+                                                   name="product_availability" placeholder="Available Quantity (Mandatory) - e.g 50,100" required>
                                             <small class="text-danger" id="product_availability_error"></small>
                                         </div>
                                         {{--                                        <div class="form-group col-lg-6">--}}
@@ -1118,7 +1118,7 @@
                                                         Charges <span
                                                             class="required">*</span></label>
                                                     <input type="number" min="0" id="unit_price_from" class="form-control"
-                                                           name="unit_price_from" placeholder="Service Charges * - e.g. 1000" required>
+                                                           name="unit_price_from" placeholder="Service Charges (Mandatory) - e.g. 1000" required>
                                                 </div>
                                                 {{--                                                <div class="col-md-6">--}}
                                                 {{--                                                    <input type="number" id="unit_price_to" class="form-control"--}}
@@ -1182,7 +1182,7 @@
                                                     <label for="target_price_from" class="d-none font-500">Target Price <span
                                                             class="required">*</span></label>
                                                     <input type="number" min="0" id="target_price_from" class="form-control"
-                                                           name="target_price_from" placeholder="Target Price * - e.g. 1000" required>
+                                                           name="target_price_from" placeholder="Target Price (Mandatory) - e.g. 1000" required>
                                                 </div>
                                                 {{--                                                <div class="col-md-6">--}}
                                                 {{--                                                    <input type="number" id="target_price_to" class="form-control"--}}

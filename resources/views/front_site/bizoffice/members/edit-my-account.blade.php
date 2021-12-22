@@ -280,7 +280,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
                                             <input type="email" id="email" class="form-control" name="email"
-                                                   value="{{ old('email', $user->email) }}" placeholder="Email * - example@gmail.com *">
+                                                   value="{{ old('email', $user->email) }}" placeholder="Email (Mandatory) - example@gmail.com *">
                                             <small class="text-danger" id="email_error"></small>
                                         </div>
                                         <div class="form-group col-md-6 mb-1">
