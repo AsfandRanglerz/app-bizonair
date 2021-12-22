@@ -45,8 +45,11 @@
                             </div>
                             <div class="form-row">
                                 <div for="job_description" class="form-group col-md-12">
-                                    <span class="d-block font-500">(Limit = 1200 Characters)</span>
-                                    <textarea name="job_description" id="editor1" class="form-control" maxlength = "1200" rows="6" placeholder="Job Description (Optional)" ></textarea>
+                                    <div class="d-flex flex-wrap justify-content-between">
+                                        <label class="font-500 label">Job Description <span>(Optional)</span></label>
+                                        <span class="d-block font-500">(Limit = 1200 Characters)</span>
+                                    </div>
+                                    <textarea name="job_description" id="editor1" class="form-control" maxlength = "1200" rows="6" placeholder="Job Description"></textarea>
                                 </div>
                             </div>
                             <div class="form-row">

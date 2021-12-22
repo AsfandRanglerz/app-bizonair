@@ -51,7 +51,7 @@
                                     {{ucfirst($list->user->first_name.' '.$list->user->last_name)}}
                                 </td>
                                 <td>{{$list->user->designation? $list->user->designation : 'N/A'}}</td>
-                                <td><img src="{{get_user_image($list->user)}}" style="height: 75px; width:75px;" alt=""></td>
+                                <td align="center"><img src="{{get_user_image($list->user)}}" alt="" style="height: 70px;width: 70px;object-fit: cover;object-position: top"></td>
                                 <td>{{get_user_status($list->user->id)}}</td>
                                 <td>Member Since {{str_replace('ago', ' ',\Carbon\Carbon::parse($list->user->created_at)->diffForHumans())}}</td>
                                 @if($list->is_owner == 1 || $list->is_admin == 1 || $list->is_member == 1)

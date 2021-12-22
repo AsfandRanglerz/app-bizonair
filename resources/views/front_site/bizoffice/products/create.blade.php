@@ -2998,12 +2998,14 @@
 
                                     <div class="form-row">
                                         <div class="form-group col-md-12 clearfix">
-                                            <label for="editor1" class="d-none font-500">Additional Info <small
-                                                    class="font-500"> (Optional)</small></label>
-                                            <span class="d-block font-500">(Limit = 1200 Characters)</span>
+                                            <div class="d-flex justify-content-between flex-wrap">
+                                                <label for="editor1" class="font-500">Additional Info <small
+                                                        class="font-500"> (Optional)</small></label>
+                                                <span class="d-block font-500">(Limit = 1200 Characters)</span>
+                                            </div>
                                             <textarea id="editor1" rows="5" class="form-control addi_info"
                                                       maxlength="1200" name="details"
-                                                      placeholder="Additional Info (Optional) - Add product details"></textarea>
+                                                      placeholder="Add product details"></textarea>
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">

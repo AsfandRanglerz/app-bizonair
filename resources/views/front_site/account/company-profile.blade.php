@@ -513,11 +513,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group mt-2">
-                                    <label class="d-none label">Company Introduction <span class="required">*</span></label>
-                                    <span class="d-block font-500">(Limit = 5000 Characters)</span>
+                                <div class="form-group mt-2 d-flex flex-column-reverse">
+                                    <div class="d-flex flex-wrap justify-content-between order-1">
+                                        <label class="font-500 label">Company Introduction <span class="required">*</span></label>
+                                        <span class="d-block font-500">(Limit = 5000 Characters)</span>
+                                    </div>
                                     <textarea class="form-control" name="company_introduction" maxlength="5000"
-                                              placeholder="Company Introduction * - Introduce in 5000 characters"
+                                              placeholder="Introduce in 5000 characters"
                                               id="editor1"
                                               rows="5" required></textarea>
                                     <small class="text-danger" id="company_introduction_error"></small>

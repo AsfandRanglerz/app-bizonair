@@ -1909,11 +1909,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <label for="editor1" class="d-none font-500">Additional Info <small class="font-500">
-                                                    (Optional)</small></label>
-                                            <span class="d-block font-500">(Limit = 1200 Characters)</span>
+                                            <div class="d-flex justify-content-between flex-wrap">
+                                                <label for="editor1" class="font-500">Additional Info <small class="font-500">
+                                                        (Optional)</small></label>
+                                                <span class="d-block font-500">(Limit = 1200 Characters)</span>
+                                            </div>
                                             <textarea id="editor1" rows="5" maxlength = "1200" class="form-control" name="details"
-                                                      placeholder="Additional Info (Optional)">{!! $buysell->details !!}</textarea>
+                                                      placeholder="Add product details">{!! $buysell->details !!}</textarea>
                                         </div>
                                     </div>
                                     <div class="mt-3" align="right">
@@ -2492,7 +2494,7 @@
                 input.val(("0" + new_date.getDate()).slice(-2)+'-'+("0"+(new_date.getMonth()+1)).slice(-2)+'-'+new_date.getFullYear());
             });
             /*for add expiry days*/
-            
+
             $( ".updt-button" ).click(function() {
                 $( "#updateBuysell" ).submit();
             });
@@ -2508,7 +2510,7 @@
                 $('#companyTab2').show();
                 $('.close-form').hide();
             }
-            
+
             $( ".updt-button" ).click(function() {
                 var serviceProduct = $('#productService').prop('checked');
                 if(serviceProduct==false) {

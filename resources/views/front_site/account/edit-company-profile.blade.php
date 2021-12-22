@@ -1144,20 +1144,20 @@
                                         </div>
 
                                         <div class="form-row">
-                                            <div class="col-md-12 mb-2">
-                                                <label for="prDes" class="d-none label">Company Introduction <small
-                                                        class="font-500">(Optional)</small></label>
-                                                {{--                                                <input type="text" id="prDes" class="form-control "--}}
-                                                {{--                                                       name="company_introduction"--}}
-                                                {{--                                                       value=""--}}
-                                                {{--                                                       placeholder="Company Introduction">--}}
-                                                <small class="text-danger" id="company_introduction_error"></small>
-                                                <span class="d-block font-500">(Limit = 5000 Characters)</span>
+                                            <div class="col-md-12 mb-2 d-flex flex-column-reverse">
+                                                <div class="d-flex flex-wrap justify-content-between order-1">
+                                                    <label for="prDes" class="font-500 label">Company Introduction <span class="required">*</span></label>
+                                                    {{--                                                <input type="text" id="prDes" class="form-control "--}}
+                                                    {{--                                                       name="company_introduction"--}}
+                                                    {{--                                                       value=""--}}
+                                                    {{--                                                       placeholder="Company Introduction">--}}
+                                                    <span class="d-block font-500">(Limit = 5000 Characters)</span>
+                                                </div>
                                                 <textarea class="form-control" name="company_introduction"
                                                           maxlength="5000"
                                                           placeholder="Company Introduction * - Introduce in 5000 characters"
                                                           id="editor1"
-                                                          rows="5">{!! $company->company_introduction  !!} </textarea>
+                                                          rows="5" required>{!! $company->company_introduction  !!} </textarea>
                                                 <small class="text-danger" id="company_introduction_error"></small>
 <!--                                                <span class="text-danger"><span id="company_introduction_count">0</span>/1200</span>-->
                                             </div>

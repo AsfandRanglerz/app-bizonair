@@ -284,6 +284,7 @@ div.dataTables_wrapper div.dataTables_filter label {
 
 .attachment-img-file .custom-file-label {
     background: transparent;
+    color: #000!important;
     border: 2px dashed #a52c3e;
     display: flex;
     align-items: center;
@@ -291,8 +292,8 @@ div.dataTables_wrapper div.dataTables_filter label {
 }
 
 .attachment-img-file .custom-file-input:focus~.custom-file-label {
-    border-color: none;
-    box-shadow: none;
+    border-color: unset;
+    box-shadow: none!important;
 }
 /*custom attachment images and files*/
 
@@ -1244,14 +1245,6 @@ p.click {
     color: #FFF;
 }
 
-.attachment-img-file .custom-file-label {
-    background: transparent;
-    border: 2px dashed #a52c3e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .attachment-img-file .custom-file-input:focus~.custom-file-label {
     border-color: none;
     box-shadow: none;
@@ -1613,7 +1606,7 @@ p.click {
     text-shadow: 0px 2px 5px #00000080;
     font-weight: bold;
     text-decoration: underline;
-    width: 108px;
+    width: 45%;
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
@@ -10453,6 +10446,10 @@ header .navbar .navbar-toggler {
 }
 
 @media (max-width: 355px) {
+    .company-name-nav {
+        width: 40%;
+    }
+
     /*search field text*/
     .search-text-block {
         width: 65%;

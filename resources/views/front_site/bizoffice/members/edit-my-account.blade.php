@@ -108,7 +108,8 @@
                                     </div>
                                     <div class="mb-3 col-md-4 order-md-2 order-1 my-md-0 text-md-left text-center">
                                         {{--<img class="object-cover rounded-circle header-profile-pic" src="{{ get_user_image(Auth::user()) }}" width="135" height="135">--}}
-                                        <div class="d-flex justify-content-center align-items-center avatar-wrapper rounded-circle my-account-avatar">
+<!--                                        <div class="d-flex justify-content-center align-items-center avatar-wrapper rounded-circle my-account-avatar">-->
+                                        <div class="avatar-wrapper rounded-circle my-account-avatar">
                                             {{--<img class="profile-pic" id="uploaded_image" src="{{ get_user_image(Auth::user()) }}"/>--}}
                                             <div class="position-absolute spinner-border text-danger loader-spinner d-none" role="status" style="z-index: 1">
                                                 <span class="sr-only">Loading...</span>

@@ -26,7 +26,7 @@
                     <div class="create-account">
                         <form id="updateNewsArticleForm" method="POST" action="{{route('update-news-article')}}" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="id" value="{{ $info->id }}"><div class="form-row">
+                            <input type="hidden" name="id" value="{{ $info->id }}">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label  class="d-none font-500">Title <span class="required">*</span></label>
@@ -52,10 +52,9 @@
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <label class="d-none font-500">Description</label>
-                                        <textarea name="description" id="editor1" placeholder="Description (Optional)" class="form-control"
+                                        <label class="font-500">Description (Optional)</label>
+                                        <textarea name="description" id="editor1" placeholder="Description" class="form-control"
                                                   style="min-height:105px">{!! $info->description !!}</textarea>
-                                    
                                     </div>
 
                                     <div class="mb-0 form-group col-md-6 career-img-drop-outer attachment-img-file">
@@ -101,7 +100,7 @@
                 console.error(error);
             });
 
-        
+
 
             var options = {
                 dataType: 'Json',

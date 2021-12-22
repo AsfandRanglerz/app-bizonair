@@ -50,9 +50,8 @@
 
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label class="d-none font-500">Description</label>
-                                    <textarea name="description" id="editor1" placeholder="Description (Optional)" class="form-control ckeditor" style="min-height:105px"></textarea>
-
+                                    <label class="font-500">Description (Optional)</label>
+                                    <textarea name="description" id="editor1" placeholder="Description" class="form-control ckeditor" style="min-height:105px"></textarea>
                                 </div>
 
 

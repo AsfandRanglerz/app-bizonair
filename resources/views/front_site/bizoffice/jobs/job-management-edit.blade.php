@@ -270,8 +270,11 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <span class="d-block font-500">(Limit = 1200 Characters)</span>
-                                    <textarea class="form-control" id="editor1" name="job_description" placeholder="Job Description (Optional)">{!! $info->job_description !!}</textarea>
+                                    <div class="d-flex flex-wrap justify-content-between">
+                                        <label class="font-500 label">Job Description <span>(Optional)</span></label>
+                                        <span class="d-block font-500">(Limit = 1200 Characters)</span>
+                                    </div>
+                                    <textarea class="form-control" id="editor1" name="job_description" placeholder="Job Description">{!! $info->job_description !!}</textarea>
                                 </div>
                             </div>
                             <div class="form-row">
