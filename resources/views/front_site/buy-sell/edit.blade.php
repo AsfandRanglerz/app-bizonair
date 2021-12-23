@@ -886,7 +886,7 @@
                                                 <small class="text-danger" id="sub_sub_category_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 add-sub-sub-cat">
-                                                <label class="font-500">Add Sub-Sub-Category <span class="required">*</span></label>
+                                                <label class="font-500">Add Sub-Sub-Category <span class="required">(Mandatory)</span></label>
                                                 <input type="text" name="add_sub_sub_category" value="{{ $buysell->add_sub_sub_category }}" class="form-control" required>
                                             </div>
                                         </div>
@@ -2083,7 +2083,7 @@
                                                 @endif
                                                 @if(in_array("Service", explode(",", $buysell->product_service_types)))
                                                     <div class="col-md-6 service-unit">
-                                                        <label for="price_unit" class="font-500">Per Unit <span class="required">*</span></label>
+                                                        <label for="price_unit" class="font-500">Per Unit <span class="required">(Mandatory)</span></label>
                                                         <input type="text" name="price_unit" id="price_unit" placeholder="Per Unit" value="@if($buysell->unit_price_unit){{$buysell->unit_price_unit}}@endif" class="form-control" required>
                                                         <small class="text-danger" id="price_unit_error"></small>
                                                     </div>

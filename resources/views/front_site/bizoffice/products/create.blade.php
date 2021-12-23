@@ -3176,7 +3176,7 @@
                                                     </label>
                                                     <label for="unit_price_from"
                                                            class="d-none font-500 service_charges_range_label">Service Charges
-                                                        <span class="required">*</span>
+                                                        <span class="required">(Mandatory)</span>
                                                     </label>
                                                     <input type="number" id="unit_price_from" class="form-control"
                                                            name="unit_price_from" placeholder="e.g. 1000" required>
@@ -3186,7 +3186,7 @@
                                                            class="font-500 unit_price_range_label"></label>
                                                     <label for="unit_price_to"
                                                            class="d-none font-500 service_charges_range_label">Charges Range
-                                                        <span class="required">*</span>
+                                                        <span class="required">(Mandatory)</span>
                                                     </label>
                                                     <input type="number" id="unit_price_to" class="form-control"
                                                            name="unit_price_to" placeholder="e.g. 2000" required>

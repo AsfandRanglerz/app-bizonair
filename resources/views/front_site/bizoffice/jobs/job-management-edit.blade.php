@@ -505,7 +505,7 @@
                             <div class="form-row">
                                 @if(getCompanies(auth()->id())->isNotEmpty())
                                     <div class="form-group col-md-4">
-                                        <label class="d-none font-500">Company <span class="required">*</span></label>
+                                        <label class="d-none font-500">Company <span class="required">(Mandatory)</span></label>
                                         <select name="company" id="company" class="form-control other-option-included single-select-dropdown" required>
                                             <option value=""></option>
                                             <option disabled>Select Company (Mandatory)</option>
@@ -517,7 +517,7 @@
                                         <small class="text-danger" id="company_error"></small>
                                     </div>
                                     <div class="form-group other-div col-md-4" @if($info->company == "Other") style="display: block"; @endif>
-                                        <label class="d-none font-500">Other Company Name <span class="required">*</span></label>
+                                        <label class="d-none font-500">Other Company Name <span class="required">(Mandatory)</span></label>
                                         <input type="text" name="ocompany" id="ocompany" value="{{$info->other_company}}" class="form-control" placeholder="Input Other Company Name">
                                         <small class="text-danger" id="ocompany_error"></small>
                                     </div>

@@ -179,7 +179,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4 career-img-drop-outer attachment-img-file">
-                                    <label for="image" class="d-block text-left mb-2 font-500">Attachment <span class="required">*</span></label>
+                                    <label for="image" class="d-block text-left mb-2 font-500">Attachment <span class="required">(Mandatory)</span></label>
                                     <div class="custom-file">
                                         <input type="file" name="image" id="image" class="custom-file-input" id="customFile" required>
                                         <label class="custom-file-label" for="customFile"><span class="fa fa-upload"></span></label>

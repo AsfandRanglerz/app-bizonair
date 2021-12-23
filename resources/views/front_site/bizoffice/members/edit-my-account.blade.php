@@ -344,7 +344,7 @@
                                     </div>
                                     @if($user->is_owner)
                                         <div class="form-row user-type-section">
-                                            {{--                                            <h6 class="w-100 pl-0">User Type <span class="required">*</span></h6>--}}
+                                            {{--                                            <h6 class="w-100 pl-0">User Type <span class="required">(Mandatory)</span></h6>--}}
                                             <div class="form-group mb-1 user-type col-xl-9 col-lg-12">
                                                 <label for="last_name" class="font-500">User Type <span
                                                         class="required">*</span></label>
@@ -365,7 +365,7 @@
                                             </div>
                                         </div>
                                     @endif
-                                    <label class="font-500">Gender <span class="required">*</span></label>
+                                    <label class="font-500">Gender <span class="required">(Mandatory)</span></label>
                                     <div class="my-1">
                                         <div class="d-flex">
                                             <div class="form-check form-check-inline custom-control custom-radio d-sm-inline">

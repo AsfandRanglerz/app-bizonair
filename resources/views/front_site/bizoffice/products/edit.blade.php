@@ -5663,7 +5663,7 @@
                                                            class="font-500 service_charges_range_label"
                                                            @if(in_array("Service", explode(",", $product->product_service_types))) style="display: block;"
                                                            @else style="display: none;" @endif>Service Charges
-                                                        <span class="required">*</span></label>
+                                                        <span class="required">(Mandatory)</span></label>
                                                     <input type="number" id="unit_price_from" class="form-control"
                                                            name="unit_price_from"
                                                            @if($product->unit_price_from) value="{{ $product->unit_price_from }}"
@@ -5672,7 +5672,7 @@
                                                 <div class="form-group col-md-4">
                                                     <label for="unit_price_to" class="font-500 unit_price_range_label"></label>
                                                     @if(in_array("Service", explode(",", $product->product_service_types)))
-                                                        <label for="unit_price_to" class="d-none font-500">Charges Range <span class="required">*</span></label>
+                                                        <label for="unit_price_to" class="d-none font-500">Charges Range <span class="required">(Mandatory)</span></label>
                                                     @endif
                                                     <input type="number" id="unit_price_to" class="form-control"
                                                            name="unit_price_to"
@@ -5816,7 +5816,7 @@
                                                 @endif
                                                 @if(in_array("Service", explode(",", $product->product_service_types)))
                                                     <div class="form-group col-md-4 service-unit">
-                                                        <label class="font-500">Per Unit <span class="required">*</span></label>
+                                                        <label class="font-500">Per Unit <span class="required">(Mandatory)</span></label>
                                                         <input type="text" name="other_unit_price_unitt" value="@if($product->other_unit_price_unit){{$product->other_unit_price_unit}}@endif" class="form-control" required>
                                                         <small class="text-danger" id="other_unit_price_unit_error"></small>
                                                     </div>
@@ -5828,7 +5828,7 @@
                                             <div class="form-group col-lg-6 other-div add-unit_price_unit"
                                                  @if($product->unit_price_unit == 'Other') style="display: block;"
                                                 @endif>
-                                                <label class="font-500">Other Price Unit <span class="required">*</span></label>
+                                                <label class="font-500">Other Price Unit <span class="required">(Mandatory)</span></label>
                                                 <input type="text" name="other_unit_price_unit" value="{{ $product->other_unit_price_unit }}" class="form-control" required>
                                             </div>
                                         @endif
@@ -6094,7 +6094,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 add-services-duration other-div"
                                              @if(in_array("Other", explode(",", $product->service_durations))) style="display: block;" @endif>
-                                            <label class="d-none font-500">Add Your Service Duration <span class="required">*</span></label>
+                                            <label class="d-none font-500">Add Your Service Duration <span class="required">(Mandatory)</span></label>
                                             <input id="other_service_duration" placeholder="Add Your Service Duration (Mandatory)" name="other_service_duration" type="text" @if($product->other_service_duration) value="{{ $product->other_service_duration }}" required @endif class="form-control">
                                         </div>
 

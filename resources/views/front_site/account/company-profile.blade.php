@@ -25,12 +25,12 @@
                                 <span class="d-block heading basic-info">Basic Info</span>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="companyName" class="d-none label">Company Name <span class="required">*</span></label>
+                                        <label for="companyName" class="d-none label">Company Name <span class="required">(Mandatory)</span></label>
                                         <input type="text" class="form-control" id="companyName" name="company_name" placeholder="Company Name (Mandatory) - My Textile" required>
                                         <small class="text-danger" id="company_name_error"></small>
                                     </div>
                                 <!-- <div class="form-group col-md-6">
-                                    <label for="companyName" class="label">Industry <span class="required">*</span></label>
+                                    <label for="companyName" class="label">Industry <span class="required">(Mandatory)</span></label>
 
                                     <select class="form-control choose-services  selectpicker " multiple name="industry[]">
                                         <option disabled="">--Services--</option>
@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 business-select">
-                                        <label class="d-none label">Business Type <span class="required">*</span></label>
+                                        <label class="d-none label">Business Type <span class="required">(Mandatory)</span></label>
                                         <select class="form-control select2-multiple2" required name="business_type[]"
                                                 multiple="multiple">
                                             <option value=""></option>
@@ -70,7 +70,7 @@
                                         <small class="text-danger" id="business_type_error"></small>
                                     </div>
                                     <div class="form-group col-md-6 other-div">
-                                        <h6 class="d-none w-100 p-0">Add Business Type <span class="required">*</span></h6>
+                                        <h6 class="d-none w-100 p-0">Add Business Type <span class="required">(Mandatory)</span></h6>
                                         <input type="text" name="other_business_type" placeholder="Add Business Type (Mandatory) - Input Other Business Type"
                                                class="form-control">
                                     </div>
@@ -92,7 +92,7 @@
                                         <small class="text-danger" id="business_nature_error"></small>
                                     </div>
                                     <div class="form-group col-md-6 other-nature-div" style="display: none;">
-                                        <h6 class="d-none w-100 p-0">Add Nature of Business <span class="required">*</span></h6>
+                                        <h6 class="d-none w-100 p-0">Add Nature of Business <span class="required">(Mandatory)</span></h6>
                                         <input type="text" name="other_business_nature" placeholder="Add Nature of Business (Mandatory) - Input Other Nature of Business"
                                                class="form-control">
                                     </div>
@@ -515,7 +515,7 @@
                                 </div>
                                 <div class="form-group mt-2 d-flex flex-column-reverse">
                                     <div class="d-flex flex-wrap justify-content-between order-1">
-                                        <label class="font-500 label">Company Introduction <span class="required">*</span></label>
+                                        <label class="font-500 label">Company Introduction <span class="required">(Mandatory)</span></label>
                                         <span class="d-block font-500">(Limit = 5000 Characters)</span>
                                     </div>
                                     <textarea class="form-control" name="company_introduction" maxlength="5000"

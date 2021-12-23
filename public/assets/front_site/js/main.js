@@ -72,7 +72,7 @@ $(document).ready(function () {
     $(document).on('click', '.product-categories, .product-subcategories', function () {
         $(document).on('change', '.product-categories, .product-subcategories', function () {
             // form data will get empty on change
-            $('.additional-product-info input').val("");
+            // $('.additional-product-info input').val("");
             $('.additional-product-info input:radio').prop('checked', false);
             $('.additional-product-info input:checkbox').prop('checked', false);
             // form data will get empty on change
@@ -1641,13 +1641,13 @@ $(document).ready(function () {
             }
 
             if (sellProduct === true) {
-                $('.mybiz-leads #unit_price_from').attr('placeholder', 'Unit Price From *');
-                $('.mybiz-leads #unit_price_to').attr('placeholder', 'Unit Price To *');
+                $('.mybiz-leads #unit_price_from').attr('placeholder', 'Unit Price From (Mandatory)');
+                $('.mybiz-leads #unit_price_to').attr('placeholder', 'Unit Price To (Mandatory)');
                 $(".custom-control-input.product-availability").prop('required', true);
                 $(".form-control.manufacturer-name").prop('required', false);
                 $(".form-control.origin").prop('required', true);
                 $(".service-unit").hide();
-                $('.product-availability').children('label').html('Product Availability <span class="required"> *</span>');
+                $('.product-availability').children('label').html('Product Availability <span class="required"> (Mandatory)</span>');
                 $('.manufacturer-name').siblings('label').html('Manufacturer Name <small class="font-500"> (Optional)</small>');
                 $('.origin').siblings('label').html('Product Origin <small class="font-500"> (Optional)</small>');
             } else {
@@ -1699,9 +1699,9 @@ $(document).ready(function () {
 
             if (buyProduct === true) {
                 $(".form-control.suitable-currency").prop('required', true);
-                $(".form-control.suitable-currency").closest('.form-group').children('label').html('Suitable Currency <span class="required"> *</span>');
+                $(".form-control.suitable-currency").closest('.form-group').children('label').html('Suitable Currency <span class="required"> (Mandatory)</span>');
                 $(".form-control.payment-terms").prop('required', true);
-                $(".form-control.payment-terms").closest('.form-group').children('label').html('Payment Terms <span class="required"> *</span>');
+                $(".form-control.payment-terms").closest('.form-group').children('label').html('Payment Terms <span class="required"> (Mandatory)</span>');
                 $(".additional-product-info .custom-control-input").prop('required', true);
                 $(".additional-product-info .optional-field").prop('required', false);
                 $(".custom-control-input.product-availability").prop('required', false);
@@ -1713,12 +1713,12 @@ $(document).ready(function () {
                 $(".service-unit").hide();
                 $(".trade-info-tab").find(".required-control").prop('required', false);
                 $('.manufacturer_name').html('Preferred Manufacturer Name  <small class="font-500"> (Optional)</small>');
-                $('.avail-quantity').html('Required Quantity  <span class="required"> *</span>');
+                $('.avail-quantity').html('Required Quantity  <span class="required"> (Mandatory)</span>');
             } else {
                 $(".form-control.suitable-currency").prop('required', true);
-                $(".form-control.suitable-currency").closest('.form-group').children('label').html('Suitable Currency <span class="required"> *</span>');
+                $(".form-control.suitable-currency").closest('.form-group').children('label').html('Suitable Currency <span class="required"> (Mandatory)</span>');
                 $(".form-control.payment-terms").prop('required', true);
-                $(".form-control.payment-terms").closest('.form-group').children('label').html('Payment Terms <span class="required"> *</span>');
+                $(".form-control.payment-terms").closest('.form-group').children('label').html('Payment Terms <span class="required"> (Mandatory)</span>');
                 $(".additional-product-info .custom-control-input, .additional-product-info .form-control").prop('required', true);
                 $(".additional-product-info .optional-field").prop('required', false);
                 $("small.field-error-msg").show();
@@ -1729,11 +1729,11 @@ $(document).ready(function () {
             }
 
             if (serviceProduct === true) {
-                $("label[for='sub_category']").html('Service Type <span class="required"> *</span>');
-                $("label[for='product_images']").html('Service Image <span class="required"> *</span><br><small class="font-500">(JPG & PNG  files only | Atleast one product image | Upto\n' + '10MB)</small>');
+                $("label[for='sub_category']").html('Service Type <span class="required"> (Mandatory)</span>');
+                $("label[for='product_images']").html('Service Image <span class="required"> (Mandatory)</span><br><small class="font-500">(JPG & PNG  files only | Atleast one product image | Upto\n' + '10MB)</small>');
                 $(".services-container").find('.multiselectButton').prop('required', true);
-                $(".product-name").find('label').html('Service Name <span class="required"> *</span>');
-                $(".product-name").find('input').attr('placeholder', 'Service Name *');
+                $(".product-name").find('label').html('Service Name <span class="required"> (Mandatory)</span>');
+                $(".product-name").find('input').attr('placeholder', 'Service Name (Mandatory)');
                 $(".trade-info-tab").find(".required-control").prop('required', false);
                 $(".product-availability").hide();
                 $(".product-available").hide();
@@ -1745,20 +1745,20 @@ $(document).ready(function () {
                 $(".form-control.origin").parent().hide();
                 $('.unit_price_range_label').hide();
                 // $('.service_charges_range_label').show();
-                $('.mybiz-leads #unit_price_from').attr('placeholder', 'Service Charges *');
-                $('.mybiz-deals #unit_price_from').attr('placeholder', 'Service Charges *');
-                $('.mybiz-leads #unit_price_to').attr('placeholder', 'Charges Range *');
+                $('.mybiz-leads #unit_price_from').attr('placeholder', 'Service Charges (Mandatory)');
+                $('.mybiz-deals #unit_price_from').attr('placeholder', 'Service Charges (Mandatory)');
+                $('.mybiz-leads #unit_price_to').attr('placeholder', 'Charges Range (Mandatory)');
                 $('.service_charges_range_unit_label').show();
                 $('.product_lead_time').hide();
                 $('.product_delivery').hide();
                 $(".service-unit").show();
                 $('.manufacturer_name').text('Manufacturer Name <small class="font-500"> (Optional)</small>');
             } else {
-                $("label[for='sub_category']").html('Sub-Category <span class="required"> *</span>');
-                $("label[for='product_images']").html('Product Image <span class="required"> *</span><br><small class="font-500">(JPG & PNG  files only | Atleast one product image | Upto\n' + '10MB)</small>');
+                $("label[for='sub_category']").html('Sub-Category <span class="required"> (Mandatory)</span>');
+                $("label[for='product_images']").html('Product Image <span class="required"> (Mandatory)</span><br><small class="font-500">(JPG & PNG  files only | Atleast one product image | Upto\n' + '10MB)</small>');
                 // $(".services-container").find('.multiselectButton').prop('required', false);
-                $(".product-name").find('label').html('Product Name <span class="required"> *</span>');
-                $(".product-name").find('input').attr('placeholder', 'Product Name *');
+                $(".product-name").find('label').html('Product Name <span class="required"> (Mandatory)</span>');
+                $(".product-name").find('input').attr('placeholder', 'Product Name (Mandatory)');
                 $(".product-availability").show();
                 $(".product-available").show();
                 $(".trade-info-container").show();
@@ -1767,7 +1767,7 @@ $(document).ready(function () {
                 $(".form-control.manufacturer-name").parent().show();
                 $(".form-control.origin").parent().show();
                 // $('.service_charges_range_label').hide();
-                $('.mybiz-deals #unit_price_from').attr('placeholder', 'Unit Price *');
+                $('.mybiz-deals #unit_price_from').attr('placeholder', 'Unit Price (Mandatory)');
                 $('.service_charges_range_unit_label').hide();
                 $('.unit_price_range_label').show();
                 $('.product_lead_time').show();

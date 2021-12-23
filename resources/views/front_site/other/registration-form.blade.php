@@ -73,7 +73,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-6 mb-1">
-                                                <label class="d-none">Account Email <span class="required">*</span></label>
+                                                <label class="d-none">Account Email <span class="required">(Mandatory)</span></label>
                                                 <input type="hidden" name="email" value="{{$email}}">
                                                 <input type="email" value="{{$email}}" class="form-control is-valid"
                                                        placeholder="Account Email - example@email.com" disabled="disabled">
@@ -82,13 +82,13 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6 mb-1">
-                                                <label class="d-none">First Name <span class="required">*</span></label>
+                                                <label class="d-none">First Name <span class="required">(Mandatory)</span></label>
                                                 <input type="text" class="form-control required-control" placeholder="First Name - Input First Name"
                                                        name="first_name">
                                                 <small class="text-danger" id="first_name_error"></small>
                                             </div>
                                             <div class="form-group col-md-6 mb-1">
-                                                <label class="d-none">Last Name <span class="required">*</span></label>
+                                                <label class="d-none">Last Name <span class="required">(Mandatory)</span></label>
                                                 <input type="text" name="last_name" class="form-control required-control"
                                                        placeholder="Last Name - Input Last Name">
                                                 <small class="text-danger" id="last_name_error"></small>
@@ -96,7 +96,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6 mb-1">
-                                                <label class="d-none">Password <span class="required">*</span></label>
+                                                <label class="d-none">Password <span class="required">(Mandatory)</span></label>
                                                 <span toggle="#reg_password" class="fa fa-fw fa-eye toggle-password-eye"></span>
                                                 <input type="password" id="reg_password" class="form-control"
                                                        placeholder="Password - Choose a password atleast 8 characters long"
@@ -104,7 +104,7 @@
                                                 <small class="text-danger" id="password_error"></small>
                                             </div>
                                             <div class="form-group col-md-6 mb-1">
-                                                <label class="d-none">Confirm Password <span class="required">*</span></label>
+                                                <label class="d-none">Confirm Password <span class="required">(Mandatory)</span></label>
                                                 <span toggle="#confirm_password"
                                                       class="fa fa-fw fa-eye toggle-password-eye"></span>
                                                 <input type="password" id="confirm_password" class="form-control"
@@ -124,14 +124,14 @@
                                                 <small class="text-danger d-block" id="registration_phone_no_error"></small>
                                             </div>
                                             <div class="form-group col-md-6 mb-1">
-                                                <label for="birthday">Date of Birth <span class="required">*</span></label>
+                                                <label for="birthday">Date of Birth <span class="required">(Mandatory)</span></label>
                                                 <input type="text" name="birthday" placeholder="Date of Birth"
                                                        class="form-control birthday" id="birthday" required>
                                                 <small class="text-danger" id="birthday_error"></small>
                                             </div>
                                         </div>
                                         <div class="mx-0 mb-1 w-100 user-type-section">
-                                            <h6 class="w-100 pl-0 mb-0">Gender <span class="required">*</span></h6>
+                                            <h6 class="w-100 pl-0 mb-0">Gender <span class="required">(Mandatory)</span></h6>
                                             <div class="custom-control custom-radio custom-control-inline">
                                                 <input type="radio" id="exampleRadios1" name="gender" value="Male" class="custom-control-input" required>
                                                 <label class="custom-control-label" for="exampleRadios1">Male</label>
@@ -143,7 +143,7 @@
                                             <small class="text-danger" id="gender_error"></small>
                                         </div>
                                         <div class="mx-0 w-100 form-row user-type-section">
-                                            <h6 class="w-100 px-0">User Type <span class="required">*</span></h6>
+                                            <h6 class="w-100 px-0">User Type <span class="required">(Mandatory)</span></h6>
                                             <div class="form-group user-type col-xl-9 col-lg-12 px-0">
                                                 @foreach (\App\UType::all() as $item)
                                                 <div class="custom-control custom-checkbox custom-control-inline">

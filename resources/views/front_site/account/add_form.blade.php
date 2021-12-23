@@ -78,7 +78,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6 other-div">
-                                            <h6 class="w-100 p-0 d-none">Add Designation <span class="required">*</span></h6>
+                                            <h6 class="w-100 p-0 d-none">Add Designation <span class="required">(Mandatory)</span></h6>
                                             <input type="text" name="other_designation" class="form-control" placeholder="Add Designation (Mandatory)">
                                         </div>
                                     </div>
@@ -131,7 +131,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1 flex-column-reverse">
-                                            <label class="d-none">Country/Region <span class="required">*</span></label>
+                                            <label class="d-none">Country/Region <span class="required">(Mandatory)</span></label>
                                             <select name="country" id="country_id" required class="form-control single-select-dropdown">
                                                 <option value=""></option>
                                                 <option disabled>Select Country/Region (Mandatory)</option>
@@ -143,7 +143,7 @@
                                         </div>
 
                                         <div class="form-group col-md-6 flex-column-reverse">
-                                            <label class="d-none">State/Province <span class="required">*</span></label>
+                                            <label class="d-none">State/Province <span class="required">(Mandatory)</span></label>
                                             <select name="state" id="state" required
                                                     class="form-control single-select-dropdown">
                                                 <option value=""></option>
@@ -154,7 +154,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6 flex-column-reverse">
-                                            <label class="d-none">City <span class="required">*</span></label>
+                                            <label class="d-none">City <span class="required">(Mandatory)</span></label>
                                             <select name="city" id="city" required
                                                     class="form-control single-select-dropdown">
                                                 <option value=""></option>
@@ -172,7 +172,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mobilverifynumber">
                                             <div>
-                                                <label class="d-none">Mobile <span class="required">*</span></label>
+                                                <label class="d-none">Mobile <span class="required">(Mandatory)</span></label>
                                                 <input type="tel" readonly="" name="phone_no"
                                                        value="{{$user->registration_phone_no}}"
                                                        class="form-control d-inline" id="" placeholder="Mobile Number - 03xxxxxxxxx/3xxxxxxxxx">

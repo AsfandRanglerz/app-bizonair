@@ -29,14 +29,14 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label class="d-none font-500">Title <span class="required">*</span></label>
+                                    <label class="d-none font-500">Title <span class="required">(Mandatory)</span></label>
                                     <input type="text"
                                            name="title" id="title" class="form-control"
                                            placeholder="Title (Mandatory) - Enter title">
                                     <small class="text-danger" id="title_error"></small>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="d-none font-500">Type<span class="required">*</span></label>
+                                    <label class="d-none font-500">Type<span class="required">(Mandatory)</span></label>
 
                                     <select name="journal_type" id="journal_type" class="form-control">
                                         <option value=""></option>
@@ -56,7 +56,7 @@
 
 
                                 <div class="mb-0 form-group col-md-6 career-img-drop-outer attachment-img-file">
-                                    <label class="font-500">Image <span class="required">*</span></label>
+                                    <label class="font-500">Image <span class="required">(Mandatory)</span></label>
                                     <div class="custom-file">
                                         <input type="file" name="image" id="image" class="custom-file-input" id="customFile">
                                         <label class="custom-file-label" for="customFile"><span class="fa fa-upload"></span></label>

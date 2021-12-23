@@ -437,7 +437,7 @@
                                                 <small class="text-danger" id="company_error"></small>
                                             </div>
                                         <!-- <div class="form-group col-md-6">
-				                        <label for="industry" class="label">Industry <span class="required">*</span></label>
+				                        <label for="industry" class="label">Industry <span class="required">(Mandatory)</span></label>
 
 				                        <select class="form-control choose-services  selectpicker" name="industry[]" multiple>
 				                            @foreach (\App\Category::all() as $item)
@@ -501,7 +501,7 @@
                                             </div>
                                             <div class="form-group col-md-6 other-div"
                                                  @if(in_array('Others', $business_types)) style="display: block;" @endif>
-                                                <h6 class="d-none w-100 p-0">Add Business Type <span class="required">*</span>
+                                                <h6 class="d-none w-100 p-0">Add Business Type <span class="required">(Mandatory)</span>
                                                 </h6>
                                                 <input type="text" name="other_business_type"
                                                        placeholder="Add Business Type (Mandatory) - Input Other Business Type"
@@ -1146,7 +1146,7 @@
                                         <div class="form-row">
                                             <div class="col-md-12 mb-2 d-flex flex-column-reverse">
                                                 <div class="d-flex flex-wrap justify-content-between order-1">
-                                                    <label for="prDes" class="font-500 label">Company Introduction <span class="required">*</span></label>
+                                                    <label for="prDes" class="font-500 label">Company Introduction <span class="required">(Mandatory)</span></label>
                                                     {{--                                                <input type="text" id="prDes" class="form-control "--}}
                                                     {{--                                                       name="company_introduction"--}}
                                                     {{--                                                       value=""--}}

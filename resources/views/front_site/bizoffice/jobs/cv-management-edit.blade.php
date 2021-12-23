@@ -181,20 +181,20 @@
                             <input type="hidden" name="id" value="{{ $info->id }}">
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label class="font-500">First Name <span class="required">*</span></label>
+                                    <label class="font-500">First Name <span class="required">(Mandatory)</span></label>
                                     <input type="text"
                                            name="fname" id="fname" value="{{ $info->fname }}" class="form-control" required>
                                     <small class="text-danger" id="fname_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label class="font-500">Last Name <span class="required">*</span></label>
+                                    <label class="font-500">Last Name <span class="required">(Mandatory)</span></label>
                                     <input type="text"
                                            name="lname" id="lname" value="{{ $info->lname }}" class="form-control"
                                            required>
                                     <small class="text-danger" id="lname_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label class="font-500">Phone Code <span class="required">*</span></label>
+                                    <label class="font-500">Phone Code <span class="required">(Mandatory)</span></label>
                                     <select name="phone_code" id="phone_code" class="form-control single-select-dropdown" required>
                                         <option value="" selected disabled>Select</option>
                                         @foreach (\DB::table('countries')->get() as $item)
@@ -204,7 +204,7 @@
                                     <small class="text-danger" id="phone_code_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label class="font-500">Contact Number <span class="required">*</span></label>
+                                    <label class="font-500">Contact Number <span class="required">(Mandatory)</span></label>
                                     <input type="text"
                                            name="phone_no" id="phone_no" value="{{ $info->phone_no }}" class="form-control"
                                            required>
@@ -213,14 +213,14 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label class="font-500">Email Address <span class="required">*</span></label>
+                                    <label class="font-500">Email Address <span class="required">(Mandatory)</span></label>
                                     <input type="email"
                                            name="email" id="email" value="{{ $info->email }}" class="form-control"
                                            required>
                                     <small class="text-danger" id="email_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label class="font-500">Total Experience (Years) <span class="required">*</span></label>
+                                    <label class="font-500">Total Experience (Years) <span class="required">(Mandatory)</span></label>
                                     <select class="form-control single-select-dropdown"
                                             id="total_experience" name="total_experience" required>
                                         <option value="Fresh / No Experience" @if($info->total_experience == "Fresh / No Experience") selected @endif>
@@ -248,7 +248,7 @@
                                     <small class="text-danger" id="total_experience_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label class="font-500">Highest Education Level <span class="required">*</span></label>
+                                    <label class="font-500">Highest Education Level <span class="required">(Mandatory)</span></label>
                                     <input type="text"
                                            name="edu_level" id="edu_level" value="{{ $info->edu_level }}" class="form-control"
                                            required>
@@ -258,7 +258,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label class="font-500">Job Sector <span class="required">*</span></label>
+                                    <label class="font-500">Job Sector <span class="required">(Mandatory)</span></label>
                                     <select class="form-control single-select-dropdown"
                                             id="textile_sector" name="textile_sector" required>
                                         <option value="Ginning" @if($info->textile_sector == "Ginning") selected @endif>Ginning </option>
@@ -283,7 +283,7 @@
                                     <small class="text-danger" id="textile_sector_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label class="font-500">Functional Area <span class="required">*</span></label>
+                                    <label class="font-500">Functional Area <span class="required">(Mandatory)</span></label>
                                     <select class="form-control single-select-dropdown"
                                             id="functional_area" name="functional_area" required>
                                         <option value="Electrical" @if($info->functional_area == "Electrical") selected @endif>Electrical </option>
@@ -322,14 +322,14 @@
                                     <small class="text-danger" id="functional_area_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label class="font-500">Expected Salary <span class="required">*</span></label>
+                                    <label class="font-500">Expected Salary <span class="required">(Mandatory)</span></label>
                                     <input type="number"
                                            name="exp_salary" id="exp_salary" value="{{ $info->exp_salary }}" class="form-control"
                                            required>
                                     <small class="text-danger" id="exp_salary_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label class="font-500">Currency <span class="required">*</span></label>
+                                    <label class="font-500">Currency <span class="required">(Mandatory)</span></label>
                                     <select class="form-control single-select-dropdown"
                                             id="unit" name="unit" required>
                                         <option value="PKR" @if($info->sal_unit == "PKR") selected @endif>
@@ -356,7 +356,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="countryId" class="font-500">Country <span class="required">*</span></label>
+                                    <label for="countryId" class="font-500">Country <span class="required">(Mandatory)</span></label>
                                     <select name="country" id="countryId" class="form-control single-select-dropdown" required>
                                         <option value="" selected disabled>--- Select Country ---</option>
                                         @foreach ($countries as $item)
@@ -366,14 +366,14 @@
                                     <small class="text-danger" id="country_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="cityId" class="font-500">City <span class="required">*</span></label>
+                                    <label for="cityId" class="font-500">City <span class="required">(Mandatory)</span></label>
                                     <select name="city" id="cityId" class="form-control single-select-dropdown" required>
                                         <option value="{{$info->city}}" selected>{{$info->city}}</option>
                                     </select>
                                     <small class="text-danger" id="city_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label class="font-500">Key Skills  <span class="required">*</span></label>
+                                    <label class="font-500">Key Skills  <span class="required">(Mandatory)</span></label>
                                     <input type="text"
                                            name="key_skills" id="key_skills"  value="{{ $info->key_skills }}" class="form-control" required>
                                     <small class="text-danger" id="key_skills_error"></small>
