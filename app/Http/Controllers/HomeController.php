@@ -855,19 +855,19 @@ class HomeController extends Controller
             }
         }
 
-        $article = Journal::where('title','LIKE','%'.$term.'%')->where('journal_type_name','articles')->get();
+        $article = Journal::where('title','LIKE','%'.$term.'%')->where('status',1)->where('journal_type_name','articles')->get();
         if($article) {
             foreach ($article as $articles) {
                 $results[] = ['value' => $articles->title, 'link' => url('/search-product?category=articles&keywords=' . $articles->title), 'category' => 'Articles'];
             }
         }
-        $new = NewsManagement::where('title','LIKE','%'.$term.'%')->get();
+        $new = NewsManagement::where('title','LIKE','%'.$term.'%')->where('status',1)->get();
         if($new) {
             foreach ($new as $news) {
                 $results[] = ['value' => $news->title, 'link' => url('/search-product?category=news&keywords=' . $news->title), 'category' => 'News'];
             }
         }
-        $event = Journal::where('title','LIKE','%'.$term.'%')->where('journal_type_name','Upcomming Events')->get();
+        $event = Journal::where('title','LIKE','%'.$term.'%')->where('status',1)->where('journal_type_name','Upcomming Events')->get();
         if($event) {
             foreach ($event as $events) {
                 $results[] = ['value' => $events->title, 'link' => url('/search-product?category=events&keywords=' . $events->title), 'category' => 'Events'];
@@ -971,13 +971,13 @@ class HomeController extends Controller
             $allcompanies = \App\CompanyProfile::where('company_name','Like','%'.$search.'%')->get();
             return view('front_site.view-all.view-all-companies')->with(['allcompanies'=>$allcompanies,'category'=>$category,'search'=>$search]);
         }elseif ($category =='articles'){
-            $articles = Journal::where('title','Like','%'.$search.'%')->where('journal_type_name','articles')->get();
+            $articles = Journal::where('title','Like','%'.$search.'%')->where('status',1)->where('journal_type_name','articles')->get();
             return view('front_site.journals.articles')->with(['articles'=>$articles,'category'=>$category,'search'=>$search]);
         }elseif ($category =='news'){
-            $news = NewsManagement::where('title','Like','%'.$search.'%')->get();
+            $news = NewsManagement::where('title','Like','%'.$search.'%')->where('status',1)->get();
             return view('front_site.journals.news')->with(['data'=>$news,'category'=>$category,'search'=>$search]);
         }elseif ($category =='events'){
-            $events = Journal::where('title','Like','%'.$search.'%')->where('journal_type_name','Upcomming Events')->get();
+            $events = Journal::where('title','Like','%'.$search.'%')->where('journal_type_name','Upcomming Events')->where('status',1)->get();
             return view('front_site.journals.events')->with(['articles'=>$events,'category'=>$category,'search'=>$search]);
         }else{
             return redirect()->route('bizonair-404');

@@ -46,12 +46,12 @@
                                     <p class="text-center mb-md-3 mb-2">Register using social media icons</p>
                                     <div class="form-row">
                                         <div class="w-100 form-group social-links" align="center">
-                                            <a href="{{route('facebook-sign-up')}}" class="facebook-icon"><span
-                                                    class="fa fa-facebook" aria-hidden="true"></span>Facebook</a>
+{{--                                            <a href="{{route('facebook-sign-up')}}" class="facebook-icon"><span--}}
+{{--                                                    class="fa fa-facebook" aria-hidden="true"></span>Facebook</a>--}}
                                             <a href="{{route('linkedin-sign-up')}}" class="linkedin-icon"><span
                                                     class="fa fa-linkedin" aria-hidden="true"></span>LinkedIn</a>
-                                            <a href="{{route('google-sign-up')}}" class="google-icon"><span
-                                                    class="fa fa-google" aria-hidden="true"></span>Google</a>
+{{--                                            <a href="{{route('google-sign-up')}}" class="google-icon"><span--}}
+{{--                                                    class="fa fa-google" aria-hidden="true"></span>Google</a>--}}
                                         </div>
                                         <div class="w-100 opt-br">
                                             <div>
