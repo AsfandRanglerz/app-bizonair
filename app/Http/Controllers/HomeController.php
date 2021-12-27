@@ -294,16 +294,25 @@ class HomeController extends Controller
             \Session::put('error', 'Please complete the captcha');
             return redirect()->back();
         }
-        $remember = request()->has('remember') ? true : false;
         if (Auth::attempt([
             'email' => request('email'), 'password' => request('password'), 'role_id' => 2
-        ],$remember)) {
+        ])) {
             if (\Auth::user()->is_blocked != 1) {
                 if(Auth::user()->step_2 != Null){
                     $data['user'] = \App\User::find(Auth::user()->id);
                     $data['user']->save();
                     $data['msg'] = 'Logged in successfully !';
                     $data['feedback'] = 'true';
+                    if(request()->remember == true){
+
+                        setcookie('member_login', request()->email, time() + (86400 * 30));
+                        setcookie('member_password', request()->password, time() + (86400 * 30));
+                    }elseif(request()->remember == false){
+                        unset($_COOKIE['member_login']);
+                        unset($_COOKIE['member_password']);
+                        setcookie('member_login', null, -1);
+                        setcookie('member_password', null, -1);
+                    }
                     DB::table('notifications')
                         ->where('user_id', auth()->id())
                         ->update(['is_display' => 1]);

@@ -41,7 +41,7 @@
                     <input type="hidden" class="form-control" name="previous_url" value="{{url()->previous()}}">
                 @endif
             <div class="form-group">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email-example@gmail.com">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email-example@gmail.com" value="@if(isset($_COOKIE["member_login"])){{$_COOKIE["member_login"]}}@endif">
                 <small class="text-white" id="email_error"></small>
             </div>
             <div class="form-group position-relative login-password">
@@ -56,7 +56,7 @@
             <small class="text-danger" id="g-recaptcha-response_error"></small>
             <div class="form-group text-center mb-0">
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="remember" name="remember">
+                    <input type="checkbox" class="custom-control-input" id="remember" name="remember" @if(isset($_COOKIE["member_login"])) checked @endif>
                     <label class="custom-control-label" for="remember">Remember me</label>
                 </div>
 

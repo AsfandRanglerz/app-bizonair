@@ -355,7 +355,7 @@
 
                             <li  data-toggle="tooltip" data-placement="bottom" title="View Your Business Profile">
 
-                                <a href="{{ route('my-company-profile',[session()->get('company_id')]) }}" class="sidebar-links">View Your Business Profile</a></li>
+                                <a href="@if(session()->has('company_id')){{ route('my-company-profile',[session()->get('company_id')]) }}@else#@endif" class="sidebar-links">View Your Business Profile</a></li>
                             <li  data-toggle="tooltip" data-placement="bottom" title="Create & Manage your company page">
                                 <a href="{{route('suppliers-about-us')}}" class="sidebar-links">View Your Company Page</a></li>
 

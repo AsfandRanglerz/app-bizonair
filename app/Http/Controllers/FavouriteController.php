@@ -23,9 +23,14 @@ class FavouriteController extends Controller
         if(\DB::table('favourites')->where(['user_id'=>$loger_id,'reference_no'=>$reference_no])->exists()){
 // record already exist
             $prdct = \App\Product::where('reference_no', $reference_no)->first();
-            $cpany = \App\UserCompany::where('company_id', $prdct->company_id)->get();
-            foreach($cpany as $cmp){
-                \App\Notification::where('user_id',$cmp->user_id)->where('table_name','favourites')->where('prod_id',$prdct->id)->delete();
+            if($prdct){
+                $cpany = \App\UserCompany::where('company_id', $prdct->company_id)->get();
+                foreach($cpany as $cmp){
+                    \App\Notification::where('user_id',$cmp->user_id)->where('table_name','favourites')->where('prod_id',$prdct->id)->delete();
+                }
+            }else{
+                $bysell = \App\BuySell::where('reference_no', $reference_no)->first();
+                \App\Notification::where('user_id',$bysell->user_id)->where('table_name','favourites')->where('prod_id',$bysell->id)->delete();
             }
             DB::delete('delete from favourites where reference_no = ?', [$reference_no]);
             $data['feedback'] = 'true';
@@ -346,7 +351,7 @@ class FavouriteController extends Controller
                 $data['feedback'] = "other";
                 $data['custom_msg'] = 'Something went wrong';
             }
-            
+
             return response()->json(['data'=>$data]);
         }
     }

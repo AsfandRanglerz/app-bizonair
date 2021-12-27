@@ -874,8 +874,6 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request->all());
-
         $rules = [
             'product_service_types' => 'required', 'category' => 'required', 'sub_category' => 'required',
             'subject' => 'required',
