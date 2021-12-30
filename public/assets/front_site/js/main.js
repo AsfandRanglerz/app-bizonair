@@ -233,7 +233,7 @@ $(document).ready(function () {
     /*banner search keyword*/
     $('#searchKeyword').focus(function() {
         var search_term = $('#searchKeyword').val();
-        $('.search_results_links').removeHighlight().highlight(search_term);
+        $('.search-text-block').removeHighlight().highlight(search_term);
         setInterval(function(){
             if($('#searchKeyword').val().length=="") {
                 $('.search-suggestions').hide();
