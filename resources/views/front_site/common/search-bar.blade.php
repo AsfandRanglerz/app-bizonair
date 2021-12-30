@@ -162,6 +162,9 @@
 
                         console.log(output);
                         $('.search_results_links').html(output);
+                        if($('.search_results_links').html()!="") {
+                            $('#searchKeyword').keyup();
+                        }
 
                         if(output != ''){
                             $('#searchKeyword').trigger('focus');
