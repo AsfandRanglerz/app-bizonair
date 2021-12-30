@@ -188,6 +188,14 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
+                                            <div class="form-group col-md-12 mb-1">
+                                                <label class="d-none">Verification Code <small class="font-500">(Optional)</small></label>
+                                                <input type="text" class="form-control" placeholder="Verification Code (Optional) - Input Verification Code"
+                                                       name="verification_code">
+                                                <small class="text-danger" id="verification_code_error"></small>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
 {{--                                            <div class="form-group check-stats">--}}
 {{--                                                <ul class="pl-2">--}}
 {{--                                                    <li class="w-100 btn d-flex" id="termsCheckbox">--}}

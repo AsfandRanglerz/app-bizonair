@@ -403,24 +403,14 @@ class CompanyController extends Controller
 
             do {
                 $token = \Illuminate\Support\Str::random(12);
+                $verification_code = mt_rand(799999, 999999);
             } while (Invite::where('token', $token)->first());
 
             $invite = Invite::create([
-                'email' => $request->email, 'token' => $token, 'company_id' => session()->get('company_id'),
+                'email' => $request->email, 'token' => $token, 'company_id' => session()->get('company_id'),'verification_code' => $verification_code,
             ]);
 
             $user = auth()->user();
-
-//            if (!empty($user->my_office->office_code)) {
-//                $code = \Auth::user()->my_office->office_code;
-//            } else {
-//
-//
-//                $office = \App\CompanyProfile::find(\Auth::user()->my_office->id);
-//                $code = generate_verification_code();
-//                $office->office_code = $code;
-//                $office->save();
-//            }
 
             // $code=generate_verification_code();
             \Mail::to($request->get('email'))->send(new InviteMemberEmail($invite, $user));
@@ -438,31 +428,15 @@ class CompanyController extends Controller
 
     public function acceptToken($token, $email)
     {
-
-//        if (!(\Auth::id())) {
-
         $invite = Invite::where('token', $token)->first();
-//            dd($invite);
         if (!$invite) {
             abort(404);
         }
-        // $user=User::where('email',$invite->email)->first();
-        // if($user){
-        //     $invite->delete();
-        //     auth()->login($user);
-        //     return redirect()->route('join-office');
-        // }
 
         $user = User::where('email', $invite->email)->first();
         $company = CompanyProfile::where('id',$invite->company_id)->first();
 
         if ($user) {
-//            $usercompany = new \App\UserCompany();
-//            $usercompany->user_id = $user->id;
-//            $usercompany->company_id = $company->id;
-//            $usercompany->company_name = $company->company_name;
-//            $usercompany->is_member = 1;
-//            $usercompany->save();
 
             \session()->put('company_id', $invite->company_id);
 
@@ -473,13 +447,8 @@ class CompanyController extends Controller
             \session()->put('invitation_token', $token);
             \session()->put('office_code', $company->office_code);
             \session()->put('company_id', $invite->company_id);
-//            $invite->delete();
             return redirect()->route('registeration-step-2');
         }
-
-//        } else {
-//            return redirect()->route('home');
-//        }
     }
 
 
