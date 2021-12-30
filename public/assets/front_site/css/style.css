@@ -2469,7 +2469,7 @@ ul li input[type=checkbox] {
 .suppliers-buyers .nav-tabs .link {
     padding-bottom: 5px;
     display: inline-block;
-    color: #000;
+    color: #000000ba;
     font-weight: bold;
     text-decoration: none;
     position: relative;
@@ -2507,6 +2507,8 @@ ul li input[type=checkbox] {
 
 .suppliers-buyers .list.active a {
     border-bottom: 1px #12253D dashed!important;
+    font-weight: 800;
+    color: #000;
 }
 
 .suppliers-buyers .compare-div {
@@ -5449,6 +5451,14 @@ ol.breadcrumb {
     background-color: transparent;
     padding: 0;
     margin: 15px 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.breadcrumb-item {
+    display: inline;
 }
 
 .breadcrumb .breadcrumb-item a,
@@ -6047,6 +6057,10 @@ nav .breadcrumb-item + .breadcrumb-item::before {
     font-weight: bold;
     color: #12253d;
     margin: 2px 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 }
 
 .product-listing .top-companies .top-companies-card .companies-card-content .company-content {
@@ -9241,6 +9255,11 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 575px) {
+    .ad-slider .ad-slider-arrows .fa {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
     /*search field text*/
     .search-text-block {
         width: 70%;

@@ -657,6 +657,14 @@
     <!--  /*add to compare model*/ -->
     <script type="text/javascript">
         $(document).ready(function () {
+            /*onclick hide-show number*/
+            $(".hide-show-number").click(function(){
+                $(this).text($(this).text() == 'Hide' ? 'Show' : 'Hide');
+                $(this).siblings('.hidden').toggleClass('d-inline-block d-none');
+                $(this).siblings('.show').toggleClass('d-none d-inline-block');
+            });
+            /*onclick hide-show number*/
+
             var options_inquiry = {
                 dataType: 'Json',
                 beforeSubmit: function (arr, $form) {

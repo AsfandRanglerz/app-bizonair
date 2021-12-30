@@ -515,14 +515,6 @@ $(document).ready(function () {
     });
     /*digits counter*/
 
-    /*onclick hide-show number*/
-    $(".hide-show-number").click(function(){
-        $(this).text($(this).text() == 'Hide' ? 'Show' : 'Hide');
-        $(this).siblings('.hidden').toggleClass('d-inline-block d-none');
-        $(this).siblings('.show').toggleClass('d-none d-inline-block');
-    });
-    /*onclick hide-show number*/
-
     /*textarea box words length*/
     var text_max = 1000;
     $('#totalCharLeft').html(text_max + ' characters remaining');
@@ -557,14 +549,6 @@ $(document).ready(function () {
         $(this).siblings('span').find('.counter-total-digits').text($(this).val().length);
     });
     /*digits counter*/
-
-    /*onclick hide-show number*/
-    $(".hide-show-number").click(function(){
-        $(this).text($(this).text() == 'Hide' ? 'Show' : 'Hide');
-        $(this).siblings('.hidden').toggleClass('d-inline-block d-none');
-        $(this).siblings('.show').toggleClass('d-none d-inline-block');
-    });
-    /*onclick hide-show number*/
 
     setTimeout(() => {
         /*category name changed on basis of selected category*/
@@ -942,10 +926,10 @@ $(document).ready(function () {
     /*nav link active onclick*/
     $("#garmentsNav .nav-link").each(function () {
         var currentUrl = window.location.href.split('/');
-        var currentUrlBase = currentUrl[5];
+        var currentUrlBase = currentUrl[4];
 
         var activeUrl = $(this).attr("href").split('/');
-        var activeUrlBase = activeUrl[5];
+        var activeUrlBase = activeUrl[4];
 
         if (currentUrlBase == activeUrlBase && currentUrlBase!=undefined && activeUrlBase!=undefined) {
             $(this).addClass("nav-underline-pg");
