@@ -232,7 +232,7 @@ $(document).ready(function () {
 
     /*banner search keyword*/
     $('#searchKeyword').focus(function() {
-        var search_term = $('#searchKeyword').val();
+        var search_term = $('#searchKeyword').val().replace(/ /g,'');
         $('.search-text-block').removeHighlight().highlight(search_term);
         setInterval(function(){
             if($('#searchKeyword').val().length=="") {
