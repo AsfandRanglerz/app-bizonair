@@ -452,22 +452,25 @@ class HomeController extends Controller
         if (request('industry_information_check'))
             $user->industry_information_check = 1;
         $user->save();
-        $inviteExists = \App\Invite::where('email', '=', request('email'))->where('verification_code','!=',null)->first();
-        if($inviteExists->verification_code == request('verification_code')){
-            $company = \App\CompanyProfile::where('id',$inviteExists->company_id)->first();
-            $usercompany = new \App\UserCompany();
-            $usercompany->user_id = $user->id;
-            $usercompany->company_id = $company->id;
-            $usercompany->company_name = $company->company_name;
-            $usercompany->is_member = 1;
-            $usercompany->save();
-            \session()->put('company_id',$usercompany->company_id);
-        }else{
-            $data['feedback'] = 'other_error';
-            // $data['msg'] = steps_form_error_message();
-            $data['custom_msg'] = 'Your verification code is incorrect';
-            $data['id'] = 'verification_code_error';
-            return json_encode($data);
+        $inviteExists = \App\Invite::where('email', '=', request('email'))->where('verification_code',request('verification_code'))->first();
+        if(\request('verification_code') != null){
+            if($inviteExists){
+                $company = \App\CompanyProfile::where('id',$inviteExists->company_id)->first();
+                $usercompany = new \App\UserCompany();
+                $usercompany->user_id = $user->id;
+                $usercompany->company_id = $company->id;
+                $usercompany->company_name = $company->company_name;
+                $usercompany->is_member = 1;
+                $usercompany->save();
+                \session()->put('company_id',$usercompany->company_id);
+            }
+//            else{
+//                $data['feedback'] = 'other_error';
+//                // $data['msg'] = steps_form_error_message();
+//                $data['custom_msg'] = 'Your verification code is incorrect';
+//                $data['id'] = 'verification_code_error';
+//                return json_encode($data);
+//            }
         }
         if ($user) {
             Auth::loginUsingId($user->id);
