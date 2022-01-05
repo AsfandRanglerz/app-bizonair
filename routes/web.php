@@ -123,7 +123,10 @@ Route::post('imageRemove', 'CompanyController@imageRemove')->name('imageRemove')
         Route::put('update-my-account', 'HomeController@updateAccount')
             ->name('update-my-account');
 
-
+        Route::get('office-invitation', 'HomeController@office_invitation')
+            ->name('office-invitation');
+        Route::post('verify-invitation-code', 'HomeController@check_invitation_code')
+            ->name('verify-invitation-code');
        // Route::resource('buy-sell', 'BuySellController');
         Route::get('buy-sells', 'BuySellController@index')->name('buy-sell.index');
         Route::post('buy-sell', 'BuySellController@store')->name('buy-sell.store');

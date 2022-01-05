@@ -16,6 +16,7 @@ class AddCompanyIdInInvitation extends Migration
         Schema::table('invites', function (Blueprint $table) {
             $table->unsignedInteger('company_id');
             $table->string('verification_code')->nullable();
+            $table->integer('status')->default(0);
         });
     }
 

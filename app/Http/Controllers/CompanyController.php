@@ -475,7 +475,7 @@ class CompanyController extends Controller
 //        dd($user);
 //        $exist = \App\CompanyProfile::where('office_code', request->office_code)->first();
 
-        $invite = Invite::where('token', $request->token)->first();
+        $invite = Invite::where('token', $request->token)->where('status',0)->first();
         if ($invite) {
 
             $exist = CompanyProfile::where('office_code', $request->code)->first();
