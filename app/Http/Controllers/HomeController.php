@@ -380,6 +380,7 @@ class HomeController extends Controller
                     $usercompany->is_member = 1;
                     $usercompany->save();
                     $invitation_code->update(['status' => 1]);
+                   \session()->put('company_id',$invitation_code->company_id);
                     $data['feedback'] = 'true';
                     $data['msg'] = 'Biz Office Joined successfully!';
                     $data['url'] =route('user-dashboard');
@@ -485,7 +486,7 @@ class HomeController extends Controller
         if (request('industry_information_check'))
             $user->industry_information_check = 1;
         $user->save();
-        $inviteExists = \App\Invite::where('email', '=', request('email'))->where('verification_code',request('verification_code'))->first();
+        $inviteExists = \App\Invite::where('email', '=', request('email'))->where('verification_code',request('verification_code'))->where('status',0)->first();
         if(\request('verification_code') != null){
             if($inviteExists){
                 $company = \App\CompanyProfile::where('id',$inviteExists->company_id)->first();
@@ -495,6 +496,7 @@ class HomeController extends Controller
                 $usercompany->company_name = $company->company_name;
                 $usercompany->is_member = 1;
                 $usercompany->save();
+                $inviteExists->update(['status' => 1]);
                 \session()->put('company_id',$usercompany->company_id);
             }
 //            else{

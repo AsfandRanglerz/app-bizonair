@@ -1210,6 +1210,7 @@
                                             <h6 class="mt-3 px-2 heading pro-spec-heading">Product Specifications</h6>
                                             <div class="product-images-gallery">
                                                 <ul class="row mx-0 my-2 product-gallery">
+                                                    @if(count(ProductHelper::getSheets($product->id)) > 0)
                                                     @foreach(ProductHelper::getSheets($product->id) as $file)
                                                         <?php $pathinfo = pathinfo($file->sheet);
                                                         $supported_ext = array('docx', 'xlsx', 'pdf');
@@ -1275,6 +1276,11 @@
                                                             </li>
                                                         @endif
                                                     @endforeach
+                                                    @else
+                                                        <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center">
+                                                            <p>No specifications sheet to display</p>
+                                                        </li>
+                                                    @endif
                                                 </ul>
                                             </div>
                                         </div>

@@ -456,6 +456,7 @@
                                    <div class="product-img-spec-container">
                                        <div class="product-images-gallery">
                                            <ul class="row mx-0 my-2 product-gallery">
+                                               @if(count(\App\Helpers\BuysellHelper::getSheets($product->id)) > 0)
                                                @foreach(\App\Helpers\BuysellHelper::getSheets($product->id) as $file)
                                                    <?php $pathinfo = pathinfo($file->sheet);
                                                    $supported_ext = array('docx', 'xlsx', 'pdf');
@@ -515,6 +516,11 @@
                                                        </li>
                                                    @endif
                                                @endforeach
+                                               @else
+                                                   <li class="px-1 my-1 col-lg-2 col-md-3 col-6 d-flex justify-content-center align-items-center">
+                                                       <p>No specifications sheet to display</p>
+                                                   </li>
+                                               @endif
                                            </ul>
                                        </div>
                                    </div>
