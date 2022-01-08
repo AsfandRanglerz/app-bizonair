@@ -99,7 +99,6 @@
     <script src="{{$ASSET}}/front_site/plugins/password-preview/js/jquery.prevue.js"></script>
     <script src="{{$ASSET}}/front_site/plugins/multi-image-selector/jquery.imageuploader.js"></script>
     <script src="{{$ASSET}}/front_site/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script src="{{$ASSET}}/front_site/plugins/WOW-master/js/wow.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     {{--    <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>--}}
     <script src="{{$ASSET}}/front_site/js/dropzone.js"></script>
@@ -109,7 +108,6 @@
     <script src="{{$ASSET}}/front_site/js/sweetalert.min.js"></script>
     <script src="{{$ASSET}}/front_site/js/range-selector.js"></script>
     <script src="{{$ASSET}}/front_site/js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
     <script src="{{$ASSET}}/front_site/js/toastr.min.js"></script>
     <script src="https://johannburkard.de/resources/Johann/jquery.highlight-4.js"></script>
     @stack('chart')

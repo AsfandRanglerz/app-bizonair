@@ -242,19 +242,6 @@ $(document).ready(function () {
     });
     /*banner search keyword*/
 
-    /*wow animation*/
-    wow = new WOW(
-        {
-            boxClass:     'wow',      // default
-            animateClass: 'animated', // default
-            offset:       0,          // default
-            mobile:       true,       // default
-            live:         true        // default
-        }
-    )
-    wow.init();
-    /*wow animation*/
-
     /*company images gallery*/
     $('.company-images-gallery').lightGallery({
         thumbnail:true,
@@ -672,19 +659,6 @@ $(document).ready(function () {
         } // End if
     });
     /*Add smooth scrolling to all links*/
-
-    /*whatsapp modal*/
-    $('#whatsAppContact').floatingWhatsApp({
-        phone: '+923213222254', //WhatsApp Business phone number International format-
-        //Get it with Toky at https://toky.co/en/features/whatsapp.
-        headerTitle: 'Chat with Bizonair Team on WhatsApp!', //Popup Title
-        popupMessage: 'Hello, how can we help you?', //Popup Message
-        showPopup: true, //Enables popup display
-        buttonImage: '<img src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/whatsapp.svg" />', //Button Image
-        //headerColor: 'crimson', //Custom header color
-        //backgroundColor: 'crimson', //Custom background button color
-        position: "right"
-    });
 
     /*sending icon hide*/
     $('.floating-wpp-btn-send').hide();
