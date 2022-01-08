@@ -71,6 +71,7 @@
                                </div>
                            </div>
                            <div class="px-1 d-flex flex-column justify-content-sm-between col-lg-6 col-md-6 mt-md-0 mt-1 contact-product-info">
+                               <div class="d-md-none d-block text-right"><a href="{{ route('buy-sell.create') }}" class="red-btn py-1 px-2 text-uppercase">Post Your Service Deal</a></div>
                                <span class="heading">{{$product->product_service_name}}</span>
                                <p><span class="font-500" style="color: #000">Reference No: </span>{{$product->reference_no}}</p>
                                <p style="margin-bottom: 4px"><span class="font-500" style="color: #000">One-Time Deals: </span> @if($product->product_service_types =='Service') Service Seeker @endif</p>
@@ -206,7 +207,7 @@
                        </div>
                    </div>
                    <div class="col-xl-3 col-lg-12 p-0">
-                       <div class="d-flex justify-content-end text-right mb-1 px-1">
+                       <div class="d-md-flex d-none justify-content-end text-right mb-1 px-1">
                            <a href="{{ route('buy-sell.create') }}" class="red-btn py-1 px-2 text-uppercase">Post Your Service Deal</a>
                        </div>
                        @if(auth()->user())

@@ -925,8 +925,10 @@ $(document).ready(function () {
 
     /*nav link active onclick*/
     $("#garmentsNav .nav-link").each(function () {
-        var currentUrl = window.location.href.split('/');
-        var currentUrlBase = currentUrl[4];
+        var currentUrl = window.location.href;
+        //current url slice on basis of '?'
+        currentUrlSlice = currentUrl .slice( 0, currentUrl .indexOf('?') ).split('/');
+        var currentUrlBase = currentUrlSlice[4];
 
         var activeUrl = $(this).attr("href").split('/');
         var activeUrlBase = activeUrl[4];

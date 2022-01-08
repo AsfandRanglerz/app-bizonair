@@ -1865,7 +1865,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label class="font-500">Post Your Lead As
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="d-flex flex-sm-row flex-column">
                                                 <div
@@ -1905,7 +1905,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
                                             <label for="category" class="font-500">Main Category
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="position-relative">
                                                 <select class="form-control product-categories" id="category"
@@ -1929,7 +1929,7 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="sub_category" class="font-500">Sub-Category
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <div class="position-relative">
                                                 <select class="form-control product-subcategories" id="sub_category"
@@ -1951,7 +1951,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 d-flex flex-column subCat-Sec">
                                                 <label for="sub_sub_category" class="font-500">Product Type<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <select class="form-control single-select-dropdown"
                                                         id="sub_sub_category"
                                                         name="sub_sub_category"
@@ -1976,7 +1976,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 clearfix">
                                             <label for="subject" class="font-500">Subject
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/80</span>
                                             <input type="text" id="subject" class="form-control" name="subject"
@@ -1986,7 +1986,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 clearfix product-name">
                                             <label for="product_service_name" class="font-500">Product Name
-                                                <span class="required"> *</span>
+                                                <span class="required"> (Mandatory)</span>
                                             </label>
                                             <span class="text-danger pull-right font-500"><span class="counter-total-digits">0</span>/50</span>
                                             <input type="text" id="product_service_name"
@@ -2373,7 +2373,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6">
-                                            <label for="product_images" class="font-500">Product Images <span class="required"> *</span><small class="font-500">(Note: First image will be displayed as Ad Cover Photo)</small>
+                                            <label for="product_images" class="font-500">Product Images <span class="required"> (Mandatory)</span><small class="font-500">(Note: First image will be displayed as Ad Cover Photo)</small>
                                                 <br><small class="font-500">(Atleast one product image | Upto 10MB)</small></label>
                                             <div class="dropzone dz-clickable">
                                                 <div class="my-0 dz-default dz-message" data-dz-message="">
@@ -2785,7 +2785,7 @@
                                         </div>
                                         <div class="form-group col-lg-6"
                                              @if(in_array("Service", explode(",", $product->product_service_types))) style="display: none;" @endif>
-                                            <label for="origin" class="font-500">Product Origin <span class="required"> *</span></label>
+                                            <label for="origin" class="font-500">Product Origin <span class="required"> (Mandatory)</span></label>
                                             <select class="form-control origin" id="origin" name="origin" required>
                                                 <option value="" selected disabled> ---- Select Origin ---</option>
                                                 <option value="Any"
@@ -2839,7 +2839,7 @@
                                             <div
                                                 class="form-group col-lg-6 other-div" {{ ($product->fiber_product_info && $product->fiber_product_info->fiber_type=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Fibre Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_purpose" class="form-control"
                                                        @if($product->fiber_product_info && $product->fiber_product_info->fiber_type =="Other") required
                                                        value="{{ $product->fiber_product_info->other_fiber_type }}"
@@ -2983,7 +2983,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Warranty <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio" class="custom-control-input" value="Yes"
@@ -3055,7 +3055,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 certify-services">
                                                 <label for="certification_details" class="font-500">Certification
-                                                    Details <span class="required"> *</span></label>
+                                                    Details <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="certification_details" class="form-control"
                                                        name="certification_details" placeholder="Certification Details"
                                                        @if($product->machinery_product_info && $product->machinery_product_info->certification_details) value="{{ $product->machinery_product_info->certification_details }}"
@@ -3090,7 +3090,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 fabric-type">
                                                 <label class="font-500">Fabric Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <select id="woven_fabric_types" name="woven_fabric_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value selected disabled>Select Fabric Type</option>
@@ -3105,14 +3105,14 @@
                                                 <small class="text-danger" id="woven_fabric_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div" {{ ($product->fabric_product_info && $product->fabric_product_info->fabric_types== "Other") ? 'style=display:block;' : '' }}>
-                                                <label class="font-500">Other Woven Fabric Type <span class="required"> *</span></label>
+                                                <label class="font-500">Other Woven Fabric Type <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_woven_fabric_type" @if($product->fabric_product_info && $product->fabric_product_info->fabric_types =="Other") value="{{ $product->fabric_product_info->other_fabric_type }}" required @endif class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 weave-type">
                                                 <label class="font-500">Weave Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <select id="woven_weave_types" name="woven_weave_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value selected disabled>Select Weave Type</option>
@@ -3132,21 +3132,21 @@
                                                 <small class="text-danger" id="woven_weave_types_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div" {{ ($product->fabric_product_info && $product->fabric_product_info->weave_types=="Other") ? 'style=display:block;' : '' }}>
-                                                <label class="font-500">Other Woven Weave Type <span class="required"> *</span></label>
+                                                <label class="font-500">Other Woven Weave Type <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_woven_weave_type" @if($product->fabric_product_info && $product->fabric_product_info->weave_types =="Other") value="{{ $product->fabric_product_info->other_weave_type }}" required @endif class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="woven_fabric_construction" class="font-500">Fabric
-                                                    Construction <span class="required"> *</span></label>
+                                                    Construction <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="woven_fabric_construction" class="form-control" @if($product->fabric_product_info && $product->fabric_product_info->fabric_construction) value="{{ $product->fabric_product_info->fabric_construction }}" @endif name="woven_fabric_construction" placeholder="e.g. 80*80/100*80, Other" required>
                                                 <small class="text-danger" id="woven_fabric_construction_error"></small>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label for="woven_gsm_thickness" class="font-500">GSM/Thickness <span class="required"> *</span></label>
+                                                <label for="woven_gsm_thickness" class="font-500">GSM/Thickness <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="woven_gsm_thickness" @if($product->fabric_product_info && $product->fabric_product_info->gsm_thickness) value="{{ $product->fabric_product_info->gsm_thickness }}" @endif class="form-control" name="woven_gsm_thickness" placeholder="e.g. 75 GSM,150 GSM, Other" required>
                                                 <small class="text-danger" id="woven_gsm_thickness"></small>
                                             </div>
@@ -3174,7 +3174,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group weaving-checkbox col-lg-6">
-                                                <label class="font-500">Manufacturing Technique<span class="required"> *</span></label>
+                                                <label class="font-500">Manufacturing Technique<span class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio" class="custom-control-input radio-btn" value="Auto Loom" id="wovenAutoLoom" name="woven_manufact" @if($product->fabric_product_info && $product->fabric_product_info->manufacturing_technique =="Auto Loom") checked="true" @endif required>
@@ -3245,7 +3245,7 @@
                                             <div class="form-group col-lg-6 other-div"
                                                  id="addWovenOtherWeaving" {{ ($product->fabric_product_info && $product->fabric_product_info->manufacturing_technique=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Manufacturing Technique<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="other_woven_manufact" name="other_woven_manufact"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->manufacturing_technique =="Other") required
                                                        value="{{ $product->fabric_product_info->other_manufacturing_technique }}"
@@ -3256,7 +3256,7 @@
                                         <div class="form-row">
                                             <div class="form-group weaving-checkbox col-lg-6">
                                                 <label class="font-500">Yarn Type<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio" class="custom-control-input radio-btn"
@@ -3299,7 +3299,7 @@
                                             <div class="form-group col-lg-6 other-div"
                                                  id="otherWovenWeaving" {{ ($product->fabric_product_info && $product->fabric_product_info->yarn_type=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Yarn Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="other_woven_yarn" name="other_woven_yarn"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->yarn_type =="Other") required
                                                        value="{{ $product->fabric_product_info->other_yarn_type }}"
@@ -3310,7 +3310,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Features <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="form-check form-check-inline custom-control custom-checkbox custom-control-inline">
@@ -3435,7 +3435,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">End Use/Application <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div
                                                     class="form-check form-check-inline custom-control custom-checkbox custom-control-inline">
                                                     <input type="checkbox" class="custom-control-input Use-check"
@@ -3581,7 +3581,7 @@
                                             <div
                                                 class="form-group col-lg-6 other-div" {{ ($product->fabric_product_info &&  $product->fabric_product_info->fabric_types=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Fabric Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_knitted_fabric_type"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->fabric_types =="Other") value="{{ $product->fabric_product_info->other_fabric_type }}"
                                                        required
@@ -3625,7 +3625,7 @@
                                             <div
                                                 class="form-group col-lg-6 other-div" {{ ($product->fabric_product_info && $product->fabric_product_info->knitting_type=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Knitting Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_knitted_knitting_type"
                                                        class="form-control"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->knitting_type =="Other") value="{{ $product->fabric_product_info->other_knitting_type }}"
@@ -3636,7 +3636,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="knitted_fabric_construction" class="font-500">Fabric
-                                                    Construction <span class="required"> *</span></label>
+                                                    Construction <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="knitted_fabric_construction" class="form-control"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->fabric_construction) value="{{ $product->fabric_product_info->fabric_construction }}"
                                                        @endif
@@ -3649,7 +3649,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="knitted_gsm_thickness" class="font-500">GSM/Thickness <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="knitted_gsm_thickness"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->gsm_thickness) value="{{ $product->fabric_product_info->gsm_thickness }}"
                                                        @endif class="form-control"
@@ -3695,7 +3695,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">Manufacturing Technique<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" class="custom-control-input radio-btn"
                                                            id="knittedHandLoom" name="knitted_manufact"
@@ -3775,7 +3775,7 @@
                                             <div
                                                 class="form-group col-lg-6 other-div" {{ ($product->fabric_product_info && $product->fabric_product_info->manufacturing_technique=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Manufacturing Technique <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="other_knitted_manufact"
                                                        @if($product->fabric_product_info && $product->fabric_product_info && $product->fabric_product_info->manufacturing_technique =="Other") required
                                                        value="{{ $product->fabric_product_info->other_manufacturing_technique }}"
@@ -3786,7 +3786,7 @@
                                         <div class="form-row">
                                             <div class="form-group weaving-checkbox col-lg-6">
                                                 <label class="font-500">Yarn Type<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio" class="custom-control-input radio-btn"
@@ -3829,7 +3829,7 @@
                                             </div>
                                             <div
                                                 class="form-group col-lg-6 other-div" {{ ($product->fabric_product_info && $product->fabric_product_info->yarn_type=="Other") ? 'style=display:block;' : '' }}>
-                                                <label class="font-500">Other Yarn Type <span class="required"> *</span></label>
+                                                <label class="font-500">Other Yarn Type <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="other_knitted_yarn_type"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->yarn_type =="Other") required
                                                        value="{{ $product->fabric_product_info->other_yarn_type }}"
@@ -3840,7 +3840,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Features <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="form-check form-check-inline custom-control custom-checkbox custom-control-inline">
@@ -3954,7 +3954,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">End Use/Application <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div
                                                     class="form-check form-check-inline custom-control custom-checkbox custom-control-inline">
                                                     <input type="checkbox" class="custom-control-input Use-check"
@@ -4099,7 +4099,7 @@
                                             <div
                                                 class="form-group col-lg-6 other-div add-fabric-type" {{ ($product->fabric_product_info && $product->fabric_product_info->fabric_types=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Fabric Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_non_woven_fabric_type"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->fabric_types =="Other") value="{{ $product->fabric_product_info->other_fabric_type }}"
                                                        required
@@ -4148,7 +4148,7 @@
                                             <div
                                                 class="form-group col-lg-6 other-div add-fabric-type" {{ ($product->fabric_product_info && $product->fabric_product_info->non_woven_types=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_non_woven_type"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->non_woven_types =="Other") value="{{ $product->fabric_product_info->other_non_woven_type }}"
                                                        required
@@ -4158,7 +4158,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="non_woven_fabric_construction" class="font-500">Fabric
-                                                    Construction <span class="required"> *</span></label>
+                                                    Construction <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="non_woven_fabric_construction"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->fabric_construction) value="{{ $product->fabric_product_info->fabric_construction }}"
                                                        @endif class="form-control"
@@ -4170,7 +4170,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="non_woven_gsm_thickness" class="font-500">GSM/Thickness
-                                                    <span class="required"> *</span></label>
+                                                    <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="non_woven_gsm_thickness"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->gsm_thickness) value="{{ $product->fabric_product_info->gsm_thickness }}"
                                                        @endif class="form-control"
@@ -4221,7 +4221,7 @@
                                         <div class="form-row">
                                             <div class="form-group weaving-checkbox col-lg-6">
                                                 <label class="d-block font-500">Manufacturing Technique<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" class="custom-control-input radio-btn"
                                                            value="Hand Loom" id="non_wovenHandLoom"
@@ -4310,7 +4310,7 @@
                                             <div class="form-group col-lg-6 other-div"
                                                  id="addNonWovenOtherWeaving" {{ ($product->fabric_product_info && $product->fabric_product_info->manufacturing_technique=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Manufacturing Technique <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="other_non_woven_manufact"
                                                        name="other_non_woven_manufact"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->manufacturing_technique =="Other") required
@@ -4322,7 +4322,7 @@
                                         <div class="form-row">
                                             <div class="form-group weaving-checkbox col-lg-6">
                                                 <label class="font-500">Yarn Type<span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio" class="custom-control-input radio-btn"
@@ -4366,7 +4366,7 @@
                                             <div class="form-group col-lg-6 other-div"
                                                  id="addOtherNonWovenWeaving" {{ ($product->fabric_product_info && $product->fabric_product_info->yarn_type=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Yarn Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="other_non_woven_yarn"
                                                        @if($product->fabric_product_info && $product->fabric_product_info->yarn_type =="Other") required
                                                        value="{{ $product->fabric_product_info->other_yarn_type }}"
@@ -4377,7 +4377,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Features <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="form-check form-check-inline custom-control custom-checkbox custom-control-inline">
@@ -4510,7 +4510,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">End Use/Application <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="form-check form-check-inline custom-control custom-checkbox custom-control-inline">
@@ -4627,7 +4627,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Yarn Count <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input name="yarn_count" class="form-control"
                                                        @if($product->yarn_product_info && $product->yarn_product_info->count) value="{{ $product->yarn_product_info->count }}"
                                                        @endif placeholder="i.e 20 Ne,80 Ne, 50 Dtex, 150 Danier, Other"
@@ -4637,7 +4637,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
-                                                <label class="font-500">Yarn Count Unit<span class="required"> *</span></label>
+                                                <label class="font-500">Yarn Count Unit<span class="required"> (Mandatory)</span></label>
                                                 <select id="yarn_count_unit" name="yarn_count_unit" class="form-control single-select-dropdown" required>
                                                     <option value selected disabled>Select Yarn Count Unit</option>
                                                     <option value="Ne" @if($product->yarn_product_info && $product->yarn_product_info->count_unit =='Ne') selected @endif>
@@ -4674,7 +4674,7 @@
                                                 <small class="text-danger" id="yarn_count_unit_error"></small>
                                             </div>
                                             <div class="form-group col-lg-6 other-div" {{ ($product->yarn_product_info &&  $product->yarn_product_info->count_unit=="Other") ? 'style=display:block;' : '' }}>
-                                                <label class="font-500">Other Count Unit <span class="required"> *</span></label>
+                                                <label class="font-500">Other Count Unit <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_yarn_count_unit" @if($product->yarn_product_info && $product->yarn_product_info->count_unit =="Other") value="{{ $product->yarn_product_info->other_count_unit }}" required @endif class="form-control">
                                             </div>
                                         </div>
@@ -4728,7 +4728,7 @@
                                             <div
                                                 class="form-group col-lg-6 other-div" {{ ($product->yarn_product_info &&  $product->yarn_product_info->attribute=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Yarn Attribute <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_yarn_attribute"
                                                        @if($product->yarn_product_info && $product->yarn_product_info->attribute =="Other") value="{{ $product->yarn_product_info->other_attribute }}"
                                                        required @endif class="form-control">
@@ -4788,7 +4788,7 @@
                                             <div
                                                 class="form-group col-lg-6 other-div" {{ ($product->yarn_product_info &&  $product->yarn_product_info->technology=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Technology <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_yarn_technology" class="form-control"
                                                        @if($product->yarn_product_info && $product->yarn_product_info->technology =="Other") value="{{ $product->yarn_product_info->other_technology }}"
                                                        required
@@ -4885,7 +4885,7 @@
                                             <div
                                                 class="form-group col-lg-6 other-div" {{ ($product->yarn_product_info && $product->yarn_product_info->count_type=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Count Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_count_type" class="form-control"
                                                        @if($product->yarn_product_info && $product->yarn_product_info->count_type =="Other") required
                                                        value="{{ $product->yarn_product_info->other_count_type }}"
@@ -4953,7 +4953,7 @@
                                             <div
                                                 class="form-group col-lg-6 other-div" {{ ($product->yarn_product_info && $product->yarn_product_info->yarn_specialty=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other Yarn Speciality <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_yarn_speciality" class="form-control"
                                                        @if($product->yarn_product_info && $product->yarn_product_info->yarn_specialty =="Other") required
                                                        value="{{ $product->yarn_product_info->other_speciality }}"
@@ -5059,7 +5059,7 @@
                                             <div
                                                 class="form-group col-lg-6 other-div" {{ ($product->yarn_product_info && $product->yarn_product_info->end_use=="Other") ? 'style=display:block;' : '' }}>
                                                 <label class="font-500">Other End Use/Application <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" name="other_usage_type" class="form-control"
                                                        @if($product->yarn_product_info && $product->yarn_product_info->end_use =="Other") required
                                                        value="{{ $product->yarn_product_info->other_end_use }}"
@@ -5072,7 +5072,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="material" class="font-500">Material Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="material" class="form-control"
                                                        @if($product->institutional_product_info && $product->institutional_product_info->material) value="{{ $product->institutional_product_info->material }}"
                                                        @endif name="material"
@@ -5081,7 +5081,7 @@
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="composition" class="font-500">Composition/Construction <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="composition" class="form-control"
                                                        @if($product->institutional_product_info && $product->institutional_product_info->composition) value="{{ $product->institutional_product_info->composition }}"
                                                        @endif name="composition"
@@ -5090,7 +5090,7 @@
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="size_age_group" class="font-500">Size/Age Group <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="size_age_group" class="form-control"
                                                        @if($product->institutional_product_info && $product->institutional_product_info->size_age) value="{{ $product->institutional_product_info->size_age }}"
                                                        @endif name="size_age_group"
@@ -5100,7 +5100,7 @@
 
                                             <div class="form-group col-lg-6">
                                                 <label for="colour" class="font-500">Color <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="colour" class="form-control"
                                                        @if($product->institutional_product_info && $product->institutional_product_info->color) value="{{ $product->institutional_product_info->color }}"
                                                        @endif name="colour"
@@ -5169,7 +5169,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="material_type" class="font-500">Material Type <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="material_type" class="form-control"
                                                        @if($product->garments_product_info && $product->garments_product_info->material) value="{{ $product->garments_product_info->material }}"
                                                        @endif name="material_type"
@@ -5178,7 +5178,7 @@
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="construction" class="font-500">Composition/Construction
-                                                    <span class="required"> *</span></label>
+                                                    <span class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="construction" class="form-control"
                                                        @if($product->garments_product_info && $product->garments_product_info->composition) value="{{ $product->garments_product_info->composition }}"
                                                        @endif name="construction"
@@ -5187,7 +5187,7 @@
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="size_age" class="font-500">Size/Age Group <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="size_age" class="form-control"
                                                        @if($product->garments_product_info && $product->garments_product_info->size_age) value="{{ $product->garments_product_info->size_age }}"
                                                        @endif name="size_age"
@@ -5196,7 +5196,7 @@
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="color" class="font-500">Color <span
-                                                        class="required"> *</span></label>
+                                                        class="required"> (Mandatory)</span></label>
                                                 <input type="text" id="color" class="form-control"
                                                        @if($product->garments_product_info && $product->garments_product_info->color) value="{{ $product->garments_product_info->color }}"
                                                        @endif name="color"
@@ -5642,7 +5642,7 @@
                                                            class="font-500 service_charges_range_label"
                                                            @if(in_array("Service", explode(",", $product->product_service_types))) style="display: block;"
                                                            @else style="display: none;" @endif>Service Charges
-                                                        <span class="required">*</span></label>
+                                                        <span class="required">(Mandatory)</span></label>
                                                     <input type="number" id="unit_price_from" class="form-control"
                                                            name="unit_price_from"
                                                            @if($product->unit_price_from) value="{{ $product->unit_price_from }}"
@@ -5651,7 +5651,7 @@
                                                 <div class="col-md-4">
                                                     <label for="unit_price_to" class="font-500 unit_price_range_label"></label>
                                                     @if(in_array("Service", explode(",", $product->product_service_types)))
-                                                        <label for="unit_price_to" class="font-500">Charges Range <span class="required">*</span></label>
+                                                        <label for="unit_price_to" class="font-500">Charges Range <span class="required">(Mandatory)</span></label>
                                                     @endif
                                                     <input type="number" id="unit_price_to" class="form-control"
                                                            name="unit_price_to"
@@ -5793,7 +5793,7 @@
                                                 @endif
                                                 @if(in_array("Service", explode(",", $product->product_service_types)))
                                                     <div class="col-md-4 service-unit">
-                                                        <label class="font-500">Per Unit <span class="required">*</span></label>
+                                                        <label class="font-500">Per Unit <span class="required">(Mandatory)</span></label>
                                                         <input type="text" name="other_unit_price_unitt" value="@if($product->other_unit_price_unit){{$product->other_unit_price_unit}}@endif" class="form-control" required>
                                                         <small class="text-danger" id="other_unit_price_unit_error"></small>
                                                     </div>
@@ -5805,7 +5805,7 @@
                                             <div class="form-group col-lg-6 other-div add-unit_price_unit"
                                                  @if($product->unit_price_unit == 'Other') style="display: block;"
                                                 @endif>
-                                                <label class="font-500">Other Price Unit <span class="required">*</span></label>
+                                                <label class="font-500">Other Price Unit <span class="required">(Mandatory)</span></label>
                                                 <input type="text" name="other_unit_price_unit" value="{{ $product->other_unit_price_unit }}" class="form-control" required>
                                             </div>
                                         @endif
@@ -6004,7 +6004,7 @@
                                         <div class="form-group col-lg-6 other-div add-suitable-currency"
                                              @if($product->suitable_currencies == "Other") style="display: block;" @endif>
                                             <label class="font-500">Add Your Suitable Currency <span
-                                                    class="required"> *</span></label>
+                                                    class="required"> (Mandatory)</span></label>
                                             <input type="text"
                                                    @if($product->other_suitable_currency) value="{{ $product->other_suitable_currency }}"
                                                    required
@@ -6065,7 +6065,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 add-services-duration other-div"
                                              @if(in_array("Other", explode(",", $product->service_durations))) style="display: block;" @endif>
-                                            <label class="font-500">Add Your Service Duration <span class="required">*</span></label>
+                                            <label class="font-500">Add Your Service Duration <span class="required">(Mandatory)</span></label>
                                             <input id="other_service_duration" name="other_service_duration" type="text" @if($product->other_service_duration) value="{{ $product->other_service_duration }}" required @endif class="form-control">
                                         </div>
 
@@ -6074,7 +6074,7 @@
                                         <div class="form-group col-lg-6">
                                             <label for="payment_terms" class="font-500" class="font-500">Payment
                                                 Terms
-                                                <span class="required"> *</span></label>
+                                                <span class="required"> (Mandatory)</span></label>
                                             <select class="single-select-dropdown select-suitable-payment other-option-included form-control payment-terms"
                                                     id="payment_terms" name="payment_terms" required>
                                                 <option value="" selected disabled>Select Payment Terms</option>
@@ -6122,7 +6122,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-payment-terms" @if($product->payment_terms == "Other") style="display: block;" @endif>
                                             <label class="font-500">Add Your Payment Terms <span
-                                                    class="required"> *</span></label>
+                                                    class="required"> (Mandatory)</span></label>
                                             <input
                                                 @if($product->other_payment_term) value="{{ $product->other_payment_term }}"
                                                 required
