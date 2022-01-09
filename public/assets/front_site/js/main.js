@@ -48,6 +48,14 @@ $(".job-description-below").scroll(function () {
 });
 
 $(document).ready(function () {
+    /*categories dropdown blocks, removing highight*/
+    $(document).on('click', '.pro-cat-links-box', function() {
+        $('.pro-cat-links-box').children('.nav-item').removeClass('active');
+        $('.pro-cat-links-box').find('.nav-link').removeClass('nav-underline-pg');
+        $('.pro-cat-links-box').find('img').removeClass('img-hover');
+    });
+    /*categories dropdown blocks, removing highight*/
+
     /*select tag color will be grey, if selected option is disabled*/
     $('select').each(function(){
         if($('select option:selected').prop('disabled') == true) {

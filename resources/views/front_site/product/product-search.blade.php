@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-9 p-lg-3 p-0">
-                        <div class="mt-4 product-main-container">
+                        <div class="product-main-container">
                             <div class="row m-0 search-container">
                                 <div class="col-md-8 p-1 text-md-left text-center">
                                     <h6 class="mt-2 text-left">Showing Results for {{ $search }} in {{ $category }} </h6>
@@ -82,14 +82,14 @@
                                                     <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                                     <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
                                                     <p class="price font-500"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }}   @else {{ number_format($prod->target_price_from) }} - {{ number_format($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                                    <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pl-5">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                                    <p class="my-1 mb-0 d-flex justify-content-between align-items-center text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
                                                 </div>
-                                                <div class="col-xl-4 col-lg-6 p-3 d-flex justify-content-center border-grey">
+                                                <div class="col-xl-4 col-lg-6 p-2 border-grey">
                                                     <div>
                                                         <div class="d-flex membersince">Member <span class="number">since</span><span class="years">{{get_product_created_at($prod->company_id)}}</span></div>
-                                                        <a class="text-reset" @if(!Auth::check()) href="{{url('log-in-pre')}}" @else href="{{route('about-us-suppliers',['id'=>$prod->company_id,'company'=>getCompanyName($prod->company_id)])}}" @endif> <p class="text-uppercase font-500 font-24">{{get_product_company($prod->company_id)}}</p></a>
-                                                        <small class="d-block mb-2 grey-text">{{get_product_city($prod->company_id)}}, {{get_product_country($prod->company_id)}}</small>
-                                                        <div class="mb-2 membericon">
+                                                        <a class="text-reset" @if(!Auth::check()) href="{{url('log-in-pre')}}" @else href="{{route('about-us-suppliers',['id'=>$prod->company_id,'company'=>getCompanyName($prod->company_id)])}}" @endif> <p class="mb-2 text-uppercase font-500 font-24">{{get_product_company($prod->company_id)}}</p></a>
+                                                        <small class="d-block mb-1 grey-text">{{get_product_city($prod->company_id)}}, {{get_product_country($prod->company_id)}}</small>
+                                                        <div class="d-inline-block membericon">
                                                             <a href="#">
                                                                 <img alt="Premium Member" src="{{$ASSETS}}/assets/front_site/images/leads-membership.png"   title="We are working on this feature and will enable this soon" data-toggle="tooltip" data-placement="bottom">
                                                             </a>
@@ -97,7 +97,7 @@
                                                         {{--                                        <div class="my-2 d-inline-block font-500 add-inquiry-basket" required="false">--}}
                                                         {{--                                            <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                         {{--                                        </div>--}}
-                                                        <div class="d-sm-inline-block d-flex flex-column align-items-center">
+                                                        <div class="d-inline-block">
                                                             <a class="mb-md-0 mb-1 p-0 red-btn"  @if(!Auth::check()) href="{{url('log-in-pre')}}" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">MESSAGE</span></a>
                                                             <a class="p-0 red-btn"  @if(!Auth::check()) href="{{url('log-in-pre')}}" @else href="{{route('contact-us-suppliers',$prod->company_id)}}" @endif><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
                                                             <!-- Modal -->
@@ -297,7 +297,7 @@
                                                 <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                                 <p class="mb-0">Quantity : @if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif @if($prod->available_unit == "Other") {{$prod->other_available_unit}} @else {{$prod->available_unit}} @endif</p>
                                                 <p class="price font-500"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }}   @else {{ number_format($prod->target_price_from) }} - {{ number_format($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                                <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pl-5">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                                <p class="my-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pl-5">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
                                             </div>
                                             <div class="col-xl-4 col-lg-6 p-3 d-flex justify-content-center border-grey">
                                                 <div>

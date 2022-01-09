@@ -502,39 +502,26 @@
 
     </div>
     <div class="w-100 d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center">
-            <span class="open-nav">&#9776;</span>
-            <a class="navbar-brand" href="{{route('home')}}">
-                <img src="{{$siteLogo}}" class="ml-2 navbar-logo"/>
-            </a>
-        </div>
-        <div class="d-flex align-items-center">
+        <span class="open-nav fa fa-bars"></span>
+        <span class="fa fa-long-arrow-left position-absolute app-back-btn"></span>
+        <a class="navbar-brand" href="{{route('home')}}">
+            <img src="{{$siteLogo}}" class="ml-2 navbar-logo"/>
+        </a>
+        <div class="dropdown">
+             <a class="nav-link p-0" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="position-relative fa fa-bell notification-bell-icon">
+                   @if(auth()->check())  <span class="biz-badge" id="notify"></span> @endif
+                </span>
+             </a>
             @if(auth()->check())
-                <div class="mr-3 d-flex align-items-center header-profile-info">
-                    <img src="{{ get_user_image(Auth::user()) }}" width="45" height="45" alt="logo" class="rounded-circle header-profile-pic">
-                    <div class="ml-2">
-                        <p class="mb-0 text-white biz-user overflow-text-dots-one-line">{{auth()->user()->name}}</p>
-                    </div>
-                </div>
-            @endif
-
-            <div class="dropdown">
-                 <a class="nav-link p-0" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <span class="position-relative fa fa-bell notification-bell-icon">
-                       @if(auth()->check())  <span class="biz-badge" id="notify"></span> @endif
-                    </span>
-                 </a>
-                @if(auth()->check())
-                 <div class="overflow-auto mb-3 p-2 dropdown-menu animated-dropdown fadeIn notifications-scroll" aria-labelledby="navbarDropdownMenuLink">
-                     <div class="row w-100 m-0 dropdown-container">
-                         <ul id="isdiplay" class="mb-0">
-                         </ul>
-                     </div>
+             <div class="overflow-auto mb-3 p-2 dropdown-menu animated-dropdown fadeIn notifications-scroll" aria-labelledby="navbarDropdownMenuLink">
+                 <div class="row w-100 m-0 dropdown-container">
+                     <ul id="isdiplay" class="mb-0">
+                     </ul>
                  </div>
-                 @endif
-            </div>
-
+             </div>
+             @endif
         </div>
     </div>
     @include('front_site.common.search-bar')

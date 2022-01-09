@@ -119,7 +119,7 @@
                          data-sitekey="6LeWfJEdAAAAAPqRcSPifzpGsJumuKzbQ9MBpFpu"></div>
                 </div>
                 <small class="text-danger" id="g-recaptcha-response_error"></small>
-                <div>
+                <div align="center">
                     <input type="submit" class="rounded px-4 red-btn submit-btn" id="contact-create" value="Submit" disabled="true">
                 </div>
             </form>

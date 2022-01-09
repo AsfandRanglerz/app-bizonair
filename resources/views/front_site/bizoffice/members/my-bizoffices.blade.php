@@ -31,10 +31,10 @@
                             <thead>
                             <tr>
                                 <th style="width: 5px">#</th>
-                                <th class="p2">Company Name</th>
+                                <th class="p2">Company</th>
                                 <th class="p2">Role</th>
                                 <th class="p2">Business Type</th>
-                                <th class="p2">Number of Members</th>
+                                <th class="p2">Members</th>
                                 <th class="p2">Logo</th>
                                 <th class="p2">Member Since</th>
                                 <th style="width: 85px">Action</th>

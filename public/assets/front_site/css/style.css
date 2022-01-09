@@ -11,6 +11,29 @@
     --thumbBG: #90A4AE;
 }
 
+/*app back button*/
+.app-back-btn {
+    left: 40px;
+    color: #a52c3e;
+    background: #FFF;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #00000055;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.app-back-btn:hover, .app-back-btn:focus, .app-back-btn:active {
+    background: #12253d;
+    color: #FFF;
+}
+/*app back button*/
+
 th {
     white-space: nowrap;
 }
@@ -156,6 +179,10 @@ input[required], select[required], select[required] + span .select2-selection {
     align-items: center;
 }
 /*edit-comp-prof-imgs*/
+
+.job-explore-sec .link, .job-post-sec .link {
+    box-shadow: none;
+}
 
 .counter-span {
     border: 1px solid;
@@ -984,10 +1011,16 @@ select {
 .pro-categories-tab .nav-link:first-child {
     padding: 6px;
     font-size: 16px;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    height: auto;
 }
 
 .pro-categories-tab .nav-link:first-child .fa {
     font-weight: 900;
+    border-radius: 50%;
+    background: #12253d;
+    padding: 1px 4px;
 }
 
 .pro-categories-tab .nav-link {
@@ -1013,7 +1046,6 @@ select {
 .pro-categories-tab .nav-link.active {
     background: #a52c3e;
     color: #fff;
-    border: none;
     font-weight: 500;
 }
 
@@ -1031,8 +1063,12 @@ select {
     border-radius: 8px 0 0 0;
 }
 
-.pro-categories-tab .nav-item:last-child .nav-link:first-child {
+.pro-categories-tab .nav-item:last-child .main-cat-link {
     border-radius: 0 8px 0 0;
+}
+
+.pro-categories-tab .nav-item:last-child .nav-link:first-child {
+    border-right: none;
 }
 
 .pro-tab-content .tab-pane .red-btn {
@@ -4290,6 +4326,11 @@ span.time {
 .table-mt .table-bordered thead td,
 .table-mt .table-bordered thead th {
     border-bottom-width: 1px;
+    padding-right: 16px!important;
+}
+
+td p {
+    margin-bottom: 0;
 }
 
 .table-mt .view-btn,
@@ -8924,7 +8965,8 @@ header .navbar .navbar-toggler {
     }
 
     .product-main #maincontent .main-container .navbar .navbar-brand {
-        display: inline-block;
+        display: block;
+        width: 95%;
         font-size: 10px;
         font-weight: bold;
         color: #a52c3e;
@@ -9255,6 +9297,14 @@ header .navbar .navbar-toggler {
 }
 
 @media only screen and (max-width: 575px) {
+    .about-us-section .heading {
+        font-size: 11px!important;
+    }
+
+    .no-more-text {
+        font-size: 12px;
+    }
+
     .ad-slider .ad-slider-arrows .fa {
         font-size: 14px;
         font-weight: bold;
@@ -9423,7 +9473,6 @@ header .navbar .navbar-toggler {
 
     .job-explore-sec .paragraph, .job-post-sec .paragraph {
         font-size: 10px;
-        text-shadow: 0px 3px 6px #00000029;
         margin-bottom: 4px;
     }
 
@@ -9998,8 +10047,7 @@ header .navbar .navbar-toggler {
     }
 
     .product-listing #maincontent .main-container .mini-content-container .half-side-content > .heading,
-    .product-main #maincontent .main-container .mini-content-container > .heading,
-    .product-details .mini-content-container .contact-product-info > .heading {
+    .product-main #maincontent .main-container .mini-content-container > .heading {
         font-size: 10px;
     }
 
@@ -10014,7 +10062,7 @@ header .navbar .navbar-toggler {
 
     .product-details .mini-content-container .contact-product-info > .heading {
         margin-bottom: 4px;
-        font-size: 10px !important;
+        font-size: 11px !important;
     }
 
     .product-details .mini-content-container .login-info .login-info-inner > p,
@@ -10062,7 +10110,8 @@ header .navbar .navbar-toggler {
 
     .product-details .mini-content-container .switch-tabs .tab-content .product-tab > .heading {
         font-size: 11px;
-        margin: 4px 0;
+        text-transform: uppercase;
+        margin: 8px 0;
     }
     /*product details*/
     /*product listing page*/

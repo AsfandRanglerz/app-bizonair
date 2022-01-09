@@ -1,23 +1,23 @@
 <div class="px-2 d-lg-none mt-2 container-fluid">
     <ul class="nav nav-tabs pro-categories-tab" role="tablist">
-        <li class="d-flex nav-item">
+        <li class="d-flex flex-column nav-item">
             <a class="nav-link active order-2" data-toggle="tab" href="#texBusiness" role="tab" aria-controls="texBusiness"
-               aria-selected="true" style="background: rgb(0 0 0 / 15%)"><span class="fa fa-angle-down"></span></a>
+               aria-selected="true"><span class="fa fa-angle-down"></span></a>
             <a href="{{ url('business-products/fibers-and-materials') }}" class="nav-link main-cat-link order-1">Textile <br> Business</a>
         </li>
-        <li class="d-flex nav-item">
+        <li class="d-flex flex-column nav-item">
             <a class="nav-link order-2" data-toggle="tab" href="#texServices" role="tab" aria-controls="texServices"
-               aria-selected="false" style="background: rgb(0 0 0 / 15%)"><span class="fa fa-angle-down"></span></a>
+               aria-selected="false"><span class="fa fa-angle-down"></span></a>
             <a href="{{ url('services/hr-and-admin') }}" class="nav-link main-cat-link order-1">Textile <br> Services</a>
         </li>
-        <li class="d-flex nav-item">
+        <li class="d-flex flex-column nav-item">
             <a class="nav-link order-2" data-toggle="tab" href="#careersTab" role="tab" aria-controls="careersTab"
-               aria-selected="false" style="background: rgb(0 0 0 / 15%)"><span class="fa fa-angle-down"></span></a>
+               aria-selected="false"><span class="fa fa-angle-down"></span></a>
             <a href="{{ url('jobs-portal') }}" class="nav-link main-cat-link order-1">Careers</a>
         </li>
-        <li class="d-flex nav-item">
+        <li class="d-flex flex-column nav-item">
             <a class="nav-link order-2" data-toggle="tab" href="#journalTab" role="tab" aria-controls="journalTab"
-               aria-selected="false" style="background: rgb(0 0 0 / 15%)"><span class="fa fa-angle-down"></span></a>
+               aria-selected="false"><span class="fa fa-angle-down"></span></a>
             <a href="{{ url('journal') }}" class="nav-link main-cat-link order-1">Journal</a>
         </li>
     </ul>

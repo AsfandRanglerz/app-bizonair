@@ -6,7 +6,7 @@
         @include('front_site.common.suppliers-banner')
         <div class="my-sm-5 my-4 container-lg">
             <div class="row mb-3">
-                <div class="col-lg-2 mb-lg-0 mb-3 px-0" align="center">
+                <div class="col-lg-2 mb-lg-0 mb-2 px-0" align="center">
                     <img src="{{ $about_us->logo }}" class="p-1 company-profile-logo border-grey">
                 </div>
                 <div class="col-lg-10 px-lg-0 px-3">
