@@ -751,6 +751,19 @@ $(document).ready(function () {
     });
     /*tooltip for biz buttons*/
 
+    /*job aatachment image*/
+    $('#jobAttachImg').lightGallery({
+        thumbnail:false,
+        zoom: false,
+        fullScreen: false,
+        counter: false,
+        clone: false,
+        autoplayControls: false,
+        download: false,
+        share: false
+    });
+    /*job aatachment image*/
+
     /*product images gallery thumbnails*/
     $('.product-gallery').lightGallery({
         selector: '.include-in-gallery',

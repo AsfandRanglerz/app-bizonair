@@ -142,7 +142,11 @@
                                         </li>
                                     </a>
                                 @else
-                                    <img src="{{ $job->image }}" class="job-detail-img">
+                                    <div id="jobAttachImg">
+                                        <a href="{{ $job->image }}" data-lg-size="1600-2400">
+                                            <img src="{{ $job->image }}" class="job-detail-img">
+                                        </a>
+                                    </div>
                                 @endif
                             </div>
                             @endif

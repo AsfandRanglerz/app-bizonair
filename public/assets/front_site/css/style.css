@@ -13,11 +13,11 @@
 
 /*app back button*/
 .app-back-btn {
-    left: 40px;
     color: #a52c3e;
     background: #FFF;
     width: 25px;
     height: 25px;
+    font-weight: bolder;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1047,10 +1047,6 @@ select {
     background: #a52c3e;
     color: #fff;
     font-weight: 500;
-}
-
-.pro-categories-tab .nav-link.active + .main-cat-link {
-    background: #a52c3e;
 }
 
 .pro-tab-content .tab-pane.active {
@@ -5893,6 +5889,11 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 .product-details .mini-content-container .lSSlideOuter.vertical .lSGallery {
     left: 0;
     margin-left: 0 !important;
+    height: 100%!important;
+}
+
+.lSSlideOuter .lSPager.lSGallery li {
+    height: 40px!important;
 }
 
 .lSSlideOuter .lSPager.lSGallery li.active, .lSSlideOuter .lSPager.lSGallery li:hover {

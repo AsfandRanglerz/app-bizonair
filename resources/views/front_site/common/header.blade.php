@@ -502,8 +502,8 @@
 
     </div>
     <div class="w-100 d-flex justify-content-between align-items-center">
+        <!-- <span class="fa fa-angle-left app-back-btn"></span> -->
         <span class="open-nav fa fa-bars"></span>
-        <span class="fa fa-long-arrow-left position-absolute app-back-btn"></span>
         <a class="navbar-brand" href="{{route('home')}}">
             <img src="{{$siteLogo}}" class="ml-2 navbar-logo"/>
         </a>

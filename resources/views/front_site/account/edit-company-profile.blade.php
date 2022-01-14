@@ -198,11 +198,11 @@
                                         </div>
                                         <div class="row mb-1 text">
                                             <div class="col-sm-6 col-6">
-                                                <span class="font-500">Annual Turnover(In USD Million)</span>
+                                                <span class="font-500">Annual Turnover</span>
                                             </div>
                                             <div class="col-sm-6 col-6">
                                                 <span>@if($company->annual_turnover) {{ $company->annual_turnover}} @else
-                                                        - @endif</span>
+                                                        - @endif Million USD</span>
                                             </div>
                                         </div>
                                         <!-- <div class="row mb-1 text">
