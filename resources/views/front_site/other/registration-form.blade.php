@@ -383,7 +383,7 @@
                     },
                     email: "Please enter a valid email address",
                     gender: "Please select gender",
-                    birthday: "Please enter complete birthday"
+                    birthday: "Please enter complete date of birth"
                 },
                 errorClass: 'is-invalid error',
                 validClass: 'is-valid',

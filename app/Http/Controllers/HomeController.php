@@ -762,7 +762,7 @@ class HomeController extends Controller
             if($category=='Regular Supplier'){
                 $productsells = DB::table('products')
                     ->where('product_service_types','sell')
-                    ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->get();
+                    ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->latest()->limit(3)->get();
                 if($productsells){
                     foreach($productsells as $productsell){
                         $results[] = ['value' => $productsell->product_service_name, 'link' => url('/search-product?category=Regular+Supplier&keywords='.$productsell->product_service_name),'category' => 'Regular Supplier'];
@@ -771,7 +771,7 @@ class HomeController extends Controller
             }elseif($category=='Regular Buyer'){
                 $productbuys = DB::table('products')
                     ->where('product_service_types','buy')
-                    ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->get();
+                    ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->latest()->limit(3)->get();
                 if($productbuys){
                     foreach($productbuys as $productbuy){
                         $results[] = ['value' => $productbuy->product_service_name, 'link' => url('/search-product?category=Regular+Buyer&keywords='.$productbuy->product_service_name),'category' => 'Regular Buyer'];
@@ -780,7 +780,7 @@ class HomeController extends Controller
             }elseif($category=='Service Providers') {
                 $productservs = DB::table('products')
                     ->where('product_service_types', 'service')
-                    ->where("product_service_name", "LIKE", "%$term%")->whereNull('deleted_at')->get();
+                    ->where("product_service_name", "LIKE", "%$term%")->whereNull('deleted_at')->latest()->limit(3)->get();
                 if ($productservs) {
                     foreach ($productservs as $productserv) {
                         $results[] = ['value' => $productserv->product_service_name, 'link' => url('/search-product?category=Regular+Services&keywords=' . $productserv->product_service_name), 'category' => 'Service Providers'];
@@ -790,7 +790,7 @@ class HomeController extends Controller
                 $buysells = DB::table('buy_sells')
                     ->where('product_service_types', 'sell')
                     ->where('date_expire', '>', now())
-                    ->where("product_service_name", "LIKE", "%$term%")->whereNull('deleted_at')->get();
+                    ->where("product_service_name", "LIKE", "%$term%")->whereNull('deleted_at')->latest()->limit(3)->get();
                 if ($buysells) {
                     foreach ($buysells as $buysell) {
                         $results[] = ['value' => $buysell->product_service_name, 'link' => url('/search-product?category=One-Time+Supplier&keywords=' . $buysell->product_service_name), 'category' => 'One-Time Supplier'];
@@ -800,7 +800,7 @@ class HomeController extends Controller
                 $buysellbuys = DB::table('buy_sells')
                     ->where('product_service_types', 'buy')
                     ->where('date_expire', '>', now())
-                    ->where("product_service_name", "LIKE", "%$term%")->whereNull('deleted_at')->get();
+                    ->where("product_service_name", "LIKE", "%$term%")->whereNull('deleted_at')->latest()->limit(3)->get();
                 if ($buysellbuys) {
                     foreach ($buysellbuys as $buysellbuy) {
                         $results[] = ['value' => $buysellbuy->product_service_name, 'link' => url('/search-product?category=One-Time+Buyer&keywords=' . $buysellbuy->product_service_name), 'category' => 'One-Time Buyer'];
@@ -810,35 +810,35 @@ class HomeController extends Controller
                 $buysellservs = DB::table('buy_sells')
                     ->where('product_service_types','service')
                     ->where('date_expire','>', now())
-                    ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->get();
+                    ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->latest()->limit(3)->get();
                 if($buysellservs) {
                     foreach ($buysellservs as $buysellserv) {
                         $results[] = ['value' => $buysellserv->product_service_name, 'link' => url('/search-product?category=One-Time+Services&keywords=' . $buysellserv->product_service_name), 'category' => 'Service Seekers'];
                     }
                 }
             }elseif($category=='Companies') {
-                $company = \App\CompanyProfile::where("company_name","Like","%$term%")->get();
+                $company = \App\CompanyProfile::where("company_name","Like","%$term%")->latest()->limit(3)->get();
                 if($company) {
                     foreach ($company as $companies) {
                         $results[] = ['value' => $companies->company_name, 'link' => url('/search-product?category=Companies&keywords=' . $companies->company_name), 'category' => 'Companies'];
                     }
                 }
             }elseif($category=='articles') {
-                $article = Journal::where('title','Like','%'.$term.'%')->where('journal_type_name','articles')->get();
+                $article = Journal::where('title','Like','%'.$term.'%')->where('journal_type_name','articles')->latest()->limit(3)->get();
                 if($article) {
                     foreach ($article as $articles) {
                         $results[] = ['value' => $articles->title, 'link' => url('/search-product?category=articles&keywords=' . $articles->title), 'category' => 'Articles'];
                     }
                 }
             }elseif($category=='news') {
-                $new = NewsManagement::where('title','Like','%'.$term.'%')->get();
+                $new = NewsManagement::where('title','Like','%'.$term.'%')->latest()->limit(3)->get();
                 if($new) {
                     foreach ($new as $news) {
                         $results[] = ['value' => $news->title, 'link' => url('/search-product?category=news&keywords=' . $news->title), 'category' => 'News'];
                     }
                 }
             }elseif($category=='events') {
-                $event = Journal::where('title', 'Like', '%' . $term . '%')->where('journal_type_name', 'Upcomming Events')->get();
+                $event = Journal::where('title', 'Like', '%' . $term . '%')->where('journal_type_name', 'Upcomming Events')->latest()->limit(3)->get();
                 if ($event) {
                     foreach ($event as $events) {
                         $results[] = ['value' => $events->title, 'link' => url('/search-product?category=events&keywords=' . $events->title), 'category' => 'Events'];
@@ -848,86 +848,86 @@ class HomeController extends Controller
             return json_encode($results);
 
         }else {
-        $term = $request->get('inpdata');
-        $results= [];
-        $company = \App\CompanyProfile::where('company_name','LIKE','%'.$term.'%')->limit(3)->get();
-        if($company) {
-            foreach ($company as $companies) {
-                $results[] = ['value' => $companies->company_name, 'link' => url('/search-product?category=Companies&keywords=' . $companies->company_name), 'category' => 'Companies'];
+            $term = $request->get('inpdata');
+            $results= [];
+            $company = \App\CompanyProfile::where('company_name','LIKE','%'.$term.'%')->latest()->limit(3)->get();
+            if($company) {
+                foreach ($company as $companies) {
+                    $results[] = ['value' => $companies->company_name, 'link' => url('/search-product?category=Companies&keywords=' . $companies->company_name), 'category' => 'Companies'];
+                }
             }
-        }
-        $productsells = DB::table('products')
-            ->where('product_service_types','sell')
-            ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->limit(3)->get();
-        if($productsells){
-            foreach($productsells as $productsell){
-                $results[] = ['value' => $productsell->product_service_name, 'link' => url('/search-product?category=Regular+Supplier&keywords='.$productsell->product_service_name),'category' => 'Regular Supplier'];
+            $productsells = DB::table('products')
+                ->where('product_service_types','sell')
+                ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->latest()->limit(3)->get();
+            if($productsells){
+                foreach($productsells as $productsell){
+                    $results[] = ['value' => $productsell->product_service_name, 'link' => url('/search-product?category=Regular+Supplier&keywords='.$productsell->product_service_name),'category' => 'Regular Supplier'];
+                }
             }
-        }
-        $productbuys = DB::table('products')
-            ->where('product_service_types','buy')
-            ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->limit(3)->get();
-        if($productbuys){
-            foreach($productbuys as $productbuy){
-                $results[] = ['value' => $productbuy->product_service_name, 'link' => url('/search-product?category=Regular+Buyer&keywords='.$productbuy->product_service_name),'category' => 'Regular Buyer'];
+            $productbuys = DB::table('products')
+                ->where('product_service_types','buy')
+                ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->latest()->limit(3)->get();
+            if($productbuys){
+                foreach($productbuys as $productbuy){
+                    $results[] = ['value' => $productbuy->product_service_name, 'link' => url('/search-product?category=Regular+Buyer&keywords='.$productbuy->product_service_name),'category' => 'Regular Buyer'];
+                }
             }
-        }
 
-        $productservs = DB::table('products')
-            ->where('product_service_types','service')
-            ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->limit(3)->get();
-        if($productservs) {
-            foreach ($productservs as $productserv) {
-                $results[] = ['value' => $productserv->product_service_name, 'link' => url('/search-product?category=Regular+Services&keywords=' . $productserv->product_service_name), 'category' => 'Service Providers'];
+            $productservs = DB::table('products')
+                ->where('product_service_types','service')
+                ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->latest()->limit(3)->get();
+            if($productservs) {
+                foreach ($productservs as $productserv) {
+                    $results[] = ['value' => $productserv->product_service_name, 'link' => url('/search-product?category=Regular+Services&keywords=' . $productserv->product_service_name), 'category' => 'Service Providers'];
+                }
             }
-        }
-        $buysells = DB::table('buy_sells')
-            ->where('product_service_types','sell')
-            ->where('date_expire','>', now())
-            ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->limit(3)->get();
-        if($buysells) {
-            foreach ($buysells as $buysell) {
-                $results[] = ['value' => $buysell->product_service_name, 'link' => url('/search-product?category=One-Time+Supplier&keywords=' . $buysell->product_service_name), 'category' => 'One-Time Supplier'];
+            $buysells = DB::table('buy_sells')
+                ->where('product_service_types','sell')
+                ->where('date_expire','>', now())
+                ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->latest()->limit(3)->get();
+            if($buysells) {
+                foreach ($buysells as $buysell) {
+                    $results[] = ['value' => $buysell->product_service_name, 'link' => url('/search-product?category=One-Time+Supplier&keywords=' . $buysell->product_service_name), 'category' => 'One-Time Supplier'];
+                }
             }
-        }
-        $buysellbuys = DB::table('buy_sells')
-            ->where('product_service_types','buy')
-            ->where('date_expire','>', now())
-            ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->limit(3)->get();
-        if($buysellbuys) {
-            foreach ($buysellbuys as $buysellbuy) {
-                $results[] = ['value' => $buysellbuy->product_service_name, 'link' => url('/search-product?category=One-Time+Buyer&keywords=' . $buysellbuy->product_service_name), 'category' => 'One-Time Buyer'];
+            $buysellbuys = DB::table('buy_sells')
+                ->where('product_service_types','buy')
+                ->where('date_expire','>', now())
+                ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->latest()->limit(3)->get();
+            if($buysellbuys) {
+                foreach ($buysellbuys as $buysellbuy) {
+                    $results[] = ['value' => $buysellbuy->product_service_name, 'link' => url('/search-product?category=One-Time+Buyer&keywords=' . $buysellbuy->product_service_name), 'category' => 'One-Time Buyer'];
+                }
             }
-        }
-        $buysellservs = DB::table('buy_sells')
-            ->where('product_service_types','service')
-            ->where('date_expire','>', now())
-            ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->limit(3)->get();
-        if($buysellservs) {
-            foreach ($buysellservs as $buysellserv) {
-                $results[] = ['value' => $buysellserv->product_service_name, 'link' => url('/search-product?category=One-Time+Services&keywords=' . $buysellserv->product_service_name), 'category' => 'Service Seekers'];
+            $buysellservs = DB::table('buy_sells')
+                ->where('product_service_types','service')
+                ->where('date_expire','>', now())
+                ->where("product_service_name","LIKE","%$term%")->whereNull('deleted_at')->latest()->limit(3)->get();
+            if($buysellservs) {
+                foreach ($buysellservs as $buysellserv) {
+                    $results[] = ['value' => $buysellserv->product_service_name, 'link' => url('/search-product?category=One-Time+Services&keywords=' . $buysellserv->product_service_name), 'category' => 'Service Seekers'];
+                }
             }
-        }
 
-        $article = Journal::where('title','LIKE','%'.$term.'%')->where('status',1)->where('journal_type_name','articles')->limit(3)->get();
-        if($article) {
-            foreach ($article as $articles) {
-                $results[] = ['value' => $articles->title, 'link' => url('/search-product?category=articles&keywords=' . $articles->title), 'category' => 'Articles'];
+            $article = Journal::where('title','LIKE','%'.$term.'%')->where('journal_type_name','articles')->where('status',1)->latest()->limit(3)->get();
+            if($article) {
+                foreach ($article as $articles) {
+                    $results[] = ['value' => $articles->title, 'link' => url('/search-product?category=articles&keywords=' . $articles->title), 'category' => 'Articles'];
+                }
             }
-        }
-        $new = NewsManagement::where('title','LIKE','%'.$term.'%')->where('status',1)->limit(3)->get();
-        if($new) {
-            foreach ($new as $news) {
-                $results[] = ['value' => $news->title, 'link' => url('/search-product?category=news&keywords=' . $news->title), 'category' => 'News'];
+            $new = NewsManagement::where('title','LIKE','%'.$term.'%')->where('status',1)->latest()->limit(3)->get();
+            if($new) {
+                foreach ($new as $news) {
+                    $results[] = ['value' => $news->title, 'link' => url('/search-product?category=news&keywords=' . $news->title), 'category' => 'News'];
+                }
             }
-        }
-        $event = Journal::where('title','LIKE','%'.$term.'%')->where('status',1)->where('journal_type_name','Upcomming Events')->limit(3)->get();
-        if($event) {
-            foreach ($event as $events) {
-                $results[] = ['value' => $events->title, 'link' => url('/search-product?category=events&keywords=' . $events->title), 'category' => 'Events'];
+            $event = Journal::where('title','LIKE','%'.$term.'%')->where('status',1)->where('journal_type_name','Upcomming Events')->latest()->limit(3)->get();
+            if($event) {
+                foreach ($event as $events) {
+                    $results[] = ['value' => $events->title, 'link' => url('/search-product?category=events&keywords=' . $events->title), 'category' => 'Events'];
+                }
             }
-        }
-        return json_encode($results);
+            return json_encode($results);
 
         }
 

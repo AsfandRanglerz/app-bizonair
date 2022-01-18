@@ -41,7 +41,9 @@
                                 <th class="p2">Reference Number</th>
                                 <th class="p2">Product Name</th>
                                 <th class="p2">Subject</th>
+                                @if(!($request->case && $request->case == 'archive'))
                                 <th class="p2">Category</th>
+                                @endif
                                 <th class="p2">Image</th>
                                 <th class="p2">Price</th>
                                 <th class="p2">Matching Deals</th>

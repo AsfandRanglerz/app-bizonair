@@ -33,7 +33,7 @@ class CareerController extends Controller
                 $q->orwhere('country','Like','%'.$location.'%');
             })->where('status',1)->get();
         }else{
-            $jobs = \App\JobManagement::all();
+            $jobs = \App\JobManagement::where('status',1)->orderBy('closing_date','desc')->get();
         }
         $data['jobs'] = $jobs;
         $data['ads'] =  \App\Banner::where('dimension', 'width 311 * height 311')->where('description','1st row left sidebar')->where('page','Career')->where('status', 1)->limit(1)->get();
@@ -57,7 +57,7 @@ class CareerController extends Controller
                 $q->orwhere('country','Like','%'.$location.'%');
             })->get();
         }else{
-            $cvs = \App\UploadCv::all();
+            $cvs = \App\UploadCv::orderBy('created_at','desc')->get();
         }
 
         $data['cvs'] = $cvs;
@@ -70,7 +70,7 @@ class CareerController extends Controller
     public function jobs_portal()
     {
         $data['latest_jobs'] = \App\JobManagement::latest()->take(6)->where('status',1)->get();
-        $data['jobs'] = JobManagement::where('status',1)->get();
+        $data['jobs'] = JobManagement::where('status',1)->latest()->get();
         $data['page'] = 'jobs.job-portal';
         $country = new Countries();
         $data['countries'] = $country->all();
