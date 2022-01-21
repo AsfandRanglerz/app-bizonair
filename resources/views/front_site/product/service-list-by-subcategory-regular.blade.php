@@ -48,14 +48,13 @@
                                         <div class="mt-2 product-box">
                                             <div class="mx-0 mt-3 row product-content-container">
                                                 <div class="col-xl-3 col-lg-6 p-lg-2 p-0 product-img-container">
-
+                                                    <a href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                                         <div class="position-relative product-img-container">
 
                                                             @foreach($prod->product_image as $j => $image)
                                                                 @if(!empty($image))
-                                                                    <a href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                                                     <img id="productImg1" src="{{$image->image}}" class="w-100 product-img">
-                                                                    </a>
+
                                                                     @if($j==0)
                                                                         @break
                                                                     @endif
@@ -67,7 +66,7 @@
                                                                 <span  @if(Auth::check()) class="text-decoration-none add-to-fav" prod_id="{{$prod->id}}" product_service_name="{{$prod->product_service_name}}" product_service_types="{{$prod->product_service_types}}" reference_no="{{$prod->reference_no}}"  @else class="text-decoration-none pre-login" @endif><span class="@if(\DB::table('favourites')->where(['user_id'=>auth()->id(),'reference_no'=>$prod->reference_no])->exists()) check-heart fa fa-heart @else check-heart fa fa-heart-o @endif"></span></span>
                                                             </div>
                                                         </div>
-
+                                                    </a>
                                                 </div>
                                                 <div class="col-xl-5 col-lg-5 p-lg-2 p-0  product-details"><p class="mb-1 title font-weight-bold overflow-text-dots-subject">{{$prod->product_service_name}}</p>
                                                     <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
@@ -195,12 +194,12 @@
                                                         <!-- Modal -->
                                                     </div>
                                                 </div>
-                                                <div class="w-100 mt-lg-0 mt-2 d-flex flex-lg-row flex-column justify-content-lg-around align-items-center" >
-                                                    <a href="{{route('other-product-this-supplier',[$prod->subcategory->slug,$prod->company_id])}}" class="text-decoration-none red-link">Other products from this
-                                                        Supplier</a>
-                                                    <a href="{{route('similar-product-this-supplier',[$prod->subcategory->slug,$prod->company_id])}}" class="text-decoration-none red-link">Similar product from this
-                                                        Supplier</a>
-                                                </div>
+{{--                                                <div class="w-100 mt-lg-0 mt-2 d-flex flex-lg-row flex-column justify-content-lg-around align-items-center" >--}}
+{{--                                                    <a href="{{route('other-product-this-supplier',['subcategory'=>get_sub_category_slug($prod->subcategory_id),'company'=>$prod->company_id])}}" class="text-decoration-none red-link">Other products from this--}}
+{{--                                                        Supplier</a>--}}
+{{--                                                    <a href="{{route('similar-product-this-supplier',[get_sub_category_slug($prod->subcategory_id),$prod->company_id])}}" class="text-decoration-none red-link">Similar product from this--}}
+{{--                                                        Supplier</a>--}}
+{{--                                                </div>--}}
                                                 <div class="w-100 mt-lg-0 mt-2 d-flex flex-lg-row flex-column justify-content-lg-around align-items-center" >
 
                                                 </div>

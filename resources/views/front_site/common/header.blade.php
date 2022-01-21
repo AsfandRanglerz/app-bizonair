@@ -260,7 +260,7 @@
                     <div class="ml-2" style="width: 66%">
                         <p class="mb-0 biz-user">{{ company_name(session()->get('company_id'))??'' }}</p>
                         <p class="mb-0 biz-user"><b>{{ auth()->user()->name }}</b></p>
-                        <p class="mb-0 biz-country">Basic Member <a href="#" class="text-decoration-none text-reset">(Upgrade)</a></p>
+                        <p class="mb-0 biz-country">Basic Member <a href="#" class="text-reset" title="We are working on this feature and will enable this soon" data-toggle="tooltip" data-placement="bottom">(Upgrade)</a></p>
                         <p class="mb-0 biz-country">{{ auth()->user()->country }}</p>
                         <div class="progress mt-2">
                             <div class="progress-bar" role="progressbar"

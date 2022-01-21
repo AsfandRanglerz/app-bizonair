@@ -47,14 +47,14 @@
                                         <div class="mt-2 product-box">
                                             <div class="mx-0 mt-3 row product-content-container">
                                                 <div class="col-xl-3 col-lg-6 p-lg-2 p-0 product-img-container">
-
+                                                    <a href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                                     <div class="position-relative product-img-container">
                                                         <?php $img = \DB::table('buysell_images')->where('buy_sell_id',$prod->id)->get();?>
                                                         @foreach($img as $i => $image)
                                                             @if($loop->first)
-                                                                    <a href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
+
                                                         <img id="productImg1" src="{{$image->image}}" class="w-100 product-img">
-                                                                    </a>
+
                                                                 @endif
                                                             @endforeach
                                                             <div class="position-absolute heart-icon-div">
@@ -62,7 +62,7 @@
                                                             </div>
                                                     </div>
 
-
+                                                    </a>
                                                 </div>
                                                 <div class="col-xl-5 col-lg-5 p-lg-2 p-0  product-details"><p class="mb-1 title font-weight-bold overflow-text-dots-subject">{{$prod->product_service_name}}</p>
                                                     <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
