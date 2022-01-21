@@ -181,7 +181,7 @@
 
 
 @push('js')
-
+    <script src="{{$ASSET}}/front_site/plugins/DataTables/datatables.js"></script>
     <script>
         $(document).on('click', '.delete-prod-inquiry', function () {
             btn = $(this);

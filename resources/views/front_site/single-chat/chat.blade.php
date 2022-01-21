@@ -95,6 +95,7 @@
     <script src="{{asset('public/js/app.js')}}"></script>
     @push('js')
         <script src="{{$ASSET}}/front_site/plugins/light-gallery/js/lightgallery.min.js"></script>
+        <script src="{{$ASSET}}/front_site/plugins/DataTables/datatables.js"></script>
         <script>
             $('.chatbox-holder').bind('DOMSubtreeModified', function () {
                 $('.chatbox-holder').lightGallery({

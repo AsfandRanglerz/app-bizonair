@@ -46,9 +46,9 @@
 
     <?php $exist = \App\Product::where('reference_no', $detail['reference_no'])->first(); ?>
     @if($exist)
-        <a target="_blank" href="@if(auth()->check()){{ route('get-lead-fav') }}@else{{ url('/login') }}@endif">Click here</a> to open!
+        <a target="_blank" @if(auth()->check()) href="https://www.bizonair.com/lead-favs" @else href="https://www.bizonair.com/login" @endif>Click here</a> to open!
     @else
-        <a target="_blank" href="@if(auth()->check()){{ route('get-one-time-fav') }}@else{{ url('/login') }}@endif">Click here</a> to open!
+        <a target="_blank" @if(auth()->check()) href="https://www.bizonair.com/one-time-favs" @else href="https://www.bizonair.com/login" @endif>Click here</a> to open!
     @endif
 </h3>
 

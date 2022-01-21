@@ -110,7 +110,7 @@
 
 
 @push('js')
-
+    <script src="{{$ASSET}}/front_site/plugins/DataTables/datatables.js"></script>
     <script>
         var online_users = [];
 
