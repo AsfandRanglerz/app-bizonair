@@ -745,6 +745,101 @@ function moneyFormat($num) {
     return $thecash; // writes the final format where $currency is the currency symbol.
 }
 
+function getRegularSupplier($search){
+    $products = \App\Product::select('products.*', 'products.created_at as creation_date')->where(function ($q) use ($search){
+        $q->where('subject','Like','%'.$search.'%')
+            ->orwhere('keyword1','Like','%'.$search.'%')
+            ->orwhere('keyword2','Like','%'.$search.'%')
+            ->orwhere('keyword3','Like','%'.$search.'%')
+            ->orwhere('reference_no','Like','%'.$search.'%')
+            ->orwhere('product_service_name','Like','%'.$search.'%');
+    })->where('product_service_types','sell')->whereNull('deleted_at')->get();
+
+    return count($products);
+}
+
+function getRegularBuyer($search){
+    $products = \App\Product::select('products.*', 'products.created_at as creation_date')->where(function ($q) use ($search){
+        $q->where('subject','Like','%'.$search.'%')
+            ->orwhere('keyword1','Like','%'.$search.'%')
+            ->orwhere('keyword2','Like','%'.$search.'%')
+            ->orwhere('keyword3','Like','%'.$search.'%')
+            ->orwhere('reference_no','Like','%'.$search.'%')
+            ->orwhere('product_service_name','Like','%'.$search.'%');
+    })->where('product_service_types','buy')->whereNull('deleted_at')->get();
+
+    return count($products);
+}
+
+function getOneTimeSupplier($search){
+    $buysell = \App\BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where(function ($q) use ($search){
+        $q->where('subject','Like','%'.$search.'%')
+            ->orwhere('keyword1','Like','%'.$search.'%')
+            ->orwhere('keyword2','Like','%'.$search.'%')
+            ->orwhere('keyword3','Like','%'.$search.'%')
+            ->orwhere('reference_no','Like','%'.$search.'%')
+            ->orwhere('product_service_name','Like','%'.$search.'%');
+    })->where('product_service_types','sell')->where('date_expire','>', now())->whereNull('deleted_at')->get();
+    return count($buysell);
+}
+
+function getOneTimeBuyer($search){
+    $buysell = \App\BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where(function ($q) use ($search){
+        $q->where('subject','Like','%'.$search.'%')
+            ->orwhere('keyword1','Like','%'.$search.'%')
+            ->orwhere('keyword2','Like','%'.$search.'%')
+            ->orwhere('keyword3','Like','%'.$search.'%')
+            ->orwhere('reference_no','Like','%'.$search.'%')
+            ->orwhere('product_service_name','Like','%'.$search.'%');
+    })->where('product_service_types','buy')->where('date_expire','>', now())->whereNull('deleted_at')->get();
+    return count($buysell);
+
+}
+
+function getServiceProviders($search){
+    $products = \App\Product::select('products.*', 'products.created_at as creation_date')->where(function ($q) use ($search){
+        $q->where('subject','Like','%'.$search.'%')
+            ->orwhere('keyword1','Like','%'.$search.'%')
+            ->orwhere('keyword2','Like','%'.$search.'%')
+            ->orwhere('keyword3','Like','%'.$search.'%')
+            ->orwhere('reference_no','Like','%'.$search.'%')
+            ->orwhere('product_service_name','Like','%'.$search.'%');
+    })->where('product_service_types','service')->whereNull('deleted_at')->get();
+    return count($products);
+}
+
+function getServiceSeekers($search){
+    $buysell = \App\BuySell::select('buy_sells.*', 'buy_sells.created_at as creation_date')->where(function ($q) use ($search){
+        $q->where('subject','Like','%'.$search.'%')
+            ->orwhere('keyword1','Like','%'.$search.'%')
+            ->orwhere('keyword2','Like','%'.$search.'%')
+            ->orwhere('keyword3','Like','%'.$search.'%')
+            ->orwhere('reference_no','Like','%'.$search.'%')
+            ->orwhere('product_service_name','Like','%'.$search.'%');
+    })->where('product_service_types','service')->where('date_expire','>', now())->whereNull('deleted_at')->get();
+    return count($buysell);
+}
+
+function getSearchCompanies($search){
+    $allcompanies = \App\CompanyProfile::where('company_name','Like','%'.$search.'%')->get();
+    return count($allcompanies);
+}
+
+function getArticles($search){
+    $articles = \App\Journal::where('title','Like','%'.$search.'%')->where('status',1)->where('journal_type_name','articles')->get();
+    return count($articles);
+}
+
+function getNews($search){
+    $news = \App\NewsManagement::where('title','Like','%'.$search.'%')->where('status',1)->get();
+    return count($news);
+}
+
+function getEvents($search){
+    $events = \App\Journal::where('title','Like','%'.$search.'%')->where('status',1)->where('journal_type_name','Upcomming Events')->get();
+    return count($events);
+}
+
 //added by taha for inquiry chat
 
 function get_name($user){

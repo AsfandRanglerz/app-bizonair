@@ -393,11 +393,6 @@ class InquiryController extends Controller
             // dd($data);
             $data['page'] = 'biz_deal_inquiry.listing';
 
-            DB::table('notifications')
-                ->where('user_id', auth()->id())
-                ->where('table_name','inquiries')
-                ->where('table_data','Deal')
-                ->update(['is_display' => 1,'is_read'=>1]);
 
             return view('front_site.' . $data['page'])->with($data);
         }else{
@@ -515,6 +510,11 @@ class InquiryController extends Controller
                 $data['data'] = view('front_site.biz_deal_inquiry.chat' , $d)->render();
                 $data['feedback'] = 'true';
                 \App\bizdealInqueryConversationMessage::where([['conversation_id',request('conversation_id')], ['created_by','<>',\Auth::id()]])->update(['is_read'=> 1]);
+                DB::table('notifications')
+                    ->where('user_id', auth()->id())
+                    ->where('table_name','inquiries')
+                    ->where('table_data','Deal')
+                    ->update(['is_display' => 1,'is_read'=>1]);
             }
             else
             {
@@ -556,10 +556,25 @@ class InquiryController extends Controller
             $file = inquiry_file_uploader(request()->file('file'), $message, 'biz_deal_inquiry');
             $message->file_path = $file;
         }
+
         if($message->save()){
-
-
-
+            //added by dilawar
+            $buysell = \App\BuySell::where('id',$message->convertsation->buy_sell_id)->first();
+            $notification = new Notification();
+            if(request('created_by') == $buysell->user_id){
+                $notification->user_id= $message->convertsation->created_by;
+            }elseif($message->convertsation->created_by == auth()->id()){
+                $notification->user_id= $buysell->user_id;
+            }
+            $notification->table_name = 'inquiries';
+            $notification->table_data= 'Deal';
+            $notification->notification_text= $buysell->product_service_name.' Deal inquiry Chat by '.auth()->user()->name;
+            $notification->prod_id= $message->convertsation->buy_sell_id;
+            $notification->product_service_types= $buysell->product_service_types;
+            $notification->product_service_name= $buysell->product_service_name;
+            $notification->prod_user_id= $buysell->user_id;
+            $notification->save();
+            //added by dilawar
             if(\App\BizdealInquiryConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->first())
                 \App\BizdealInquiryConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->delete();
             $data['feedback'] = "true";
@@ -1218,12 +1233,7 @@ class InquiryController extends Controller
             // $data['request'] = $request;
             // dd($data);
             $data['page'] = 'biz_lead_inquiry.listing';
-            DB::table('notifications')
-                ->where('user_id', auth()->id())
-                ->where('prod_comp_id',\session()->get('company_id'))
-                ->where('table_name','inquiries')
-                ->where('table_data','Lead')
-                ->update(['is_display' => 1,'is_read'=>1]);
+
             return view('front_site.' . $data['page'])->with($data);
         }else{
             return view('front_site.other.login');
@@ -1253,6 +1263,12 @@ class InquiryController extends Controller
                     $read->created_by = \Auth::id();
                     $read->save();
                 }
+                DB::table('notifications')
+                    ->where('user_id', auth()->id())
+                    ->where('prod_comp_id',\session()->get('company_id'))
+                    ->where('table_name','inquiries')
+                    ->where('table_data','Lead')
+                    ->update(['is_display' => 1,'is_read'=>1]);
             }
             else
             {
@@ -1310,7 +1326,36 @@ class InquiryController extends Controller
         }
         if($message->save()){
 
-
+            //added by dilawar
+            $prod = \App\Product::where('id',$message->convertsation->product_id)->first();
+            $usercompany = \App\UserCompany::where('company_id',$prod->company_id)->get();
+            foreach ($usercompany as $key => $produsercompany) {
+                $notification = new Notification();
+                if (request('created_by') == $produsercompany->user_id) {
+                    if( $key == 0 ) {
+                        $notification->user_id = $message->convertsation->created_by;
+                        $notification->table_name = 'inquiries';
+                        $notification->table_data = 'Lead';
+                        $notification->notification_text = $prod->product_service_name . ' Lead inquiry Chat by ' . auth()->user()->name;
+                        $notification->prod_id = $message->convertsation->product_id;
+                        $notification->product_service_types = $prod->product_service_types;
+                        $notification->product_service_name = $prod->product_service_name;
+                        $notification->prod_comp_id = $produsercompany->company_id;
+                        $notification->save();
+                    }
+                } elseif ($message->convertsation->created_by == auth()->id()) {
+                    $notification->user_id = $produsercompany->user_id;
+                    $notification->table_name = 'inquiries';
+                    $notification->table_data = 'Lead';
+                    $notification->notification_text = $prod->product_service_name . ' Lead inquiry Chat by ' . auth()->user()->name;
+                    $notification->prod_id = $message->convertsation->product_id;
+                    $notification->product_service_types = $prod->product_service_types;
+                    $notification->product_service_name = $prod->product_service_name;
+                    $notification->prod_comp_id = $produsercompany->company_id;
+                    $notification->save();
+                }
+            }
+            //added by dilawar
 
             if(\App\BizLeadInquiryConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->first())
                 \App\BizLeadInquiryConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->delete();

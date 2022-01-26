@@ -341,8 +341,8 @@
                     }
                 },
                 messages: {
-                    first_name: "Please enter your firstname",
-                    last_name: "Please enter your lastname",
+                    first_name: "Please enter your first name",
+                    last_name: "Please enter your last name",
                     password: {
                         required: "Please provide a password",
                         minlength: "Your password must be at least 8 characters long"

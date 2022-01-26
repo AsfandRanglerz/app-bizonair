@@ -304,7 +304,7 @@ class FavouriteController extends Controller
         $messages = [
             'title.required' => 'post title is required',
 //            'image.nullable' => 'post image is required',
-           // 'description.required' => 'post description is required',
+            'journal_type.required' => 'journal type is required',
 //            'journal_type.required' => 'post journal type is required',
 
         ];
@@ -338,11 +338,16 @@ class FavouriteController extends Controller
                 $post = $url;
                 \App\Journal::where('id', request('id'))->update(['image'=>$post]);
             }
-            DB::update('update journals set title="'.$title.'",description="'.$description.'",journal_type_name="'.$journal_type_name.'",user_id="'.$user_id.'",user_name="'.$user_name.'" where id = ?', [$id]);
+            $journal =  \App\Journal::where('id',$id)->first();
+            $journal->title = $title;
+            $journal->description = $description;
+            $journal->journal_type_name = $journal_type_name;
+            $journal->user_id = $user_id;
+            $journal->user_name = $user_name;
 
-             if (1 == 1) {
+            if ($journal->save()) {
 
-                $data['feedback'] = "true";
+                $data['feedback'] = "updated";
                 $data['msg'] = 'News or Article has been Updated successfully';
                 $data['url'] = route('view-blogs');
 
@@ -352,7 +357,7 @@ class FavouriteController extends Controller
                 $data['custom_msg'] = 'Something went wrong';
             }
 
-            return response()->json(['data'=>$data]);
+            return json_encode($data);
         }
     }
 
@@ -366,6 +371,8 @@ class FavouriteController extends Controller
         if ($notifi_id) {
 
             DB::table('notifications')
+                ->where('table_name','!=','inquiries')
+                ->where('table_name','!=','favourites')
                 ->where('id', $notifi_id)
                 ->update(['is_read' => 1]);
 
@@ -443,7 +450,7 @@ class FavouriteController extends Controller
 ////////////////////Lead Inquiry////////////////////
     public function get_lead_fav(Request $request)
     {
-
+        if(auth()->user()){
         $data['active'] = 'Inquiries';
         $data['title'] = 'MyBiz Active Inquiries';
         $data['user'] = \App\User::find(\auth()->id());
@@ -466,13 +473,11 @@ class FavouriteController extends Controller
         // $data['request'] = $request;
         // dd($data);
         $data['page'] = 'biz_lead_fav.listing';
-        DB::table('notifications')
-            ->where('user_id', auth()->id())
-            ->where('prod_comp_id',\session()->get('company_id'))
-            ->where('table_name','inquiries')
-            ->where('table_data','Lead')
-            ->update(['is_display' => 1,'is_read'=>1]);
+
         return view('front_site.' . $data['page'])->with($data);
+        }else{
+            return view('front_site.other.login');
+        }
 
     }
 
@@ -498,6 +503,12 @@ class FavouriteController extends Controller
                     $read->created_by = \Auth::id();
                     $read->save();
                 }
+                DB::table('notifications')
+                    ->where('user_id', auth()->id())
+                    ->where('prod_comp_id',\session()->get('company_id'))
+                    ->where('table_name','favourites')
+                    ->where('table_data','Lead')
+                    ->update(['is_display' => 1,'is_read'=>1]);
             }
             else
             {
@@ -556,7 +567,36 @@ class FavouriteController extends Controller
         }
         if($message->save()){
 
-
+//added by dilawar
+            $prod = \App\Product::where('id',$message->convertsation->product_id)->first();
+            $usercompany = \App\UserCompany::where('company_id',$prod->company_id)->get();
+            foreach ($usercompany as $key => $produsercompany) {
+                $notification = new Notification();
+                if (request('created_by') == $produsercompany->user_id) {
+                    if( $key == 0 ) {
+                        $notification->user_id = $message->convertsation->created_by;
+                        $notification->table_name = 'favourites';
+                        $notification->table_data = 'Lead';
+                        $notification->notification_text = $prod->product_service_name . ' Lead favourite Chat by ' . auth()->user()->name;
+                        $notification->prod_id = $message->convertsation->product_id;
+                        $notification->product_service_types = $prod->product_service_types;
+                        $notification->product_service_name = $prod->product_service_name;
+                        $notification->prod_comp_id = $produsercompany->company_id;
+                        $notification->save();
+                    }
+                } elseif ($message->convertsation->created_by == auth()->id()) {
+                    $notification->user_id = $produsercompany->user_id;
+                    $notification->table_name = 'favourites';
+                    $notification->table_data = 'Lead';
+                    $notification->notification_text = $prod->product_service_name . ' Lead favourite Chat by ' . auth()->user()->name;
+                    $notification->prod_id = $message->convertsation->product_id;
+                    $notification->product_service_types = $prod->product_service_types;
+                    $notification->product_service_name = $prod->product_service_name;
+                    $notification->prod_comp_id = $produsercompany->company_id;
+                    $notification->save();
+                }
+            }
+            //added by dilawar
 
             if(\App\BizLeadFavConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->first())
                 \App\BizLeadFavConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->delete();
@@ -1310,36 +1350,40 @@ class FavouriteController extends Controller
     public function get_one_time_fav()
     {
         // dd(\Auth::user());
-        $data['active'] = 'biz_deal_favs';
-        $data['title'] = 'One-Time Favorites';
-        $data['user'] = \Auth::user();
-        $data['order'] = 'desc';
+        if(auth()->user()) {
+            $data['active'] = 'biz_deal_favs';
+            $data['title'] = 'One-Time Favorites';
+            $data['user'] = \Auth::user();
+            $data['order'] = 'desc';
 
-        $data['sent_messages'] =  \App\BizDealFavConversation::with('product.user','messages','latestMessage','my_latest_message')->has('my_latest_message')->get();
+            $data['sent_messages'] = \App\BizDealFavConversation::with('product.user', 'messages', 'latestMessage', 'my_latest_message')->has('my_latest_message')->get();
 
-        $data['deleted_messages'] =  \App\BizDealFavConversation::with('product.user','messages','latestMessage','my_latest_message')->has('my_latest_message')->whereHas('delete_convos', function($q){
-            $q->where('created_by',\Auth::id());
-        })->get();
-        // dd($data['sent_messages']);
-        $data['listing'] = \App\BizDealFavConversation::with('product.user','messages','latestMessage','my_latest_message')->where(function($q1){
-            $q1->whereHas('product', function($query){
-                $query->whereHas('user', function($q){
-                    $q->where('users.id', \Auth::id());
-                });
-            })->orWhere('created_by',\Auth::id());
-        })->get()->sortByDesc('latestMessage.created_at');
-        // dd($data['listing']);
-        // $data['request'] = $request;
-        // dd($data);
-        $data['page'] = 'biz_deal_fav.listing';
+            $data['deleted_messages'] = \App\BizDealFavConversation::with('product.user', 'messages', 'latestMessage', 'my_latest_message')->has('my_latest_message')->whereHas('delete_convos', function ($q) {
+                $q->where('created_by', \Auth::id());
+            })->get();
+            // dd($data['sent_messages']);
+            $data['listing'] = \App\BizDealFavConversation::with('product.user', 'messages', 'latestMessage', 'my_latest_message')->where(function ($q1) {
+                $q1->whereHas('product', function ($query) {
+                    $query->whereHas('user', function ($q) {
+                        $q->where('users.id', \Auth::id());
+                    });
+                })->orWhere('created_by', \Auth::id());
+            })->get()->sortByDesc('latestMessage.created_at');
+            // dd($data['listing']);
+            // $data['request'] = $request;
+            // dd($data);
+            $data['page'] = 'biz_deal_fav.listing';
 
-        // DB::table('notifications')
-        //     ->where('user_id', auth()->id())
-        //     ->where('table_name','inquiries')
-        //     ->where('table_data','Deal')
-        //     ->update(['is_display' => 1,'is_read'=>1]);
+            // DB::table('notifications')
+            //     ->where('user_id', auth()->id())
+            //     ->where('table_name','inquiries')
+            //     ->where('table_data','Deal')
+            //     ->update(['is_display' => 1,'is_read'=>1]);
 
-        return view('front_site.' . $data['page'])->with($data);
+            return view('front_site.' . $data['page'])->with($data);
+        }else{
+            return view('front_site.other.login');
+        }
     }
 
     public function get_inbox_refresh_fav(){
@@ -1452,6 +1496,11 @@ class FavouriteController extends Controller
                 $data['data'] = view('front_site.biz_deal_fav.chat' , $d)->render();
                 $data['feedback'] = 'true';
                 \App\BizDealFavConversationMessage::where([['conversation_id',request('conversation_id')], ['created_by','<>',\Auth::id()]])->update(['is_read'=> 1]);
+                DB::table('notifications')
+                    ->where('user_id', auth()->id())
+                    ->where('table_name','favourites')
+                    ->where('table_data','Deal')
+                    ->update(['is_display' => 1,'is_read'=>1]);
             }
             else
             {
@@ -1497,7 +1546,23 @@ class FavouriteController extends Controller
         if($message->save()){
 
 
-
+            //added by dilawar
+            $buysell = \App\BuySell::where('id',$message->convertsation->buy_sell_id)->first();
+            $notification = new Notification();
+            if(request('created_by') == $buysell->user_id){
+                $notification->user_id= $message->convertsation->created_by;
+            }elseif($message->convertsation->created_by == auth()->id()){
+                $notification->user_id= $buysell->user_id;
+            }
+            $notification->table_name = 'favourites';
+            $notification->table_data= 'Deal';
+            $notification->notification_text= $buysell->product_service_name.' Deal favourite Chat by '.auth()->user()->name;
+            $notification->prod_id= $message->convertsation->buy_sell_id;
+            $notification->product_service_types= $buysell->product_service_types;
+            $notification->product_service_name= $buysell->product_service_name;
+            $notification->prod_user_id= $buysell->user_id;
+            $notification->save();
+            //added by dilawar
             if(\App\BizDealFavConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->first())
                 \App\BizDealFavConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->delete();
             $data['feedback'] = "true";
@@ -1511,8 +1576,8 @@ class FavouriteController extends Controller
             $data['message_created_at']= $message->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a');
             if($message->file_path)
                 $data['message_file_path'] = "<a href=".url($message->file_path)." download='download'>
-        <span class='d-inline fa fa-paperclip attached-icon'></span>
-        </a>";
+            <span class='d-inline fa fa-paperclip attached-icon'></span>
+            </a>";
             else
                 $data['message_file_path'] = '';
         }
@@ -1678,7 +1743,7 @@ class FavouriteController extends Controller
         }
         if ($conversation_id) {
             $convo = \App\BizDealFavConversation::find($conversation_id);
-//        dd($convo);
+            //        dd($convo);
             if($convo){
                 $is_favorite = \App\BizDealFavConvoPin::where('created_by',\Auth::id())->where('conversation_id',$convo->id)->first();
                 if($is_favorite){
@@ -2130,9 +2195,5 @@ class FavouriteController extends Controller
         }
         return json_encode($data);
     }
-
-
-
-
 
 }
