@@ -1624,7 +1624,8 @@ $(document).ready(function () {
                 $(".services-container").find('#service_durations').prop('required', true);
                 $(".services-container").find('#textile_service_types').prop('required', true);
                 $(".services-container").find('#service_types').prop('required', true);
-                $(".product-categories").val('').removeClass('is-valid');
+                // $(".product-categories").val('').removeClass('is-valid');
+                $(".product-categories").removeClass('is-valid');
                 $(".product-subcategories").val('').removeClass('is-valid');
                 $("#sub_sub_category").val('').removeClass('is-valid');
                 $(".product-categories").find('option[cat-type="Business"]').addClass('d-none');
@@ -1644,7 +1645,8 @@ $(document).ready(function () {
                 $(".services-container").find('#service_durations').prop('required', false);
                 $(".services-container").find('#textile_service_types').prop('required', false);
                 $(".services-container").find('#service_types').prop('required', false);
-                $(".product-categories").val('').removeClass('is-valid');
+                // $(".product-categories").val('').removeClass('is-valid');
+                $(".product-categories").removeClass('is-valid');
                 $(".product-subcategories").val('').removeClass('is-valid');
                 $("#sub_sub_category").val('').removeClass('is-valid');
                 $(".product-categories").find('option[cat-type="Business"]').removeClass('d-none');
