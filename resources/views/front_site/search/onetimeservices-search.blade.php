@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="{{$ASSET}}/front_site/css/animate.min.css">
 @endsection
 @section('content')
-    <body class="homepage product-details">
+    <body class="product-details">
     <style>
         .product-banner-container .banner-search {
             bottom: 0;
@@ -14,10 +14,10 @@
         {{--            @include('front_site.common.search-bar')--}}
         {{--        </div>--}}
         <div class="suppliers-buyers">
-            <div class="container-fluid">
-                <div class="my-3 font-500 searh-status">Search Criteria : <span class="grey-text">Search Name - </span>{{ $search }}, <span class="grey-text">Lead Type - </span>{{ $category }} <span class="grey-text">({{count($buysell)}} PRODUCTS)</span></div>
+            <div class="container-fluid px-2 py-2">
+                <div class="mb-2 font-500 searh-status">Search Criteria : <span class="grey-text">Search Name - </span>{{ $search }}, <span class="grey-text">Lead Type - </span>{{ $category }} <span class="grey-text">({{count($buysell)}} PRODUCTS)</span></div>
                 <div class="row mx-0 mb-4 search-main-container">
-                    <div class="col-md-12 p-3">
+                    <div class="col-md-12 p-2">
                         <div class="d-flex flex-wrap justify-content-around link-heading-container">
                             <h6 class="position-relative link-heading"><a href="{{url('search-product?category=Regular+Supplier&keywords='.request()->keywords)}}" class="text-reset text-decoration-none">MYBIZ LEADS ({{getRegularSupplier(request()->keywords)+getRegularBuyer(request()->keywords)}})</a></h6>
                             <h6 class="position-relative link-heading"><a href="{{url('search-product?category=One-Time+Supplier&keywords='.request()->keywords)}}" class="text-reset text-decoration-none">ONE-TIME DEALS ({{getOneTimeSupplier(request()->keywords)+getOneTimeBuyer(request()->keywords)}})</a></h6>
@@ -28,7 +28,7 @@
                             <h6 class="position-relative link-heading"><a href="{{url('search-product?category=events&keywords='.request()->keywords)}}" class="text-reset text-decoration-none">EVENTS ({{getEvents(request()->keywords)}})</a></h6>
                         </div>
 
-                        <div class="mt-3 product-main-container">
+                        <div class="mt-2 product-main-container">
                             <ul class="ml-1 mr-1 nav nav-tabs">
                                 <li class="list">
                                     <a href="{{url('search-product?category=Regular+Services&keywords='.request()->keywords)}}" class="text-uppercase link">SERVICE PROVIDERS  ({{getServiceProviders(request()->keywords)}})</a>
@@ -48,7 +48,7 @@
                                 @isset($buysell)
                                     @foreach($buysell as $i => $prod)
                                         <?php $categ = get_category_slug($prod->category_id); $subcat = get_sub_category_slug($prod->subcategory_id);?>
-                                        <div class="ml-1 mr-1 mb-3 row product-content-container">
+                                        <div class="ml-1 mr-1 mb-2 row product-content-container">
                                             <div class="col-xl-3 col-lg-6 p-lg-2 p-0 product-img-container">
                                                 @if($prod->product_service_types == 'Service')
                                                     <a class="text-decoration-none text-reset" href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
@@ -283,7 +283,7 @@
                                 @endisset
                             @else
                                 <div class="product-box">
-                                    <div class="ml-1 mr-1 mb-3 row product-content-container">
+                                    <div class="ml-1 mr-1 mb-2 row product-content-container">
                                         <p class="mb-0">Sorry, there were no items that matched your criteria.</p>
                                     </div>
                                 </div>

@@ -34,6 +34,44 @@
 }
 /*app back button*/
 
+.search-main-container {
+    background: #f5f5f5;
+}
+.search-main-container .link-heading {
+    padding-bottom: 2px;
+}
+.search-main-container .active-heading {
+    color: #a52c3e;
+    font-weight: bold;
+}
+.search-main-container .link-heading.active-heading a:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+.search-main-container .link-heading:not(.active-heading):hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+.search-main-container .link-heading:not(.active-heading) a:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+.search-main-container .link-heading a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -1px;
+    left: 0;
+    background-color: #A52C3E;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+.searh-status {
+    font-size: 11px;
+}
+
 th {
     white-space: nowrap;
 }
@@ -2556,7 +2594,7 @@ ul li input[type=checkbox] {
 
 .suppliers-buyers .product-main-container {
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    padding: 8px;
+    padding: 4px;
     border-radius: 8px;
 }
 
@@ -9220,6 +9258,13 @@ header .navbar .navbar-toggler {
 }
 
 @media (max-width: 767px) {
+    .search-main-container .link-heading-container {
+        display: block!important;
+    }
+    .search-main-container .active-heading {
+        margin-bottom: 16px;
+    }
+
     /*search field text*/
     .search-text-block {
         width: 80%;

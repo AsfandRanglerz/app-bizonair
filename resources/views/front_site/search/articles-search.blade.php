@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="{{$ASSET}}/front_site/css/animate.min.css">
 @endsection
 @section('content')
-    <body class="homepage product-details">
+    <body class="product-details">
     <style>
         .product-banner-container .banner-search {
             bottom: 0;
@@ -14,10 +14,10 @@
 {{--            @include('front_site.common.search-bar')--}}
 {{--        </div>--}}
         <div class="suppliers-buyers">
-            <div class="container-fluid">
-                <div class="my-3 font-500 searh-status">Search Criteria : <span class="grey-text">Search Name - </span>{{ $search }}, <span class="grey-text">Lead Type - </span>{{ $category }} <span class="grey-text">({{count($articles)}} ARTICLES)</span></div>
+            <div class="container-fluid px-2 py-2">
+                <div class="mb-2 font-500 searh-status">Search Criteria : <span class="grey-text">Search Name - </span>{{ $search }}, <span class="grey-text">Lead Type - </span>{{ $category }} <span class="grey-text">({{count($articles)}} ARTICLES)</span></div>
                 <div class="row mx-0 mb-4 search-main-container">
-                    <div class="col-md-12 p-3">
+                    <div class="col-md-12 p-2">
                         <div class="d-flex flex-wrap justify-content-around link-heading-container">
                             <h6 class="position-relative link-heading"><a href="{{url('search-product?category=Regular+Supplier&keywords='.request()->keywords)}}" class="text-reset text-decoration-none">MYBIZ LEADS ({{getRegularSupplier(request()->keywords)+getRegularBuyer(request()->keywords)}})</a></h6>
                             <h6 class="position-relative link-heading"><a href="{{url('search-product?category=One-Time+Supplier&keywords='.request()->keywords)}}" class="text-reset text-decoration-none">ONE-TIME DEALS ({{getOneTimeSupplier(request()->keywords)+getOneTimeBuyer(request()->keywords)}})</a></h6>
@@ -27,12 +27,12 @@
                             <h6 class="position-relative link-heading"><a href="{{url('search-product?category=news&keywords='.request()->keywords)}}" class="text-reset text-decoration-none">NEWS ({{getNews(request()->keywords)}})</a></h6>
                             <h6 class="position-relative link-heading"><a href="{{url('search-product?category=events&keywords='.request()->keywords)}}" class="text-reset text-decoration-none">EVENTS ({{getEvents(request()->keywords)}})</a></h6>
                         </div>
-                        <div class="my-3 px-0 container-fluid">
-                            <div class="mt-3 product-main-container">
+                        <div class="mb-2 px-0 container-fluid">
+                            <div class="mt-2 product-main-container">
                                 <div class="row m-0 textile-news-inner">
                                     @if(count($articles) > 0)
                                     @foreach($articles as $article)
-                                        <div class="product-box col-lg-3 col-md-6 my-3 textile-box">
+                                        <div class="product-box col-lg-3 col-6 my-1 px-1 textile-box">
                                             <a href="{{route('journal-detail',['type'=>$article->journal_type_name,'id'=>$article->id])}}" class="text-decoration-none">
                                                 @if(isset($article->image))
                                                     <img src="{{$article->image}}">
