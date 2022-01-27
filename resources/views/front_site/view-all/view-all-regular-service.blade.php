@@ -39,7 +39,7 @@
                                         <div class="row mx-0 overflow-auto scroll-cat" style="height: 60px">
                                             @foreach($subcategories as  $subcategory)
                                                 <div class="col-6 p-0">
-                                                    <a class="text-decoration-none red-link overflow-text-dots-one-line text-uppercase cat-link" href="{{route('subcategory-regular-services',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
+                                                    <a class="red-link overflow-text-dots-one-line text-uppercase cat-link" href="{{route('subcategory-regular-services',['category'=>$subcategory->category->slug,'subcategory'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
                                                 </div>
                                             @endforeach
                                         </div>

@@ -2538,7 +2538,7 @@ ul li input[type=checkbox] {
 }
 
 .suppliers-buyers .list.active a {
-    border-bottom: 1px #12253D dashed!important;
+    border-bottom: 2px #A52C3E solid!important;
     font-weight: 800;
     color: #000;
 }
@@ -6106,6 +6106,7 @@ nav .breadcrumb-item + .breadcrumb-item::before {
 }
 
 .product-listing .top-companies .top-companies-card .companies-card-content .company-content {
+    width: 100%;
     text-align: center;
     font-size: 10px;
     letter-spacing: 1px;
