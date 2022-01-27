@@ -48,6 +48,10 @@ $(".job-description-below").scroll(function () {
 });
 
 $(document).ready(function () {
+    $(document).on('click', '.suppliers-buyers .list', function() {
+        $('.suppliers-buyers .list').removeClass('active');
+        $(this).addClass('active');
+    });
     /*categories dropdown blocks, removing highight*/
     $(document).on('click', '.pro-cat-links-box', function() {
         $('.pro-cat-links-box').children('.nav-item').removeClass('active');
