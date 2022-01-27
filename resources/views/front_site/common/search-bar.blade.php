@@ -18,6 +18,10 @@
                 <div class="modal-body">
                     <div class="d-flex flex-column align-items-start">
                         <div class="mb-1 custom-control custom-radio custom-control-inline">
+                            <input type="radio" value="All" id="allCategories" name="category_option" class="custom-control-input">
+                            <label class="text-white custom-control-label" for="allCategories" >All Categories</label>
+                        </div>
+                        <div class="mb-1 custom-control custom-radio custom-control-inline">
                             <input type="radio" value="Regular Supplier" id="regSupplier" name="category_option" class="custom-control-input">
                             <label class="text-white custom-control-label" for="regSupplier" >Regular Supplier</label>
                         </div>
@@ -71,7 +75,7 @@
         </div>
     </div>
 
-    <input class="w-100 form-control fa-square-o fa-check-square-o biz-search" type="search" autocomplete="off" placeholder="Find Textile Materials, Machinery, Chemicals &amp; More..." aria-label="Search" id="searchKeyword" name="keywords">
+    <input class="typeahead w-100 form-control fa-square-o fa-check-square-o biz-search" type="text" autocomplete="off" placeholder="Find Textile Materials, Machinery, Chemicals &amp; More..." aria-label="Search" id="searchKeyword" name="keywords">
     <div class="search-suggestions">
         <ul class="mb-0 overflow-auto links search_results_links"></ul>
     </div>
@@ -82,104 +86,52 @@
 
 
 @push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script>
 
-        /*select category popup radio buttons*/
-        $('input[name="category_option"]').on('click', function() {
-            var selCatOption = $('input[name=category_option]:checked').val();
-            $('#selCatInput').val(selCatOption);
-            $('.sel-cat-default-text').text(selCatOption);
-            $('.sel-category-model .close').trigger('click');
-        });
-        /*select category popup radio buttons*/
-        $(document).delegate('#searchKeyword', 'keyup', function(e) {
-            if($('input[name="category"]').val().length == 0) {
-                e.preventDefault();
-                function ucFirst(string) {
-                    return string.charAt(0).toUpperCase() + string.slice(1);
-                }
-                var inpdata =ucFirst($(this).val());
-                // var inpdata =$(this).val();
-                var token='{{csrf_token()}}';
-                $.ajax({
-                    type:'POST',
-                    url: '{{ url('/livesearch') }}',
-                    data:{inpdata:inpdata,_token:token},
-                    cache: false,
-                    success: function(data) {
+        $(document).ready(function() {
+            var inpcategory;
+            /*select category popup radio buttons*/
+            $('input[name="category_option"]').on('click', function() {
+                inpcategory = $('input[name=category_option]:checked').val();
+                $('#selCatInput').val(inpcategory);
+                $('.sel-cat-default-text').text(inpcategory);
+                $('.sel-category-model .close').trigger('click');
+            });
+            /*select category popup radio buttons*/
+
+            var path = "{{ url('/livesearch?inpcategory=') }}";
+            $('input.typeahead').typeahead({
+                source: function (keywords, process) {
+                    return $.get(path + inpcategory, {keywords: keywords}, function (data) {
+                        // return process(data);
                         var response = $.parseJSON(data);
-                        // console.log(response);
+
                         var output = '';
-                        if(response.length > 0){
-                            response.forEach(function(item){
-                                output += "<li id='searchWord'><a href="+item.link+" class='clearfix link' id='schWord'>" + "<span class='search-text-block'>" + item.value.replace(inpdata, '<b>' + inpdata + '</b>') + "</span>" + "<span class='float-right'>"+item.category+"</span></a></li>";
+                        if (response.length > 0) {
+                            response.forEach(function (item) {
+                                output += "<li id='searchWord'><a href=" + item.link + " class='clearfix link' id='schWord'>" + "<span class='search-text-block'>" + item.value.replace(keywords, '<b>' + keywords + '</b>') + "</span>" + "<span class='float-right'>" + item.category + "</span></a></li>";
                             });
-                        }
-                        else{
+                        } else {
+
                             output += "<li id='searchWord'><a href='#' class='clearfix link' id='schWord'><span class='float-right d-none'></span></a></li>";
                         }
-
                         console.log(output);
                         $('.search_results_links').html(output);
 
-                        if(output != ''){
+                        if (output != '') {
                             $('#searchKeyword').trigger('focus');
                             $('#searchKeyword').focus(function () {
-                                if($('.search-suggestions .links li').length!=0) {
+                                if ($('.search-suggestions .links li').length != 0) {
                                     $('.search-suggestions').fadeIn(500);
                                 }
                             });
                         }
-
-                    }
-                });
-            }else{
-                e.preventDefault();
-                function ucFirst(string) {
-                    return string.charAt(0).toUpperCase() + string.slice(1);
+                    });
                 }
-                var inpcategory =$('input[name="category"]').val();
-                var inpdata =ucFirst($(this).val());
-                // var inpdata =$(this).val();
-                var token='{{csrf_token()}}';
-                $.ajax({
-                    type:'POST',
-                    url: '{{ url('/livesearch') }}',
-                    data:{inpcategory:inpcategory,inpdata:inpdata,_token:token},
-                    cache: false,
-                    success: function(data) {
-                        var response = $.parseJSON(data);
-                        // console.log(response);
-                        var output = '';
-                        if(response.length > 0){
-                            response.forEach(function(item){
-                                output += "<li id='searchWord'><a href="+item.link+" class='clearfix link' id='schWord'>" + "<span class='search-text-block'>" + item.value.replace(inpdata, '<b>' + inpdata + '</b>') + "</span>" + "<span class='float-right'>"+item.category+"</span></a></li>";
-                            });
-                        }
-                        else{
-                            output += "<li id='searchWord'><a href='#' class='clearfix link' id='schWord'><span class='float-right d-none'></span></a></li>";
-                        }
-
-                        console.log(output);
-                        $('.search_results_links').html(output);
-                        if($('.search_results_links').html()!="") {
-                            $('#searchKeyword').keyup();
-                        }
-
-                        if(output != ''){
-                            $('#searchKeyword').trigger('focus');
-                            $('#searchKeyword').focus(function () {
-                                if($('.search-suggestions .links li').length!=0) {
-                                    $('.search-suggestions').fadeIn(500);
-                                }
-                            });
-                        }
-
-                    }
-                });
-            }
-
+            });
         });
+
         $(document).on('click','.searchmega',function() {
             var verified1 = $('#selCatInput').val();
             var verified2 = $('#searchKeyword').val();

@@ -504,7 +504,7 @@ Route::post('/is-display-notification', 'FavouriteController@is_display_notifica
 Route::post('/notification', 'HomeController@notification')->name('notification');
 
 Route::get('search-product','HomeController@searchProduct')->name('search_product');
-Route::post('livesearch','HomeController@livesearch');
+Route::get('livesearch','HomeController@livesearch');
 
 Route::post('/get-state-list','HomeController@getStateList');
 Route::post('/get-city-list','HomeController@getCityList');
