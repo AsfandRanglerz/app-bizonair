@@ -190,7 +190,7 @@
                                             class="fa @if(check_in_my_fav($list, 'lead'))fa-star-o @else fa-star @endif fav add-fav"></span>
                                     </p>
                                     <p class="mb-0 px-2"><span class=" @if(check_in_my_pin($list, 'lead'))far @else fas @endif fa-flag add-to-pin"></span></p>
-                                    <p class="mb-0 ml-2 click overflow-text-dots-one-line h-1-5-rm @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'lead')  ) font-weight-bold @endif"
+                                    <p class="mb-0 ml-2 click-inbox overflow-text-dots-one-line h-1-5-rm @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'lead')  ) font-weight-bold @endif"
                                         data-click-id="{{$list->id}}">
 
                                         <span>@if(isset($list->product)) {{$list->product->product_service_name ?:''}} @endif</span> - <span
@@ -199,7 +199,7 @@
                                     </p>
                                 </div>
                                 <div class="d-flex">
-                                    <p class="mb-0 click @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'lead')  )  font-weight-bold @endif"
+                                    <p class="mb-0 click-inbox @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'lead')  )  font-weight-bold @endif"
                                        data-click-id="{{$list->id}}">
                                         <span>{{date('M d h:i:s A', strtotime($list->latestMessage->created_at))}}</span>
                                     </p>
@@ -696,6 +696,135 @@ $(document).on('click', '.read', function(){
 
 
 /// get tab-vise messagess ajax
+
+$(document).on('click', '.click-inbox', function(){
+            let id = $(this).data('click-id');
+            $.post("{{route('get-bizLead-inquiry-messages-inbox')}}", {
+                _token: '{{csrf_token()}}',
+                conversation_id: id,
+                json: 'yes'
+            }, function (data) {
+                // document.getElementById("ajax-preloader").style.display = "none";
+
+                $("#ajax-preloader").hide();
+
+                response = $.parseJSON(data);
+                if (response.feedback == 'encrypt_issue') {
+                    toastr.error(response.msg, 'Error');
+                } else if (response.feedback == 'true') {
+                    // toastr.success(response.msg, 'Success');
+                    $('#dynamic-body').html(response.data);
+                    $(document).on('click', '.send-icon-messages', function () {
+                    // console.log('ff');
+                    var $this = $(this);
+                    var valInputField = $(this).parent().siblings('textarea').val();
+                    var valInputfile = $(this).parent().find('.upload-file')[0].files;
+                    // console.log(valInputField);
+
+                    let convo_id = $('.convo-data').attr('data-convo');
+
+
+
+
+                    var fd = new FormData();
+                    fd.append('message',valInputField );
+                    fd.append('conversation_id',convo_id);
+                    fd.append('created_by',"{{\Auth::id()}}");
+                    fd.append('_token','{{csrf_token()}}');
+                    fd.append('json','yes');
+                    fd.append('file', valInputfile[0]);
+
+
+                    $('.send-icon-messages').addClass('d-none');
+                    $('.btn-pro').removeClass('d-none').addClass('d-flex');
+
+                    $.ajax({
+                        type: "post",
+                        url: "{{route('reply-bizLead-inquiry-convo')}}",
+                        processData: false,
+                        contentType: false,
+                        data: fd,
+                        dataType: "json",
+                        success: function (response) {
+                            $('.btn-pro').removeClass('d-flex').addClass('d-none');
+                            $('.send-icon-messages').removeClass('d-none');
+                            $("#ajax-preloader").hide();
+
+                            // response = $.parseJSON(data);
+                            if (response.feedback == 'encrypt_issue') {
+                                toastr.error(response.msg, 'Error');
+                            } else if (response.feedback == 'true') {
+                                toastr.success(response.msg, 'Success').fadeOut(2000);
+                                $this.closest('.reply-input-field').remove();
+                                var mailReplyBox = "<div class='p-4 mail-reply-box msg-sender'>" +
+                                    "<div class='d-flex justify-content-between'>" +
+                                        "<div>" +
+                                            "<p class='mb-0 font-500 user'>" +
+                                                response.sent_from +
+                                            "</p>" +
+                                            "<p class='recipient'>"
+                                                + "To -" + "<span class='to-recipient'>" + "</span>" + response.sent_to +
+                                            "</p>" +
+                                        "</div>" +
+                                        "<div class='d-flex'>" +
+                                            "<div class='d-flex flex-column'>" +
+                                                "<span class='day-date-time'>" +
+                                                    response.message_created_at +
+                                                "</span>" +
+                                                   response.message_file_path +
+                                            "</div>" +
+                                            "<span class='ml-2 fa fa-reply reply-msg'>" +
+                                            "</span>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<p class='mb-0 description'>" +
+                                        valInputField +
+                                    "</p>" +
+                                    "<div class='position-relative reply-input-field'>" +
+                                        "<textarea class='mt-3 form-control send-box'></textarea>" +
+                                        "<div class='h-100 position-absolute d-flex align-items-center top-0 sent-attach-btn-send-icon'>" +
+                                            "<div class='input-group-prepend'>" +
+                                                "<div class='input-group-text blue-btn p-0'>" +
+                                                    "<span id='upload_button' class='p-0' data-original-title='' title=''><label class='m-0'><input type='file' id='file' class='d-none upload-file'> <span class='fa fa-paperclip text-white p-2'></span></label></span>" +
+                                                "</div>" +
+                                            "</div>" +
+                                            "<button class='ml-2 send-icon send-icon-messages'><span class='fa fa-paper-plane'></span></button><button type='submit' disabled='' class='btn-pro btn red-btn d-none ml-2 align-items-center  justify-content-center'><span class='spinner-border spinner-border-sm mr-1' role='status' aria-hidden='true'></span></button>" +
+                                        "</div>" +
+                                    "</div>" +
+                                "</div>";
+
+                    $('.mail-reply-box-outer').prepend(mailReplyBox);
+
+                                // setTimeout(() => {
+                                //     window.location.reload();
+                                // }, 100);
+                            } else {
+                                toastr.error('Some other issues', 'Error');
+                            }
+                        }
+                    });
+
+                    $(document).on('click','.reply-msg',function () {
+                    // $( ".reply-msg" ).bind( "click", function() {
+                        $(this).parents('.mail-reply-box').children('.reply-input-field').fadeIn(500);
+                    });
+
+                    $(this).siblings('input').val("");
+                });
+
+                $(document).on('click','.reply-msg',function () {
+                    $(this).parents('.mail-reply-box').children('.reply-input-field').fadeIn(500);
+                });
+
+
+
+
+
+                } else {
+                    toastr.error('Some other issues', 'Error');
+                }
+            });
+        });
 
 $(document).on('click', '.click', function(){
             let id = $(this).data('click-id');

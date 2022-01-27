@@ -261,6 +261,7 @@ Route::post('imageRemove', 'CompanyController@imageRemove')->name('imageRemove')
     //    Route::delete('inquiry/{inquiry}', 'InquiryController@destroy')->name('inquiry.destroy');
 
         //taha inquiry chat routes start
+        Route::post('get-bizdeal-inquiry-messages-inbox','InquiryController@get_bizdeal_inquiry_messages_inbox')->name('get-bizdeal-inquiry-messages-inbox');
         Route::post('get-bizdeal-inquiry-messages','InquiryController@get_bizdeal_inquiry_messages')->name('get-bizdeal-inquiry-messages');
         Route::post('reply-bizdeal-inquiry-convo', 'InquiryController@reply_bizdeal_inquiry_convo')->name('reply-bizdeal-inquiry-convo');
         Route::post('delete-bizdeal-inquiry-convo', 'InquiryController@delete_bizdeal_inquiry_convo')->name('delete-bizdeal-inquiry-convo');
@@ -292,6 +293,7 @@ Route::post('imageRemove', 'CompanyController@imageRemove')->name('imageRemove')
         //lead product inquires added by taha
         Route::get('product-inquiries', 'InquiryController@product_index')->name('product-inquiries');
 
+        Route::post('get-bizLead-inquiry-messages-inbox','InquiryController@get_bizLead_inquiry_messages_inbox')->name('get-bizLead-inquiry-messages-inbox');
         Route::post('get-bizLead-inquiry-messages','InquiryController@get_bizLead_inquiry_messages')->name('get-bizLead-inquiry-messages');
         Route::post('reply-bizLead-inquiry-convo', 'InquiryController@reply_bizLead_inquiry_convo')->name('reply-bizLead-inquiry-convo');
         Route::post('delete-bizLead-inquiry-convo', 'InquiryController@delete_bizLead_inquiry_convo')->name('delete-bizLead-inquiry-convo');
@@ -326,6 +328,7 @@ Route::post('imageRemove', 'CompanyController@imageRemove')->name('imageRemove')
 
         /// entered by taha for fav lead product management
         Route::get('/lead-favs', 'FavouriteController@get_lead_fav')->name('get-lead-fav');
+        Route::post('get-lead-fav-messages-inbox','FavouriteController@get_lead_fav_messages_inbox')->name('get-lead-fav-messages-inbox');
         Route::post('get-lead-fav-messages','FavouriteController@get_lead_fav_messages')->name('get-lead-fav-messages');
         Route::post('reply-lead-fav-convo', 'FavouriteController@reply_lead_fav_convo')->name('reply-lead-fav-convo');
         Route::post('delete-lead-fav-convo', 'FavouriteController@delete_lead_fav_convo')->name('delete-lead-fav-convo');
@@ -358,6 +361,7 @@ Route::post('imageRemove', 'CompanyController@imageRemove')->name('imageRemove')
 
         /// entered by taha for fav deal product management
         Route::get('/one-time-favs', 'FavouriteController@get_one_time_fav')->name('get-one-time-fav');
+        Route::post('get-bizdeal-fav-messages-inbox','FavouriteController@get_bizdeal_fav_messages_inbox')->name('get-bizdeal-fav-messages-inbox');
         Route::post('get-bizdeal-fav-messages','FavouriteController@get_bizdeal_fav_messages')->name('get-bizdeal-fav-messages');
         Route::post('reply-bizdeal-fav-convo', 'FavouriteController@reply_bizdeal_fav_convo')->name('reply-bizdeal-fav-convo');
         Route::post('delete-bizdeal-fav-convo', 'FavouriteController@delete_bizdeal_fav_convo')->name('delete-bizdeal-fav-convo');

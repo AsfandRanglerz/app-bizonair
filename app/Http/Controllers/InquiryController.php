@@ -498,6 +498,38 @@ class InquiryController extends Controller
         return json_encode($data);
     }
 
+    public function get_bizdeal_inquiry_messages_inbox(){
+        if(request('conversation_id'))
+        {
+            $d['convo'] = \App\BizdealInquiryConversation::with(['messages' => function($q){
+                $q->orderBy('created_at','desc');
+            }])->find(request('conversation_id'));
+            // dd($d['convo']);
+            if($d['convo'])
+            {
+                $data['data'] = view('front_site.biz_deal_inquiry.inbox-chat' , $d)->render();
+                $data['feedback'] = 'true';
+                \App\bizdealInqueryConversationMessage::where([['conversation_id',request('conversation_id')], ['created_by','<>',\Auth::id()]])->update(['is_read'=> 1]);
+                DB::table('notifications')
+                    ->where('user_id', auth()->id())
+                    ->where('table_name','inquiries')
+                    ->where('table_data','Deal')
+                    ->update(['is_display' => 1,'is_read'=>1]);
+            }
+            else
+            {
+                $data['feedback'] = 'false';
+                $data['msg'] = 'Something went Wrong';
+            }
+        }
+        else
+        {
+            $data['feedback'] = 'false';
+            $data['msg'] = 'Something went Wrong';
+        }
+        return json_encode($data);
+    }
+
     public function get_bizdeal_inquiry_messages(){
         if(request('conversation_id'))
         {
@@ -1239,6 +1271,49 @@ class InquiryController extends Controller
             return view('front_site.other.login');
         }
 
+    }
+
+    public function get_bizLead_inquiry_messages_inbox(){
+        if(request('conversation_id'))
+        {
+            $d['convo'] = \App\BizLeadInquiryConversation::with('other_user_messages')->with(['messages' => function($q){
+                $q->orderBy('created_at','desc');
+            }])->find(request('conversation_id'));
+            // dd($d['convo']);
+            if($d['convo'])
+            {
+                $data['data'] = view('front_site.biz_lead_inquiry.inbox-chat' , $d)->render();
+                $data['feedback'] = 'true';
+                // \App\BizLeadInquiryConversationMessage::where([['conversation_id',request('conversation_id')], ['created_by','<>',\Auth::id()]])->update(['is_read'=> 1]);
+                if(\App\BizLeadInquiryConvoRead::whereIn('message_id', array_unique(\Arr::pluck($d['convo']->other_user_messages, 'id')))->where('conversation_id', request('conversation_id'))->where('created_by',\Auth::id())->count() > 0){
+                    \App\BizLeadInquiryConvoRead::whereIn('message_id', array_unique(\Arr::pluck($d['convo']->other_user_messages, 'id')))->where('conversation_id', request('conversation_id'))->where('created_by',\Auth::id())->delete();
+                }
+                foreach (array_unique(\Arr::pluck($d['convo']->other_user_messages, 'id')) as $key => $value) {
+                    $read = new \App\BizLeadInquiryConvoRead();
+                    $read->conversation_id = request('conversation_id');
+                    $read->message_id = $value;
+                    $read->created_by = \Auth::id();
+                    $read->save();
+                }
+                DB::table('notifications')
+                    ->where('user_id', auth()->id())
+                    ->where('prod_comp_id',\session()->get('company_id'))
+                    ->where('table_name','inquiries')
+                    ->where('table_data','Lead')
+                    ->update(['is_display' => 1,'is_read'=>1]);
+            }
+            else
+            {
+                $data['feedback'] = 'false';
+                $data['msg'] = 'Something went Wrong';
+            }
+        }
+        else
+        {
+            $data['feedback'] = 'false';
+            $data['msg'] = 'Something went Wrong';
+        }
+        return json_encode($data);
     }
 
     public function get_bizLead_inquiry_messages(){

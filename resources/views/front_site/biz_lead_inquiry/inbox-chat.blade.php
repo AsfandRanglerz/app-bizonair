@@ -2,14 +2,14 @@
     <span class="main-heading">{{ucfirst($convo->product->product_service_name)}} Ref# {{$convo->product->reference_no}}</span>
     <div class="d-flex align-items-start">
         <div class="mr-4 info-content-inquiry">
-            <a class="d-flex text-decoration-none text-reset" href="{{ route('buysellDetail',['category'=>get_category_slug($convo->product->category_id),'subcategory'=>get_sub_category_slug($convo->product->subcategory_id),'prod_slug'=>$convo->product->slug]) }}">
+            <a class="d-flex text-decoration-none text-reset" href="{{ route('productDetail',['category'=>get_category_slug($convo->product->category_id),'subcategory'=>get_sub_category_slug($convo->product->subcategory_id),'prod_slug'=>$convo->product->slug]) }}">
                 <div class="mr-3 product-inquiry-content">
                     <p class="mb-0 font-500">{{ucfirst($convo->product->product_service_name)}}</p>
-                    <p class="mb-0 font-500 overflow-text-dots-subject price"><span>@if($convo->product->suitable_currencies == "Other") {{ $convo->product->other_suitable_currency }} @else {{ $convo->product->suitable_currencies }} @endif @if(!empty($convo->product->unit_price_from)){{ moneyFormat($convo->product->unit_price_from) }}  @else {{ moneyFormat($convo->product->target_price_from) }} @endif</span> Per @if($convo->product->unit_price_unit =="Other") {{$convo->product->other_unit_price_unit}} @else  {{$convo->product->unit_price_unit}} @endif  @if($convo->product->target_price_unit =="Other") {{$convo->product->other_target_price_unit}} @else {{$convo->product->target_price_unit}} @endif</p>
+                    <p class="mb-0 font-500 overflow-text-dots-subject price"><span>@if($convo->product->suitable_currencies == "Other") {{ $convo->product->other_suitable_currency }} @else {{ $convo->product->suitable_currencies }} @endif @if(!empty($convo->product->unit_price_from)){{ moneyFormat($convo->product->unit_price_from) }} - {{ moneyFormat($convo->product->unit_price_to) }}   @else {{ moneyFormat($convo->product->target_price_from) }} - {{ moneyFormat($convo->product->target_price_to) }} @endif</span> Per
+                        @if($convo->product->unit_price_unit =="Other") {{$convo->product->other_unit_price_unit}} @else  {{$convo->product->unit_price_unit}} @endif  @if($convo->product->target_price_unit =="Other") {{$convo->product->other_target_price_unit}} @else {{$convo->product->target_price_unit}} @endif</p>
                     <p class="mb-0 reference-number">Ref# <span>{{$convo->product->reference_no}}</span></p>
                 </div>
-                    <?php $img = \DB::table('buysell_images')->where('buy_sell_id',$convo->product->id)->get();?>
-                    @foreach($img as $i => $image)
+                    @foreach($convo->product->product_image as $j => $image)
                         @if($loop->first)
                 <img alt="40x40" src="{{$image->image}}" data-holder-rendered="true" class="rounded-circle" width="40" height="40">
                         @endif
@@ -21,11 +21,11 @@
 </div>
 <ul class="mb-2 nav nav-tabs inquiry-nav-tabs">
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#" onclick="javascript:window.location.reload();" role="tab"
+        <a class="nav-link active" data-toggle="tab" href="#" onclick="javascript:window.location.reload();" role="tab"
            aria-controls="home" aria-selected="true">INBOX</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" id="sentMail-tab" data-toggle="tab" href="#sentMail" role="tab"
+        <a class="nav-link" id="sentMail-tab" data-toggle="tab" href="#sentMail" role="tab"
            aria-controls="profile" aria-selected="false">SENT</a>
     </li>
     <li class="nav-item">
@@ -41,21 +41,22 @@
 </div>
 <div class="mail-reply-box-outer">
     <input type="hidden" class="convo-data" data-convo={{encrypt($convo->id)}}>
-    {{-- {{dd($convo->messages)}} --}}
     @foreach ($convo->messages as $list)
     <div class="p-2 mail-reply-box @if($list->created_by == \Auth::id()) msg-sender @endif">
         <div class="d-flex justify-content-between">
             @if($list->created_by == \Auth::id())
-                <div>
-                    <p class="mb-0 font-500 user">{{get_name(\Auth::user())}}</p>
-                    <p class="recipient">To - <span class="to-recipient"></span>{{
-            \Auth::id() == $convo->created_by ? get_name($convo->product->user) : get_name($convo->created_by_user)}}</p>
-                </div>
+
+            <div>
+                <p class="mb-0 font-500 user">{{in_array($convo->product->company->id,array_unique(\Arr::pluck(\Auth::user()->company_profiles,'id')))? $convo->product->company->company_name : get_name(\Auth::user())}}</p>
+                <p class="recipient">To - <span class="to-recipient"></span>{{
+                    \Auth::id() == $convo->created_by ? $convo->product->company->company_name : get_name($convo->created_by_user)}}</p>
+            </div>
             @else
-                <div>
-                    <p class="mb-0 font-500 user">{{get_name($list->user)}}</p>
-                    <p class="recipient">To - <span class="to-recipient"></span>{{get_name(\Auth::user())}}</p>
-                </div>
+            <div>
+                <p class="mb-0 font-500 user">{{\Auth::id() == $convo->created_by?  $convo->product->company->company_name : get_name($convo->created_by_user)}}</p>
+                <p class="recipient">To - <span class="to-recipient"></span>{{
+                    \Auth::id() != $convo->created_by ? $convo->product->company->company_name : get_name($convo->created_by_user)}}</p>
+            </div>
             @endif
 
             <div class="d-flex">

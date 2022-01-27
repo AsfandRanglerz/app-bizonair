@@ -21,11 +21,11 @@
 </div>
 <ul class="mb-2 nav nav-tabs inquiry-nav-tabs">
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#" onclick="javascript:window.location.reload();" role="tab"
+        <a class="nav-link active" data-toggle="tab" href="#" onclick="javascript:window.location.reload();" role="tab"
            aria-controls="home" aria-selected="true">INBOX</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" id="sentMail-tab" data-toggle="tab" href="#sentMail" role="tab"
+        <a class="nav-link" id="sentMail-tab" data-toggle="tab" href="#sentMail" role="tab"
            aria-controls="profile" aria-selected="false">SENT</a>
     </li>
     <li class="nav-item">
@@ -41,21 +41,20 @@
 </div>
 <div class="mail-reply-box-outer">
     <input type="hidden" class="convo-data" data-convo={{encrypt($convo->id)}}>
-    {{-- {{dd($convo->messages)}} --}}
     @foreach ($convo->messages as $list)
     <div class="p-2 mail-reply-box @if($list->created_by == \Auth::id()) msg-sender @endif">
         <div class="d-flex justify-content-between">
             @if($list->created_by == \Auth::id())
-                <div>
-                    <p class="mb-0 font-500 user">{{get_name(\Auth::user())}}</p>
-                    <p class="recipient">To - <span class="to-recipient"></span>{{
+            <div>
+                <p class="mb-0 font-500 user">{{get_name(\Auth::user())}}</p>
+                <p class="recipient">To - <span class="to-recipient"></span>{{
             \Auth::id() == $convo->created_by ? get_name($convo->product->user) : get_name($convo->created_by_user)}}</p>
-                </div>
+            </div>
             @else
-                <div>
-                    <p class="mb-0 font-500 user">{{get_name($list->user)}}</p>
-                    <p class="recipient">To - <span class="to-recipient"></span>{{get_name(\Auth::user())}}</p>
-                </div>
+            <div>
+                <p class="mb-0 font-500 user">{{get_name($list->user)}}</p>
+                <p class="recipient">To - <span class="to-recipient"></span>{{get_name(\Auth::user())}}</p>
+            </div>
             @endif
 
             <div class="d-flex">

@@ -21,11 +21,11 @@
 </div>
 <ul class="mb-2 nav nav-tabs inquiry-nav-tabs">
     <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#" onclick="javascript:window.location.reload();" role="tab"
+        <a class="nav-link" data-toggle="tab" href="#" onclick="javascript:window.location.reload();" role="tab"
            aria-controls="home" aria-selected="true">INBOX</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="sentMail-tab" data-toggle="tab" href="#sentMail" role="tab"
+        <a class="nav-link active" id="sentMail-tab" data-toggle="tab" href="#sentMail" role="tab"
            aria-controls="profile" aria-selected="false">SENT</a>
     </li>
     <li class="nav-item">
