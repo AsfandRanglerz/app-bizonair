@@ -70,7 +70,8 @@ class CareerController extends Controller
     public function jobs_portal()
     {
         $data['latest_jobs'] = \App\JobManagement::latest()->take(6)->where('status',1)->get();
-        $data['jobs'] = JobManagement::where('status',1)->latest()->get();
+        $top_6 = array_unique(\Arr::pluck($data['latest_jobs'],'id'));
+        $data['jobs'] = JobManagement::where('status',1)->whereNotIn('id',$top_6)->latest()->get();
         $data['page'] = 'jobs.job-portal';
         $country = new Countries();
         $data['countries'] = $country->all();

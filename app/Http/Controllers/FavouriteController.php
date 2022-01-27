@@ -417,9 +417,9 @@ class FavouriteController extends Controller
                 ->update(['is_display' => 1]);
             $notifi = \App\Notification::where('user_id',auth()->id())->where('id',$notifi_id)->first();
             if ($notifi->table_name == 'favourites' && $notifi->table_data == 'Lead') {
-                $data['url'] = route('products.index');
+                $data['url'] = route('get-lead-fav');
             } elseif ($notifi->table_name == 'favourites' && $notifi->table_data == 'Deal')
-                $data['url'] = route('buy-sell.index');
+                $data['url'] = route('get-one-time-fav');
             elseif ($notifi->table_name == 'inquiries' && $notifi->table_data == 'Lead')
                 $data['url'] = route('product-inquiries');
             elseif ($notifi->table_name == 'inquiries' && $notifi->table_data == 'Deal')
