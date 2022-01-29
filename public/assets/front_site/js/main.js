@@ -52,6 +52,10 @@ $(document).ready(function () {
         $('.suppliers-buyers .list').removeClass('active');
         $(this).addClass('active');
     });
+    $(document).on('click', '.search-main-container .link-heading', function() {
+        $('.search-main-container .link-heading').removeClass('active-heading');
+        $(this).addClass('active-heading');
+    });
     /*categories dropdown blocks, removing highight*/
     $(document).on('click', '.pro-cat-links-box', function() {
         $('.pro-cat-links-box').children('.nav-item').removeClass('active');

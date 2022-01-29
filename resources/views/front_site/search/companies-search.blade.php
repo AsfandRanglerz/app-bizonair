@@ -16,7 +16,7 @@
 
         <div class="suppliers-buyers">
             <div class="container-fluid px-2 py-2">
-                <div class="mb-2 font-500 searh-status">Search Criteria : <span class="grey-text">Search Name - </span>{{ $search }}, <span class="grey-text">Lead Type - </span>{{ $category }} <span class="grey-text">({{count($allcompanies)}} COMPANIES)</span></div>
+                <div class="mb-2 font-500 searh-status">Search Criteria : <span class="grey-text">Search Name - </span>{{ $search }}, <span class="grey-text">Type - </span>{{ $category }} <span class="grey-text">({{count($allcompanies)}} COMPANIES)</span></div>
                 <div class="row mx-0 mb-4 search-main-container">
                     <div class="col-md-12 p-2">
                         <div class="d-flex flex-wrap justify-content-around link-heading-container">

@@ -9259,7 +9259,7 @@ header .navbar .navbar-toggler {
 
 @media (max-width: 767px) {
     .search-main-container .link-heading-container {
-        display: block!important;
+        column-gap: 8px;
     }
     .search-main-container .active-heading {
         margin-bottom: 16px;
