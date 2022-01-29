@@ -40,7 +40,7 @@
                                     @foreach($products as $i => $prod)
                                         <?php $categ = get_category_slug($prod->category_id); $subcat = get_sub_category_slug($prod->subcategory_id); ?>
                                         <div class="product-box">
-                                            <div class="ml-1 mr-1 mb-2 row product-content-container">
+                                            <div class="bg-white ml-1 mr-1 mb-2 row product-content-container">
                                                 <div class="col-xl-3 col-sm-6 p-lg-2 p-0 product-img-container">
                                                     @if($prod->product_service_types == 'Service')
                                                         <a class="text-decoration-none text-reset" href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
@@ -111,30 +111,25 @@
                                                     <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                                     <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
                                                     <p class="price font-500"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }}   @else {{ number_format($prod->target_price_from) }} - {{ number_format($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                                    <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pl-5">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                                    <p class="mt-2 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
                                                 </div>
-                                                <div class="col-xl-4 col-lg-6 p-3 border-grey">
+                                                <div class="col-xl-4 col-lg-6 p-2 border-grey">
                                                     <div>
                                                         <div class="d-flex membersince">Member <span class="number">since</span><span class="years">{{get_product_created_at($prod->company_id)}}</span></div>
                                                         @if(!Auth::check())
-                                                            <a href="{{url('login')}}" class="text-reset"> <p class="text-uppercase font-500 font-24 overflow-text-dots-one-line">{{get_product_company($prod->company_id)}}</p></a>
+                                                            <a href="{{url('login')}}" class="text-reset"> <p class="text-uppercase font-500 font-24 overflow-text-dots-one-line mb-2">{{get_product_company($prod->company_id)}}</p></a>
                                                         @else
-                                                            <a href="{{route('about-us-suppliers',['id'=>$prod->company_id,'company'=>getCompanyName($prod->company_id)])}}" class="text-reset"> <p class="text-uppercase font-500 font-24 overflow-text-dots-one-line">{{get_product_company($prod->company_id)}}</p></a>
+                                                            <a href="{{route('about-us-suppliers',['id'=>$prod->company_id,'company'=>getCompanyName($prod->company_id)])}}" class="text-reset"> <p class="text-uppercase font-500 font-24 overflow-text-dots-one-line mb-2">{{get_product_company($prod->company_id)}}</p></a>
                                                         @endif
                                                         <small class="d-block mb-2 grey-text">{{get_product_city($prod->company_id)}}, {{get_product_country($prod->company_id)}}</small>
-                                                        <div class="mb-2 membericon">
-                                                            <a href="#">
-                                                                <img alt="Premium Member" src="{{$ASSETS}}/assets/front_site/images/leads-membership.png"   title="We are working on this feature and will enable this soon" data-toggle="tooltip" data-placement="bottom">
-                                                            </a>
-                                                        </div>
                                                         {{--                                        <div class="my-2 d-inline-block font-500 add-inquiry-basket" required="false">--}}
                                                         {{--                                            <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                         {{--                                        </div>--}}
-                                                        <div class="d-sm-inline-block d-flex flex-column align-items-center">
+                                                        <div>
                                                             @if(!Auth::check())
-                                                                <a href="{{url('login')}}" class="mb-md-0 mb-1 p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                                                <a href="{{url('login')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
                                                             @else
-                                                                <a href="#" class="mb-md-0 mb-1 p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
+                                                                <a href="#" class="p-0 red-btn"  @if(!Auth::check()) data-toggle="modal" data-target="#login-form" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
                                                             @endif
                                                             @if(!Auth::check())
                                                                 <a href="{{url('login')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
@@ -257,6 +252,11 @@
                                                                 </div>
                                                             </div>
                                                             <!-- Modal -->
+                                                            <div class="pull-right membericon">
+                                                                <a href="#">
+                                                                    <img alt="Premium Member" src="{{$ASSETS}}/assets/front_site/images/leads-membership.png"   title="We are working on this feature and will enable this soon" data-toggle="tooltip" data-placement="bottom">
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

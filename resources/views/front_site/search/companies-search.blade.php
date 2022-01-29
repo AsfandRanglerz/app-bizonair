@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="{{$ASSET}}/front_site/css/animate.min.css">
 @endsection
 @section('content')
-    <body class="product-details">
+    <body class="product-listing product-details">
     <style>
         .product-banner-container .banner-search {
             bottom: 0;
@@ -33,7 +33,7 @@
                                 <div class="row m-0">
                                     @if(count($allcompanies) > 0)
                                     @foreach($allcompanies as $company)
-                                        <div class="col-lg-3 col-6 product-box textile-box">
+                                        <div class="col-lg-3 col-6 my-1 px-1 product-box textile-box">
                                             <div class="border-0 p-0 d-block top-companies">
                                                 <a class="text-reset text-decoration-none" href="{{route('about-us-suppliers',['id'=>$company->id,'company'=>$company->company_name])}}">
                                                     <div class="my-2 top-companies-card">
