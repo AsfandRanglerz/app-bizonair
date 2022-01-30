@@ -3940,16 +3940,16 @@
                 }
             });
 
-            $("#nextBtn2").on("click", function () {
-                if (focused_selling_countries.value.length == 0) {
-                    alert("Enter the missing data");
-                    return false;
-                }
-                if (dealing_as.value.length == 0) {
-                    alert("Enter the missing data");
-                    return false;
-                }
-            });
+            // $("#nextBtn2").on("click", function () {
+            //     if (focused_selling_countries.value.length == 0) {
+            //         alert("Enter the missing data");
+            //         return false;
+            //     }
+            //     if (dealing_as.value.length == 0) {
+            //         alert("Enter the missing data");
+            //         return false;
+            //     }
+            // });
 
             var options = {
                 dataType: 'JSON',

@@ -1888,7 +1888,6 @@ p.click {
 /*tooltip css*/
 .tooltip-inner {
     background-color: #12253d!important;
-    max-width: 355px;
     font-size: 10px;
     padding: 4px 8px;
 }
@@ -1903,6 +1902,9 @@ p.click {
 }
 .tooltip.bs-tooltip-top .arrow:before {
     border-top-color: #12253d!important;
+}
+.tooltip.show {
+    z-index: 555555;
 }
 /*tooltip css*/
 

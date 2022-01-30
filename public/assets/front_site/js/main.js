@@ -1909,7 +1909,7 @@ $(document).ready(function () {
 
     /*tooltip*/
     $('[data-toggle="tooltip"]').tooltip({
-        trigger: 'hover'
+        trigger: 'click'
     });
     /*tooltip*/
 
