@@ -47,13 +47,13 @@
                                 <th class="p2">Image</th>
                                 <th class="p2">Price</th>
                                 <th class="p2">Matching Deals</th>
+                                @if(!($request->case && $request->case == 'archive'))
+                                    <th class="p2">Ad Expiry</th>
+                                @endif
                                 <th style="width: 85px">Status</th>
                                 <th class="p2">Views</th>
                                 <th class="p2">Favourites</th>
                                 <th class="p2">Origin</th>
-                                @if(!($request->case && $request->case == 'archive'))
-                                    <th class="p2">Ad Expiry</th>
-                                @endif
                                 <th class="p2">Created At</th>
                                 <th class="p2">Updated By</th>
 
@@ -86,7 +86,9 @@
 
                                         @endif
                                         <td>{{ $buysell->subject }}</td>
+                                        @if(!($request->case && $request->case == 'archive'))
                                         <td>{{ $buysell->category->name }}</td>
+                                        @endif
                                         <td class="img-td-outer">
                                             <a href="{{ route('buy-sell.edit', $buysell->id) }}">
                                                 @foreach(App\Helpers\BuysellHelper::getImages($buysell->id) as $i => $image)
@@ -123,6 +125,9 @@
                                                 <a href="{{route('subcategory-regular-services',['category'=>get_category_slug($buysell->category_id),'subcategory'=>get_sub_category_slug($buysell->subcategory_id)])}}">{{getSubcategoryServiceProductCount($buysell->subcategory_id)}}  Matching Service Provider</a>
                                             @endif
                                         </td>
+                                        @if(!($request->case && $request->case == 'archive'))
+                                            <td>@if(checkExpiryBuysell($buysell->id) == 'Expired On')<span style="color: red">{{checkExpiryBuysell($buysell->id).' '.date("d-M-Y", strtotime($buysell->date_expire))}}</span> <button class="red-btn" id="expirebtn" prod_id="{{$buysell->id}}">Repost</button> @else {{checkExpiryBuysell($buysell->id)}} @endif</td>
+                                        @endif
                                         <td align="center">
                                             <input type="hidden" name='id' value="{{encrypt($buysell->id)}}">
                                             <button  class="dropdown-toggle prWhiteBtn p-0"
@@ -170,9 +175,7 @@
                                         <td>{{ getSingleBuysellFavCount($buysell->reference_no) }}</td>
 
                                         <td>{{$buysell->origin}}</td>
-                                        @if(!($request->case && $request->case == 'archive'))
-                                            <td>@if(checkExpiryBuysell($buysell->id) == 'Expired')<span style="color: red">{{checkExpiryBuysell($buysell->id)}}</span> <button class="red-btn" id="expirebtn" prod_id="{{$buysell->id}}">Repost</button> @else {{checkExpiryBuysell($buysell->id)}} @endif</td>
-                                        @endif
+
                                         <td> {!! $buysell->created_at !!}</td>
                                         <td>{{ getUserNameById($buysell->updatedBy) }}</td>
                                     </tr>

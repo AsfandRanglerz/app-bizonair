@@ -24,6 +24,157 @@ function descriptions(){
     return $description;
 }
 
+function ogtitle()
+{
+    if (str_contains(url()->full(), 'journal/news/news-detail')) {
+        $data = \DB::table('news_management')->where('id','=',request()->id)->first();
+        return $data->title;
+    }elseif((str_contains(url()->full(), 'journal/blogs/blog-detail'))){
+        $data = \DB::table('blogs')->where('id','=',request()->id)->first();
+        return $data->title;
+    }elseif((str_contains(url()->full(), 'journal/journal-type'))){
+        $data = \App\Journal::where('id',request()->id)->first();
+        return $data->title;
+    }elseif((str_contains(url()->full(), 'about-us-suppliers'))){
+        $data =\App\CompanyProfile::where('id',request()->id)->first();
+        return $data['company_name'];
+    }elseif((str_contains(url()->full(), 'jobs-detail'))){
+        $data  = \App\JobManagement::where('id',request()->id)->first();
+        return $data['title'];
+    }elseif((str_contains(url()->full(), 'cvs-detail'))){
+        $data = \App\UploadCv::where('id',request()->id)->first();
+        return $data['fname'].' '.$data['lname'];
+    }elseif((str_contains(url()->full(), 'business-products'))){
+        $data  = \App\Product::where('slug', request()->prod_slug)->first();
+        if($data){
+            return $data['product_service_name'];
+        }
+    }elseif((str_contains(url()->full(), 'one-time-deal'))){
+        $data  = \App\BuySell::where('slug', request()->prod_slug)->first();
+        if($data){
+            return $data['product_service_name'];
+        }
+    }elseif((str_contains(url()->full(), 'services-detail'))){
+        $data = \App\Product::where('slug', request()->prod_slug)->with('product_image')->with('product_manufacturer')->first();
+        if($data){
+            return $data['product_service_name'];
+        }else{
+            $data = \DB::table('buy_sells')->where('slug', request()->prod_slug)->first();
+            if($data){
+                return $data['product_service_name'];
+            }
+        }
+    }
+
+
+}
+
+function ogimage()
+{
+    if (str_contains(url()->full(), 'journal/news/news-detail')) {
+        $data = \DB::table('news_management')->where('id','=',request()->id)->first();
+        return $data->image;
+    }elseif((str_contains(url()->full(), 'journal/blogs/blog-detail'))){
+        $data = \DB::table('blogs')->where('id','=',request()->id)->first();
+        return $data->image;
+    }elseif((str_contains(url()->full(), 'journal/journal-type'))){
+        $data = \App\Journal::where('id',request()->id)->first();
+        return $data->image;
+    }elseif((str_contains(url()->full(), 'about-us-suppliers'))){
+        $data =\App\CompanyProfile::where('id',request()->id)->first();
+        return $data['logo'];
+    }elseif((str_contains(url()->full(), 'jobs-detail'))){
+        $data  = \App\JobManagement::where('id',request()->id)->first();
+//        return $data['image'];
+        return 'https://www.businessbarhao.com/wp-content/uploads/classified-listing/2021/05/jobhunt.jpg';
+    }elseif((str_contains(url()->full(), 'cvs-detail'))){
+        $data = \App\UploadCv::where('id',request()->id)->first();
+        return 'https://image.shutterstock.com/image-vector/letter-cv-logo-colorful-geometric-260nw-1089897095.jpg';
+//        return $data['image'];
+    }elseif((str_contains(url()->full(), 'business-products'))){
+        $data  = \App\Product::where('slug', request()->prod_slug)->with('product_image')->with('product_manufacturer')->withTrashed()->first();
+        if($data){
+            foreach(ProductHelper::getImages($data->id) as $key => $image){
+                if($key ==0){
+                    return $image->image;
+                }
+            }
+        }
+    }elseif((str_contains(url()->full(), 'one-time-deal'))){
+        $data  = \App\BuySell::where('slug', request()->prod_slug)->first();
+        if($data) {
+            $img = \DB::table('buysell_images')->where('buy_sell_id', $data->id)->get();
+            foreach ($img as $key => $image) {
+                if ($key == 0) {
+                    return $image->image;
+                }
+            }
+        }
+    }elseif((str_contains(url()->full(), 'services-detail'))){
+        $data = \App\Product::where('slug', request()->prod_slug)->with('product_image')->with('product_manufacturer')->first();
+        if($data){
+            foreach(ProductHelper::getImages($data->id) as $key => $image){
+                if($key ==0){
+                    return $image->image;
+                }
+            }
+        }else{
+            $data = \DB::table('buy_sells')->where('slug', request()->prod_slug)->first();
+            if($data) {
+                $img = \DB::table('buysell_images')->where('buy_sell_id', $data->id)->get();
+                foreach ($img as $key => $image) {
+                    if ($key == 0) {
+                        return $image->image;
+                    }
+                }
+            }
+        }
+    }
+}
+
+function ogdescription()
+{
+    if (str_contains(url()->full(), 'journal/news/news-detail')) {
+        $data = \DB::table('news_management')->where('id','=',request()->id)->first();
+        return strip_tags($data->description);
+    }elseif((str_contains(url()->full(), 'journal/blogs/blog-detail'))){
+        $data = \DB::table('blogs')->where('id','=',request()->id)->first();
+        return strip_tags($data->description);
+    }elseif((str_contains(url()->full(), 'journal/journal-type'))){
+        $data = \App\Journal::where('id',request()->id)->first();
+        return strip_tags($data->description);
+    }elseif((str_contains(url()->full(), 'about-us-suppliers'))){
+        $data =\App\CompanyProfile::where('id',request()->id)->first();
+        return strip_tags($data['company_introduction']);
+    }elseif((str_contains(url()->full(), 'jobs-detail'))){
+        $data  = \App\JobManagement::where('id',request()->id)->first();
+        return $data['job_description'];
+    }elseif((str_contains(url()->full(), 'cvs-detail'))){
+        $data = \App\UploadCv::where('id',request()->id)->first();
+        return $data['key_skills'];
+    }elseif((str_contains(url()->full(), 'business-products'))){
+        $data  = \App\Product::where('slug', request()->prod_slug)->with('product_image')->with('product_manufacturer')->withTrashed()->first();
+        if($data){
+            return strip_tags($data['details']);
+        }
+    }elseif((str_contains(url()->full(), 'one-time-deal'))){
+        $data  = \App\BuySell::where('slug', request()->prod_slug)->first();
+        if($data){
+            return strip_tags($data['details']);
+        }
+    }elseif((str_contains(url()->full(), 'services-detail'))){
+        $data = \App\Product::where('slug', request()->prod_slug)->with('product_image')->with('product_manufacturer')->first();
+        if($data){
+            return strip_tags($data['details']);
+        }else{
+            $data = \DB::table('buy_sells')->where('slug', request()->prod_slug)->first();
+            if($data){
+                return strip_tags($data['details']);
+            }
+        }
+    }
+}
+
 function getCategories($type)
 {
     return \App\Category::where('type', $type)->orderBy('priority', 'ASC')->get();
@@ -716,10 +867,11 @@ function checkExpiryBuysell($id){
     $buysell = \App\BuySell::where('id',$id)->first();
     if($today < $buysell->date_expire){
 
-        return 'Expired on '.$buysell->date_expire;
+        return 'Active Till '.date("d-M-Y", strtotime($buysell->date_expire));
     }elseif($today  > $buysell->date_expire) {
 
-        return 'Expired';
+//        return 'Expired on' .date("d-M-Y", strtotime($buysell->date_expire));
+        return 'Expired On';
     }
 }
 
