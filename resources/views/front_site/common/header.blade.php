@@ -486,7 +486,7 @@
                     @if($invitation)
                         <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Office Invitation"><img class="mr-2 dashboard-sidebar-img" src="https://cdn1.iconfinder.com/data/icons/communication-set-1-1/100/Untitled-1-18-512.png" height="20"><a href="{{route('office-invitation')}}" class="sidebar-links"> Office Invitation</a>
                     @endif
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2 dashboard-sidebar-img" src="https://cdn1.iconfinder.com/data/icons/communication-set-1-1/100/Untitled-1-18-512.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2 dashboard-sidebar-img" src="https://cdn3.iconfinder.com/data/icons/contact-us-outline-2/60/036_-_-Send_Recieve-256.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
                     </li>
                     <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2 dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/basics-vol-2/354/out_exit_comeout_goout_getout_dropout_moveout-512.png"><a href="{{url('logout')}}" class="sidebar-links"> Sign Out</a>
                     </li>
@@ -498,7 +498,7 @@
         @else
             <aside class="side-nav w-100 biz-nav-content">
                 <ul class="mb-0 categories">
-                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2 dashboard-sidebar-img" src="https://cdn1.iconfinder.com/data/icons/communication-set-1-1/100/Untitled-1-18-512.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
+                    <li class="position-relative" data-toggle="tooltip" data-placement="bottom" title="Contact us"><img class="mr-2 dashboard-sidebar-img" src="https://cdn3.iconfinder.com/data/icons/contact-us-outline-2/60/036_-_-Send_Recieve-256.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
                     </li>
                     <li class="invisible"></li>
                     <li class="invisible"></li>

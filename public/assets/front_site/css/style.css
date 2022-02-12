@@ -9914,8 +9914,9 @@ header .navbar .navbar-toggler {
         height: 35px;
     }
 
-    .homepage .carousel-item img {
-        height: 325px;
+    .homepage #adSlider3 .carousel-item img {
+        height: 265px!important;
+        object-fit: contain;
     }
 
     .home-heading {
