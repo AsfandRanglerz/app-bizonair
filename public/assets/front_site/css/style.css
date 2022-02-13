@@ -378,10 +378,8 @@ div.dataTables_wrapper div.dataTables_filter label {
     object-fit: contain;
 }
 
-.suppliers-products .lSSlideOuter .lSPager.lSGallery img {
-    height: 55px;
-    width: 100%;
-    object-fit: cover;
+.suppliers-products .lSSlideOuter ul.lSPager.lSGallery {
+    margin: 4px 0!important;
 }
 
 .suppliers-products .lSSlideOuter .lSPager.lSGallery li {
@@ -676,7 +674,7 @@ select {
     line-height: 1;
     border: none;
     background: none;
-    font-size: 16px;
+    font-size: 20px;
     transition: 0.5s;
     background-size: 200% auto;
     color: #a52c3e;
@@ -1410,7 +1408,7 @@ p.click {
 .lSSlideOuter .lSPager.lSGallery img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 /*product details page main slider thumbnails*/
 
@@ -1426,8 +1424,11 @@ p.click {
 
 /*city and date in product boxes*/
 .place-day {
-    font-size: 9px!important;
     color: grey;
+}
+
+.place-day * {
+    font-size: 9px!important;
 }
 /*city and date in product boxes*/
 
@@ -2902,6 +2903,14 @@ ul li input[type=checkbox] {
     border-radius: 8px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 0%), 0 6px 20px 0 rgb(0 0 0 / 18%);
     padding: 16px;
+}
+
+.job-details-container .details-content ol {
+    padding-left: 12px;
+}
+
+.job-details-container .details-content ul {
+    padding-left: 16px;
 }
 
 .listing::marker {
@@ -9349,7 +9358,7 @@ header .navbar .navbar-toggler {
     .journal-sidebar > .heading:nth-child(1) {
         font-size: 11px!important;
     }
-    
+
     .about-us-section .heading {
         font-size: 11px!important;
     }

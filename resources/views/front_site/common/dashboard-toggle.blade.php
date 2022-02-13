@@ -16,7 +16,7 @@
         <div class="d-flex align-items-center">
             <span class="mr-2 text-white">Select Your Company :</span>
             <select class="w-auto form-control comp-name" id="compani_id" name="compani_id" data-toggle="tooltip" title="Select your company!">
-                <option disabled selected value="">-- Select Your Company --</option>
+                <option disabled selected value="">Select Your Company</option>
                 @foreach(\App\UserCompany::where('user_id',\Auth::user()->id)->get() as $company)
                     <option value="{{ $company->company_id }}" {{(session()->has('company_id') && session()->get('company_id') == $company->company_id)?'selected':''}}>{{ $company->company->company_name }}</option>
                 @endforeach

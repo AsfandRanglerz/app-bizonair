@@ -48,6 +48,10 @@ $(".job-description-below").scroll(function () {
 });
 
 $(document).ready(function () {
+    $(document).on('click', '.suppliers-nav .link', function() {
+        $('.suppliers-nav .link').css('background', 'none');
+        $(this).css('background', 'rgb(165, 44, 62)');
+    });
     $(document).on('click', '.suppliers-buyers .list', function() {
         $('.suppliers-buyers .list').removeClass('active');
         $(this).addClass('active');

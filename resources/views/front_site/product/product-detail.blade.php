@@ -514,7 +514,7 @@
                                             </div>
                                             <div class="col-xl-9 col-lg-8 col-sm-6 col-6 pl-1 pr-0">
                                                 @if ($product->details)
-                                                    {!! $product->details !!}
+                                                    <p class="mb-0">{!! $product->details !!}</p>
                                                 @else
                                                     <p class="mb-0">-</p>
                                                 @endif
