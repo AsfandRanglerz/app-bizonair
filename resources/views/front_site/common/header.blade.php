@@ -266,7 +266,23 @@
                     <div class="ml-2" style="width: 66%">
                         <p class="mb-0 biz-user">{{ company_name(session()->get('company_id'))??'' }}</p>
                         <p class="mb-0 biz-user"><b>{{ auth()->user()->name }}</b></p>
-                        <p class="mb-0 biz-country">Basic Member <a href="#" class="text-reset" title="We are working on this feature and will enable this soon" data-toggle="tooltip" data-placement="bottom">(Upgrade)</a></p>
+                        <p class="mb-0 biz-country">Basic Member <a class="text-reset" title="We are working on this feature and will enable this soon" href="#upgradePopUp" data-toggle="modal">(Upgrade)</a></p>
+                        <div id="upgradePopUp" class="modal fade">
+                            <div class="modal-dialog modal-dialog-centered modal-login">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="modal-title">FEATURE IN DEVELOPMENT</span>
+                                        <button  class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body pt-3">
+                                        <p style="color: white">We are working on this feature and will enable this soon</p>
+                                        <div class="form-group mt-4 mb-0">
+                                            <button class="red-btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <p class="mb-0 biz-country">{{ auth()->user()->country }}</p>
                         <div class="progress mt-2">
                             <div class="progress-bar" role="progressbar"

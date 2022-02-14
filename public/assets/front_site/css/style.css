@@ -5133,6 +5133,14 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-line-clamp: 1;
 }
 
+/*for IOS devices, slider paragraph text restrict on one line*/
+.premium-suppliers .overflow-text-dots-one-line {
+    display: block!important;
+    white-space: nowrap!important;
+    overflow: hidden!important;
+    text-overflow: ellipsis!important;
+}
+
 select.custom-select {
     padding: 0;
 }

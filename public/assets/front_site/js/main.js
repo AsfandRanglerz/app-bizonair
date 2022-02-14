@@ -595,7 +595,7 @@ $(document).ready(function () {
         autoplaySpeed: 3000,
         centerMode: false,
         slidesToShow: 4,
-        slidesToScroll: 4
+        slidesToScroll: 1
     });
     /*premium suppliers and categories sliders*/
 
