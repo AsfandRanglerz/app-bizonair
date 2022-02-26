@@ -31,10 +31,10 @@
                         <div class="mt-2 product-main-container">
                             <ul class="ml-1 mr-1 nav nav-tabs">
                                 <li class="active list">
-                                    <a href="{{Request::fullUrl()}}" class="text-uppercase link">ONE-TIME SELLING ({{count($buysell)}})</a>
+                                    <a href="{{Request::fullUrl()}}" class="text-uppercase link">ONE-TIME SELLER ({{count($buysell)}})</a>
                                 </li>
                                 <li class="list">
-                                    <a href="{{url('search-product?category=One-Time+Buyer&keywords='.request()->keywords)}}" class="text-uppercase link">ONE-TIME BUYING ({{getOneTimeBuyer(request()->keywords)}})</a>
+                                    <a href="{{url('search-product?category=One-Time+Buyer&keywords='.request()->keywords)}}" class="text-uppercase link">ONE-TIME BUYER ({{getOneTimeBuyer(request()->keywords)}})</a>
                                 </li>
                             </ul>
                             <div class="mt-3 compare-container">

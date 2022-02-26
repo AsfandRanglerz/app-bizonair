@@ -40,19 +40,21 @@
     </style>
 </head>
 <body>
-<h3 class="main-heading">Favourite</h3>
+<h3 class="main-heading">Product & Service Favourite Notification</h3>
 <h3>
-    {{$detail['user_name']}} favourite your product {{$detail['product_title']}} reference number {{$detail['reference_no']}}.
-
+    Your product {{$detail['product_title']}} having reference number {{$detail['reference_no']}} has been added to Favourite by {{$detail['user_name']}}.
+</h3>
+<h3>
     <?php $exist = \App\Product::where('reference_no', $detail['reference_no'])->first(); ?>
     @if($exist)
-        <a target="_blank" @if(auth()->check()) href="https://www.bizonair.com/lead-favs" @else href="https://www.bizonair.com/login" @endif>Click here</a> to open!
+        <a target="_blank" @if(auth()->check()) href="https://www.bizonair.com/lead-favs" @else href="https://www.bizonair.com/login" @endif>Click here</a> to View and Connect to Lock the Deal!
     @else
-        <a target="_blank" @if(auth()->check()) href="https://www.bizonair.com/one-time-favs" @else href="https://www.bizonair.com/login" @endif>Click here</a> to open!
+        <a target="_blank" @if(auth()->check()) href="https://www.bizonair.com/one-time-favs" @else href="https://www.bizonair.com/login" @endif>Click here</a> to View and Connect to Lock the Deal!
     @endif
 </h3>
 
 
-<h1 class="mb-0 biz-thanks">Thanks {{ config('app.name') }}</h1>
+<h1 class="mb-0 biz-thanks">Thank You</h1>
+<h1 class="mb-0 biz-thanks">{{ config('app.name') }}</h1>
 </body>
 </html>

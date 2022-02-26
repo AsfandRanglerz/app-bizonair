@@ -1030,7 +1030,7 @@ class HomeController extends Controller
             $articles = Journal::where('title','Like','%'.$search.'%')->where('status',1)->where('journal_type_name','articles')->get();
             return view('front_site.search.articles-search')->with(['articles'=>$articles,'category'=>$category,'search'=>$search]);
         }elseif ($category =='news'){
-            $news = NewsManagement::where('title','Like','%'.$search.'%')->where('status',1)->get();
+            $news = NewsManagement::where('title','Like','%'.$search.'%')->where('status',1)->orderBy('id','desc')->get();
             return view('front_site.search.news-search')->with(['data'=>$news,'category'=>$category,'search'=>$search]);
         }elseif ($category =='events'){
             $events = Journal::where('title','Like','%'.$search.'%')->where('status',1)->where('journal_type_name','Upcomming Events')->get();
