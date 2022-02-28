@@ -811,8 +811,8 @@ function getBuySellViewsdashboardCount()
 
 function getProductFavCount($compid)
 {
-    $prod = \App\Product::whereBetween('reference_no', ['100000', '4900000'])->get()->pluck('reference_no');
-    $products = \App\Favourite::where('user_id',auth()->id())->whereIn('reference_no',$prod)->count();
+    $prod = \App\Product::whereBetween('reference_no', ['100000', '4900000'])->where('company_id',$compid)->get()->pluck('reference_no');
+    $products = \App\Favourite::where('user_id','!=',auth()->id())->whereIn('reference_no',$prod)->count();
     return $products;
 
 }
@@ -826,8 +826,8 @@ function getSingleProductFavCount($ref)
 }
 function getBuysellFavCount()
 {
-    $prod = \App\BuySell::whereBetween('reference_no', ['5000000', '10000000'])->get()->pluck('reference_no');
-    $products = \App\Favourite::where('user_id',auth()->id())->whereIn('reference_no',$prod)->count();
+    $prod = \App\BuySell::whereBetween('reference_no', ['5000000', '10000000'])->where('user_id',auth()->id())->get()->pluck('reference_no');
+    $products = \App\Favourite::where('user_id','!=',auth()->id())->whereIn('reference_no',$prod)->count();
     return $products;
 }
 function getSingleBuysellFavCount($ref)
