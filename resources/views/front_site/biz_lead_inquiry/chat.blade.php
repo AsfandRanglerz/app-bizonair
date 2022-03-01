@@ -61,7 +61,7 @@
 
             <div class="d-flex">
                 <div class="d-flex flex-column">
-                    <span class="day-date-time">{{$list->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a')}}</span>
+                    <span class="day-date-time">{{$list->created_at->isoFormat('d-MMMM-Y, h:mm:ss a')}}</span>
                     <span>{{$convo->product->city}} , {{$convo->product->country}}</span>
                     @if($list->file_path)
                     <a href="{{url($list->file_path)}}" download="download">
