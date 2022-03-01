@@ -32,13 +32,13 @@
                                     <label class="d-none font-500">Title <span class="required">(Mandatory)</span></label>
                                     <input type="text"
                                            name="title" id="title" class="form-control"
-                                           placeholder="Title (Mandatory) - Enter title">
+                                           placeholder="Title (Mandatory) - Enter title" required>
                                     <small class="text-danger" id="title_error"></small>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="d-none font-500">Type<span class="required">(Mandatory)</span></label>
 
-                                    <select name="journal_type" id="journal_type" class="form-control">
+                                    <select name="journal_type" id="journal_type" class="form-control" required>
                                         <option value=""></option>
                                         <option disabled>Journal Type (Mandatory)</option>
                                         @foreach(\App\JournalType::all() as $type)

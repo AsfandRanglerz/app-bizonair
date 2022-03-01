@@ -145,7 +145,7 @@ $(document).ready(function () {
 
     $('button[type="submit"]').click(function (){
         /*errors will be shown at bottom of select2 tags*/
-        $('.select2').parent('.form-group').css({'display': 'flex', 'flex-direction': 'column'});
+        $('.select2').parent('.form-group').css({'display': 'flex', 'flex-direction': 'column-reverse'});
         /*errors will be shown at bottom of select2 tags*/
     });
 

@@ -28,11 +28,11 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" name="fname" id="fname" placeholder="Input First Name" required="required">
+                                    <input type="text" class="form-control" name="fname" id="fname" placeholder="Input First Name (Mandatory)" required="required">
                                     <small class="text-danger" id="fname_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" name="lname" id="lname"  placeholder="Input Last Name" required="required">
+                                    <input type="text" class="form-control" name="lname" id="lname"  placeholder="Input Last Name (Mandatory)" required="required">
                                     <small class="text-danger" id="lname_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
@@ -45,13 +45,13 @@
                                     <small class="text-danger" id="phone_code_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Input Contact Number" required="required">
+                                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Input Contact Number (Mandatory)" required="required">
                                     <small class="text-danger" id="phone_no_error"></small>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Input Email Address" required="required">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Input Email Address (Mandatory)" required="required">
                                     <small class="text-danger" id="email_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -69,7 +69,7 @@
                                     <small class="text-danger" id="total_experience_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" name="edu_level" id="edu_level" placeholder="Input Highest Education Level" required>
+                                    <input type="text" class="form-control" name="edu_level" id="edu_level" placeholder="Input Highest Education Level (Mandatory)" required>
                                     <small class="text-danger" id="edu_level_error"></small>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                                     <small class="text-danger" id="functional_area_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <input type="number" class="form-control" name="exp_salary" id="exp_salary" placeholder="Expected Salary" required="required">
+                                    <input type="number" class="form-control" name="exp_salary" id="exp_salary" placeholder="Expected Salary (Mandatory)" required="required">
                                     <small class="text-danger" id="exp_salary_error"></small>
                                 </div>
                                 <div class="form-group col-md-2">
@@ -173,7 +173,7 @@
                                     <small class="text-danger" id="city_error"></small>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" name="key_skills" id="key_skill" placeholder="Input Key Skills" required="required">
+                                    <input type="text" class="form-control" name="key_skills" id="key_skill" placeholder="Input Key Skills (Mandatory)" required="required">
                                     <small class="text-danger" id="key_skills_error"></small>
                                 </div>
                             </div>
@@ -211,7 +211,30 @@
 
     <script>
         $(document).ready(function () {
-            // // console.log('ready')
+            /*for select single place holders*/
+            $("#phone_code").select2({
+                placeholder: "Select Phone Code (Mandatory)"
+            });
+            $("#total_experience").select2({
+                placeholder: "Select Experience (Mandatory)"
+            });
+            $("#textile_sector").select2({
+                placeholder: "Jobs Sector (Mandatory)"
+            });
+            $("#functional_area").select2({
+                placeholder: "Functional Area (Mandatory)"
+            });
+            $("#unit").select2({
+                placeholder: "Select Currency (Mandatory)"
+            });
+            $("#countryId").select2({
+                placeholder: "Select Country (Mandatory)"
+            });
+            $("#cityId").select2({
+                placeholder: "Select City (Mandatory)"
+            });
+            /*for select single place holders*/
+
             $('.closingdatepicker').datepicker({
                 startDate: "0d",
                 autoclose: true,

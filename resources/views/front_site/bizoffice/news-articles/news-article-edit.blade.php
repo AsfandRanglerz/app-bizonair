@@ -31,14 +31,14 @@
                                     <div class="form-group col-md-6">
                                         <label  class="d-none font-500">Title <span class="required">(Mandatory)</span></label>
                                         <input type="text" placeholder="Title (Mandatory) - Enter title"
-                                               name="title" id="title" value="{{ $info->title }}" class="form-control"
+                                               name="title" id="title" value="{{ $info->title }}" class="form-control" required
                                         >
                                         <small class="text-danger" id="title_error"></small>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="d-none font-500">Type<span class="required">(Mandatory)</span></label>
 
-                                        <select name="journal_type" id="journal_type" class="form-control">
+                                        <select name="journal_type" id="journal_type" class="form-control" required>
                                             <option value=""></option>
                                             <option disabled>Type (Mandatory)</option>
                                             <option value="{{ $info->journal_type_name }}" selected>{{ $info->journal_type_name }}</option>

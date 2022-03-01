@@ -9595,7 +9595,7 @@ header .navbar .navbar-toggler {
     }
 
     .premium-suppliers .company-name {
-        font-size: 10px;
+        font-size: 9px;
     }
 
     .product-listing .top-companies .top-companies-card > img {
@@ -10195,7 +10195,7 @@ header .navbar .navbar-toggler {
     }
 
     .product-listing #maincontent .main-container .mini-content-container #buyingDeals .content-column {
-        max-width: unset;
+        max-width: 50%;
     }
 
     .product-listing #maincontent .main-container .mini-content-container .certified-suppliers .column-semi-half {
