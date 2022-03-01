@@ -56,7 +56,7 @@
                                 <div class="d-flex">
                                     <p class="mb-0 click @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'fav_lead')  ) font-weight-bold @endif"
                                        data-click-id="{{$list->id}}">
-                                        <span>{{date('M d h:i:s A', strtotime($list->latestMessage->created_at))}}</span>
+                                        <span>{{date('d-F-Y', strtotime($list->latestMessage->created_at))}}</span>
                                     </p>
                                     <p class="mb-0 px-2"><span class="fa fa-trash trash-bin"></span></p>
                                     <p class="mb-0"><span class="ml-2 fa fa-reply reply-msg"></span></p>

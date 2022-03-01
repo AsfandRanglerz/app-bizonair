@@ -201,7 +201,7 @@
                                 <div class="d-flex">
                                     <p class="mb-0 click-inbox @if( $list->latestMessageNotMine && check_in_my_read($list,$list->latestMessageNotMine->id, 'lead')  )  font-weight-bold @endif"
                                        data-click-id="{{$list->id}}">
-                                        <span>{{date('M d h:i:s A', strtotime($list->latestMessage->created_at))}}</span>
+                                        <span>{{date('d-F-Y', strtotime($list->latestMessage->created_at))}}</span>
                                     </p>
                                     <p class="mb-0 px-2"><span class="fa fa-trash trash-bin"></span></p>
                                     <p class="mb-0"><span class="ml-2 fa fa-reply reply-msg"></span></p>
@@ -344,7 +344,7 @@
                             </p>
                             <p class="mb-0 click @if($list->latestMessage->is_read == 0  && $list->latestMessage->created_by != \Auth::id()) font-weight-bold @endif"
                                 data-click-id="{{$list->id}}">
-                                <span>{{date('M d h:i:s A', strtotime($list->latestMessage->created_at))}}</span></p>
+                                <span>{{date('d-F-Y', strtotime($list->latestMessage->created_at))}}</span></p>
                         </div>
 
 
@@ -1254,6 +1254,9 @@ $(document).on('click', '.click', function(){
                         } else if (response.feedback == 'true') {
                             // toastr.success(response.msg, 'Success');
                             $('#sentMail').html(response.data);
+                            //added by dilawar
+                            $('.align-items-start').remove();
+                            //added by dilawar
                             $('.mail-reply-box-outer').remove();
                         } else {
                             toastr.error('Some other issues', 'Error');

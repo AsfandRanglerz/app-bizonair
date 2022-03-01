@@ -617,7 +617,7 @@ class InquiryController extends Controller
             $data['product_ref_no'] = $product->reference_no;
             $data['product_image'] = '';
             $data['sent_to'] = \Auth::id() == $message->convertsation->created_by ? get_name($message->convertsation->product->user) : get_name($message->convertsation->created_by_user);
-            $data['message_created_at']= $message->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a');
+            $data['message_created_at']= $message->created_at->isoFormat('d-MMMM-Y, h:mm:ss a');
             if($message->file_path)
                 $data['message_file_path'] = "<a href=".url($message->file_path)." download='download'>
             <span class='d-inline fa fa-paperclip attached-icon'></span>
@@ -1443,7 +1443,7 @@ class InquiryController extends Controller
             $data['product_image'] = '';
             $data['sent_from'] = in_array($message->convertsation->product->company->id,array_unique(\Arr::pluck(\Auth::user()->company_profiles,'id')))? $message->convertsation->product->company->company_name : get_name(\Auth::user());
             $data['sent_to'] = \Auth::id() == $message->convertsation->created_by ? $message->convertsation->product->company->company_name : get_name($message->convertsation->created_by_user);
-            $data['message_created_at']= $message->created_at->isoFormat('MMMM Do YYYY, h:mm:ss a');
+            $data['message_created_at']= $message->created_at->isoFormat('d-MMMM-Y, h:mm:ss a');
             if($message->file_path)
                 $data['message_file_path'] = "<a href=".url($message->file_path)." download='download'>
             <span class='d-inline fa fa-paperclip attached-icon'></span>
