@@ -1258,6 +1258,9 @@ $(document).on('click', '.click', function(){
                         } else if (response.feedback == 'true') {
                             // toastr.success(response.msg, 'Success');
                             $('#sentMail').html(response.data);
+                            //added by dilawar
+                            $('.align-items-start').remove();
+                            //added by dilawar
                             $('.mail-reply-box-outer').remove();
                         } else {
                             toastr.error('Some other issues', 'Error');
