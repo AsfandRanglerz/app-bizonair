@@ -145,7 +145,7 @@ th {
 
 /*required fields border highlighted*/
 /*select[required] + .select2 span.select2-selection.select2-selection--single*/
-input[required], select[required], select[required] + span .select2-selection {
+input[required], select[required], select[required] + span .select2-selection, select[required] + label + span .select2-selection {
     border-color: red!important;
 }
 /*required fields border highlighted*/
@@ -10755,7 +10755,11 @@ form label {
 
 .select2-container .select2-search--inline .select2-search__field {
     margin-top: 0;
-    /*width: 100%!important;*/
+    width: 100%!important;
+}
+
+.select2-container .select2-search--inline {
+    float: unset!important;
 }
 
 .select2-container--default .select2-selection.is-valid {

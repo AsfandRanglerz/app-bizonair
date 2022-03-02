@@ -326,8 +326,7 @@
                                 <a href="{{route('get-one-time-fav')}}" class="sidebar-links">Deal Favorites <span class="biz-badge" id="fdealinq"></span></a></li>
                         </ul>
                     </li>
-                    <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
-                        title="Careers"><img class="mr-2 dashboard-sidebar-img" src="https://www.pngrepo.com/png/128160/512/worker-career.png" height="20"><a href="javascript:;">Careers</a>
+                    <li class="position-relative dropdown"><img class="mr-2 dashboard-sidebar-img" src="{{$ASSET}}/front_site/images/worker-career1.png" height="20"><a href="javascript:;">Careers</a>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom"
                                 title="Add New Job"><a href="{{route('view-form-job-management')}}"
@@ -452,7 +451,7 @@
                         </ul>
                     </li>
 
-                    <li class="position-relative dropdown"><img class="mr-2 dashboard-sidebar-img" src="https://www.pngrepo.com/png/128160/512/worker-career.png" height="20"><a href="javascript:;">Careers</a><span class="biz-badge blue-badge">{{ \App\JobManagement::where('user_id', \Auth::user()->id)->count() }}</span>
+                    <li class="position-relative dropdown"><img class="mr-2 dashboard-sidebar-img" src="{{$ASSET}}/front_site/images/worker-career1.png" height="20"><a href="javascript:;">Careers</a><span class="biz-badge blue-badge">{{ \App\JobManagement::where('user_id', \Auth::user()->id)->count() }}</span>
                         <ul class="side-nav-dropdown">
                             <li data-toggle="tooltip" data-placement="bottom"
                                 title="Add New Job"><a href="{{route('view-form-job-management')}}"
@@ -495,7 +494,7 @@
                     @if($invitation)
                         <li class="position-relative"><img class="mr-2 dashboard-sidebar-img" src="https://cdn1.iconfinder.com/data/icons/communication-set-1-1/100/Untitled-1-18-512.png" height="20"><a href="{{route('office-invitation')}}" class="sidebar-links"> Office Invitation</a>
                     @endif
-                    <li class="position-relative"><img class="mr-2 dashboard-sidebar-img" src="https://cdn3.iconfinder.com/data/icons/contact-us-outline-2/60/036_-_-Send_Recieve-256.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
+                    <li class="position-relative"><img class="mr-2 dashboard-sidebar-img" src="https://library.kissclipart.com/20180830/ozw/kissclipart-mail-tracker-clipart-sono-motors-email-tracking-fe635af76fc7595e.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
                     </li>
                     <li class="position-relative"><img class="mr-2 dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/basics-vol-2/354/out_exit_comeout_goout_getout_dropout_moveout-512.png"><a href="{{url('logout')}}" class="sidebar-links"> Sign Out</a>
                     </li>
@@ -507,7 +506,7 @@
         @else
             <aside class="side-nav w-100 biz-nav-content">
                 <ul class="mb-0 categories">
-                    <li class="position-relative"><img class="mr-2 dashboard-sidebar-img" src="https://cdn3.iconfinder.com/data/icons/contact-us-outline-2/60/036_-_-Send_Recieve-256.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
+                    <li class="position-relative"><img class="mr-2 dashboard-sidebar-img" src="https://library.kissclipart.com/20180830/ozw/kissclipart-mail-tracker-clipart-sono-motors-email-tracking-fe635af76fc7595e.png" height="20"><a href="{{route('contact-us')}}" class="sidebar-links"> Contact us</a>
                     </li>
                     <li class="invisible"></li>
                     <li class="invisible"></li>

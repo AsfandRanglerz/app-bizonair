@@ -211,6 +211,12 @@
 
     <script>
         $(document).ready(function () {
+            $('button[type="submit"]').click(function (){
+                /*errors will be shown at bottom of select2 tags*/
+                $('.select2').parent('.form-group').css({'display': 'flex', 'flex-direction': 'column-reverse'});
+                /*errors will be shown at bottom of select2 tags*/
+            });
+
             /*for select single place holders*/
             $("#phone_code").select2({
                 placeholder: "Select Phone Code (Mandatory)"
