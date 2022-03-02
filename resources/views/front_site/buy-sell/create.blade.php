@@ -781,7 +781,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div">
                                             <label class="d-none font-500">Other Unit <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text" name="other_available_unit" placeholder="Other Unit (Mandatory)" class="form-control">
                                         </div>
                                     </div>
@@ -841,7 +841,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">After Sales Service <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="Yes"
@@ -865,7 +865,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 type-of-service">
                                                 <label for="service_type" class="font-500">Type of Service <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" id="service_type" class="form-control"
                                                        name="service_type" placeholder="Type of Service" required>
                                                 <small class="text-danger" id="service_type_error"></small>
@@ -898,7 +898,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 warranty-services">
                                                 <label for="warranty_period" class="font-500">Warranty Period <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" id="warranty_period" class="form-control"
                                                        name="warranty_period" placeholder="Warranty Period" required>
                                                 <small class="text-danger" id="warranty_period_error"></small>
@@ -907,7 +907,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Product Certification <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="Yes"
@@ -1049,7 +1049,7 @@
                                 {{--                                                         id="paidField">--}}
                                 {{--                                                        <div class="form-group ">--}}
                                 {{--                                                            <label class="font-500 pt-3">Add Price <span--}}
-                                {{--                                                                    class="required">*</span></label>--}}
+                                {{--                                                                    class="required">(Mandatory)</span></label>--}}
                                 {{--                                                            <input type="text" id="paidSample"--}}
                                 {{--                                                                   name="paid_sampling_price"--}}
                                 {{--                                                                   class="form-control">--}}
@@ -1062,7 +1062,7 @@
                                 {{--                                    <div class="form-row">--}}
                                 {{--                                        <div class="form-group col-lg-6 trade-info-container">--}}
                                 {{--                                            <label for="dealing_as" class="label d-block">Dealing Product As <span--}}
-                                {{--                                                    class="required">*</span></label>--}}
+                                {{--                                                    class="required">(Mandatory)</span></label>--}}
                                 {{--                                            <select id="dealing_as" name="dealing_as[]"--}}
                                 {{--                                                    class="select2-multiple form-control required-control"--}}
                                 {{--                                                    multiple="multiple" required>--}}
@@ -1078,7 +1078,7 @@
                                 {{--                                        </div>--}}
                                 {{--                                        <div class="form-group col-lg-6 other-div add-Certifications">--}}
                                 {{--                                            <label class="font-500">Add Other Details <span--}}
-                                {{--                                                    class="required">*</span></label>--}}
+                                {{--                                                    class="required">(Mandatory)</span></label>--}}
                                 {{--                                            <input type="text" id="other_dealing_as" name="other_dealing_as"--}}
                                 {{--                                                   class="form-control" required>--}}
                                 {{--                                        </div>--}}
@@ -1086,7 +1086,7 @@
                                 {{--                                    <div class="form-row">--}}
                                 {{--                                        <div class="form-group col-lg-6 trade-info-container">--}}
                                 {{--                                            <label class="font-500">Target Selling Country <span--}}
-                                {{--                                                    class="required">*</span></label>--}}
+                                {{--                                                    class="required">(Mandatory)</span></label>--}}
                                 {{--                                            <select name="focused_selling_countries[]"--}}
                                 {{--                                                    class="select2-multiple form-control required-control"--}}
                                 {{--                                                    multiple="multiple" id="focused_selling_countries" required>--}}
@@ -1113,10 +1113,10 @@
                                             <div class="form-row">
                                                 <div class="col-md-6 form-group">
                                                     <label for="unit_price_from" class="d-none font-500 unit_price_range_label">Unit Price <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <label for="unit_price_from" class="d-none font-500 service_charges_range_label">Service
                                                         Charges <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <input type="number" min="0" id="unit_price_from" class="form-control"
                                                            name="unit_price_from" placeholder="Service Charges (Mandatory) - e.g. 1000" required>
                                                 </div>
@@ -1126,7 +1126,7 @@
                                                 {{--                                                </div>--}}
                                                 <div class="col-md-6 hide-for-service" style="display: none;">
                                                     <label for="unit_price_unit" class="d-none font-500 unit_price_range_label">Per Unit <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <select class="form-control other-option-included" id="unit_price_unit" name="unit_price_unit" required>
                                                         <option value=""></option>
                                                         <option disabled>Per Unit (Mandatory)</option>
@@ -1165,7 +1165,7 @@
                                                 </div>
                                                 <div class="col-md-6 service-unit">
                                                     <label for="price_unit" class="d-none font-500 service_charges_range_unit_label">Per Unit <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <input type="text" name="price_unit" id="price_unit" placeholder="Per Unit (Mandatory)" class="form-control" required>
                                                     <small class="text-danger" id="price_unit_error"></small>
                                                 </div>
@@ -1173,14 +1173,14 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-unit_price_unit">
                                             <label class="font-500">Other Price Unit <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text" name="other_unit_price_unit" class="form-control" placeholder="Other Price Unit" required>
                                         </div>
                                         <div class="form-group col-lg-6 target_price_range">
                                             <div class="form-row">
                                                 <div class="col-md-6 form-group">
                                                     <label for="target_price_from" class="d-none font-500">Target Price <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <input type="number" min="0" id="target_price_from" class="form-control"
                                                            name="target_price_from" placeholder="Target Price (Mandatory) - e.g. 1000" required>
                                                 </div>
@@ -1190,7 +1190,7 @@
                                                 {{--                                                </div>--}}
                                                 <div class="col-md-6">
                                                     <label for="target_price_unit" class="d-none font-500">Per Unit <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <select class="form-control other-option-included"
                                                             id="target_price_unit"
                                                             name="target_price_unit" required>
@@ -1233,7 +1233,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-target_price_unit">
                                             <label class="font-500">Other Price Unit <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text" name="other_target_price_unit" class="form-control" placeholder="Other Price Unit" required>
                                         </div>
                                     </div>
@@ -1241,7 +1241,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
                                             <label class="d-none font-500">Suitable Currency <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <select class="form-control single-select-dropdown"
                                                     id="suitable_currencies" name="suitable_currencies" required>
                                                 <option value="" selected disabled>Select Suitable Currency</option>
@@ -1257,7 +1257,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-suitable-currency">
                                             <label class="d-none font-500">Add Your Suitable Currency <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text" name="other_suitable_currency" placeholder="Add Your Suitable Currency (Mandatory)" class="form-control">
                                         </div>
                                     </div>
@@ -1293,7 +1293,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 services-container">
                                             <label class="d-none label">Service Duration <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <select id="service_durations" name="service_durations[]"
                                                     class="select2-multiple form-control select-service-duration" multiple="multiple">
                                                 <option value="One Time">One Time</option>
@@ -1310,7 +1310,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 add-services-duration other-div">
                                             <label class="d-none font-500">Add Your Service Duration <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input id="other_service_duration" name="other_service_duration"
                                                    type="text"
                                                    class="form-control" placeholder="Add Your Service Duration (Mandatory)">
@@ -1342,7 +1342,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-payment-terms">
                                             <label class="d-none font-500">Add Your Payment Terms <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text" id="other_payment_term" name="other_payment_term"
                                                    class="form-control" placeholder="Add Your Payment Terms (Mandatory)">
                                         </div>

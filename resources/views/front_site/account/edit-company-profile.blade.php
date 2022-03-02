@@ -430,7 +430,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="company" class="d-none font-500">Company Name <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" id="company" class="form-control" name="company_name"
                                                        value="{{$company->company_name}}"
                                                        placeholder="Company Name (Mandatory) - My Textile">
@@ -448,7 +448,7 @@
                                         </div> -->
                                             <div class="form-group col-md-6">
                                                 <label for="industry" class="d-none label">Business Category <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <select class="form-control select2-multiple1" id="industry"
                                                         name="industry[]"
                                                         multiple="multiple">
@@ -465,7 +465,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6 business-select">
                                                 <label class="d-none label">Business Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <select class="form-control select2-multiple2" name="business_type[]"
                                                         multiple="multiple">
                                                     <option value=""></option>

@@ -115,7 +115,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6 mb-1">
                                                 <label for="mobileNumber" class="d-none">Mobile Number <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <!-- <input type="tel" class="form-control" id="phone" name="registration_phone_no" > -->
                                                 <input type="tel" name="registration_phone_no" class="form-control"
                                                        id="mobileNumber" placeholder="Mobile Number - +923xxxxxxxxx">

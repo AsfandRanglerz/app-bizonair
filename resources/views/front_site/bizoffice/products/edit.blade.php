@@ -1966,7 +1966,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 add-sub-sub-cat">
                                                 <label class="font-500">Add Sub-Sub-Category <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" name="add_sub_sub_category"
                                                        value="{{ $product->add_sub_sub_category }}" class="form-control"
                                                        required>
@@ -2782,7 +2782,7 @@
                                              @if(in_array("Service", explode(",", $product->product_service_types))) style="display: none;" @endif>
                                             <label for="manufacturer_name" class="d-none font-500 manufacturer_name">Manufacturer
                                                 Name <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text" id="manufacturer_name"
                                                    @if($product->product_manufacturer) value="{{ $product->product_manufacturer->manufacturer_name }}"
                                                    @endif name="manufacturer_name"
@@ -2812,7 +2812,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">Fibre Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="d-flex">
                                                     <div class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio"
@@ -2860,7 +2860,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="size" class="d-none font-500">Fibre Size/Length <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" id="size" class="form-control"
                                                        @if($product->fiber_product_info && $product->fiber_product_info->size) value="{{ $product->fiber_product_info->size }}"
                                                        @endif
@@ -2897,7 +2897,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Product Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input"
@@ -2919,7 +2919,7 @@
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Condition <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="New"
@@ -2953,7 +2953,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">After Sales Service <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="Yes"
@@ -2983,7 +2983,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 type-of-service">
                                                 <label for="service_type" class="d-none font-500">Type of Service <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" id="service_type" class="form-control"
                                                        name="service_type" placeholder="Type of Service (Mandatory)"
                                                        @if($product->machinery_product_info && $product->machinery_product_info->service_type) value="{{ $product->machinery_product_info->service_type }}"
@@ -3025,7 +3025,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 warranty-services">
                                                 <label for="warranty_period" class="d-none font-500">Warranty Period <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" id="warranty_period" class="form-control"
                                                        name="warranty_period" placeholder="Warranty Period (Mandatory)"
                                                        @if($product->machinery_product_info && $product->machinery_product_info->warranty_period) value="{{ $product->machinery_product_info->warranty_period }}"
@@ -3036,7 +3036,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Product Certification <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="Yes"
@@ -3173,7 +3173,7 @@
                                         <div class="form-row">
                                             <div class="mb-0 form-group col-lg-6">
                                                 <label for="woven_width" class="d-none font-500">Width Range <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <input type="text" placeholder="Woven Width Range From (Mandatory) - e.g. 75 Inches" id="woven_width_from" @if($product->fabric_product_info && $product->fabric_product_info->width_from) value="{{ $product->fabric_product_info->width_from }}" @endif class="form-control" name="woven_width_from" placeholder="e.g. 75 Inches" required>
@@ -3436,7 +3436,7 @@
                                             <div
                                                 class="form-group col-lg-6 add-features-field" {{ ($product->fabric_product_info && in_array("Other", explode(",", $product->fabric_product_info->features))) ? 'style=display:block;' : '' }}>
                                                 <label class="d-none font-500">Other Features <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input id="other_woven_features" name="other_woven_features" placeholder="Other Features (Mandatory)"
                                                        @if($product->fabric_product_info && in_array("Other", explode(",", $product->fabric_product_info->features)))
                                                        value="{{ $product->fabric_product_info->other_feature }}"
@@ -3540,7 +3540,7 @@
                                             <div
                                                 class="form-group col-lg-6 add-Use-field" {{ ($product->fabric_product_info && in_array("Other", explode(",", $product->fabric_product_info->uses))) ? 'style=display:block;' : '' }}>
                                                 <label class="d-none font-500">Other End Use/Application <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input id="other_woven_use" placeholder="Other End Use/Application (Mandatory)" name="other_woven_use"
                                                        @if($product->fabric_product_info && in_array("Other", explode(",", $product->fabric_product_info->uses)))
                                                        value="{{ $product->fabric_product_info->other_use }}"
@@ -3555,7 +3555,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 fabric-type">
                                                 <label class="d-none font-500">Fabric Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <select id="knitted_fabric_types" name="knitted_fabric_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
@@ -3605,7 +3605,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 weave-type">
                                                 <label class="d-none font-500">Knitting Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <select name="knitted_knitting_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
@@ -3687,7 +3687,7 @@
                                         <div class="form-row">
                                             <div class="mb-0 form-group col-lg-6">
                                                 <label for="knitted_width" class="d-none font-500">Width Range <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="knitted_width_from" class="form-control"
@@ -3956,7 +3956,7 @@
                                             <div
                                                 class="form-group col-lg-6 add-knitted-features-field other-div" {{ ($product->fabric_product_info && in_array("Other", explode(",", $product->fabric_product_info->features))) ? 'style=display:block;' : '' }}>
                                                 <label class="d-none font-500">Other Features <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input name="other_knitted_features" id="knittedFeaturesOther"
                                                        type="text" placeholder="Other Features (Mandatory)"
                                                        class="form-control"
@@ -4059,7 +4059,7 @@
                                             <div
                                                 class="form-group col-lg-6 add-knitted-Use-field" {{ ($product->fabric_product_info && in_array("Other", explode(",", $product->fabric_product_info->uses))) ? 'style=display:block;' : '' }}>
                                                 <label class="d-none font-500">Other End Use Application <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input name="other_knitted_use" id="otherKnittedUse" type="text"
                                                        class="form-control" placeholder="Other End Use Application (Mandatory)"
                                                        @if($product->fabric_product_info && in_array("Other", explode(",", $product->fabric_product_info->uses)))
@@ -4075,7 +4075,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 fabric-type">
                                                 <label class="d-none font-500">Fabric Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <select id="non_woven_fabric_types" name="non_woven_fabric_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
@@ -4125,7 +4125,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 weave-type">
                                                 <label class="d-none font-500">Non Woven Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <select id="non_woven_types" name="non_woven_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
@@ -4214,7 +4214,7 @@
                                         <div class="form-row">
                                             <div class="mb-0 form-group col-lg-6">
                                                 <label for="non_woven_width" class="d-none font-500">Width Range <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="non_woven_width_from"
@@ -4514,7 +4514,7 @@
                                             <div
                                                 class="form-group col-lg-6 add-nonwoven-features-field" {{ ($product->fabric_product_info && in_array("Other", explode(",", $product->fabric_product_info->features))) ? 'style=display:block;' : '' }}>
                                                 <label class="d-none font-500">Other Features <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input id="other_non_woven_features" placeholder="Other Features (Mandatory)" name="other_non_woven_features"
                                                        type="text"
                                                        class="form-control"
@@ -4629,7 +4629,7 @@
                                             <div
                                                 class="form-group col-lg-6 add-End-field" {{ ($product->fabric_product_info && in_array("Other", explode(",", $product->fabric_product_info->uses))) ? 'style=display:block;' : '' }}>
                                                 <label class="d-none font-500">Other End Use/Application <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input id="other_non_woven_use" placeholder="Other End Use/Application (Mandatory)" name="other_non_woven_use"
                                                        @if($product->fabric_product_info && in_array("Other", explode(",", $product->fabric_product_info->uses)))
                                                        value="{{ $product->fabric_product_info->other_use }}"
@@ -4699,7 +4699,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-none font-500">Yarn Attribute<span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <select id="yarn_attribute" name="yarn_attribute"
                                                         class="form-control single-select-dropdown"
                                                         required>
@@ -4756,7 +4756,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-none font-500">Technology<span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <select id="yarn_technology" name="yarn_technology"
                                                         class="form-control single-select-dropdown"
                                                         required>
@@ -4818,7 +4818,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-none font-500">Yarn Grade <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input name="yarn_grade" class="form-control"
                                                        @if($product->yarn_product_info && $product->yarn_product_info->grade) value="{{ $product->yarn_product_info->grade }}"
                                                        @endif placeholder="Yarn Grade (Mandatory) - i.e A-Grade, B-Grade, Other"
@@ -4850,7 +4850,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500" for="count_type">Count Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" class="custom-control-input radio-btn"
                                                            @if($product->yarn_product_info && $product->yarn_product_info->count_type =="Single") checked="true"
@@ -4915,7 +4915,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">Yarn Speciality <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" class="custom-control-input radio-btn"
                                                            @if($product->yarn_product_info && $product->yarn_product_info->yarn_specialty =="Regular") checked="true"
@@ -4983,7 +4983,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="d-block font-500">End Use/Application <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" class="custom-control-input radio-btn"
                                                            @if($product->yarn_product_info && $product->yarn_product_info->end_use =="Warp") checked="true"
@@ -5291,7 +5291,7 @@
                                                         </div>
                                                         <div class="form-group col-lg-6">
                                                             <label class="font-500">Manufacturer Company Name <span
-                                                                    class="required">*</span></label>
+                                                                    class="required">(Mandatory)</span></label>
                                                             <input type="text" id="manufacturer_company_name{{ $i }}"
                                                                    name="manufacturer_company_name{{ $i }}"
                                                                    class="form-control"
@@ -5303,7 +5303,7 @@
                                                         </div>
                                                         <div class="form-group col-lg-6">
                                                             <label class="font-500">Origin <span
-                                                                    class="required">*</span></label>
+                                                                    class="required">(Mandatory)</span></label>
                                                             <select class="form-control" id="origin{{ $i }}"
                                                                     name="origin{{ $i }}">
                                                                 <option value="" selected disabled> ---- Select Origin
@@ -5319,7 +5319,7 @@
                                                         </div>
                                                         <div class="form-group col-lg-6">
                                                             <label class="font-500">Chemicals listed <span
-                                                                    class="required">*</span></label>
+                                                                    class="required">(Mandatory)</span></label>
                                                             <input type="text" id="chemicals_listed{{ $i }}"
                                                                    name="chemicals_listed{{ $i }}"
                                                                    class="form-control" placeholder="Chemicals Listed"
@@ -5338,7 +5338,7 @@
                                                         </div>
                                                         <div class="form-group col-sm-6">
                                                             <label class="font-500">Supply type <span
-                                                                    class="required">*</span></label>
+                                                                    class="required">(Mandatory)</span></label>
                                                             <div class="">
                                                                 <div
                                                                     class="custom-control custom-radio manufacturer-supply-type custom-control-inline">
@@ -5389,7 +5389,7 @@
                                                     </div>
                                                     <div class="form-group col-lg-6">
                                                         <label class="d-none font-500">Manufacturer Company Name <span
-                                                                class="required">*</span></label>
+                                                                class="required">(Mandatory)</span></label>
                                                         <input type="text" id="manufacturer_company_name1"
                                                                name="manufacturer_company_name1" class="form-control"
                                                                placeholder="Manufacturer Company Name (Mandatory) - Company Name" required>
@@ -5398,7 +5398,7 @@
                                                     </div>
                                                     <div class="form-group col-lg-6">
                                                         <label class="d-none font-500">Origin <span
-                                                                class="required">*</span></label>
+                                                                class="required">(Mandatory)</span></label>
                                                         <select class="form-control" id="origin1" name="origin1">
                                                             <option value=""></option>
                                                             <option disabled>Product Origin (Mandatory)</option>
@@ -5412,7 +5412,7 @@
                                                     </div>
                                                     <div class="form-group col-lg-6">
                                                         <label class="d-none font-500">Chemicals listed <span
-                                                                class="required">*</span></label>
+                                                                class="required">(Mandatory)</span></label>
                                                         <input type="text" id="chemicals_listed1"
                                                                name="chemicals_listed1"
                                                                class="form-control" placeholder="Chemicals Listed (Mandatory)"
@@ -5428,7 +5428,7 @@
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label class="font-500">Supply type <span
-                                                                class="required">*</span></label>
+                                                                class="required">(Mandatory)</span></label>
                                                         <div class="d-flex">
                                                             <div
                                                                 class="w-unset custom-control custom-radio manufacturer-supply-type custom-control-inline">
@@ -5585,7 +5585,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6 trade-info-container">
                                             <label for="dealing_as" class="d-none label">Dealing Product As <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <select id="dealing_as" name="dealing_as[]"
                                                     class="select2-multiple select-suitable-type form-control" multiple="multiple" required>
                                                 <option value=""></option>
@@ -5627,7 +5627,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 trade-info-container">
                                             <label class="d-none font-500">Target Selling Country <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <select name="focused_selling_countries[]"
                                                     class="select2-multiple select-target-country form-control required-control"
                                                     multiple="multiple" id="focused_selling_countries" required>
@@ -5658,7 +5658,7 @@
                                                     <label for="unit_price_from" class="font-500 unit_price_range_label"
                                                            @if(in_array("Sell", explode(",", $product->product_service_types))) style="display: block;"
                                                            @else style="display: none;" @endif>Unit Price Range<span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <label for="unit_price_from"
                                                            class="font-500 service_charges_range_label"
                                                            @if(in_array("Service", explode(",", $product->product_service_types))) style="display: block;"
@@ -5682,7 +5682,7 @@
                                                 @if(in_array("Sell", explode(",", $product->product_service_types)))
                                                     <div class="form-group col-md-4">
                                                         <label for="unit_price_unit" class="d-none font-500 unit_price_range_label">Per Unit <span
-                                                                class="required">*</span></label>
+                                                                class="required">(Mandatory)</span></label>
                                                         <select class="form-control other-option-included" id="unit_price_unit" name="unit_price_unit" required>
                                                             <option value=""></option>
                                                             <option disabled>Per Unit (Mandatory)</option>
@@ -5837,7 +5837,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <label for="target_price_from" class="d-none font-500">Target Price Range<span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <input type="number" id="target_price_from"
                                                            @if($product->target_price_from) value="{{ $product->target_price_from }}"
                                                            @endif class="form-control"
@@ -5852,7 +5852,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label for="target_price_unit" class="d-none font-500">Per Unit <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <select class="form-control other-option-included"
                                                             id="target_price_unit"
                                                             name="target_price_unit" required>
@@ -5990,7 +5990,7 @@
                                              @if($product->target_price_unit == 'Other') style="display: block;"
                                             @endif>
                                             <label class="d-none font-500">Other Price Unit <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text" name="other_target_price_unit"
                                                    value="{{ $product->other_target_price_unit }}"
                                                    class="form-control" placeholder="Other Price Unit (Mandatory)" required>
@@ -5999,7 +5999,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
                                             <label class="d-none font-500">Suitable Currency <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <select class="form-control single-select-dropdown"
                                                     id="suitable_currencies" name="suitable_currencies" required>
                                                 <option value=""></option>
@@ -6075,7 +6075,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 services-container">
                                             <label class="d-none label">Service Duration <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <select id="service_durations" name="service_durations[]"
                                                     class="select2-multiple form-control" multiple="multiple">
                                                 <option value=""></option>

@@ -347,7 +347,7 @@
                                             {{--                                            <h6 class="w-100 pl-0">User Type <span class="required">(Mandatory)</span></h6>--}}
                                             <div class="form-group mb-1 user-type col-xl-9 col-lg-12">
                                                 <label for="last_name" class="font-500">User Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 @foreach (\App\UType::limit(3)->get() as $type)
                                                     @if($user->types->find($type->id))
                                                         <div class="custom-control custom-checkbox custom-control-inline">

@@ -1693,7 +1693,7 @@
                                             <div class="form-group col-lg-6 other-div" @if($buysell->available_unit == 'Other') style="display: block;"
                                                 @endif>
                                                 <label class="d-none font-500">Other Unit <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" name="other_available_unit" placeholder="Other Unit (Mandatory)" value="{{ $buysell->other_available_unit }}" class="form-control">
                                             </div>
                                         </div>
@@ -1702,7 +1702,7 @@
                                         <div class="form-group col-lg-6"
                                              @if(in_array("Service", explode(",", $buysell->product_service_types))) style="display: none;" @endif>
                                             <label for="manufacturer_name" class="d-none font-500 manufacturer_name">Manufacturer Name <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text" id="manufacturer_name"
                                                    value="{{ \Auth::user()->name }}"
                                                    name="manufacturer_name"
@@ -1761,7 +1761,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">After Sales Service <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="Yes"
@@ -1792,7 +1792,7 @@
                                             <div
                                                 class="form-group col-lg-6 type-of-service other-div" {{ ($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->after_sales_service== "Yes") ? 'style=display:block;' : '' }}>
                                                 <label for="service_type" class="font-500">Type of Service <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" id="service_type" class="form-control"
                                                        name="service_type" placeholder="Type of Service"
                                                        @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->service_type) value="{{ $buysell->machineryBuySellInfo->service_type }}"
@@ -1835,7 +1835,7 @@
                                             <div
                                                 class="form-group col-lg-6 warranty-services other-div" {{ ($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->warranty== "Yes") ? 'style=display:block;' : '' }}>
                                                 <label for="warranty_period" class="font-500">Warranty Period <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" id="warranty_period" class="form-control"
                                                        name="warranty_period" placeholder="Warranty Period"
                                                        @if($buysell->machineryBuySellInfo && $buysell->machineryBuySellInfo->warranty_period) value="{{ $buysell->machineryBuySellInfo->warranty_period }}"
@@ -1846,7 +1846,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Product Certification <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="">
                                                     <div class="custom-control custom-radio custom-control-inline w-unset">
                                                         <input type="radio" class="custom-control-input" value="Yes"
@@ -1935,12 +1935,12 @@
                                                     <label for="unit_price_from" class="d-none font-500 unit_price_range_label"
                                                            @if(in_array("Sell", explode(",", $buysell->product_service_types))) style="display: block;"
                                                            @else style="display: none;" @endif>Unit Price <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <label for="unit_price_from"
                                                            class="d-none font-500 service_charges_range_label"
                                                            @if(in_array("Service", explode(",", $buysell->product_service_types))) style="display: block;"
                                                            @else style="display: none;" @endif>Service Charges <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <input type="number" min="0" id="unit_price_from" class="form-control"
                                                            name="unit_price_from"
                                                            @if($buysell->unit_price_from) value="{{ $buysell->unit_price_from }}"
@@ -1949,7 +1949,7 @@
                                                 @if(in_array("Sell", explode(",", $buysell->product_service_types)))
                                                     <div class="col-md-6">
                                                         <label for="unit_price_unit" class="font-500 unit_price_range_label">Per Unit <span
-                                                                class="required">*</span></label>
+                                                                class="required">(Mandatory)</span></label>
                                                         <select class="form-control other-option-included"
                                                                 id="unit_price_unit"
                                                                 name="unit_price_unit" required>
@@ -2096,7 +2096,7 @@
                                                  @if($buysell->unit_price_unit == 'Other') style="display: block;"
                                                 @endif>
                                                 <label class="font-500">Other Price Unit <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" name="other_unit_price_unit"
                                                        value="{{ $buysell->other_unit_price_unit }}"
                                                        class="form-control" placeholder="Other Price Unit" required>
@@ -2107,7 +2107,7 @@
                                             <div class="form-row">
                                                 <div class="col-md-6 form-group">
                                                     <label for="target_price_from" class="d-none font-500">Target Price <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <input type="number" min="0" id="target_price_from"
                                                            @if($buysell->target_price_from) value="{{ $buysell->target_price_from }}"
                                                            @endif class="form-control"
@@ -2115,7 +2115,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="target_price_unit" class="d-none font-500">Per Unit <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <select class="form-control other-option-included"
                                                             id="target_price_unit"
                                                             name="target_price_unit" required>
@@ -2252,7 +2252,7 @@
                                              @if($buysell->target_price_unit == 'Other') style="display: block;"
                                             @endif>
                                             <label class="d-none font-500">Add Your Price Unit <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text" name="other_target_price_unit"
                                                    value="{{ $buysell->other_target_price_unit }}"
                                                    class="form-control" placeholder="Add Your Price Unit (Mandatory)" required>
@@ -2261,7 +2261,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
                                             <label class="d-none font-500">Suitable Currency <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <select class="form-control single-select-dropdown"
                                                     id="suitable_currencies" name="suitable_currencies" required>
                                                 <option value="Suitable Currency (Mandatory)" disabled>Suitable Currency (Mandatory)</option>
@@ -2292,7 +2292,7 @@
                                         <div class="form-group col-lg-6 other-div add-suitable-currency"
                                              @if($buysell->suitable_currencies == "Other") style="display: block;" @endif>
                                             <label class="d-none font-500">Add Your Suitable Currency <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text"
                                                    @if($buysell->other_suitable_currency) value="{{ $buysell->other_suitable_currency }}"
                                                    required
@@ -2336,7 +2336,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 services-container">
                                             <label class="d-none label">Service Duration <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <select id="service_durations" name="service_durations[]"
                                                     class="select2-multiple form-control select-service-duration" multiple="multiple">
                                                 <option value="Suitable Currency (Mandatory)" disabled>Service Duration (Mandatory)</option>
@@ -2379,7 +2379,7 @@
                                         <div class="form-group col-lg-6 add-services-duration other-div"
                                              @if(in_array("Other", explode(",", $buysell->service_durations))) style="display: block;" @endif>
                                             <label class="d-none font-500">Add Your Service Duration <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input id="other_service_duration" name="other_service_duration"
                                                    type="text"
                                                    @if($buysell->other_service_duration) value="{{ $buysell->other_service_duration }}"
@@ -2442,7 +2442,7 @@
                                         <div class="form-group col-lg-6 other-div add-payment-terms"
                                              @if($buysell->payment_terms =='Other') style="display: block;" @endif>
                                             <label class="d-none font-500">Add Your Payment Terms <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input
                                                 @if($buysell->other_payment_term) value="{{ $buysell->other_payment_term }}"
                                                 required @endif type="text" id="other_payment_term"

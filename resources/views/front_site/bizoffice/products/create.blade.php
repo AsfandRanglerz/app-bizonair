@@ -1288,7 +1288,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 fabric-type">
                                                 <label class="d-none font-500">Fabric Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <select id="knitted_fabric_types" name="knitted_fabric_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
@@ -1315,7 +1315,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 weave-type">
                                                 <label class="d-none font-500">Knitting Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <select name="knitted_knitting_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
@@ -1371,7 +1371,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label for="knitted_width" class="d-none font-500">Width Range <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="knitted_width_from" class="form-control"
@@ -1604,7 +1604,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 add-knitted-features-field other-div">
                                                 <label class="d-none font-500">Other Features <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input name="other_knitted_features" id="knittedFeaturesOther"
                                                        type="text"
                                                        class="form-control" placeholder="Other Features (Mandatory)" required>
@@ -1694,7 +1694,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 add-knitted-Use-field">
                                                 <label class="d-none font-500">Other End Use Application <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input name="other_knitted_use" id="otherKnittedUse" type="text"
                                                        class="form-control" placeholder="Other End Use Application (Mandatory)"
                                                        required>
@@ -1796,7 +1796,7 @@
                                         <div class="form-row">
                                             <div class="col-lg-6">
                                                 <label for="woven_width" class="d-none font-500">Width Range <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="woven_width_from" class="form-control"
@@ -2033,7 +2033,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 add-features-field">
                                                 <label class="d-none font-500">Other Features <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input id="other_woven_features" name="other_woven_features" type="text"
                                                        class="form-control" placeholder="Other Features (Mandatory)" required>
                                                 <small class="text-danger" id="other_woven_features_error"></small>
@@ -2121,7 +2121,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 add-Use-field">
                                                 <label class="d-none font-500">Other End Use/Application <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input id="other_woven_use" name="other_woven_use" type="text"
                                                        class="form-control" placeholder="Other End Use/Application (Mandatory)"
                                                        required>
@@ -2134,7 +2134,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 fabric-type">
                                                 <label class="d-none font-500">Fabric Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <select id="non_woven_fabric_types" name="non_woven_fabric_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
@@ -2161,7 +2161,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6 weave-type">
                                                 <label class="d-none font-500">Non Woven Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <select id="non_woven_types" name="non_woven_types"
                                                         class="form-control single-select-dropdown" required>
                                                     <option value=""></option>
@@ -2222,7 +2222,7 @@
                                         <div class="form-row">
                                             <div class="col-lg-6">
                                                 <label for="non_woven_width" class="d-none font-500">Width Range <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <input type="text" id="non_woven_width_from"
@@ -2468,7 +2468,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 add-nonwoven-features-field">
                                                 <label class="d-none font-500">Other Features <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input id="other_non_woven_features" name="other_non_woven_features"
                                                        type="text"
                                                        class="form-control" placeholder="Other Features (Mandatory)" required>
@@ -2561,7 +2561,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 add-End-field">
                                                 <label class="d-none font-500">Other End Use/Application <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input id="other_non_woven_use" name="other_non_woven_use" type="text"
                                                        class="form-control" placeholder="Other End Use/Application (Mandatory)"
                                                        required>
@@ -2575,7 +2575,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Product Type <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="custom-control custom-radio custom-control-inline w-unset">
@@ -2596,7 +2596,7 @@
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Condition <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="custom-control custom-radio custom-control-inline w-unset">
@@ -2626,7 +2626,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">After Sales Service <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="custom-control custom-radio custom-control-inline w-unset">
@@ -2653,7 +2653,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 type-of-service">
                                                 <label for="service_type" class="d-none font-500">Type of Service <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" id="service_type" class="form-control"
                                                        name="service_type" placeholder="Type of Service (Mandatory)" required>
                                                 <small class="text-danger" id="service_type_error"></small>
@@ -2690,7 +2690,7 @@
                                             </div>
                                             <div class="form-group col-lg-6 warranty-services">
                                                 <label for="warranty_period" class="d-none font-500">Warranty Period <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <input type="text" id="warranty_period" class="form-control"
                                                        name="warranty_period" placeholder="Warranty Period (Mandatory)" required>
                                                 <small class="text-danger" id="warranty_period_error"></small>
@@ -2699,7 +2699,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-6">
                                                 <label class="font-500">Product Certification <span
-                                                        class="required">*</span></label>
+                                                        class="required">(Mandatory)</span></label>
                                                 <div class="">
                                                     <div
                                                         class="custom-control custom-radio custom-control-inline w-unset">
@@ -2866,7 +2866,7 @@
                                                 </div>
                                                 <div class="form-group col-lg-6">
                                                     <label class="d-none font-500">Chemicals Listed <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <input type="text" id="chemicals_listed1"
                                                            name="chemicals_listed1"
                                                            class="form-control" placeholder="Chemicals Listed (Mandatory)"
@@ -3116,7 +3116,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 trade-info-container">
                                             <label for="dealing_as" class="d-none label">Dealing Product As <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <select id="dealing_as" name="dealing_as[]"
                                                     class="select2-multiple select-suitable-type form-control required-control"
                                                     multiple="multiple" required>
@@ -3133,7 +3133,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-Certifications">
                                             <label class="d-none font-500">Add Other Details <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text" id="other_dealing_as" maxlength="50"
                                                    name="other_dealing_as"
                                                    class="form-control" placeholder="Add Other Details (Mandatory)" required>
@@ -3142,7 +3142,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 trade-info-container">
                                             <label class="d-none font-500">Target Selling Country <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <select name="focused_selling_countries[]"
                                                     class="select2-multiple select-target-country form-control required-control"
                                                     multiple="multiple" id="focused_selling_countries" required>
@@ -3194,7 +3194,7 @@
                                                 <div class="form-group col-md-4 hide-for-service" style="display: none;">
                                                     <label for="unit_price_unit"
                                                            class="d-none font-500 unit_price_range_label">Per Unit <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <select class="form-control other-option-included"
                                                             id="unit_price_unit" name="unit_price_unit" required>
                                                         <option value=""></option>
@@ -3235,7 +3235,7 @@
                                                 <div class="form-group col-md-4 service-unit">
                                                     <label class="d-none font-500 service_charges_range_unit_label">Per Unit
                                                         <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <input type="text" name="other_unit_price_unitt"
                                                            class="form-control" placeholder="Per Unit (Mandatory)" required>
                                                     <small class="text-danger"
@@ -3245,7 +3245,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-unit_price_unit">
                                             <label class="font-500">Other Price Unit <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text" name="other_unit_price_unit" class="form-control"
                                                    required>
                                         </div>
@@ -3254,7 +3254,7 @@
                                                 <div class="form-group col-md-4">
                                                     <label for="target_price_from" class="d-none font-500">Target Price
                                                         Range<span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <input type="number" id="target_price_from" class="form-control"
                                                            name="target_price_from" placeholder="Target Price From (Mandatory) - e.g. 1000" required>
                                                 </div>
@@ -3265,7 +3265,7 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="target_price_unit" class="d-none font-500">Per Unit <span
-                                                            class="required">*</span></label>
+                                                            class="required">(Mandatory)</span></label>
                                                     <select class="form-control other-option-included"
                                                             id="target_price_unit" name="target_price_unit" required>
                                                         <option value=""></option>
@@ -3307,7 +3307,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 other-div add-target_price_unit">
                                             <label class="font-500">Other Price Unit <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input type="text" name="other_target_price_unit" class="form-control"
                                                    required>
                                         </div>
@@ -3316,7 +3316,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6">
                                             <label class="d-none font-500">Suitable Currency <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <select class="form-control single-select-dropdown"
                                                     id="suitable_currencies" name="suitable_currencies" required>
                                                 <option value=""></option>
@@ -3370,7 +3370,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 services-container">
                                             <label class="d-none label">Service Duration <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <select id="service_durations" name="service_durations[]"
                                                     class="select2-multiple form-control" multiple="multiple">
                                                 <option value=""></option>
@@ -3389,7 +3389,7 @@
                                         </div>
                                         <div class="form-group col-lg-6 add-services-duration other-div">
                                             <label class="d-none font-500">Add Your Service Duration <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <input id="other_service_duration" name="other_service_duration"
                                                    type="text"
                                                    class="form-control" placeholder="Add Your Service Duration (Mandatory)">

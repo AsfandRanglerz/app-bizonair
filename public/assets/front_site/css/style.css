@@ -5204,6 +5204,9 @@ select.form-control.is-valid, .was-validated select.form-control:valid {
     border-color: #28a745;
 }
 
+.form-control.is-valid, .was-validated .form-control:valid {
+    border-color: #28a745!important;
+}
 /*custom select box*/
 
 /*custom checkboxes*/

@@ -126,7 +126,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6 mb-1">
                                             <label for="mobileNumber">Enter your phone number: <span
-                                                    class="required">*</span></label>
+                                                    class="required">(Mandatory)</span></label>
                                             <!-- <input type="tel" class="form-control" id="phone" name="registration_phone_no" > -->
                                             <input type="number" name="registration_phone_no" class="form-control"
                                                    id="mobileNumber" placeholder="03xxxxxxxxx/3xxxxxxxxx">

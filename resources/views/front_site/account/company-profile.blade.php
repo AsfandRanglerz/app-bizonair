@@ -42,7 +42,7 @@
                                 </div> -->
                                     <div class="form-group col-md-6">
                                         <label for="industry" class="d-none label">Business Category <span
-                                                class="required">*</span></label>
+                                                class="required">(Mandatory)</span></label>
                                         <select class="form-control select2-multiple1" required id="industry" name="industry[]"
                                                 multiple>
                                             <option value=""></option>

@@ -305,6 +305,12 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
+            $('button[type="submit"]').click(function (){
+                /*errors will be shown at bottom of select2 tags*/
+                $('.select2').parent('.form-group').css({'display': 'flex', 'flex-direction': 'column-reverse'});
+                /*errors will be shown at bottom of select2 tags*/
+            });
+            
             /*select single dropdown*/
             $("#unit").select2({
                 placeholder: "Select Unit (Mandatory)"
