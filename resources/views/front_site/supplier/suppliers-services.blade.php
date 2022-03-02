@@ -24,18 +24,21 @@
                                 </ul>
                             </div>
                             <div class="col-md-6 px-2">
-                                <a class="text-reset text-decoration-none" href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
-                                <h5 class="font-weight-bold heading">{{strtoupper($prod->product_service_name)}}</h5>
-                                </a>
-                                 <div class="row">
-                                    <div class="col-md-8">
-                                        <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
-                                        <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
-                                        <p class="price font-500 overflow-text-dots-subject"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }}   @else {{ number_format($prod->target_price_from) }} - {{ number_format($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                        <p class="mt-1 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                <div class="p-2 rounded-8px border-grey">
+                                    <a class="text-reset text-decoration-none" href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
+                                    <h5 class="font-weight-bold heading">{{strtoupper($prod->product_service_name)}}</h5>
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
+                                            <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
+                                            <p class="price font-500 overflow-text-dots-subject"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }}   @else {{ number_format($prod->target_price_from) }} - {{ number_format($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
+                                            <p class="mt-1 mb-0 text-uppercase place-day">{{ $prod->city }}, {{ $prod->country }} <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span></p>
+                                        </div>
                                     </div>
+                                    <button class="red-btn" @if(!Auth::check()) onclick="location.href='{{ route('log-in-pre') }}'" @else data-toggle="modal" data-target="#contactFormPDP" @endif>MESSAGE</button>
                                 </div>
-                                <button class="red-btn" @if(!Auth::check()) onclick="location.href='{{ route('log-in-pre') }}'" @else data-toggle="modal" data-target="#contactFormPDP" @endif>MESSAGE</button>
+                                
                                 <!-- Modal -->
                                 <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
                                     <div class="modal-dialog contact-form" role="document">

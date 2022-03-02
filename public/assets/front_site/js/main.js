@@ -1021,34 +1021,15 @@ $(document).ready(function () {
     $('.preview-password').prevue();
 
     $('.suppliers-products .products-slider').lightSlider({
-        auto: true,
-        Speed: 300,
         gallery: true,
+        controls: true,
         item: 1,
-        loop: true,
-        thumbItem: 3,
-        slideMargin: 0,
-        enableDrag: false,
-        currentPagerPosition: 'left',
-        onSliderLoad: function (el) {
-            el.lightGallery({
-                selector: '#imageGallery .lslide'
-            });
-        },
-        responsive: [
-            {
-                breakpoint: 769,
-                settings: {
-                    thumbItem: 3
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    thumbItem: 3
-                }
-            }
-        ]
+        vertical: true,
+        verticalHeight: 185,
+        vThumbWidth: 50,
+        thumbItem: 8,
+        thumbMargin: 4,
+        slideMargin: 0
     });
     /*details comparison page js*/
     $('.details-comparison #selectAll').click(function () {

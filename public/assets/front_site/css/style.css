@@ -365,10 +365,6 @@ div.dataTables_wrapper div.dataTables_filter label {
 
 
 /*suppliers*/
-.suppliers-products .products-slider {
-    height: 135px!important;
-}
-
 .suppliers-products .products-slider .listing {
     height: 100%;
 }
@@ -376,21 +372,24 @@ div.dataTables_wrapper div.dataTables_filter label {
 .suppliers-products .products-slider img {
     height: 100%;
     object-fit: contain;
+    border: 1px solid #BABABA;
 }
 
 .suppliers-products .lSSlideOuter ul.lSPager.lSGallery {
-    margin: 4px 0!important;
+    height: 100%!important;
+}
+
+.suppliers-products .product-info-container .lSSlideOuter.vertical {
+    margin-bottom: 8px;
 }
 
 .suppliers-products .lSSlideOuter .lSPager.lSGallery li {
-    opacity: 0.5;
-    border: 1px solid #bababa75;
     transition: .5s;
 }
 
 .suppliers-products .lSSlideOuter .lSPager.lSGallery li.active,
 .suppliers-products .lSSlideOuter .lSPager.lSGallery li:hover {
-    border: 1px solid #bababa75;
+    border: 1px solid #BABABA;
     border-radius: 0;
     opacity: 1;
 }
@@ -10614,7 +10613,7 @@ header .navbar .navbar-toggler {
     }
     /*search field text*/
 
-    .place-day {
+    .place-day * {
         font-size: 8px!important;
     }
 
