@@ -52,8 +52,8 @@
                                 <div>
                                     <div>
 
-                                        <span class="overflow-text-dots-one-line">{{$prod->product_service_name}}</span>
-                                        <p class="overflow-text-dots-one-line">{{$prod->category->name}}</p>
+                                        <span class="single-line-text-wrap">{{$prod->product_service_name}}</span>
+                                        <p class="single-line-text-wrap">{{$prod->category->name}}</p>
 
                                     </div>
                                     <img src="{{$ASSET}}/front_site/images/groupsl-224.png" class="deals-img">
@@ -102,8 +102,8 @@
                                         <div>
                                             <img src="{{$ASSET}}/front_site/images/groupsl-224.png" class="deals-img">
                                             <div>
-                                                <span class="overflow-text-dots-one-line">{{$prod->product_service_name}}</span>
-                                                <p class="overflow-text-dots-one-line">{{$prod->category->name}}</p>
+                                                <span class="single-line-text-wrap">{{$prod->product_service_name}}</span>
+                                                <p class="single-line-text-wrap">{{$prod->category->name}}</p>
                                             </div>
 
                                         </div>
@@ -198,9 +198,9 @@
                                             @endif
                                 <div>
                                     <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
-                                    <span class="mt-2 overflow-text-dots-one-line">{{$prod->product_service_name}}</span>
+                                    <span class="mt-2 single-line-text-wrap">{{$prod->product_service_name}}</span>
                                     <?php $categ = \App\Category::where('id',$prod->category_id)->first(); ?>
-                                    <p class="overflow-text-dots-one-line">{{$categ->name}}</p>
+                                    <p class="single-line-text-wrap">{{$categ->name}}</p>
                                 </div>
                             </div>
                                     </a>
@@ -256,7 +256,7 @@
                                     @endif
                                     <div class="textile-caption">
                                         <span>News | {{date("d-F-Y", strtotime($article->publish_date))}}</span>
-                                        <p class="overflow-text-dots">{{$article->title}}</p>
+                                        <p class="single-line-text-wrap">{{$article->title}}</p>
                                     </div>
                                 </a>
                             </div>

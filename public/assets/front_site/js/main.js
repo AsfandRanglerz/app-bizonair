@@ -2699,6 +2699,7 @@ $(function () {
             {
                 breakpoint: 576,
                 settings: {
+                    autoplay: true,
                     arrows: false,
                     centerMode: false,
                     slidesToShow: 2

@@ -11,6 +11,16 @@
     --thumbBG: #90A4AE;
 }
 
+/*for sliders (safari)*/
+.single-line-text-wrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+}
+/*for sliders (safari)*/
+
 /*app back button*/
 .app-back-btn {
     color: #a52c3e;
