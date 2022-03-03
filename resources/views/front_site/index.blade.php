@@ -174,7 +174,7 @@
                 </div>
             </div>
 
-            <div class="row featured-container" style="">
+            <div class="row featured-container">
                 <div class="px-0 pt-2 container-fluid products-slider featured-slider">
                     <div class="mx-3 text-center position-relative">
                         <h3 class="main-heading">One-Time Deals</h3>
