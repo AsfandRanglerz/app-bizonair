@@ -11,6 +11,14 @@
     --thumbBG: #90A4AE;
 }
 
+.is-invalid.error + .is-invalid.error {
+    display: none!important;
+}
+
+.contact-product-info ul {
+    padding-left: 16px;
+}
+
 /*for sliders (safari)*/
 .single-line-text-wrap {
     overflow: hidden;
@@ -1434,6 +1442,7 @@ p.click {
 /*city and date in product boxes*/
 .place-day {
     color: grey;
+    font-size: 9px!important;
 }
 
 .place-day * {
@@ -4925,7 +4934,7 @@ td p {
 }
 
 .other-product-link-sections {
-    column-gap: 25px;
+    column-gap: 5px;
 }
 
 /*loader gif*/
@@ -8558,7 +8567,7 @@ header .navbar .navbar-toggler {
 }
 
 .other-product-link-sections .red-link {
-    font-size: 9px;
+    font-size: 9px!important;
 }
 
 @media only screen and (max-width: 991px) {
@@ -10623,6 +10632,10 @@ header .navbar .navbar-toggler {
     }
     /*search field text*/
 
+    .place-day {
+        font-size: 8px!important;
+    }
+    
     .place-day * {
         font-size: 8px!important;
     }

@@ -24,39 +24,34 @@
             </div>
         </div>
         <div class="container-fluid px-2 overflow-hidden">
-            <div class="row biz-deals-container">
-                <div class="px-0 pt-1 container-fluid products-slider biz-deals-slider">
+            <div class="row featured-container">
+                <div class="px-0 pt-2 container-fluid products-slider featured-slider">
                     <div class="mx-3 text-center position-relative">
                         <h3 class="main-heading">MyBiz Leads</h3>
                         <a href="{{ url('regular-suppliers/fibers-and-materials').'?status=all' }}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
                     <div class="px-1 container-fluid">
-                        <div class="slider slider-nav w-100 mybizdeals-front">
+                        <div class="slider slider-nav w-100 products-front">
                             @if(count($topproduct) > 0)
                                 @foreach($topproduct as $i => $prod)
-                                    <a class="text-reset text-decoration-none" href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
-                            <div class="slider-content">
-                                @if($prod->product_image->isNotEmpty())
-                                    @foreach($prod->product_image as $j => $image)
-                                        @if($loop->first)
-                                            <img class="w-100" alt="100x100" src="{{$image->image}}"
-                                                 data-holder-rendered="true">
-                                        @endif
-                                    @endforeach
-                                @else
-                                    <img class="w-100" alt="100x100"
-                                         src="{{$ASSET}}/front_site/images/noimage.png"
-                                         data-holder-rendered="true">
-                                @endif
-                                        <!-- <p>We are looking for a responsible and trustworthy manufacturer of Ladies Jackets.</p> -->
+                                    <a class="text-decoration-none text-reset" href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
+                                    <div class="slider-content">
+                                    @if($prod->product_image->isNotEmpty())
+                                        @foreach($prod->product_image as $j => $image)
+                                            @if($loop->first)
+                                                <img class="w-100" alt="100x100" src="{{$image->image}}"
+                                                    data-holder-rendered="true">
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <img class="w-100" alt="100x100"
+                                            src="{{$ASSET}}/front_site/images/noimage.png"
+                                            data-holder-rendered="true">
+                                    @endif
                                 <div>
-                                    <div>
-
-                                        <span class="single-line-text-wrap">{{$prod->product_service_name}}</span>
-                                        <p class="single-line-text-wrap">{{$prod->category->name}}</p>
-
-                                    </div>
-                                    <img src="{{$ASSET}}/front_site/images/groupsl-224.png" class="deals-img">
+                                    <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
+                                    <span class="mt-2 single-line-text-wrap">{{$prod->product_service_name}}</span>
+                                    <p class="single-line-text-wrap">{{$prod->category->name}}</p>
                                 </div>
                             </div>
                                     </a>
@@ -64,9 +59,9 @@
                             @endif
                         </div>
                     </div>
-
                 </div>
             </div>
+        
             <div class="row ad">
                 <a href="{{$bnrbig2nd->link}}" class="w-100 text-decoration-none" target="_blank">
                     <img src="{{ $bnrbig2nd->image }}" alt="" class="w-100">
@@ -74,17 +69,17 @@
                 <span class="fa fa-info position-absolute info-icon"></span>
                 <span class="img-info"></span>
             </div>
-            <div class="row biz-services-container">
-                <div class="px-0 pt-1 container-fluid products-slider biz-services-slider">
+            <div class="row featured-container">
+                <div class="px-0 pt-2 container-fluid products-slider featured-slider">
                     <div class="mx-3 text-center position-relative">
                         <h3 class="main-heading">MyBiz Services</h3>
                         <a href="{{ url('regular-service/hr-and-admin').'?status=all' }}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
                     <div class="px-1 container-fluid">
-                        <div class="slider slider-nav w-100 mybizdeals-front">
+                        <div class="slider slider-nav w-100 products-front">
                             @if(count($topservice) > 0)
                                 @foreach($topservice as $i => $prod)
-                                    <a class="text-reset text-decoration-none" href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
+                                    <a class="text-decoration-none text-reset" href="{{ route('serviceDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                     <div class="slider-content">
                                         @if($prod->product_image->isNotEmpty())
                                             @foreach($prod->product_image as $j => $image)
@@ -98,16 +93,12 @@
                                                  src="{{$ASSET}}/front_site/images/noimage.png"
                                                  data-holder-rendered="true">
                                         @endif
-                                    <!-- <p>We are looking for a responsible and trustworthy manufacturer of Ladies Jackets.</p> -->
-                                        <div>
-                                            <img src="{{$ASSET}}/front_site/images/groupsl-224.png" class="deals-img">
-                                            <div>
-                                                <span class="single-line-text-wrap">{{$prod->product_service_name}}</span>
-                                                <p class="single-line-text-wrap">{{$prod->category->name}}</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                <div>
+                                    <img src="{{$ASSET}}/front_site/images/groupsl-224.png">
+                                    <span class="mt-2 single-line-text-wrap">{{$prod->product_service_name}}</span>
+                                    <p class="single-line-text-wrap">{{$prod->category->name}}</p>
+                                </div>
+                            </div>
                                     </a>
                                 @endforeach
                             @endif
@@ -115,8 +106,7 @@
                     </div>
                 </div>
             </div>
-
-
+        
             <div class="ad-slider-content">
                 <div class="pb-1 text-right">
                     <a href="{{route('contact-us')}}" class="red-link view-all">ADVERTISE WITH US</a>

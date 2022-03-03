@@ -156,19 +156,19 @@
 
                                                 </div>
 
-                                                <div class="col-6 px-1 product-details">
+                                                <div class="col-lg-6 px-0 product-details">
                                                     <a class="text-reset text-decoration-none" href="{{ route('productDetail',['category'=>get_category_slug($prod->category_id),'subcategory'=>get_sub_category_slug($prod->subcategory_id),'prod_slug'=>$prod->slug]) }}">
                                                         <p class="title font-weight-bold overflow-text-dots-subject">{{$prod->product_service_name}}</p>
                                                     </a>
                                                     <p class="mb-0 overflow-text-dots-subject">{{$prod->subject}}</p>
                                                     <p class="mb-0">@if($prod->product_availability == "Both") In-Stock/Made to order @else {{$prod->product_availability}} @endif</p>
                                                     <p class="price font-500 overflow-text-dots-one-line"><span>@if($prod->suitable_currencies == "Other") {{ $prod->other_suitable_currency }} @else {{ $prod->suitable_currencies }} @endif @if(!empty($prod->unit_price_from)){{ number_format($prod->unit_price_from) }} - {{ number_format($prod->unit_price_to) }}   @else {{ number_format($prod->target_price_from) }} - {{ number_format($prod->target_price_to) }} @endif</span> Per @if($prod->unit_price_unit =="Other") {{$prod->other_unit_price_unit}} @else  {{$prod->unit_price_unit}} @endif  @if($prod->target_price_unit =="Other") {{$prod->other_target_price_unit}} @else {{$prod->target_price_unit}} @endif</p>
-                                                    <div class="mt-2 mb-0 text-uppercase place-day">
-                                                        <span class="place">{{ $prod->city }}, {{ $prod->country }}</span>
-                                                        <p>{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</p>
-                                                    </div>
+                                                    <p class="mt-2 mb-0 text-uppercase place-day">
+                                                        {{ $prod->city }}, {{ $prod->country }}
+                                                        <span class="pull-right">{{\Carbon\Carbon::parse($prod->creation_date)->diffForHumans()}}</span>
+                                                    </p>
                                                 </div>
-                                                <div class="col-6 p-1 border-grey">
+                                                <div class="col-lg-6 p-2 border-grey">
                                                     <div>
                                                         <div class="d-flex membersince">Member <span class="number">since</span><span class="years">{{get_product_created_at($prod->company_id)}}</span></div>
                                                         @if(!Auth::check())
@@ -177,7 +177,7 @@
                                                             <a href="{{route('about-us-suppliers',['id'=>$prod->company_id,'company'=>getCompanyName($prod->company_id)])}}" class="text-reset"> <p class="mb-1 text-uppercase font-500">{{get_product_company($prod->company_id)}}</p></a>
                                                         @endif
                                                         <small class="d-block mb-2 grey-text">{{get_product_city($prod->company_id)}}, {{get_product_country($prod->company_id)}}</small>
-                                                        <div class="mb-2 membericon">
+                                                        <div class="pull-right membericon">
                                                             <a href="#">
                                                                 <img alt="Premium Member" src="{{$ASSETS}}/assets/front_site/images/leads-membership.png"   title="We are working on this feature and will enable this soon" data-toggle="tooltip" data-placement="bottom">
                                                             </a>
@@ -185,16 +185,16 @@
                                                         {{--                                        <div class="my-2 d-inline-block font-500 add-inquiry-basket" required="false">--}}
                                                         {{--                                            <span class="fa fa-plus mr-2" style="color: #A52C3E"></span>Add to Inquiry Basket--}}
                                                         {{--                                        </div>--}}
-                                                        <div class="d-flex column-gap-4">
+                                                        <div>
                                                             @if(!Auth::check())
-                                                                <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND</span></a>
+                                                                <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
                                                             @else
-                                                                <a class="p-0 red-btn"  @if(!Auth::check()) href="{{url('log-in-pre')}}" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND</span></a>
+                                                                <a class="p-0 red-btn"  @if(!Auth::check()) href="{{url('log-in-pre')}}" @endif data-toggle="modal" data-target="#contactFormPDP"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Inquiry to company on Bizonair portal" data-toggle="tooltip">SEND A MESSAGE</span></a>
                                                             @endif
                                                             @if(!Auth::check())
-                                                                <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
+                                                                <a href="{{url('log-in-pre')}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
                                                             @else
-                                                                <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT</span></a>
+                                                                <a href="{{route('contact-us-suppliers',$prod->company_id)}}" class="p-0 red-btn"><span class="d-inline-block py-1 px-2" data-placement="bottom" title="Send an Email to company" data-toggle="tooltip">CONTACT US</span></a>
                                                         @endif
                                                         <!-- Modal -->
                                                             <div class="modal fade" id="contactFormPDP" tabindex="-1" role="dialog" aria-labelledby="contactForm" aria-hidden="true">
