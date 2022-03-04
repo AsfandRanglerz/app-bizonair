@@ -1403,12 +1403,13 @@ class InquiryController extends Controller
 
             //added by dilawar
             $prod = \App\Product::where('id',$message->convertsation->product_id)->first();
-            $usercompany = \App\UserCompany::where('company_id',$prod->company_id)->get();
-            foreach ($usercompany as $key => $produsercompany) {
-                $notification = new Notification();
-                if (request('created_by') == $produsercompany->user_id) {
-                    if( $key == 0 ) {
-                        $notification->user_id = $message->convertsation->created_by;
+            $usercompany = \App\UserCompany::where('company_id',$prod->company_id)->where('user_id','!=',auth()->id())->get();
+
+
+                if ($message->convertsation->created_by == auth()->id()) {
+                    foreach ($usercompany as $key => $produsercompany) {
+                        $notification = new Notification();
+                        $notification->user_id = $produsercompany->user_id;
                         $notification->table_name = 'inquiries';
                         $notification->table_data = 'Lead';
                         $notification->notification_text = $prod->product_service_name . ' Lead inquiry Chat by ' . auth()->user()->name;
@@ -1418,8 +1419,22 @@ class InquiryController extends Controller
                         $notification->prod_comp_id = $produsercompany->company_id;
                         $notification->save();
                     }
-                } elseif ($message->convertsation->created_by == auth()->id()) {
-                    $notification->user_id = $produsercompany->user_id;
+                }else{
+                    foreach ($usercompany as $key => $produsercompany) {
+                        $notification = new Notification();
+                        $notification->user_id = $produsercompany->user_id;
+                        $notification->table_name = 'inquiries';
+                        $notification->table_data = 'Lead';
+                        $notification->notification_text = $prod->product_service_name . ' Lead inquiry Chat by ' . auth()->user()->name;
+                        $notification->prod_id = $message->convertsation->product_id;
+                        $notification->product_service_types = $prod->product_service_types;
+                        $notification->product_service_name = $prod->product_service_name;
+                        $notification->prod_comp_id = $produsercompany->company_id;
+                        $notification->save();
+
+                    }
+                    $notification = new Notification();
+                    $notification->user_id = $message->convertsation->created_by;
                     $notification->table_name = 'inquiries';
                     $notification->table_data = 'Lead';
                     $notification->notification_text = $prod->product_service_name . ' Lead inquiry Chat by ' . auth()->user()->name;
@@ -1429,7 +1444,8 @@ class InquiryController extends Controller
                     $notification->prod_comp_id = $produsercompany->company_id;
                     $notification->save();
                 }
-            }
+
+
             //added by dilawar
 
             if(\App\BizLeadInquiryConvoDelete::where('conversation_id', $conversation_id)->where('created_by', \Auth::id())->first())
