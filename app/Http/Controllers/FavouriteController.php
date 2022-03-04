@@ -136,7 +136,8 @@ class FavouriteController extends Controller
         $data['title'] = 'Your Favourite Leads';
         $data['user'] = \App\User::find(\auth()->id());
         $data['order'] = 'desc';
-        $data['favourite'] = \App\Favourite::where('user_id','=',auth()->user()->id)->whereBetween('reference_no', ['100000', '4900000']);
+        $product = \App\Product::where('company_id',session()->get('company_id'))->pluck('reference_no');
+        $data['favourite'] = \App\Favourite::whereIn('reference_no', $product);
         $data['count'] = $data['favourite']->count();
         $data['favourite'] = $data['favourite']->paginate();
         $data['page'] = 'bizoffice.favourite.favourite-lead-list';
@@ -156,7 +157,8 @@ class FavouriteController extends Controller
         $data['title'] = 'Your Favourite Deals';
         $data['user'] = \App\User::find(\auth()->id());
         $data['order'] = 'desc';
-        $data['favourite'] = \App\Favourite::where('user_id','=',auth()->user()->id)->whereNotBetween('reference_no', ['100000', '4900000']);
+        $product = \App\BuySell::where('user_id',auth()->id())->pluck('reference_no');
+        $data['favourite'] = \App\Favourite::whereIn('reference_no', $product);
         $data['count'] = $data['favourite']->count();
         $data['favourite'] = $data['favourite']->paginate();
         $data['page'] = 'bizoffice.favourite.favourite-deal-list';
@@ -610,24 +612,14 @@ class FavouriteController extends Controller
         }
         if($message->save()){
 
+
 //added by dilawar
             $prod = \App\Product::where('id',$message->convertsation->product_id)->first();
-            $usercompany = \App\UserCompany::where('company_id',$prod->company_id)->get();
-            foreach ($usercompany as $key => $produsercompany) {
-                $notification = new Notification();
-                if (request('created_by') == $produsercompany->user_id) {
-                    if( $key == 0 ) {
-                        $notification->user_id = $message->convertsation->created_by;
-                        $notification->table_name = 'favourites';
-                        $notification->table_data = 'Lead';
-                        $notification->notification_text = $prod->product_service_name . ' Lead favourite Chat by ' . auth()->user()->name;
-                        $notification->prod_id = $message->convertsation->product_id;
-                        $notification->product_service_types = $prod->product_service_types;
-                        $notification->product_service_name = $prod->product_service_name;
-                        $notification->prod_comp_id = $produsercompany->company_id;
-                        $notification->save();
-                    }
-                } elseif ($message->convertsation->created_by == auth()->id()) {
+            $usercompany = \App\UserCompany::where('company_id',$prod->company_id)->where('user_id','!=',auth()->id())->get();
+
+            if ($message->convertsation->created_by == auth()->id()) {
+                foreach ($usercompany as $key => $produsercompany) {
+                    $notification = new Notification();
                     $notification->user_id = $produsercompany->user_id;
                     $notification->table_name = 'favourites';
                     $notification->table_data = 'Lead';
@@ -638,6 +630,30 @@ class FavouriteController extends Controller
                     $notification->prod_comp_id = $produsercompany->company_id;
                     $notification->save();
                 }
+            }else{
+                foreach ($usercompany as $key => $produsercompany) {
+                    $notification = new Notification();
+                    $notification->user_id = $produsercompany->user_id;
+                    $notification->table_name = 'favourites';
+                    $notification->table_data = 'Lead';
+                    $notification->notification_text = $prod->product_service_name . ' Lead favourite Chat by ' . auth()->user()->name;
+                    $notification->prod_id = $message->convertsation->product_id;
+                    $notification->product_service_types = $prod->product_service_types;
+                    $notification->product_service_name = $prod->product_service_name;
+                    $notification->prod_comp_id = $produsercompany->company_id;
+                    $notification->save();
+
+                }
+                $notification = new Notification();
+                $notification->user_id = $message->convertsation->created_by;
+                $notification->table_name = 'favourites';
+                $notification->table_data = 'Lead';
+                $notification->notification_text = $prod->product_service_name . ' Lead favourite Chat by ' . auth()->user()->name;
+                $notification->prod_id = $message->convertsation->product_id;
+                $notification->product_service_types = $prod->product_service_types;
+                $notification->product_service_name = $prod->product_service_name;
+                $notification->prod_comp_id = $produsercompany->company_id;
+                $notification->save();
             }
             //added by dilawar
 
