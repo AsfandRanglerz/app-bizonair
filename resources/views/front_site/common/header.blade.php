@@ -303,7 +303,7 @@
 
                 <ul class="mb-0 categories">
                     <li class="position-relative"><img class="dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/thin-charts-analytics/24/thin-1086_kpi_dashboard_monitor-512.png" height="20"><a href="{{route('user-dashboard')}}" class="sidebar-links">Dashboard</a>
-                    <li class="position-relative"><img class="mr-2 dashboard-sidebar-img" src="https://image.flaticon.com/icons/png/128/2321/2321232.png" height="20"><a href="{{ route('my-account-detail') }}" class="sidebar-links">My
+                    <li class="position-relative"><img class="mr-2 dashboard-sidebar-img" src="{{$ASSET}}/front_site/images/my-account.png" height="20"><a href="{{ route('my-account-detail') }}" class="sidebar-links">My
                             Account</a></li>
                     <li class="position-relative"><img class="mr-2 dashboard-sidebar-img" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/work-desk-1-982669.png" height="20"><a href="{{route('company-profile')}}" class="sidebar-links">Create New Biz Office</a><span class="badge new-badge">New</span></li>
                     <li class="position-relative dropdown" data-toggle="tooltip" data-placement="bottom"
@@ -370,7 +370,7 @@
             <aside class="side-nav w-100 biz-nav-content">
                 <ul class="mb-0 categories">
                     <li class="position-relative"><img class="mr-2 dashboard-sidebar-img" src="https://cdn2.iconfinder.com/data/icons/thin-charts-analytics/24/thin-1086_kpi_dashboard_monitor-512.png" height="20"><a href="{{route('user-dashboard')}}" class="sidebar-links">Dashboard</a>
-                    <li class="position-relative"><img class="mr-2 dashboard-sidebar-img" src="https://image.flaticon.com/icons/png/128/2321/2321232.png" height="20"><a href="{{ route('my-account-detail') }}" class="sidebar-links">My
+                    <li class="position-relative"><img class="mr-2 dashboard-sidebar-img" src="{{$ASSET}}/front_site/images/my-account.png" height="20"><a href="{{ route('my-account-detail') }}" class="sidebar-links">My
                             Account</a></li>
 
                     <li class="position-relative dropdown"><img class="mr-2 dashboard-sidebar-img" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/business-profile-3-919606.png" height="20"><a href="javascript:;">Business Profile</a>
