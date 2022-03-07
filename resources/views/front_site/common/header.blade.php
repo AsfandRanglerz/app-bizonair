@@ -518,6 +518,7 @@
     <div class="w-100 d-flex justify-content-between align-items-center">
         <!-- <span class="fa fa-angle-left app-back-btn"></span> -->
         <span class="open-nav fa fa-bars"></span>
+        <a href="{{route('home')}}" class="text-decoration-none text-white home-btn"><span class="fa fa-home"></span></a>
         <a class="navbar-brand" href="{{route('home')}}">
             <img src="{{$siteLogo}}" class="ml-2 navbar-logo"/>
         </a>

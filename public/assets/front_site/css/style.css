@@ -11,6 +11,27 @@
     --thumbBG: #90A4AE;
 }
 
+.home-btn {
+    background: #344256;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    box-shadow: 0 0 4px #12253d;
+}
+
+.home-btn:focus, .home-btn:active {
+    background: #12253d;
+    box-shadow: 0 0 6px #12253d;
+}
+
 .is-invalid.error + .is-invalid.error {
     display: none!important;
 }
