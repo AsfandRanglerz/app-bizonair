@@ -1031,6 +1031,17 @@ $(document).ready(function () {
         thumbMargin: 4,
         slideMargin: 0
     });
+
+    /*light slider which contain only 1 image, that image will stay fixed in container*/
+    setTimeout(() => {
+        $('.lSGallery').each(function() {
+            if($(this).html()=="") {
+                $(this).width('100%');
+            }
+        }); 
+    }, 500);
+    /*light slider which contain only 1 image, that image will stay fixed in container*/
+
     /*details comparison page js*/
     $('.details-comparison #selectAll').click(function () {
         if ($(this).is(":checked")) {

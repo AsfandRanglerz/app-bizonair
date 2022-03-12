@@ -3570,7 +3570,7 @@
             });
 
             $('.select-suitable-type').select2({
-                placeholder: "Select Dealing As (Mandatory)"
+                placeholder: "Select Dealing Product As (Mandatory)"
             });
 
             $('.select-target-country').select2({
