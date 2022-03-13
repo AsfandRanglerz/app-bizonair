@@ -1034,9 +1034,11 @@ $(document).ready(function () {
 
     /*light slider which contain only 1 image, that image will stay fixed in container*/
     setTimeout(() => {
-        $('.lSGallery').each(function() {
+        $('.product-info-container .lSGallery').each(function() {
             if($(this).html()=="") {
                 $(this).width('100%');
+                var singleImgLink = $(this).parent().find('a').attr('href');
+                $(this).parent().attr('onclick', 'location.href='+ "'" + singleImgLink + "'");
             }
         }); 
     }, 500);
