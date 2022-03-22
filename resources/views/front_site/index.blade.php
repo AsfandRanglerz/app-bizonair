@@ -30,7 +30,7 @@
                         <h3 class="main-heading">MyBiz Leads</h3>
                         <a href="{{ url('regular-suppliers/fibers-and-materials').'?status=all' }}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
-                    <div class="px-1 container-fluid">
+                    <div class="px-2 container-fluid">
                         <div class="slider slider-nav w-100 products-front">
                             @if(count($topproduct) > 0)
                                 @foreach($topproduct as $i => $prod)
@@ -75,7 +75,7 @@
                         <h3 class="main-heading">MyBiz Services</h3>
                         <a href="{{ url('regular-service/hr-and-admin').'?status=all' }}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
-                    <div class="px-1 container-fluid">
+                    <div class="px-2 container-fluid">
                         <div class="slider slider-nav w-100 products-front">
                             @if(count($topservice) > 0)
                                 @foreach($topservice as $i => $prod)
@@ -170,7 +170,7 @@
                         <h3 class="main-heading">One-Time Deals</h3>
                         <a href="{{ url('one-time-selling-deals/fibers-and-materials').'?status=all' }}" class="position-absolute red-link view-all">VIEW ALL</a>
                     </div>
-                    <div class="px-1 container-fluid">
+                    <div class="px-2 container-fluid">
                         <div class="slider slider-nav w-100 products-front">
                             @if(count($topbuysell) > 0)
                                 @foreach($topbuysell as $i => $prod)
@@ -201,32 +201,16 @@
                 </div>
             </div>
 
-            <div class="mt-2 ad-slider-content2 rounded border-grey">
-                <div id="adSlider3" class="carousel slide ad-slider" data-ride="carousel" data-interval="5000">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <a href="{{ $bnrlwr->link }}" class="text-decoration-none" target="_blank">
-                                <img src="{{ $bnrlwr->image }}" class="w-100 h-100"/>
-                            </a>
-                            <span class="fa fa-info position-absolute info-icon"></span>
-                            <span class="img-info"></span>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="{{ $bnrupr->link }}" class="text-decoration-none h-100" target="_blank">
-                                <img src="{{ $bnrupr->image }}" class="w-100 h-100"/>
-                            </a>
-                            <span class="fa fa-info position-absolute info-icon"></span>
-                            <span class="img-info"></span>
-                        </div>
-                    </div>
-                    <div class="ad-slider-arrows">
-                        <a href="#adSlider3" data-slide="prev">
-                            <span class="fa fa-angle-left" aria-hidden="true"></span>
-                        </a>
-                        <a href="#adSlider3" data-slide="next">
-                            <span class="fa fa-angle-right"></span>
-                        </a>
-                    </div>
+            <div class="row mx-0 rounded mt-2 border-grey">
+                <div class="col-6 px-0">
+                    <img src="{{ $bnrlwr->image }}" class="w-100 h-100"/>
+                    <span class="fa fa-info position-absolute info-icon"></span>
+                    <span class="img-info"></span>
+                </div>
+                <div class="col-6 px-0">
+                    <img src="{{ $bnrupr->image }}" class="w-100 h-100"/>
+                    <span class="fa fa-info position-absolute info-icon"></span>
+                    <span class="img-info"></span>
                 </div>
             </div>
 
