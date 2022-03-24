@@ -340,7 +340,11 @@
             };
 
             $('#emailConfirmationForm').ajaxForm(options_emailconfirmation);
-
+            
+            /*user id sending to react-native*/
+            var userId = {{auth()->id()}};
+            window.ReactNativeWebView.postMessage(JSON.stringify({key : userId}));
+            /*user id sending to react-native*/
         });
     </script>
 @endpush
