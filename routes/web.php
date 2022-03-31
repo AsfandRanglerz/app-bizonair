@@ -503,6 +503,8 @@ Route::post('/send-notification-id', 'FavouriteController@send_notification_id')
 Route::post('/is-display-notification', 'FavouriteController@is_display_notification');
 Route::post('/notification', 'HomeController@notification')->name('notification');
 
+Route::post('/send-app-notification', 'HomeController@sendAppNotification')->name('send-app-notification');
+
 Route::get('search-product','HomeController@searchProduct')->name('search_product');
 Route::get('livesearch','HomeController@livesearch');
 

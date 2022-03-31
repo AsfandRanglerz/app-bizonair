@@ -657,7 +657,17 @@
     <div class="modal-dialog modal-dialog-centered modal-login notafic">
     </div>
 </div>
+<form method="post" id="notificationForm" style="display: none">
+    <input type="hidden" name="user_id" value="{{auth()->id()}}">
+</form>
+<?php
+      $notification_count = 0;
+      $notifica = \App\FirebaseToken::where('user_id',auth()->id())->first();
+      if($notifica){
+          $notification_count = $notifica->notification;
+      }
 
+?>
 @push('js')
 
     <script type="text/javascript">
@@ -954,6 +964,7 @@
                 }
             });
         });
+
     </script>
     @if(Auth::check())
         <script type="text/javascript">
@@ -1006,7 +1017,7 @@
                         }
                     }
                 });
-            }, 1000);//time in milliseconds
+            }, 5000);//time in milliseconds
             // }else{
             //     $(".notifications-scroll").css("display", "none");
             //     $(".biz-notifications").hover(function() {
@@ -1014,6 +1025,21 @@
             //     });
             //     console.log('return false');
             // }
+            $(document).ready(function() {
+                var notification_count = "{{$notification_count}}";
+                var badge_count = "{{session()->get('notification_counter')}}";
+                if(notification_count != badge_count){
+                    var notification_counter = badge_count;
+                    $.ajax({
+                        type:"post",
+                        url:"{{url('send-app-notification')}}",
+                        data:{_token: "{{csrf_token()}}" , notification: notification_counter },
+                        success: function (data) {
+                            console.log(data);
+                        }
+                    });
+                }
+            });
         </script>
     @endif
 

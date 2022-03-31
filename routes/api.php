@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::as('api.')->group(function () {
+
+    Route::namespace('API\V1')->as('v1.')->prefix('v1')->group(function () {
+
+        Route::apiResource('firebase-token', 'FirebaseTokenController');
+
+    });
+
+
 });

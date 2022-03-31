@@ -21,6 +21,7 @@ class AddMoreColumnsToUsers extends Migration
             $table->integer('country_id')->nullable()->after('last_name');
             $table->string('company_name')->nullable()->after('country_id');
             $table->integer('user_type_id')->nullable()->after('company_name');
+            $table->string('device_token')->nullable()->after('settings');
 
         });
     }
