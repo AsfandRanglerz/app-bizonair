@@ -72,7 +72,62 @@ class FavouriteController extends Controller
                 foreach ($getUser as $userEmail){
                     \Mail::to($userEmail->email)->send(new \App\Mail\FavouriteProductMail($detail));
                 }
+                //mobile side notification added by dilawar
+                 foreach ($getUser as $user) {
+                    try{
+                        if ($user && $user->device_token){
+                            $url = 'https://fcm.googleapis.com/fcm/send';
+                            // notification msg
+                            $data = array
+                            (
+                                'title'  => 'Favourite Lead',
+                                'url' => url('/lead-favs'),
+                                'priority' => 'high',
+                                'body' => $product->product_service_name . ' Favourite product added by ' . auth()->user()->name,
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true
+                            );
+                            // merge  arrays
+                            $fields = array
+                            (
+                                'to'  =>  $user->device_token,
+                                'message'  => $product->product_service_name . ' Favourite product added by ' . auth()->user()->name,
+                                'notification' => $data,
+                                'data' => $data,
+                                'priority' => 'high',
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true,
+                                'sandbox' => true,
+                            );
+                            // set headers
+                            $headers = array
+                            (
+                                // AIzaSyBoDGKrvaY2FU-VNut6YPSB_NRG0o0SVgw
+                                'Authorization: key=AAAAzC5NH_4:APA91bF0Aup6slsMWCRn0rPy9xOlkz6USfxw2uqPYph5MlBgwSe2UwOxO770NuAkRMs8VhdwAC2u2CaQHK3bcokL5KKjrTitNhgvgh98Y0IqOfTnbUnxar95uxOggoZ0TC02hD6Ahvbq',
+                                'Content-Type: application/json'
+                            );
+                            // curl function to run notification
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_URL, $url);
+                            curl_setopt($ch, CURLOPT_FAILONERROR, false);
+                            curl_setopt($ch, CURLOPT_POST, true);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+                            $result = curl_exec($ch);
+                            curl_close($ch);
+                            $obj = json_decode($result);
 
+                        }
+                    } catch (\Exception $e) {
+                        return $e->getMessage();
+                    }
+                }
+                //mobile side notification added by dilawar
                 foreach ($company as $comp) {
                     $notification = new Notification();
                     $notification->user_id = $comp->user_id;
@@ -94,7 +149,62 @@ class FavouriteController extends Controller
                 $detail['product_title'] = $product_service_name;
                 $detail['reference_no'] = $reference_no;
                 \Mail::to($user->email)->send(new \App\Mail\FavouriteProductMail($detail));
+                //mobile side notification added by dilawar
+                if ($user) {
+                    try{
+                        if ($user && $user->device_token){
+                            $url = 'https://fcm.googleapis.com/fcm/send';
+                            // notification msg
+                            $data = array
+                            (
+                                'title'  => 'Favourite Deal',
+                                'url' => url('/one-time-favs'),
+                                'priority' => 'high',
+                                'body' => $buysell->product_service_name . ' Favourite product added by ' . auth()->user()->name,
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true
+                            );
+                            // merge  arrays
+                            $fields = array
+                            (
+                                'to'  =>  $user->device_token,
+                                'message'  => $buysell->product_service_name . ' Favourite product added by ' . auth()->user()->name,
+                                'notification' => $data,
+                                'data' => $data,
+                                'priority' => 'high',
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true,
+                                'sandbox' => true,
+                            );
+                            // set headers
+                            $headers = array
+                            (
+                                // AIzaSyBoDGKrvaY2FU-VNut6YPSB_NRG0o0SVgw
+                                'Authorization: key=AAAAzC5NH_4:APA91bF0Aup6slsMWCRn0rPy9xOlkz6USfxw2uqPYph5MlBgwSe2UwOxO770NuAkRMs8VhdwAC2u2CaQHK3bcokL5KKjrTitNhgvgh98Y0IqOfTnbUnxar95uxOggoZ0TC02hD6Ahvbq',
+                                'Content-Type: application/json'
+                            );
+                            // curl function to run notification
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_URL, $url);
+                            curl_setopt($ch, CURLOPT_FAILONERROR, false);
+                            curl_setopt($ch, CURLOPT_POST, true);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+                            $result = curl_exec($ch);
+                            curl_close($ch);
+                            $obj = json_decode($result);
 
+                        }
+                    } catch (\Exception $e) {
+                        return $e->getMessage();
+                    }
+                }
+                //mobile side notification added by dilawar
                 $notification = new Notification();
                 $notification->user_id = $user->id;
                 $notification->table_name = 'favourites';
@@ -507,7 +617,7 @@ class FavouriteController extends Controller
                 }
                 DB::table('notifications')
                     ->where('user_id', auth()->id())
-                    ->where('prod_comp_id',\session()->get('company_id'))
+//                    ->orWhere('prod_comp_id',\session()->get('company_id'))
                     ->where('table_name','favourites')
                     ->where('table_data','Lead')
                     ->update(['is_display' => 1,'is_read'=>1]);
@@ -616,8 +726,65 @@ class FavouriteController extends Controller
 //added by dilawar
             $prod = \App\Product::where('id',$message->convertsation->product_id)->first();
             $usercompany = \App\UserCompany::where('company_id',$prod->company_id)->where('user_id','!=',auth()->id())->get();
-
+            $userNotify = \App\UserCompany::where('company_id',$prod->company_id)->where('user_id','!=',auth()->id())->pluck('user_id');
+            $getUser = \App\User::whereIn('id',$userNotify)->whereNotNull('device_token')->get();
             if ($message->convertsation->created_by == auth()->id()) {
+                //mobile side notification added by dilawar
+                foreach ($getUser as $user) {
+                    try{
+                        if ($user && $user->device_token){
+                            $url = 'https://fcm.googleapis.com/fcm/send';
+                            // notification msg
+                            $data = array
+                            (
+                                'title'  => 'Favourite Lead',
+                                'url' => url('/lead-favs'),
+                                'priority' => 'high',
+                                'body' => $prod->product_service_name . ' Lead favourite Chat by ' . auth()->user()->name,
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true
+                            );
+                            // merge  arrays
+                            $fields = array
+                            (
+                                'to'  =>  $user->device_token,
+                                'message'  => $prod->product_service_name . ' Lead favourite Chat by ' . auth()->user()->name,
+                                'notification' => $data,
+                                'data' => $data,
+                                'priority' => 'high',
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true,
+                                'sandbox' => true,
+                            );
+                            // set headers
+                            $headers = array
+                            (
+                                // AIzaSyBoDGKrvaY2FU-VNut6YPSB_NRG0o0SVgw
+                                'Authorization: key=AAAAzC5NH_4:APA91bF0Aup6slsMWCRn0rPy9xOlkz6USfxw2uqPYph5MlBgwSe2UwOxO770NuAkRMs8VhdwAC2u2CaQHK3bcokL5KKjrTitNhgvgh98Y0IqOfTnbUnxar95uxOggoZ0TC02hD6Ahvbq',
+                                'Content-Type: application/json'
+                            );
+                            // curl function to run notification
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_URL, $url);
+                            curl_setopt($ch, CURLOPT_FAILONERROR, false);
+                            curl_setopt($ch, CURLOPT_POST, true);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+                            $result = curl_exec($ch);
+                            curl_close($ch);
+                            $obj = json_decode($result);
+
+                        }
+                    } catch (\Exception $e) {
+                        return $e->getMessage();
+                    }
+                }
+                //mobile side notification added by dilawar
                 foreach ($usercompany as $key => $produsercompany) {
                     $notification = new Notification();
                     $notification->user_id = $produsercompany->user_id;
@@ -631,6 +798,62 @@ class FavouriteController extends Controller
                     $notification->save();
                 }
             }else{
+                //mobile side notification added by dilawar
+                foreach ($getUser as $user) {
+                    try{
+                        if ($user && $user->device_token){
+                            $url = 'https://fcm.googleapis.com/fcm/send';
+                            // notification msg
+                            $data = array
+                            (
+                                'title'  => 'Favourite Lead',
+                                'url' => url('/lead-favs'),
+                                'priority' => 'high',
+                                'body' => $prod->product_service_name . ' Lead favourite Chat by ' . auth()->user()->name,
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true
+                            );
+                            // merge  arrays
+                            $fields = array
+                            (
+                                'to'  =>  $user->device_token,
+                                'message'  => $prod->product_service_name . ' Lead favourite Chat by ' . auth()->user()->name,
+                                'notification' => $data,
+                                'data' => $data,
+                                'priority' => 'high',
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true,
+                                'sandbox' => true,
+                            );
+                            // set headers
+                            $headers = array
+                            (
+                                // AIzaSyBoDGKrvaY2FU-VNut6YPSB_NRG0o0SVgw
+                                'Authorization: key=AAAAzC5NH_4:APA91bF0Aup6slsMWCRn0rPy9xOlkz6USfxw2uqPYph5MlBgwSe2UwOxO770NuAkRMs8VhdwAC2u2CaQHK3bcokL5KKjrTitNhgvgh98Y0IqOfTnbUnxar95uxOggoZ0TC02hD6Ahvbq',
+                                'Content-Type: application/json'
+                            );
+                            // curl function to run notification
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_URL, $url);
+                            curl_setopt($ch, CURLOPT_FAILONERROR, false);
+                            curl_setopt($ch, CURLOPT_POST, true);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+                            $result = curl_exec($ch);
+                            curl_close($ch);
+                            $obj = json_decode($result);
+
+                        }
+                    } catch (\Exception $e) {
+                        return $e->getMessage();
+                    }
+                }
+                //mobile side notification added by dilawar
                 foreach ($usercompany as $key => $produsercompany) {
                     $notification = new Notification();
                     $notification->user_id = $produsercompany->user_id;
@@ -654,6 +877,63 @@ class FavouriteController extends Controller
                 $notification->product_service_name = $prod->product_service_name;
                 $notification->prod_comp_id = $produsercompany->company_id;
                 $notification->save();
+                //mobile side notification added by dilawar
+                $user = \App\User::where('id',$message->convertsation->created_by)->whereNotNull('device_token')->first();
+                if ($user) {
+                    try{
+                        if ($user && $user->device_token){
+                            $url = 'https://fcm.googleapis.com/fcm/send';
+                            // notification msg
+                            $data = array
+                            (
+                                'title'  => 'Favourite Lead',
+                                'url' => url('/lead-favs'),
+                                'priority' => 'high',
+                                'body' => $prod->product_service_name . ' Lead favourite Chat by ' . auth()->user()->name,
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true
+                            );
+                            // merge  arrays
+                            $fields = array
+                            (
+                                'to'  =>  $user->device_token,
+                                'message'  => $prod->product_service_name . ' Lead favourite Chat by ' . auth()->user()->name,
+                                'notification' => $data,
+                                'data' => $data,
+                                'priority' => 'high',
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true,
+                                'sandbox' => true,
+                            );
+                            // set headers
+                            $headers = array
+                            (
+                                // AIzaSyBoDGKrvaY2FU-VNut6YPSB_NRG0o0SVgw
+                                'Authorization: key=AAAAzC5NH_4:APA91bF0Aup6slsMWCRn0rPy9xOlkz6USfxw2uqPYph5MlBgwSe2UwOxO770NuAkRMs8VhdwAC2u2CaQHK3bcokL5KKjrTitNhgvgh98Y0IqOfTnbUnxar95uxOggoZ0TC02hD6Ahvbq',
+                                'Content-Type: application/json'
+                            );
+                            // curl function to run notification
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_URL, $url);
+                            curl_setopt($ch, CURLOPT_FAILONERROR, false);
+                            curl_setopt($ch, CURLOPT_POST, true);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+                            $result = curl_exec($ch);
+                            curl_close($ch);
+                            $obj = json_decode($result);
+
+                        }
+                    } catch (\Exception $e) {
+                        return $e->getMessage();
+                    }
+                }
+                //mobile side notification added by dilawar
             }
             //added by dilawar
 
@@ -1639,6 +1919,123 @@ class FavouriteController extends Controller
 
             //added by dilawar
             $buysell = \App\BuySell::where('id',$message->convertsation->buy_sell_id)->first();
+            if(request('created_by') == $buysell->user_id){
+                //mobile side notification added by dilawar
+                $user = \App\User::where('id',$message->convertsation->created_by)->whereNotNull('device_token')->first();
+                if ($user) {
+                    try{
+                        if ($user && $user->device_token){
+                            $url = 'https://fcm.googleapis.com/fcm/send';
+                            // notification msg
+                            $data = array
+                            (
+                                'title'  => 'Favourite Deal',
+                                'url' => url('/one-time-favs'),
+                                'priority' => 'high',
+                                'body' => $buysell->product_service_name.' Deal favourite Chat by '.auth()->user()->name,
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true
+                            );
+                            // merge  arrays
+                            $fields = array
+                            (
+                                'to'  =>  $user->device_token,
+                                'message'  => $buysell->product_service_name.' Deal favourite Chat by '.auth()->user()->name,
+                                'notification' => $data,
+                                'data' => $data,
+                                'priority' => 'high',
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true,
+                                'sandbox' => true,
+                            );
+                            // set headers
+                            $headers = array
+                            (
+                                // AIzaSyBoDGKrvaY2FU-VNut6YPSB_NRG0o0SVgw
+                                'Authorization: key=AAAAzC5NH_4:APA91bF0Aup6slsMWCRn0rPy9xOlkz6USfxw2uqPYph5MlBgwSe2UwOxO770NuAkRMs8VhdwAC2u2CaQHK3bcokL5KKjrTitNhgvgh98Y0IqOfTnbUnxar95uxOggoZ0TC02hD6Ahvbq',
+                                'Content-Type: application/json'
+                            );
+                            // curl function to run notification
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_URL, $url);
+                            curl_setopt($ch, CURLOPT_FAILONERROR, false);
+                            curl_setopt($ch, CURLOPT_POST, true);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+                            $result = curl_exec($ch);
+                            curl_close($ch);
+                            $obj = json_decode($result);
+
+                        }
+                    } catch (\Exception $e) {
+                        return $e->getMessage();
+                    }
+                }
+                //mobile side notification added by dilawar
+            }elseif($message->convertsation->created_by == auth()->id()){
+                //mobile side notification added by dilawar
+                $user = \App\User::where('id',$buysell->user_id)->whereNotNull('device_token')->first();
+                if ($user) {
+                    try{
+                        if ($user && $user->device_token){
+                            $url = 'https://fcm.googleapis.com/fcm/send';
+                            // notification msg
+                            $data = array
+                            (
+                                'title'  => 'Favourite Deal',
+                                'url' => url('/one-time-favs'),
+                                'priority' => 'high',
+                                'body' => $buysell->product_service_name.' Deal favourite Chat by '.auth()->user()->name,
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true
+                            );
+                            // merge  arrays
+                            $fields = array
+                            (
+                                'to'  =>  $user->device_token,
+                                'message'  => $buysell->product_service_name.' Deal favourite Chat by '.auth()->user()->name,
+                                'notification' => $data,
+                                'data' => $data,
+                                'priority' => 'high',
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true,
+                                'sandbox' => true,
+                            );
+                            // set headers
+                            $headers = array
+                            (
+                                // AIzaSyBoDGKrvaY2FU-VNut6YPSB_NRG0o0SVgw
+                                'Authorization: key=AAAAzC5NH_4:APA91bF0Aup6slsMWCRn0rPy9xOlkz6USfxw2uqPYph5MlBgwSe2UwOxO770NuAkRMs8VhdwAC2u2CaQHK3bcokL5KKjrTitNhgvgh98Y0IqOfTnbUnxar95uxOggoZ0TC02hD6Ahvbq',
+                                'Content-Type: application/json'
+                            );
+                            // curl function to run notification
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_URL, $url);
+                            curl_setopt($ch, CURLOPT_FAILONERROR, false);
+                            curl_setopt($ch, CURLOPT_POST, true);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+                            $result = curl_exec($ch);
+                            curl_close($ch);
+                            $obj = json_decode($result);
+
+                        }
+                    } catch (\Exception $e) {
+                        return $e->getMessage();
+                    }
+                }
+                //mobile side notification added by dilawar
+            }
             $notification = new Notification();
             if(request('created_by') == $buysell->user_id){
                 $notification->user_id= $message->convertsation->created_by;

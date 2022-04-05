@@ -847,7 +847,64 @@ class CompanyController extends Controller
         }
 
         $company = \App\UserCompany::where('user_id','!=',auth()->id())->where('company_id', session()->get('company_id'))->get();
+        $userNotify = \App\UserCompany::where('user_id','!=',auth()->id())->where('company_id', session()->get('company_id'))->pluck('user_id');
+        $getUser = \App\User::whereIn('id',$userNotify)->whereNotNull('device_token')->get();
+        //mobile side notification added by dilawar
+        foreach ($getUser as $user) {
+            try{
+                if ($user && $user->device_token){
+                    $url = 'https://fcm.googleapis.com/fcm/send';
+                    // notification msg
+                    $data = array
+                    (
+                        'title'  => 'Chats',
+                        'url' => url('/group-chat'),
+                        'priority' => 'high',
+                        'body' => ' You have unread messages on group ' . getCompanyName(session()->get('company_id')),
+                        'sound' => "default",
+                        'content_available' => true,
+                        'mutable-content' => true
+                    );
+                    // merge  arrays
+                    $fields = array
+                    (
+                        'to'  =>  $user->device_token,
+                        'message'  => ' You have unread messages on group ' . getCompanyName(session()->get('company_id')),
+                        'notification' => $data,
+                        'data' => $data,
+                        'priority' => 'high',
+                        'sound' => "default",
+                        'content_available' => true,
+                        'mutable-content' => true,
+                        'sandbox' => true,
+                    );
+                    // set headers
+                    $headers = array
+                    (
+                        // AIzaSyBoDGKrvaY2FU-VNut6YPSB_NRG0o0SVgw
+                        'Authorization: key=AAAAzC5NH_4:APA91bF0Aup6slsMWCRn0rPy9xOlkz6USfxw2uqPYph5MlBgwSe2UwOxO770NuAkRMs8VhdwAC2u2CaQHK3bcokL5KKjrTitNhgvgh98Y0IqOfTnbUnxar95uxOggoZ0TC02hD6Ahvbq',
+                        'Content-Type: application/json'
+                    );
+                    // curl function to run notification
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_FAILONERROR, false);
+                    curl_setopt($ch, CURLOPT_POST, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+                    $result = curl_exec($ch);
+                    curl_close($ch);
+                    $obj = json_decode($result);
 
+                }
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
+        }
+        //mobile side notification added by dilawar
         foreach ($company as $comp) {
             $noti = \App\Notification::where('table_name','chats')->where('user_id',$comp->user_id)->where('is_read',0)->count();
             $inc = $noti+1;
@@ -963,6 +1020,64 @@ class CompanyController extends Controller
             if ($meeting->save()) {
                 //         if (1 == 1) {
                 $company = \App\UserCompany::where('user_id','!=',auth()->id())->where('company_id', session()->get('company_id'))->get();
+                $userNotify = \App\UserCompany::where('user_id','!=',auth()->id())->where('company_id', session()->get('company_id'))->pluck('user_id');
+                $getUser = \App\User::whereIn('id',$userNotify)->whereNotNull('device_token')->get();
+                //mobile side notification added by dilawar
+                foreach ($getUser as $user) {
+                    try{
+                        if ($user && $user->device_token){
+                            $url = 'https://fcm.googleapis.com/fcm/send';
+                            // notification msg
+                            $data = array
+                            (
+                                'title'  => 'Meeting',
+                                'url' => url('/meetings'),
+                                'priority' => 'high',
+                                'body' => ' Meeting ' . $meeting->title . ' created by ' . auth()->user()->name,
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true
+                            );
+                            // merge  arrays
+                            $fields = array
+                            (
+                                'to'  =>  $user->device_token,
+                                'message'  => ' Meeting ' . $meeting->title . ' created by ' . auth()->user()->name,
+                                'notification' => $data,
+                                'data' => $data,
+                                'priority' => 'high',
+                                'sound' => "default",
+                                'content_available' => true,
+                                'mutable-content' => true,
+                                'sandbox' => true,
+                            );
+                            // set headers
+                            $headers = array
+                            (
+                                // AIzaSyBoDGKrvaY2FU-VNut6YPSB_NRG0o0SVgw
+                                'Authorization: key=AAAAzC5NH_4:APA91bF0Aup6slsMWCRn0rPy9xOlkz6USfxw2uqPYph5MlBgwSe2UwOxO770NuAkRMs8VhdwAC2u2CaQHK3bcokL5KKjrTitNhgvgh98Y0IqOfTnbUnxar95uxOggoZ0TC02hD6Ahvbq',
+                                'Content-Type: application/json'
+                            );
+                            // curl function to run notification
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_URL, $url);
+                            curl_setopt($ch, CURLOPT_FAILONERROR, false);
+                            curl_setopt($ch, CURLOPT_POST, true);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+                            $result = curl_exec($ch);
+                            curl_close($ch);
+                            $obj = json_decode($result);
+
+                        }
+                    } catch (\Exception $e) {
+                        return $e->getMessage();
+                    }
+                }
+                //mobile side notification added by dilawar
                 foreach ($company as $comp){
 
                     $notification = new Notification();

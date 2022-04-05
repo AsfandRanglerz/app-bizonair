@@ -1017,7 +1017,7 @@
                         }
                     }
                 });
-            }, 5000);//time in milliseconds
+            }, 1000);//time in milliseconds
             // }else{
             //     $(".notifications-scroll").css("display", "none");
             //     $(".biz-notifications").hover(function() {
@@ -1025,21 +1025,6 @@
             //     });
             //     console.log('return false');
             // }
-            $(document).ready(function() {
-                var notification_count = "{{$notification_count}}";
-                var badge_count = "{{session()->get('notification_counter')}}";
-                if(notification_count != badge_count){
-                    var notification_counter = badge_count;
-                    $.ajax({
-                        type:"post",
-                        url:"{{url('send-app-notification')}}",
-                        data:{_token: "{{csrf_token()}}" , notification: notification_counter },
-                        success: function (data) {
-                            console.log(data);
-                        }
-                    });
-                }
-            });
         </script>
     @endif
 

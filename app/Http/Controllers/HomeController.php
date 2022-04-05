@@ -1087,66 +1087,6 @@ class HomeController extends Controller
         return response()->json(['cities'=>$city]);
     }
 
-    public function sendAppNotification(Request $request)
-    {
-        $users = User::where('role_id', 2)->whereNotNull('device_token')->get();
-
-        foreach ($users as $user) {
-            try{
-               if ($user && $user->device_token){
-                DB::table('firebase_tokens')
-                    ->where('user_id', $user->id)
-                    ->update(['notification' => request()->notification]);
-                $url = 'https://fcm.googleapis.com/fcm/send';
-                // notification msg
-                $msg = array
-                (
-                    'title'  => request()->notification,
-                    'message'  => 'fgh',
-                    'priority' => 'high',
-                    'sound' => "default",
-                    'content_available' => true,
-                    'mutable-content' => true
-                );
-                // merge  arrays
-                $fields = array
-                (
-                    'to'  =>  $user->device_token,
-                    'notification' => $msg,
-                    'priority' => 'high',
-                    'sound' => "default",
-                    'content_available' => true,
-                    'mutable-content' => true,
-                    'sandbox' => true,
-                );
-                // set headers
-                $headers = array
-                (
-                    // AIzaSyBoDGKrvaY2FU-VNut6YPSB_NRG0o0SVgw
-                    'Authorization: key=AAAAzC5NH_4:APA91bF0Aup6slsMWCRn0rPy9xOlkz6USfxw2uqPYph5MlBgwSe2UwOxO770NuAkRMs8VhdwAC2u2CaQHK3bcokL5KKjrTitNhgvgh98Y0IqOfTnbUnxar95uxOggoZ0TC02hD6Ahvbq',
-                    'Content-Type: application/json'
-                );
-                // curl function to run notification
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_FAILONERROR, false);
-                curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
-                $result = curl_exec($ch);
-                curl_close($ch);
-                $obj = json_decode($result);
-
-            }
-            } catch (\Exception $e) {
-                return $e->getMessage();
-            }
-        }
-    }
-
     public function notification(){
 
         if(!auth()->check()){
@@ -1163,7 +1103,6 @@ class HomeController extends Controller
             }
 
             $notify = \App\Notification::where('is_read', 0)->where('user_id', \Auth::user()->id)->count();
-            session()->put('notification_counter',$notify);
             $notifiactions = \App\Notification::where('user_id', auth()->id())->where('is_display', 0)->latest()->first();
 
             $meetnoti = \App\Notification::where('is_read', 0)->where('table_name', 'meetings')->where('prod_comp_id', session()->get('company_id'))->where('user_id', \Auth::user()->id)->count();
